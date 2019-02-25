@@ -1,0 +1,48 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+
+.planningTool {
+  @include tablet {
+    margin-top: 6.0625rem;
+  }
+}
+
+.formContainer {
+  width: 33.94rem;
+  padding: 3rem;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 1px 1px 30px 0 rgba(0, 0, 0, 0.16);
+
+  p {
+    font-family: NunitoSans-Regular;
+    font-size: 1.2rem;
+    letter-spacing: .7px;
+    text-align: center;
+    color: #333333;
+  }
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.formButton {
+  border-radius: .15rem;
+  background-color: $bright-red;
+  @include fontSize(28);
+  font-family: NunitoSans-Bold;
+  letter-spacing: .4px;
+  width: 100%;
+  padding: .8rem 0;
+  text-transform: uppercase;
+}
+
+.balloons {
+  position: absolute;
+  width: 10.65rem;
+  height: 33.05rem;
+  left: -3rem;
+  top: 16rem;
+  z-index: 10;
+}

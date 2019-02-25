@@ -1,0 +1,43 @@
+@import '../variables/fonts';
+@import '../variables/colors';
+@import '../variables/utils';
+
+html {
+  height: 100%;
+
+ @include mobile{
+    font-size: 11px;
+  }
+ @include tablet{
+    font-size: 11px;
+  }
+ @include desktop{
+    font-size: 11px;
+  }
+ @include hd{
+    font-size: 11px;
+  }
+ @include hdPlus{
+    font-size: 12px;
+  }
+ @include fullHd{
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: $nunito-regular;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: $blue-dark;
+}
+
+#root {
+  min-height: 100%;
+  position: relative;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $playfair-regular;
+}

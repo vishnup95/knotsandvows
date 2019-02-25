@@ -1,0 +1,113 @@
+@import '../../variables/fonts';
+@import '../../variables/colors';
+@import '../../variables/utils';
+
+.title {
+  color: $blue;
+}
+
+.react-logo {
+  width: 200px;
+}
+
+.hearts {
+  position: absolute;
+  width: 29.55rem;
+  height: 38rem;
+  right: 0;
+  top: 5.75rem;
+}
+
+.balloons {
+  position: absolute;
+  width: 10.65rem;
+  height: 33.05rem;
+  left: 0;
+  top: 10rem;
+}
+
+//Jumbotron 
+
+h1 {
+  font-family: $playfair-regular;
+  @include fontSize(58);
+  @include letterSpacing(1.2);
+  line-height: 1;
+  color: $black-five;
+}
+
+hr {
+  width: 20%;
+  border-top: 1px solid $black;
+}
+
+.button {
+  @include borderRadius(3);
+  @include padding(12,24);
+  font-family: $nunito-bold;
+  border-radius: .15rem;
+  background-color: $bright-red;
+  text-transform: uppercase;
+  border: none;
+  @include fontSize(16);
+  @include letterSpacing(.4);
+  &.carBtn {
+    text-transform: none;
+  }
+}
+
+a.button {
+  color: $white;
+  text-decoration: none;
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+
+  }
+}
+
+.pLarge {
+  @include fontSize(24);
+  @include letterSpacing(.7);
+  line-height: 1.5;
+}
+
+.pSmall {
+  font-size: 1rem;
+  letter-spacing: .6px;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+// carousel styles
+.carouselContent {
+  position: absolute;
+  text-align: center;
+  bottom: 5rem;
+  left: 0;
+  right: 0;
+  color: white;
+
+  h3 {
+    font-family: $playfair-regular;
+    @include fontSize(26);
+    letter-spacing: .8px;
+    text-align: center;
+    @include width(640);
+    margin: 0 auto 2rem;
+  }
+
+  .buttonContainer {
+    display: contents;
+    position: absolute;
+    text-align: center;
+
+    .button {
+      @include fontSize(22);
+      @include letterSpacing(.7);
+    }
+  }
+}

@@ -1,0 +1,114 @@
+@import '../../variables/colors';
+@import '../../variables/fonts';
+@import '../../variables/utils';
+
+//general 
+.cardImage {
+    width: 100%;
+    height: 16.194rem;
+}
+
+//simple card style
+.cardTitleSimple {
+    @include fontSize(20);
+    font-family: $nunito-bold;
+    @include letterSpacing(1.8);
+    @extend %uppercase;
+    color: $black-four;
+    text-align: center;
+}
+
+// exclusive card styles
+.cardTitle {
+    @include fontSize(20);
+    font-family: $nunito-bold;
+    @include letterSpacing(2);
+    color: $black;
+}
+
+
+.cardText {
+    @include fontSize(16);
+    line-height: 1.38;
+    @include letterSpacing(.5);
+    overflow: hidden;
+    font-family: $nunito-regular;
+}
+
+.price {
+    @include fontSize(18);
+    line-height: 1.22;
+    letter-spacing: 0.025rem;
+}
+
+.priceNow {
+    color: $bright-red;
+    font-family: $opensans-semi-bold;
+}
+
+.priceBefore {
+    color: $black-two;
+    font-family: $opensans-regular;
+}
+
+.cardButton {
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+    line-height: 1.71;
+    @include width(150);
+    @include height(40);
+    @include fontSize(14);
+    @include borderRadius(3);
+    font-family: $nunito-bold;
+}
+
+// category card styles
+
+.cardTitleCat {
+    @include fontSize(18);
+    font-family: $nunito-bold;
+    letter-spacing: 0.025rem;
+    color: $black-four;
+}
+
+.charges {
+    font-family: $nunito-regular;
+    color: $brownish-grey-two;
+    letter-spacing: 0.48px;
+    @include fontSize(15);
+
+    span {
+        font-family: $nunito-semi-bold;
+        color: $black-four;
+    }
+}
+
+.ratingContainer {
+    float: right;
+    width: max-content;
+}
+
+.rating {
+    @extend .charges;
+    font-family: $nunito-semi-bold;
+    text-align: right;
+    margin: 0;
+
+    span {
+        font-family: $nunito-regular;
+        color: $brownish-grey-two;
+        @include fontSize(13);
+    }
+    .heartImg {
+        @include width(19);
+        @include height(17);
+    }
+
+    .starImg {
+        width: 0.85rem;
+        height: 0.85rem;
+        margin-bottom: 0.25rem;
+        margin-left: 0.25rem;
+    }
+}
+    

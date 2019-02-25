@@ -1,0 +1,161 @@
+@import './breakpoints';
+$base-font-size: 16;
+
+%uppercase {
+  text-transform: uppercase;
+}
+
+%pointer {
+  cursor: pointer;
+}
+@mixin flex() {
+  display: flex !important;
+}
+@mixin flex-column() {
+  flex-direction: column;
+}
+@mixin align-center() {
+  align-items: center;
+}
+@mixin justify-center() {
+  justify-content: center;
+}
+@mixin justify-right() {
+  justify-content: flex-end;
+}
+@mixin justify-space-between() {
+  justify-content: space-between;
+}
+@mixin align-flex-end() {
+  align-items: flex-end;
+}
+@mixin fontSize($size, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  font-size: #{$size/$base-font-size}rem #{$imp};
+}
+@mixin width ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  width: #{$value/$base-font-size}rem #{$imp};
+}
+@mixin height ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  height: #{$value/$base-font-size}rem #{$imp};
+}
+@mixin padding ($value1:'', $value2:'', $value3:'', $value4:'', $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  @if ($value2 == '') {
+    padding: #{$value1/$base-font-size}rem #{$imp};
+  }
+  @else if($value3 == '') {
+    padding: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$imp};
+  }
+  @else if($value4 == '') {
+    padding: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$value3/$base-font-size}rem #{$imp};
+  }
+  @else {
+    padding: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$value3/$base-font-size}rem #{$value4/$base-font-size}rem #{$imp};
+  }
+}
+@mixin margin ($value1:'', $value2:'', $value3:'', $value4:'', $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  @if ($value2 == '') {
+    margin: #{$value1/$base-font-size}rem #{$imp};
+  }
+  @else if($value3 == '') {
+    margin: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$imp};
+  }
+  @else if($value4 == '') {
+    margin: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$value3/$base-font-size}rem #{$imp};
+  }
+  @else {
+    margin: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$value3/$base-font-size}rem #{$value4/$base-font-size}rem #{$imp};
+  }
+}
+@mixin borderRadius ($value1:'', $value2:'', $value3:'', $value4:'', $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  @if ($value2 == '') {
+    border-radius: #{$value1/$base-font-size}rem #{$imp};
+  }
+  @else if($value3 == '') {
+    border-radius: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$imp};
+  }
+  @else if($value4 == '') {
+    border-radius: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$value3/$base-font-size}rem #{$imp};
+  }
+  @else {
+    border-radius: #{$value1/$base-font-size}rem #{$value2/$base-font-size}rem #{$value3/$base-font-size}rem #{$value4/$base-font-size}rem #{$imp};
+  }
+}
+@mixin letterSpacing($size, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  letter-spacing: #{$size/$base-font-size}rem #{$imp};
+}
+
+// mixins for responsive styling
+@mixin mobile{
+  @media #{$mobile} {
+    @content;
+  }
+}
+@mixin tablet{
+  @media #{$tablet} {
+    @content;
+  }
+}
+@mixin desktop{
+  @media #{$desktop} {
+    @content;
+  }
+}
+@mixin hd{
+  @media #{$hd} {
+    @content;
+  }
+}
+@mixin hdPlus{
+  @media #{$hd-plus} {
+    @content;
+  }
+}
+@mixin fullHd{
+  @media #{$full-hd} {
+    @content;
+  }
+}
+@mixin uHd{
+  @media #{$u-hd} {
+    @content;
+  }
+}
+@mixin mobileLandscape{
+  @media #{$mobile-landscape} {
+    @content;
+  }
+}
+@mixin tabletOnly{
+  @media #{$tablet-only} {
+    @content;
+  }
+}
+// mixins for responsive styling ends here

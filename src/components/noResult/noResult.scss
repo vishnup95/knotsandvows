@@ -1,0 +1,21 @@
+@import '../../variables/colors';
+@import '../../variables/fonts';
+@import '../../variables/utils';
+
+.no-result-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    img {
+        @include width(155);
+        @include height(155);
+        @include margin(30,0);
+    }
+    p {
+        @include fontSize(24);
+        @include letterSpacing(.7);
+        line-height: .75;
+    }
+}

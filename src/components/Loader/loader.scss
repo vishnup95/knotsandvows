@@ -1,0 +1,35 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
+.loader-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outerImage {
+  position: relative;
+}
+
+// .innerImage {
+//   position: absolute;
+//   top: calc(50% - 18px);
+//   left: calc(50% - 15.5px);
+//   animation-name: rotateImage;
+//   animation-duration: 2s;
+//   animation-iteration-count: infinite;
+// }
+@keyframes rotateImage {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+}

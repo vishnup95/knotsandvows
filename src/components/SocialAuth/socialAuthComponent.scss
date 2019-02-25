@@ -1,0 +1,50 @@
+@import '../../variables/colors.scss';
+@import '../../variables/fonts.scss';
+@import '../../variables/utils';
+
+.auth-button{
+    @include height(50);
+    @include width(280);
+    @include fontSize(16);
+    font-family: $nunito-semi-bold;
+    letter-spacing: 0.4px;
+    color: white;
+    background: url('/images/footer_fb.png') no-repeat 4% 49% #37579e;
+    background-size: 20px;
+    border: 0;
+    position: relative;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include height(50);
+        @include width(280);
+    }
+}
+
+.googleButton {
+    color: gray;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.16);
+    background: url('/images/google_icon.png') 4% 49% no-repeat $white;
+    background-size: 20px;
+
+    &:hover, &:active, &:focus {
+       background-color: $white !important;
+       color: gray !important;
+       box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.16) !important;
+    }
+
+    &:hover {
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.36) !important;
+    } 
+}
+.social-btn-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

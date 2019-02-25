@@ -1,0 +1,178 @@
+@import '../../variables/fonts';
+@import '../../variables/colors';
+@import '../../variables/utils';
+
+.logo-test {
+  width: 3rem;
+  max-width: 60px;
+}
+
+.ah-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  @include height(97);
+  font-family: $nunito-regular;
+  @include tablet {
+    background-color: rgba(255,255,255,.6);
+  }
+
+  .ahNav {
+    background-color: transparent !important;
+    margin-bottom: 0;
+    height: 100%;
+
+    ul {
+      @include tablet {
+         @include align-center();
+      }
+    }
+    @include tablet {
+      padding: 0 3rem 0 3.125rem;
+    }
+  }
+}
+
+.header-shadow {
+  background: #fff;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  transition: 300ms all ease;
+}
+
+.ahCollapse {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+  box-shadow: 0 3px 6px 0 $black-16;
+  @include padding(27,20);
+  @include tablet {
+    height: 100%;
+    position: relative;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+    justify-content: flex-end;
+  }
+
+  > ul {
+    height: 100%;
+
+    > li {
+      height: 100%;
+      @include flex();
+      @include align-center();
+      position: relative;
+      cursor: pointer;
+
+      a {
+        font-size: 1.375rem;
+        line-height: 1.36;
+        color: $greyish-brown;
+        position: relative;
+        @include tablet {
+          margin: 0 1rem;
+
+          &:before {
+            content: '';
+            position: absolute;
+            left: 20%;
+            bottom: -1rem;
+            width: 60%;
+            background-color: $tomato-red;
+            height: 0;
+            border-radius: 2px;
+          }
+
+          &:hover {
+            &:before {
+
+              bottom: .4rem;
+              height: 2px;
+              transition: 300ms all ease;
+
+            }
+          }
+        }
+      }
+
+      a[class*=" active"] {
+        color: $black;
+      }
+
+    }
+  }
+
+  .icon-nav {
+    height: 100%;
+    @include mobile {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .icon-link {
+      @include flex();
+      @include flex-column();
+      @include justify-center();
+      font-size: .875rem !important;
+      color: $black-six !important;
+      background-color: rgba(255,255,255,.5);
+      height: calc(100% - .5rem);
+      width: 113px / 16px * 1rem;
+      box-shadow: 0 1px 3px 0 $black-16;
+      @include align-center();
+      margin: 0 2px !important;
+
+      &:before {
+        display: none;
+      }
+
+      > img {
+        margin-bottom: .4rem;
+      }
+
+    }
+  }
+}
+
+.categoriesList {
+  position: absolute;
+  top: 15rem;
+  left: 0;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.12);
+  background-color: $white;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  li {
+    @extend %pointer;
+    padding: 1rem 1.5rem;
+
+    a {
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
+
+.vendors {
+  &:hover {
+    .categoriesList {
+      height: auto;
+      top: 6.0625rem;
+      transition: 500ms all ease;
+      opacity: 1;
+    }
+  }
+}
+.login-modal {
+  
+}

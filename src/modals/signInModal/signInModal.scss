@@ -1,0 +1,177 @@
+@import '../../variables/colors.scss';
+@import '../../variables/fonts.scss';
+@import '../../variables/utils';
+@import '../../variables/breakpoints';
+
+.header-space {
+  width: 100%;
+  height: 5rem;
+}
+
+.heading {
+  @include fontSize(22);
+  font-family: $nunito-bold;
+  color: $black-nine;
+}
+
+.input {
+  font-size: 1.1rem;
+  font-family: $nunito-regular;
+  color: $black-five;
+  margin: .5rem;
+  letter-spacing: .035px;
+}
+
+.detail-bold {
+  font-size: 1.1rem;
+  font-family: $nunito-semi-bold;
+  color: $black-five;
+  letter-spacing: .035px;
+}
+
+.detail-link {
+  font-size: 1.1rem;
+  font-family: $nunito-regular;
+  color: $bright-red;
+  letter-spacing: .035px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.button {
+  @include padding(16, 29);
+  @include fontSize(16);
+  border-radius: .15rem;
+  background-color: $bright-red;
+  font-family: $nunito-bold;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.forgotButton {
+  @include padding(10.4, 12);
+  @media screen and (max-width: 1300px) {
+     @include fontSize(14);
+    @include padding(10.4, 10);
+  }
+  @media screen and (max-width: 380px) {
+     @include padding(8,5.6);
+  }
+}
+
+.orLine {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+  font-family: $nunito-regular;
+  @include fontSize(16);
+  color: #535353;
+  letter-spacing: .48px;
+  line-height: 1;
+
+  .line {
+    background-color: $warm-grey-two;
+    height: 1px;
+    width: 45%;
+    margin-top: .55rem;
+  }
+}
+
+.login {
+  @include fontSize(16);
+  font-family: $nunito-bold;
+  color: $bright-red;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+
+  &:hover {
+    color: $bright-red;
+    text-decoration: none;
+  }
+}
+
+.signup {
+  @include height(50);
+  @include width(260);
+  @include fontSize(16);
+  border-radius: .15rem;
+  background-color: $bright-red;
+  font-family: $nunito-bold;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.alignButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.footerText {
+  font-family: $nunito-regular;
+  @include fontSize(16);
+  letter-spacing: .48px;
+  color: $black-ten;
+
+  span {
+    color: $bright-red;
+  }
+
+  .bold {
+    font-family: $nunito-bold;
+  }
+}
+
+.maxWidth {
+  width: 100%;
+  @include hdPlus {
+    width: max-content;
+  }
+}
+
+.login-container {
+  display: flex;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  @include width(495);
+  @include tablet {
+     @include padding(55);
+  }
+}
+
+.login-bg {
+  background: url('/images/login-bg.jpg') center center no-repeat;
+  background-size: cover;
+  @include width(897);
+  @include mobile {
+    display: none;
+  }
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  @include margin(0,0,35)
+}
+
+.image {
+  @include height(60);
+  @include width(60);
+  @include margin(0,25.8,0,0);
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

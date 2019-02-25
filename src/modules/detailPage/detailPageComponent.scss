@@ -1,0 +1,330 @@
+@import '../../variables/fonts';
+@import '../../variables/colors';
+@import '../../variables/utils';
+
+.detailContainer {
+  width: 100%;
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+.bg-image {
+  width: 100%;
+  height: 712px / 16px * 1rem;
+}
+
+.detail-section {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.info-box {
+  @include flex;
+  @include justify-space-between;
+  background-color: rgba(255, 255, 255, .97);
+  @include borderRadius(3,3,0,0);
+  box-shadow: 0 3px 6px 0 $black-16;
+  @include padding(20,35);
+  color: $black-five;
+  @include height(160);
+  @include margin(-160,0,0);
+
+  h3 {
+    font-family: $nunito-bold;
+    @include fontSize(30);
+    letter-spacing: .5px;
+  }
+
+  p {
+    font-family: $nunito-regular;
+    @include fontSize(18);
+    letter-spacing: .9px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $warm-grey;
+  }
+}
+
+.rating {
+  @include fontSize(13);
+  @extend %uppercase;
+}
+
+.review {
+  @include fontSize(14);
+  @extend %uppercase;
+}
+
+.view-btn-wrap {
+  border-left: 1px solid $warm-grey;
+  @include flex;
+  @include align-center;
+  @include justify-center;
+  @include padding(28.5, 0, 28.5, 28.5);
+}
+
+.detail-nav {
+  @include flex;
+  @include justify-space-between;
+  @include align-center;
+  @include padding(0,35);
+  @include height(60);
+  margin: auto;
+  background-color: $white-four;
+
+  ul {
+    @include flex;
+    padding: 0;
+    margin: 0;
+
+    li {
+      // border-right: 1px solid $black-five;
+      @include fontSize(18);
+      color: $black-five;
+      font-family: $nunito-regular;
+      @include margin(0,16);
+      @include letterSpacing(.4);
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+  }
+}
+
+.transparent-btn {
+  border: 1px solid $black-seven;
+  @include borderRadius(3);
+  @include width(150);
+  @include height(42);
+  background: transparent;
+  font-family: $nunito-semi-bold;
+  color: $black-seven;
+  @include letterSpacing(.4);
+  @extend %pointer;
+}
+
+.view-btn {
+  background: $bright-red;
+  color: $white;
+  border: none;
+  font-family: $nunito-semi-bold;
+  @include borderRadius(3);
+  @include fontSize(18);
+  @include height(42);
+  @include width(150);
+  @extend %pointer;
+}
+
+.detail-sub-section {
+  box-shadow: 1px 3px 8px 0 $black-16;
+  @include borderRadius(3);
+  @include margin(30,0);
+  @include padding(25,35);
+
+  h3 {
+    @include fontSize(30);
+    font-family: $nunito-semi-bold;
+  }
+
+  h5 {
+    @include fontSize(20);
+    font-family: $nunito-semi-bold;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    @include fontSize(18);
+    @include letterSpacing(.5);
+    color: $black-five;
+    line-height: 1.67;
+  }
+
+  .selectable-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+
+    li {
+      @include fontSize(20);
+      width: 100%;
+      width: 100%;
+      @include padding(0,0,0,45);
+      @include margin(8,0);
+      position: relative;
+
+      span {
+        @include fontSize(18);
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include width(25);
+        @include height(25);
+        background-image: url('/images/check-box.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+
+      }
+
+      &.selected {
+        &:before {
+          background-image: url('/images/check-box-ticked.svg');
+          background-size: contain;
+        }
+      }
+      @include tablet {
+        width: 50%;
+      }
+    }
+  }
+
+  .list-with-icon {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+
+    li {
+      @include fontSize(20);
+      width: 100%;
+      width: 100%;
+      @include padding(0,0,0,45);
+      @include margin(8,0);
+      position: relative;
+
+      span {
+        @include fontSize(18);
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include width(25);
+        @include height(25);
+        background-image: url('/images/dining.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      @include tablet {
+        width: 50%;
+      }
+    }
+  }
+
+  &.right-section {
+    @include padding(25,0);
+
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .venue-desc {
+      color: $warm-grey-two;
+    }
+  }
+}
+
+.right-sub-section {
+  @include padding(18,35);
+}
+
+.section-border {
+  border-bottom: 1px solid $warm-grey-two;
+}
+
+.available-area {
+  @include flex;
+  @include align-flex-end;
+  @include justify-space-between;
+}
+
+.checkin {
+  @include flex;
+  @include align-flex-end;
+
+}
+
+.session-wrap {
+  margin-top: 1rem;
+
+}
+
+.edit-btn {
+  border: 1px solid $bright-red;
+  @include borderRadius(3);
+  @include height(24);
+  @include width(68);
+  @include fontSize(14);
+  background-color: $white;
+  color: $bright-red;
+  font-family: $nunito-semi-bold;
+  margin-bottom: .2rem;
+  @extend %pointer;
+}
+
+.price-wrap {
+  background: $white-three;
+  @include height(163);
+  @include borderRadius(3);
+  @include align-center;
+  margin: 0;
+}
+
+.offer-price {
+  font-family: $nunito-semi-bold;
+  @include fontSize(35);
+  @include letterSpacing(1.2);
+  color: $black-eight;
+  white-space: nowrap;
+}
+
+.price {
+  @include flex;
+  color: $warm-grey-three;
+  @include fontSize(22);
+
+}
+
+.off-percentage {
+  background: $bright-red;
+  color: $white;
+  @include fontSize(18);
+  @include padding(0,5);
+  @include height(31);
+  @include borderRadius(3);
+  @include margin(0,4);
+
+  span {
+    font-family: $nunito-bold;
+    @include fontSize(20);
+  }
+}
+
+.add-to-cart {
+  background: $bright-red;
+  @include height(83);
+  @include borderRadius(3);
+  width: 100%;
+  border: none;
+  @extend %uppercase;
+  @extend %pointer;
+  color: $white;
+  @include fontSize(28);
+  font-family: $nunito-bold;
+  @include letterSpacing(.8);
+}

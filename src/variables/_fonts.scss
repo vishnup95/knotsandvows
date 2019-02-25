@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'NunitoSans-Regular';
+    src: url('/fonts/Nunito-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'NunitoSans-Light';
+    src: url('/fonts/Nunito-Light.ttf');
+}
+
+@font-face {
+    font-family: 'NunitoSans-Bold';
+    src: url('/fonts/Nunito-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'NunitoSans-SemiBold';
+    src: url('/fonts/Nunito-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'PlayfairDisplay-Regular';
+    src: url('/fonts/PlayfairDisplay-Regular.ttf');
+}
+@font-face {
+    font-family: 'PlayfairDisplay-Bold';
+    src: url('/fonts/PlayfairDisplay-Bold.ttf');
+}
+@font-face {
+    font-family: 'OpenSans-Regular';
+    src: url('/fonts/OpenSans-Regular.ttf');
+}
+@font-face {
+    font-family: 'OpenSans-Light';
+    src: url('/fonts/OpenSans-Light.ttf');
+}
+@font-face {
+    font-family: 'OpenSans-SemiBold';
+    src: url('/fonts/OpenSans-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url('/fonts/OpenSans-Bold.ttf');
+}
+
+$nunito-regular: 'NunitoSans-Regular', sans-serif;
+$nunito-light: 'NunitoSans-Light', sans-serif;
+$nunito-bold: 'NunitoSans-Bold', sans-serif;
+$nunito-semi-bold: 'NunitoSans-SemiBold', sans-serif;
+$playfair-regular: 'PlayfairDisplay-Regular', sans-serif;
+$playfair-bold: 'PlayfairDisplay-Bold', sans-serif;
+$opensans-regular: 'OpenSans-Regular', sans-serif;
+$opensans-light: 'OpenSans-Light', sans-serif;
+$opensans-bold: 'OpenSans-Bold', sans-serif;
+$opensans-semi-bold: 'OpenSans-SemiBold', sans-serif;

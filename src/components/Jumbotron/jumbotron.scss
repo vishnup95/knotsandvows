@@ -1,0 +1,52 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
+h1 {
+  @include fontSize(48);
+  @include letterSpacing(1.2);
+  line-height: 1;
+  @include margin(0,0,32);
+}
+
+hr {
+  width: 20%;
+  border-top: 1px solid $black;
+}
+
+.button {
+  @include borderRadius(3);
+  background-color: $bright-red;
+  @include fontSize(16);
+  font-family: $nunito-bold;
+  @include letterSpacing(.4);
+  @include padding(12,24);
+  text-transform: uppercase;
+  border: none;
+}
+
+.pLarge {
+  @include fontSize(24);
+  line-height: 1.5;
+  @include letterSpacing(.7);
+  color: $black;
+}
+.black-five {
+    color: $black-five;
+}
+.pSmall {
+  @include fontSize(20);
+  line-height: 1.6;
+  @include letterSpacing(.6);
+}
+
+.center {
+  margin: 0 auto;
+}
+.col-image {
+  width: 100%;
+  max-width: 100%;
+  @include tablet {
+    @include width(629);
+  }
+}

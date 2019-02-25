@@ -1,0 +1,59 @@
+@import '../../variables/colors';
+@import '../../variables/fonts';
+@import '../../variables/utils';
+
+.talk-popup {
+  max-width: max-content !important;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  @include width(503);
+  @include tablet {
+     @include padding(55);
+  }
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  @include margin(0,0,35)
+}
+
+.image {
+  @include height(60);
+  @include width(60);
+  @include margin(0,25.8,0,0);
+}
+
+.heading {
+  @include fontSize(22);
+  font-family: $nunito-bold;
+  color: $black-nine;
+}
+
+.button {
+  @include borderRadius(3);
+  @include padding(12,24);
+  font-family: $nunito-bold;
+  border-radius: .15rem;
+  background-color: $bright-red;
+  border: none;
+  @include fontSize(16);
+  @include letterSpacing(.4);
+  @extend %uppercase;
+  color: $white;
+}
+
+.cancel-btn {
+  color: $warm-grey-six;
+  font-family: $nunito-bold;
+  background: none;
+  border: none;
+
+  &:hover {
+    background: none;
+    color: inherit;
+  }
+}

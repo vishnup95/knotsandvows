@@ -1,0 +1,56 @@
+@import '../../variables/colors';
+@import '../../variables/fonts';
+@import '../../variables/utils';
+
+.footer-container {
+  padding: 2rem 5% !important;
+  margin: 0 !important;
+  @include tablet{
+    text-align: left;
+    @include padding(76,143, $important: true);
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  
+    li {
+      @include fontSize(18);
+      @include letterSpacing(.5);
+      color: $black;
+  
+      &:first-child {
+        font-family: $nunito-bold;
+      }
+    }
+  }
+}
+
+
+
+p {
+  @include fontSize(16);
+  @include letterSpacing(.3);
+
+}
+
+.block {
+  p:first-child {
+    font-family: $playfair-bold;
+    @include fontSize(18);
+  }
+}
+
+.footerImages {
+  img {
+    height: 1.52rem;
+    width: 1.52rem;
+    margin-left: 1rem;
+  }
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}

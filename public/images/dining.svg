@@ -1,0 +1,22 @@
+<svg id="Group_1015" data-name="Group 1015" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38.265" height="26.176" viewBox="0 0 38.265 26.176">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_1161" data-name="Path 1161" d="M28.591-24.473a9.467,9.467,0,0,1-9.455-9.455,9.466,9.466,0,0,1,9.455-9.455,9.466,9.466,0,0,1,9.455,9.455A9.466,9.466,0,0,1,28.591-24.473Zm0-20.167A10.724,10.724,0,0,0,17.879-33.928,10.723,10.723,0,0,0,28.591-23.217,10.723,10.723,0,0,0,39.3-33.928,10.724,10.724,0,0,0,28.591-44.64Z" transform="translate(-17.879 44.64)" fill="#e0000c" clip-rule="evenodd"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_1163" data-name="Path 1163" d="M67.35-40.4A18.593,18.593,0,0,1,69.386-49.2a9.811,9.811,0,0,1,1.054-1.536V-40.4Zm4.021-12.339a.627.627,0,0,0-.64.021c-.189.121-4.644,3.077-4.644,12.945a.628.628,0,0,0,.628.628h3.726v11.876a.628.628,0,0,0,.628.628.628.628,0,0,0,.628-.628v-24.92A.628.628,0,0,0,71.371-52.742Z" transform="translate(-66.087 52.819)" fill="#e0000c" clip-rule="evenodd"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <path id="Path_1165" data-name="Path 1165" d="M7.332-52.819a.628.628,0,0,0-.628.628v7.87a.209.209,0,0,1-.209.209H4.946v-8.08a.628.628,0,0,0-.628-.628.628.628,0,0,0-.628.628v8.08H2.141a.209.209,0,0,1-.209-.209v-7.87a.628.628,0,0,0-.628-.628.628.628,0,0,0-.628.628v7.87a1.467,1.467,0,0,0,1.465,1.465H3.69v15.584a.628.628,0,0,0,.628.628.628.628,0,0,0,.628-.628V-42.855H6.5A1.467,1.467,0,0,0,7.96-44.321v-7.87a.628.628,0,0,0-.628-.628" transform="translate(-0.676 52.819)" fill="#e0000c" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <g id="Group_1012" data-name="Group 1012" transform="translate(8.588 4.083)" clip-path="url(#clip-path)">
+    <path id="Path_1160" data-name="Path 1160" d="M12.879-49.64H39.294v26.415H12.879Z" transform="translate(-15.375 47.144)" fill="#e0000c"/>
+  </g>
+  <g id="Group_1013" data-name="Group 1013" transform="translate(32.655 0)" clip-path="url(#clip-path-2)">
+    <path id="Path_1162" data-name="Path 1162" d="M61.087-57.819h10.6v31.168h-10.6Z" transform="translate(-63.583 55.323)" fill="#e0000c"/>
+  </g>
+  <g id="Group_1014" data-name="Group 1014" transform="translate(0 0)" clip-path="url(#clip-path-3)">
+    <path id="Path_1164" data-name="Path 1164" d="M-4.324-57.819H7.953v31.168H-4.324Z" transform="translate(1.828 55.323)" fill="#e0000c"/>
+  </g>
+</svg>
