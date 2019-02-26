@@ -3,7 +3,7 @@
 @import '../../variables/utils';
 
 .talk-popup {
-  max-width: max-content !important;
+  @include width(503);
 }
 .login-form {
   display: flex;
