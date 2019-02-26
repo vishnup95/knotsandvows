@@ -5,6 +5,8 @@ pipelines:
       - step:
           name: Build app
           script:
-            - pwd
-            - ls -al
+            - scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -r /opt/atlassian/pipelines/agent/build/ staging@52.66.202.144:/home/staging/
+            - npm build
+            - npm run build
+            - scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -r build/ staging@52.66.202.144:/home/staging/
 
