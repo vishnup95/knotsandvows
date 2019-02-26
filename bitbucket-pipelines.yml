@@ -7,4 +7,4 @@ pipelines:
           script:
             - npm install
             - npm run build
-            - scp -r build/ staging@52.66.202.144:/home/staging/
+            - scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -r build/ staging@52.66.202.144:/home/staging/
