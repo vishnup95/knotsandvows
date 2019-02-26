@@ -5,6 +5,6 @@ pipelines:
       - step:
           name: Build app
           script:
-            - npm install
-            - npm run build
-            - scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -r consumerportal/ staging@52.66.202.144:/home/staging/
+            - pwd
+            - ls -al
+
