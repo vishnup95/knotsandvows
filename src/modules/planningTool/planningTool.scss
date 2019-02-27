@@ -3,7 +3,7 @@
 
 .planningTool {
   @include tablet {
-    margin-top: 6.0625rem;
+    @include margin(165.3,0,0);
   }
 }
 

@@ -61,12 +61,12 @@ const LoadableSample = Loadable({
   }
 });
 
-const LoadableAbout = Loadable({
-  loader: () => import(/* webpackChunkName: 'about' */ './modules/about/About'),
-  loading() {
-    return <div>Loading...</div>;
-  }
-});
+// const LoadableAbout = Loadable({
+//   loader: () => import(/* webpackChunkName: 'about' */ './modules/about/About'),
+//   loading() {
+//     return <div>Loading...</div>;
+//   }
+// });
 
 const LoadableLogin = Loadable({
   loader: () => import(/* webpackChunkName: 'login' */ './modules/login/Login'),
@@ -142,7 +142,7 @@ const routes = (
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
     <Route exact path="/wishlist" component={LoadableCartPage} />
     {/* <Route exact path="/checkout" component={LoadableCheckout} /> */}
-    <Route path="/about" component={LoadableAbout} />
+    {/* <Route path="/about" component={LoadableAbout} /> */}
     <Route path="/sample" component={LoadableSample} />
     <Route path="/detail" component={LoadableDetail} />
     {/* <Route path="/booking-confirmation" component={LoadableBookingConfirmation} /> Will change to secret route  */}

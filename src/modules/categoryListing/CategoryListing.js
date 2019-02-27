@@ -74,7 +74,7 @@ class CategoryListing extends Component {
 
   render() {
     return (
-      <div style={{marginTop:'6.0625rem'}}>
+      <div style={{marginTop:'10.33125rem'}}>
         <Jumbotron className="mb-0 bg-white">
             <h1 className="text-center">Browse Categories</h1>
             <hr className="mt-3 mb-5" />

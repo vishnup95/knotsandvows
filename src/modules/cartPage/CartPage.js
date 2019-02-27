@@ -79,7 +79,7 @@ class CartComponent extends Component {
 
   render() {
     return (
-      <div style={{marginTop:'6.0625rem'}}>
+      <div style={{marginTop:'10.33125rem'}}>
         <div className="text-center mb-5 pt-5">
           <h3 className={styles.cartPageTitle}>Your Wishlist</h3>
         </div>
