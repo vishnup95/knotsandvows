@@ -1,9 +1,9 @@
 image: node:10
 pipelines:
   branches:
-    staging:
+    sandbox:
       - step:
           name: Build app
           script:
-            - ssh staging@52.66.202.144 'bash -s' < deploy.sh
+            - ssh sandbox@52.66.202.144 'bash -s' < deploy.sh
 
