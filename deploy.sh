@@ -8,7 +8,7 @@ export HOME=/home/staging
 source $HOME/.nvm/nvm.sh
 nvm use v10.9.0
 set -e
-git clone -b staging git@bitbucket.org:exypnosdev/consumerportal.git
+git clone -b sandbox git@bitbucket.org:exypnosdev/consumerportal.git
 cd consumerportal
 mv sample-env.txt .env
 npm install
