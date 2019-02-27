@@ -13,32 +13,37 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  @include height(97);
   font-family: $nunito-regular;
+  transition: 300ms all ease;
   @include tablet {
-    background-color: rgba(255,255,255,.6);
+    background: #fff;
+    border-bottom: 1px solid $black-16;
   }
 
   .ahNav {
     background-color: transparent !important;
     margin-bottom: 0;
-    height: 100%;
 
     ul {
       @include tablet {
          @include align-center();
+        @include height(86.3);
       }
-    }
-    @include tablet {
-      padding: 0 3rem 0 3.125rem;
     }
   }
 }
 
-.header-shadow {
+.nav-small {
+  @include height(79);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem 0 1rem;
+  box-shadow: 0 2px 6px 0 $black-16;
   background: #fff;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  transition: 300ms all ease;
+  @include tablet {
+    padding: 0 0 0 3.125rem;
+  }
 }
 
 .ahCollapse {
@@ -55,7 +60,7 @@
     box-shadow: none;
     background-color: transparent;
     padding: 0;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   > ul {
@@ -106,36 +111,52 @@
     }
   }
 
-  .icon-nav {
+}
+
+.icon-nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  @include mobile {
+    justify-content: space-between;
+  }
+
+  > li {
     height: 100%;
-    @include mobile {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-top: 1rem;
+    display: flex;
+    align-items: center;
+
+    &:last-child {
+      .icon-link {
+        @include mobile {
+          border-right: 1px solid $black-16;
+        }
+      }
+    }
+  }
+
+  .icon-link {
+    @include flex();
+    @include flex-column();
+    @include justify-center();
+    font-size: .875rem !important;
+    color: $black-six !important;
+    background-color: rgba(255,255,255,.5);
+    height: calc(100% - 1rem);
+    width: 113px / 16px * 1rem;
+    @include align-center();
+    margin: 0 1px !important;
+    border-left: 1px solid $black-16;
+
+    &:before {
+      display: none;
     }
 
-    .icon-link {
-      @include flex();
-      @include flex-column();
-      @include justify-center();
-      font-size: .875rem !important;
-      color: $black-six !important;
-      background-color: rgba(255,255,255,.5);
-      height: calc(100% - .5rem);
-      width: 113px / 16px * 1rem;
-      box-shadow: 0 1px 3px 0 $black-16;
-      @include align-center();
-      margin: 0 2px !important;
-
-      &:before {
-        display: none;
-      }
-
-      > img {
-        margin-bottom: .4rem;
-      }
-
+    > img {
+      margin-bottom: .4rem;
+      @include height(30);
     }
   }
 }
@@ -151,6 +172,7 @@
   height: 0;
   overflow: hidden;
   opacity: 0;
+
   li {
     @extend %pointer;
     padding: 1rem 1.5rem;
@@ -161,18 +183,22 @@
       }
     }
   }
+  @include mobile {
+    display: none;
+  }
 }
 
 .vendors {
   &:hover {
     .categoriesList {
       height: auto;
-      top: 6.0625rem;
+      top: 5rem;
       transition: 500ms all ease;
       opacity: 1;
     }
   }
 }
+
 .login-modal {
   @include width(1385);
 }
