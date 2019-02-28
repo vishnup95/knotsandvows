@@ -69,7 +69,7 @@ class CarouselComponent extends Component {
                 <CarouselItem
                     onExiting={this.onExiting}
                     onExited={this.onExited}
-                    key={index}>
+                    key={index} className={styles.carouselItem}>
                     <img src={imagePath(item.src)} className="w-100" alt={item.altText} />
                     <div className={styles.carouselContent}>
                         <h3>{item.caption}</h3>
