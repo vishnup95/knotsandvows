@@ -38,10 +38,8 @@ class Header extends Component {
         super(props);
         this.toggleModal = this.toggleModal.bind(this);
         this.toggle = this.toggle.bind(this);
-        this.handleScroll = this.handleScroll.bind(this);
         this.state = {
-            isOpen: false,
-            isScrolled: false
+            isOpen: false
         };
     }
 
@@ -56,28 +54,6 @@ class Header extends Component {
     componentWillMount() {
         if (this.props.categories.length === 0) {
             this.props.dispatch(homeActions.fetchCategories());
-        }
-    }
-
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
-    handleScroll() {
-        let scrollTop = window.scrollY;
-        if (scrollTop > 50) {
-            this.setState({
-                isScrolled: true
-            });
-        }
-        else {
-            this.setState({
-                isScrolled: false
-            });
         }
     }
 
@@ -135,11 +111,23 @@ class Header extends Component {
     render() {
 
         return (
-            <div className={`${styles.ahHeader} ${(this.state.isScrolled || (this.props.route != '/')) ? styles.headerShadow : ''}`}>
-                <Navbar color="" expand="md" className={styles.ahNav}>
+            <div className={`${styles.ahHeader}`}>
+                <div className={styles.navSmall}>
+
                     <NavbarBrand href="/">
                         <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
                     </NavbarBrand>
+                    <Nav className={`${styles.iconNav}`} navbar>
+                        <NavItem>
+                            <NavLink href="" className={styles.iconLink}>
+                                <img src={imagePath('vendor.svg')} alt="vendor" />
+                                For Vendors
+                                </NavLink>
+                        </NavItem>
+                        {this.renderLoginItem()}
+                    </Nav>
+                </div>
+                <Navbar color="" expand="md" className={styles.ahNav}>
                     <NavbarToggler className={this.state.isOpen ? 'close-nav' : ''} onClick={this.toggle} />
                     <Collapse navbar className={`${styles.ahCollapse} ${this.state.isOpen ? 'show' : ''}`} >
                         <Nav className="" navbar>
@@ -153,24 +141,15 @@ class Header extends Component {
                                 <NavLink onClick={() => this.navigateTo('/exclusive')}>Packages</NavLink>
                             </NavItem>
                             <NavItem>
+                                <NavLink onClick={() => this.navigateTo('/about')}>About Ahwanam</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/howItWorks')}>How It Works</NavLink>
                             </NavItem>
-                            
-                        </Nav>
-                        <Nav className={`${styles.iconNav}`} navbar>
                             <NavItem>
-                                <NavLink href="" className={styles.iconLink}>
-                                    <img src={imagePath('vendor.svg')} alt="vendor" />
-                                    For Vendors
-                                </NavLink>
+                                <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
                             </NavItem>
-                            {this.renderLoginItem()}
-                            <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/wishlist')} className={styles.iconLink}>
-                                    <img src={imagePath('cart.svg')} alt="cart" />
-                                    Wishlist
-                                </NavLink>
-                            </NavItem>
+
                         </Nav>
                     </Collapse>
                 </Navbar>

@@ -7,6 +7,9 @@
 .navbar-toggler {
     background: url('/images/nav-icon.svg') center center no-repeat;
     z-index: 3;
+    position: absolute;
+    top: -3.8rem;
+    right: 1rem
 }
 
 .navbar-toggler.close-nav {
