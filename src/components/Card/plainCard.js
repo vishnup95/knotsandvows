@@ -26,7 +26,7 @@ class PlainCard extends Component {
   render() {
     return (
       <div>
-        <Card className="mb-5" style={{backgroundColor: '#ffffff'}} onClick={() => this.navigateTo(`/category/${this.props.data.name}`)}>
+        <Card className="mb-5" style={{backgroundColor: '#ffffff'}} onClick={() => this.navigateTo(`/categories/${this.props.data.page_name}`)}>
           <CardImg
             top
             width="100%"
