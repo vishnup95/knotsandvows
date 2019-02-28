@@ -74,7 +74,7 @@ const ProductsReducer = (state = initialState, action) => {
       result = action.result || {};
       return {
         ...state,
-        other_categories: result.data.results,
+        other_categories: result.data.data.results,
         loading: false
       };
 

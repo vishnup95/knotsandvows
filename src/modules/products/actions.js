@@ -29,6 +29,6 @@ export function fetchOtherCategories(category) {
       types.LOAD_OTHER_CATEGORIES_SUCCESS,
       types.LOAD_OTHER_CATEGORIES_FAILURE
     ],
-    promise: client => client.get(`api/home/othercategories?type=${category}`)
+    promise: client => client.get(`api/category/relatedcategories?type=${category}`)
   };
 }

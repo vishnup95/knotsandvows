@@ -5,27 +5,26 @@
 .footer-container {
   padding: 2rem 5% !important;
   margin: 0 !important;
-  @include tablet{
+  @include tablet {
     text-align: left;
     @include padding(76,143, $important: true);
   }
+
   ul {
     list-style: none;
     padding: 0;
-  
+
     li {
       @include fontSize(18);
       @include letterSpacing(.5);
       color: $black;
-  
+
       &:first-child {
         font-family: $nunito-bold;
       }
     }
   }
 }
-
-
 
 p {
   @include fontSize(16);
@@ -34,23 +33,54 @@ p {
 }
 
 .block {
+  margin-bottom: 2rem;
+
   p:first-child {
     font-family: $playfair-bold;
     @include fontSize(18);
+    margin-bottom: 1rem;
+
+    span {
+      font-family: $nunito-regular;
+      @include fontSize(16);
+
+    }
+  }
+
+  ul {
+    li {
+      display: flex;
+
+      a {
+        color: $white;
+        font-family: $nunito-regular;
+        @include fontSize(16);
+        @include padding(8,0);
+      }
+    }
   }
 }
 
 .footerImages {
-  img {
-    height: 1.52rem;
-    width: 1.52rem;
-    margin-left: 1rem;
+  a {
+    img {
+      height: 1.52rem;
+      width: 1.52rem;
+      margin-left: 1rem;
+    }
+
+    &:first-child {
+      img {
+        margin-left: 0;
+
+      }
+    }
   }
+  margin-bottom: 2rem;
 }
 
 .footer-right {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   height: 100%;
 }
