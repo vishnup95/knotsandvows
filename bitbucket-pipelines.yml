@@ -1,17 +1,10 @@
 image: node:10
 pipelines:
   branches:
-    build-branch:
+    staging:
       - step:
           name: Build app
           script:
-            - apt-get update
-            - apt-get install sshpass
             - npm install
             - npm run build
             - scp -r build/ staging@52.66.202.144:/home/staging/
-      - step:
-          name: Deploy
-          image: ansible/ansible
-          script:
-                - ssh-keygen

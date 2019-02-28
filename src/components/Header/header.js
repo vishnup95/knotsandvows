@@ -67,7 +67,7 @@ class Header extends Component {
         const listItems = list.map((item, index) => {
             return (
                 <li key={index}>
-                    <Link to={`/category/${item.name}`}>{item.name}</Link>
+                    <Link to={`/categories/${item.page_name}`}>{item.name}</Link>
                 </li>
             );
         });
