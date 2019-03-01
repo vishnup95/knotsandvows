@@ -128,20 +128,32 @@ a.button {
 
 .packageContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 5rem 0;
   border-bottom: 2px solid #eee;
 
   .details {
-    width: 60%;
+    width: max-content;
     padding-top: 2.5rem; 
   }
 
   .featureImage {
     @include width(407);
     @include height(407);
-    background: url('/images/emerald_package.png')  center center no-repeat;
-    background-size: contain;
+    border-radius: 50%;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: pointer;
+
+    button {
+      background-color: $bright-red;
+      @include fontSize(14);
+      @include letterSpacing(0.4);
+      font-family: $nunito-regular;
+    }
   }
 
   &:last-child {
@@ -173,6 +185,7 @@ a.button {
 
 .multiContainer {
   @include padding(0, 40);
+  @include margin(70,0,0,0);
   button {
     border: 1px solid black;
   }
@@ -181,7 +194,6 @@ a.button {
 .multiItem {
   width: 100%;
   text-align: center;
-  @include padding(0, 40);
 
   .roundImg {
     @include width(220);
@@ -197,18 +209,42 @@ a.button {
       @include width(96);
       @include height(100);
     }
+
+    &:hover {
+      background-color: inherit;
+      border: 1px solid $bright-red;
+    }
   }
 
   h3 {
     font-family: $playfair-regular;
     @include fontSize(30);
     @include letterSpacing(1.2);
-    line-height: 1;
+    line-height: 1.3;
     color: $black;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  p {
+    width: 55%;
+    margin: 0 auto;
   }
 }
 
 // multicarousel styles - vertical
+
+.staticItem {
+  width: 95%;
+  @include height(360);
+  background-image: url('/images/login-bg.jpg');
+  background-size: cover;
+  border-radius:5px; 
+
+  &:first-child {
+    @include margin(0,0,40,0);
+  }
+}
 
 .verticalMultiContainer {
   
@@ -220,13 +256,17 @@ a.button {
   display: flex !important;
   justify-content: space-between;
   flex-direction: row;
-  @include margin(5,0);
+  padding-top:20px; 
+  border-radius: 5px; 
 
   .imageContainer {
     width: 45%;
+    border-radius: 5px; 
     img {
       width: 100%;
       height: 100%;
+      border-top-left-radius: 5px; 
+      border-bottom-left-radius: 5px; 
     }
   }
 
@@ -235,6 +275,9 @@ a.button {
     background-color: $bright-red;
     color: $white;
     @include padding(15,20,0,25);
+    position: relative;
+    border-top-right-radius: 5px; 
+    border-bottom-right-radius: 5px; 
 
     p {
       @include fontSize(18);
@@ -245,14 +288,46 @@ a.button {
       @include fontSize(30);
       font-family: $nunito-semi-bold;
     }
+
+    .handle {
+      @include width(40);
+      @include height(40);
+      background-color: $bright-red;
+      transform: rotate(45deg);
+      position: absolute;
+      left: -4.5%;
+      top: 35%;
+    }
   }
+
 }
 
 .evenStyle {
   flex-direction: row-reverse;
+
+  .imageContainer {
+    img {
+      border-top-right-radius: 5px; 
+      border-bottom-right-radius: 5px; 
+      border-top-left-radius: 0; 
+      border-bottom-left-radius: 0; 
+    }
+  }
+
   .detailContainer {
     background-color: rgba(0, 0, 0, 0.16);
     color: $black ;
+    border-top-right-radius: 0; 
+    border-bottom-right-radius: 0; 
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px; 
+
+    .handle {
+      background-color: #dcd5d5;
+      left: auto;
+      right: -4.5%;
+      top: 35%;
+    }
   }
 }
 
