@@ -3,6 +3,23 @@ import { imagePath } from '../../utils/assetUtils';
 import style from './detailPageComponent.scss'
 import { Row, Col, Modal } from 'reactstrap';
 import MapComponent from '../../components/Map/map';
+import * as actions from './actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
+const mapStateToProps = state => ({
+    user: state.session.user,
+    details: state.details.details,
+    reviewsData: state.details.reviewsData,
+    similarVendors:state.details.similarVendors
+  });
+  
+  const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({ ...actions }),
+    dispatch
+  });
+
 
 class DetailPageComponent extends Component {
     constructor(props) {
@@ -18,6 +35,15 @@ class DetailPageComponent extends Component {
         this.setState({
             showGallery: !this.state.showGallery
         });
+    }
+
+    componentWillMount(){
+        let category = this.props.match.params.category_name;
+        let vendor = this.props.match.params.vendor_name;
+        this.props.dispatch(actions.fetchVendorDetails(category,vendor));
+        this.props.dispatch(actions.fetchSimilarVendors(category,vendor));
+        this.props.dispatch(actions.fetchReviews(category,vendor,1));
+
     }
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -230,4 +256,17 @@ Shanti Nagar, Andheri, Mumbai.</p>
 
 }
 
-export default DetailPageComponent;
+
+DetailPageComponent.propTypes = {
+    user: PropTypes.object,
+    dispatch: PropTypes.func,
+    reviewsData: PropTypes.object,
+    details: PropTypes.object,
+    similarVendors: PropTypes.array,
+    match: PropTypes.object
+  };
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(DetailPageComponent);
