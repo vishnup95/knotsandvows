@@ -74,8 +74,9 @@ a.button {
 }
 
 .pSmall {
-  font-size: 1rem;
-  letter-spacing: .6px;
+  @include fontSize(18);
+  line-height: 1.6;
+  @include letterSpacing(.6);
 }
 
 .center {
@@ -83,6 +84,17 @@ a.button {
 }
 
 // carousel styles
+.carouselItem {
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(56, 26, 28, 0.53), rgba(58, 27, 29, 0.78) 31%, rgba(95, 43, 48, 0) 65%, rgba(0, 0, 0, 0));
+  }
+}
 .carouselContent {
   position: absolute;
   text-align: center;
@@ -111,3 +123,211 @@ a.button {
     }
   }
 }
+
+// Package styles
+
+.packageContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 5rem 0;
+  border-bottom: 2px solid #eee;
+
+  .details {
+    width: max-content;
+    padding-top: 2.5rem; 
+  }
+
+  .featureImage {
+    @include width(407);
+    @include height(407);
+    border-radius: 50%;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: pointer;
+
+    button {
+      background-color: $bright-red;
+      @include fontSize(14);
+      @include letterSpacing(0.4);
+      font-family: $nunito-regular;
+    }
+  }
+
+  &:last-child {
+    border: none;
+  }
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+}
+
+.price {
+  @include fontSize(24);
+  line-height: 1.22;
+  @include letterSpacing(.24);
+}
+
+.priceNow {
+  color: $bright-red;
+  font-family: $opensans-semi-bold;
+}
+
+.priceBefore {
+  color: $black-two;
+  font-family: $opensans-regular;
+}
+
+// multicarousel styles - horizontal
+
+.multiContainer {
+  @include padding(0, 40);
+  @include margin(70,0,0,0);
+  button {
+    border: 1px solid black;
+  }
+}
+
+.multiItem {
+  width: 100%;
+  text-align: center;
+
+  .roundImg {
+    @include width(220);
+    @include height(220);
+    border-radius: 50%;
+    background-color: $bright-red;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      @include width(96);
+      @include height(100);
+    }
+
+    &:hover {
+      background-color: inherit;
+      border: 1px solid $bright-red;
+    }
+  }
+
+  h3 {
+    font-family: $playfair-regular;
+    @include fontSize(30);
+    @include letterSpacing(1.2);
+    line-height: 1.3;
+    color: $black;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  p {
+    width: 55%;
+    margin: 0 auto;
+  }
+}
+
+// multicarousel styles - vertical
+
+.staticItem {
+  width: 95%;
+  @include height(360);
+  background-image: url('/images/login-bg.jpg');
+  background-size: cover;
+  border-radius:5px; 
+
+  &:first-child {
+    @include margin(0,0,40,0);
+  }
+}
+
+.verticalMultiContainer {
+  
+}
+
+.verticalMultiItem {
+  width: 100%;
+  @include height(260);  
+  display: flex !important;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-top:20px; 
+  border-radius: 5px; 
+
+  .imageContainer {
+    width: 45%;
+    border-radius: 5px; 
+    img {
+      width: 100%;
+      height: 100%;
+      border-top-left-radius: 5px; 
+      border-bottom-left-radius: 5px; 
+    }
+  }
+
+  .detailContainer {
+    width: 55%;
+    background-color: $bright-red;
+    color: $white;
+    @include padding(15,20,0,25);
+    position: relative;
+    border-top-right-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+
+    p {
+      @include fontSize(18);
+      @include letterSpacing(0.54);
+    }
+
+    h3 {
+      @include fontSize(30);
+      font-family: $nunito-semi-bold;
+    }
+
+    .handle {
+      @include width(40);
+      @include height(40);
+      background-color: $bright-red;
+      transform: rotate(45deg);
+      position: absolute;
+      left: -4.5%;
+      top: 35%;
+    }
+  }
+
+}
+
+.evenStyle {
+  flex-direction: row-reverse;
+
+  .imageContainer {
+    img {
+      border-top-right-radius: 5px; 
+      border-bottom-right-radius: 5px; 
+      border-top-left-radius: 0; 
+      border-bottom-left-radius: 0; 
+    }
+  }
+
+  .detailContainer {
+    background-color: rgba(0, 0, 0, 0.16);
+    color: $black ;
+    border-top-right-radius: 0; 
+    border-bottom-right-radius: 0; 
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px; 
+
+    .handle {
+      background-color: #dcd5d5;
+      left: auto;
+      right: -4.5%;
+      top: 35%;
+    }
+  }
+}
+
