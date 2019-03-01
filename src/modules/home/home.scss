@@ -74,8 +74,9 @@ a.button {
 }
 
 .pSmall {
-  font-size: 1rem;
-  letter-spacing: .6px;
+  @include fontSize(18);
+  line-height: 1.6;
+  @include letterSpacing(.6);
 }
 
 .center {
@@ -83,6 +84,17 @@ a.button {
 }
 
 // carousel styles
+.carouselItem {
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(56, 26, 28, 0.53), rgba(58, 27, 29, 0.78) 31%, rgba(95, 43, 48, 0) 65%, rgba(0, 0, 0, 0));
+  }
+}
 .carouselContent {
   position: absolute;
   text-align: center;
@@ -111,3 +123,136 @@ a.button {
     }
   }
 }
+
+// Package styles
+
+.packageContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5rem 0;
+  border-bottom: 2px solid #eee;
+
+  .details {
+    width: 60%;
+    padding-top: 2.5rem; 
+  }
+
+  .featureImage {
+    @include width(407);
+    @include height(407);
+    background: url('/images/emerald_package.png')  center center no-repeat;
+    background-size: contain;
+  }
+
+  &:last-child {
+    border: none;
+  }
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+}
+
+.price {
+  @include fontSize(24);
+  line-height: 1.22;
+  @include letterSpacing(.24);
+}
+
+.priceNow {
+  color: $bright-red;
+  font-family: $opensans-semi-bold;
+}
+
+.priceBefore {
+  color: $black-two;
+  font-family: $opensans-regular;
+}
+
+// multicarousel styles - horizontal
+
+.multiContainer {
+  @include padding(0, 40);
+  button {
+    border: 1px solid black;
+  }
+}
+
+.multiItem {
+  width: 100%;
+  text-align: center;
+  @include padding(0, 40);
+
+  .roundImg {
+    @include width(220);
+    @include height(220);
+    border-radius: 50%;
+    background-color: $bright-red;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      @include width(96);
+      @include height(100);
+    }
+  }
+
+  h3 {
+    font-family: $playfair-regular;
+    @include fontSize(30);
+    @include letterSpacing(1.2);
+    line-height: 1;
+    color: $black;
+  }
+}
+
+// multicarousel styles - vertical
+
+.verticalMultiContainer {
+  
+}
+
+.verticalMultiItem {
+  width: 100%;
+  @include height(260);  
+  display: flex !important;
+  justify-content: space-between;
+  flex-direction: row;
+  @include margin(5,0);
+
+  .imageContainer {
+    width: 45%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .detailContainer {
+    width: 55%;
+    background-color: $bright-red;
+    color: $white;
+    @include padding(15,20,0,25);
+
+    p {
+      @include fontSize(18);
+      @include letterSpacing(0.54);
+    }
+
+    h3 {
+      @include fontSize(30);
+      font-family: $nunito-semi-bold;
+    }
+  }
+}
+
+.evenStyle {
+  flex-direction: row-reverse;
+  .detailContainer {
+    background-color: rgba(0, 0, 0, 0.16);
+    color: $black ;
+  }
+}
+
