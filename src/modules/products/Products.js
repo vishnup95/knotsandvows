@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
-import { imagePath } from '../../utils/assetUtils';
 import * as actions from './actions';
 import ReactPaginate from 'react-paginate';
 import { 
@@ -40,7 +39,12 @@ const jumbotronData = [
 
 
 class Products extends Component {
-  state = {currentCategory: this.props.match.params.category_name}
+  state = {
+    category: this.props.match.params.category_name, 
+    productListData : null,
+    sortBy : 0,
+    page : 1
+  }
 
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -63,6 +67,7 @@ class Products extends Component {
     this.props.dispatch(actions.fetchProducts(category));
     this.props.dispatch(actions.fetchFilters(category));
     this.props.dispatch(actions.fetchOtherCategories(category));
+    this.setState({category: category});
   }
 
   componentDidUpdate(prevProps) {
@@ -70,33 +75,46 @@ class Products extends Component {
         return false;
     }
 
-    if (this.state.currentCategory !== this.props.match.params.category_name) {
+    if (this.state.category !== this.props.match.params.category_name) {
       let category = this.selectedCategory();
       this.props.dispatch(actions.fetchProducts(category));
       this.props.dispatch(actions.fetchFilters(category));
       this.props.dispatch(actions.fetchOtherCategories(category));
-      this.setState({currentCategory: category});
+      this.setState({category: category, page:1, sortBy:0});
+    }
+
+    if (this.state.productListData !== this.props.productListData) {
+      this.setState({productListData: this.props.productListData});
+      window.scrollTo(0, 0);
     }
   }
 
+
   pageChangeHandler(data){
-    let category = this.selectedCategory();
-    this.props.dispatch(actions.fetchProducts(category, data.selected+1));
+    this.props.dispatch(actions.fetchProducts(this.state.category, data.selected+1, this.state.sortBy));
+    this.setState({page: data.selected+1});
   }
 
   navigateTo(route) {
     this.props.dispatch(push(route));
   }
 
+  changeSortOption = (event) => {
+     console.log(event.target.selectedIndex);
+     let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
+     this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption));
+     this.setState({page: 1, sortBy: sortOption});
+  }
+
   render() {
     const {header, sort_options, filters} = this.props.filterData;
     return(
       <div>
-        <div className={` ${styles.categoryCover} position-relative text-center`} style={{ background: "url(" + imagePath('wedding_venue.jpg') + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        { header && <div className={` ${styles.categoryCover} position-relative text-center`} style={{ background: "url(" + header.image+ ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
           <h1 className={styles.imageHeading}>{header ? header.header_text : ''}</h1>
-        </div>
+        </div>}
 
-        {filters.length > 0 ? <FormComponent filters={filters} selectedCategory={this.state.currentCategory}/> : <div></div>}
+        {filters.length > 0 ? <FormComponent filters={filters} selectedCategory={this.state.category}/> : <div></div>}
 
         {
           this.props.productListData == null || this.props.productListData.results.length === 0 ? <NoResultComponent/> :
@@ -110,10 +128,10 @@ class Products extends Component {
               <Col sm="6" className={styles.sort}>
                 Sort By: &nbsp;
                 <FormGroup className="d-inline-block">
-                  <Input type="select" name="select" id="exampleSelect" className={styles.sortSelect}>
+                  <Input type="select" name="select" className={styles.sortSelect} onChange={this.changeSortOption}>
                       {sort_options.map((item, index) => {
                           return(
-                              <option key={index}>{item.name}</option>
+                              <option key={index} id={item.id}>{item.name}</option>
                           );
                       })}
                   </Input>
@@ -127,7 +145,7 @@ class Products extends Component {
                 this.props.productListData.results.map((product, index) => {
                   return(
                     <Col xs="12" sm="4" key={index}>
-                      <CategoryCard data={product} buttonAction={() => this.navigateTo(`/${this.selectedCategory()}/${product.page_name}`)}/>
+                      <CategoryCard data={product} category={this.state.category}/>
                     </Col>
                   );
                 })
