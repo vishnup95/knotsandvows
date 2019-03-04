@@ -80,7 +80,8 @@ class Products extends Component {
   }
 
   pageChangeHandler(data){
-    console.log('Page index is ', data);
+    let category = this.selectedCategory();
+    this.props.dispatch(actions.fetchProducts(category, data.selected+1));
   }
 
   navigateTo(route) {
@@ -123,10 +124,10 @@ class Products extends Component {
             
             <Row>
               {
-                this.props.productListData.results.map((category, index) => {
+                this.props.productListData.results.map((product, index) => {
                   return(
                     <Col xs="12" sm="4" key={index}>
-                      <CategoryCard data={category} buttonAction={() => this.navigateTo('/detail')}/>
+                      <CategoryCard data={product} buttonAction={() => this.navigateTo(`/${this.selectedCategory()}/${product.page_name}`)}/>
                     </Col>
                   );
                 })
@@ -138,7 +139,7 @@ class Products extends Component {
               nextLabel={'>'}
               breakLabel={'...'}
               breakClassName={'break-me'}
-              pageCount={9}
+              pageCount={this.props.productListData.no_of_pages}
               marginPagesDisplayed={2}
               pageRangeDisplayed={5}
               onPageChange={(data) => this.pageChangeHandler(data)}
