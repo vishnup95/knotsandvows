@@ -28,7 +28,7 @@ class JumbotronComponentWithCols extends Component{
                             <Col xs={12} md={6} className="text-right">
                                 <img src={imagePath(this.props.image)} alt="" className={styles.colImage}/>
                             </Col>
-                            <Col className="pt-5" xs={12} md={6}>
+                            <Col className="pt-3" xs={12} md={6}>
                                 <p className={`col-md-9 no-padding ${styles.pSmall} ${styles.blackFive}`}>
                                     {this.props.data.subtitle}
                                 </p>

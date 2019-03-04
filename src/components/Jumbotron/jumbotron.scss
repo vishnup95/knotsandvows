@@ -44,8 +44,9 @@ hr {
 .center {
   margin: 0 auto;
 }
-.col-image {
-  width: 100%;
+.colImage {
+  @include width(148);
+  // @include height(143);
   max-width: 100%;
   @include tablet {
     @include width(325);

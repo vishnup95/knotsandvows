@@ -10,9 +10,10 @@ const SampleNextArrow = (propvalues) => {
         className={`${className} ${styles.hButton}`}
         style={{ ...style, 
           display: "block", 
-          border: '1px solid black',
           top: 'auto',
-          left: '50%' 
+          left: '41%',
+          background: 'url("images/dropicon_home.svg") 4% 49% no-repeat',
+          backgroundSize: '50px' 
         }}
         onClick={onClick}
       >Next</button>
@@ -26,9 +27,12 @@ const  SamplePrevArrow = (propvalues) =>  {
         className={className}
         style={{ ...style, 
             display: "block", 
-            border: '1px solid black',
-            top: 'auto',
-            left: '50%' 
+            top: '0%',
+            left: '41%',
+            background: 'url("images/dropicon_home.svg") 4% 49% no-repeat',
+            transform: 'rotate(180deg)',
+            backgroundSize: '50px',
+            zIndex: '10' 
         }}
         onClick={onClick}
         >Prev</button>
@@ -72,7 +76,7 @@ export default class VerticalMultiCarousel extends Component {
                                   of local wedding professionals it has 
                                   never been easier to find and hire your vendor team.
                               </p>
-                              <p className="text-right font-weight-bold">Learn more...</p>
+                              <p className="text-right font-weight-bold">View more...</p>
                             </div>
                         </div>
                     );
