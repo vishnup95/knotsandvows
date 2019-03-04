@@ -1,4 +1,4 @@
-export const API_HOST = process.env.API_HOST;
+export const API_HOST = process.env.API_HOST || 'https://api.ahwanam.com';
 export const API_PORT = process.env.API_PORT || '';
 
 export const SUCCESS_DEFAULT = 'SUCCESS_DEFAULT';

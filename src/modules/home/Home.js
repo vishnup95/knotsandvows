@@ -8,6 +8,7 @@ import {
   Col,
 } from 'reactstrap';
 
+import styles from './home.scss';
 import * as actions from './actions';
 import CarouselComponent from './carousel';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
@@ -18,7 +19,7 @@ import VerticalMultiCarousel from './multiCarouselVertical';
 
 const jumbotronData = [
   {
-    title: 'Starts planning your wedding',
+    title: 'Start planning your wedding',
     subtitle: "Find and book your dream team of local pros with personalized vendor recommendations based on your style and budget."
   },
   {
@@ -32,7 +33,7 @@ const jumbotronData = [
   {
     title: 'Need Help?',
     buttonText: 'Talk with wedding planner',
-    subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by click the Chat button below and they’ll help you get your party started.'
+    subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by click the Chat button below and theyâ€™ll help you get your party started.'
   },
   {
     title: 'Joining With Us Is Quick and Easy',
@@ -101,9 +102,10 @@ class Home extends Component {
         <JumbotronComponent data={jumbotronData[0]} bgcolor="#ffffff">
           <Row style={{boxShadow: '0 4px 30px 0 rgba(0, 0, 0, 0.36)'}}>
             <Col xs="12" sm="5" className="no-padding no-margin">
-                <div></div>
+                <div className={styles.staticItem}></div>
+                <div className={styles.staticItem}></div>
             </Col>
-            <Col xs="12" sm="7" className="no-padding no-margin">
+            <Col xs="12" sm="7" className="no-padding" style={{margin: '-20px 0'}}>
               <VerticalMultiCarousel/>
             </Col>
           </Row>
@@ -111,8 +113,8 @@ class Home extends Component {
 
         <JumbotronComponent data={jumbotronData[1]} bgcolor="#ffffff">
           <div>
-            {Array(3).fill(1).map((key, index) => {
-              return <PackageComponent key={index}/>;
+            {this.props.exclusives.map((exclusivePackage, index) => {
+              return <PackageComponent key={index} details={exclusivePackage}/>;
             })}
           </div>     
         </JumbotronComponent>
