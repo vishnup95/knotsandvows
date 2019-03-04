@@ -1,0 +1,33 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
+.slider-item {
+  padding: 1rem;
+  @include width(360);
+//   @include height(80);
+
+}
+
+.slider-wrap {
+  width: 100%;
+  box-shadow: 0 0 6px 0 $black-16;
+  display: flex;
+  align-items: center;
+}
+
+.vendor-image {
+  @include width(114.3);
+  @include height(80);
+}
+.category-name {
+    font-family: $nunito-semi-bold;
+    @include fontSize(28);
+  @include padding(0,30);
+
+}.add-new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}

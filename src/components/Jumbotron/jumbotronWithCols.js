@@ -25,11 +25,11 @@ class JumbotronComponentWithCols extends Component{
                     <hr className="mt-3 mb-5" />
                     <Container>
                         <Row>
-                            <Col xs={12} md={6}>
+                            <Col xs={12} md={6} className="text-right">
                                 <img src={imagePath(this.props.image)} alt="" className={styles.colImage}/>
                             </Col>
-                            <Col className="pt-5" xs={12} md={6}>
-                                <p className={`col-md-9 no-padding ${styles.pLarge} ${styles.blackFive}`}>
+                            <Col className="pt-3" xs={12} md={6}>
+                                <p className={`col-md-9 no-padding ${styles.pSmall} ${styles.blackFive}`}>
                                     {this.props.data.subtitle}
                                 </p>
                                 <div className="mt-5">

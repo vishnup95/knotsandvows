@@ -55,7 +55,7 @@ class JumbotronComponent extends Component {
             );
         } else {
             return (
-                <p className={`${styles.pLarge} ${styles.center} col-md-6 text-center`}>
+                <p className={`${styles.pLarge} ${styles.center} text-center mb-5`}>
                     {subtitle}
                 </p>
             )
@@ -86,10 +86,11 @@ class JumbotronComponent extends Component {
                         <h1 className="text-center">{this.props.data.title}</h1>
                         <hr className="mt-3 mb-5" />
                         {this.renderSubtitle(this.props.data.subtitle)}
-                        {this.props.children}
+                        {this.props.insideContainer ?  this.props.children : ''}
                         {this.renderCards(this.props.cardType)}
                         {this.renderButton(this.props.data.buttonText)}
                     </div>
+                    {!this.props.insideContainer ?  this.props.children : ''}
                 </Jumbotron>
             </div>
         );
@@ -105,7 +106,12 @@ JumbotronComponent.propTypes = {
     items: PropTypes.array,
     children: PropTypes.node,
     isTalkToAhwanam: PropTypes.bool,
-    category: PropTypes.string
+    category: PropTypes.string,
+    insideContainer: PropTypes.bool
 };
+
+JumbotronComponent.defaultProps = {
+    insideContainer: true
+}
 
 export default JumbotronComponent;

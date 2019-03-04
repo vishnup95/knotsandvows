@@ -19,23 +19,24 @@ hr {
   background-color: $bright-red;
   @include fontSize(16);
   font-family: $nunito-bold;
-  @include letterSpacing(.4);
+  @include letterSpacing(.5);
   @include padding(12,24);
-  text-transform: uppercase;
   border: none;
 }
 
 .pLarge {
-  @include fontSize(24);
+  @include fontSize(20);
   line-height: 1.5;
   @include letterSpacing(.7);
   color: $black;
 }
+
 .black-five {
     color: $black-five;
 }
+
 .pSmall {
-  @include fontSize(20);
+  @include fontSize(18);
   line-height: 1.6;
   @include letterSpacing(.6);
 }
@@ -43,10 +44,11 @@ hr {
 .center {
   margin: 0 auto;
 }
-.col-image {
-  width: 100%;
+.colImage {
+  @include width(148);
+  // @include height(143);
   max-width: 100%;
   @include tablet {
-    @include width(629);
+    @include width(325);
   }
 }
