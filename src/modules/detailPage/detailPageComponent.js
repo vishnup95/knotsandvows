@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
-import { imagePath } from '../../utils/assetUtils';
 import style from './detailPageComponent.scss'
 import { Row, Col, Modal } from 'reactstrap';
 import MapComponent from '../../components/Map/map';
+import * as actions from './actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import * as loginActions from '../../reducers/session/actions';
+import JumbotronComponent from '../../components/Jumbotron/jumbotron';
+
+const mapStateToProps = state => ({
+    user: state.session.user,
+    details: state.details.details,
+    reviewsData: state.details.reviewsData,
+    similarVendors: state.details.similarVendors
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({ ...actions }),
+    dispatch
+});
+
 
 class DetailPageComponent extends Component {
     constructor(props) {
@@ -19,26 +37,90 @@ class DetailPageComponent extends Component {
             showGallery: !this.state.showGallery
         });
     }
+
+    componentWillMount() {
+        let category = this.props.match.params.category_name;
+        let vendor = this.props.match.params.vendor_name;
+        this.props.dispatch(actions.fetchVendorDetails(category, vendor));
+        this.props.dispatch(actions.fetchSimilarVendors(category, vendor));
+        this.props.dispatch(actions.fetchReviews(category, vendor, 1));
+
+    }
     componentDidMount() {
         window.scrollTo(0, 0);
     }
 
+    addToWishlist = () => {
+        if (this.props.user == null) {
+            this.props.dispatch(loginActions.showLogin());
+            return;
+        }
+    }
+
+    renderAvailableArea = (availableArea) => {
+
+        const availableAreas = availableArea.map((area, index) => {
+
+            return <li className={style.selected} key={index}>{area.name} <br />
+                <span>{area.seating_capacity} Seating | {area.type}</span>
+            </li>
+        });
+        return availableAreas;
+    }
+
+    renderAminities = (amenities) => {
+
+        const availableAmenities = amenities.map((amenity, index) => {
+
+            return <li key={index}>{amenity.name}</li>
+
+        });
+        return availableAmenities;
+    }
+
+    renderPolicies = (policies) => {
+
+        const termsAndPolicies = policies.map((policy, index) => {
+
+            return <li className={style.selected} key={index}>{policy.name}</li>
+
+        });
+        return termsAndPolicies;
+    }
+
+    jumbotronData = (category) => {
+        const jumbotronData = 
+            {
+                title: 'Similar '+category
+            }
+        return jumbotronData;
+    }
+
     render() {
+        let details = this.props.details;
+
+        if (details == null) {
+            return (
+                <div></div>
+            )
+        }
+
+        details.availableArea = [];
         return (
             <div className={style.detailContainer}>
-                <div className={style.bgImage} style={{ background: "url(" + imagePath('carousel_1.jpg') + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+                <div className={style.bgImage} style={{ background: "url(" + details.cover_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
                 </div>
                 <div className={style.detailSection}>
                     <Row className={style.infoBox}>
                         <div>
-                            <h3 >THE CLUB</h3>
-                            <p >Mumbai (<a href="/">View on Map</a>)</p>
-                            <p >The Club, D N Nagar32, Cosmopolitan Education Society Marg, Shanti Nagar, Andheri, Mumbai.</p>
+                            <h3 >{details.name}</h3>
+                            <p >{details.city} (<a href="/">View on Map</a>)</p>
+                            <p >{details.address}</p>
                         </div>
                         <div>
                             star rating
                             {/* <div className={style.rating}>4.5/5 rating</div> */}
-                            <div className={style.review}> 230 reviews</div>
+                            <div className={style.review}> {details.reviews_count} reviews</div>
                         </div>
                         <div className={style.viewBtnWrap}>
                             <button className={style.viewBtn} onClick={() => this.toggleGallery()}>View Gallery</button>
@@ -54,92 +136,48 @@ class DetailPageComponent extends Component {
                     </Row>
                     <Row>
                         <Col md="7">
-                            <Col md="12" className={style.detailSubSection}>
-                                <h3>About the Club</h3>
-                                <p>The Club is one of the premier private membership clubs in Mumbai. An epitome of luxury and comfort, it is located in the Suburban Mumbai providing tranquility away from the rush of the city. Whatever the occasion—birthday, wedding, anniversary, cocktail dinners or farewell parties, The Club offers the perfect balance of class, quality and character with a superb range of delectable menu options for you to select from. Their specialised events team is there to help the bride and groom in every conceivable way. Known for their splendid hospitality services, they make your dreams come true by providing best in class services . For Weddings, decorations to wedding cakes, floral creations to memorable farewells, trust their team to streamline the planning and make your wedding day everything you had ever imagined while you sit back and enjoy your big day.
-The Club has several banquets with bespoke décor and enormous capacity. They have an outdoor venue- The Garden View which overlooks a beautiful fountain and surrounded with lush greenery. It can accommodate upto 175 guests. The Colonial Courtyard is the grand outdoor venue which is best suitable for large gatherings like weddings and receptions and can accommodate …more                      upto 1500 guests. It has huge parking capacity of almost 200 cars. The Colonial hall is an indoor multi-purpose hall which can accommodate upto 250 guests. The Senate, an outdoor venue is best suitable for close gatherings and parties. It is situated near the pool and overlooks the lush green lawns of the club. The restaurants serving best of the delicacies, are designed with a beautiful view of the pool. The experienced master chefs cook a plethora of cuisines with lots of love and affection. They offer a wide variety of cuisines ranging from Indian to continental to Chinese. They have an in-house bar serving one of the finest collections of cocktails. Their décor team decorated the venue beautifully as per the requirements of their client. They also have their in-house DJ. Located in peaceful environment, The Club is a perfect place to exchange your vows .</p>
-                            </Col>
-                            <Col md="12" className={style.detailSubSection}>
-                                <h3>Available Areas (5)</h3>
-                                <ul className={style.selectableList}>
-                                    <li className={style.selected}>Ganga <br />
-                                        <span>225 Seating | Indoor</span>
-                                    </li>
-                                    <li className={style.selected}>Ganga <br />
-                                        <span>225 Seating | Indoor</span>
-                                    </li>
-                                    <li>Ganga <br />
-                                        <span>225 Seating | Indoor</span>
-                                    </li>
-                                    <li>Ganga <br />
-                                        <span>225 Seating | Indoor</span>
-                                    </li>
-                                    <li>Ganga <br />
-                                        <span>225 Seating | Indoor</span>
-                                    </li>
+                            {details.about &&
+                                <Col md="12" className={style.detailSubSection}>
+                                    <h3>About {details.name}</h3>
+                                    <p>{details.about}</p>
+                                </Col>
+                            }
+                            {details.available_areas && details.available_areas.length > 0 &&
+                                <Col md="12" className={style.detailSubSection}>
+                                    <h3>Available Areas ({details.available_areas.length})</h3>
+                                    <ul className={style.selectableList}>
+                                        {this.renderAvailableArea(details.available_areas)}
+                                    </ul>
 
-                                </ul>
-
-                            </Col>
+                                </Col>
+                            }
                             <Col md="12" className={style.detailSubSection}>
                                 <h3>Availability</h3>
                             </Col>
-                            <Col md="12" className={style.detailSubSection}>
-                                <h3>Amenities</h3>
-                                <ul className={style.listWithIcon}>
-                                    <li className={style.selected}>Dining Area</li>
-                                    <li className={style.selected}>
-                                        Coffee Shop</li>
-                                    <li>
-                                        Covered Car Parking</li>
-                                    <li>
-                                        Lift or Elevator</li>
-                                    <li>
-                                        Single Bed </li>
-                                    <li>
-                                        Inhouse catering</li>
-                                    <li>
-                                        Laundry </li>
-                                    <li>
-                                        Projector </li>
-                                    <li>
-                                        Sufficient Washroom</li>
-                                    <li>
-                                        Swimming Pool </li>
+                            {details.amenities && details.amenities.length > 0 &&
+                                <Col md="12" className={style.detailSubSection}>
+                                    <h3>Amenities</h3>
+                                    <ul className={style.listWithIcon}>
+                                        {this.renderAminities(details.amenities)}
+                                    </ul>
 
-                                </ul>
+                                </Col>
+                            }
+                            {details.policies && details.policies.length > 0 &&
+                                <Col md="12" className={style.detailSubSection}>
+                                    <h3>Policies</h3>
+                                    <ul className={style.selectableList}>
+                                        {this.renderPolicies(details.policies)}
+                                    </ul>
 
-                            </Col>
-                            <Col md="12" className={style.detailSubSection}>
-                                <h3>Policies</h3>
-                                <ul className={style.selectableList}>
-                                    <li className={style.selected}>Outside Decorators Allowed</li>
-                                    <li className={style.selected}>
-                                        Decorations Provided</li>
-                                    <li className={style.selected}>
-                                        Food Provided</li>
-                                    <li className={style.selected}>
-                                        Outside Food or caterer allowed</li>
-                                    <li className={style.selected}>
-                                        In house alcohol available</li>
-                                    <li className={style.selected}>
-                                        Outside alcohol permitted </li>
-                                    <li className={style.selected}>
-                                        Valet Parking</li>
-                                    <li className={style.selected}>
-                                        In house DJ available</li>
-                                    <li className={style.selected}>
-                                        Outside DJ permitted </li>
-
-                                </ul>
-
-                            </Col>
-                            <Col md="12" className={style.detailSubSection}>
-                                <h3>Direction</h3>
-                                <MapComponent lat={17.3850} lng={78.4867}></MapComponent>
-                            </Col>
-
-
+                                </Col>
+                            }
+                            {details.location && details.location.latitude && details.location.longitude &&
+                                <Col md="12" className={style.detailSubSection}>
+                                    <h3>Direction</h3>
+                                    <MapComponent lat={Number(details.location.latitude)} lng={Number(details.location.longitude)}></MapComponent>
+                                </Col>
+                            }
                         </Col>
                         <Col md="5">
                             <Col md="12" className={`${style.detailSubSection} ${style.rightSection}`}>
@@ -208,10 +246,15 @@ Shanti Nagar, Andheri, Mumbai.</p>
 
                                 </Col>
                                 <Col md="12" className={style.rightSubSection}>
-                                    <button className={style.addToCart}>Add to Wishlist</button>
+                                    <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button>
                                 </Col>
                                 <Col md="12" className={style.rightSubSection}>
-                                    <a href="/" >+ Cancellation policy</a>   |   <a href="/">+Terms and Conditions</a>
+                                    {details.cancelation_policy_url &&
+                                    <a href={details.cancelation_policy_url} >+ Cancellation policy</a>
+                                    } 
+                                    {details.terms_and_condition_url &&
+                                       <a href={details.terms_and_condition_url}>+Terms and Conditions</a>
+                                    }
                                 </Col>
                             </Col>
                         </Col>
@@ -224,10 +267,24 @@ Shanti Nagar, Andheri, Mumbai.</p>
                     Gallery goes here
 
                 </Modal>
+                <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.props.match.params.category_name}/>
             </div>
         );
     }
 
 }
 
-export default DetailPageComponent;
+
+DetailPageComponent.propTypes = {
+    user: PropTypes.object,
+    dispatch: PropTypes.func,
+    reviewsData: PropTypes.object,
+    details: PropTypes.object,
+    similarVendors: PropTypes.array,
+    match: PropTypes.object
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DetailPageComponent);
