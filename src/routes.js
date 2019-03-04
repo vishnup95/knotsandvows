@@ -110,6 +110,13 @@ const LoadableResetPassword = Loadable({
 //   }
 // });
 
+const LoadableCeremonyDetail = Loadable({
+  loader: () => import(/* webpackChunkName: 'planyourparty' */ './modules/ceremonyDetail/CeremonyDetail'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
 const PrivatePage = () => <div> private Page </div>;
 
 const SecretRoute = ({ component: Component, ...rest }) => (
@@ -145,6 +152,7 @@ const routes = (
     {/* <Route path="/about" component={LoadableAbout} /> */}
     <Route path="/sample" component={LoadableSample} />
     <Route path="/detail" component={LoadableDetail} />
+    <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
     {/* <Route path="/booking-confirmation" component={LoadableBookingConfirmation} /> Will change to secret route  */}
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <Route component={LoadableNotFound} />
