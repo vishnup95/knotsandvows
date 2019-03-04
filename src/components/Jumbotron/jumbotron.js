@@ -71,7 +71,7 @@ class JumbotronComponent extends Component {
         const cards = this.props.items.map((item, index) => {
 
             return <Col xs="12" sm="4" key={index}>
-                <CardComponent cardDetails={item} cardType={cardType} />
+                <CardComponent cardDetails={item} cardType={cardType} category={this.props.category}/>
             </Col>
         });
 
@@ -104,7 +104,8 @@ JumbotronComponent.propTypes = {
     buttonAction: PropTypes.func,
     items: PropTypes.array,
     children: PropTypes.node,
-    isTalkToAhwanam: PropTypes.bool
+    isTalkToAhwanam: PropTypes.bool,
+    category: PropTypes.string
 };
 
 export default JumbotronComponent;

@@ -63,7 +63,6 @@ class Home extends Component {
     // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
 
     let promises = [];
-    promises.push(store.dispatch(actions.fetchCategories()));
     promises.push(store.dispatch(actions.fetchExclusives()));
     return Promise.all(promises);
   }
@@ -73,9 +72,6 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    if (this.props.categories.length === 0) {
-      this.props.dispatch(actions.fetchCategories());
-    }
     if (this.props.exclusives.length === 0) {
       this.props.dispatch(actions.fetchExclusives());
     }
