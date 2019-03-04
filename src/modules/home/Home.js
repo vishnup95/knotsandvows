@@ -19,12 +19,12 @@ import VerticalMultiCarousel from './multiCarouselVertical';
 
 const jumbotronData = [
   {
-    title: 'Start planning your wedding',
-    subtitle: "Find and book your dream team of local pros with personalized vendor recommendations based on your style and budget."
+    title: 'Start planning your wedding!',
+    subtitle: "Find and book your dream team of local vendors based on your style and budget"
   },
   {
     title: 'Overbound With Choices?',
-    subtitle: 'You will be looking for ideas, and all exciting but there are so many that you realise how much planning you need to do and basically we offering the in packages so that also preferred.'
+    subtitle: 'You will be looking for ideas, and all exciting but there are so many that you realise how much planning you need to do and basically we offering the in packages so that also preferred '
   },
   {
     title: 'We are here for you',
@@ -83,10 +83,6 @@ class Home extends Component {
     }
   }
 
-  pageChangeHandler = (data) => {
-    console.log('Page index is ', data);
-  }
-
   navigateTo(route) {
     this.props.dispatch(push(route));
   }
@@ -95,17 +91,21 @@ class Home extends Component {
     return (
       <div>
         <CarouselComponent />
-        {/* <JumbotronComponent data={jumbotronData[0]} items={this.props.exclusives} bgcolor="#ffffff" cardType="detailed" buttonAction={() => this.navigateTo('/exclusive')} />
-
-        <JumbotronComponent data={jumbotronData[1]} items={this.props.categories} bgcolor="#f8f8f8" cardType="plain" buttonAction={() => this.navigateTo('/categories')} /> */}
-        
+    
         <JumbotronComponent data={jumbotronData[0]} bgcolor="#ffffff">
           <Row style={{boxShadow: '0 4px 30px 0 rgba(0, 0, 0, 0.36)'}}>
             <Col xs="12" sm="5" className="no-padding no-margin">
-                <div className={styles.staticItem}></div>
-                <div className={styles.staticItem}></div>
+                <div className={styles.staticItem}>
+                  <h4>Browse all vendors</h4>
+                  <p className={styles.pSmall}>Guaranteed best prices from all our vendors</p>
+                </div>
+
+                <div className={styles.staticItem}>
+                  <h4>Browse all vendors</h4>
+                  <p className={styles.pSmall}>Add to wishlist, compare services, share ideas with family, finalize vendors and more!</p>
+                </div>
             </Col>
-            <Col xs="12" sm="7" className="no-padding" style={{margin: '-20px 0'}}>
+            <Col xs="12" sm="7" className="no-padding" style={{margin: '-10px 0'}}>
               <VerticalMultiCarousel/>
             </Col>
           </Row>
