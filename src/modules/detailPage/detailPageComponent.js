@@ -10,6 +10,7 @@ import * as loginActions from '../../reducers/session/actions';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import ReviewItem from '../../components/Reviews/reviews';
 import ReactPaginate from 'react-paginate';
+import ProductGallery from '../../modals/productGallery/GalleryModal';
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -334,7 +335,7 @@ Shanti Nagar, Andheri, Mumbai.</p>
                     </div>
                 }
                 <Modal isOpen={this.state.showGallery} toggle={() => this.toggleGallery()} centered={true}>
-                    Gallery goes here
+                   <ProductGallery details={details} close={this.toggleGallery}></ProductGallery>
 
                 </Modal>
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&

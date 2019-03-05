@@ -157,6 +157,7 @@ class Products extends Component {
               nextLabel={'>'}
               breakLabel={'...'}
               breakClassName={'break-me'}
+              forcePage={this.state.page-1}
               pageCount={this.props.productListData.no_of_pages}
               marginPagesDisplayed={2}
               pageRangeDisplayed={5}

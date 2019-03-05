@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import styles from './home.scss';
-import { imagePath } from "../../utils/assetUtils";
+// import { imagePath } from "../../utils/assetUtils";
 
 const SampleNextArrow = (propvalues) => {
     const { className, style, onClick } = propvalues;
@@ -26,13 +26,7 @@ const  SamplePrevArrow = (propvalues) =>  {
         <button
         className={className}
         style={{ ...style, 
-            display: "block", 
-            top: '0%',
-            left: '41%',
-            background: 'url("images/dropicon_home.svg") 4% 49% no-repeat',
-            transform: 'rotate(180deg)',
-            backgroundSize: '50px',
-            zIndex: '10' 
+            display: "none", 
         }}
         onClick={onClick}
         >Prev</button>
@@ -44,8 +38,9 @@ export default class VerticalMultiCarousel extends Component {
     const settings = {
       dots: false,
       infinite: true,
+      speed: 1000,
       slidesToShow: 3,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,
       initialSlide: 0,
@@ -65,9 +60,7 @@ export default class VerticalMultiCarousel extends Component {
                 Array(6).fill(1).map((key, index) => {
                     return(
                         <div key={index} className={`${styles.verticalMultiItem} ${index%2 === 0  ? '' : styles.evenStyle}`} >
-                            <div className={styles.imageContainer}>
-                                <img src={imagePath('login-bg.jpg')} alt="im"/>
-                            </div>
+                            <div className={styles.imageContainer}></div>
                             
                             <div className={styles.detailContainer}>
                               <div className={styles.handle}></div>
