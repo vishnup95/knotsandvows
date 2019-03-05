@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as loginActions from '../../reducers/session/actions';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
+import ProductGallery from '../../modals/productGallery/GalleryModal';
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -297,7 +298,7 @@ Shanti Nagar, Andheri, Mumbai.</p>
                 </div>
                }
                 <Modal isOpen={this.state.showGallery} toggle={() => this.toggleGallery()} centered={true}>
-                    Gallery goes here
+                   <ProductGallery details={details} close={this.toggleGallery}></ProductGallery>
 
                 </Modal>
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
