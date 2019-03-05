@@ -7,21 +7,8 @@ import {
 } from 'reactstrap';
 import CardComponent from '../../components/Card/card';
 import PropTypes from 'prop-types';
-// import { imagePath } from '../../utils/assetUtils';
 import styles from './jumbotron.scss';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
-
-
-// const cardDetail = {
-//   title: "Gold Package",
-//   description:  "The Gold Package is designed to be all inclusive. It covers everything couples could possibly need on your wedding day, from a resident pianist to entertain your guests on arrival, a bridal suite and two guest rooms for the wedding night",
-//   buttonText: "Get Quote",
-//   priceNow: "₹1,600,000",
-//   priceBefore: "₹1,840,000",
-//   save: "₹2.4 Lacks (15% Off)"
-// }
-
-//  const mapArray = [1,2,3];
 
 class JumbotronComponent extends Component {
     constructor(props) {
@@ -49,13 +36,13 @@ class JumbotronComponent extends Component {
 
         if (this.props.cardType) {
             return (
-                <p className={`w-75 mb-5 text-center ${styles.center} ${styles.pSmall}`}>
+                <p className={`w-75 mb-4 text-center ${styles.center} ${styles.pSmall}`}>
                     {subtitle}
                 </p>
             );
         } else {
             return (
-                <p className={`${styles.pLarge} ${styles.center} text-center mb-5`}>
+                <p className={`${styles.pLarge} ${styles.center} text-center mb-4`}>
                     {subtitle}
                 </p>
             )

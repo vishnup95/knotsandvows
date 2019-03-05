@@ -26,13 +26,7 @@ const  SamplePrevArrow = (propvalues) =>  {
         <button
         className={className}
         style={{ ...style, 
-            display: "block", 
-            top: '0%',
-            left: '41%',
-            background: 'url("images/dropicon_home.svg") 4% 49% no-repeat',
-            transform: 'rotate(180deg)',
-            backgroundSize: '50px',
-            zIndex: '10' 
+            display: "none", 
         }}
         onClick={onClick}
         >Prev</button>
@@ -44,8 +38,9 @@ export default class VerticalMultiCarousel extends Component {
     const settings = {
       dots: false,
       infinite: true,
+      speed: 1000,
       slidesToShow: 3,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,
       initialSlide: 0,
