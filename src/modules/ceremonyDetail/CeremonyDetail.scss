@@ -4,6 +4,9 @@
 
 .ceremony-detail {
   margin-top: 10.33125rem;
+  div[class^="container"] {
+    max-width: 80%;
+   }
 }
 
 .ceremony-cover {
@@ -11,39 +14,56 @@
   @include margin(97,0,0);
   position: relative;
 
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
-  }
 
   h1 {
     @include fontSize(58);
     letter-spacing: normal;
     line-height: 1.34;
+    color: $white;
+    max-width: 50%;
+    margin-bottom: 2rem;
   }
 
   p {
+    font-family: $nunito-semi-bold;
     @include fontSize(28);
+    color: $white;
+    max-width: 50%;
+
   }
 
-  
 }
+
+.cover-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
+  @include padding(182,126);
+}
+
 .bottom-curve {
   position: absolute;
   left: 0;
   bottom: -5px;
   max-width: 100%;
   height: auto;
-  
+
 }
+
 h3 {
   font-family: $playfair-regular;
   color: $black;
   @include fontSize(30);
   @include margin(0,0,20);
+}
+.sub-title {
+  @include fontSize(20);
+}
+.view-all {
+  color: $bright-red;
+  @include fontSize(18);
+  font-family: $nunito-bold;
 }

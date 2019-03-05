@@ -24,6 +24,7 @@
     background-color: transparent !important;
     margin-bottom: 0;
     @include height(86.3);
+    padding: 0;
 
     ul {
       @include tablet {
@@ -192,7 +193,7 @@
   &:hover {
     .categoriesList {
       height: auto;
-      top: 5rem;
+      top: 5.4rem;
       transition: 500ms all ease;
       opacity: 1;
 

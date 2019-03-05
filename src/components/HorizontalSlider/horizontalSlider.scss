@@ -3,7 +3,7 @@
 @import '../../variables/fonts';
 
 .slider-item {
-  padding: 1rem;
+  padding: 1.4rem;
   @include width(360);
 //   @include height(80);
 
@@ -25,7 +25,8 @@
     @include fontSize(28);
   @include padding(0,30);
 
-}.add-new {
+}
+.add-new {
     display: flex;
     align-items: center;
     justify-content: center;
