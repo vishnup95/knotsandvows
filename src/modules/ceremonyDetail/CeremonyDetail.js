@@ -212,9 +212,11 @@ class CeremonyDetail extends Component {
     return (
       <div className={styles.ceremonyDetail}>
         <div className={styles.ceremonyCover} style={{ background: "url(" + imagePath('ceremony-detail.jpg') + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-          <h1 className={styles.title}>Plan your party</h1>
-          <p>At Ahwanam find everything you need - from WOW wedding ideas to the best wedding professionals!</p>
-          <img className={styles.bottomCurve} src={imagePath('curveline.svg')} alt="curve" />
+          <div className={styles.coverMask}>
+            <h1 className={styles.title}>Your Personal Wedding Assistant</h1>
+            <p>At Ahwanam find everything you need from WOW wedding ideas to the best wedding professionals!</p>
+          </div>
+          <img className={styles.bottomCurve} src={imagePath('curveline.png')} alt="curve" />
         </div>
         <Container>
           <Row>
@@ -226,7 +228,7 @@ class CeremonyDetail extends Component {
             <Col>Dropdown goes here</Col>
           </Row>
           <Row>
-            <Col>
+            <Col className="no-padding">
               <HorizontalSlider data={categories} type='small' />
             </Col>
           </Row>
@@ -239,12 +241,19 @@ class CeremonyDetail extends Component {
                     <Col>
 
                       <h3>{category.name}</h3>
+                      <p className={styles.subTitle}>{category.sub_title}</p>
                     </Col>
                   </Row>
 
                   <Row>
-                    <Col>
+                    <Col className="no-padding">
                       <HorizontalSlider data={category.vendors} />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+
+                      <p className={styles.viewAll}>View All</p>
                     </Col>
                   </Row>
 

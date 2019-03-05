@@ -6,6 +6,44 @@ import PropTypes from 'prop-types';
 import CategoryCard from '../../components/Card/cardCategory';
 import { Col } from 'reactstrap';
 
+const SampleNextArrow = (propvalues) => {
+    const { className, style, onClick } = propvalues;
+    return (
+        <button
+            className={`${className} ${styles.hButton}`}
+            style={{
+                ...style,
+                display: "block",
+                background: 'url("/images/dropicon_home.svg") no-repeat',
+                backgroundSize: '50px',
+                transform: 'rotate(270deg)',
+                top: '30%',
+                right: '-16px'
+            }}
+            onClick={onClick}
+        >Next</button>
+    );
+}
+
+const SamplePrevArrow = (propvalues) => {
+    const { className, style, onClick } = propvalues;
+    return (
+        <button
+            className={className}
+            style={{
+                ...style,
+                display: "block",
+                background: 'url("/images/dropicon_home.svg") no-repeat',
+                transform: 'rotate(90deg)',
+                backgroundSize: '50px',
+                zIndex: '10',
+                top: '30%',
+                left: '-16px'
+            }}
+            onClick={onClick}
+        >Prev</button>
+    );
+}
 
 
 export default class HorizontalSlider extends Component {
@@ -20,6 +58,8 @@ export default class HorizontalSlider extends Component {
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
             initialSlide: 0,
             responsive: [
                 {
@@ -77,7 +117,7 @@ export default class HorizontalSlider extends Component {
                         })
                     }
                     <Col>
-                        <div className={styles.addNew}> Add new</div>
+                        <div className={styles.addNew}>View All</div>
                     </Col>
                 </Slider>
             </div>

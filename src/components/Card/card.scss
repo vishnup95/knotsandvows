@@ -93,7 +93,9 @@
     font-family: $nunito-semi-bold;
     text-align: right;
     margin: 0;
-
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     span {
         font-family: $nunito-regular;
         color: $brownish-grey-two;
