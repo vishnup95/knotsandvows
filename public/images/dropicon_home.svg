@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="71" height="71" viewBox="0 0 71 71">
+    <defs>
+        <style>
+            .cls-1{fill:#fff}.cls-2{fill:none;stroke:#484848;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px}.cls-3{filter:url(#Path_4937)}.cls-4{filter:url(#Ellipse_30)}
+        </style>
+        <filter id="Ellipse_30" width="71" height="71" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="1"/>
+            <feGaussianBlur result="blur" stdDeviation="2"/>
+            <feFlood flood-opacity=".231"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Path_4937" width="30" height="17.634" x="20.494" y="28.5" filterUnits="userSpaceOnUse">
+            <feOffset/>
+            <feGaussianBlur result="blur-2" stdDeviation=".5"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-2" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="Group_7241" data-name="Group 7241" transform="rotate(90 1612.997 -151.003)">
+        <g id="Group_7240" data-name="Group 7240">
+            <g class="cls-4" transform="rotate(-90 1612.995 -151.005)">
+                <circle id="Ellipse_30-2" cx="29.5" cy="29.5" r="29.5" class="cls-1" data-name="Ellipse 30" transform="rotate(90 30 35)"/>
+            </g>
+            <g class="cls-3" transform="rotate(-90 1612.995 -151.005)">
+                <path id="Path_4937-2" d="M-4959.756 956.321l11.634 12.019-11.634 11.981" class="cls-2" data-name="Path 4937" transform="rotate(90 -1993.72 2997.54)"/>
+            </g>
+        </g>
+    </g>
+</svg>
