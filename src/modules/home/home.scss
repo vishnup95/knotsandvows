@@ -29,7 +29,7 @@
 //Jumbotron 
 
 h1 {
-  font-family: $playfair-regular;
+  font-family: $nunito-regular;
   @include fontSize(58);
   @include letterSpacing(1.2);
   line-height: 1;
@@ -125,7 +125,7 @@ a.button {
 .packageContainer {
   display: flex;
   justify-content: space-around;
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   border-bottom: 2px solid #eee;
 
   .details {
@@ -134,8 +134,8 @@ a.button {
   }
 
   .featureImage {
-    @include width(407);
-    @include height(407);
+    @include width(350);
+    @include height(350);
     border-radius: 50%;
     background-size: cover;
     position: relative;
@@ -205,7 +205,7 @@ a.button {
   }
 
   h3 {
-    font-family: $playfair-regular;
+    font-family: $nunito-regular;
     @include fontSize(30);
     @include letterSpacing(1.2);
     line-height: 1.3;
@@ -225,10 +225,10 @@ a.button {
 .staticItem {
   width: 95%;
   @include height(360);
-  background-image: url('/images/login-bg.jpg');
   background-size: cover;
   border-radius:5px; 
   position: relative;
+  cursor: pointer;
 
   &:first-child {
     @include margin(0,0,40,0);
@@ -272,8 +272,7 @@ a.button {
 }
 
 .verticalMultiItem {
-  width: 100%;
-  @include height(260);  
+  width: 100%;  
   display: flex !important;
   justify-content: space-between;
   flex-direction: row;
@@ -282,19 +281,16 @@ a.button {
 
   .imageContainer {
     width: 45%;
-    border-radius: 5px; 
-    img {
-      width: 100%;
-      height: 100%;
-      border-top-left-radius: 5px; 
-      border-bottom-left-radius: 5px; 
-    }
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px; 
+    background: url('/images/login-bg.jpg');
+    background-size: cover;
   }
 
   .detailContainer {
     width: 55%;
     background-color: $bright-red;
-    color: $white;
+    color: $white !important;
     @include padding(15,20,0,25);
     position: relative;
     border-top-right-radius: 5px; 
@@ -327,17 +323,15 @@ a.button {
   flex-direction: row-reverse;
 
   .imageContainer {
-    img {
-      border-top-right-radius: 5px; 
-      border-bottom-right-radius: 5px; 
-      border-top-left-radius: 0; 
-      border-bottom-left-radius: 0; 
-    }
+    border-top-right-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+    border-top-left-radius: 0; 
+    border-bottom-left-radius: 0; 
   }
 
   .detailContainer {
     background-color: rgba(0, 0, 0, 0.16);
-    color: $black ;
+    color: $black !important;
     border-top-right-radius: 0; 
     border-bottom-right-radius: 0; 
     border-top-left-radius: 5px; 
