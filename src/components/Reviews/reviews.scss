@@ -4,15 +4,6 @@
 
 .reviewItem {}
 
-.review-header {
-  font-family: $nunito-semi-bold;
-  color: $black-five;
-  @include fontSize(28);
-
-  span {
-    @include fontSize(16);
-  }
-}
 
 .review-user {
   font-family: $nunito-bold;

@@ -8,7 +8,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as loginActions from '../../reducers/session/actions';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-import Reviews from '../../components/Reviews/reviews';
+import ReviewItem from '../../components/Reviews/reviews';
+import ReactPaginate from 'react-paginate';
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -31,7 +32,8 @@ class DetailPageComponent extends Component {
         this.state = {
             showGallery: false,
             vendor: '',
-            category: ''
+            category: '',
+            reviewPage : 1
         };
     }
 
@@ -61,7 +63,7 @@ class DetailPageComponent extends Component {
         console.log(this.props.match);
         let category = this.props.match.params.category_name;
         let vendor = this.props.match.params.vendor_name;
-        this.setState({ vendor: vendor, category: category });
+        this.setState({ vendor: vendor, category: category, reviewPage : 1});
         this.props.dispatch(actions.fetchVendorDetails(category, vendor));
         this.props.dispatch(actions.fetchSimilarVendors(category, vendor));
         this.props.dispatch(actions.fetchReviews(category, vendor, 1));
@@ -115,6 +117,11 @@ class DetailPageComponent extends Component {
             title: 'Similar ' + category
         }
         return jumbotronData;
+    }
+
+    pageChangeHandler(data){
+        this.props.dispatch(actions.fetchReviews(this.state.category, this.state.vendor, data.selected+1));
+        this.setState({reviewPage: data.selected+1});
     }
 
     render() {
@@ -293,11 +300,34 @@ Shanti Nagar, Andheri, Mumbai.</p>
                                 </Col>
                             </Row>
                             <Row>
-                                <Col md="12" className={style.detailSubSection}>
-                                            <Reviews data={reviewsData}/>
-                                </Col>
+                                {reviewsData && reviewsData.results && reviewsData.results.length > 0 &&
+                                    <Col md="12" className={style.detailSubSection}>
+                                        <div className={style.reviewHeader}>Reviews <span>({reviewsData.total_review_count})</span></div>
+                                        {
+                                            reviewsData.results.map((review, index) => {
+                                                return (
+                                                    <ReviewItem review={review} key={index} />
+                                                );
+                                            })
+                                        }
+                                        { reviewsData.no_of_pages > 1 &&
+                                         <ReactPaginate
+                                            previousLabel={'<'}
+                                            nextLabel={'>'}
+                                            breakLabel={'...'}
+                                            forceSelect={this.state.reviewPage}
+                                            breakClassName={'break-me'}
+                                            pageCount={reviewsData.no_of_pages}
+                                            marginPagesDisplayed={2}
+                                            pageRangeDisplayed={5}
+                                            onPageChange={(data) => this.pageChangeHandler(data)}
+                                            containerClassName={'pagination'}
+                                            subContainerClassName={'pages pagination'}
+                                            activeClassName={'active'} />
+                                        }
+                                    </Col>
+                                }
                             </Row>
-
                         </div>
                         <div>
                         </div>
