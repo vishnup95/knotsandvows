@@ -272,8 +272,7 @@ a.button {
 }
 
 .verticalMultiItem {
-  width: 100%;
-  @include height(260);  
+  width: 100%;  
   display: flex !important;
   justify-content: space-between;
   flex-direction: row;
@@ -282,13 +281,10 @@ a.button {
 
   .imageContainer {
     width: 45%;
-    border-radius: 5px; 
-    img {
-      width: 100%;
-      height: 100%;
-      border-top-left-radius: 5px; 
-      border-bottom-left-radius: 5px; 
-    }
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px; 
+    background: url('/images/login-bg.jpg');
+    background-size: cover;
   }
 
   .detailContainer {
@@ -327,12 +323,10 @@ a.button {
   flex-direction: row-reverse;
 
   .imageContainer {
-    img {
-      border-top-right-radius: 5px; 
-      border-bottom-right-radius: 5px; 
-      border-top-left-radius: 0; 
-      border-bottom-left-radius: 0; 
-    }
+    border-top-right-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+    border-top-left-radius: 0; 
+    border-bottom-left-radius: 0; 
   }
 
   .detailContainer {
