@@ -111,7 +111,37 @@ $base-font-size: 16;
   }
   letter-spacing: #{$size/$base-font-size}rem #{$imp};
 }
+@mixin top ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  top: #{$value/$base-font-size}rem #{$imp};
+}
 
+@mixin bottom ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  bottom: #{$value/$base-font-size}rem #{$imp};
+}
+
+@mixin left ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  left: #{$value/$base-font-size}rem #{$imp};
+}
+
+@mixin right ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  right: #{$value/$base-font-size}rem #{$imp};
+}
 // mixins for responsive styling
 @mixin mobile{
   @media #{$mobile} {
