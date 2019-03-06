@@ -115,7 +115,7 @@ class FormComponent extends Component {
                         this.props.filters.map((filter) => {
                             return(
                                 <DropdownComponent key={filter.name} placeholder={filter.display_name} name={filter.name}
-                                    options={filter.name === 'city' ? filter.value : filter.values} selectMultiple={filter.is_mutliple_selection}/>
+                                    options={filter.values} selectMultiple={filter.is_mutliple_selection}/>
                             );
                         })
                     }                

@@ -2,19 +2,15 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
-title {
-  color: $bright-red;
-  font-family: $nunito-regular;
-}
 
 .not-found-container {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem 0;
+  padding: 4rem 0;
   @include margin(165.3,0,0);
-  background-color: $white-two;
+  background-color: $white;
 
   h1 {
     @include fontSize(120);
@@ -23,14 +19,15 @@ title {
   }
 
   h2 {
-    @include fontSize(25);
+    @include fontSize(14);
     font-family: $nunito-regular;
+    color: $black;
   }
 }
 
 .back-button {
   width: auto;
-  @include borderRadius(50);
+  border-radius: 5px;
   background-color: $red;
   color: $white;
   padding: .5rem 2rem;
@@ -39,4 +36,7 @@ title {
     color: $white;
     text-decoration: none;
   }
+}
+.image {
+  @include width(586.3);
 }

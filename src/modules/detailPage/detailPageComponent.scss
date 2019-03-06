@@ -328,3 +328,13 @@
   font-family: $nunito-bold;
   @include letterSpacing(.8);
 }
+
+.review-header {
+  font-family: $nunito-semi-bold;
+  color: $black-five;
+  @include fontSize(28);
+
+  span {
+    @include fontSize(16);
+  }
+}

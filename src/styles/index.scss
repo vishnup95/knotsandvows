@@ -3,6 +3,7 @@
 @import '../variables/utils';
 @import '../variables/colors';
 @import '../variables/breakpoints';
+@import "node_modules/react-image-gallery/styles/scss/image-gallery.scss";
 
 .jumbotron {
   border-radius: 0;
@@ -31,15 +32,19 @@
 
 .carousel-indicators {
   z-index: 2;
+  bottom: 8rem;
 
   li {
     border-radius: 50%;
-    width: .65rem;
-    height: .65rem;
+    @include width(18);
+    @include height(18);
+    opacity: 1 !important;
+    border: 1px solid $white;
+    background-color: transparent;
   }
 
   .active {
-    background-color: red;
+    background-color: $white;
   }
 }
 

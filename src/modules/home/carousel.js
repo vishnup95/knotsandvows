@@ -14,15 +14,49 @@ const items = [
     {
         src: 'carousel_1.jpg',
         altText: 'Slide 1',
-        caption: 'Plan Your Unique Story',
-        buttonText: 'Create your wishlist',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist'
     },
     {
-        src: 'carousel_2.jpg',
+        src: 'carousel_1.jpg',
         altText: 'Slide 2',
-        caption: 'Plan Your Unique Story',
-        buttonText: 'Get Exclusives',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'exclusive'
+    },
+    {
+        src: 'carousel_1.jpg',
+        altText: 'Slide 3',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'exclusive'
+    },
+    {
+        src: 'carousel_1.jpg',
+        altText: 'Slide 4',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'exclusive'
+    },
+    {
+        src: 'carousel_1.jpg',
+        altText: 'Slide 5',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'exclusive'
+    },
+    {
+        src: 'carousel_1.jpg',
+        altText: 'Slide 6',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
         pathToRedirect: 'exclusive'
     }
 ];
@@ -72,11 +106,13 @@ class CarouselComponent extends Component {
                     key={index} className={styles.carouselItem}>
                     <img src={imagePath(item.src)} className="w-100" alt={item.altText} />
                     <div className={styles.carouselContent}>
-                        <h3>{item.caption}</h3>
+                        <h3 className={styles.carouselHeader}>{item.caption}</h3>
+                        <p className={styles.carouselText}>{item.shortDescription}</p>
                         <div className={styles.buttonContainer}>
-                            <Link to={`/${item.pathToRedirect}`} className={`${styles.button} ${styles.carBtn}`}>{item.buttonText}</Link>
+                            <Link to={`/${item.pathToRedirect}`} className={`${styles.carouselBtn}`}>{item.buttonText}</Link>
                         </div>
                     </div>
+
                 </CarouselItem>
             );
         });
@@ -88,6 +124,8 @@ class CarouselComponent extends Component {
                 previous={this.previous}>
                 <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
                 {slides}
+                <img className={styles.bottomCurve} src={imagePath('curveline.png')} alt="curve" />
+
             </Carousel>
         );
     }
