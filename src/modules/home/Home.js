@@ -12,7 +12,6 @@ import styles from './home.scss';
 import * as actions from './actions';
 import CarouselComponent from './carousel';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-import JumbotronComponentWithCols from '../../components/Jumbotron/jumbotronWithCols';
 import PackageComponent from './packageComponent';
 import HorizontalMultiCarousel from './multiCarouselHorizontal';
 import VerticalMultiCarousel from './multiCarouselVertical';
@@ -40,6 +39,20 @@ const jumbotronData = [
     buttonText: 'Join as Vendor',
     subtitle: 'Ahwanam provides a full-service platform for listing services. get leads, send quotes, and collect payments all in one place.'
   }
+];
+
+const staticData = [
+  {
+    title: 'Browse all vendors',
+    description: 'Guaranteed best prices from all our vendors',
+    image: '/images/home_static1.jpg',
+  },
+  {
+    title: 'Wedding Dashboard',
+    description: 'Add to wishlist, compare services, share ideas with family, finalize vendors and more!',
+    image: '/images/home_static2.jpg',
+  },
+  
 ];
 
 const mapStateToProps = state => ({
@@ -89,17 +102,19 @@ class Home extends Component {
         <CarouselComponent />
     
         <JumbotronComponent data={jumbotronData[0]} bgcolor="#ffffff">
-          <Row style={{boxShadow: '0 4px 30px 0 rgba(0, 0, 0, 0.36)'}}>
+          <Row>
             <Col xs="12" sm="5" className="no-padding no-margin">
-                <div className={styles.staticItem}>
-                  <h4>Browse all vendors</h4>
-                  <p className={styles.pSmall}>Guaranteed best prices from all our vendors</p>
-                </div>
-
-                <div className={styles.staticItem}>
-                  <h4>Browse all vendors</h4>
-                  <p className={styles.pSmall}>Add to wishlist, compare services, share ideas with family, finalize vendors and more!</p>
-                </div>
+              {
+                staticData.map((item, index) => {
+                  return(
+                    <div key={index} className={styles.staticItem} style={{ backgroundImage: `url(${item.image})`}} 
+                      onClick={() => this.navigateTo('/categories')} aria-hidden>
+                      <h4>{item.title}</h4>
+                      <p className={styles.pSmall}>{item.description}</p>
+                    </div>
+                  );
+                })
+              }
             </Col>
             <Col xs="12" sm="7" className="no-padding" style={{margin: '-10px 0'}}>
               <VerticalMultiCarousel/>
@@ -120,8 +135,6 @@ class Home extends Component {
         </JumbotronComponent>
 
         {/* <JumbotronComponent data={jumbotronData[3]} bgcolor="#ffffff" isTalkToAhwanam={true} /> */}
-
-        <JumbotronComponentWithCols data={jumbotronData[4]} bgcolor="#ffffff" image="join_with_us.png" buttonAction={() => this.navigateTo('/exclusive')} />
       </div>
     );
   }

@@ -1,0 +1,18 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
+.reviewItem {}
+
+
+.review-user {
+  font-family: $nunito-bold;
+  color: $red-two;
+  @include fontSize(18);
+}
+
+.reviewRating {
+  color: $black-ten;
+}
+
+.reviewText {}

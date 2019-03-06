@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './home.scss';
 import { formatMoney } from '../../utils/assetUtils';
-import { Button } from 'reactstrap';
 
 class PackageComponent extends Component {
   launchLandingPage(){
@@ -39,13 +38,13 @@ class PackageComponent extends Component {
           <p className={`mt-4 ${styles.price}`}>
             <span className={`mr-1 ${styles.priceBefore}`}>You Save: </span>
             <span className={styles.priceNow}>
-              {formatMoney(packageDetail.price.amount)} ({packageDetail.price.save_percentage}% Off){' '}
+              {packageDetail.price.save_amount} ({packageDetail.price.save_percentage}% Off){' '}
             </span>
           </p>
         </div>
 
-        <div className={styles.featureImage} style={{ backgroundImage: `url(${packageDetail.imageUrl}) `}} onClick={() => this.launchLandingPage()}  aria-hidden role="menuitem">
-          <Button color="danger" onClick={(event) => this.addToWishList(event)}>Add to Wishlist</Button>
+        <div className={styles.featureImage} style={{ backgroundImage: `url(${packageDetail.imageUrl}) `}} 
+          onClick={() => this.launchLandingPage()}  aria-hidden>
         </div>
       </div>
     );
