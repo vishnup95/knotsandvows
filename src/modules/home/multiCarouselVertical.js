@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import styles from './home.scss';
-// import { imagePath } from "../../utils/assetUtils";
+import PropTypes from 'prop-types';
+import { imagePath } from "../../utils/assetUtils";
 
 const SampleNextArrow = (propvalues) => {
     const { className, style, onClick } = propvalues;
@@ -34,6 +35,7 @@ const  SamplePrevArrow = (propvalues) =>  {
 }
 
 export default class VerticalMultiCarousel extends Component {
+
   render() {
     const settings = {
       dots: false,
@@ -45,7 +47,7 @@ export default class VerticalMultiCarousel extends Component {
       prevArrow: <SamplePrevArrow />,
       initialSlide: 0,
       vertical: true,
-      verticalSwiping: true,
+      verticalSwiping: false,
       beforeChange: function(currentSlide, nextSlide) {
         console.log("before change", currentSlide, nextSlide);
       },
@@ -53,22 +55,23 @@ export default class VerticalMultiCarousel extends Component {
         console.log("after change", currentSlide);
       }
     };
+    
     return (
+      
       <div className={styles.verticalMultiContainer}>
         <Slider {...settings}>
             {
-                Array(6).fill(1).map((key, index) => {
+                this.props.ceremonies.map((ceremony, index) => {
                     return(
-                        <div key={index} className={`${styles.verticalMultiItem} ${index%2 === 0  ? '' : styles.evenStyle}`} >
-                            <div className={styles.imageContainer}></div>
+                        <div key={index} className={`${styles.verticalMultiItem} ${index%2 === 0  ? '' : styles.evenStyle}`}>
+                         {/* onClick={() => this.props.onSelect(ceremony)}> */}
+                            <img className={styles.imageContainer} style={{ background: "url(" + ceremony.thumb_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} alt="" 
+                            onError={(e)=>{e.target.onerror = null; e.target.src=imagePath('card_2_1.jpg')}}></img>
                             
                             <div className={styles.detailContainer}>
                               <div className={styles.handle}></div>
-                              <h3>Plan your wedding</h3>
-                              <p className="mt-3">With pricing, reviews, and details for thousands 
-                                  of local wedding professionals it has 
-                                  never been easier to find and hire your vendor team.
-                              </p>
+                              <h3>{ceremony.ceremony_name}</h3>
+                              <p className="mt-3" style={{maxLines:3}}>{ceremony.short_description}</p>
                               <p className="text-right font-weight-bold">View more...</p>
                             </div>
                         </div>
@@ -80,3 +83,8 @@ export default class VerticalMultiCarousel extends Component {
     );
   }
 }
+
+VerticalMultiCarousel.propTypes = {
+  ceremonies: PropTypes.array,
+  onSelect: PropTypes.func
+};

@@ -58,7 +58,8 @@ const staticData = [
 const mapStateToProps = state => ({
   user: state.session.user,
   categories: state.home.categories,
-  exclusives: state.home.exclusives
+  exclusives: state.home.exclusives,
+  ceremonies: state.home.ceremonies
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -79,6 +80,7 @@ class Home extends Component {
 
     let promises = [];
     promises.push(store.dispatch(actions.fetchExclusives()));
+    promises.push(store.dispatch(actions.fetchCeremonies()));
     return Promise.all(promises);
   }
 
@@ -90,11 +92,16 @@ class Home extends Component {
     if (this.props.exclusives.length === 0) {
       this.props.dispatch(actions.fetchExclusives());
     }
+    if (this.props.ceremonies.length === 0) {
+      this.props.dispatch(actions.fetchCeremonies());
+    }
   }
 
   navigateTo(route) {
     this.props.dispatch(push(route));
   }
+
+
 
   render() {
     return (
@@ -117,7 +124,7 @@ class Home extends Component {
               }
             </Col>
             <Col xs="12" sm="7" className="no-padding" style={{margin: '-10px 0'}}>
-              <VerticalMultiCarousel/>
+              <VerticalMultiCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)}/>
             </Col>
           </Row>
         </JumbotronComponent>
@@ -145,6 +152,7 @@ Home.propTypes = {
   dispatch: PropTypes.func,
   categories: PropTypes.array,
   exclusives: PropTypes.array,
+  ceremonies: PropTypes.array,
   router: PropTypes.object
 };
 
