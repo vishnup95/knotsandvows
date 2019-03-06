@@ -26,6 +26,38 @@ const items = [
         shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
         buttonText: 'Browse caterers',
         pathToRedirect: 'exclusive'
+    },
+    {
+        src: 'carousel_1.jpg',
+        altText: 'Slide 3',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'exclusive'
+    },
+    {
+        src: 'carousel_1.jpg',
+        altText: 'Slide 4',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'exclusive'
+    },
+    {
+        src: 'carousel_1.jpg',
+        altText: 'Slide 5',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'exclusive'
+    },
+    {
+        src: 'carousel_1.jpg',
+        altText: 'Slide 6',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'exclusive'
     }
 ];
 
