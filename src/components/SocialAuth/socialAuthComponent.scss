@@ -4,13 +4,13 @@
 
 .auth-button{
     @include height(50);
-    @include width(280);
+    @include width(150);
+    @include padding(0, 30, 0, 45);
     @include fontSize(16);
     font-family: $nunito-semi-bold;
     letter-spacing: 0.4px;
     color: white;
-    background: url('/images/footer_fb.png') no-repeat 4% 49% #37579e;
-    background-size: 20px;
+    background-color: #2453b4;
     border: 0;
     position: relative;
 
@@ -18,20 +18,40 @@
         box-shadow: none;
     }
 
-    img {
+    .fbimage {
+        @include width(20);
+        @include height(37);
+        background: url('/images/fb-login_icon.png') no-repeat;
+        margin-right: 1rem;
         position: absolute;
-        left: 0;
-        top: 0;
-        @include height(50);
-        @include width(280);
+        left: 0.8rem;
+        bottom: 0;
+
+        @include mobile {
+           @include height(42);
+        }
     }
+
+    .gmimage {
+        width: 20px;
+        height: 20px;
+        background: url('/images/google_icon.png');
+        background-size: 20px;
+        margin-right: 1rem;
+        position: absolute;
+        left: 1.2rem;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+
 }
 
 .googleButton {
-    color: gray;
+    color: rgba(0, 0, 0, 0.54);
     box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.16);
-    background: url('/images/google_icon.png') 4% 49% no-repeat $white;
-    background-size: 20px;
+    background-color: $white;
 
     &:hover, &:active, &:focus {
        background-color: $white !important;
@@ -43,8 +63,10 @@
         box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.36) !important;
     } 
 }
+
 .social-btn-wrap {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
 }

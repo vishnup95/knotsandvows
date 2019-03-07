@@ -21,3 +21,14 @@ export function fetchExclusives() {
     promise: client => client.get(`/api/home/deals`)
   };
 }
+
+export function fetchCeremonies() {
+  return {
+    types: [
+      types.LOAD_CEREMONIES,
+      types.LOAD_CEREMONIES_SUCCESS,
+      types.LOAD_CEREMONIES_FAILURE
+    ],
+    promise: client => client.get(`/api/home/ceremonies`)
+  };
+}

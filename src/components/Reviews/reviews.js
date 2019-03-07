@@ -14,7 +14,7 @@ export default class ReviewItem extends Component {
         return (
             <div className={styles.reviewItem}>
                 <div className={styles.reviewUser}>{review.name}</div>
-                <div className={styles.reviewRating}><span><img src={imagePath('fullstar.svg')} className={styles.starImg} alt="Fullstar" /></span>{review.rating}</div>
+                <div className={styles.reviewRating}><img src={imagePath('fullstar.svg')} className={styles.starImg} alt="Fullstar" /> <span>{review.rating}</span></div>
                 <div className={styles.reviewText}>{review.review}</div>
             </div>
         )

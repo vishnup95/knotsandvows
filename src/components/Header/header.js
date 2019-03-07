@@ -95,7 +95,7 @@ class Header extends Component {
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
                         <img src={imagePath('avatar.svg')} alt="avatar" />
-                        Login
+                        Login / Sign Up
                 </NavLink>
                 </NavItem>
             );
@@ -126,12 +126,12 @@ class Header extends Component {
                         <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
                     </NavbarBrand>
                     <Nav className={`${styles.iconNav}`} navbar>
-                        <NavItem>
+                        {/* <NavItem>
                             <NavLink href="" className={styles.iconLink}>
                                 <img src={imagePath('vendor.svg')} alt="vendor" />
                                 For Vendors
                                 </NavLink>
-                        </NavItem>
+                        </NavItem> */}
                         {this.renderLoginItem()}
                     </Nav>
                 </div>

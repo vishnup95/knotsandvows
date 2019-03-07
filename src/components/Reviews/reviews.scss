@@ -2,8 +2,10 @@
 @import '../../variables/utils';
 @import '../../variables/fonts';
 
-.reviewItem {}
-
+.reviewItem {
+  border-bottom: 1px solid $black-16;
+  margin-bottom: 1rem;
+}
 
 .review-user {
   font-family: $nunito-bold;
@@ -13,6 +15,21 @@
 
 .reviewRating {
   color: $black-ten;
+  @include fontSize(16);
+  display: flex;
+  align-items: center;
+
+  img {
+    @include width(16);
+    @include margin(0,8,0,0);
+  }
+
+  span {
+    margin-top: .4rem;
+  }
 }
 
-.reviewText {}
+.reviewText {
+  @include fontSize(16);
+  @include margin(16,0,8);
+}

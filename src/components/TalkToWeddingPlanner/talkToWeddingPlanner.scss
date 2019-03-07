@@ -34,15 +34,13 @@
 }
 
 .button {
-  @include borderRadius(3);
+  @include borderRadius(10);
   @include padding(12,24);
   font-family: $nunito-bold;
-  border-radius: .15rem;
   background-color: $bright-red;
   border: none;
   @include fontSize(16);
   @include letterSpacing(.4);
-  @extend %uppercase;
   color: $white;
 }
 

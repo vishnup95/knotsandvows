@@ -1,0 +1,19 @@
+@import '../../variables/colors';
+@import '../../variables/fonts';
+@import '../../variables/utils';
+
+.large {
+  margin-bottom: 1rem;
+  .star-img {
+    @include width(27.4);
+    height: auto;
+  }
+}
+
+.small {
+  margin-bottom: 1rem;
+  .star-img {
+    @include height(12);
+    width: auto;
+  }
+}

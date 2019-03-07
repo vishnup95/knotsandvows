@@ -41,13 +41,12 @@
 }
 
 .button {
-  @include padding(16, 29);
+  @include padding(8, 29);
   @include fontSize(16);
   border-radius: .15rem;
   background-color: $bright-red;
   font-family: $nunito-bold;
   letter-spacing: .4px;
-  text-transform: uppercase;
   color: white;
 }
 
@@ -78,6 +77,13 @@
     width: 45%;
     margin-top: .55rem;
   }
+}
+
+.pWith {
+  @include fontSize(18);
+  font-family: $nunito-regular;
+  color: #070707;
+  @include letterSpacing(0.54);
 }
 
 .login {
@@ -137,6 +143,7 @@
 
 .login-container {
   display: flex;
+  @include height(817);
 }
 
 .login-form {
@@ -174,4 +181,5 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include margin(32, 0, 48);
 }
