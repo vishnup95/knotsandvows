@@ -196,16 +196,17 @@ class SignInModal extends Component {
                     <div>
                         <button className={styles.detailLink} onClick={this.showForgotPassword}>Forgot Password?</button>
                     </div>
-                    <div className={styles.alignButton}><Button color="danger" className={styles.button} onClick={this.validateSignInForm}>LOGIN</Button></div>
+                    <div className={styles.alignButton}><Button color="danger" className={styles.button} onClick={this.validateSignInForm}>Sign in</Button></div>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
-                    <span style={{ color: '#535353' }}>&nbsp; OR &nbsp;</span>
+                    <span style={{ color: '#535353' }}>&nbsp; Or &nbsp;</span>
                     <span className={styles.line}></span>
                 </div>
                 <div className="text-center w-100 mt-5">
+                    <p className={styles.pWith}>Sign in with</p>
                     <SocialAuthComponent onSuccess={data => this.handleSocialAuthResponse(data)}></SocialAuthComponent>
-                    <button className={`${styles.detailLink} mt-5 w-100`} onClick={this.showSignUp}>Create Your Ahwanam Account</button>
+                    <button className={`${styles.detailLink} mt-5 pt-3 w-100`} onClick={this.showSignUp}>Create Your Ahwanam Account</button>
                 </div>
             </div>) : null;
     }
@@ -215,7 +216,7 @@ class SignInModal extends Component {
         return this.state.mode == DisplayMode.signUp ?
             (<div>
                 <div className={`${styles.footerText} ${styles.maxWidth} mb-3`}>
-                    If You Have an Ahwanam Account Please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Login</Link></span>
+                    If You Have an Ahwanam Account Please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Sign in</Link></span>
                 </div>
                 <Form style={{ zIndex: '10000' }} className="position-relative">
                     <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)} pattern="^[a-zA-Z_ ]*$"/>
@@ -224,14 +225,15 @@ class SignInModal extends Component {
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)} pattern="[A-Za-z0-9]{5,}"/>
                 </Form>
                 <div className="text-center">
-                    <Button color="danger" className={styles.signup} onClick={this.validateSignUpForm}>CREATE A NEW ACCOUNT</Button>
+                    <Button color="danger" className={styles.button} onClick={this.validateSignUpForm}>Create account</Button>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
-                    <span style={{ color: '#535353' }}>&nbsp; OR &nbsp;</span>
+                    <span style={{ color: '#535353' }}>&nbsp; Or &nbsp;</span>
                     <span className={styles.line}></span>
                 </div>
-                <div className="text-center" style={{ width: '100%' }}>
+                <div className="text-center mt-5" style={{ width: '100%' }}>
+                    <p className={styles.pWith}>Sign up with</p>
                     <SocialAuthComponent onSuccess={data => this.handleSocialAuthResponse(data)}></SocialAuthComponent>
                 </div>
                 <div className={`${styles.footerText} mt-4`}>
@@ -265,7 +267,7 @@ class SignInModal extends Component {
                 <div className={styles.loginForm}>
                     <div className={styles.logoWrap}>
                         <img className={styles.image} src={imagePath('logo.svg')} alt="logo"></img>
-                        <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Login to Ahwanam' : this.state.mode === 'signUp' ? 'Create an Ahwanam Account' : 'Forgot Password'}</div>
+                        <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Sign in to Ahwanam' : this.state.mode === 'signUp' ? 'Create an Ahwanam Account' : 'Forgot Password'}</div>
                     </div>
                     {this.renderSignIn()}
                     {this.renderSignUp()}
