@@ -64,14 +64,14 @@ export default class VerticalMultiCarousel extends Component {
                 this.props.ceremonies.map((ceremony, index) => {
                     return(
                         <div key={index} className={`${styles.verticalMultiItem} ${index%2 === 0  ? '' : styles.evenStyle}`} aria-hidden onClick={() => this.props.onSelect(ceremony)}>
-                            <img className={styles.imageContainer} style={{ background: "url(" + ceremony.thumb_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} alt="" 
+                            <img className={styles.imageContainer}  style={{ backgroundImage: `url(${ceremony.thumb_image}) `}} alt="" 
                             onError={(e)=>{e.target.onerror = null; e.target.src=imagePath('card_2_1.jpg')}}></img>
                             
                             <div className={styles.detailContainer}>
                               <div className={styles.handle}></div>
                               <h3>{ceremony.ceremony_name}</h3>
-                              <p className="mt-3" style={{maxLines:3}}>{ceremony.short_description}</p>
-                              <p className="text-right font-weight-bold">View more...</p>
+                              <p className={styles.pdetail}>{ceremony.short_description}</p>
+                              <p className={styles.pmore}>View more...</p>
                             </div>
                         </div>
                     );

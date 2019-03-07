@@ -111,7 +111,7 @@ class Home extends Component {
         <CarouselComponent />
     
         <JumbotronComponent data={jumbotronData[0]} bgcolor="#ffffff">
-          <Row>
+          <Row className="pt-5">
             <Col xs="12" sm="5" className="no-padding no-margin">
               {
                 staticData.map((item, index) => {
@@ -125,7 +125,7 @@ class Home extends Component {
                 })
               }
             </Col>
-            <Col xs="12" sm="7" className="no-padding" style={{margin: '-10px 0'}}>
+            <Col xs="12" sm="7" className="no-padding" style={{margin: '-1rem 0'}}>
               <VerticalMultiCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)}/>
             </Col>
           </Row>
