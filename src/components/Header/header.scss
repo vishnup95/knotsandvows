@@ -43,7 +43,7 @@
   box-shadow: 0 2px 6px 0 $black-16;
   background: #fff;
   @include tablet {
-    padding: 0 0 0 3.125rem;
+    padding: 0 3.125rem;
   }
 }
 
@@ -149,7 +149,7 @@
     width: 113px / 16px * 1rem;
     @include align-center();
     margin: 0 1px !important;
-    border-left: 1px solid $black-16;
+    // border-left: 1px solid $black-16;
 
     &:before {
       display: none;
