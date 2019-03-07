@@ -23,8 +23,9 @@
 .info-box {
   @include flex;
   @include justify-space-between;
+  align-items: center;
   background-color: rgba(255, 255, 255, .97);
-  @include borderRadius(3,3,0,0);
+  @include borderRadius(20,20,0,0);
   box-shadow: 0 3px 6px 0 $black-16;
   @include padding(20,35);
   color: $black-five;
@@ -59,15 +60,17 @@
 
 .review {
   @include fontSize(14);
-  @extend %uppercase;
+  font-family: $nunito-semi-bold;
+  color: $black-ten;
 }
 
 .view-btn-wrap {
   border-left: 1px solid $warm-grey;
   @include flex;
+  flex-direction: column;
   @include align-center;
   @include justify-center;
-  @include padding(28.5, 0, 28.5, 28.5);
+  @include padding(0, 0, 0, 28.5);
 }
 
 .detail-nav {
@@ -76,6 +79,7 @@
   @include align-center;
   @include padding(0,35);
   @include height(60);
+  @include borderRadius(0,0,20,20);
   margin: auto;
   background-color: $white-four;
 
@@ -85,15 +89,29 @@
     margin: 0;
 
     li {
-      // border-right: 1px solid $black-five;
       @include fontSize(18);
       color: $black-five;
       font-family: $nunito-regular;
-      @include margin(0,16);
+      @include padding(0,16);
       @include letterSpacing(.4);
-
+      position: relative;
+      &:before {
+        content: '|';
+        position: absolute;
+        left: 0;
+      }
+      button {
+        border: none;
+        background: transparent;
+        color: inherit;
+        outline: none;
+        cursor: pointer;
+      }
       &:first-child {
         margin-left: 0;
+        &:before {
+          content: '';
+        }
       }
     }
 
@@ -117,7 +135,7 @@
   color: $white;
   border: none;
   font-family: $nunito-semi-bold;
-  @include borderRadius(3);
+  @include borderRadius(10);
   @include fontSize(18);
   @include height(42);
   @include width(150);
@@ -125,8 +143,8 @@
 }
 
 .detail-sub-section {
-  box-shadow: 1px 3px 8px 0 $black-16;
-  @include borderRadius(3);
+  box-shadow: 0 3px 8px 0 $black-16;
+  @include borderRadius(20);
   @include margin(30,0);
   @include padding(25,35);
 
@@ -207,19 +225,19 @@
         @include fontSize(18);
       }
 
-      &:before {
-        content: '';
+      
+      @include tablet {
+        width: 50%;
+      }
+      .list-icon {
         position: absolute;
         left: 0;
         top: 0;
         @include width(25);
         @include height(25);
-        background-image: url('/images/dining.svg');
+        background: url('/images/dining.svg');
         background-size: contain;
         background-repeat: no-repeat;
-      }
-      @include tablet {
-        width: 50%;
       }
     }
   }
@@ -337,4 +355,71 @@
   span {
     @include fontSize(16);
   }
+}
+
+.star-wrap {
+  margin-bottom: 1rem;
+}
+.info-sub {
+  display: flex;
+  justify-content: space-between;
+}
+.rating-wrap {
+  @include padding(0, 28.5, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.heart-img {
+  @include width(17);
+}
+.remove-btn {
+  color: $bright-red;
+  border: none;
+  background: transparent;
+  @include fontSize(13);
+  opacity: .85;
+  text-decoration: underline;
+  margin-top: 1rem;
+  @extend %pointer;
+}
+.need-help {
+  @include fontSize(22);
+  color: $black;
+}
+.note-section {
+  @include padding(21);
+  .right-sub-section {
+    padding: 0;
+  }
+}
+.note-header {
+  font-family: $nunito-bold;
+  @include fontSize(20);
+  letter-spacing: .6px;
+}
+.note-wrap {
+  border-bottom: 1px solid $black-16;
+  margin-bottom: .5rem;
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
+.note-title {
+  font-family: $nunito-bold;
+  color: $black-fifteen;
+  @include fontSize(14);
+  margin-right: .5rem;
+}
+.note-date {
+  color: $brownish-grey-three;
+  @include fontSize(10);
+}
+.note-text {
+  @include fontSize(14);
+  line-height: 1.43;
+  @include padding(8,0,8,12);
+  position: relative;
 }

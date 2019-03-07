@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.003" height="18.003" viewBox="0 0 18.003 18.003">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#ea0000}
+        </style>
+    </defs>
+    <g id="Group_7594" data-name="Group 7594" transform="translate(-.5 29.5)">
+        <g id="Group_7591" data-name="Group 7591" transform="translate(1 -29)">
+            <path id="Path_5634" d="M8.5 17A8.5 8.5 0 1 0 0 8.5 8.5 8.5 0 0 0 8.5 17z" class="cls-1" data-name="Path 5634"/>
+        </g>
+        <g id="Group_7592" data-name="Group 7592" transform="translate(5.372 -24.628)">
+            <path id="Path_5635" d="M0 0l8.259 8.259" class="cls-1" data-name="Path 5635"/>
+        </g>
+        <g id="Group_7593" data-name="Group 7593" transform="translate(5.372 -24.628)">
+            <path id="Path_5636" d="M8.259 0L0 8.259" class="cls-1" data-name="Path 5636"/>
+        </g>
+    </g>
+</svg>
