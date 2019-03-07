@@ -55,7 +55,7 @@ export default class VerticalMultiCarousel extends Component {
         console.log("after change", currentSlide);
       }
     };
-    
+
     return (
       
       <div className={styles.verticalMultiContainer}>
@@ -63,8 +63,7 @@ export default class VerticalMultiCarousel extends Component {
             {
                 this.props.ceremonies.map((ceremony, index) => {
                     return(
-                        <div key={index} className={`${styles.verticalMultiItem} ${index%2 === 0  ? '' : styles.evenStyle}`}>
-                         {/* onClick={() => this.props.onSelect(ceremony)}> */}
+                        <div key={index} className={`${styles.verticalMultiItem} ${index%2 === 0  ? '' : styles.evenStyle}`} aria-hidden onClick={() => this.props.onSelect(ceremony)}>
                             <img className={styles.imageContainer} style={{ background: "url(" + ceremony.thumb_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} alt="" 
                             onError={(e)=>{e.target.onerror = null; e.target.src=imagePath('card_2_1.jpg')}}></img>
                             

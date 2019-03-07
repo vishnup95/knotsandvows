@@ -101,7 +101,9 @@ class Home extends Component {
     this.props.dispatch(push(route));
   }
 
-
+  handleCeremonyClick = (ceremony) => {
+    console.log(ceremony.page_name);
+  }
 
   render() {
     return (
