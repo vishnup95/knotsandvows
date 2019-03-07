@@ -198,7 +198,7 @@ a.button {
   width: 95%;
   @include height(360);
   background-size: cover;
-  border-radius:20px; 
+  @include borderRadius(20);
   position: relative;
   cursor: pointer;
 
@@ -251,12 +251,11 @@ a.button {
   justify-content: space-between;
   flex-direction: row;
   @include padding(16,0);
-  border-radius: 20px; 
+  @include borderRadius(20);
 
   .imageContainer {
     width: 45%;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    @include borderRadius(20,0,0,20);
     background-size: cover;
     background-repeat: none; 
   }
@@ -267,8 +266,7 @@ a.button {
     color: $white !important;
     @include padding(20,20,0,30);
     position: relative;
-    border-top-right-radius: 20px; 
-    border-bottom-right-radius: 20px; 
+    @include borderRadius(0,20,20,0);
 
     p {
       @include fontSize(18);
@@ -315,19 +313,14 @@ a.button {
   flex-direction: row-reverse;
 
   .imageContainer {
-    border-top-right-radius: 20px; 
-    border-bottom-right-radius: 20px; 
-    border-top-left-radius: 0; 
-    border-bottom-left-radius: 0; 
+    @include borderRadius(0,20,20,0);
+
   }
 
   .detailContainer {
     background-color: rgba(0, 0, 0, 0.16);
     color: $black !important;
-    border-top-right-radius: 0; 
-    border-bottom-right-radius: 0; 
-    border-top-left-radius: 20px; 
-    border-bottom-left-radius: 20px; 
+    @include borderRadius(20,0,0,20);
 
     .handle {
       background-color: #dcd5d5;
