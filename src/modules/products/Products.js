@@ -152,6 +152,7 @@ class Products extends Component {
               }
             </Row>
 
+            {this.props.productListData.no_of_pages && this.props.productListData.no_of_pages > 1 &&
             <ReactPaginate
               previousLabel={'<'}
               nextLabel={'>'}
@@ -165,6 +166,7 @@ class Products extends Component {
               containerClassName={'pagination'}
               subContainerClassName={'pages pagination'}
               activeClassName={'active'}/>
+            }
 
           </Container>
         }
