@@ -294,6 +294,7 @@ a.button {
     h3 {
       @include fontSize(30);
       font-family: $nunito-semi-bold;
+      color: $white;
     }
 
     .handle {
