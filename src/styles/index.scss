@@ -235,3 +235,16 @@
     content: '' !important;
   }
 }
+.edit-icon {
+
+}
+.delete-icon {
+  @include width(18);
+  @include height(18);
+  position: absolute;
+  right: 0;
+  @include top(-24);
+  background: url('/images/delete-icon.svg') center center no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
