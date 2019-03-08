@@ -59,8 +59,14 @@ class CeremonyDetail extends Component {
   }
 
   handleDropDownChange = (option) => {
-    this.setState({ selectedOption : option });
-    this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony, option.value));
+    if (option){
+      this.setState({ selectedOption : option });
+      this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony, option.value));
+    }
+    // else{
+    //   this.setState({ selectedOption : null });
+    //   this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
+    // }
   }
 
   navigateTo(route) {
@@ -106,6 +112,7 @@ class CeremonyDetail extends Component {
               value={this.state.selectedOption}
               onChange={this.handleDropDownChange}
               options={options}
+              placeholder="City"
               isClearable={false}
             />
              </Col>

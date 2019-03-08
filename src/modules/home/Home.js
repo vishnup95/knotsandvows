@@ -102,7 +102,7 @@ class Home extends Component {
   }
 
   handleCeremonyClick = (ceremony) => {
-    console.log(ceremony.page_name);
+    this.navigateTo(`/ceremonies/${ceremony.page_name}`)
   }
 
   render() {
