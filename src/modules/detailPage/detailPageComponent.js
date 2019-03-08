@@ -387,7 +387,7 @@ class DetailPageComponent extends Component {
                         </div>
                     </div>
                 }
-                <Modal isOpen={this.state.showGallery} toggle={() => this.toggleGallery()} centered={true}>
+                <Modal isOpen={this.state.showGallery} toggle={() => this.toggleGallery()} centered={true} className={style.imageGallery}>
                     <ProductGallery details={details} close={this.toggleGallery}></ProductGallery>
 
                 </Modal>
