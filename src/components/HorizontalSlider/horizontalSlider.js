@@ -47,7 +47,7 @@ const SamplePrevArrow = (propvalues) => {
 
 
 export default class HorizontalSlider extends Component {
-
+   
     constructor(props) {
         super(props);
     }
@@ -88,7 +88,7 @@ export default class HorizontalSlider extends Component {
                 }
             ]
         };
-
+        
         return (this.props.type === 'small' &&
             <div className={styles.multiContainer}>
                 <Slider {...settings}>
@@ -111,13 +111,13 @@ export default class HorizontalSlider extends Component {
                         this.props.data.map((item, index) => {
                             return (
                                 <Col key={index}>
-                                    <CategoryCard data={item} />
+                                    <CategoryCard data={item} category={this.props.category}/>
                                 </Col>
                             );
                         })
                     }
                     <Col>
-                        <div className={styles.addNew}>View All</div>
+                        <div aria-hidden className={styles.addNew} onClick={this.props.buttonAction}>View All</div>
                     </Col>
                 </Slider>
             </div>
@@ -126,5 +126,7 @@ export default class HorizontalSlider extends Component {
 }
 HorizontalSlider.propTypes = {
     data: PropTypes.array,
-    type: PropTypes.string
+    type: PropTypes.string,
+    category: PropTypes.string,
+    buttonAction: PropTypes.func
 };
