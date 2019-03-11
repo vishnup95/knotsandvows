@@ -7,6 +7,7 @@ import * as actions from '../../reducers/session/actions';
 import * as homeActions from '../../modules/home/actions'
 import { Link } from 'react-router-dom';
 import { push } from 'connected-react-router';
+import { sendGAEvent } from '../../utils/GAUtilities'
 
 import {
     Collapse,
@@ -55,6 +56,7 @@ class Header extends Component {
         if (this.props.showLogin) {
             this.props.dispatch(actions.hideLogin());
         } else {
+            sendGAEvent("Header","Show Login");
             this.props.dispatch(actions.showLogin());
         }
     }

@@ -1,7 +1,7 @@
 const packageJson = require('../package.json');
 process.env.VERSION = packageJson.version;
 
-const BAKED_IN_ENV_VARS = ['NODE_ENV', 'PUBLIC_URL', 'VERSION', 'API_HOST', 'API_PORT'];
+const BAKED_IN_ENV_VARS = ['NODE_ENV', 'PUBLIC_URL', 'VERSION', 'API_HOST', 'API_PORT', 'REACT_APP_GA_TRACKING_ID'];
 
 function getAppEnv() {
   const raw = Object.keys({}).reduce(
@@ -15,6 +15,7 @@ function getAppEnv() {
       VERSION: process.env.VERSION,
       API_HOST: process.env.API_HOST,
       API_PORT: process.env.API_PORT,
+      REACT_APP_GA_TRACKING_ID: process.env.REACT_APP_GA_TRACKING_ID,
     }
   );
 

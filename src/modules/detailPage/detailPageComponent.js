@@ -64,7 +64,6 @@ class DetailPageComponent extends Component {
 
     updateUIData = () => {
 
-        console.log(this.props.match);
         let category = this.props.match.params.category_name;
         let vendor = this.props.match.params.vendor_name;
         this.setState({ vendor: vendor, category: category, reviewPage: 1 });

@@ -11,6 +11,7 @@ import FooterComponent from './components/Footer/footer';
 import Header from './components/Header/header';
 import PropTypes from 'prop-types';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import ReactGA from 'react-ga';
 
 const mapStateToProps = state => ({
   showModal: state.modal.show,
@@ -25,7 +26,16 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
   constructor(props) {
     super(props);
+    this.initializeReactGA();
   }
+
+ initializeReactGA = () => {
+    const GA_TRACKING_ID = process.env.REACT_APP_GA_TRACKING_ID;
+    ReactGA.initialize(GA_TRACKING_ID);
+    this.props.history.listen(location => {
+      ReactGA.pageview(location.pathname);
+    });
+}
 
   toggle() {
     if (this.props.showModal) {
