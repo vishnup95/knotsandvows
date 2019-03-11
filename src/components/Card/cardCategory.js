@@ -55,14 +55,14 @@ class CategoryCard extends Component {
                     </p>
 
                     <p className={styles.rating}>
-                        {this.props.data.reviews_count} <span>Reviews</span>
+                        {this.props.data.reviews_count}&nbsp;<span>Reviews</span>
                     </p>
                 </div>
 
                 <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
                 <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
                 <p className={`${styles.charges}`}>
-                    <span>{formatMoney(this.props.data.price.service_price)}</span> Min Charges per Day
+                    <span>{formatMoney(this.props.data.price.service_price)}</span> Min Charges Per Day
                 </p>
             </div>
         );
@@ -75,7 +75,7 @@ class CategoryCard extends Component {
     render() {
         return (
             <div>
-                <Card className="mb-5" style={{ backgroundColor: '#f7f7f7' }} onClick={this.handleCardClick}>
+                <Card className={styles.categoryCard} onClick={this.handleCardClick}>
                     <CardImg
                         className={styles.cardImage}
                         top
@@ -84,7 +84,7 @@ class CategoryCard extends Component {
                         alt="Card image cap"
                         onError={(e) => { e.target.onerror = null; e.target.src = `${imagePath('card_1_1.jpg')}` }}
                     />
-                    <CardBody>
+                    <CardBody className={styles.categoryBody} style={{backgroundColor: '#f7f7f7'}}>
                         {this.renderCardBody()}
                     </CardBody>
                 </Card>

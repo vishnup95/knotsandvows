@@ -2,10 +2,18 @@
 @import '../../variables/fonts';
 @import '../../variables/utils';
 
-//general 
+//general
+
+.addEllipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .cardImage {
     width: 100%;
     height: 16.194rem;
+    @include borderRadius(20,20,0,0);
 }
 
 //simple card style
@@ -64,11 +72,23 @@
 
 // category card styles
 
+.categoryCard {
+    margin-bottom: 3rem;
+    @include borderRadius(20);
+}
+
+.categoryBody {
+    backgroundColor: #f7f7f7;
+    @include borderRadius(0,0,20,20);
+}
+
 .cardTitleCat {
     @include fontSize(18);
     font-family: $nunito-bold;
     letter-spacing: 0.025rem;
     color: $black-four;
+    width: 60%;
+    @extend .addEllipsis;
 }
 
 .charges {
@@ -86,6 +106,10 @@
 .ratingContainer {
     float: right;
     width: max-content;
+    padding: 0.45rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .rating {
