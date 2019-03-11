@@ -10,7 +10,6 @@ class PackageComponent extends Component {
 
   addToWishList(e) {
     e.stopPropagation();
-    console.log('Add to wishlist');
   }
 
   render() {
