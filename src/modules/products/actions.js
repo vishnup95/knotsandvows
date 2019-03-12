@@ -1,13 +1,15 @@
 import * as types from './constants';
 
-export function fetchProducts(category, page = 1, sortby = 0) {
+export function fetchProducts(category, page = 1, sortby = 0, searchParams = '') {
+  let getUrl = `api/results/getall?type=${category}&offset=12&page=${page}&sortby=${sortby}`;
+  getUrl = searchParams ? `${getUrl}&${searchParams}` : getUrl;
   return {
     types: [
       types.LOAD_PRODUCTS,
       types.LOAD_PRODUCTS_SUCCESS,
       types.LOAD_PRODUCTS_FAILURE
     ],
-    promise: client => client.get(`/api/results/getall?type=${category}&offset=12&page=${page}&sortby=${sortby}`)
+    promise: client => client.get(getUrl)
   };
 }
 

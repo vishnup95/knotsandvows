@@ -67,6 +67,43 @@
     justify-content: center;
     display: flex;
     border-radius: 5px;
+    z-index: 1;
+  }
+
+  .selectContainer {
+    margin: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    padding-right: 1rem;
+    padding-bottom: .5rem;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    .label {
+      display: block;
+      @include fontSize(10);
+      letter-spacing: 0.3px;
+      font-family: $nunito-regular;
+      color: #868585;
+      text-transform: uppercase;
+      @include padding(12,16,0);
+      margin-bottom: 0;
+    }
+  
+    .select {
+      border: 0;
+      font-family: $nunito-regular;
+      @include fontSize(16);
+      height: auto;
+      padding: 0 2rem 0 1rem;
+      background: url('/images/filter-dropdown.png') right  no-repeat;
+      -webkit-appearance: none;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
   }
 
   .searchButton {
@@ -96,10 +133,6 @@
     @include fontSize(18);
     font-family: $nunito-regular;
     margin-right: 2.5rem;
-
-    // &:first-child {
-    //   font-family: $nunito-bold;
-    // }
   }
 }
 

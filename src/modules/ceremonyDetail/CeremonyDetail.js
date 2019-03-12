@@ -55,7 +55,7 @@ class CeremonyDetail extends Component {
   handleViewAllClick = (category) => {
     console.log(category);
 
-    // this.navigateTo(`/categories/${category}`)
+     //this.navigateTo(`/categories/${category}`)
   }
 
   handleDropDownChange = (option) => {
@@ -70,7 +70,6 @@ class CeremonyDetail extends Component {
   }
 
   navigateTo(route) {
-    console.log(route);
     this.props.dispatch(push(route));
   }
 

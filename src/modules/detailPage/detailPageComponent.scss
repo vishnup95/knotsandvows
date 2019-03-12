@@ -95,11 +95,13 @@
       @include padding(0,16);
       @include letterSpacing(.4);
       position: relative;
+
       &:before {
         content: '|';
         position: absolute;
         left: 0;
       }
+
       button {
         border: none;
         background: transparent;
@@ -107,8 +109,10 @@
         outline: none;
         cursor: pointer;
       }
+
       &:first-child {
         margin-left: 0;
+
         &:before {
           content: '';
         }
@@ -224,11 +228,10 @@
       span {
         @include fontSize(18);
       }
-
-      
       @include tablet {
         width: 50%;
       }
+
       .list-icon {
         position: absolute;
         left: 0;
@@ -360,10 +363,12 @@
 .star-wrap {
   margin-bottom: 1rem;
 }
+
 .info-sub {
   display: flex;
   justify-content: space-between;
 }
+
 .rating-wrap {
   @include padding(0, 28.5, 0, 0);
   display: flex;
@@ -371,9 +376,11 @@
   align-items: center;
   justify-content: center;
 }
+
 .heart-img {
   @include width(17);
 }
+
 .remove-btn {
   color: $bright-red;
   border: none;
@@ -384,47 +391,81 @@
   margin-top: 1rem;
   @extend %pointer;
 }
+
 .need-help {
   @include fontSize(22);
   color: $black;
 }
+
 .note-section {
   @include padding(21);
+
   .right-sub-section {
     padding: 0;
   }
 }
+
 .note-header {
   font-family: $nunito-bold;
   @include fontSize(20);
   letter-spacing: .6px;
 }
+
 .note-wrap {
   border-bottom: 1px solid $black-16;
   margin-bottom: .5rem;
+
   &:last-child {
     border-bottom: none;
     margin-bottom: 0;
   }
 }
+
 .note-title {
   font-family: $nunito-bold;
   color: $black-fifteen;
   @include fontSize(14);
   margin-right: .5rem;
 }
+
 .note-date {
   color: $brownish-grey-three;
   @include fontSize(10);
 }
+
 .note-text {
   @include fontSize(14);
   line-height: 1.43;
   @include padding(8,0,8,12);
   position: relative;
 }
+
 .image-gallery {
-  width: 70rem;
-  height: 70vh;
+  width: 80vw;
+  // height: 20vw;
   overflow: auto;
+
+  div[class^="modal-content"] {
+    background-color: $warm-grey-two;
+    @include borderRadius(18);
+    width: 75vw;
+    div[class^="image-gallery-slide"] {
+      background-color: inherit;
+
+      img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+      }
+    }
+
+    > div {
+      > button {
+        position: absolute;
+        @include top(-37);
+        @include right(-37);
+      }
+    }
+  }
 }

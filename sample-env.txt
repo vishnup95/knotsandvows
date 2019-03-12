@@ -5,3 +5,4 @@
  PORT='4000'
  REACT_APP_API_HOST='https://api.ahwanam.com'
  REACT_APP_API_PORT=''
+ GA_TRACKING_ID='UA-135937390-1'

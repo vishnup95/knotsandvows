@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import * as actions from './actions';
 import ReactPaginate from 'react-paginate';
 import { 
@@ -88,8 +89,6 @@ class Products extends Component {
       window.scrollTo(0, 0);
     }
   }
-
-
   pageChangeHandler(data){
     this.props.dispatch(actions.fetchProducts(this.state.category, data.selected+1, this.state.sortBy));
     this.setState({page: data.selected+1});
@@ -97,6 +96,13 @@ class Products extends Component {
 
   navigateTo(route) {
     this.props.dispatch(push(route));
+  }
+
+  filterSearch = (params) => {
+    let searchParams = queryString.stringify(params);
+    if (searchParams) {
+      this.props.dispatch(actions.fetchProducts(this.state.category, 1, this.state.sortBy, searchParams));
+    }
   }
 
   changeSortOption = (event) => {
@@ -114,7 +120,7 @@ class Products extends Component {
           <h1 className={styles.imageHeading}>{header ? header.header_text : ''}</h1>
         </div>}
 
-        {filters.length > 0 ? <FormComponent filters={filters} selectedCategory={this.state.category}/> : <div></div>}
+        {filters.length > 0 ? <FormComponent filters={filters} filterSearch={this.filterSearch} selectedCategory={this.state.category}/> : <div></div>}
 
         {
           this.props.productListData == null || this.props.productListData.results.length === 0 ? <NoResultComponent/> :
@@ -136,7 +142,6 @@ class Products extends Component {
                       })}
                   </Input>
                 </FormGroup>
-
               </Col>
             </Row>
             
