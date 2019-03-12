@@ -145,7 +145,7 @@ const routes = (
     <Route exact path="/resetpassword" component={LoadableResetPassword} />
     <Route exact path="/categories/:category_name" component={LoadableProducts} />
     <Route exact path="/categories" component={LoadableCategoryListing} />
-    <Route exact path="/exclusive" component={LoadableExclusiveDeals} />
+    <Route exact path="/packages" component={LoadableExclusiveDeals} />
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
     <Route exact path="/wishlist" component={LoadableCartPage} />
     {/* <Route exact path="/checkout" component={LoadableCheckout} /> */}
