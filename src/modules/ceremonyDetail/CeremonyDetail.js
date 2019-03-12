@@ -37,6 +37,7 @@ class CeremonyDetail extends Component {
   }
 
   componentWillMount() {
+
     let ceremony = this.selectedCategory();
     this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
 
@@ -54,9 +55,11 @@ class CeremonyDetail extends Component {
     }
   }
 
-  // handleViewAllClick = (category) => {
-    //this.navigateTo(`/categories/${category}`)
-  // }
+  handleViewAllClick = (category) => {
+    console.log(category);
+
+    this.navigateTo(`/categories/${category}`)
+  }
 
   handleDropDownChange = (option) => {
     if (option) {

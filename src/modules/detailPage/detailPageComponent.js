@@ -14,10 +14,13 @@ import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
 import { imagePath } from '../../utils/assetUtils';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+import LoaderComponent from '../../components/Loader/loader';
+
 
 const mapStateToProps = state => ({
     user: state.session.user,
     details: state.details.details,
+    detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
     similarVendors: state.details.similarVendors
 });
@@ -133,6 +136,7 @@ class DetailPageComponent extends Component {
 
         return (
             <div className={style.detailContainer}>
+            {this.props.detailsLoading && <LoaderComponent/>}
                 {details &&
                     <div>
                         <div className={style.bgImage} style={{ background: "url(" + details.cover_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
@@ -406,7 +410,8 @@ DetailPageComponent.propTypes = {
     reviewsData: PropTypes.object,
     details: PropTypes.object,
     similarVendors: PropTypes.array,
-    match: PropTypes.object
+    match: PropTypes.object,
+    detailsLoading: PropTypes.bool
 };
 
 export default connect(
