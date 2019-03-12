@@ -52,8 +52,10 @@ class App extends Component {
   }
 
   render() {
+    
+    const FS_ORG_ID = process.env.REACT_APP_FS_ORG_ID;
     return (<div className="app">
-    <FullStory org="JWHPP" />
+    <FullStory org={FS_ORG_ID} />
     <Helmet
       title={metadata.title}
       meta={metadata.meta}
