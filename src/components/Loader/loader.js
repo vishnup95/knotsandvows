@@ -9,10 +9,13 @@ class LoaderComponent extends Component {
         return (
             <div className={styles.loaderWrap}>
                 <div className={styles.outerImage}>
-                Loading...
-
-                    <div className={styles.innerImage}>
+                    <div className={styles.loader} id="loader-6">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
+                    <div className={styles.loaderText}>Loading...</div>
                 </div>
 
             </div>
