@@ -77,6 +77,7 @@
     "react-dom": "^16.7.0",
     "react-facebook-login": "^4.1.1",
     "react-frontload": "^1.0.3",
+    "react-fullstory": "^1.0.3",
     "react-ga": "^2.5.7",
     "react-google-login": "^5.0.0",
     "react-helmet": "^5.2.0",

@@ -12,6 +12,7 @@ import Header from './components/Header/header';
 import PropTypes from 'prop-types';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ReactGA from 'react-ga';
+import FullStory from 'react-fullstory';
 
 const mapStateToProps = state => ({
   showModal: state.modal.show,
@@ -51,7 +52,10 @@ class App extends Component {
   }
 
   render() {
+    
+    const FS_ORG_ID = process.env.REACT_APP_FS_ORG_ID;
     return (<div className="app">
+    <FullStory org={FS_ORG_ID} />
     <Helmet
       title={metadata.title}
       meta={metadata.meta}
