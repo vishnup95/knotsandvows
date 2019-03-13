@@ -23,6 +23,7 @@ const ProductsReducer = (state = initialState, action) => {
     case types.LOAD_PRODUCTS:
       return {
         ...state,
+        productListData: initialState.productListData,
         loading: true
       };
 
