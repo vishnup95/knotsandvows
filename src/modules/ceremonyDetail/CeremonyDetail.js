@@ -58,7 +58,7 @@ class CeremonyDetail extends Component {
   handleViewAllClick = (category) => {
     console.log(category);
 
-    // this.navigateTo(`/categories/${category}`)
+    this.navigateTo(`/categories/${category}`)
   }
 
   handleDropDownChange = (option) => {
@@ -143,12 +143,12 @@ class CeremonyDetail extends Component {
 
                       <Row>
                         <Col className="no-padding">
-                          <HorizontalSlider data={category.vendors} category={category.page_name} buttonAction={this.handleViewAllClick(category.page_name)} />
+                          <HorizontalSlider data={category.vendors} category={category.page_name} buttonAction={this.handleViewAllClick} />
                         </Col>
                       </Row>
                       <Row>
                         <Col>
-                          <p className={styles.viewAll} onClick={this.handleViewAllClick(category.page_name)} aria-hidden >View All</p>
+                          <p className={styles.viewAll} onClick={() => this.handleViewAllClick(category.page_name)} aria-hidden >View All</p>
                         </Col>
                       </Row>
 
