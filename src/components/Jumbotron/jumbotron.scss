@@ -3,10 +3,11 @@
 @import '../../variables/fonts';
 
 h1 {
+  font-family: $frank-regular;
   @include fontSize(48);
   @include letterSpacing(1.2);
   line-height: 1;
-  @include margin(0,0,32);
+  @include margin(0,0,8);
 }
 
 hr {
@@ -18,7 +19,7 @@ hr {
   @include borderRadius(3);
   background-color: $bright-red;
   @include fontSize(16);
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   @include letterSpacing(.5);
   @include padding(12,24);
   border: none;
@@ -43,4 +44,11 @@ hr {
 
 .center {
   margin: 0 auto;
+}
+.package-wrap {
+  @include width(1316);
+  margin: 0 auto;
+}
+.carousel-wrap {
+  @include padding(65,0,0);
 }

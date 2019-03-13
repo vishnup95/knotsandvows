@@ -1,29 +1,37 @@
 @font-face {
-    font-family: 'NunitoSans-Regular';
-    src: url('/fonts/Nunito-Regular.ttf');
+    font-family: 'Roboto Regular';
+    src: url('/fonts/Roboto-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'NunitoSans-Light';
-    src: url('/fonts/Nunito-Light.ttf');
+    font-family: 'Roboto Light';
+    src: url('/fonts/Roboto-Light.ttf');
 }
 
 @font-face {
-    font-family: 'NunitoSans-Bold';
-    src: url('/fonts/Nunito-Bold.ttf');
+    font-family: 'Roboto Bold';
+    src: url('/fonts/Roboto-Bold.ttf');
 }
 
 @font-face {
-    font-family: 'NunitoSans-SemiBold';
-    src: url('/fonts/Nunito-SemiBold.ttf');
+    font-family: 'Roboto Medium';
+    src: url('/fonts/Roboto-Medium.ttf');
 }
 @font-face {
-    font-family: 'PlayfairDisplay-Regular';
-    src: url('/fonts/PlayfairDisplay-Regular.ttf');
+    font-family: 'Frank Ruhl Libre Regular';
+    src: url('/fonts/FrankRuhlLibre-Regular.ttf');
 }
 @font-face {
-    font-family: 'PlayfairDisplay-Bold';
-    src: url('/fonts/PlayfairDisplay-Bold.ttf');
+    font-family: 'Frank Ruhl Libre Bold';
+    src: url('/fonts/FrankRuhlLibre-Bold.ttf');
+}
+@font-face {
+    font-family: 'Frank Ruhl Libre Light';
+    src: url('/fonts/FrankRuhlLibre-Light.ttf');
+}
+@font-face {
+    font-family: 'Frank Ruhl Libre Medium';
+    src: url('/fonts/FrankRuhlLibre-Medium.ttf');
 }
 @font-face {
     font-family: 'OpenSans-Regular';
@@ -42,13 +50,14 @@
     src: url('/fonts/OpenSans-Bold.ttf');
 }
 
-$nunito-regular: 'NunitoSans-Regular', sans-serif;
-$nunito-light: 'NunitoSans-Light', sans-serif;
-$nunito-bold: 'NunitoSans-Bold', sans-serif;
-$nunito-semi-bold: 'NunitoSans-SemiBold', sans-serif;
-$playfair-regular: 'PlayfairDisplay-Regular', sans-serif;
-$playfair-bold: 'PlayfairDisplay-Bold', sans-serif;
-$opensans-regular: 'OpenSans-Regular', sans-serif;
-$opensans-light: 'OpenSans-Light', sans-serif;
-$opensans-bold: 'OpenSans-Bold', sans-serif;
-$opensans-semi-bold: 'OpenSans-SemiBold', sans-serif;
+$roboto-regular: 'Roboto Regular', sans-serif;
+$roboto-light: 'Roboto Light', sans-serif;
+$roboto-bold: 'Roboto Bold', sans-serif;
+$roboto-medium: 'Roboto Medium', sans-serif;
+$frank-regular: 'Frank Ruhl Libre Regular', serif;
+$frank-bold: 'Frank Ruhl Libre Bold', serif;
+$frank-medium: 'Frank Ruhl Libre Medium', serif;
+// $opensans-regular: 'OpenSans-Regular', sans-serif;
+// $opensans-light: 'OpenSans-Light', sans-serif;
+// $opensans-bold: 'OpenSans-Bold', sans-serif;
+// $opensans-semi-bold: 'OpenSans-SemiBold', sans-serif;

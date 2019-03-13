@@ -83,7 +83,7 @@
     background: 0 0;
     text-align: left;
     color: $black-twelve;
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
 
   }
 
@@ -195,7 +195,7 @@
     background-color: $white;
     padding: .25rem 1rem;
     @include fontSize(20);
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
     line-height: 1.5;
 
     a {
@@ -208,7 +208,7 @@
 
   .active {
     background-color: #edbbbb;
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
 
     a {
       color: #2c2c2c;
@@ -217,7 +217,7 @@
 
   .next,
   .previous {
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
 
     a {
       color: #747474;
@@ -235,9 +235,7 @@
     content: '' !important;
   }
 }
-.edit-icon {
 
-}
 .delete-icon {
   @include width(18);
   @include height(18);
@@ -275,4 +273,9 @@
 
 .full-height {
   height: 100%;
+}
+
+// jumbotron fix
+.jumbotron {
+  padding: 0 2rem 4rem;
 }

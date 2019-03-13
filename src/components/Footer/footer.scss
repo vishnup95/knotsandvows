@@ -20,7 +20,7 @@
       color: $black;
 
       &:first-child {
-        font-family: $nunito-bold;
+        font-family: $roboto-bold;
       }
     }
   }
@@ -36,12 +36,12 @@ p {
   margin-bottom: 2rem;
 
   p:first-child {
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     @include fontSize(18);
     margin-bottom: 1rem;
 
     span {
-      font-family: $nunito-regular;
+      font-family: $roboto-regular;
       @include fontSize(16);
 
     }
@@ -53,7 +53,7 @@ p {
 
       a {
         color: $white;
-        font-family: $nunito-regular;
+        font-family: $roboto-regular;
         @include fontSize(16);
         @include padding(8,0);
       }

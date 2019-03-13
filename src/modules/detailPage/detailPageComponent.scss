@@ -33,13 +33,13 @@
   @include margin(-160,0,0);
 
   h3 {
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     @include fontSize(30);
     letter-spacing: .5px;
   }
 
   p {
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
     @include fontSize(18);
     letter-spacing: .9px;
 
@@ -60,7 +60,7 @@
 
 .review {
   @include fontSize(14);
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   color: $black-ten;
 }
 
@@ -91,7 +91,7 @@
     li {
       @include fontSize(18);
       color: $black-five;
-      font-family: $nunito-regular;
+      font-family: $roboto-regular;
       @include padding(0,16);
       @include letterSpacing(.4);
       position: relative;
@@ -128,7 +128,7 @@
   @include width(150);
   @include height(42);
   background: transparent;
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   color: $black-seven;
   @include letterSpacing(.4);
   @extend %pointer;
@@ -138,7 +138,7 @@
   background: $bright-red;
   color: $white;
   border: none;
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   @include borderRadius(10);
   @include fontSize(18);
   @include height(42);
@@ -154,12 +154,12 @@
 
   h3 {
     @include fontSize(30);
-    font-family: $nunito-semi-bold;
+    font-family: $roboto-medium;
   }
 
   h5 {
     @include fontSize(20);
-    font-family: $nunito-semi-bold;
+    font-family: $roboto-medium;
     margin-bottom: 1rem;
   }
 
@@ -293,7 +293,7 @@
   @include fontSize(14);
   background-color: $white;
   color: $bright-red;
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   margin-bottom: .2rem;
   @extend %pointer;
 }
@@ -307,7 +307,7 @@
 }
 
 .offer-price {
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   @include fontSize(35);
   @include letterSpacing(1.2);
   color: $black-eight;
@@ -331,7 +331,7 @@
   @include margin(0,4);
 
   span {
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     @include fontSize(20);
   }
 }
@@ -346,12 +346,12 @@
   @extend %pointer;
   color: $white;
   @include fontSize(28);
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   @include letterSpacing(.8);
 }
 
 .review-header {
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   color: $black-five;
   @include fontSize(28);
 
@@ -406,7 +406,7 @@
 }
 
 .note-header {
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   @include fontSize(20);
   letter-spacing: .6px;
 }
@@ -422,7 +422,7 @@
 }
 
 .note-title {
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   color: $black-fifteen;
   @include fontSize(14);
   margin-right: .5rem;

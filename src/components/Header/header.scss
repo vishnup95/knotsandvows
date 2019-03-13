@@ -13,7 +13,7 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  font-family: $nunito-regular;
+  font-family: $roboto-regular;
   transition: 300ms all ease;
   @include tablet {
     background: #fff;
@@ -212,7 +212,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   @include fontSize(18);
   color: $white;
   letter-spacing: .5px;
