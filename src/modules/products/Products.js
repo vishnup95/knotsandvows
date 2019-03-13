@@ -32,11 +32,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const jumbotronData = [
-  {
-      title: 'Other Categories'
-  }
-];
+const jumbotronData = {title: 'Other Categories'};
 
 
 class Products extends Component {
@@ -44,7 +40,7 @@ class Products extends Component {
     category: this.props.match.params.category_name, 
     productListData : null,
     sortBy : 0,
-    page : 1
+    page : 1,
   }
 
   static fetchData(store) {
@@ -98,15 +94,14 @@ class Products extends Component {
     this.props.dispatch(push(route));
   }
 
-  filterSearch = (params) => {
+  filterSearch = (params, category) => {
+    this.navigateTo(`/categories/${category}`);
+    this.setState({category});
     let searchParams = queryString.stringify(params);
-    if (searchParams) {
-      this.props.dispatch(actions.fetchProducts(this.state.category, 1, this.state.sortBy, searchParams));
-    }
+    this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams));
   }
 
   changeSortOption = (event) => {
-     console.log(event.target.selectedIndex);
      let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
      this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption));
      this.setState({page: 1, sortBy: sortOption});
@@ -176,7 +171,7 @@ class Products extends Component {
           </Container>
         }
         
-        <JumbotronComponent data={jumbotronData[0]} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8"/>
+        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8"/>
       </div>
     );
   }
