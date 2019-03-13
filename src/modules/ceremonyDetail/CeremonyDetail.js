@@ -58,7 +58,7 @@ class CeremonyDetail extends Component {
   handleViewAllClick = (category) => {
     console.log(category);
 
-    this.navigateTo(`/categories/${category}`)
+    // this.navigateTo(`/categories/${category}`)
   }
 
   handleDropDownChange = (option) => {
@@ -102,7 +102,7 @@ class CeremonyDetail extends Component {
                 <h1 className={styles.title}>{details.description}</h1>
                 <p>{details.description}</p>
               </div>
-              <img className={styles.bottomCurve} src={imagePath('curveline.png')} alt="curve" />
+              <img className={styles.bottomCurve} src={imagePath('curveline.svg')} alt="curve" />
             </div>
             <Container>
               <Row>

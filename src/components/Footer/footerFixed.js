@@ -73,6 +73,9 @@ class FooterFixedComponent extends Component {
                                 <a href='https://www.instagram.com/ahwanamevents/' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
                                 </a>
+                                <a href='https://www.pinterest.com' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                    <img src={imagePath('pinterest.svg')} alt="Pinterest" />
+                                </a>
                             </span>
                             <p className="">© 2019  All Rights Reserved</p>
                             <p className="">Ahwanam event Planners</p>

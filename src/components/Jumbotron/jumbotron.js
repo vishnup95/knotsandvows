@@ -69,9 +69,9 @@ class JumbotronComponent extends Component {
         return (
             <div>
                 <Jumbotron style={{ backgroundColor: this.props.bgcolor }} className="mb-0">
-                    <div className="container">
+                    <div className={this.props.containerStyle != 'packageWrap' ? (this.props.containerStyle === 'carouselWrap' ? styles.carouselWrap : 'container') : styles.packageWrap}>
                         <h1 className="text-center">{this.props.data.title}</h1>
-                        <hr className="mt-3 mb-5" />
+                        {/* <hr className="mt-3 mb-5" /> */}
                         {this.renderSubtitle(this.props.data.subtitle)}
                         {this.props.insideContainer ?  this.props.children : ''}
                         {this.renderCards(this.props.cardType)}
@@ -94,7 +94,8 @@ JumbotronComponent.propTypes = {
     children: PropTypes.node,
     isTalkToAhwanam: PropTypes.bool,
     category: PropTypes.string,
-    insideContainer: PropTypes.bool
+    insideContainer: PropTypes.bool,
+    containerStyle: PropTypes.string
 };
 
 JumbotronComponent.defaultProps = {

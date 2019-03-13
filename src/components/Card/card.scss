@@ -19,7 +19,7 @@
 //simple card style
 .cardTitleSimple {
     @include fontSize(20);
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     @include letterSpacing(1.8);
     @extend %uppercase;
     color: $black-four;
@@ -29,7 +29,7 @@
 // exclusive card styles
 .cardTitle {
     @include fontSize(20);
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     @include letterSpacing(2);
     color: $black;
 }
@@ -40,7 +40,7 @@
     line-height: 1.38;
     @include letterSpacing(.5);
     overflow: hidden;
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
 }
 
 .price {
@@ -51,12 +51,12 @@
 
 .priceNow {
     color: $bright-red;
-    font-family: $opensans-semi-bold;
+    font-family: $roboto-medium;
 }
 
 .priceBefore {
     color: $black-two;
-    font-family: $opensans-regular;
+    font-family: $roboto-regular;
 }
 
 .cardButton {
@@ -67,7 +67,7 @@
     @include height(40);
     @include fontSize(14);
     @include borderRadius(3);
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
 }
 
 // category card styles
@@ -78,13 +78,13 @@
 }
 
 .categoryBody {
-    backgroundColor: #f7f7f7;
+    background-color: #f7f7f7;
     @include borderRadius(0,0,20,20);
 }
 
 .cardTitleCat {
     @include fontSize(18);
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     letter-spacing: 0.025rem;
     color: $black-four;
     width: 60%;
@@ -92,13 +92,13 @@
 }
 
 .charges {
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
     color: $brownish-grey-two;
     letter-spacing: 0.48px;
     @include fontSize(15);
 
     span {
-        font-family: $nunito-semi-bold;
+        font-family: $roboto-medium;
         color: $black-four;
     }
 }
@@ -114,14 +114,14 @@
 
 .rating {
     @extend .charges;
-    font-family: $nunito-semi-bold;
+    font-family: $roboto-medium;
     text-align: right;
     margin: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     span {
-        font-family: $nunito-regular;
+        font-family: $roboto-regular;
         color: $brownish-grey-two;
         @include fontSize(13);
     }

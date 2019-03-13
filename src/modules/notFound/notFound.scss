@@ -14,13 +14,13 @@
 
   h1 {
     @include fontSize(120);
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     line-height: 0.73;
   }
 
   h2 {
     @include fontSize(14);
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
     color: $black;
   }
 }

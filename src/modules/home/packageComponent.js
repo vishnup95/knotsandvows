@@ -37,7 +37,7 @@ class PackageComponent extends Component {
           <p className={`mt-4 ${styles.price}`}>
             <span className={`mr-1 ${styles.priceBefore}`}>You Save: </span>
             <span className={styles.priceNow}>
-              {packageDetail.price.save_amount} ({packageDetail.price.save_percentage}% Off){' '}
+            ₹{packageDetail.price.save_amount} ({packageDetail.price.save_percentage}% Off){' '}
             </span>
           </p>
         </div>

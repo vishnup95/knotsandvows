@@ -124,7 +124,7 @@ class CarouselComponent extends Component {
                 previous={this.previous}>
                 <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
                 {slides}
-                <img className={styles.bottomCurve} src={imagePath('curveline.png')} alt="curve" />
+                <img className={styles.bottomCurve} src={imagePath('curveline.svg')} alt="curve" />
 
             </Carousel>
         );
