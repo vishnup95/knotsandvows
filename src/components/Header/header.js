@@ -47,16 +47,16 @@ class Header extends Component {
     static fetchData(store) {
         // Normally you'd pass action creators to "connect" from react-redux,
         // but since this is a static method you don't have access to "this.props".
-    
+
         // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
         return store.dispatch(homeActions.fetchCategories());
-      }
+    }
 
     toggleModal() {
         if (this.props.showLogin) {
             this.props.dispatch(actions.hideLogin());
         } else {
-            sendGAEvent("Header","Show Login");
+            sendGAEvent("Header", "Show Login");
             this.props.dispatch(actions.showLogin());
         }
     }
@@ -90,6 +90,14 @@ class Header extends Component {
         // this.props.dispatch(push('/'));
     }
 
+    shortName = (userName) => {
+        let name = userName;
+        var initials = name.match(/\b\w/g) || [];
+        initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+        console.log(initials);
+        return (initials);
+    }
+
     renderLoginItem = () => {
 
         if (this.props.user == null) {
@@ -104,9 +112,12 @@ class Header extends Component {
         } else {
             return (
                 <NavItem>
-                    <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.logout}>
-                        <img src={imagePath('avatar.svg')} alt="avatar" />
-                        {this.props.user.name}
+                    <NavLink className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }} onClick={this.logout}>
+                        {/* <img src={imagePath('avatar.svg')} alt="avatar" /> */}
+                        <span className={styles.userInfo}>
+                            {this.shortName(this.props.user.name)}
+                        </span>
+                        {/* {this.props.user.name} */}
                     </NavLink>
                 </NavItem>
             );
