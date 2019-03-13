@@ -43,7 +43,7 @@
   box-shadow: 0 2px 6px 0 $black-16;
   background: #fff;
   @include tablet {
-    padding: 0 3.125rem;
+    @include padding(0, 38)
   }
 }
 
@@ -75,7 +75,7 @@
       cursor: pointer;
 
       a {
-        font-size: 1.375rem;
+        @include fontSize(20);
         line-height: 1.36;
         color: $black-fourteen !important;
         position: relative;
@@ -149,7 +149,6 @@
     width: 113px / 16px * 1rem;
     @include align-center();
     margin: 0 1px !important;
-    // border-left: 1px solid $black-16;
 
     &:before {
       display: none;
@@ -203,4 +202,18 @@
 
 .login-modal {
   @include width(1385);
+}
+
+.user-info {
+  background-color: $bright-red;
+  @include width(48);
+  @include height(48);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $nunito-bold;
+  @include fontSize(18);
+  color: $white;
+  letter-spacing: .5px;
 }
