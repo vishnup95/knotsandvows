@@ -16,7 +16,7 @@
 .cartPageTitle {
   @include fontSize(32);
   text-transform: uppercase;
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   letter-spacing: 1px;
 }
 
@@ -46,7 +46,7 @@
 // title text and other heading..
 
 .titleStyles {
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   line-height: .87;
   letter-spacing: .9px;
   color: $black-five;
@@ -71,12 +71,12 @@
 
 .summaryTextSub {
   @extend .summaryText;
-  font-family: $nunito-regular;
+  font-family: $roboto-regular;
 }
 
 .summaryTextSubTotal {
   @extend .summaryText;
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
 }
 
 .summaryTotal {
@@ -93,7 +93,7 @@
 // text in red
 
 .redStyles {
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   color: $bright-red;
   cursor: pointer;
 }
@@ -116,7 +116,7 @@
   @include borderRadius(3);
   background-color: $bright-red;
   @include fontSize(28);
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   @include letterSpacing(.4);
   @include padding(15,30);
   text-transform: uppercase;
@@ -156,7 +156,7 @@
       @extend .backLink;
       text-decoration: underline;
       margin-left: 0.5rem;
-      font-family: $nunito-bold;
+      font-family: $roboto-bold;
     }
   }
 }

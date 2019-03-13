@@ -109,7 +109,7 @@ class Home extends Component {
     return (
       <div>
         <CarouselComponent />
-    
+        
         <JumbotronComponent data={jumbotronData[0]} bgcolor="#ffffff">
           <Row className="pt-5">
             <Col xs="12" sm="5" className="no-padding no-margin">
@@ -131,7 +131,7 @@ class Home extends Component {
           </Row>
         </JumbotronComponent>
 
-        <JumbotronComponent data={jumbotronData[1]} bgcolor="#ffffff">
+        <JumbotronComponent data={jumbotronData[1]} containerStyle="packageWrap" bgcolor="#ffffff">
           <div>
             {this.props.exclusives.map((exclusivePackage, index) => {
               return <PackageComponent key={index} details={exclusivePackage}/>;
@@ -139,7 +139,7 @@ class Home extends Component {
           </div>     
         </JumbotronComponent>
 
-        <JumbotronComponent data={jumbotronData[2]} bgcolor="#fef9f9" insideContainer={false}>
+        <JumbotronComponent data={jumbotronData[2]} bgcolor="#fef9f9" insideContainer={false} containerStyle="carouselWrap">
           <HorizontalMultiCarousel/>
         </JumbotronComponent>
 

@@ -102,7 +102,7 @@ class CeremonyDetail extends Component {
                 <h1 className={styles.title}>{details.description}</h1>
                 <p>{details.description}</p>
               </div>
-              <img className={styles.bottomCurve} src={imagePath('curveline.png')} alt="curve" />
+              <img className={styles.bottomCurve} src={imagePath('curveline.svg')} alt="curve" />
             </div>
             <Container>
               <Row>
@@ -143,12 +143,12 @@ class CeremonyDetail extends Component {
 
                       <Row>
                         <Col className="no-padding">
-                          <HorizontalSlider data={category.vendors} category={category.page_name} buttonAction={this.handleViewAllClick(category.page_name)} />
+                          <HorizontalSlider data={category.vendors} category={category.page_name} buttonAction={this.handleViewAllClick} />
                         </Col>
                       </Row>
                       <Row>
                         <Col>
-                          <p className={styles.viewAll} onClick={this.handleViewAllClick(category.page_name)} aria-hidden >View All</p>
+                          <p className={styles.viewAll} onClick={() => this.handleViewAllClick(category.page_name)} aria-hidden >View All</p>
                         </Col>
                       </Row>
 

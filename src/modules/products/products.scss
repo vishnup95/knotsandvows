@@ -30,14 +30,14 @@
 
 .sideHeading {
   @include fontSize(20);
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   letter-spacing: 0.6px;
   color: #070707;
   text-align: left;
 
   span {
     @include fontSize(18);
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
   }
 }
 
@@ -84,7 +84,7 @@
       display: block;
       @include fontSize(10);
       letter-spacing: 0.3px;
-      font-family: $nunito-regular;
+      font-family: $roboto-regular;
       color: #868585;
       text-transform: uppercase;
       @include padding(12,16,0);
@@ -93,7 +93,7 @@
   
     .select {
       border: 0;
-      font-family: $nunito-regular;
+      font-family: $roboto-regular;
       @include fontSize(16);
       height: auto;
       padding: 0 2rem 0 1rem;
@@ -131,7 +131,7 @@
 
   span {
     @include fontSize(18);
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
     margin-right: 2.5rem;
   }
 }
@@ -164,7 +164,7 @@
 .sortSelect {
   @extend .catSelect;
   @include fontSize(14);
-  font-family: $nunito-regular;
+  font-family: $roboto-regular;
 
   &:focus {
     background-color: $white;
@@ -173,7 +173,7 @@
 }
 
 .catButton {
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   @include fontSize(16);
   @include padding(12,24);
   border-radius: 3px;
@@ -204,44 +204,41 @@
   border-left: none;
   border-bottom: none;
 
+  .placeholder {
+    display: block;
+    @include fontSize(10);
+    letter-spacing: 0.3px;
+    font-family: $roboto-regular;
+    color: #868585;
+    text-transform: uppercase;
+    @include padding(0,16,0, 0); 
+    margin-bottom: -0.4rem;
+  }
+
   .dropHeading {
     @include fontSize(16);
     color: $black-twelve;
     letter-spacing: 0.48px;
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
     background: url('/images/filter-dropdown.png') right  no-repeat;
-    margin: 0;
     padding-right: 2rem; 
   }
 
-  .categoryHeading {
-    @extend .dropHeading;
-
-    &:before {
-      @include fontSize(11);
-      letter-spacing: 0.3px;
-      font-family: $nunito-regular;
-      color: #868585;
-      content: 'I AM LOOKING FOR';
-      position: absolute;
-      top: 0.5rem;
-    }
-  }
-
   .dropMenu {
-    padding: 1rem 0.75rem;
-    min-width: 15rem;
+    transform: translate3d(0, 50px, 0px) !important;
+    padding: 0;
+    margin: 0;
+    font-family: $roboto-medium;
+    .dropItem {
+      padding: 1rem 2.5rem;
 
-    input[type=checkbox] {
-      margin-right: 1rem; 
+      &:hover {
+        background-color: #e8e4e4;
+      }
     }
 
-    &:hover {
-      background-color: #f8f9fa;
+    .selectedItem {
+      background-color: #e8e4e4;
     }
-  }
-
-  .selected {
-    background-color: rgba(244, 67, 54, 0.3)
   }
 }
