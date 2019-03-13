@@ -148,16 +148,18 @@ class Header extends Component {
                                 </ul>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/exclusive')}>Packages</NavLink>
+                                <NavLink onClick={() => this.navigateTo('/packages')}>Packages</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/about')}>About Ahwanam</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/howItWorks')}>How It Works</NavLink>
-                            </NavItem>
+
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
+                            </NavItem>
+
+                            <NavItem>
+                                <NavLink onClick={() => this.navigateTo('/services')}>Services</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink onClick={() => this.navigateTo('/about')}>About</NavLink>
                             </NavItem>
 
                         </Nav>

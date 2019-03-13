@@ -9,12 +9,13 @@ import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import * as actions from './actions';
 import Select from 'react-select';
-
+import LoaderComponent from '../../components/Loader/loader';
 
 
 const mapStateToProps = state => ({
   user: state.session.user,
   ceremonyDetails: state.ceremonyDetails.details,
+  ceremonyLoading: state.ceremonyDetails.loading,
   other_ceremonenies: state.products.other_categories
 });
 
@@ -36,8 +37,10 @@ class CeremonyDetail extends Component {
   }
 
   componentWillMount() {
+
     let ceremony = this.selectedCategory();
     this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
+
   }
 
   componentDidUpdate(prevProps) {
@@ -55,12 +58,12 @@ class CeremonyDetail extends Component {
   handleViewAllClick = (category) => {
     console.log(category);
 
-     //this.navigateTo(`/categories/${category}`)
+    this.navigateTo(`/categories/${category}`)
   }
 
   handleDropDownChange = (option) => {
-    if (option){
-      this.setState({ selectedOption : option });
+    if (option) {
+      this.setState({ selectedOption: option });
       this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony, option.value));
     }
     // else{
@@ -75,82 +78,87 @@ class CeremonyDetail extends Component {
 
   render() {
     let details = this.props.ceremonyDetails;
-    if (details == null) {
-      return <div></div>
-    }
-    let allCategories = details.categories;
-    let categories = allCategories.filter(function (category) {
-      return category.vendors != null && category.vendors.length > 0;
-    });
-    var options = [];
-    if (details.filters && details.filters.length > 0 && details.filters[0].values && details.filters[0].values.length > 0){
-      options = Array.from(details.filters[0].values, (value) => ({
-        label: value.name,
-        value: value.id
-      }));
+    if (details !== null) {
+      let allCategories = details.categories;
+      var categories = allCategories.filter(function (category) {
+        return category.vendors != null && category.vendors.length > 0;
+      });
+      var options = [];
+      if (details.filters && details.filters.length > 0 && details.filters[0].values && details.filters[0].values.length > 0) {
+        options = Array.from(details.filters[0].values, (value) => ({
+          label: value.name,
+          value: value.id
+        }));
+      }
     }
     return (
-      <div className={styles.ceremonyDetail}>
-        <div className={styles.ceremonyCover} style={{ background: "url(" + details.cermony_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-          <div className={styles.coverMask}>
-            <h1 className={styles.title}>{details.description}</h1>
-            <p>{details.description}</p>
-          </div>
-          <img className={styles.bottomCurve} src={imagePath('curveline.png')} alt="curve" />
-        </div>
-        <Container>
-          <Row>
-            <Col>
-              <h3>Plan Your Wedding - Find and book your dream team
+      <div className="full-height">
+        {this.props.ceremonyLoading && <LoaderComponent/>}
+        {details &&
+
+          <div className={styles.ceremonyDetail}>
+            <div className={styles.ceremonyCover} style={{ background: "url(" + details.cermony_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+              <div className={styles.coverMask}>
+                <h1 className={styles.title}>{details.description}</h1>
+                <p>{details.description}</p>
+              </div>
+              <img className={styles.bottomCurve} src={imagePath('curveline.png')} alt="curve" />
+            </div>
+            <Container>
+              <Row>
+                <Col>
+                  <h3>Plan Your Wedding - Find and book your dream team
             </h3>
-            </Col>
-            {/* <Col>Select City</Col> */}
-            {details.filters && details.filters.length > 0 &&
-               <Col>
-              <Select
-              value={this.state.selectedOption}
-              onChange={this.handleDropDownChange}
-              options={options}
-              placeholder="City"
-              isClearable={false}
-            />
-             </Col>
-            }
-          </Row>
-          <Row>
-            <Col className="no-padding">
-              <HorizontalSlider data={categories} type='small' />
-            </Col>
-          </Row>
-          {
-            categories.map((category, index) => {
-              return (
+                </Col>
+                {/* <Col>Select City</Col> */}
+                {details.filters && details.filters.length > 0 &&
+                  <Col>
+                    <Select
+                      value={this.state.selectedOption}
+                      onChange={this.handleDropDownChange}
+                      options={options}
+                      placeholder="City"
+                      isClearable={false}
+                    />
+                  </Col>
+                }
+              </Row>
+              <Row>
+                <Col className="no-padding">
+                  <HorizontalSlider data={categories} type='small' />
+                </Col>
+              </Row>
+              {
+                categories.map((category, index) => {
+                  return (
 
-                <div key={index} >
-                  <Row>
-                    <Col>
+                    <div key={index} >
+                      <Row>
+                        <Col>
 
-                      <h3>{category.name}</h3>
-                      <p className={styles.subTitle}>{category.sub_title}</p>
-                    </Col>
-                  </Row>
+                          <h3>{category.name}</h3>
+                          <p className={styles.subTitle}>{category.sub_title}</p>
+                        </Col>
+                      </Row>
 
-                  <Row>
-                    <Col className="no-padding">
-                      <HorizontalSlider data={category.vendors} category={category.page_name} buttonAction={this.handleViewAllClick(category.page_name)} />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <p className={styles.viewAll} onClick={this.handleViewAllClick(category.page_name)} aria-hidden >View All</p>
-                    </Col>
-                  </Row>
+                      <Row>
+                        <Col className="no-padding">
+                          <HorizontalSlider data={category.vendors} category={category.page_name} buttonAction={this.handleViewAllClick(category.page_name)} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
+                          <p className={styles.viewAll} onClick={this.handleViewAllClick(category.page_name)} aria-hidden >View All</p>
+                        </Col>
+                      </Row>
 
-                </div>
-              );
-            })
-          }
-        </Container>
+                    </div>
+                  );
+                })
+              }
+            </Container>
+          </div>
+        }
       </div>
     );
   }
@@ -161,7 +169,8 @@ CeremonyDetail.propTypes = {
   dispatch: PropTypes.func,
   ceremonyDetails: PropTypes.object,
   other_ceremonenies: PropTypes.array,
-  match: PropTypes.object
+  match: PropTypes.object,
+  ceremonyLoading: PropTypes.bool
 };
 
 export default connect(

@@ -33,16 +33,18 @@ class FooterFixedComponent extends Component {
                                 <Link to={'/categories'}>Vendors</Link>
                             </li>
                             <li>
-                                <Link to={'/exclusive'}>Packages</Link>
+                                <Link to={'/packages'}>Packages</Link>
                             </li>
-                            <li>
-                                <Link to={'/about'}>About Ahwanam</Link>
-                            </li>
-                            <li>
-                                <Link to={'/howItWorks'}>How It Works</Link>
-                            </li>
+
                             <li>
                                 <Link to={'/wishlist'}>Wishlist</Link>
+                            </li>
+
+                            <li>
+                                <Link to={'/services'}>Services</Link>
+                            </li>
+                            <li>
+                                <Link to={'/about'}>About</Link>
                             </li>
                         </ul>
                     </Col>

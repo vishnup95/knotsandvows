@@ -248,7 +248,8 @@
   background-size: contain;
   cursor: pointer;
 }
-// 
+
+//  Gallery styles
 .image-gallery-image {
   width: 75vw;
   height: 25vw;
@@ -268,4 +269,10 @@
   img {
     max-width: 100%;
   }
+}
+
+// Gallery styles ends here
+
+.full-height {
+  height: 100%;
 }
