@@ -28,14 +28,25 @@ export class DropdownComponent extends Component {
         this.state = {selectedItem: this.props.selectedItem};
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.selectedItem !== this.props.selectedItem) {
+            this.setState({selectedItem: nextProps.selectedItem});
+        }
+    }
+
     handleChange(e) {
         this.setState({selectedItem: e.target.value});
 
         if (this.props.name === 'category') {
-            this.props.dispatch(actions.fetchFilters(e.target.value.toLowerCase()));
+            this.props.dispatch(actions.fetchFilters(e.target.value));
+            this.props.onCategoryChange(e.target.value);
             selectedFilters = {};
         } else {
-            selectedFilters[this.props.name] = e.target.value;
+            if (e.target.value) {
+                selectedFilters[this.props.name] = e.target.value;
+            } else {
+                delete selectedFilters[this.props.name];
+            }
         }
     }
 
@@ -47,7 +58,7 @@ export class DropdownComponent extends Component {
                 value={this.state.selectedItem} onChange={(event) => this.handleChange(event)}>
                 {
                     this.props.options.map((item, index) => {
-                        let value = this.props.name === 'category' ? (!item.name ? '' : item.name.toLowerCase()) : item.id;
+                        let value = this.props.name === 'category' ? item.page_name : item.id;
                         return <option key={index} value={value}>{item.name}</option>
                     })
                 }
@@ -63,22 +74,33 @@ DropdownComponent.propTypes = {
     name: PropTypes.string,
     selectedItem: PropTypes.any,
     dispatch: PropTypes.func,
+    onCategoryChange: PropTypes.func
 }
 
-class FormComponent extends Component {   
+class FormComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { category: this.props.selectedCategory};
+        this.props.filters.map(filter => filter.values.unshift({name: 'All', id: ''}));
+    } 
+
+    changeCategory = (category) => {
+        this.setState({category});
+    }
+
     render() {
         return(
             <div className={`${styles.formContainer} pt-4 pb-4`}>
                 <div className={styles.dropContainer}> 
-                    <DropdownComponent placeholder="i am looking for" name="category" options={this.props.categories} selectedItem={this.props.selectedCategory} dispatch={this.props.dispatch}/>
+                    <DropdownComponent placeholder="i am looking for" name="category" options={this.props.categories} 
+                    selectedItem={this.props.selectedCategory} dispatch={this.props.dispatch} onCategoryChange={this.changeCategory}/>
                     {
                         this.props.filters.map((filter, index) => {
-                            filter.values.unshift({name: 'All', id:-1});
                             return <DropdownComponent key={index} placeholder={filter.display_name} name={filter.name} options={filter.values} selectedItem={filter.values[0].id}/>
                         })
                     }         
                 </div>
-                <Button color="danger" className={styles.searchButton} name="search button" onClick={() => this.props.filterSearch(selectedFilters)}></Button>   
+                <Button color="danger" className={styles.searchButton} name="search button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}></Button>   
             </div>
         );
     }
