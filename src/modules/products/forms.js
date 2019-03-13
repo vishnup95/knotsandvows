@@ -80,7 +80,8 @@ DropdownComponent.propTypes = {
 class FormComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = { category: this.props.selectedCategory}
+        this.state = { category: this.props.selectedCategory};
+        this.props.filters.map(filter => filter.values.unshift({name: 'All', id: ''}));
     } 
 
     changeCategory = (category) => {
@@ -95,7 +96,6 @@ class FormComponent extends Component {
                     selectedItem={this.props.selectedCategory} dispatch={this.props.dispatch} onCategoryChange={this.changeCategory}/>
                     {
                         this.props.filters.map((filter, index) => {
-                            filter.values.unshift({name: 'All', id: ''});
                             return <DropdownComponent key={index} placeholder={filter.display_name} name={filter.name} options={filter.values} selectedItem={filter.values[0].id}/>
                         })
                     }         

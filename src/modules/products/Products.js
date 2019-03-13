@@ -17,7 +17,7 @@ import {
 import styles from './products.scss';
 import CategoryCard from '../../components/Card/cardCategory';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-import FormComponent from './forms';
+import FormComponent from './newForm';
 import NoResultComponent from '../../components/noResult/noResult';
 
 const mapStateToProps = state => ({
@@ -115,7 +115,7 @@ class Products extends Component {
           <h1 className={styles.imageHeading}>{header ? header.header_text : ''}</h1>
         </div>}
 
-        {filters.length > 0 ? <FormComponent filters={filters} filterSearch={this.filterSearch} selectedCategory={this.state.category}/> : <div></div>}
+        {filters.length > 0 ? <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category}/> : <div></div>}
 
         {
           this.props.productListData == null || this.props.productListData.results.length === 0 ? <NoResultComponent/> :
