@@ -104,13 +104,13 @@ class Header extends Component {
 
     renderLoginItem = () => {
 
-        if (this.props.user == null) {
+        if (this.props.user !== null) {
             return (
                <div>
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }}>
                         <span className={styles.userInfo}>
-                            {this.shortName('Lisa Sulu')}
+                            {this.shortName(this.props.user.name)}
                         </span>
                     </DropdownToggle>
 
@@ -121,7 +121,6 @@ class Header extends Component {
                         <DropdownItem className="text-center">
                             My bookings
                         </DropdownItem>
-                        <DropdownItem divider />
                         <DropdownItem className="text-center" onClick={this.logout}>
                             Logout
                         </DropdownItem>

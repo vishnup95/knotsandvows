@@ -64,7 +64,12 @@ h2 {
   font-family: $roboto-medium;
   @include fontSize(16);
   @include letterSpacing(.5);
-  @include padding(20,22);
+  @include padding(10,22);
   @include borderRadius(8);
   color: $white;
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
 }
