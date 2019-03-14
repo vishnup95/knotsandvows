@@ -7,7 +7,7 @@ import styles from './footer.scss';
 class FooterFixedComponent extends Component {
     render() {
         return (
-            <Jumbotron style={{ backgroundColor: '#461204' }} className={`${styles.footerContainer} text-white`}>
+            <Jumbotron className={`${styles.footerContainer} text-white`}>
                 <Row>
                     <Col>
                         <div className="text-left">

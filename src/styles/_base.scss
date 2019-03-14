@@ -4,23 +4,22 @@
 
 html {
   height: 100%;
-
- @include mobile{
+  @include mobile {
     font-size: 11px;
   }
- @include tablet{
+  @include tablet {
     font-size: 11px;
   }
- @include desktop{
+  @include desktop {
     font-size: 11px;
   }
- @include hd{
+  @include hd {
     font-size: 11px;
   }
- @include hdPlus{
+  @include hdPlus {
     font-size: 12px;
   }
- @include fullHd{
+  @include fullHd {
     font-size: 14px;
   }
 }
@@ -38,12 +37,34 @@ body {
   position: relative;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: $roboto-regular;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $frank-regular;
 }
+
+h1,
+h2 {
+  @include fontSize(58);
+}
+
 .app {
   margin-top: 10.33125rem;
 }
+
 .main {
   min-height: calc(100vh - 40.1rem);
+}
+
+.primary-button {
+  background-color: $primary-color;
+  font-family: $roboto-medium;
+  @include fontSize(16);
+  @include letterSpacing(.5);
+  @include padding(20,22);
+  @include borderRadius(8);
+  color: $white;
 }
