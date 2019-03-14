@@ -2,7 +2,6 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
-
 .not-found-container {
   display: flex;
   align-items: center;
@@ -15,7 +14,7 @@
   h1 {
     @include fontSize(120);
     font-family: $roboto-bold;
-    line-height: 0.73;
+    line-height: .73;
   }
 
   h2 {
@@ -25,18 +24,9 @@
   }
 }
 
-.back-button {
-  width: auto;
-  border-radius: 5px;
-  background-color: $red;
-  color: $white;
-  padding: .5rem 2rem;
-  margin-top: 2rem;
-  &:hover {
-    color: $white;
-    text-decoration: none;
-  }
-}
 .image {
   @include width(586.3);
+}
+h2 {
+  margin-bottom: 3rem;
 }
