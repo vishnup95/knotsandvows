@@ -23,7 +23,7 @@ class JumbotronComponent extends Component {
         return (
             <div className="mt-5 text-center">
                 {
-                    this.props.isTalkToAhwanam === true ? <TalkToWeddingPlanner buttonText={buttonText}/> : <Button color="danger" className="primary-button" onClick={this.props.buttonAction}>{buttonText}</Button>
+                    this.props.isTalkToAhwanam === true ? <TalkToWeddingPlanner buttonText={buttonText}/> : <Button className="primary-button" onClick={this.props.buttonAction}>{buttonText}</Button>
                 }
             </div>
         );
