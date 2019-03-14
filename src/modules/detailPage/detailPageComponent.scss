@@ -135,7 +135,7 @@
 }
 
 .view-btn {
-  background: $bright-red;
+  background: $primary-color;
   color: $white;
   border: none;
   font-family: $roboto-medium;
@@ -286,13 +286,13 @@
 }
 
 .edit-btn {
-  border: 1px solid $bright-red;
+  border: 1px solid $primary-color;
   @include borderRadius(3);
   @include height(24);
   @include width(68);
   @include fontSize(14);
   background-color: $white;
-  color: $bright-red;
+  color: $primary-color;
   font-family: $roboto-medium;
   margin-bottom: .2rem;
   @extend %pointer;
@@ -322,7 +322,7 @@
 }
 
 .off-percentage {
-  background: $bright-red;
+  background: $primary-color;
   color: $white;
   @include fontSize(18);
   @include padding(0,5);
@@ -337,7 +337,7 @@
 }
 
 .add-to-cart {
-  background: $bright-red;
+  background: $primary-color;
   @include height(83);
   @include borderRadius(3);
   width: 100%;
@@ -382,7 +382,7 @@
 }
 
 .remove-btn {
-  color: $bright-red;
+  color: $primary-color;
   border: none;
   background: transparent;
   @include fontSize(13);

@@ -5,136 +5,142 @@
 //general
 
 .addEllipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cardImage {
-    width: 100%;
-    height: 16.194rem;
-    @include borderRadius(20,20,0,0);
+  width: 100%;
+  height: 16.194rem;
+  @include borderRadius(20,20,0,0);
 }
 
 //simple card style
 .cardTitleSimple {
-    @include fontSize(20);
-    font-family: $roboto-bold;
-    @include letterSpacing(1.8);
-    @extend %uppercase;
-    color: $black-four;
-    text-align: center;
+  @include fontSize(18);
+  font-family: $roboto-medium;
+  @include letterSpacing(1.8);
+  color: $black-four;
+  text-align: center;
 }
 
 // exclusive card styles
 .cardTitle {
-    @include fontSize(20);
-    font-family: $roboto-bold;
-    @include letterSpacing(2);
-    color: $black;
+  @include fontSize(20);
+  font-family: $roboto-bold;
+  @include letterSpacing(2);
+  color: $black;
 }
 
-
 .cardText {
-    @include fontSize(16);
-    line-height: 1.38;
-    @include letterSpacing(.5);
-    overflow: hidden;
-    font-family: $roboto-regular;
+  @include fontSize(16);
+  line-height: 1.38;
+  @include letterSpacing(.5);
+  overflow: hidden;
+  font-family: $roboto-regular;
 }
 
 .price {
-    @include fontSize(18);
-    line-height: 1.22;
-    letter-spacing: 0.025rem;
+  @include fontSize(18);
+  line-height: 1.22;
+  letter-spacing: .025rem;
 }
 
 .priceNow {
-    color: $bright-red;
-    font-family: $roboto-medium;
+  color: $primary-color;
+  font-family: $roboto-medium;
 }
 
 .priceBefore {
-    color: $black-two;
-    font-family: $roboto-regular;
+  color: $black-two;
+  font-family: $roboto-regular;
 }
 
 .cardButton {
-    letter-spacing: 0.02rem;
-    text-transform: uppercase;
-    line-height: 1.71;
-    @include width(150);
-    @include height(40);
-    @include fontSize(14);
-    @include borderRadius(3);
-    font-family: $roboto-bold;
+  letter-spacing: .02rem;
+  text-transform: uppercase;
+  line-height: 1.71;
+  @include width(150);
+  @include height(40);
+  @include fontSize(14);
+  @include borderRadius(3);
+  font-family: $roboto-bold;
 }
 
 // category card styles
 
 .categoryCard {
-    margin-bottom: 3rem;
-    @include borderRadius(20);
+  margin-bottom: 3rem;
+  @include borderRadius(20);
 }
 
 .categoryBody {
-    background-color: #f7f7f7;
-    @include borderRadius(0,0,20,20);
+  background-color: #f7f7f7;
+  @include borderRadius(0,0,20,20);
 }
 
 .cardTitleCat {
-    @include fontSize(18);
-    font-family: $roboto-bold;
-    letter-spacing: 0.025rem;
-    color: $black-four;
-    width: 60%;
-    @extend .addEllipsis;
+  @include fontSize(18);
+  font-family: $roboto-bold;
+  letter-spacing: .025rem;
+  color: $black-four;
+  width: 60%;
+  @extend .addEllipsis;
 }
 
 .charges {
-    font-family: $roboto-regular;
-    color: $brownish-grey-two;
-    letter-spacing: 0.48px;
-    @include fontSize(15);
+  font-family: $roboto-regular;
+  color: $brownish-grey-two;
+  letter-spacing: .48px;
+  @include fontSize(15);
 
-    span {
-        font-family: $roboto-medium;
-        color: $black-four;
-    }
+  span {
+    font-family: $roboto-medium;
+    color: $black-four;
+  }
 }
 
 .ratingContainer {
-    float: right;
-    width: max-content;
-    padding: 0.45rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+  float: right;
+  width: max-content;
+  padding: .45rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .rating {
-    @extend .charges;
-    font-family: $roboto-medium;
-    text-align: right;
-    margin: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    span {
-        font-family: $roboto-regular;
-        color: $brownish-grey-two;
-        @include fontSize(13);
-    }
-    .heartImg {
-        @include width(19);
-        @include height(17);
-    }
+  @extend .charges;
+  font-family: $roboto-medium;
+  text-align: right;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 
-    .starImg {
-        width: 0.85rem;
-        height: 0.85rem;
-        margin-bottom: 0.25rem;
-        margin-left: 0.25rem;
-    }
+  span {
+    font-family: $roboto-regular;
+    color: $brownish-grey-two;
+    @include fontSize(13);
+  }
+
+  .heartImg {
+    @include width(19);
+    @include height(17);
+  }
+
+  .starImg {
+    width: .85rem;
+    height: .85rem;
+    margin-bottom: .25rem;
+    margin-left: .25rem;
+  }
 }
-    
+
+.plainCardImage {
+    @include height(318);
+    width: auto;
+    @include borderRadius(18,18,0,0);
+    object-fit: cover;
+}

@@ -15,7 +15,6 @@ hr {
   border-top: 1px solid $black;
 }
 
-
 .pLarge {
   @include fontSize(20);
   line-height: 1.5;
@@ -24,7 +23,7 @@ hr {
 }
 
 .black-five {
-    color: $black-five;
+  color: $black-five;
 }
 
 .pSmall {
@@ -36,10 +35,31 @@ hr {
 .center {
   margin: 0 auto;
 }
+
 .package-wrap {
   @include width(1316);
   margin: 0 auto;
 }
+
 .carousel-wrap {
   @include padding(65,0,0);
+}
+
+.other-wrap {
+  @include padding(48);
+  margin: 0 auto;
+
+  h1 {
+    margin-bottom: 2rem;
+
+  }
+  @media only screen and (min-width: 992px) {
+    max-width: 750px;
+  }
+  @include hd {
+    max-width: 890px;
+  }
+  @include hdPlus {
+    max-width: 1200px;
+  }
 }

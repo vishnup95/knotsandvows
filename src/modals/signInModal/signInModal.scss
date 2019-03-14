@@ -9,8 +9,8 @@
 }
 
 .heading {
-  @include fontSize(22);
-  font-family: $roboto-bold;
+  @include fontSize(18);
+  font-family: $roboto-medium;
   color: $black-nine;
 }
 
@@ -32,7 +32,7 @@
 .detail-link {
   font-size: 1.1rem;
   font-family: $roboto-regular;
-  color: $bright-red;
+  color: $primary-color;
   letter-spacing: .035px;
   cursor: pointer;
   background-color: transparent;
@@ -80,13 +80,13 @@
 .login {
   @include fontSize(16);
   font-family: $roboto-bold;
-  color: $bright-red;
+  color: $primary-color;
   background-color: transparent;
   cursor: pointer;
   border: 0;
 
   &:hover {
-    color: $bright-red;
+    color: $primary-color;
     text-decoration: none;
   }
 }
@@ -96,7 +96,7 @@
   @include width(260);
   @include fontSize(16);
   border-radius: .15rem;
-  background-color: $bright-red;
+  background-color: $primary-color;
   font-family: $roboto-bold;
   letter-spacing: .4px;
   text-transform: uppercase;
@@ -117,7 +117,7 @@
   color: $black-ten;
 
   span {
-    color: $bright-red;
+    color: $primary-color;
   }
 
   .bold {
@@ -134,7 +134,8 @@
 
 .login-container {
   display: flex;
-  @include height(817);
+  // @include height(817);
+  height: 57rem;
 }
 
 .login-form {

@@ -21,18 +21,14 @@
   }
 }
 .imageHeading {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2rem;
-  color: $white;
+  text-align: center;
 }
 
 .sideHeading {
   @include fontSize(20);
-  font-family: $roboto-bold;
+  font-family: $frank-regular;
   letter-spacing: 0.6px;
-  color: #070707;
+  color: $black-twelve;
   text-align: left;
 
   span {
@@ -113,7 +109,8 @@
     border-radius: 5px;
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
     background-size: 10px;
-    background: url(/images/filter-search-icon.png) center center no-repeat $bright-red;
+    background: url(/images/filter-search-icon.png) center center no-repeat $secondary-color;
+    border: none;
   }
 }
 
@@ -223,22 +220,45 @@
     background: url('/images/filter-dropdown.png') right  no-repeat;
     padding-right: 2rem; 
   }
+}
 
-  .dropMenu {
-    transform: translate3d(0, 50px, 0px) !important;
-    padding: 0;
-    margin: 0;
-    font-family: $roboto-medium;
-    .dropItem {
-      padding: 1rem 2.5rem;
+.dropMenu {
+  transform: translate3d(0, 50px, 0px) !important;
+  padding: 0;
+  margin: 0;
+  font-family: $roboto-medium;
+  box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.3);
+  border: none;
+  .dropItem {
+    padding: 1rem 2.5rem;
+    white-space: nowrap;
+    @include fontSize(16);
 
-      &:hover {
-        background-color: #e8e4e4;
-      }
-    }
-
-    .selectedItem {
+    &:hover {
       background-color: #e8e4e4;
     }
   }
+
+  .selectedItem {
+    background-color: #e8e4e4;
+  }
 }
+
+.sortDropdown {
+  display: inline-block;
+  cursor: pointer;
+
+  .dropHeading {
+    @include fontSize(14);
+    color: $black-twelve;
+    letter-spacing: 0.48px;
+    font-family: $roboto-regular;
+    background: url('/images/filter-dropdown.png') right  no-repeat;
+    padding-right: 2rem; 
+  }
+
+  .dropMenu {
+    transform: translate3d(0, 19px, 0px) !important;
+  }
+}
+

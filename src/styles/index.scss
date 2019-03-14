@@ -279,3 +279,25 @@
 .jumbotron {
   padding: 0 2rem 4rem;
 }
+// pagination fixes
+
+.pagination {
+  li.active {
+    background-color: $secondary-color !important;
+    a {
+      color: $white;
+    }
+  }
+}
+
+// talk to poppup fix
+
+.call-btn {
+  img {
+    @include width(80);
+    @include height(80);
+    cursor: pointer;
+  }
+}
+
+
