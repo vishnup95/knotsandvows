@@ -113,7 +113,8 @@
     border-radius: 5px;
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
     background-size: 10px;
-    background: url(/images/filter-search-icon.png) center center no-repeat $bright-red;
+    background: url(/images/filter-search-icon.png) center center no-repeat $secondary-color;
+    border: none;
   }
 }
 
@@ -230,9 +231,12 @@
   padding: 0;
   margin: 0;
   font-family: $roboto-medium;
+  box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.3);
+  border: none;
   .dropItem {
     padding: 1rem 2.5rem;
     white-space: nowrap;
+    @include fontSize(16);
 
     &:hover {
       background-color: #e8e4e4;
