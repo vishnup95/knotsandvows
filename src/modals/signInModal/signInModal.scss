@@ -40,15 +40,6 @@
   padding: 0;
 }
 
-.button {
-  @include padding(8, 29);
-  @include fontSize(16);
-  border-radius: .15rem;
-  background-color: $bright-red;
-  font-family: $roboto-bold;
-  letter-spacing: .4px;
-  color: white;
-}
 
 .forgotButton {
   @include padding(10.4, 12);
@@ -172,8 +163,7 @@
 }
 
 .image {
-  @include height(60);
-  @include width(60);
+  @include width(143);
   @include margin(0,25.8,0,0);
 }
 

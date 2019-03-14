@@ -196,7 +196,7 @@ class SignInModal extends Component {
                     <div>
                         <button className={styles.detailLink} onClick={this.showForgotPassword}>Forgot Password?</button>
                     </div>
-                    <div className={styles.alignButton}><Button color="danger" className={styles.button} onClick={this.validateSignInForm}>Sign in</Button></div>
+                    <div className={styles.alignButton}><Button color="danger" className="primary-button" onClick={this.validateSignInForm}>Sign in</Button></div>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
@@ -225,7 +225,7 @@ class SignInModal extends Component {
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)} pattern="[A-Za-z0-9]{5,}"/>
                 </Form>
                 <div className="text-center">
-                    <Button color="danger" className={styles.button} onClick={this.validateSignUpForm}>Create account</Button>
+                    <Button color="danger" className="primary-button" onClick={this.validateSignUpForm}>Create account</Button>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
@@ -250,8 +250,8 @@ class SignInModal extends Component {
                     <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleForgotPassordFormChange(e)} />
                 </Form>
                 <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: "space-between" }}>
-                    <span><Button color="danger" className={`${styles.button} ${styles.forgotButton}`} onClick={this.showSignIn}>CANCEL</Button></span>
-                    <span><Button color="danger" className={`${styles.button} ${styles.forgotButton}`} onClick={this.validateForgotPasswordForm}>RESET PASSWORD</Button></span>
+                    <span><Button color="danger" className={`$"primary-button" ${styles.forgotButton}`} onClick={this.showSignIn}>CANCEL</Button></span>
+                    <span><Button color="danger" className={`$"primary-button" ${styles.forgotButton}`} onClick={this.validateForgotPasswordForm}>RESET PASSWORD</Button></span>
                 </div>
 
                 <div className={`${styles.footerText} mt-4 mb-3`}>
@@ -266,7 +266,7 @@ class SignInModal extends Component {
             <div className={styles.loginContainer}>
                 <div className={styles.loginForm}>
                     <div className={styles.logoWrap}>
-                        <img className={styles.image} src={imagePath('logo.svg')} alt="logo"></img>
+                        <img className={styles.image} src={imagePath('logo.jpg')} alt="logo"></img>
                         <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Sign in to Ahwanam' : this.state.mode === 'signUp' ? 'Create an Ahwanam Account' : 'Forgot Password'}</div>
                     </div>
                     {this.renderSignIn()}
