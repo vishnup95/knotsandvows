@@ -60,7 +60,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
     <!doctype html>
     <html lang="en" ${htmlAttrs}>
       <head>
-      <meta name="google-site-verification" content="THMpDLU_F3n6EzWzSQJT8TKgZn4uyGXJLdXz55oNRO0" />
+      <meta name="google-site-verification" content="xrR2YnjgYQSLskpRVcptSSslT_wODKhrjf8bWZP-An4" />
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${preloadScripts(bundles)}
