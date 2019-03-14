@@ -206,7 +206,7 @@
 }
 
 .user-info {
-  background-color: $bright-red;
+  background-color: $primary-color;
   @include width(48);
   @include height(48);
   border-radius: 50%;
@@ -217,4 +217,19 @@
   @include fontSize(18);
   color: $white;
   letter-spacing: .5px;
+}
+
+// user dropdown styles
+
+.userDropdown {
+  position: absolute !important;
+  left: -20px;
+
+  button {
+    cursor: pointer;
+    &:active, &:focus, &:hover {
+      background-color: #ee4d9b29;
+      outline: 0;
+    }
+  }
 }

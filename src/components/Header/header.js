@@ -17,7 +17,11 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Modal
+    Modal,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem 
 } from 'reactstrap';
 import styles from './header.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
@@ -102,23 +106,36 @@ class Header extends Component {
 
         if (this.props.user == null) {
             return (
+               <div>
+                <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }}>
+                        <span className={styles.userInfo}>
+                            {this.shortName('Lisa Sulu')}
+                        </span>
+                    </DropdownToggle>
+
+                    <DropdownMenu className={styles.userDropdown}>
+                        <DropdownItem className="text-center">
+                            Profile
+                        </DropdownItem>
+                        <DropdownItem className="text-center">
+                            My bookings
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="text-center" onClick={this.logout}>
+                            Logout
+                        </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
+               </div>     
+            );
+        } else {
+            return (
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
                         <img src={imagePath('avatar.svg')} alt="avatar" />
                         Login / Sign Up
                 </NavLink>
-                </NavItem>
-            );
-        } else {
-            return (
-                <NavItem>
-                    <NavLink className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }} onClick={this.logout}>
-                        {/* <img src={imagePath('avatar.svg')} alt="avatar" /> */}
-                        <span className={styles.userInfo}>
-                            {this.shortName(this.props.user.name)}
-                        </span>
-                        {/* {this.props.user.name} */}
-                    </NavLink>
                 </NavItem>
             );
         }
