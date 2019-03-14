@@ -196,7 +196,7 @@ class SignInModal extends Component {
                     <div>
                         <button className={styles.detailLink} onClick={this.showForgotPassword}>Forgot Password?</button>
                     </div>
-                    <div className={styles.alignButton}><Button color="danger" className="primary-button" onClick={this.validateSignInForm}>Sign in</Button></div>
+                    <div className={styles.alignButton}><button className="primary-button" onClick={this.validateSignInForm}>Sign in</button></div>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
