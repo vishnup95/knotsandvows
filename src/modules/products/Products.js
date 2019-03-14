@@ -10,8 +10,7 @@ import {
   Container, 
   Row, 
   Col,
-  FormGroup,
-  Input
+  Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 
 import styles from './products.scss';
@@ -36,11 +35,13 @@ const jumbotronData = {title: 'Other Categories'};
 
 
 class Products extends Component {
+
   state = {
     category: this.props.match.params.category_name, 
     productListData : null,
     sortBy : 0,
     page : 1,
+    dropdownOpen: false
   }
 
   static fetchData(store) {
@@ -57,6 +58,13 @@ class Products extends Component {
 
   selectedCategory(){
     return this.props.match.params.category_name;
+  }
+
+  toggle(item) {
+    this.setState({dropdownOpen: !this.state.dropdownOpen});
+    if(item) {
+      this.setState({sortBy: item.id});
+    }
   }
 
   componentWillMount() {
@@ -128,15 +136,25 @@ class Products extends Component {
               </Col>
               <Col sm="6" className={styles.sort}>
                 Sort By: &nbsp;
-                <FormGroup className="d-inline-block">
-                  <Input type="select" name="select" className={styles.sortSelect} onChange={this.changeSortOption}>
-                      {sort_options.map((item, index) => {
-                          return(
-                              <option key={index} id={item.id}>{item.name}</option>
-                          );
-                      })}
-                  </Input>
-                </FormGroup>
+
+                <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()} className={styles.sortDropdown}>
+                  <DropdownToggle className={styles.dropHeading}
+                    tag="span"
+                    onClick={() => this.toggle()}
+                    data-toggle="dropdown"
+                    aria-expanded={this.state.dropdownOpen}>
+                    {sort_options[this.state.sortBy].name}
+                  </DropdownToggle>
+                  <DropdownMenu className={styles.dropMenu}>
+                    {
+                      sort_options.map((item, index) => {
+                        return <div key={index} onClick={() => this.toggle(item)} aria-hidden 
+                          className={`${styles.dropItem} ${index === this.state.sortBy ? styles.selectedItem : ''}`}>{item.name}</div>
+                      })
+                    }
+                  </DropdownMenu>
+                </Dropdown>
+
               </Col>
             </Row>
             
