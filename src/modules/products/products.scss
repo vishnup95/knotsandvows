@@ -21,18 +21,14 @@
   }
 }
 .imageHeading {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2rem;
-  color: $white;
+  text-align: center;
 }
 
 .sideHeading {
   @include fontSize(20);
-  font-family: $roboto-bold;
+  font-family: $frank-regular;
   letter-spacing: 0.6px;
-  color: #070707;
+  color: $black-twelve;
   text-align: left;
 
   span {

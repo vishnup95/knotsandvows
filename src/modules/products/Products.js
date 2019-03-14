@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import * as actions from './actions';
 import ReactPaginate from 'react-paginate';
-import { 
-  Container, 
-  Row, 
+import {
+  Container,
+  Row,
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
@@ -31,16 +31,16 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const jumbotronData = {title: 'Other Categories'};
+const jumbotronData = { title: 'Other Categories' };
 
 
 class Products extends Component {
 
   state = {
-    category: this.props.match.params.category_name, 
-    productListData : null,
-    sortBy : 0,
-    page : 1,
+    category: this.props.match.params.category_name,
+    productListData: null,
+    sortBy: 0,
+    page: 1,
     dropdownOpen: false
   }
 
@@ -56,14 +56,14 @@ class Products extends Component {
     window.scrollTo(0, 0);
   }
 
-  selectedCategory(){
+  selectedCategory() {
     return this.props.match.params.category_name;
   }
 
   toggle(item) {
-    this.setState({dropdownOpen: !this.state.dropdownOpen});
-    if(item) {
-      this.setState({sortBy: item.id});
+    this.setState({ dropdownOpen: !this.state.dropdownOpen });
+    if (item) {
+      this.setState({ sortBy: item.id });
     }
   }
 
@@ -72,12 +72,12 @@ class Products extends Component {
     this.props.dispatch(actions.fetchProducts(category));
     this.props.dispatch(actions.fetchFilters(category));
     this.props.dispatch(actions.fetchOtherCategories(category));
-    this.setState({category: category});
+    this.setState({ category: category });
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps == undefined) {
-        return false;
+    if (prevProps == undefined) {
+      return false;
     }
 
     if (this.state.category !== this.props.match.params.category_name) {
@@ -85,17 +85,17 @@ class Products extends Component {
       this.props.dispatch(actions.fetchProducts(category));
       this.props.dispatch(actions.fetchFilters(category));
       this.props.dispatch(actions.fetchOtherCategories(category));
-      this.setState({category: category, page:1, sortBy:0});
+      this.setState({ category: category, page: 1, sortBy: 0 });
     }
 
     if (this.state.productListData !== this.props.productListData) {
-      this.setState({productListData: this.props.productListData});
+      this.setState({ productListData: this.props.productListData });
       window.scrollTo(0, 0);
     }
   }
-  pageChangeHandler(data){
-    this.props.dispatch(actions.fetchProducts(this.state.category, data.selected+1, this.state.sortBy));
-    this.setState({page: data.selected+1});
+  pageChangeHandler(data) {
+    this.props.dispatch(actions.fetchProducts(this.state.category, data.selected + 1, this.state.sortBy));
+    this.setState({ page: data.selected + 1 });
   }
 
   navigateTo(route) {
@@ -104,92 +104,97 @@ class Products extends Component {
 
   filterSearch = (params, category) => {
     this.navigateTo(`/categories/${category}`);
-    this.setState({category});
+    this.setState({ category });
     let searchParams = queryString.stringify(params);
     this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams));
   }
 
   changeSortOption = (event) => {
-     let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
-     this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption));
-     this.setState({page: 1, sortBy: sortOption});
+    let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
+    this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption));
+    this.setState({ page: 1, sortBy: sortOption });
   }
 
   render() {
-    const {header, sort_options, filters} = this.props.filterData;
-    return(
+    const { header, sort_options, filters } = this.props.filterData;
+    return (
       <div>
-        { header && <div className={` ${styles.categoryCover} position-relative text-center`} style={{ background: "url(" + header.image+ ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-          <h1 className={styles.imageHeading}>{header ? header.header_text : ''}</h1>
+        {header && <div className={` ${styles.categoryCover} position-relative text-center`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
         </div>}
 
-        {filters.length > 0 ? <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category}/> : <div></div>}
+        {filters.length > 0 ? <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} /> : <div></div>}
 
         {
-          this.props.productListData == null || this.props.productListData.results.length === 0 ? <NoResultComponent/> :
-          
-          <Container className={`${styles.listContainer} mt-4 pb-5`}>
-            <Row className="mb-3">
-              <Col sm="6" className={styles.sideHeading}>
-                Wedding Venues in all cities
+          this.props.productListData == null || this.props.productListData.results.length === 0 ? <NoResultComponent /> :
+
+            <Container className={`${styles.listContainer} mt-4 pb-5`}>
+              <Row className="mb-3">
+                <Col sm="12">
+                  <h1 className={styles.imageHeading}>{header ? header.header_text : ''}</h1>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+
+                <Col sm="6" className={styles.sideHeading}>
+                  Wedding Venues in all cities
                 <span>&nbsp;({this.props.productListData.total_count} results)</span>
-              </Col>
-              <Col sm="6" className={styles.sort}>
-                Sort By: &nbsp;
+                </Col>
+                <Col sm="6" className={styles.sort}>
+                  Sort By: &nbsp;
 
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()} className={styles.sortDropdown}>
-                  <DropdownToggle className={styles.dropHeading}
-                    tag="span"
-                    onClick={() => this.toggle()}
-                    data-toggle="dropdown"
-                    aria-expanded={this.state.dropdownOpen}>
-                    {sort_options[this.state.sortBy].name}
-                  </DropdownToggle>
-                  <DropdownMenu className={styles.dropMenu}>
-                    {
-                      sort_options.map((item, index) => {
-                        return <div key={index} onClick={() => this.toggle(item)} aria-hidden 
-                          className={`${styles.dropItem} ${index === this.state.sortBy ? styles.selectedItem : ''}`}>{item.name}</div>
-                      })
-                    }
-                  </DropdownMenu>
-                </Dropdown>
+                    <DropdownToggle className={styles.dropHeading}
+                      tag="span"
+                      onClick={() => this.toggle()}
+                      data-toggle="dropdown"
+                      aria-expanded={this.state.dropdownOpen}>
+                      {sort_options[this.state.sortBy].name}
+                    </DropdownToggle>
+                    <DropdownMenu className={styles.dropMenu}>
+                      {
+                        sort_options.map((item, index) => {
+                          return <div key={index} onClick={() => this.toggle(item)} aria-hidden
+                            className={`${styles.dropItem} ${index === this.state.sortBy ? styles.selectedItem : ''}`}>{item.name}</div>
+                        })
+                      }
+                    </DropdownMenu>
+                  </Dropdown>
 
-              </Col>
-            </Row>
-            
-            <Row>
-              {
-                this.props.productListData.results.map((product, index) => {
-                  return(
-                    <Col xs="12" sm="4" key={index}>
-                      <CategoryCard data={product} category={this.state.category}/>
-                    </Col>
-                  );
-                })
+                </Col>
+              </Row>
+
+              <Row>
+                {
+                  this.props.productListData.results.map((product, index) => {
+                    return (
+                      <Col xs="12" sm="4" key={index}>
+                        <CategoryCard data={product} category={this.state.category} />
+                      </Col>
+                    );
+                  })
+                }
+              </Row>
+
+              {this.props.productListData.no_of_pages && this.props.productListData.no_of_pages > 1 &&
+                <ReactPaginate
+                  previousLabel={'<'}
+                  nextLabel={'>'}
+                  breakLabel={'...'}
+                  breakClassName={'break-me'}
+                  forcePage={this.state.page - 1}
+                  pageCount={this.props.productListData.no_of_pages}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={(data) => this.pageChangeHandler(data)}
+                  containerClassName={'pagination'}
+                  subContainerClassName={'pages pagination'}
+                  activeClassName={'active'} />
               }
-            </Row>
 
-            {this.props.productListData.no_of_pages && this.props.productListData.no_of_pages > 1 &&
-            <ReactPaginate
-              previousLabel={'<'}
-              nextLabel={'>'}
-              breakLabel={'...'}
-              breakClassName={'break-me'}
-              forcePage={this.state.page-1}
-              pageCount={this.props.productListData.no_of_pages}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              onPageChange={(data) => this.pageChangeHandler(data)}
-              containerClassName={'pagination'}
-              subContainerClassName={'pages pagination'}
-              activeClassName={'active'}/>
-            }
-
-          </Container>
+            </Container>
         }
-        
-        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8"/>
+
+        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap" />
       </div>
     );
   }
