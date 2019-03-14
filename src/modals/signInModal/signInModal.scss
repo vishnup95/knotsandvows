@@ -9,8 +9,8 @@
 }
 
 .heading {
-  @include fontSize(22);
-  font-family: $roboto-bold;
+  @include fontSize(18);
+  font-family: $roboto-medium;
   color: $black-nine;
 }
 
@@ -134,7 +134,8 @@
 
 .login-container {
   display: flex;
-  @include height(817);
+  // @include height(817);
+  height: 57rem;
 }
 
 .login-form {
