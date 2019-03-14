@@ -350,14 +350,7 @@ a.button {
 }
 
 .carousel-btn {
-  font-family: $roboto-medium;
-  @include fontSize(20);
-  @include letterSpacing(.7);
-  background: $bright-red;
-  @include padding(17,30);
-  @include borderRadius(10);
-  color: $white;
-
+  @include fontSize(22);
   &:hover {
     color: $white;
     text-decoration: none;

@@ -65,7 +65,7 @@ class VerifyEmail extends Component {
             <div style={{ margin: '2rem' }}>
                 <p className={`text-center ${styles.detail}`}>Login To continue<span className={styles.detailBold}></span></p>
             </div>
-            {/* <Button color="danger" className={`text-center ${styles.button}`} onClick={this.toggle}>Login</Button> */}
+            {/* <Button color="danger" className="text-center primary-button" onClick={this.toggle}>Login</Button> */}
           </div>
         </div>
     );

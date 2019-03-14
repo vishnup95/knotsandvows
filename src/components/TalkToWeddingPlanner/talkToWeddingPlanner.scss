@@ -5,6 +5,7 @@
 .talk-popup {
   @include width(503);
 }
+
 .login-form {
   display: flex;
   flex-direction: column;
@@ -31,17 +32,6 @@
   @include fontSize(22);
   font-family: $roboto-bold;
   color: $black-nine;
-}
-
-.button {
-  @include borderRadius(10);
-  @include padding(12,24);
-  font-family: $roboto-bold;
-  background-color: $bright-red;
-  border: none;
-  @include fontSize(16);
-  @include letterSpacing(.4);
-  color: $white;
 }
 
 .cancel-btn {

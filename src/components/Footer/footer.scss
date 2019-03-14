@@ -5,6 +5,7 @@
 .footer-container {
   padding: 2rem 5% !important;
   margin: 0 !important;
+  background-color: $secondary-color;
   @include tablet {
     text-align: left;
     @include padding(76,143, $important: true);

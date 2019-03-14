@@ -15,15 +15,6 @@ hr {
   border-top: 1px solid $black;
 }
 
-.button {
-  @include borderRadius(3);
-  background-color: $bright-red;
-  @include fontSize(16);
-  font-family: $roboto-bold;
-  @include letterSpacing(.5);
-  @include padding(12,24);
-  border: none;
-}
 
 .pLarge {
   @include fontSize(20);

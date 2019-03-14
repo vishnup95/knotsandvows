@@ -136,7 +136,7 @@ class Header extends Component {
                 <div className={styles.navSmall}>
 
                     <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
+                        <img className={styles.logoTest} src={imagePath('logo.jpg')} alt="logo" />
                     </NavbarBrand>
                     <Nav className={`${styles.iconNav}`} navbar>
                         {/* <NavItem>
