@@ -262,7 +262,7 @@ a.button {
 
   .detailContainer {
     width: 55%;
-    background-color: $bright-red;
+    background-color: $secondary-color;
     color: $white !important;
     @include padding(20,20,0,30);
     position: relative;
@@ -300,7 +300,7 @@ a.button {
     .handle {
       @include width(40);
       @include height(40);
-      background-color: $bright-red;
+      background-color: $secondary-color;
       transform: rotate(45deg);
       position: absolute;
       left: -4.5%;
