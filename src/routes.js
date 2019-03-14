@@ -46,13 +46,6 @@ const LoadableCartPage = Loadable({
   }
 });
 
-// const LoadableCheckout = Loadable({
-//   loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/checkout/Checkout'),
-//   loading() {
-//     return <div>Loading...</div>;
-//   }
-// });
-
 const LoadableSample = Loadable({
   loader: () =>
     import(/* webpackChunkName: 'home' */ './modules/sample/Sample'),
@@ -89,27 +82,6 @@ const LoadableNotFound = Loadable({
   }
 });
 
-const LoadableVerifyEmail = Loadable({
-  loader: () => import(/* webpackChunkName: 'login' */ './modules/verifyEmail/VerifyEmail'),
-  loading() {
-    return <div>Loading...</div>;
-  }
-});
-
-const LoadableResetPassword = Loadable({
-  loader: () => import(/* webpackChunkName: 'resetpassword' */ './modules/resetPassword/ResetPassword'),
-  loading() {
-    return <div>Loading...</div>;
-  }
-});
-
-// const LoadableBookingConfirmation = Loadable({
-//   loader: () => import(/* webpackChunkName: 'login' */ './modules/bookingConfirmation/BookingConfirmation'),
-//   loading() {
-//     return <div>Loading...</div>;
-//   }
-// });
-
 const LoadableCeremonyDetail = Loadable({
   loader: () => import(/* webpackChunkName: 'planyourparty' */ './modules/ceremonyDetail/CeremonyDetail'),
   loading() {
@@ -141,19 +113,17 @@ const routes = (
   <Switch>
     <Route exact path="/login" component={LoadableLogin} />
     <Route exact path="/" component={LoadableHome} />
-    <Route exact path="/verify" component={LoadableVerifyEmail} />
-    <Route exact path="/resetpassword" component={LoadableResetPassword} />
+    <Route exact path="/verify" component={LoadableHome} />
+    <Route exact path="/resetpassword" component={LoadableHome} />
     <Route exact path="/categories/:category_name" component={LoadableProducts} />
     <Route exact path="/categories" component={LoadableCategoryListing} />
     <Route exact path="/packages" component={LoadableExclusiveDeals} />
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
     <Route exact path="/wishlist" component={LoadableCartPage} />
-    {/* <Route exact path="/checkout" component={LoadableCheckout} /> */}
     {/* <Route path="/about" component={LoadableAbout} /> */}
     <Route path="/sample" component={LoadableSample} />
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
     <Route path="/:category_name/:vendor_name" component={LoadableDetail} />
-    {/* <Route path="/booking-confirmation" component={LoadableBookingConfirmation} /> Will change to secret route  */}
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <Route component={LoadableNotFound} />
   </Switch>

@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import { imagePath } from '../../utils/assetUtils';
 import * as actions from '../../reducers/session/actions';
 import * as homeActions from '../../modules/home/actions'
+import * as modalActions from '../../reducers/modal/actions';
 import { Link } from 'react-router-dom';
-import { push } from 'connected-react-router';
+import { push, replace } from 'connected-react-router';
 import { sendGAEvent } from '../../utils/GAUtilities'
+import queryString from 'query-string';
 
 import {
     Collapse,
@@ -21,13 +23,17 @@ import {
 } from 'reactstrap';
 import styles from './header.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
-
+import ForgotPassword from "../../modals/forgotPasswordModal/ForgotPasswordModal"
 
 const mapStateToProps = state => ({
     route: state.router.location.pathname,
     user: state.session.user,
+    apiStatus: state.session.apiStatus,
     showLogin: state.session.showLogin,
-    categories: state.home.categories
+    showForgotPassword: state.session.showForgotPassword,
+    showResetPassword: state.session.showResetPassword,
+    categories: state.home.categories,
+    location: state.router.location,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -40,8 +46,11 @@ class Header extends Component {
         this.toggleModal = this.toggleModal.bind(this);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            hashValue: null,
+            email : null
         };
+
     }
 
     static fetchData(store) {
@@ -64,6 +73,30 @@ class Header extends Component {
     componentWillMount() {
         if (this.props.categories.length === 0) {
             this.props.dispatch(homeActions.fetchCategories());
+        }
+    }
+
+    componentDidMount() {
+        var hashValue = queryString.parse(this.props.location.search).code;
+        if (hashValue){
+            this.toggleResetPasswordModal();
+        }
+    }
+
+    toggleForgotPasswordModal = () => {
+        if (this.props.showForgotPassword) {
+            this.props.dispatch(actions.hideForgotPassword());
+        } else {
+            this.props.dispatch(actions.showForgotPassword());
+        }
+    }
+
+    toggleResetPasswordModal = () => {
+        if (this.props.showResetPassword) {
+            this.props.dispatch(actions.hideResetPassword());
+            this.props.dispatch(replace("/"));
+        } else {
+            this.props.dispatch(actions.showResetPassword());
         }
     }
 
@@ -97,7 +130,40 @@ class Header extends Component {
         console.log(initials);
         return (initials);
     }
+   
+    componentDidUpdate(prevProps){
+        if(prevProps == undefined) {
+            return false;
+        }
 
+        if (this.props.location.search != prevProps.location.search){
+            if (this.props.location.pathname === "/resetpassword"){
+                var hashValue = queryString.parse(this.props.location.search).code;
+                if (hashValue){
+                    this.setState({hashValue: hashValue});
+                    this.toggleResetPasswordModal();
+                }
+            }
+            else if (this.props.location.pathname === "/verify"){        
+              const activationCode = queryString.parse(this.props.location.search).activation_code;
+              const email = queryString.parse(this.props.location.search).email;  
+              if (activationCode && email){
+                this.props.dispatch(actions.verifyEmail(activationCode, email));
+              }
+            }
+        }   
+        
+        if (this.props.location.pathname === "/verify") {
+            if (this.props.apiStatus == true){
+                this.props.dispatch(modalActions.showModal(`Email Verified Successfully`));
+                this.props.dispatch(replace("/"));
+            }else if (this.props.apiStatus == false){
+                this.props.dispatch(replace("/"));
+                this.props.dispatch(modalActions.showModal(`Link expired`));
+            }
+        }
+    }
+    
     renderLoginItem = () => {
 
         if (this.props.user == null) {
@@ -177,8 +243,14 @@ class Header extends Component {
                     </Collapse>
                 </Navbar>
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
-                    <SignInModal close={this.toggleModal}></SignInModal>
+                    <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>
+                <Modal isOpen={this.props.showForgotPassword} toggle={this.toggleForgotPasswordModal} centered={true}>
+                    <ForgotPassword></ForgotPassword>
+                </Modal>
+                <Modal isOpen={this.props.showResetPassword} toggle={this.toggleResetPasswordModal} centered={true}>
+                    <ForgotPassword hash={this.state.hashValue} email={this.state.email}></ForgotPassword>
+                </Modal>    
             </div>
         );
     }
@@ -191,8 +263,12 @@ Header.propTypes = {
     dispatch: PropTypes.func,
     actions: PropTypes.object,
     showLogin: PropTypes.bool,
+    showForgotPassword: PropTypes.bool,
+    showResetPassword: PropTypes.bool,
     history: PropTypes.any,
     categories: PropTypes.array,
+    location: PropTypes.object,
+    apiStatus: PropTypes.object
 };
 
 export default connect(

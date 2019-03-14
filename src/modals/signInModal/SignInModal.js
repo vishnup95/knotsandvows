@@ -12,6 +12,7 @@ import { Form, Button } from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import SocialAuthComponent from '../../components/SocialAuth/SocialAuthComponent';
 
+
 const mapStateToProps = state => ({
     message: state.session.message,
 });
@@ -23,8 +24,7 @@ const mapDispatchToProps = dispatch => ({
 
 const DisplayMode = {
     signIn: 'signIn',
-    signUp: 'signUp',
-    forgotPassword: 'forgotPassword'
+    signUp: 'signUp'
 }
 
 class SignInModal extends Component {
@@ -47,11 +47,12 @@ class SignInModal extends Component {
                 name: null,
                 password: null,
                 phoneno: null
-            },
-            forgotPassword: {
-                email: null
             }
         };
+    }
+
+    toggleModal = () => {
+        this.setState({ showModal: !this.state.showModal });
     }
 
     closeModal = () => {
@@ -64,27 +65,13 @@ class SignInModal extends Component {
             signIn: {
                 email: null,
                 password: null
-            },
-            forgotPassword: {
-                email: null
             }
         });
     }
 
     showForgotPassword = () => {
-        this.setState({
-            mode: DisplayMode.forgotPassword,
-            signIn: {
-                email: null,
-                password: null
-            },
-            signUp: {
-                email: null,
-                name: null,
-                password: null, 
-                phoneno: null
-            }
-        });
+        this.props.showForgotPassword();
+        this.closeModal();
     }
 
     showSignIn = () => {
@@ -95,20 +82,17 @@ class SignInModal extends Component {
                 name: null,
                 password: null,
                 phoneno: null
-            },
-            forgotPassword: {
-                email: null
             }
         });
     }
 
     componentDidUpdate(prevProps) {
-        if(prevProps == undefined) {
+        if (prevProps == undefined) {
             return false;
         }
-    
+
         if (this.props.message != prevProps.message) {
-          this.props.dispatch(modalActions.showModal(this.props.message));
+            this.props.dispatch(modalActions.showModal(this.props.message));
         }
     }
 
@@ -118,8 +102,8 @@ class SignInModal extends Component {
 
         if (email && password) {
             const params = {
-                email:this.state.signIn.email,
-                password:this.state.signIn.password
+                email: this.state.signIn.email,
+                password: this.state.signIn.password
             }
 
             this.props.dispatch(actions.signInWithCredentail(params));
@@ -172,16 +156,7 @@ class SignInModal extends Component {
         });
     }
 
-    handleForgotPassordFormChange = (e) => {
-        this.setState({
-            forgotPassword: {
-                ...this.state.forgotPassword,
-                [e.target.id]: e.target.value
-            }
-        });
-    }
-
-    handleSocialAuthResponse = (data) =>{
+    handleSocialAuthResponse = (data) => {
         this.props.dispatch(actions.autheticateWithSocialData(data));
     }
 
@@ -189,7 +164,7 @@ class SignInModal extends Component {
         return this.state.mode == DisplayMode.signIn ?
             (<div>
                 <Form style={{ zIndex: '10000' }} className="position-relative">
-                    <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignInFormChange(e)}/>
+                    <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignInFormChange(e)} />
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignInFormChange(e)} pattern="[A-Za-z0-9]{5,}" />
                 </Form>
                 <div className={styles.formRow}>
@@ -219,10 +194,10 @@ class SignInModal extends Component {
                     If You Have an Ahwanam Account Please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Sign in</Link></span>
                 </div>
                 <Form style={{ zIndex: '10000' }} className="position-relative">
-                    <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)} pattern="^[a-zA-Z_ ]*$"/>
+                    <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)} pattern="^[a-zA-Z_ ]*$" />
                     <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignUpFormChange(e)} />
-                    <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleSignUpFormChange(e)} pattern="[0-9]{10}"/>
-                    <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)} pattern="[A-Za-z0-9]{5,}"/>
+                    <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleSignUpFormChange(e)} pattern="[0-9]{10}" />
+                    <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)} pattern="[A-Za-z0-9]{5,}" />
                 </Form>
                 <div className="text-center">
                     <Button color="danger" className={styles.button} onClick={this.validateSignUpForm}>Create account</Button>
@@ -243,24 +218,6 @@ class SignInModal extends Component {
             </div>) : null;
     }
 
-    renderForgotPassword = () => {
-        return this.state.mode == DisplayMode.forgotPassword ?
-            (<div>
-                <Form style={{ zIndex: '10000' }} className="position-relative">
-                    <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleForgotPassordFormChange(e)} />
-                </Form>
-                <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: "space-between" }}>
-                    <span><Button color="danger" className={`${styles.button} ${styles.forgotButton}`} onClick={this.showSignIn}>CANCEL</Button></span>
-                    <span><Button color="danger" className={`${styles.button} ${styles.forgotButton}`} onClick={this.validateForgotPasswordForm}>RESET PASSWORD</Button></span>
-                </div>
-
-                <div className={`${styles.footerText} mt-4 mb-3`}>
-                    If You Have an Ahwanam Account Please&nbsp;
-                    <span><Link className={styles.login} to="/" onClick={this.showSignIn}>Login</Link></span>.
-                </div>
-            </div>) : null;
-    }
-
     render() {
         return (
             <div className={styles.loginContainer}>
@@ -271,11 +228,11 @@ class SignInModal extends Component {
                     </div>
                     {this.renderSignIn()}
                     {this.renderSignUp()}
-                    {this.renderForgotPassword()}
                 </div>
                 <div className={`${styles.loginBg}`}>
                 </div>
             </div>
+            
         );
     }
 }
@@ -284,6 +241,7 @@ SignInModal.propTypes = {
     dispatch: PropTypes.func,
     actions: PropTypes.object,
     close: PropTypes.func,
+    showForgotPassword: PropTypes.func,
     message: PropTypes.string,
 };
 export default connect(
