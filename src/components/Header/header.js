@@ -8,6 +8,7 @@ import * as homeActions from '../../modules/home/actions'
 import { Link } from 'react-router-dom';
 import { push } from 'connected-react-router';
 import { sendGAEvent } from '../../utils/GAUtilities'
+import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 import {
     Collapse,
@@ -21,7 +22,7 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem 
+    DropdownItem
 } from 'reactstrap';
 import styles from './header.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
@@ -106,27 +107,27 @@ class Header extends Component {
 
         if (this.props.user !== null) {
             return (
-               <div>
-                <UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle nav className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }}>
-                        <span className={styles.userInfo}>
-                            {this.shortName(this.props.user.name)}
-                        </span>
-                    </DropdownToggle>
+                <div>
+                    <UncontrolledDropdown nav inNavbar>
+                        <DropdownToggle nav className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }}>
+                            <span className={styles.userInfo}>
+                                {this.shortName(this.props.user.name)}
+                            </span>
+                        </DropdownToggle>
 
-                    <DropdownMenu className={styles.userDropdown}>
-                        <DropdownItem className="text-center">
-                            Profile
+                        <DropdownMenu className={styles.userDropdown}>
+                            <DropdownItem className="text-center">
+                                Profile
                         </DropdownItem>
-                        <DropdownItem className="text-center">
-                            My bookings
+                            <DropdownItem className="text-center">
+                                My bookings
                         </DropdownItem>
-                        <DropdownItem className="text-center" onClick={this.logout}>
-                            Logout
+                            <DropdownItem className="text-center" onClick={this.logout}>
+                                Logout
                         </DropdownItem>
-                    </DropdownMenu>
-                </UncontrolledDropdown>
-               </div>     
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+                </div>
             );
         } else {
             return (
@@ -195,6 +196,9 @@ class Header extends Component {
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
                     <SignInModal close={this.toggleModal}></SignInModal>
                 </Modal>
+                <div className={styles.talkBtn}>
+                    <TalkToWeddingPlanner  />
+                </div>
             </div>
         );
     }

@@ -3,14 +3,14 @@
 @import '../../variables/utils';
 
 .talk-popup {
-  @include width(503);
+  @include width(544);
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  @include width(503);
+  // @include width(544);
   @include tablet {
      @include padding(55);
   }
@@ -23,25 +23,33 @@
 }
 
 .image {
-  @include height(60);
-  @include width(60);
-  @include margin(0,25.8,0,0);
+  @include width(143);
+  height: auto;
+  max-width: 143px;
 }
 
 .heading {
   @include fontSize(22);
-  font-family: $roboto-bold;
+  font-family: $roboto-medium;
   color: $black-nine;
 }
 
 .cancel-btn {
-  color: $warm-grey-six;
-  font-family: $roboto-bold;
+  color: $primary-color;
+  font-family: $roboto-medium;
   background: none;
   border: none;
 
   &:hover {
     background: none;
     color: inherit;
+  }
+}
+
+.call-btn {
+  img {
+    @include width(80);
+    @include height(80);
+    cursor: pointer;
   }
 }

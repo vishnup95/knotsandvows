@@ -89,7 +89,10 @@ class TalkToWeddingPlanner extends Component {
     render() {
         return (
             <div>
-                <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>
+                {this.props.buttonText ? <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>
+                    : <div className={styles.callBtn}><img onClick={() => this.toggle()} src={imagePath('call-button.svg')} alt="call-button" aria-hidden /></div>
+                }
+
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
                     <div className={styles.loginForm}>
 
@@ -107,7 +110,7 @@ class TalkToWeddingPlanner extends Component {
                         </Form>
                         <div className="text-center">
                             <Button className={styles.cancelBtn} onClick={() => this.toggle()}>Cancel</Button>
-                            <Button color="danger" className="primary-button" onClick={() => this.validateForm()}>Submit</Button>
+                            <Button className="primary-button" onClick={() => this.validateForm()}>Submit</Button>
                         </div>
                     </div>
 
