@@ -46,10 +46,3 @@
   }
 }
 
-.call-btn {
-  img {
-    @include width(80);
-    @include height(80);
-    cursor: pointer;
-  }
-}
