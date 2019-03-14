@@ -48,8 +48,8 @@ class ExclusiveDeals extends Component {
   render() {
     return(
       <div style={{marginTop:'10.33125rem'}}>
-        <JumbotronComponent data={jumbotronData[1]} items={this.props.exclusives} bgcolor="#ffffff" cardType="detailed"/>
-        <JumbotronComponent data={jumbotronData[0]} bgcolor="#f8f8f8"/>
+        <JumbotronComponent data={jumbotronData[1]} items={this.props.exclusives} bgcolor="#ffffff" cardType="detailed" containerStyle="otherWrap" />
+        <JumbotronComponent data={jumbotronData[0]} bgcolor="#f8f8f8" containerStyle="otherWrap" />
       </div>
     );
   }

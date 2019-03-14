@@ -46,7 +46,7 @@ hr {
   @include padding(12,24);
   font-family: $roboto-bold;
   border-radius: .15rem;
-  background-color: $bright-red;
+  background-color: $primary-color;
   border: none;
   @include fontSize(16);
   @include letterSpacing(.4);
@@ -122,7 +122,7 @@ a.button {
     flex-shrink: 0;
 
     button {
-      background-color: $bright-red;
+      background-color: $primary-color;
       @include fontSize(14);
       @include letterSpacing(0.4);
       font-family: $roboto-regular;
@@ -145,7 +145,7 @@ a.button {
 }
 
 .priceNow {
-  color: $bright-red;
+  color: $primary-color;
   font-family: $roboto-medium;
 }
 
