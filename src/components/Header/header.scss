@@ -3,8 +3,9 @@
 @import '../../variables/utils';
 
 .logo-test {
-  width: 3rem;
-  max-width: 60px;
+  @include width(143);
+  height: auto;
+  max-width: 143px;
 }
 
 .ah-header {
@@ -43,7 +44,7 @@
   box-shadow: 0 2px 6px 0 $black-16;
   background: #fff;
   @include tablet {
-    @include padding(0, 38)
+     @include padding(0, 38)
   }
 }
 
@@ -205,7 +206,7 @@
 }
 
 .user-info {
-  background-color: $bright-red;
+  background-color: $primary-color;
   @include width(48);
   @include height(48);
   border-radius: 50%;
@@ -216,4 +217,44 @@
   @include fontSize(18);
   color: $white;
   letter-spacing: .5px;
+}
+
+// user dropdown styles
+
+.userDropdown {
+  position: absolute !important;
+  left: auto;
+  right: -1.25rem;
+  top: 4.7rem;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+  border: none;
+  @include borderRadius(8);
+  &:before {
+    content: '';
+    height: .7rem;
+    width: .7rem;
+    background: $white;
+    position: absolute;
+    top: -0.25rem;
+    right: 25%;
+    transform: rotate(45deg);
+  }
+
+  button {
+    cursor: pointer;
+    padding: .7rem;
+    font-family: $roboto-light;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: #ee4d9b29;
+      outline: 0;
+    }
+  }
+}
+.talk-btn {
+  position: fixed;
+  top: 50vh;
+  right: 0;
 }

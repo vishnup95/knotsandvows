@@ -46,7 +46,7 @@ hr {
   @include padding(12,24);
   font-family: $roboto-bold;
   border-radius: .15rem;
-  background-color: $bright-red;
+  background-color: $primary-color;
   border: none;
   @include fontSize(16);
   @include letterSpacing(.4);
@@ -122,7 +122,7 @@ a.button {
     flex-shrink: 0;
 
     button {
-      background-color: $bright-red;
+      background-color: $primary-color;
       @include fontSize(14);
       @include letterSpacing(0.4);
       font-family: $roboto-regular;
@@ -145,7 +145,7 @@ a.button {
 }
 
 .priceNow {
-  color: $bright-red;
+  color: $primary-color;
   font-family: $roboto-medium;
 }
 
@@ -262,7 +262,7 @@ a.button {
 
   .detailContainer {
     width: 55%;
-    background-color: $bright-red;
+    background-color: $secondary-color;
     color: $white !important;
     @include padding(20,20,0,30);
     position: relative;
@@ -300,7 +300,7 @@ a.button {
     .handle {
       @include width(40);
       @include height(40);
-      background-color: $bright-red;
+      background-color: $secondary-color;
       transform: rotate(45deg);
       position: absolute;
       left: -4.5%;
@@ -350,14 +350,7 @@ a.button {
 }
 
 .carousel-btn {
-  font-family: $roboto-medium;
-  @include fontSize(20);
-  @include letterSpacing(.7);
-  background: $bright-red;
-  @include padding(17,30);
-  @include borderRadius(10);
-  color: $white;
-
+  @include fontSize(22);
   &:hover {
     color: $white;
     text-decoration: none;

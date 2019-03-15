@@ -109,7 +109,7 @@ class CarouselComponent extends Component {
                         <h3 className={styles.carouselHeader}>{item.caption}</h3>
                         <p className={styles.carouselText}>{item.shortDescription}</p>
                         <div className={styles.buttonContainer}>
-                            <Link to={`/${item.pathToRedirect}`} className={`${styles.carouselBtn}`}>{item.buttonText}</Link>
+                            <Link to={`/${item.pathToRedirect}`} className={`${styles.carouselBtn} primary-button`}>{item.buttonText}</Link>
                         </div>
                     </div>
 

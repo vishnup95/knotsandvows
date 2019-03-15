@@ -94,7 +94,7 @@
 
 .redStyles {
   font-family: $roboto-medium;
-  color: $bright-red;
+  color: $primary-color;
   cursor: pointer;
 }
 
@@ -114,7 +114,7 @@
 
 .button {
   @include borderRadius(3);
-  background-color: $bright-red;
+  background-color: $primary-color;
   @include fontSize(28);
   font-family: $roboto-bold;
   @include letterSpacing(.4);

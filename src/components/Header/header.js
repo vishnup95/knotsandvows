@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { push, replace } from 'connected-react-router';
 import { sendGAEvent } from '../../utils/GAUtilities'
 import queryString from 'query-string';
+import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 import {
     Collapse,
@@ -19,7 +20,11 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Modal
+    Modal,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
 } from 'reactstrap';
 import styles from './header.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
@@ -166,25 +171,37 @@ class Header extends Component {
     
     renderLoginItem = () => {
 
-        if (this.props.user == null) {
+        if (this.props.user !== null) {
+            return (
+                <div>
+                    <UncontrolledDropdown nav inNavbar>
+                        <DropdownToggle nav className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }}>
+                            <span className={styles.userInfo}>
+                                {this.shortName(this.props.user.name)}
+                            </span>
+                        </DropdownToggle>
+
+                        <DropdownMenu className={styles.userDropdown}>
+                            <DropdownItem className="text-center">
+                                Profile
+                        </DropdownItem>
+                            <DropdownItem className="text-center">
+                                My bookings
+                        </DropdownItem>
+                            <DropdownItem className="text-center" onClick={this.logout}>
+                                Logout
+                        </DropdownItem>
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+                </div>
+            );
+        } else {
             return (
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
                         <img src={imagePath('avatar.svg')} alt="avatar" />
                         Login / Sign Up
                 </NavLink>
-                </NavItem>
-            );
-        } else {
-            return (
-                <NavItem>
-                    <NavLink className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }} onClick={this.logout}>
-                        {/* <img src={imagePath('avatar.svg')} alt="avatar" /> */}
-                        <span className={styles.userInfo}>
-                            {this.shortName(this.props.user.name)}
-                        </span>
-                        {/* {this.props.user.name} */}
-                    </NavLink>
                 </NavItem>
             );
         }
@@ -202,7 +219,7 @@ class Header extends Component {
                 <div className={styles.navSmall}>
 
                     <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
+                        <img className={styles.logoTest} src={imagePath('logo.jpg')} alt="logo" />
                     </NavbarBrand>
                     <Nav className={`${styles.iconNav}`} navbar>
                         {/* <NavItem>
@@ -251,6 +268,9 @@ class Header extends Component {
                 <Modal isOpen={this.props.showResetPassword} toggle={this.toggleResetPasswordModal} centered={true}>
                     <ForgotPassword hash={this.state.hashValue} email={this.state.email}></ForgotPassword>
                 </Modal>    
+                <div className={styles.talkBtn}>
+                    <TalkToWeddingPlanner  />
+                </div>
             </div>
         );
     }

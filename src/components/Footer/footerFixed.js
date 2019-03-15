@@ -7,12 +7,12 @@ import styles from './footer.scss';
 class FooterFixedComponent extends Component {
     render() {
         return (
-            <Jumbotron style={{ backgroundColor: '#461204' }} className={`${styles.footerContainer} text-white`}>
+            <Jumbotron className={`${styles.footerContainer} text-white`}>
                 <Row>
                     <Col>
                         <div className="text-left">
                             <div className={` ${styles.block}`}>
-                                <p>Ahwanam event Planners</p>
+                                <p>Seven Vows event Planners</p>
                                 <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum,</p>
                                 <p className="mb-0">Road # 2, Banjara Hills, Hyderabad 500034 </p>
                             </div>
@@ -27,7 +27,7 @@ class FooterFixedComponent extends Component {
                     </Col>
 
                     <Col className={` ${styles.block}`}>
-                        <p>Ahwanam event Planners</p>
+                        <p>Seven Vows event Planners</p>
                         <ul>
                             <li>
                                 <Link to={'/categories'}>Vendors</Link>
@@ -78,7 +78,7 @@ class FooterFixedComponent extends Component {
                                 </a>
                             </span>
                             <p className="">© 2019  All Rights Reserved</p>
-                            <p className="">Ahwanam event Planners</p>
+                            <p className="">Seven Vows event Planners</p>
                             <p className="">Terms & Conditions   |   Privacy Policy</p>
                         </div>
                     </Col>

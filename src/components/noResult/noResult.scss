@@ -9,13 +9,26 @@
     justify-content: center;
     padding: 1rem;
     img {
-        @include width(155);
-        @include height(155);
+        @include width(403);
+        height: auto;
         @include margin(30,0);
     }
     p {
-        @include fontSize(24);
+        font-family: $roboto-light;
+        @include fontSize(30);
         @include letterSpacing(.7);
-        line-height: .75;
+        line-height: 2;
+        color: $grape;
+        &:first-of-type {
+            position: relative;
+            &:before {
+                content: '';
+                width: 100%;
+                border-top: 1px solid $grape;
+                position: absolute;
+                bottom: -.5rem;
+                left: 0;
+            }
+        }
     }
 }

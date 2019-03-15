@@ -28,7 +28,7 @@
     display: inline-block;
     width: 5px;
     height: 20px;
-    background-color: $bright-red;
+    background-color: $primary-color;
 
     &:nth-child(1) {
       animation: grow 1s ease-in-out infinite;

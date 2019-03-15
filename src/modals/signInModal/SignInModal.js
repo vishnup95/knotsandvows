@@ -127,17 +127,6 @@ class SignInModal extends Component {
         }
     }
 
-    validateForgotPasswordForm = () => {
-        let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
-
-        if (email) {
-            const data = {
-                email: this.state.forgotPassword.email
-            }
-            this.props.dispatch(actions.forgotPasswordRequest(data));
-        }
-    }
-
     handleSignInFormChange = (e) => {
         this.setState({
             signIn: {
@@ -171,7 +160,7 @@ class SignInModal extends Component {
                     <div>
                         <button className={styles.detailLink} onClick={this.showForgotPassword}>Forgot Password?</button>
                     </div>
-                    <div className={styles.alignButton}><Button color="danger" className={styles.button} onClick={this.validateSignInForm}>Sign in</Button></div>
+                    <div className={styles.alignButton}><button className="primary-button" onClick={this.validateSignInForm}>Sign in</button></div>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
@@ -181,7 +170,7 @@ class SignInModal extends Component {
                 <div className="text-center w-100 mt-5">
                     <p className={styles.pWith}>Sign in with</p>
                     <SocialAuthComponent onSuccess={data => this.handleSocialAuthResponse(data)}></SocialAuthComponent>
-                    <button className={`${styles.detailLink} mt-5 pt-3 w-100`} onClick={this.showSignUp}>Create Your Ahwanam Account</button>
+                    <button className={`${styles.detailLink} mt-5 pt-3 w-100`} onClick={this.showSignUp}>Create your Seven Vows account</button>
                 </div>
             </div>) : null;
     }
@@ -191,7 +180,7 @@ class SignInModal extends Component {
         return this.state.mode == DisplayMode.signUp ?
             (<div>
                 <div className={`${styles.footerText} ${styles.maxWidth} mb-3`}>
-                    If You Have an Ahwanam Account Please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Sign in</Link></span>
+                    If you have a Seven Vows account please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Sign in</Link></span>
                 </div>
                 <Form style={{ zIndex: '10000' }} className="position-relative">
                     <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)} pattern="^[a-zA-Z_ ]*$" />
@@ -200,7 +189,7 @@ class SignInModal extends Component {
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)} pattern="[A-Za-z0-9]{5,}" />
                 </Form>
                 <div className="text-center">
-                    <Button color="danger" className={styles.button} onClick={this.validateSignUpForm}>Create account</Button>
+                    <Button color="danger" className="primary-button" onClick={this.validateSignUpForm}>Create account</Button>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
@@ -223,8 +212,8 @@ class SignInModal extends Component {
             <div className={styles.loginContainer}>
                 <div className={styles.loginForm}>
                     <div className={styles.logoWrap}>
-                        <img className={styles.image} src={imagePath('logo.svg')} alt="logo"></img>
-                        <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Sign in to Ahwanam' : this.state.mode === 'signUp' ? 'Create an Ahwanam Account' : 'Forgot Password'}</div>
+                        <img className={styles.image} src={imagePath('logo.jpg')} alt="logo"></img>
+                        <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Sign in to Seven Vows' : this.state.mode === 'signUp' ? 'Create a Seven Vows account' : 'Forgot Password'}</div>
                     </div>
                     {this.renderSignIn()}
                     {this.renderSignUp()}
