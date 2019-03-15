@@ -28,7 +28,7 @@ class FooterFixedComponent extends Component {
                                 <p className="mb-0">+91 770 205  3510</p>
                             </div>
                             <div className={` ${styles.block}`}>
-                                <p className="mb-0">Email us @ <span>&nbsp;info@sevenvows.co.in</span></p>
+                                <p className="mb-0">Email us @ &nbsp; <span>info@sevenvows.co.in</span></p>
                             </div>
                         </div>
                     </Col>
@@ -54,7 +54,6 @@ class FooterFixedComponent extends Component {
                                 <Link to={'/about'}>About</Link>
                             </li>
                             <li>
-                                {/* <Link to={'/'}>Contact Us</Link> */}
                                 <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'}/>
                             </li>
                         </ul>

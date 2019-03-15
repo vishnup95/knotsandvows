@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { imagePath } from '../../utils/assetUtils';
 import styles from './CeremonyDetail.scss';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import { connect } from 'react-redux';
@@ -99,10 +98,9 @@ class CeremonyDetail extends Component {
           <div className={styles.ceremonyDetail}>
             <div className={styles.ceremonyCover} style={{ background: "url(" + details.cermony_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
               <div className={styles.coverMask}>
-                <h1 className={styles.title}>{details.description}</h1>
+                <h1 className={styles.title}>{details.ceremony_name}</h1>
                 <p>{details.description}</p>
               </div>
-              <img className={styles.bottomCurve} src={imagePath('curveline.svg')} alt="curve" />
             </div>
             <Container>
               <Row>

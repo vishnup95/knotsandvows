@@ -29,11 +29,9 @@
 //Jumbotron 
 
 h1 {
-  font-family: $roboto-regular;
   @include fontSize(58);
   @include letterSpacing(1.2);
   line-height: 1;
-  color: $black-five;
 }
 
 hr {
@@ -230,7 +228,7 @@ a.button {
     width: 100%;
     text-align: center;
     color: $white;
-    @include fontSize(20);
+    @include fontSize(30);
     @include letterSpacing(0.6);
   }
 

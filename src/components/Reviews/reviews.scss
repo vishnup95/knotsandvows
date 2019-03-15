@@ -8,8 +8,8 @@
 }
 
 .review-user {
-  font-family: $roboto-bold;
-  color: $red-two;
+  font-family: $roboto-medium;
+  color: $secondary-color;
   @include fontSize(18);
 }
 
@@ -32,4 +32,5 @@
 .reviewText {
   @include fontSize(16);
   @include margin(16,0,8);
+  color: $black-ten;
 }
