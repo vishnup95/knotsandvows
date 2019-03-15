@@ -1,4 +1,4 @@
-export const title = 'Ahwanam Party Planner';
+export const title = 'Seven Vows';
 
 export const meta = [
   {

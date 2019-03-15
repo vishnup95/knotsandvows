@@ -8,7 +8,7 @@
   background-color: $secondary-color;
   @include tablet {
     text-align: left;
-    @include padding(76,143, $important: true);
+    @include padding(60,123,30, $important: true);
   }
 
   ul {
@@ -34,7 +34,9 @@ p {
 }
 
 .block {
-  margin-bottom: 2rem;
+  @include mobile {
+    margin-bottom: 2rem;
+  }
 
   p:first-child {
     font-family: $frank-bold;
