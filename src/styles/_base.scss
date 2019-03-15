@@ -49,6 +49,7 @@ h6 {
 h1,
 h2 {
   @include fontSize(58);
+  color: $secondary-color;
 }
 
 .app {
