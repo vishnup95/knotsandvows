@@ -18,10 +18,12 @@ import CategoryCard from '../../components/Card/cardCategory';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import FormComponent from './newForm';
 import NoResultComponent from '../../components/noResult/noResult';
+import LoaderComponent from '../../components/Loader/loader';
 
 const mapStateToProps = state => ({
   user: state.session.user,
   productListData: state.products.productListData,
+  productListLoading: state.products.loading,
   filterData: state.products.filterData,
   other_categories: state.products.other_categories
 });
@@ -123,9 +125,8 @@ class Products extends Component {
         </div>}
 
         {filters.length > 0 ? <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} /> : <div></div>}
-
-        {
-          this.props.productListData == null || this.props.productListData.results.length === 0 ? <NoResultComponent /> :
+        {this.props.productListLoading ? <LoaderComponent /> :
+          ((this.props.productListData == null || this.props.productListData.results.length === 0) ? <NoResultComponent /> :
 
             <Container className={`${styles.listContainer} mt-4 pb-5`}>
               <Row className="mb-3">
@@ -191,7 +192,7 @@ class Products extends Component {
                   activeClassName={'active'} />
               }
 
-            </Container>
+            </Container>)
         }
 
         <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap" />
@@ -206,7 +207,8 @@ Products.propTypes = {
   productListData: PropTypes.object,
   filterData: PropTypes.object,
   other_categories: PropTypes.array,
-  match: PropTypes.object
+  match: PropTypes.object,
+  productListLoading: PropTypes.bool
 };
 
 export default connect(
