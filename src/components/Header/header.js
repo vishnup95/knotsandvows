@@ -197,7 +197,7 @@ class Header extends Component {
                     <SignInModal close={this.toggleModal}></SignInModal>
                 </Modal>
                 <div className={styles.talkBtn}>
-                    <TalkToWeddingPlanner  />
+                    <TalkToWeddingPlanner  type={'call'}/>
                 </div>
             </div>
         );
