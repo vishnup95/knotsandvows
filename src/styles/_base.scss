@@ -70,9 +70,11 @@ h2 {
   outline: none;
   border: none;
   cursor: pointer;
+  @include margin(0,8);
 
   &:hover {
     color: $white;
     text-decoration: none;
+    background-color: #E54291;
   }
 }

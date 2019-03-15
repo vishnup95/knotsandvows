@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Jumbotron, Row, Col } from 'reactstrap';
 import { imagePath } from '../../utils/assetUtils';
 import { Link } from 'react-router-dom';
 import styles from './footer.scss';
+import TalkToWeddingPlanner from '../TalkToWeddingPlanner/talkToWeddingPlanner';
+
+const mapStateToProps = state => ({
+    ceremonies: state.home.ceremonies
+  });
 
 class FooterFixedComponent extends Component {
     render() {
@@ -21,13 +28,13 @@ class FooterFixedComponent extends Component {
                                 <p className="mb-0">+91 770 205  3510</p>
                             </div>
                             <div className={` ${styles.block}`}>
-                                <p className="mb-0">Email us @ <span> &nbsp;&nbsp;info@ahwanam.com</span></p>
+                                <p className="mb-0">Email us @ <span>&nbsp;info@sevenvows.co.in</span></p>
                             </div>
                         </div>
                     </Col>
 
                     <Col className={` ${styles.block}`}>
-                        <p>Seven Vows event Planners</p>
+                        <p>Seven Vows</p>
                         <ul>
                             <li>
                                 <Link to={'/categories'}>Vendors</Link>
@@ -46,22 +53,24 @@ class FooterFixedComponent extends Component {
                             <li>
                                 <Link to={'/about'}>About</Link>
                             </li>
+                            <li>
+                                {/* <Link to={'/'}>Contact Us</Link> */}
+                                <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'}/>
+                            </li>
                         </ul>
                     </Col>
                     <Col className={` ${styles.block}`}>
                         <p>Plan your events</p>
                         <ul>
-                            <li>
-                                <Link to={'/ceremonies/ceremony_name'}>Plan your wedding</Link>
-                            </li>
-                            <li>
-                                <Link to={'/ceremonies/ceremony_name'}>
-                                    Plan your reception</Link>
-                            </li>
-                            <li>
-                                <Link to={'/ceremonies/ceremony_name'}>
-                                    Plan your sangeet</Link>
-                            </li>
+                            {
+                                this.props.ceremonies.map( (ceremony, index) => {
+                                    return(
+                                        <li key={index}>
+                                            <Link to={`/ceremonies/${ceremony.page_name}`}>{ceremony.ceremony_name}</Link>
+                                        </li>
+                                    );
+                                })
+                            }
                         </ul>
                     </Col>
                     <Col>
@@ -88,4 +97,10 @@ class FooterFixedComponent extends Component {
     }
 }
 
-export default FooterFixedComponent;
+FooterFixedComponent.propTypes = {
+    ceremonies: PropTypes.array,
+};
+
+export default connect(
+    mapStateToProps,
+)(FooterFixedComponent);
