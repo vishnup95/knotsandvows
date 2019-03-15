@@ -24,6 +24,7 @@
 .card {
   border: 0;
   cursor: pointer;
+  @include borderRadius(18);
 
   &:hover {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.31);
@@ -76,7 +77,7 @@
     outline: none;
     border: none;
     border-bottom: 1px solid $warm-grey-two;
-    font-size: 1em;
+    @include fontSize(18);
     margin: 0;
     padding: .3em 0;
     width: 100%;
@@ -90,7 +91,6 @@
   .input-placeholder {
     font-size: 1em;
     bottom: 0;
-    // color: rgba(0,0,0,.26);
     color: rgba(7,7,7,.5);
     left: 0;
     right: 0;
@@ -297,6 +297,19 @@
     @include width(80);
     @include height(80);
     cursor: pointer;
+  }
+}
+
+.link-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 0;
+  cursor: pointer;
+  @include fontSize(16);
+  outline: none !important;
+  &:hover {
+    text-decoration: underline;
   }
 }
 

@@ -5,6 +5,7 @@ import { Jumbotron, Row, Col } from 'reactstrap';
 import { imagePath } from '../../utils/assetUtils';
 import { Link } from 'react-router-dom';
 import styles from './footer.scss';
+import TalkToWeddingPlanner from '../TalkToWeddingPlanner/talkToWeddingPlanner';
 
 const mapStateToProps = state => ({
     ceremonies: state.home.ceremonies
@@ -53,7 +54,8 @@ class FooterFixedComponent extends Component {
                                 <Link to={'/about'}>About</Link>
                             </li>
                             <li>
-                                <Link to={'/'}>Contact Us</Link>
+                                {/* <Link to={'/'}>Contact Us</Link> */}
+                                <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'}/>
                             </li>
                         </ul>
                     </Col>

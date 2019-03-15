@@ -37,8 +37,10 @@ hr {
 }
 
 .package-wrap {
-  @include width(1316);
+  @include width(1400);
   margin: 0 auto;
+  max-width: 100%;
+  padding: 0 3rem;
 }
 
 .carousel-wrap {

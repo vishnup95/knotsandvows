@@ -89,16 +89,15 @@ class TalkToWeddingPlanner extends Component {
     render() {
         return (
             <div>
-                {this.props.buttonText ? <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>
-                    : <div className="call-btn"><img onClick={() => this.toggle()} src={imagePath('call-button.svg')} alt="call-button" aria-hidden /></div>
-                }
+                {this.props.type === 'link' && <button className="link-btn" onClick={() => this.toggle()}>{this.props.buttonText}</button>}
+                {this.props.type === 'call' && <div className="call-btn"><img onClick={() => this.toggle()} src={imagePath('call-button.svg')} alt="call-button" aria-hidden /></div>}
+                {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
                     <div className={styles.loginForm}>
 
                         <div className={styles.logoWrap}>
-                            <img className={styles.image} src={imagePath('logo.jpg')} alt="logo"></img>
-                            <div className={styles.heading}>Talk to our wedding planner</div>
+                            <div className={styles.heading}>Talk to <br/> our wedding planner</div>
                         </div>
                         <Form style={{ zIndex: '10000' }} className="position-relative">
                             <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
@@ -127,7 +126,8 @@ TalkToWeddingPlanner.propTypes = {
     onclick: PropTypes.func,
     message: PropTypes.string,
     status: PropTypes.bool,
-    buttonText: PropTypes.string
+    buttonText: PropTypes.string,
+    type: PropTypes.string
 
 };
 export default connect(
