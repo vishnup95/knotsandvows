@@ -262,7 +262,7 @@ class Header extends Component {
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>
-                <Modal isOpen={this.props.showForgotPassword} toggle={this.toggleForgotPasswordModal} centered={true}>
+                <Modal isOpen={this.props.showForgotPassword} className={styles.forgotContainer} toggle={this.toggleForgotPasswordModal} centered={true}>
                     <ForgotPassword></ForgotPassword>
                 </Modal>
                 <Modal isOpen={this.props.showResetPassword} toggle={this.toggleResetPasswordModal} centered={true}>

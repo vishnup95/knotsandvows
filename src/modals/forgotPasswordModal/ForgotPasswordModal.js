@@ -84,14 +84,13 @@ class ForgotPassword extends Component {
     renderForgotPassword = () =>{
         return this.props.hash == null ?
         (<div className={styles.forgotPassword}>
-            <div className="text-center">Forgot Password</div>
+            <div className={styles.header}>Reset Password</div>
             <div className="mt-5">{this.props.message}</div>
             <Form style={{ zIndex: '10000' }} className="position-relative">
                 <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleFormChange(e)} />
             </Form>
-            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: "space-between" }}>
-                {/* <span><Button color="danger" className={`${styles.button} ${styles.forgotButton}`} onClick={this.showSignIn}>CANCEL</Button></span> */}
-                <span><Button color="danger" className={`${styles.button} ${styles.forgotButton}`} onClick={this.validateForm}>Send</Button></span>
+            <div className="text-center mt-4">
+                <Button color="danger" className="primary-button" onClick={this.validateForm}>Send</Button>
             </div>
         </div>) : null;
     }
