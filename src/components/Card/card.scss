@@ -12,7 +12,8 @@
 
 .cardImage {
   width: 100%;
-  height: 16.194rem;
+  @include height(250);
+  // height: 16.194rem;
   @include borderRadius(20,20,0,0);
 }
 
@@ -71,13 +72,18 @@
 // category card styles
 
 .categoryCard {
-  margin-bottom: 3rem;
   @include borderRadius(20);
+  @include margin(16,0,48);
+
+  &.carouselCard {
+    @include margin(16,0,16);
+  }
 }
 
 .categoryBody {
   background-color: #f7f7f7;
   @include borderRadius(0,0,20,20);
+  @include height(112);
 }
 
 .cardTitleCat {
@@ -139,8 +145,8 @@
 }
 
 .plainCardImage {
-    @include height(318);
-    width: auto;
-    @include borderRadius(18,18,0,0);
-    object-fit: cover;
+  @include height(318);
+  width: auto;
+  @include borderRadius(18,18,0,0);
+  object-fit: cover;
 }
