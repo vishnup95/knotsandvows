@@ -75,7 +75,7 @@ class CategoryCard extends Component {
     render() {
         return (
             <div>
-                <Card className={styles.categoryCard} onClick={this.handleCardClick}>
+                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : null}`} onClick={this.handleCardClick}>
                     <CardImg
                         className={styles.cardImage}
                         top
@@ -97,7 +97,8 @@ CategoryCard.propTypes = {
     data: PropTypes.object,
     buttonAction: PropTypes.func,
     dispatch: PropTypes.func,
-    category: PropTypes.string
+    category: PropTypes.string,
+    type: PropTypes.string
 };
 
 export default connect(
