@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as actions from '../home/actions';
+import PackageComponent from '../home/packageComponent';
 
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 
@@ -48,7 +49,13 @@ class ExclusiveDeals extends Component {
   render() {
     return(
       <div style={{marginTop:'10.33125rem'}}>
-        <JumbotronComponent data={jumbotronData[1]} items={this.props.exclusives} bgcolor="#ffffff" cardType="detailed" containerStyle="otherWrap" />
+        <JumbotronComponent data={jumbotronData[1]} containerStyle="packageWrap" bgcolor="#ffffff">
+          <div>
+            {this.props.exclusives.map((exclusivePackage, index) => {
+              return <PackageComponent key={index} details={exclusivePackage}/>;
+            })}
+          </div>     
+        </JumbotronComponent>
         <JumbotronComponent data={jumbotronData[0]} bgcolor="#f8f8f8" containerStyle="otherWrap" />
       </div>
     );
