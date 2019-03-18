@@ -44,7 +44,7 @@ class ForgotPassword extends Component {
     
         if (this.props.apiStatus == true) {
             if (this.props.hash != null){
-                this.props.dispatch(modalActions.showModal(`Password reseted successfully`));
+                this.props.dispatch(modalActions.showModal(`Password changed successfully`));
             }else{
                 this.props.dispatch(modalActions.showModal(`A link to reset your password has been sent to ${this.state.email} address`));
             }
@@ -63,7 +63,7 @@ class ForgotPassword extends Component {
                 this.setState({error: ''});
                 this.props.dispatch(actions.resetPassword(data));
               } else {
-                this.setState({error: 'Password do not match!'});
+                this.setState({error: 'Passwords do not match!'});
               }
         }else{
             let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
@@ -79,14 +79,17 @@ class ForgotPassword extends Component {
 
     handleFormChange = (e) => {
         this.setState({[e.target.id]: e.target.value});
+        if (!this.state.password || !this.state.email) {
+            this.setState({error:''})
+        }
     }
 
     renderForgotPassword = () =>{
         return this.props.hash == null ?
         (<div className={styles.forgotPassword}>
-            <div className={styles.header}>Reset Password</div>
-            <div className="mt-5">{this.props.message}</div>
-            <Form style={{ zIndex: '10000' }} className="position-relative">
+            <div className={styles.header}>Forgot Password</div>
+            <div className={styles.message}>{this.props.message}</div>
+            <Form className="position-relative">
                 <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleFormChange(e)} />
             </Form>
             <div className="text-center mt-4">
@@ -98,17 +101,16 @@ class ForgotPassword extends Component {
     renderResetPassword = () =>{
         return this.props.hash != null ?
         (<div className={styles.forgotPassword}>
-            <div className="text-center">Reset Password</div>
-            <p className="text-center">You are resetting the password for ganesh@qburst.com</p>
-            <p className="text-center">{this.props.message}</p>
-            <Form style={{ zIndex: '10000' }} className="position-relative">
+            <div className={styles.header}>Reset Password</div>
+            <div className={styles.message}>You are resetting the password for {this.props.email}</div>
+            <Form className="position-relative mt-3">
                 <InputField placeHolder="New Password" id="password" type="password" ref={this.passwordRef} onChange={e => this.handleFormChange(e)} />
                 <InputField placeHolder="Confirm password" id="confirmPassword" type="password" ref={this.confirmPasswordRef} onChange={e => this.handleFormChange(e)} />
             </Form>
-            <div className="mt-5">{this.state.error}</div>
-            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: "space-between" }}>
-                {/* <span><Button color="danger" className={`${styles.button} ${styles.forgotButton}`} onClick={this.showSignIn}>CANCEL</Button></span> */}
-                <span><Button color="danger" className={`${styles.button} ${styles.forgotButton}`} onClick={this.validateForm}>Reset</Button></span>
+            
+            <div className="text-center mt-4 position-relative">
+                <Button color="danger" className="primary-button" onClick={this.validateForm}>Reset</Button>
+                <div className={styles.error}>{this.state.error}</div>
             </div>
         </div>) : null;
     }

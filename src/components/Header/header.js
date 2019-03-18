@@ -27,6 +27,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 import styles from './header.scss';
+import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
 import ForgotPassword from "../../modals/forgotPasswordModal/ForgotPasswordModal"
 
@@ -144,8 +145,9 @@ class Header extends Component {
         if (this.props.location.search != prevProps.location.search){
             if (this.props.location.pathname === "/resetpassword"){
                 var hashValue = queryString.parse(this.props.location.search).code;
+                var email = queryString.parse(this.props.location.search).email;
                 if (hashValue){
-                    this.setState({hashValue: hashValue});
+                    this.setState({hashValue: hashValue, email});
                     this.toggleResetPasswordModal();
                 }
             }
@@ -262,10 +264,10 @@ class Header extends Component {
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>
-                <Modal isOpen={this.props.showForgotPassword} className={styles.forgotContainer} toggle={this.toggleForgotPasswordModal} centered={true}>
+                <Modal isOpen={this.props.showForgotPassword} className={modalStyles.forgotContainer} toggle={this.toggleForgotPasswordModal} centered={true}>
                     <ForgotPassword></ForgotPassword>
                 </Modal>
-                <Modal isOpen={this.props.showResetPassword} toggle={this.toggleResetPasswordModal} centered={true}>
+                <Modal isOpen={this.props.showResetPassword} toggle={this.toggleResetPasswordModal} className={modalStyles.forgotContainer} centered={true}>
                     <ForgotPassword hash={this.state.hashValue} email={this.state.email}></ForgotPassword>
                 </Modal>    
                 <div className={styles.talkBtn}>
