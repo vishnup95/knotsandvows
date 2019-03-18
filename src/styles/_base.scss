@@ -63,8 +63,9 @@ h2 {
   font-family: $roboto-medium;
   @include fontSize(16);
   @include letterSpacing(.5);
-  @include padding(10,22);
+  @include padding(12,22);
   @include borderRadius(8);
+  min-width: 10rem;
   color: $white;
   outline: none;
   border: none;
@@ -73,6 +74,7 @@ h2 {
 
   &:hover {
     color: $white;
+    background-color: $secondary-color;
     text-decoration: none;
     background-color: #E54291;
   }

@@ -10,9 +10,10 @@ import * as metadata from './metadata';
 import FooterComponent from './components/Footer/footer';
 import Header from './components/Header/header';
 import PropTypes from 'prop-types';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal } from 'reactstrap';
 import ReactGA from 'react-ga';
 import FullStory from 'react-fullstory';
+import styles from './modals/forgotPasswordModal/forgotPasswordModal.scss';
 
 const mapStateToProps = state => ({
   showModal: state.modal.show,
@@ -68,15 +69,14 @@ class App extends Component {
     {routes}
     </div>
 
-    <Modal isOpen={this.props.showModal} toggle={() => this.toggle()} className="modal-dialog-centered">
-      <ModalHeader toggle={() => this.toggle()}>Ahwanam says..</ModalHeader>
-      <ModalBody>
-        {this.props.message}
-      </ModalBody>
-      <ModalFooter>
-        <Button color="primary" onClick={() => this.navigateTo('/')}>Ok</Button>{' '}
-        {/* <Button color="secondary" onClick={() => this.toggle()}>Cancel</Button> */}
-      </ModalFooter>
+    <Modal  isOpen={this.props.showModal} toggle={() => this.toggle()} className={`${styles.forgotContainer} modal-dialog-centered`}>
+      <div className={styles.forgotPassword}>
+        <div className={styles.header}>Reset Password</div>
+        <div className="mt-5 text-center">{this.props.message}</div>
+        <div className="text-center mt-4">
+          <Button color="primary" className="primary-button" onClick={() => this.navigateTo('/')}>Ok</Button>{' '}
+        </div> 
+      </div>
     </Modal>
 
     <FooterComponent />

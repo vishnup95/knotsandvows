@@ -67,6 +67,30 @@ export function hideLogin() {
   }
 }
 
+export function showForgotPassword() {
+  return {
+    type: types.SHOW_FORGOT_PASSWORD
+  }
+}
+
+export function hideForgotPassword() {
+  return {
+    type: types.HIDE_FORGOT_PASSWORD
+  }
+}
+
+export function showResetPassword() {
+  return {
+    type: types.SHOW_RESET_PASSWORD
+  }
+}
+
+export function hideResetPassword() {
+  return {
+    type: types.HIDE_RESET_PASSWORD
+  }
+}
+
 export function forgotPasswordRequest(data) {
   return {
     types: [
@@ -98,5 +122,16 @@ export function autheticateWithSocialData(data) {
       types.LOAD_SIGNIN_FAILURE
     ],
     promise: client => client.post('/api/UserAuth/sociallogin', data)
+  };
+}
+
+export function verifyEmail(code, email) {
+  return {
+    types: [
+      types.LOAD_VERIFY_EMAIL,
+      types.LOAD_VERIFY_EMAIL_SUCCESS,
+      types.LOAD_VERIFY_EMAIL_FAILURE
+    ],
+    promise: client => client.get(`/api/UserAuth/verify?activation_code=`+code+"&email="+email)
   };
 }

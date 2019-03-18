@@ -4,8 +4,11 @@ const initialState = {
   user: null,
   loading: false,
   showLogin: false,
+  showForgotPassword: false,
+  showResetPassword: false,
   error: null,
   message: '',
+  apiStatus : null
 };
 
 const session = (state = initialState, action) => {
@@ -85,6 +88,7 @@ const session = (state = initialState, action) => {
     case types.SHOW_LOGIN:
       return {
         ...state,
+        message: '',
         showLogin: true
       };
 
@@ -94,27 +98,63 @@ const session = (state = initialState, action) => {
         showLogin: false
       };
 
+      case types.SHOW_FORGOT_PASSWORD:
+      return {
+        ...state,
+        message: '',
+        apiStatus : null,
+        showForgotPassword: true
+      };
+
+    case types.HIDE_FORGOT_PASSWORD:
+      return {
+        ...state,
+        showForgotPassword: false
+      };
+
+      case types.SHOW_RESET_PASSWORD:
+      return {
+        ...state,
+        message: '',
+        apiStatus : null,
+        showResetPassword: true
+      };
+
+    case types.HIDE_RESET_PASSWORD:
+      return {
+        ...state,
+        showResetPassword: false
+      };
+
       case types.REQUEST_FORGOT:
       return {
         ...state,
+        apiStatus : null,
+        loading: false,
         message: ''
       };
 
     case types.REQUEST_FORGOT_SUCCESS:
       return {
         ...state,
+        apiStatus : true,
+        loading: true,
+        showForgotPassword: false,
         message: action.result.data.message,
       };
     
     case types.REQUEST_FORGOT_FAILURE:
     return {
       ...state,
+      loading: false,
+      apiStatus : false,
       message: action.error.message,
       };
 
     case types.RESET_PASSWORD:
       return {
         ...state,
+        apiStatus : null,
         loading: true,
         message: ''
       };
@@ -122,6 +162,8 @@ const session = (state = initialState, action) => {
     case types.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
+        showResetPassword: false,
+        apiStatus : true,
         message: action.result.data.message,
         loading: false
       };
@@ -129,6 +171,31 @@ const session = (state = initialState, action) => {
     case types.RESET_PASSWORD_FAILURE:
       return {
         ...state,
+        apiStatus : false,
+        message: action.error.message,
+        loading: false
+      };
+
+    case types.LOAD_VERIFY_EMAIL:
+      return {
+        ...state,
+        apiStatus : null,
+        loading: true,
+        message:''
+      };
+
+    case types.LOAD_VERIFY_EMAIL_SUCCESS:
+      return {
+        ...state,
+        apiStatus: true,
+        loading: false,
+        message: action.result.data.message,
+      };
+
+    case types.LOAD_VERIFY_EMAIL_FAILURE:
+      return {
+        ...state,
+        apiStatus: false,
         message: action.error.message,
         loading: false
       };
