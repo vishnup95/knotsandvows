@@ -72,9 +72,9 @@ class App extends Component {
     <Modal  isOpen={this.props.showModal} toggle={() => this.toggle()} className={`${styles.forgotContainer} modal-dialog-centered`}>
       <div className={styles.forgotPassword}>
         <div className={styles.header}>Reset Password</div>
-        <div className="mt-5 text-center">{this.props.message}</div>
-        <div className="text-center mt-4">
-          <Button color="primary" className="primary-button" onClick={() => this.navigateTo('/')}>Ok</Button>{' '}
+        <div className={styles.message}>{this.props.message}</div>
+        <div className="text-center mt-5">
+          <Button color="primary" className="primary-button" onClick={() => this.navigateTo('/')}>OK</Button>{' '}
         </div> 
       </div>
     </Modal>
