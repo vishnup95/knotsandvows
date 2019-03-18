@@ -80,8 +80,12 @@ class Header extends Component {
             this.props.dispatch(homeActions.fetchCategories());
         }
     }
-
+    
     componentDidMount() {
+
+        if (localStorage && localStorage.getItem('token')) {
+            this.props.dispatch(actions.fetchMyProfile());
+        } 
         var hashValue = queryString.parse(this.props.location.search).code;
         if (hashValue){
             this.toggleResetPasswordModal();
@@ -125,14 +129,13 @@ class Header extends Component {
 
     logout = () => {
         this.props.dispatch(actions.logoutProcedure(this.props.history));
-        // this.props.dispatch(push('/'));
+        // this.props.dispatch(replace('/'));
     }
 
     shortName = (userName) => {
         let name = userName;
         var initials = name.match(/\b\w/g) || [];
         initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-        console.log(initials);
         return (initials);
     }
    

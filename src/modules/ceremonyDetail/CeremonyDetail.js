@@ -55,8 +55,6 @@ class CeremonyDetail extends Component {
   }
 
   handleViewAllClick = (category) => {
-    console.log(category);
-
     this.navigateTo(`/categories/${category}`)
   }
 

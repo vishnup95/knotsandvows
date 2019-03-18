@@ -135,3 +135,14 @@ export function verifyEmail(code, email) {
     promise: client => client.get(`/api/UserAuth/verify?activation_code=`+code+"&email="+email)
   };
 }
+
+export function fetchMyProfile() {
+  return {
+    types: [
+      types.LOAD_PROFILE,
+      types.LOAD_PROFILE_SUCCESS,
+      types.LOAD_PROFILE_FAILURE
+    ],
+    promise: client => client.get('/api/myprofile')
+  };
+}

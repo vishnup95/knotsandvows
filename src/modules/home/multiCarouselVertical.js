@@ -48,12 +48,12 @@ export default class VerticalMultiCarousel extends Component {
       initialSlide: 0,
       vertical: true,
       verticalSwiping: false,
-      beforeChange: function(currentSlide, nextSlide) {
-        console.log("before change", currentSlide, nextSlide);
-      },
-      afterChange: function(currentSlide) {
-        console.log("after change", currentSlide);
-      }
+      // beforeChange: function(currentSlide, nextSlide) {
+      //   ("beforconsole.loge change", currentSlide, nextSlide);
+      // },
+      // afterChange: function(currentSlide) {
+      //   console.log("after change", currentSlide);
+      // }
     };
 
     return (

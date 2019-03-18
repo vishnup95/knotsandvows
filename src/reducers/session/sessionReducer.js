@@ -200,6 +200,28 @@ const session = (state = initialState, action) => {
         loading: false
       };
 
+      case types.LOAD_PROFILE:
+      return {
+        ...state,
+        loading: true,
+        message: ''
+      };
+
+    case types.LOAD_PROFILE_SUCCESS:
+      return {
+        ...state,
+        message: action.result.data.message,
+        user: result.data.data.user,
+        loading: false
+      };
+
+    case types.LOAD_PROFILE_FAILURE:
+      return {
+        ...state,
+        message: action.error.message,
+        loading: false
+      };
+
     default:
       return state;
   }

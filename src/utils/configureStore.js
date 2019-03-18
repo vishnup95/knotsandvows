@@ -17,7 +17,8 @@ let baseUrl =
 
 const client = axios.create({
   baseURL: baseUrl,
-  withCredentials: true
+  withCredentials: true,
+  headers: authHeader()
 });
 
 export default (options = { logger: true }) => {
@@ -70,3 +71,12 @@ export default (options = { logger: true }) => {
     history
   };
 };
+
+export function authHeader() {
+  // return authorization header with basic auth credentials
+  if (!isServer && window.localStorage && window.localStorage.getItem('token')) {
+      return { 'Authorization': localStorage.getItem('token') };
+  } else {
+      return {};
+  }
+}
