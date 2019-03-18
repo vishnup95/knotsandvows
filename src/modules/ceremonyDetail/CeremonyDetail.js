@@ -92,7 +92,7 @@ class CeremonyDetail extends Component {
     }
     return (
       <div className="full-height">
-        {this.props.ceremonyLoading && <LoaderComponent/>}
+        {this.props.ceremonyLoading && <LoaderComponent />}
         {details &&
 
           <div className={styles.ceremonyDetail}>
@@ -105,8 +105,8 @@ class CeremonyDetail extends Component {
             <Container>
               <Row>
                 <Col>
-                  <h3>Plan Your Wedding - Find and book your dream team
-            </h3>
+                  {/* <h3>Plan Your Wedding - Find and book your dream team
+            </h3> */}
                 </Col>
                 {/* <Col>Select City</Col> */}
                 {details.filters && details.filters.length > 0 &&
@@ -123,6 +123,26 @@ class CeremonyDetail extends Component {
               </Row>
               <Row>
                 <Col className="no-padding">
+                  <h3>{categories[0].name}</h3>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="no-padding">
+                  <HorizontalSlider data={categories[0].vendors} category={categories[0].page_name} buttonAction={this.handleViewAllClick} />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <p className={styles.viewAll} onClick={() => this.handleViewAllClick(categories[0].page_name)} aria-hidden >View All</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                <h2 className="text-center">You may also be interested in</h2>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="no-padding">
                   <HorizontalSlider data={categories} type='small' />
                 </Col>
               </Row>
@@ -135,7 +155,7 @@ class CeremonyDetail extends Component {
                         <Col>
 
                           <h3>{category.name}</h3>
-                          <p className={styles.subTitle}>{category.sub_title}</p>
+                          {/* <p className={styles.subTitle}>{category.sub_title}</p> */}
                         </Col>
                       </Row>
 
