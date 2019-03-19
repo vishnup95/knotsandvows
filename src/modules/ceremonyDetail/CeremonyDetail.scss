@@ -6,6 +6,15 @@
   div[class^="container"] {
     max-width: 85%;
   }
+
+  h3 {
+    font-family: $frank-regular;
+    color: $black;
+    @include fontSize(30);
+    @include margin(0,0,20);
+    line-height: 1.3;
+    margin-top: 2rem;
+  }
 }
 
 .ceremony-cover {
@@ -42,15 +51,6 @@
   justify-content: flex-end;
   align-items: center;
   @include padding(0,0,24);
-}
-
-h3 {
-  font-family: $frank-regular;
-  color: $black;
-  @include fontSize(30);
-  @include margin(0,0,20);
-  line-height: 1.3;
-  margin-top: 2rem;
 }
 
 .sub-title {
