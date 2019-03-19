@@ -30,6 +30,7 @@ import styles from './header.scss';
 import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
 import ForgotPassword from "../../modals/forgotPasswordModal/ForgotPasswordModal"
+import { isLoggedIn } from '../../utils/utilities';
 
 const mapStateToProps = state => ({
     route: state.router.location.pathname,
@@ -83,6 +84,10 @@ class Header extends Component {
     }
 
     componentDidMount() {
+
+        if (isLoggedIn()) {
+            this.props.dispatch(actions.fetchMyProfile());
+        } 
         var hashValue = queryString.parse(this.props.location.search).code;
         if (hashValue) {
             this.toggleResetPasswordModal();
@@ -125,15 +130,17 @@ class Header extends Component {
     }
 
     logout = () => {
-        this.props.dispatch(actions.logoutProcedure(this.props.history));
-        // this.props.dispatch(push('/'));
+        if(localStorage){
+            localStorage.clear();
+        }
+        this.props.dispatch(actions.clearUserData());
+        this.navigateTo("/");
     }
 
     shortName = (userName) => {
         let name = userName;
         var initials = name.match(/\b\w/g) || [];
         initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-        console.log(initials);
         return (initials);
     }
 
@@ -158,8 +165,17 @@ class Header extends Component {
                     this.props.dispatch(actions.verifyEmail(activationCode, email));
                 }
             }
-        }
-
+            else if (queryString.parse(this.props.location.search).login){
+                // const { from } = this.props.location.state || { from: { pathname: '/' } }
+                var login = queryString.parse(this.props.location.search).login;
+                if (login == "true" && !isLoggedIn()) {
+                    this.toggleModal();
+                }else{
+                    this.props.dispatch(replace("/"));
+                }
+            }   
+        }   
+        
         if (this.props.location.pathname === "/verify") {
             if (this.props.apiStatus == true) {
                 this.props.dispatch(modalActions.showModal(`Email Verified Successfully`));
@@ -183,14 +199,14 @@ class Header extends Component {
                             </span>
                         </DropdownToggle>
 
-                        <DropdownMenu className={styles.userDropdown}>
-                            <DropdownItem className="text-center">
+                        <DropdownMenu className={styles.userDropdown} >
+                            <DropdownItem className="text-center" onClick={() => this.navigateTo("/profile")}>
                                 Profile
                         </DropdownItem>
                             <DropdownItem className="text-center">
                                 My bookings
                         </DropdownItem>
-                            <DropdownItem className="text-center" onClick={this.logout}>
+                            <DropdownItem className="text-center" onClick={() => this.logout()}>
                                 Logout
                         </DropdownItem>
                         </DropdownMenu>
@@ -221,7 +237,7 @@ class Header extends Component {
                 <div className={styles.navSmall}>
 
                     <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.png')} alt="logo" />
+                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
                     </NavbarBrand>
                     <Nav className={`${styles.iconNav}`} navbar>
                         {/* <NavItem>

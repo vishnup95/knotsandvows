@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Jumbotron, Row, Col } from 'reactstrap';
 import { imagePath } from '../../utils/assetUtils';
 import { Link } from 'react-router-dom';
 import styles from './footer.scss';
+import * as actions from '../../modules/home/actions';
 import TalkToWeddingPlanner from '../TalkToWeddingPlanner/talkToWeddingPlanner';
 
 const mapStateToProps = state => ({
     ceremonies: state.home.ceremonies
-  });
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({ ...actions }),
+    dispatch
+});
 
 class FooterFixedComponent extends Component {
+
+    componentWillMount() {
+        if (this.props.ceremonies.length === 0) {
+            this.props.dispatch(actions.fetchCeremonies());
+        }
+    }
+
     render() {
         return (
             <Jumbotron className={`${styles.footerContainer} text-white`}>
@@ -54,7 +68,7 @@ class FooterFixedComponent extends Component {
                                 <Link to={'/about'}>About</Link>
                             </li>
                             <li>
-                                <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'}/>
+                                <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} />
                             </li>
                         </ul>
                     </Col>
@@ -62,8 +76,8 @@ class FooterFixedComponent extends Component {
                         <p>Plan your events</p>
                         <ul>
                             {
-                                this.props.ceremonies.map( (ceremony, index) => {
-                                    return(
+                                this.props.ceremonies.map((ceremony, index) => {
+                                    return (
                                         <li key={index}>
                                             <Link to={`/ceremonies/${ceremony.page_name}`}>{ceremony.ceremony_name}</Link>
                                         </li>
@@ -87,7 +101,8 @@ class FooterFixedComponent extends Component {
                             </span>
                             <p className="">© 2019  All Rights Reserved</p>
                             <p className="">Seven Vows event Planners</p>
-                            <p className="">Terms & Conditions   |   Privacy Policy</p>
+                            <p className="">
+                                <Link to={'/terms-and-conditions'} target="_blank">Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link></p>
                         </div>
                     </Col>
                 </Row>
@@ -98,8 +113,10 @@ class FooterFixedComponent extends Component {
 
 FooterFixedComponent.propTypes = {
     ceremonies: PropTypes.array,
+    dispatch: PropTypes.func
 };
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps
 )(FooterFixedComponent);

@@ -30,6 +30,12 @@
 p {
   @include fontSize(16);
   @include letterSpacing(.3);
+  a {
+    color: inherit;
+    &:hover {
+      color: inherit;
+    }
+  }
 
 }
 

@@ -10,6 +10,7 @@ const CeremonyDetailReducer = (state = initialState, action) => {
     case types.LOAD_CEREMONY_DETAILS:
       return {
         ...state,
+        details: null,
         loading: true
       };
 

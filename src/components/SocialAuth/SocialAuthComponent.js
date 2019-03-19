@@ -40,7 +40,7 @@ class SocialAuthComponent extends Component {
             if (response && response.accessToken){
                 this.signIn(response.accessToken,"google");
             }else{
-                console.log(response.error);
+                // console.log(response.error);
             }
         }
 
@@ -48,7 +48,7 @@ class SocialAuthComponent extends Component {
             if (response && response.accessToken){
                 this.signIn(response.accessToken,"facebook");
             }else{
-                console.log(response);
+                // console.log(response);
             }
         }
 

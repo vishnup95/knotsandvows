@@ -6,6 +6,15 @@
   div[class^="container"] {
     max-width: 85%;
   }
+
+  h3 {
+    font-family: $frank-regular;
+    color: $black;
+    @include fontSize(30);
+    @include margin(0,0,20);
+    line-height: 1.3;
+    margin-top: 2rem;
+  }
 }
 
 .ceremony-cover {
@@ -44,15 +53,6 @@
   @include padding(0,0,24);
 }
 
-h3 {
-  font-family: $frank-regular;
-  color: $black;
-  @include fontSize(30);
-  @include margin(0,0,20);
-  line-height: 1.3;
-  margin-top: 2rem;
-}
-
 .sub-title {
   @include fontSize(20);
 }
@@ -61,4 +61,16 @@ h3 {
   color: $secondary-color;
   @include fontSize(18);
   font-family: $roboto-medium;
+  width: max-content;
+  cursor: pointer;
+}
+
+// Browse category specific styles
+
+.subTitle {
+  font-family: $roboto-regular;
+  @include fontSize(18);
+  color: $black;
+  line-height: 1.56;
+  text-align: center;
 }

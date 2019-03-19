@@ -69,7 +69,6 @@ const session = (state = initialState, action) => {
       };
 
     case types.LOAD_LOGOUT_SUCCESS:
-      result = action.result || {};
       return {
         ...state,
         user: null,
@@ -196,6 +195,28 @@ const session = (state = initialState, action) => {
       return {
         ...state,
         apiStatus: false,
+        message: action.error.message,
+        loading: false
+      };
+
+      case types.LOAD_PROFILE:
+      return {
+        ...state,
+        loading: true,
+        message: ''
+      };
+
+    case types.LOAD_PROFILE_SUCCESS:
+      return {
+        ...state,
+        message: action.result.data.message,
+        user: result.data.data.user,
+        loading: false
+      };
+
+    case types.LOAD_PROFILE_FAILURE:
+      return {
+        ...state,
         message: action.error.message,
         loading: false
       };
