@@ -50,16 +50,12 @@ const listData = [
   }
 ];
 
-const jumbotronData = [
+const jumbotronData = 
   {
     title: 'Need Help?',
     buttonText: 'Talk to our wedding planner!',
     subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by click the Chat button below and they’ll help you get your party started.'
-  },
-  {
-    title: 'Exclusive Ahwanam Deals'
-  }
-];
+  };
 class TermsAndConditions extends Component {
   render() {
     return (
@@ -95,7 +91,7 @@ class TermsAndConditions extends Component {
           }
         </Container>
 
-          <JumbotronComponent data={jumbotronData[0]} bgcolor="#f8f8f8" isTalkToAhwanam={true} containerStyle="otherWrap"/>
+          <JumbotronComponent data={jumbotronData} bgcolor="#f8f8f8" isTalkToAhwanam={true} containerStyle="otherWrap"/>
       </div>
     );
   }

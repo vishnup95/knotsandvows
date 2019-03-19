@@ -104,7 +104,7 @@ a.button {
   .details {
     // width: max-content;
     @include width(787);
-    padding-top: 2.5rem; 
+    padding-top: 2.5rem;
   }
 
   .featureImage {
@@ -208,7 +208,7 @@ a.button {
   &:first-child {
     @include margin(0,0,40,0);
   }
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -217,8 +217,8 @@ a.button {
     width: 100%;
     height: 35%;
     background-color: rgba(0, 0, 0, 0.7);
-    border-bottom-left-radius: 20px; 
-    border-bottom-right-radius: 20px; 
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   h4 {
@@ -242,7 +242,7 @@ a.button {
 }
 
 .verticalMultiItem {
-  width: 100%;  
+  width: 100%;
   cursor: pointer;
   @include height(262);
   display: flex !important;
@@ -255,7 +255,7 @@ a.button {
     width: 45%;
     @include borderRadius(18,0,0,18);
     background-size: cover;
-    background-repeat: none; 
+    background-repeat: none;
   }
 
   .detailContainer {
@@ -275,13 +275,12 @@ a.button {
       font-family: $roboto-medium;
       position: absolute;
       bottom: 0;
-      right: 2.5rem;  
+      right: 2.5rem;
     }
 
     .pdetail {
       margin-top: 1rem;
-      height: 7rem;
-
+      height: 6.8rem;
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
@@ -293,6 +292,9 @@ a.button {
       font-family: $frank-medium;
       @include fontSize(30);
       color: $white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .handle {
@@ -327,11 +329,13 @@ a.button {
       right: -4.5%;
       top: 35%;
     }
+
     h3 {
       color: $black !important;
     }
   }
 }
+
 .carousel-header {
   font-family: $frank-regular;
   @include fontSize(58);
@@ -349,6 +353,7 @@ a.button {
 
 .carousel-btn {
   @include fontSize(22);
+
   &:hover {
     color: $white;
     text-decoration: none;
