@@ -171,7 +171,7 @@ export default class HorizontalSlider extends Component {
                                 <div key={index} className={styles.sliderItem}>
                                     <div className={styles.sliderWrap}>
                                         {/* <img className={styles.vendorImage} src={item.thumb_image} alt="Icon" /> */}
-                                        <div className={styles.categoryName}>{item.page_name}</div>
+                                        <div className={styles.categoryName} aria-hidden onClick={() => this.props.buttonAction(index)}>{item.name}</div>
                                     </div>
                                 </div>
                             );
