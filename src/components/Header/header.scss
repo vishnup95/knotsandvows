@@ -3,8 +3,8 @@
 @import '../../variables/utils';
 
 .logo-test {
-  @include width(143);
-  height: auto;
+  @include height(50);
+  width: auto;
   max-width: 143px;
 }
 
