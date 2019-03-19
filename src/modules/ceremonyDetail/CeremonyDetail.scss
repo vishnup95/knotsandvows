@@ -64,3 +64,13 @@ h3 {
   width: max-content;
   cursor: pointer;
 }
+
+// Browse category specific styles
+
+.subTitle {
+  font-family: $roboto-regular;
+  @include fontSize(18);
+  color: $black;
+  line-height: 1.56;
+  text-align: center;
+}

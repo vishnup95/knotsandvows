@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
-import { InputGroup, Button, InputGroupAddon, Input, Jumbotron, Container, Row, Col } from 'reactstrap';
-import styles from './categoryListing.scss';
-import * as actions from '../home/actions';
+import * as actions from '../ceremonyDetail/actions';
+import { Container, Row, Col } from 'reactstrap';
+import styles from '../ceremonyDetail/CeremonyDetail.scss';
+import LoaderComponent from '../../components/Loader/loader';
+import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-import NoResultComponent from '../../components/noResult/noResult';
-import CardComponent from '../../components/Card/card';
+import CategorySection from '../ceremonyDetail/categorySection';
 
 const mapStateToProps = state => ({
-  user: state.session.user,
-  categories: state.home.categories,
+  ceremonyDetails: state.ceremonyDetails.details,
+  ceremonyLoading: state.ceremonyDetails.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,21 +28,17 @@ const jumbotronData = {
 };
   
 class CategoryListing extends Component {
-  state = {filteredItems : [], searchTerm: ''};
-  static fetchData(store) {
-    // Normally you'd pass action creators to "connect" from react-redux,
-    // but since this is a static method you don't have access to "this.props".
+  state = {
+    categories: [],
+    fixedCategories: []
+  }
 
-    // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
-    return store.dispatch(actions.fetchCategories());
+  static fetchData(store) {
+    return store.dispatch(actions.fetchCeremonyDetails('wedding'));
   }
 
   componentWillMount() {
-    if (this.props.categories.length === 0) {
-      this.props.dispatch(actions.fetchCategories());
-    } else {
-      this.setState({filteredItems: this.props.categories});
-    }
+    this.props.dispatch(actions.fetchCeremonyDetails('wedding'));
   }
 
   componentDidMount() {
@@ -49,22 +46,12 @@ class CategoryListing extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({filteredItems: nextProps.categories});
-  }
-
-  onSearchInputChange(e) {
-    this.setState({searchTerm: e.target.value});
-
-    if (e.target.value.length === 0) {
-      this.setState({ filteredItems: this.props.categories });    
-    } else {
-      let filteredItems = this.props.categories.filter((item) => {
-        let itemName = item.name.toLowerCase();
-        return itemName.indexOf(
-          e.target.value.toLowerCase()) !== -1
-      });
-  
-      this.setState({filteredItems});
+    if(nextProps.ceremonyDetails !== null) {
+      console.log
+      let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
+        return item.vendors !== null && item.vendors.length > 0
+      })
+      this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
     }
   }
 
@@ -72,37 +59,42 @@ class CategoryListing extends Component {
     this.props.dispatch(push(route));
   }
 
+  handleCategoryChange = (index) => {
+    console.log(index);
+    let updatedCategories = this.state.fixedCategories.slice();
+    let temp = updatedCategories[0];
+    updatedCategories[0] = updatedCategories[index];
+    updatedCategories[index] = temp;
+    this.setState({categories: updatedCategories});
+  }
+
   render() {
+    console.log(this.props);
     return (
-      <div style={{marginTop:'10.33125rem'}}>
-        <Jumbotron className="mb-0 bg-white">
-            <h1 className="text-center">Browse Categories</h1>
-            <hr className="mt-3 mb-5" />
-
-            <InputGroup className={styles.searchField}>
-              <Input bsSize="lg" placeholder="Search Categories" onChange={(event) => this.onSearchInputChange(event)} value={this.state.searchTerm}/>
-              <InputGroupAddon addonType="append">
-                <Button color="danger"></Button>
-              </InputGroupAddon>
-            </InputGroup>
-
-            {
-              this.state.filteredItems.length === 0 ? <NoResultComponent/> : 
-
-              <Container>
-                <Row>
-                  {
-                    this.state.filteredItems.map((item, index) => {
-                      return  <Col xs="12" sm="4" key={index}>
-                                <CardComponent cardDetails={item} cardType="plain"/>
-                              </Col>
-                    })
-                  }
-                </Row>
-              </Container>
-            }
-
-        </Jumbotron>
+      <div className="full-height" style={{marginTop: '14rem'}}>
+          <div className={styles.ceremonyDetail}>
+            <Container>
+              <Row>
+                <Col className="mb-4">
+                  <h2 className="text-center">Browse all vendors</h2>
+                  <p className={styles.subTitle}>Guaranteed best prices from all our vendors</p>
+                </Col>
+              </Row>
+              {this.props.ceremonyLoading && <LoaderComponent />}
+              <Row className="mb-3">
+                <Col className="no-padding">
+                  <HorizontalSlider data={this.state.fixedCategories} type='small' buttonAction={this.handleCategoryChange}/>
+                </Col>
+              </Row>
+              {
+                this.state.categories.map((category, index) => {
+                  return (
+                    <CategorySection category={category} key={index} dispatch={this.props.dispatch}/>
+                  );
+                })
+              }
+            </Container>
+          </div>
 
         <JumbotronComponent  data={jumbotronData} bgcolor="#f8f8f8" />
       </div>
@@ -112,9 +104,9 @@ class CategoryListing extends Component {
 
 CategoryListing.propTypes = {
   user: PropTypes.object,
+  ceremonyDetails: PropTypes.object,
+  ceremonyLoading: PropTypes.bool,
   dispatch: PropTypes.func,
-  categories: PropTypes.array,
-  router: PropTypes.object,
 };
 
 export default connect(
