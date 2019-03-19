@@ -88,6 +88,12 @@ const LoadableCeremonyDetail = Loadable({
     return <div>Loading...</div>;
   }
 });
+const LoadableTermsAndConditions = Loadable({
+  loader: () => import(/* webpackChunkName: 'termsandconditions' */ './modules/TermsAndConditions/termsAndConditions'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
 
 const PrivatePage = () => <div> private Page </div>;
 
@@ -124,7 +130,10 @@ const routes = (
     <Route path="/sample" component={LoadableSample} />
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
     <Route path="/:category_name/:vendor_name" component={LoadableDetail} />
+    <Route path="/terms-and-conditions" component={LoadableTermsAndConditions} />
+
     <SecretRoute path="/dashboard" component={PrivatePage} />
+    
     <Route component={LoadableNotFound} />
   </Switch>
   // </Suspense>
