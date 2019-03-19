@@ -143,7 +143,7 @@ const routes = (
     <Route path="/sample" component={LoadableSample} />
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
     <Route path="/:category_name/:vendor_name" component={LoadableDetail} />
-    <Route path="/terms-and-conditions" component={LoadableTermsAndConditions} />
+    <Route exact path="/terms-and-conditions" component={LoadableTermsAndConditions} />
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <Route path="/profile" component={LoadableMyProfile} />
     <Route component={LoadableNotFound} />
