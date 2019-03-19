@@ -39,3 +39,7 @@ export const RESET_PASSWORD_FAILURE = 'my-project/session/RESET_PASSWORD_FAILURE
 export const LOAD_VERIFY_EMAIL = 'my-project/session/LOAD_VERIFY_EMAIL';
 export const LOAD_VERIFY_EMAIL_SUCCESS = 'my-project/session/LOAD_VERIFY_EMAIL_SUCCESS';
 export const LOAD_VERIFY_EMAIL_FAILURE = 'my-project/session/LOAD_VERIFY_EMAIL_FAILURE';
+
+export const LOAD_PROFILE = 'my-project/session/LOAD_PROFILE';
+export const LOAD_PROFILE_SUCCESS = 'my-project/session/LOAD_PROFILE_SUCCESS';
+export const LOAD_PROFILE_FAILURE = 'my-project/session/LOAD_PROFILE_FAILURE';

@@ -46,7 +46,6 @@ const ProductsReducer = (state = initialState, action) => {
       case types.LOAD_FILTERS:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_FILTERS_SUCCESS:
@@ -54,7 +53,6 @@ const ProductsReducer = (state = initialState, action) => {
       return {
         ...state,
         filterData: result.data.data,
-        loading: false
       };
 
     case types.LOAD_FILTERS_FAILURE:
@@ -62,13 +60,11 @@ const ProductsReducer = (state = initialState, action) => {
         ...state,
         filterData: initialState.filterData,
         error: action.error.message,
-        loading: false
       };
 
       case types.LOAD_OTHER_CATEGORIES:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_OTHER_CATEGORIES_SUCCESS:
@@ -76,7 +72,6 @@ const ProductsReducer = (state = initialState, action) => {
       return {
         ...state,
         other_categories: result.data.data.results,
-        loading: false
       };
 
     case types.LOAD_OTHER_CATEGORIES_FAILURE:
@@ -84,7 +79,6 @@ const ProductsReducer = (state = initialState, action) => {
         ...state,
         other_categories: [],
         error: action.error.message,
-        loading: false
       };
 
     default:

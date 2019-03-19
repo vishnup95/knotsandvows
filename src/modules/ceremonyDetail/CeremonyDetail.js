@@ -61,6 +61,10 @@ class CeremonyDetail extends Component {
     }
   }
 
+  handleViewAllClick = (category) => {
+    this.navigateTo(`/categories/${category}`)
+  }
+  
   handleCategoryChange = (index) => {
     let updatedCategories = this.state.fixedCategories.slice();
     let temp = updatedCategories[1];

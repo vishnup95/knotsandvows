@@ -19,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class FooterFixedComponent extends Component {
+
     componentWillMount() {
         if (this.props.ceremonies.length === 0) {
             this.props.dispatch(actions.fetchCeremonies());
@@ -67,7 +68,7 @@ class FooterFixedComponent extends Component {
                                 <Link to={'/about'}>About</Link>
                             </li>
                             <li>
-                                <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'}/>
+                                <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} />
                             </li>
                         </ul>
                     </Col>
@@ -75,8 +76,8 @@ class FooterFixedComponent extends Component {
                         <p>Plan your events</p>
                         <ul>
                             {
-                                this.props.ceremonies.map( (ceremony, index) => {
-                                    return(
+                                this.props.ceremonies.map((ceremony, index) => {
+                                    return (
                                         <li key={index}>
                                             <Link to={`/ceremonies/${ceremony.page_name}`}>{ceremony.ceremony_name}</Link>
                                         </li>
@@ -100,7 +101,8 @@ class FooterFixedComponent extends Component {
                             </span>
                             <p className="">© 2019  All Rights Reserved</p>
                             <p className="">Seven Vows event Planners</p>
-                            <p className="">Terms & Conditions   |   Privacy Policy</p>
+                            <p className="">
+                                <Link to={'/terms-and-conditions'} target="_blank">Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link></p>
                         </div>
                     </Col>
                 </Row>
@@ -111,7 +113,7 @@ class FooterFixedComponent extends Component {
 
 FooterFixedComponent.propTypes = {
     ceremonies: PropTypes.array,
-    dispatch: PropTypes.func,
+    dispatch: PropTypes.func
 };
 
 export default connect(
