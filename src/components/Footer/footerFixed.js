@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Jumbotron, Row, Col } from 'reactstrap';
 import { imagePath } from '../../utils/assetUtils';
 import { Link } from 'react-router-dom';
 import styles from './footer.scss';
-import TalkToWeddingPlanner from '../TalkToWeddingPlanner/talkToWeddingPlanner';
 import * as actions from '../../modules/home/actions';
-import { bindActionCreators } from 'redux';
+import TalkToWeddingPlanner from '../TalkToWeddingPlanner/talkToWeddingPlanner';
 
 const mapStateToProps = state => ({
     ceremonies: state.home.ceremonies
-  });
+});
 
-  const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators({ ...actions }),
     dispatch
-  });
+});
+
 class FooterFixedComponent extends Component {
 
-    componentWillMount(){
+    componentWillMount() {
         if (this.props.ceremonies.length === 0) {
             this.props.dispatch(actions.fetchCeremonies());
         }
     }
+
     render() {
         return (
             <Jumbotron className={`${styles.footerContainer} text-white`}>

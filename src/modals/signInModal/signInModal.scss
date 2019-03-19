@@ -40,7 +40,6 @@
   padding: 0;
 }
 
-
 .forgotButton {
   @include padding(10.4, 12);
   @media screen and (max-width: 1300px) {
@@ -164,7 +163,9 @@
 }
 
 .image {
-  @include width(143);
+  @include height(50);
+  width: auto;
+  max-width: 143px;
   @include margin(0,25.8,0,0);
 }
 

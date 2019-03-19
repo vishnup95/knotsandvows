@@ -212,7 +212,7 @@ class SignInModal extends Component {
             <div className={styles.loginContainer}>
                 <div className={styles.loginForm}>
                     <div className={styles.logoWrap}>
-                        <img className={styles.image} src={imagePath('logo.jpg')} alt="logo"></img>
+                        <img className={styles.image} src={imagePath('logo.svg')} alt="logo"></img>
                         <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Sign in to Seven Vows' : this.state.mode === 'signUp' ? 'Create a Seven Vows account' : 'Forgot Password'}</div>
                     </div>
                     {this.renderSignIn()}

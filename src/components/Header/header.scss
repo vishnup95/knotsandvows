@@ -3,8 +3,8 @@
 @import '../../variables/utils';
 
 .logo-test {
-  @include width(143);
-  height: auto;
+  @include height(50);
+  width: auto;
   max-width: 143px;
 }
 
@@ -173,14 +173,20 @@
   height: 0;
   overflow: hidden;
   opacity: 0;
+  display: flex;
 
-  li {
-    @extend %pointer;
-    padding: 1rem 1.5rem;
+  ul {
+    padding: 0 !important;
+    li {
+      @extend %pointer;
+      padding: 1rem 1.5rem;
+      list-style: none;
+      white-space: nowrap;
 
-    a {
-      &:before {
-        display: none;
+      a {
+        &:before {
+          display: none;
+        }
       }
     }
   }
@@ -229,6 +235,7 @@
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
   border: none;
   @include borderRadius(8);
+
   &:before {
     content: '';
     height: .7rem;
@@ -253,14 +260,9 @@
     }
   }
 }
+
 .talk-btn {
   position: fixed;
-  top: 50vh;
-  right: 0;
-}
-
-//modal styles
-
-.forgotContainer {
-  @include width(680);
+  bottom: 2rem;
+  right: 2rem;
 }

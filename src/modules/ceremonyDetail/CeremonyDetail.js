@@ -4,12 +4,12 @@ import styles from './CeremonyDetail.scss';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import * as actions from './actions';
 import Select from 'react-select';
 import LoaderComponent from '../../components/Loader/loader';
-
+import CategorySection from './categorySection';
+// import { workerData } from 'worker_threads';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -23,12 +23,12 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-
 class CeremonyDetail extends Component {
-
   state = {
     ceremony: this.props.match.params.ceremony_name,
-    selectedOption: null
+    selectedOption: null,
+    categories: [],
+    fixedCategories: []
   }
 
   selectedCategory() {
@@ -36,10 +36,17 @@ class CeremonyDetail extends Component {
   }
 
   componentWillMount() {
-
     let ceremony = this.selectedCategory();
     this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
+  }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.ceremonyDetails !== null) {
+      let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
+        return item.vendors !== null && item.vendors.length > 0
+      })
+      this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -57,6 +64,14 @@ class CeremonyDetail extends Component {
   handleViewAllClick = (category) => {
     this.navigateTo(`/categories/${category}`)
   }
+  
+  handleCategoryChange = (index) => {
+    let updatedCategories = this.state.fixedCategories.slice();
+    let temp = updatedCategories[1];
+    updatedCategories[1] = updatedCategories[index+1];
+    updatedCategories[index+1] = temp;
+    this.setState({categories: updatedCategories});
+  }
 
   handleDropDownChange = (option) => {
     if (option) {
@@ -69,17 +84,9 @@ class CeremonyDetail extends Component {
     // }
   }
 
-  navigateTo(route) {
-    this.props.dispatch(push(route));
-  }
-
   render() {
     let details = this.props.ceremonyDetails;
     if (details !== null) {
-      let allCategories = details.categories;
-      var categories = allCategories.filter(function (category) {
-        return category.vendors != null && category.vendors.length > 0;
-      });
       var options = [];
       if (details.filters && details.filters.length > 0 && details.filters[0].values && details.filters[0].values.length > 0) {
         options = Array.from(details.filters[0].values, (value) => ({
@@ -88,9 +95,10 @@ class CeremonyDetail extends Component {
         }));
       }
     }
+
     return (
       <div className="full-height">
-        {this.props.ceremonyLoading && <LoaderComponent/>}
+        {this.props.ceremonyLoading && <LoaderComponent />}
         {details &&
 
           <div className={styles.ceremonyDetail}>
@@ -103,8 +111,8 @@ class CeremonyDetail extends Component {
             <Container>
               <Row>
                 <Col>
-                  <h3>Plan Your Wedding - Find and book your dream team
-            </h3>
+                  {/* <h3>Plan Your Wedding - Find and book your dream team
+            </h3> */}
                 </Col>
                 {/* <Col>Select City</Col> */}
                 {details.filters && details.filters.length > 0 &&
@@ -119,36 +127,26 @@ class CeremonyDetail extends Component {
                   </Col>
                 }
               </Row>
+              
+              {
+                this.state.fixedCategories.length > 0 ? 
+                <CategorySection category={this.state.fixedCategories[0]} dispatch={this.props.dispatch}/> : ''
+              }
+              
+              <Row>
+                <Col>
+                <h2 className="text-center">You may also be interested in</h2>
+                </Col>
+              </Row>
               <Row>
                 <Col className="no-padding">
-                  <HorizontalSlider data={categories} type='small' />
+                  <HorizontalSlider data={this.state.fixedCategories.slice(1)} type='small' buttonAction={this.handleCategoryChange}/>
                 </Col>
               </Row>
               {
-                categories.map((category, index) => {
+                this.state.categories.slice(1).map((category, index) => {
                   return (
-
-                    <div key={index} >
-                      <Row>
-                        <Col>
-
-                          <h3>{category.name}</h3>
-                          <p className={styles.subTitle}>{category.sub_title}</p>
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col className="no-padding">
-                          <HorizontalSlider data={category.vendors} category={category.page_name} buttonAction={this.handleViewAllClick} />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <p className={styles.viewAll} onClick={() => this.handleViewAllClick(category.page_name)} aria-hidden >View All</p>
-                        </Col>
-                      </Row>
-
-                    </div>
+                    <CategorySection category={category} key={index} dispatch={this.props.dispatch}/>
                   );
                 })
               }

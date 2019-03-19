@@ -4,8 +4,14 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
+const defaultPatterns = {
+    email: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$',
+    password: '^(?=.*[a-z])(?=.*[A-Z])(?=.*)[A-Za-z][A-Za-z0-9!@#$%^&*()_+]{5,19}$',
+    text: '[A-Za-z0-9]+',
+}
+
 class InputField extends Component {
-    state = {errorMessage: ''};
+   state = {errorMessage: ''};
 
     handleFocus(inputBox) {
         inputBox.parentNode.classList.add('is-focussed');
@@ -55,7 +61,7 @@ class InputField extends Component {
             <div className='input-field floating-label'>
               <input className='input-box' 
                 type={this.props.type} id={this.props.id} required={this.props.required}
-                pattern={this.props.pattern}
+                pattern={this.props.pattern || defaultPatterns[this.props.type]}
                 onFocus={() =>  this.handleFocus(event.target)} 
                 onBlur={() =>  this.handleBlur(event.target)} 
                 onInput={() =>  this.handleInput(event.target)} 

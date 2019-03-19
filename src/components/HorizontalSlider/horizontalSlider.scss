@@ -5,13 +5,10 @@
 .slider-item {
   padding: 1.4rem;
   @include width(360);
-//   @include height(80);
-
 }
 
 .slider-wrap {
   width: 100%;
-  box-shadow: 0 0 6px 0 $black-16;
   display: flex;
   align-items: center;
 }
@@ -20,15 +17,30 @@
   @include width(114.3);
   @include height(80);
 }
+
 .category-name {
-    font-family: $roboto-medium;
-    @include fontSize(28);
-  @include padding(0,30);
+  font-family: $roboto-medium;
+  @include fontSize(20);
+  color: $black;
+  opacity: .7;
+  cursor: pointer;
 
 }
+
 .add-new {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: $primary-color-25;
+  border: 1px dashed $secondary-color;
+  // @include width(403);
+  width: auto;
+  @include height(362);
+  @include borderRadius(18);
+  @include margin(16,0);
+  @include fontSize(24);
+  opacity: .3;
+  color: $primary-color;
+  cursor: pointer;
 }

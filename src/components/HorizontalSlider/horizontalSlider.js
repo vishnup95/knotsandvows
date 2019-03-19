@@ -44,6 +44,49 @@ const SamplePrevArrow = (propvalues) => {
         >Prev</button>
     );
 }
+const SampleNextArrowSmall = (propvalues) => {
+    const { className, style, onClick } = propvalues;
+    return (
+        <button
+            className={`${className} ${styles.hButton}`}
+            style={{
+                ...style,
+                display: "block",
+                background: 'url("/images/arrow-small.png") no-repeat',
+                backgroundSize: 'contain',
+                top: '50%',
+                right: '-16px',
+                width: '20px',
+                height: '20px',
+                opacity: '.7'
+            }}
+            onClick={onClick}
+        >Next</button>
+    );
+}
+
+const SamplePrevArrowSmall = (propvalues) => {
+    const { className, style, onClick } = propvalues;
+    return (
+        <button
+            className={className}
+            style={{
+                ...style,
+                display: "block",
+                background: 'url("/images/arrow-small.png") no-repeat',
+                transform: 'rotate(-180deg)',
+                backgroundSize: 'contain',
+                zIndex: '10',
+                top: '30%',
+                left: '-16px',
+                width: '20px',
+                height: '20px',
+                opacity: '.7'
+            }}
+            onClick={onClick}
+        >Prev</button>
+    );
+}
 
 
 export default class HorizontalSlider extends Component {
@@ -52,23 +95,21 @@ export default class HorizontalSlider extends Component {
         super(props);
     }
     render() {
-        var settings = {
+        var settingsSmall = {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            nextArrow: <SampleNextArrow />,
-            prevArrow: <SamplePrevArrow />,
+            slidesToShow: 6,
+            slidesToScroll: 4,
+            nextArrow: <SampleNextArrowSmall />,
+            prevArrow: <SamplePrevArrowSmall />,
             initialSlide: 0,
             responsive: [
                 {
                     breakpoint: 1024,
                     settings: {
-                        slidesToShow: 4,
+                        slidesToShow: 6,
                         slidesToScroll: 1,
-                        infinite: true,
-                        dots: true
                     }
                 },
                 {
@@ -76,7 +117,39 @@ export default class HorizontalSlider extends Component {
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2,
-                        initialSlide: 2
+                    }
+                },
+                {
+                    breakpoint: 470,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        };
+        var settings = {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+            initialSlide: 0,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 6,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
                     }
                 },
                 {
@@ -91,14 +164,14 @@ export default class HorizontalSlider extends Component {
         
         return (this.props.type === 'small' &&
             <div className={styles.multiContainer}>
-                <Slider {...settings}>
+                <Slider {...settingsSmall}>
                     {
                         this.props.data.map((item, index) => {
                             return (
                                 <div key={index} className={styles.sliderItem}>
                                     <div className={styles.sliderWrap}>
-                                        <img className={styles.vendorImage} src={item.thumb_image} alt="Icon" />
-                                        <div className={styles.categoryName}>{item.page_name}</div>
+                                        {/* <img className={styles.vendorImage} src={item.thumb_image} alt="Icon" /> */}
+                                        <div className={styles.categoryName} aria-hidden onClick={() => this.props.buttonAction(index)}>{item.name}</div>
                                     </div>
                                 </div>
                             );
@@ -111,13 +184,13 @@ export default class HorizontalSlider extends Component {
                         this.props.data.map((item, index) => {
                             return (
                                 <Col key={index}>
-                                    <CategoryCard data={item} category={this.props.category}/>
+                                    <CategoryCard data={item} category={this.props.category} type={'carousel'}/>
                                 </Col>
                             );
                         })
                     }
                     <Col>
-                        <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}>View All</div>
+                        <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br/> Vendors</span></div>
                     </Col>
                 </Slider>
             </div>

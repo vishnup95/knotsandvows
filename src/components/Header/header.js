@@ -27,6 +27,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 import styles from './header.scss';
+import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
 import ForgotPassword from "../../modals/forgotPasswordModal/ForgotPasswordModal"
 import { isLoggedIn } from '../../utils/utilities';
@@ -54,7 +55,7 @@ class Header extends Component {
         this.state = {
             isOpen: false,
             hashValue: null,
-            email : null
+            email: null
         };
 
     }
@@ -88,7 +89,7 @@ class Header extends Component {
             this.props.dispatch(actions.fetchMyProfile());
         } 
         var hashValue = queryString.parse(this.props.location.search).code;
-        if (hashValue){
+        if (hashValue) {
             this.toggleResetPasswordModal();
         }
     }
@@ -142,26 +143,27 @@ class Header extends Component {
         initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
         return (initials);
     }
-   
-    componentDidUpdate(prevProps){
-        if(prevProps == undefined) {
+
+    componentDidUpdate(prevProps) {
+        if (prevProps == undefined) {
             return false;
         }
 
-        if (this.props.location.search != prevProps.location.search){
-            if (this.props.location.pathname === "/resetpassword"){
+        if (this.props.location.search != prevProps.location.search) {
+            if (this.props.location.pathname === "/resetpassword") {
                 var hashValue = queryString.parse(this.props.location.search).code;
-                if (hashValue){
-                    this.setState({hashValue: hashValue});
+                var email = queryString.parse(this.props.location.search).email;
+                if (hashValue) {
+                    this.setState({ hashValue: hashValue, email });
                     this.toggleResetPasswordModal();
                 }
             }
-            else if (this.props.location.pathname === "/verify"){        
-              const activationCode = queryString.parse(this.props.location.search).activation_code;
-              const email = queryString.parse(this.props.location.search).email;  
-              if (activationCode && email){
-                this.props.dispatch(actions.verifyEmail(activationCode, email));
-              }
+            else if (this.props.location.pathname === "/verify") {
+                const activationCode = queryString.parse(this.props.location.search).activation_code;
+                const email = queryString.parse(this.props.location.search).email;
+                if (activationCode && email) {
+                    this.props.dispatch(actions.verifyEmail(activationCode, email));
+                }
             }
             else if (queryString.parse(this.props.location.search).login){
                 // const { from } = this.props.location.state || { from: { pathname: '/' } }
@@ -175,16 +177,16 @@ class Header extends Component {
         }   
         
         if (this.props.location.pathname === "/verify") {
-            if (this.props.apiStatus == true){
+            if (this.props.apiStatus == true) {
                 this.props.dispatch(modalActions.showModal(`Email Verified Successfully`));
                 this.props.dispatch(replace("/"));
-            }else if (this.props.apiStatus == false){
+            } else if (this.props.apiStatus == false) {
                 this.props.dispatch(replace("/"));
                 this.props.dispatch(modalActions.showModal(`Link expired`));
             }
         }
     }
-    
+
     renderLoginItem = () => {
 
         if (this.props.user !== null) {
@@ -235,7 +237,7 @@ class Header extends Component {
                 <div className={styles.navSmall}>
 
                     <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.jpg')} alt="logo" />
+                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
                     </NavbarBrand>
                     <Nav className={`${styles.iconNav}`} navbar>
                         {/* <NavItem>
@@ -253,9 +255,17 @@ class Header extends Component {
                         <Nav className="" navbar>
                             <NavItem className={styles.vendors}>
                                 <NavLink onClick={() => this.navigateTo('/categories')}>Vendors</NavLink>
-                                <ul className={styles.categoriesList}>
-                                    {this.renderCategoryLists(this.props.categories)}
-                                </ul>
+                                <div className={styles.categoriesList}>
+                                    <ul>{this.renderCategoryLists(this.props.categories).splice(0, 6)}</ul>
+                                    {this.renderCategoryLists(this.props.categories).length > 6 &&
+
+                                        <ul>{this.renderCategoryLists(this.props.categories).splice(6, 6)}</ul>
+                                    }
+                                    {this.renderCategoryLists(this.props.categories).length > 12 &&
+
+                                        <ul>{this.renderCategoryLists(this.props.categories).splice(12, 6)}</ul>
+                                    }
+                                </div>
                             </NavItem>
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/packages')}>Packages</NavLink>
@@ -278,14 +288,14 @@ class Header extends Component {
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>
-                <Modal isOpen={this.props.showForgotPassword} className={styles.forgotContainer} toggle={this.toggleForgotPasswordModal} centered={true}>
+                <Modal isOpen={this.props.showForgotPassword} className={modalStyles.forgotContainer} toggle={this.toggleForgotPasswordModal} centered={true}>
                     <ForgotPassword></ForgotPassword>
                 </Modal>
-                <Modal isOpen={this.props.showResetPassword} toggle={this.toggleResetPasswordModal} centered={true}>
+                <Modal isOpen={this.props.showResetPassword} toggle={this.toggleResetPasswordModal} className={modalStyles.forgotContainer} centered={true}>
                     <ForgotPassword hash={this.state.hashValue} email={this.state.email}></ForgotPassword>
-                </Modal>    
+                </Modal>
                 <div className={styles.talkBtn}>
-                    <TalkToWeddingPlanner  type={'call'}/>
+                    <TalkToWeddingPlanner type={'call'} />
                 </div>
             </div>
         );
