@@ -7,20 +7,20 @@ const data = [
   {
     title: 'Want more information on vendors?',
     description: 'With pricing, reviews, and details for thousands of local wedding professionals it has never been easier to find and hire your vendor team.',
-    image: 'home1.png',
-    hoverimage: 'home1_hover.png',
+    image: 'home1.svg',
+    hoverimage: 'home1_hover.svg',
   },
   {
     title: 'Get the best prices on vendors?',
     description: 'With pricing, reviews, and details for thousands of local wedding professionals it has never been easier to find and hire your vendor team.',
-    image: 'home2.png',
-    hoverimage: 'home2_hover.png',
+    image: 'home2.svg',
+    hoverimage: 'home2_hover.svg',
   },
   {
     title: 'Want ideas that fit your budget?',
     description: 'Whether you’re having a baller bash or need ideas for weddings on a budget, these tips will help you get started.',
-    image: 'home3.png',
-    hoverimage: 'home3_hover.png',
+    image: 'home3.svg',
+    hoverimage: 'home3_hover.svg',
   },
 ];
 
