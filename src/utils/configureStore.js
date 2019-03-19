@@ -1,7 +1,6 @@
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
-// import { connectRouter } from 'connected-react-router';
 import { history, isServer } from './utilities';
 import axios from 'axios';
 import promiseMiddleware from 'redux-promise-middleware';
@@ -22,7 +21,6 @@ const client = axios.create({
 
 export default (options = { logger: true }) => {
   // Create a history depending on the environment
-
   const enhancers = [];
 
   // Dev tools are helpful

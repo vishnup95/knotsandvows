@@ -61,4 +61,6 @@ h3 {
   color: $secondary-color;
   @include fontSize(18);
   font-family: $roboto-medium;
+  width: max-content;
+  cursor: pointer;
 }
