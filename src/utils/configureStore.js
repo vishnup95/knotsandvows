@@ -1,7 +1,6 @@
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
-// import { connectRouter } from 'connected-react-router';
 import { history, isServer } from './utilities';
 import axios from 'axios';
 import promiseMiddleware from 'redux-promise-middleware';
@@ -17,13 +16,11 @@ let baseUrl =
 
 const client = axios.create({
   baseURL: baseUrl,
-  withCredentials: true,
-  headers: authHeader()
+  withCredentials: true
 });
 
 export default (options = { logger: true }) => {
   // Create a history depending on the environment
-
   const enhancers = [];
 
   // Dev tools are helpful
@@ -71,12 +68,3 @@ export default (options = { logger: true }) => {
     history
   };
 };
-
-export function authHeader() {
-  // return authorization header with basic auth credentials
-  if (!isServer && window.localStorage && window.localStorage.getItem('token')) {
-      return { 'Authorization': localStorage.getItem('token') };
-  } else {
-      return {};
-  }
-}

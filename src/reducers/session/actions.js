@@ -25,9 +25,7 @@ export function registerWithDetails(details) {
 
 export function logoutProcedure(history) {
   if(localStorage) {
-    localStorage.setItem("token",null);
-    localStorage.setItem("logged_in",false);
-    localStorage.setItem("user",null);
+    localStorage.clear();
   }
   
   return function (dispatch) {
@@ -145,4 +143,10 @@ export function fetchMyProfile() {
     ],
     promise: client => client.get('/api/myprofile')
   };
+}
+
+export function clearUserData() {
+  return {
+    type: types.LOAD_LOGOUT_SUCCESS
+  }
 }

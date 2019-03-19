@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import AuthService from './services/auth-service';
 import PropTypes from 'prop-types';
+import { isLoggedIn } from '../src/utils/utilities';
 
 const LoadableHome = Loadable({
   loader: () => import(/* webpackChunkName: 'home' */ './modules/home/Home'),
@@ -89,23 +89,36 @@ const LoadableCeremonyDetail = Loadable({
   }
 });
 
+const LoadableMyProfile = Loadable({
+  loader: () => import(/* webpackChunkName: 'planyourparty' */ './modules/myProfile/MyProfile'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
 const PrivatePage = () => <div> private Page </div>;
 
 const SecretRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      AuthService.isAuthenticated === true ? (
+       isLoggedIn() ?
+       (
         <Component {...props} />
       ) : (
-        <Redirect to="/?login=true" />
+         <Redirect to="/?login=true" />
+        // <Redirect to={{
+        //   pathname: '/?login=true',
+        //   state: { from: props.location }
+        // }} />
       )
     }
   />
 );
 
 SecretRoute.propTypes = {
-  component: PropTypes.func
+  component: PropTypes.func,
+  location: PropTypes.object
 };
 
 const routes = (
@@ -125,6 +138,7 @@ const routes = (
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
     <Route path="/:category_name/:vendor_name" component={LoadableDetail} />
     <SecretRoute path="/dashboard" component={PrivatePage} />
+    <Route path="/profile" component={LoadableMyProfile} />
     <Route component={LoadableNotFound} />
   </Switch>
   // </Suspense>

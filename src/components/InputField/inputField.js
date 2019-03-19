@@ -59,7 +59,10 @@ class InputField extends Component {
                 onFocus={() =>  this.handleFocus(event.target)} 
                 onBlur={() =>  this.handleBlur(event.target)} 
                 onInput={() =>  this.handleInput(event.target)} 
-                onChange={() => this.props.onChange(event)}/>
+                onChange={() => this.props.onChange(event)}
+                disabled={this.props.disabled}
+                // value={this.props.value}
+                />
               <Label className='input-placeholder' htmlFor={this.props.id}>{this.props.placeHolder}</Label>
               <span className='input-bar'></span>
               <span className='input-error'>{this.state.errorMessage}</span>
@@ -74,12 +77,16 @@ InputField.propTypes = {
     type: PropTypes.string,
     onChange: PropTypes.func,
     required: PropTypes.bool,
-    pattern: PropTypes.string
+    pattern: PropTypes.string,
+    disabled: PropTypes.bool,
+    value: PropTypes.string
 };
 
 InputField.defaultProps = {
     required: true,
-    pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$"
+    pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
+    disabled: false,
+    value:''
 }
 
 export default InputField;

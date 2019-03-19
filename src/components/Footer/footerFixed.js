@@ -6,12 +6,24 @@ import { imagePath } from '../../utils/assetUtils';
 import { Link } from 'react-router-dom';
 import styles from './footer.scss';
 import TalkToWeddingPlanner from '../TalkToWeddingPlanner/talkToWeddingPlanner';
+import * as actions from '../../modules/home/actions';
+import { bindActionCreators } from 'redux';
 
 const mapStateToProps = state => ({
     ceremonies: state.home.ceremonies
   });
 
+  const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({ ...actions }),
+    dispatch
+  });
 class FooterFixedComponent extends Component {
+
+    componentWillMount(){
+        if (this.props.ceremonies.length === 0) {
+            this.props.dispatch(actions.fetchCeremonies());
+        }
+    }
     render() {
         return (
             <Jumbotron className={`${styles.footerContainer} text-white`}>
@@ -98,8 +110,10 @@ class FooterFixedComponent extends Component {
 
 FooterFixedComponent.propTypes = {
     ceremonies: PropTypes.array,
+    dispatch: PropTypes.func
 };
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps
 )(FooterFixedComponent);

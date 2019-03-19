@@ -69,7 +69,6 @@ const session = (state = initialState, action) => {
       };
 
     case types.LOAD_LOGOUT_SUCCESS:
-      result = action.result || {};
       return {
         ...state,
         user: null,

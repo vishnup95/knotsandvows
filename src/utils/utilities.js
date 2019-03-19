@@ -13,3 +13,7 @@ export const history = isServer
   : createBrowserHistory();
 
 // A nice helper to tell us if we're on the server
+
+export function isLoggedIn(){
+  return !isServer && window.localStorage && window.localStorage.getItem('logged_in') == 'true'
+}
