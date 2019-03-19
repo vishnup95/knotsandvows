@@ -71,7 +71,7 @@ class MyProfile extends Component {
                 {/* } */}
                 
             </div>
-            <JumbotronComponent  data={jumbotronData} bgcolor="#f8f8f8" />
+            <JumbotronComponent  data={jumbotronData} bgcolor="#f8f8f8" isTalkToAhwanam={true} containerStyle="otherWrap"/>
             </div>
         );
     }
