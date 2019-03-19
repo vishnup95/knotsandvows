@@ -130,6 +130,9 @@ TalkToWeddingPlanner.propTypes = {
     type: PropTypes.string
 
 };
+TalkToWeddingPlanner.defaultProps = {
+    type: ''
+}
 export default connect(
     mapStateToProps,
     mapDispatchToProps

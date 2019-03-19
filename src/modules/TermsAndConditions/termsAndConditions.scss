@@ -1,0 +1,31 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
+
+.terms-container {
+  padding-top: 3rem;
+  ul {
+    padding-left: 1.2rem;
+    li {
+      list-style-type: decimal;
+      padding-left: 1rem;
+    }
+  }
+  h1 {
+    margin-bottom: 2rem;
+  }
+}
+.desc {
+  @include fontSize(16);
+  line-height: 1.88;
+  @include letterSpacing(.5);
+}
+.sub-heading {
+  font-family: $roboto-regular;
+  @include fontSize(28);
+  color: $black-five;
+  line-height: .93;
+  @include letterSpacing(.6);
+  @include margin(32,0,16);
+}
