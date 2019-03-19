@@ -19,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class FooterFixedComponent extends Component {
+
     componentWillMount() {
         if (this.props.ceremonies.length === 0) {
             this.props.dispatch(actions.fetchCeremonies());
@@ -111,7 +112,7 @@ class FooterFixedComponent extends Component {
 
 FooterFixedComponent.propTypes = {
     ceremonies: PropTypes.array,
-    dispatch: PropTypes.func,
+    dispatch: PropTypes.func
 };
 
 export default connect(
