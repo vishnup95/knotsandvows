@@ -95,6 +95,13 @@ const LoadableTermsAndConditions = Loadable({
   }
 });
 
+const LoadablePrivacyAndPolicy = Loadable({
+  loader: () => import(/* webpackChunkName: 'termsandconditions' */ './modules/PrivacyAndPolicy/privacyAndPolicy'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
 const LoadableMyProfile = Loadable({
   loader: () => import(/* webpackChunkName: 'planyourparty' */ './modules/myProfile/MyProfile'),
   loading() {
@@ -144,6 +151,7 @@ const routes = (
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
     <Route path="/:category_name/:vendor_name" component={LoadableDetail} />
     <Route exact path="/terms-and-conditions" component={LoadableTermsAndConditions} />
+    <Route exact path="/privacy-policy" component={LoadablePrivacyAndPolicy} />
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <Route path="/profile" component={LoadableMyProfile} />
     <Route component={LoadableNotFound} />
