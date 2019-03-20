@@ -75,7 +75,7 @@ class CategoryCard extends Component {
     render() {
         return (
             <div>
-                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : null}`} onClick={this.handleCardClick}>
+                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} onClick={this.handleCardClick}>
                     <CardImg
                         className={styles.cardImage}
                         top
@@ -84,6 +84,7 @@ class CategoryCard extends Component {
                         alt="Card image cap"
                         onError={(e) => { e.target.onerror = null; e.target.src = `${imagePath('card_1_1.jpg')}` }}
                     />
+                    {/* <div className={styles.cardImage} style={{ background: "url(" + this.props.data.pic_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div> */}
                     <CardBody className={styles.categoryBody} style={{backgroundColor: '#f7f7f7'}}>
                         {this.renderCardBody()}
                     </CardBody>
