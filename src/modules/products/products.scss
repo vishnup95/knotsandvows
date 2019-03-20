@@ -63,7 +63,9 @@
     justify-content: center;
     display: flex;
     border-radius: 5px;
-    z-index: 1;
+    z-index: 1;    
+    border-radius: 5px;
+
   }
 
   .selectContainer {
@@ -111,6 +113,8 @@
     background-size: 10px;
     background: url(/images/filter-search-icon.png) center center no-repeat $primary-color;
     border: none;
+    @include width(70);
+    @include height(60);
   }
 }
 
@@ -194,27 +198,27 @@
 }
 
 .multiDropdown {
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
-  padding: 1rem 2.5rem;
+  padding: .5rem 2.5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-left: none;
   border-bottom: none;
 
   .placeholder {
     display: block;
-    @include fontSize(10);
+    @include fontSize(12);
     letter-spacing: 0.3px;
     font-family: $roboto-regular;
-    color: #868585;
+    color: $black-twelve;
     text-transform: uppercase;
     @include padding(0,16,0, 0); 
-    margin-bottom: -0.4rem;
+    margin-bottom: -0.1rem;
   }
 
   .dropHeading {
     @include fontSize(16);
-    color: $black-twelve;
+    color: $warm-grey-eight;
     letter-spacing: 0.48px;
     font-family: $roboto-regular;
     background: url('/images/filter-dropdown.png') right  no-repeat;

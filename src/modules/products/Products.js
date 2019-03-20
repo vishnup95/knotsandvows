@@ -137,8 +137,8 @@ class Products extends Component {
               <Row className="mb-3">
 
                 <Col sm="6" className={styles.sideHeading}>
-                  Wedding Venues in all cities
-                <span>&nbsp;({this.props.productListData.total_count} results)</span>
+                 All 
+                {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
                 </Col>
                 <Col sm="6" className={styles.sort}>
                   Sort By: &nbsp;
