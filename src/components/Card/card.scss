@@ -15,6 +15,7 @@
   @include height(250);
   // height: 16.194rem;
   @include borderRadius(20,20,0,0);
+  object-fit: cover;
 }
 
 //simple card style

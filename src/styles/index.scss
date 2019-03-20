@@ -25,9 +25,10 @@
   border: 0;
   cursor: pointer;
   @include borderRadius(18);
+  transition: all .7s ease;
 
   &:hover {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.31);
+    box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -107,6 +108,26 @@
     transition: all .2s cubic-bezier(.4,0,.2,1);
   }
 
+  .date-placeholder {
+    font-size: 1em;
+    bottom: 0;
+    color: rgba(7,7,7,.5);
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    user-select: none;
+    position: absolute;
+    display: block;
+    top: 1.8em;
+    transform-origin: top left;
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+
+    color: rgba(7,7,7,.5);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    transform: translateY(-70%) scale(0.9);
+  }
+
   .input-bar {
     content: '';
     position: absolute;
@@ -114,7 +135,7 @@
     bottom: 1.4em;
     width: .7em;
     height: .1em;
-    background-color: $warm-grey-two;
+    // background-color: $warm-grey-two;
     visibility: hidden;
     transition: all .2s cubic-bezier(.4,0,.2,1);
   }
@@ -125,9 +146,21 @@
     margin-top: .4em;
     color: #d50000;
     font-size: .8em;
-    letter-spacing: 0.39px;
+    letter-spacing: .39px;
     visibility: hidden;
   }
+
+  .input-password-mask {
+		background: center url('/images/filter-dropdown.png') no-repeat;
+		background-size: contain;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+	}
 
   &.is-focussed {
     &.floating-label {
@@ -182,9 +215,16 @@
     .input-error {
       visibility: visible;
     }
+
+    &.password-unmasked {
+		
+      .input-password-mask {
+        background: center url(/images/filter-search-icon.png) no-repeat;
+        background-size: contain;
+      }
+    }
   }
 }
-
 
 //pagination styles
 
@@ -228,7 +268,8 @@
 
 // multicarousel
 
-.slick-next, .slick-prev {
+.slick-next,
+.slick-prev {
   width: 50px;
   height: 50px;
 
@@ -256,15 +297,18 @@
   justify-content: center;
   align-items: center;
 }
+
 .image-gallery-thumbnail {
   &.active {
     border: 4px solid $white;
     @include borderRadius(10);
   }
 }
+
 .image-gallery-thumbnail {
   @include width(137);
   @include height(137);
+
   img {
     max-width: 100%;
   }
@@ -283,14 +327,32 @@
 // pagination fixes
 
 .pagination {
-  li.active {
-    background-color: $secondary-color !important;
+  li {
     a {
-      color: $white;
+      img {
+        width: .8rem;
+        margin-top: -2px;
+      }
+    }
+
+    &.disabled {
+      opacity: .5;
+    }
+
+    &.active {
+      background-color: $secondary-color !important;
+      @include borderRadius(5);
+
+      a {
+        color: $white;
+      }
     }
   }
 }
 
+.rotate-left {
+  transform: rotate(180deg);
+}
 // talk to poppup fix
 
 .call-btn {
@@ -309,12 +371,15 @@
   cursor: pointer;
   @include fontSize(16);
   outline: none !important;
+
   &:hover {
     text-decoration: underline;
   }
 }
 
-
 .slick-disabled {
   display: none !important;
+}
+button, a {
+  outline: none !important;
 }

@@ -101,6 +101,15 @@ a.button {
   @include padding(59.5,0);
   border-bottom: 2px solid #eee;
 
+  h2 {
+    color: $black;
+    margin-bottom: 1rem;
+  }
+
+  .pSmall {
+    color: $black;
+  }
+
   .details {
     // width: max-content;
     @include width(787);
@@ -143,7 +152,7 @@ a.button {
 }
 
 .priceNow {
-  color: $primary-color;
+  color: $tertiary-color;
   font-family: $roboto-medium;
 }
 
@@ -180,7 +189,7 @@ a.button {
   }
 
   h3 {
-    font-family: $roboto-regular;
+    font-family: $frank-regular;
     @include fontSize(30);
     @include letterSpacing(1.2);
     line-height: 1.3;
@@ -192,6 +201,7 @@ a.button {
   p {
     width: 55%;
     margin: 0 auto;
+    color: $black-five;
   }
 }
 
@@ -217,8 +227,7 @@ a.button {
     width: 100%;
     height: 35%;
     background-color: rgba(0, 0, 0, 0.7);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    @include borderRadius(0,0,18,18);
   }
 
   h4 {
@@ -303,8 +312,8 @@ a.button {
       background-color: $secondary-color;
       transform: rotate(45deg);
       position: absolute;
-      left: -4.5%;
-      top: 35%;
+      left: -1.25rem;
+      top: calc(50% - 1.25rem);
     }
   }
 
@@ -326,8 +335,8 @@ a.button {
     .handle {
       background-color: #dcd5d5;
       left: auto;
-      right: -4.5%;
-      top: 35%;
+      right: -1.25rem;
+      top: calc(50% - 1.25rem);
     }
 
     h3 {

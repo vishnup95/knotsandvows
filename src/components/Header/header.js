@@ -88,10 +88,6 @@ class Header extends Component {
         if (isLoggedIn()) {
             this.props.dispatch(actions.fetchMyProfile());
         } 
-        var hashValue = queryString.parse(this.props.location.search).code;
-        if (hashValue) {
-            this.toggleResetPasswordModal();
-        }
     }
 
     toggleForgotPasswordModal = () => {

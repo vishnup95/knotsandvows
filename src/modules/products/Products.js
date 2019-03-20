@@ -12,6 +12,7 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
+import { imagePath } from '../../utils/assetUtils';
 
 import styles from './products.scss';
 import CategoryCard from '../../components/Card/cardCategory';
@@ -137,8 +138,8 @@ class Products extends Component {
               <Row className="mb-3">
 
                 <Col sm="6" className={styles.sideHeading}>
-                  Wedding Venues in all cities
-                <span>&nbsp;({this.props.productListData.total_count} results)</span>
+                 All 
+                {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
                 </Col>
                 <Col sm="6" className={styles.sort}>
                   Sort By: &nbsp;
@@ -178,8 +179,8 @@ class Products extends Component {
 
               {this.props.productListData.no_of_pages && this.props.productListData.no_of_pages > 1 &&
                 <ReactPaginate
-                  previousLabel={'<'}
-                  nextLabel={'>'}
+                  previousLabel={ <img className="rotate-left" src={imagePath('arrow-small.png')} alt="arrow-previous" />}
+                  nextLabel={<img src={imagePath('arrow-small.png')} alt="arrow-next" />}
                   breakLabel={'...'}
                   breakClassName={'break-me'}
                   forcePage={this.state.page - 1}
