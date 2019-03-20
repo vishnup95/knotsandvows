@@ -22,7 +22,7 @@ const jumbotronData = [
     subtitle: "Find and book your dream team of local vendors based on your style and budget"
   },
   {
-    title: 'Overbound With Choices?',
+    title: 'Overbound with choices?',
     subtitle: 'You will be looking for ideas, and all exciting but there are so many that you realise how much planning you need to do and basically we offering the in packages so that also preferred '
   },
   {
@@ -48,7 +48,7 @@ const staticData = [
     image: '/images/home_static1.jpg',
   },
   {
-    title: 'Wedding Dashboard',
+    title: 'Wedding dashboard',
     description: 'Add to wishlist, compare services, share ideas with family, finalize vendors and more!',
     image: '/images/home_static2.jpg',
   },

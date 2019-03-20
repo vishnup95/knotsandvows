@@ -100,7 +100,7 @@ class FormComponent extends Component {
                         })
                     }         
                 </div>
-                <Button color="danger" className={styles.searchButton} name="search button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}></Button>   
+                <Button className={styles.searchButton} name="search button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}></Button>   
             </div>
         );
     }

@@ -6,6 +6,7 @@
 .category-cover {
   @include height(450);
   @include margin(97,0,0);
+
   &:before {
     content: '';
     position: absolute;
@@ -15,11 +16,13 @@
     height: 100%;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
   }
+
   h1 {
     @include fontSize(51);
     @include letterSpacing(1.5);
   }
 }
+
 .imageHeading {
   text-align: center;
 }
@@ -27,7 +30,7 @@
 .sideHeading {
   @include fontSize(20);
   font-family: $frank-regular;
-  letter-spacing: 0.6px;
+  letter-spacing: .6px;
   color: $black-twelve;
   text-align: left;
 
@@ -41,7 +44,6 @@
   @extend .sideHeading;
   @include fontSize(14);
   text-align: right;
-
   @include mobile {
     text-align: left;
   }
@@ -50,10 +52,9 @@
 // refined form styles
 
 .formContainer {
-    width: max-content;
-    margin: 0 auto;
-    margin-top: -41px;
-    display: flex;
+  width: max-content;
+  margin: -41px auto 0;
+  display: flex;
 
   .dropContainer {
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
@@ -64,6 +65,8 @@
     display: flex;
     border-radius: 5px;
     z-index: 1;
+    border-radius: 5px;
+    @include height(60);
   }
 
   .selectContainer {
@@ -79,21 +82,21 @@
     .label {
       display: block;
       @include fontSize(10);
-      letter-spacing: 0.3px;
+      letter-spacing: .3px;
       font-family: $roboto-regular;
       color: #868585;
       text-transform: uppercase;
       @include padding(12,16,0);
       margin-bottom: 0;
     }
-  
+
     .select {
       border: 0;
       font-family: $roboto-regular;
       @include fontSize(16);
       height: auto;
       padding: 0 2rem 0 1rem;
-      background: url('/images/filter-dropdown.png') right  no-repeat;
+      background: url('/images/filter-dropdown.png') right no-repeat;
       -webkit-appearance: none;
 
       &:focus {
@@ -103,14 +106,16 @@
   }
 
   .searchButton {
-    padding: 0.75rem 2rem;
+    padding: .75rem 2rem;
     z-index: 1;
     margin-left: 1.5rem;
     border-radius: 5px;
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
     background-size: 10px;
-    background: url(/images/filter-search-icon.png) center center no-repeat $primary-color;
+    background: url("/images/filter-search-icon.png") center center no-repeat $primary-color;
     border: none;
+    @include width(70);
+    @include height(60);
   }
 }
 
@@ -122,7 +127,7 @@
 
 .catFormGroup {
   width: 100%;
-  @include hd{
+  @include hd {
     width: max-content;
   }
 
@@ -137,7 +142,7 @@
   border: 0;
   color: #070707;
   border-radius: 0;
-  
+
   outline: none;
   box-shadow: none;
   @include fontSize(18);
@@ -145,10 +150,10 @@
   height: 1.5rem;
   padding: 0 1.5rem 0 0;
   margin-right: 2.5rem;
-  letter-spacing: 0.5px;
-  
+  letter-spacing: .5px;
+
   background-color: inherit;
-  background: url('/images/filter-dropdown.png') right  no-repeat;
+  background: url('/images/filter-dropdown.png') right no-repeat;
   -webkit-appearance: none;
 
   &:focus {
@@ -176,7 +181,7 @@
   border-radius: 3px;
   text-transform: uppercase;
   color: $black;
-  @include hd{
+  @include hd {
     margin-top: -1.6rem;
   }
 }
@@ -194,31 +199,31 @@
 }
 
 .multiDropdown {
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
-  padding: 1rem 2.5rem;
+  padding: .5rem 2.5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-left: none;
   border-bottom: none;
 
   .placeholder {
     display: block;
-    @include fontSize(10);
-    letter-spacing: 0.3px;
+    @include fontSize(12);
+    letter-spacing: .3px;
     font-family: $roboto-regular;
-    color: #868585;
+    color: $black-twelve;
     text-transform: uppercase;
-    @include padding(0,16,0, 0); 
-    margin-bottom: -0.4rem;
+    @include padding(0,16,0, 0);
+    margin-bottom: -0.1rem;
   }
 
   .dropHeading {
     @include fontSize(16);
-    color: $black-twelve;
-    letter-spacing: 0.48px;
+    color: $warm-grey-eight;
+    letter-spacing: .48px;
     font-family: $roboto-regular;
-    background: url('/images/filter-dropdown.png') right  no-repeat;
-    padding-right: 2rem; 
+    background: url('/images/filter-dropdown.png') right no-repeat;
+    padding-right: 2rem;
   }
 }
 
@@ -229,6 +234,7 @@
   font-family: $roboto-medium;
   box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.3);
   border: none;
+
   .dropItem {
     padding: 1rem 2.5rem;
     white-space: nowrap;
@@ -251,14 +257,13 @@
   .dropHeading {
     @include fontSize(14);
     color: $black-twelve;
-    letter-spacing: 0.48px;
+    letter-spacing: .48px;
     font-family: $roboto-regular;
-    background: url('/images/filter-dropdown.png') right  no-repeat;
-    padding-right: 2rem; 
+    background: url('/images/filter-dropdown.png') right no-repeat;
+    padding-right: 2rem;
   }
 
   .dropMenu {
     transform: translate3d(0, 19px, 0px) !important;
   }
 }
-

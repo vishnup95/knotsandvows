@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
 
 const jumbotronData = {
   title: 'Need Help?',
-  buttonText: 'Chat With Ahwanam',
+  buttonText: 'Talk to our wedding planner!',
   subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by click the Chat button below and they’ll help you get your party started.'
 };
   

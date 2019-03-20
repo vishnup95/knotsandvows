@@ -10,7 +10,7 @@ import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 const jumbotronData = [
   {
       title: 'Need Help?',
-      buttonText: 'Chat With Ahwanam',
+      buttonText: 'Talk to our wedding planner!',
       subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by click the Chat button below and they’ll help you get your party started.'
   },
   {
@@ -56,7 +56,7 @@ class ExclusiveDeals extends Component {
             })}
           </div>     
         </JumbotronComponent>
-        <JumbotronComponent data={jumbotronData[0]} bgcolor="#f8f8f8" containerStyle="otherWrap" />
+        <JumbotronComponent data={jumbotronData[0]} bgcolor="#f8f8f8" containerStyle="otherWrap" isTalkToAhwanam ={true} />
       </div>
     );
   }
