@@ -154,7 +154,7 @@ class SignInModal extends Component {
             (<div>
                 <Form style={{ zIndex: '10000' }} className="position-relative">
                     <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignInFormChange(e)} />
-                    <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignInFormChange(e)} pattern="[A-Za-z0-9]{5,}" />
+                    <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignInFormChange(e)}/>
                 </Form>
                 <div className={styles.formRow}>
                     <div>

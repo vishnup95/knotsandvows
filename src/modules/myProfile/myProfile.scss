@@ -1,0 +1,16 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
+
+.profileContainer {
+    margin: 0 auto;
+    margin-top: 15rem;
+    margin-bottom: 8rem;
+    @include width(382);
+    
+    @include mobile {
+        margin-top: 7rem;
+        margin-bottom: 4rem;
+    }
+}
