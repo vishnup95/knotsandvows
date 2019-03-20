@@ -33,9 +33,8 @@ class FooterFixedComponent extends Component {
                     <Col>
                         <div className="text-left">
                             <div className={` ${styles.block}`}>
-                                <p>Seven Vows event Planners</p>
-                                <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum,</p>
-                                <p className="mb-0">Road # 2, Banjara Hills, Hyderabad 500034 </p>
+                                <p>Seven Vows</p>
+                                <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum, Road # 2, Banjara Hills, Hyderabad 500034 </p>
                             </div>
                             <div className={` ${styles.block}`}>
                                 <p>Contact Numbers</p>
@@ -100,7 +99,7 @@ class FooterFixedComponent extends Component {
                                 </a>
                             </span>
                             <p className="">© 2019  All Rights Reserved</p>
-                            <p className="">Seven Vows event Planners</p>
+                            <p className="">Seven Vows</p>
                             <p className="">
                                 <Link to={'/terms-and-conditions'} >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link></p>
                         </div>
