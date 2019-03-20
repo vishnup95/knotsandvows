@@ -47,7 +47,7 @@ class FooterFixedComponent extends Component {
                     </Col>
 
                     <Col className={` ${styles.block}`}>
-                        <p>Seven Vows</p>
+                        <p><Link to={'/'}>Home</Link></p>
                         <ul>
                             <li>
                                 <Link to={'/categories'}>Vendors</Link>

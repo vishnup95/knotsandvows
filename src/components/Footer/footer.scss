@@ -45,8 +45,8 @@ p {
   margin-bottom: 2rem;
 
   p:first-child {
-    font-family: $frank-bold;
-    @include fontSize(18);
+    font-family: $frank-regular;
+    @include fontSize(20);
     margin-bottom: .5rem;
 
     span {

@@ -51,6 +51,9 @@
   justify-content: flex-end;
   align-items: center;
   @include padding(0,0,24);
+  h1 {
+    letter-spacing: 1px;
+  }
 }
 
 .sub-title {
@@ -58,7 +61,7 @@
 }
 
 .view-all {
-  color: $secondary-color;
+  color: $primary-color;
   @include fontSize(18);
   font-family: $roboto-medium;
   width: max-content;
