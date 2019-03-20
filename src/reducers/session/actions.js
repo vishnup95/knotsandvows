@@ -150,3 +150,9 @@ export function clearUserData() {
     type: types.LOAD_LOGOUT_SUCCESS
   }
 }
+
+export function clearErrors() {
+  return {
+    type: types.CLEAR_ERRORS
+  }
+}

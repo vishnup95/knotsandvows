@@ -49,7 +49,7 @@ class InputField extends Component {
             return true;
 
         } else {
-            this.setState({errorMessage: 'Invalid'});
+            this.setState({errorMessage: `Invalid ${this.props.placeHolder}`});
             inputBox.parentNode.classList.add('error');
             return false;
 
