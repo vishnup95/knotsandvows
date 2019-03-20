@@ -91,7 +91,7 @@ class DetailPageComponent extends Component {
 
         const availableAreas = availableArea.map((area, index) => {
 
-            return <li className={style.selected} key={index}>{area.name} <br />
+            return <li key={index}>{area.name} <br />
                 <span>{area.seating_capacity} Seating | {area.type}</span>
             </li>
         });
@@ -112,7 +112,7 @@ class DetailPageComponent extends Component {
 
         const termsAndPolicies = policies.map((policy, index) => {
 
-            return <li className={style.selected} key={index}>{policy.name}</li>
+            return <li className={style.policy} key={index}>{policy.name}</li>
 
         });
         return termsAndPolicies;
@@ -137,7 +137,7 @@ class DetailPageComponent extends Component {
 
         return (
             <div className={style.detailContainer}>
-            {this.props.detailsLoading && <LoaderComponent/>}
+                {this.props.detailsLoading && <LoaderComponent />}
                 {details &&
                     <div>
                         <div className={style.bgImage} style={{ background: "url(" + details.cover_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
@@ -248,8 +248,8 @@ class DetailPageComponent extends Component {
                                             }
                                             {reviewsData.no_of_pages > 1 &&
                                                 <ReactPaginate
-                                                    previousLabel={'<'}
-                                                    nextLabel={'>'}
+                                                    previousLabel={<img className="rotate-left" src={imagePath('arrow-small.png')} alt="arrow-previous" />}
+                                                    nextLabel={<img src={imagePath('arrow-small.png')} alt="arrow-next" />}
                                                     breakLabel={'...'}
                                                     forceSelect={this.state.reviewPage}
                                                     breakClassName={'break-me'}
@@ -396,7 +396,7 @@ class DetailPageComponent extends Component {
 
                 </Modal>
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
-                    <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} />
+                    <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap"/>
                 }
             </div>
         );

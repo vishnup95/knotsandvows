@@ -25,7 +25,7 @@
   @include justify-space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, .97);
-  @include borderRadius(20,20,0,0);
+  @include borderRadius(14,14,0,0);
   box-shadow: 0 3px 6px 0 $black-16;
   @include padding(20,35);
   color: $black-five;
@@ -79,7 +79,7 @@
   @include align-center;
   @include padding(0,35);
   @include height(60);
-  @include borderRadius(0,0,20,20);
+  @include borderRadius(0,0,14,14);
   margin: auto;
   background-color: $white-four;
 
@@ -112,6 +112,7 @@
 
       &:first-child {
         margin-left: 0;
+        padding-left: 0;
 
         &:before {
           content: '';
@@ -147,8 +148,8 @@
 }
 
 .detail-sub-section {
-  box-shadow: 0 3px 8px 0 $black-16;
-  @include borderRadius(18);
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.10);
+  @include borderRadius(14);
   @include margin(30,0);
   @include padding(25,35);
 
@@ -191,18 +192,18 @@
         content: '';
         position: absolute;
         left: 0;
-        top: 0;
+        top: 2px;
         @include width(25);
         @include height(25);
-        background-image: url('/images/check-box.svg');
+        background-image: url('/images/available.svg');
         background-size: contain;
         background-repeat: no-repeat;
 
       }
 
-      &.selected {
+      &.policy {
         &:before {
-          background-image: url('/images/check-box-ticked.svg');
+          background-image: url('/images/policy.svg');
           background-size: contain;
         }
       }
@@ -387,7 +388,6 @@
   background: transparent;
   @include fontSize(13);
   opacity: .85;
-  text-decoration: underline;
   margin-top: 1rem;
   @extend %pointer;
 }

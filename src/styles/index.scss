@@ -25,9 +25,10 @@
   border: 0;
   cursor: pointer;
   @include borderRadius(18);
+  transition: all .7s ease;
 
   &:hover {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.31);
+    box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -145,7 +146,7 @@
     margin-top: .4em;
     color: #d50000;
     font-size: .8em;
-    letter-spacing: 0.39px;
+    letter-spacing: .39px;
     visibility: hidden;
   }
 
@@ -225,7 +226,6 @@
   }
 }
 
-
 //pagination styles
 
 .pagination {
@@ -268,7 +268,8 @@
 
 // multicarousel
 
-.slick-next, .slick-prev {
+.slick-next,
+.slick-prev {
   width: 50px;
   height: 50px;
 
@@ -296,15 +297,18 @@
   justify-content: center;
   align-items: center;
 }
+
 .image-gallery-thumbnail {
   &.active {
     border: 4px solid $white;
     @include borderRadius(10);
   }
 }
+
 .image-gallery-thumbnail {
   @include width(137);
   @include height(137);
+
   img {
     max-width: 100%;
   }
@@ -323,14 +327,32 @@
 // pagination fixes
 
 .pagination {
-  li.active {
-    background-color: $secondary-color !important;
+  li {
     a {
-      color: $white;
+      img {
+        width: .8rem;
+        margin-top: -2px;
+      }
+    }
+
+    &.disabled {
+      opacity: .5;
+    }
+
+    &.active {
+      background-color: $secondary-color !important;
+      @include borderRadius(5);
+
+      a {
+        color: $white;
+      }
     }
   }
 }
 
+.rotate-left {
+  transform: rotate(180deg);
+}
 // talk to poppup fix
 
 .call-btn {
@@ -349,12 +371,15 @@
   cursor: pointer;
   @include fontSize(16);
   outline: none !important;
+
   &:hover {
     text-decoration: underline;
   }
 }
 
-
 .slick-disabled {
   display: none !important;
+}
+button, a {
+  outline: none !important;
 }
