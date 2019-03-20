@@ -174,11 +174,11 @@
   overflow: hidden;
   opacity: 0;
   display: flex;
-  @include padding(0,0,16);
   @include borderRadius(0,0,18,18);
 
   ul {
     padding: 0 !important;
+
     li {
       @extend %pointer;
       padding: 1rem 2.5rem 1.5rem;
@@ -199,6 +199,7 @@
 
         &:hover {
           text-decoration: none;
+
           &:before {
 
             bottom: -.4rem;
@@ -222,7 +223,7 @@
       top: 5.4rem;
       transition: 500ms all ease;
       opacity: 1;
-
+      @include padding(0,0,16);
     }
   }
 }
