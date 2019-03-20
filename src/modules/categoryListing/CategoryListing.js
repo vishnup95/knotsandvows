@@ -47,7 +47,6 @@ class CategoryListing extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.ceremonyDetails !== null) {
-      console.log
       let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
         return item.vendors !== null && item.vendors.length > 0
       })
@@ -60,7 +59,6 @@ class CategoryListing extends Component {
   }
 
   handleCategoryChange = (index) => {
-    console.log(index);
     let updatedCategories = this.state.fixedCategories.slice();
     let temp = updatedCategories[0];
     updatedCategories[0] = updatedCategories[index];
@@ -69,7 +67,7 @@ class CategoryListing extends Component {
   }
 
   render() {
-    console.log(this.props);
+    
     return (
       <div className="full-height" style={{marginTop: '14rem'}}>
           <div className={styles.ceremonyDetail}>

@@ -210,7 +210,7 @@ const session = (state = initialState, action) => {
       return {
         ...state,
         message: action.result.data.message,
-        user: result.data.data.user,
+        user: action.result.data.data.user,
         loading: false
       };
 

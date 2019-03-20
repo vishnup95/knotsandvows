@@ -15,6 +15,7 @@ import StarRating from '../../components/StarRating/starRating';
 import { imagePath } from '../../utils/assetUtils';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 import LoaderComponent from '../../components/Loader/loader';
+import { isLoggedIn } from '../../utils/utilities';
 
 
 const mapStateToProps = state => ({
@@ -79,11 +80,11 @@ class DetailPageComponent extends Component {
         window.scrollTo(0, 0);
     }
 
-    addToWishlist = () => {
-        if (this.props.user == null) {
+    addToWishList = (e) => {
+        if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
-            return;
         }
+        e.stopPropagation();
     }
 
     renderAvailableArea = (availableArea) => {
@@ -158,7 +159,7 @@ class DetailPageComponent extends Component {
                                         <div className={style.review}> {details.reviews_count} Reviews</div>
                                     </div>
                                     <div className={style.viewBtnWrap}>
-                                        <button className={style.viewBtn}>Add to wishlist</button>
+                                        <button className={style.viewBtn} onClick={(e) => this.addToWishList(e)}>Add to wishlist</button>
                                         <button className={style.removeBtn}>Remove from wishlist</button>
                                     </div>
                                 </div>

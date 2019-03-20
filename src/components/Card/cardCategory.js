@@ -11,6 +11,8 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
+import { isLoggedIn } from '../../utils/utilities';
+import * as loginActions from '../../reducers/session/actions'
 
 const mapDispatchToProps = dispatch => ({
     dispatch
@@ -20,6 +22,13 @@ class CategoryCard extends Component {
     navigateTo(route) {
         this.props.dispatch(push(route));
         window.scrollTo(0, 0);
+    }
+
+    addToWishList = (e) => {
+        if (!isLoggedIn()) {
+            this.props.dispatch(loginActions.showLogin());
+        }
+        e.stopPropagation();
     }
 
     renderCardBody() {
@@ -38,7 +47,7 @@ class CategoryCard extends Component {
             <div>
                 <div className={styles.ratingContainer}>
                     <p className={`${styles.rating} mb-2`}>
-                        <img src={imagePath('wishlist_unselected.svg')} className={styles.heartImg} alt="Unselected heart" />
+                        <img src={imagePath('wishlist_unselected.svg')} className={styles.heartImg} alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden/>
                     </p>
 
                     <p className={`${styles.rating} mb-1`}>
@@ -62,7 +71,7 @@ class CategoryCard extends Component {
                 <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
                 <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
                 <p className={`${styles.charges}`}>
-                    <span>{formatMoney(this.props.data.price.service_price)}</span> Min Charges Per Day
+                    <span>{formatMoney(this.props.data.price.service_price)}</span> {this.props.data.charge_type}
                 </p>
             </div>
         );
