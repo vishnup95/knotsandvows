@@ -17,7 +17,7 @@ class PackageComponent extends Component {
     return (
       <div className={`${styles.packageContainer}`}>
         <div className={styles.details}>
-          <h1>{packageDetail.name}</h1>
+          <h2>{packageDetail.name}</h2>
           <p className={styles.pSmall}>
             {packageDetail.description}
           </p>
