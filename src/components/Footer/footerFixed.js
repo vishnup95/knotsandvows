@@ -101,7 +101,7 @@ class FooterFixedComponent extends Component {
                             <p className="">© 2019  All Rights Reserved</p>
                             <p className="">Seven Vows</p>
                             <p className="">
-                                <Link to={'/terms-and-conditions'} >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link></p>
+                                <Link to={'/terms-and-conditions'} >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} >Privacy Policy</Link></p>
                         </div>
                     </Col>
                 </Row>
