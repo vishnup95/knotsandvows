@@ -107,6 +107,26 @@
     transition: all .2s cubic-bezier(.4,0,.2,1);
   }
 
+  .date-placeholder {
+    font-size: 1em;
+    bottom: 0;
+    color: rgba(7,7,7,.5);
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    user-select: none;
+    position: absolute;
+    display: block;
+    top: 1.8em;
+    transform-origin: top left;
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+
+    color: rgba(7,7,7,.5);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    transform: translateY(-70%) scale(0.9);
+  }
+
   .input-bar {
     content: '';
     position: absolute;
@@ -114,7 +134,7 @@
     bottom: 1.4em;
     width: .7em;
     height: .1em;
-    background-color: $warm-grey-two;
+    // background-color: $warm-grey-two;
     visibility: hidden;
     transition: all .2s cubic-bezier(.4,0,.2,1);
   }
@@ -128,6 +148,18 @@
     letter-spacing: 0.39px;
     visibility: hidden;
   }
+
+  .input-password-mask {
+		background: center url('/images/filter-dropdown.png') no-repeat;
+		background-size: contain;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+	}
 
   &.is-focussed {
     &.floating-label {
@@ -181,6 +213,14 @@
 
     .input-error {
       visibility: visible;
+    }
+
+    &.password-unmasked {
+		
+      .input-password-mask {
+        background: center url(/images/filter-search-icon.png) no-repeat;
+        background-size: contain;
+      }
     }
   }
 }
