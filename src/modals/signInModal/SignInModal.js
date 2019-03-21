@@ -15,6 +15,8 @@ import SocialAuthComponent from '../../components/SocialAuth/SocialAuthComponent
 
 const mapStateToProps = state => ({
     message: state.session.message,
+    error: state.session.error,
+    apiStatus: state.session.apiStatus,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -60,6 +62,7 @@ class SignInModal extends Component {
     }
 
     showSignUp = () => {
+        this.props.dispatch(actions.clearErrors());
         this.setState({
             mode: DisplayMode.signUp,
             signIn: {
@@ -70,11 +73,13 @@ class SignInModal extends Component {
     }
 
     showForgotPassword = () => {
+        this.props.dispatch(actions.clearErrors());
         this.props.showForgotPassword();
         this.closeModal();
     }
 
     showSignIn = () => {
+        this.props.dispatch(actions.clearErrors());
         this.setState({
             mode: DisplayMode.signIn,
             signUp: {
@@ -91,7 +96,7 @@ class SignInModal extends Component {
             return false;
         }
 
-        if (this.props.message != prevProps.message) {
+        if (this.state.mode == DisplayMode.signUp && this.props.message) {
             this.props.dispatch(modalActions.showModal(this.props.message));
         }
     }
@@ -160,7 +165,10 @@ class SignInModal extends Component {
                     <div>
                         <button className={styles.detailLink} onClick={this.showForgotPassword}>Forgot Password?</button>
                     </div>
-                    <div className={styles.alignButton}><button className="primary-button" onClick={this.validateSignInForm}>Sign in</button></div>
+                    <div className={styles.alignButton}><button className="primary-button" onClick={this.validateSignInForm}>Login</button></div>
+                    { this.props.apiStatus == false && this.props.error &&
+                        <div>{this.props.error}</div>
+                    }
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
@@ -168,7 +176,7 @@ class SignInModal extends Component {
                     <span className={styles.line}></span>
                 </div>
                 <div className="text-center w-100 mt-5">
-                    <p className={styles.pWith}>Sign in with</p>
+                    <p className={styles.pWith}>Login with</p>
                     <SocialAuthComponent onSuccess={data => this.handleSocialAuthResponse(data)}></SocialAuthComponent>
                     <button className={`${styles.detailLink} mt-5 pt-3 w-100`} onClick={this.showSignUp}>Create your Seven Vows account</button>
                 </div>
@@ -180,7 +188,7 @@ class SignInModal extends Component {
         return this.state.mode == DisplayMode.signUp ?
             (<div>
                 <div className={`${styles.footerText} ${styles.maxWidth} mb-3`}>
-                    If you have a Seven Vows account please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Sign in</Link></span>
+                    If you have a Seven Vows account please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Login</Link></span>
                 </div>
                 <Form style={{ zIndex: '10000' }} className="position-relative">
                     <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)} pattern="^[a-zA-Z_ ]*$" />
@@ -191,6 +199,9 @@ class SignInModal extends Component {
                 <div className="text-center">
                     <Button color="danger" className="primary-button" onClick={this.validateSignUpForm}>Create account</Button>
                 </div>
+                { this.props.apiStatus == false && this.props.error &&
+                        <div>{this.props.error}</div>
+                }
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
                     <span style={{ color: '#535353' }}>&nbsp; Or &nbsp;</span>
@@ -213,7 +224,7 @@ class SignInModal extends Component {
                 <div className={styles.loginForm}>
                     <div className={styles.logoWrap}>
                         <img className={styles.image} src={imagePath('logo.svg')} alt="logo"></img>
-                        <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Sign in to Seven Vows' : this.state.mode === 'signUp' ? 'Create a Seven Vows account' : 'Forgot Password'}</div>
+                        <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Login to the Account' : this.state.mode === 'signUp' ? 'Create an Account' : 'Forgot Password'}</div>
                     </div>
                     {this.renderSignIn()}
                     {this.renderSignUp()}
@@ -232,6 +243,8 @@ SignInModal.propTypes = {
     close: PropTypes.func,
     showForgotPassword: PropTypes.func,
     message: PropTypes.string,
+    apiStatus: PropTypes.bool,
+    error: PropTypes.string,
 };
 export default connect(
     mapStateToProps,
