@@ -43,3 +43,6 @@ export const LOAD_VERIFY_EMAIL_FAILURE = 'my-project/session/LOAD_VERIFY_EMAIL_F
 export const LOAD_PROFILE = 'my-project/session/LOAD_PROFILE';
 export const LOAD_PROFILE_SUCCESS = 'my-project/session/LOAD_PROFILE_SUCCESS';
 export const LOAD_PROFILE_FAILURE = 'my-project/session/LOAD_PROFILE_FAILURE';
+
+
+export const CLEAR_ERRORS = 'my-project/session/CLEAR_ERRORS';
