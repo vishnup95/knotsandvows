@@ -8,7 +8,7 @@ const initialState = {
   showResetPassword: false,
   error: null,
   message: '',
-  apiStatus : null
+  apiStatus: null
 };
 
 const session = (state = initialState, action) => {
@@ -17,7 +17,10 @@ const session = (state = initialState, action) => {
     case types.LOAD_SIGNIN:
       return {
         ...state,
-        loading: true
+        loading: true,
+        apiStatus: null,
+        message: null,
+        error: null
       };
 
     case types.LOAD_SIGNIN_SUCCESS:
@@ -30,20 +33,25 @@ const session = (state = initialState, action) => {
         user: result.data.data.user,
         loading: false,
         showLogin: false,
-        error: null
+        error: null,
+        apiStatus: true
       };
 
     case types.LOAD_SIGNIN_FAILURE:
       return {
         ...state,
         error: action.error.message,
-        loading: false
+        loading: false,
+        apiStatus: false
       };
 
     case types.LOAD_SIGNUP:
       return {
         ...state,
-        loading: true
+        loading: true,
+        apiStatus: null,
+        error: null,
+        message: ''
       };
 
     case types.LOAD_SIGNUP_SUCCESS:
@@ -52,14 +60,17 @@ const session = (state = initialState, action) => {
         ...state,
         loading: false,
         showLogin: false,
-        error: null
+        message: result.data.message,
+        error: null,
+        apiStatus: true
       };
 
     case types.LOAD_SIGNUP_FAILURE:
       return {
         ...state,
         error: action.error.message,
-        loading: false
+        loading: false,
+        apiStatus: false
       };
 
     case types.LOAD_LOGOUT:
@@ -88,7 +99,9 @@ const session = (state = initialState, action) => {
       return {
         ...state,
         message: '',
-        showLogin: true
+        showLogin: true,
+        error: null,
+        apiStatus: null
       };
 
     case types.HIDE_LOGIN:
@@ -97,11 +110,12 @@ const session = (state = initialState, action) => {
         showLogin: false
       };
 
-      case types.SHOW_FORGOT_PASSWORD:
+    case types.SHOW_FORGOT_PASSWORD:
       return {
         ...state,
         message: '',
-        apiStatus : null,
+        apiStatus: null,
+        error: null,
         showForgotPassword: true
       };
 
@@ -111,11 +125,12 @@ const session = (state = initialState, action) => {
         showForgotPassword: false
       };
 
-      case types.SHOW_RESET_PASSWORD:
+    case types.SHOW_RESET_PASSWORD:
       return {
         ...state,
         message: '',
-        apiStatus : null,
+        apiStatus: null,
+        error: null,
         showResetPassword: true
       };
 
@@ -125,10 +140,10 @@ const session = (state = initialState, action) => {
         showResetPassword: false
       };
 
-      case types.REQUEST_FORGOT:
+    case types.REQUEST_FORGOT:
       return {
         ...state,
-        apiStatus : null,
+        apiStatus: null,
         loading: false,
         message: ''
       };
@@ -136,24 +151,24 @@ const session = (state = initialState, action) => {
     case types.REQUEST_FORGOT_SUCCESS:
       return {
         ...state,
-        apiStatus : true,
+        apiStatus: true,
         loading: true,
         showForgotPassword: false,
         message: action.result.data.message,
       };
-    
+
     case types.REQUEST_FORGOT_FAILURE:
-    return {
-      ...state,
-      loading: false,
-      apiStatus : false,
-      message: action.error.message,
+      return {
+        ...state,
+        loading: false,
+        apiStatus: false,
+        message: action.error.message,
       };
 
     case types.RESET_PASSWORD:
       return {
         ...state,
-        apiStatus : null,
+        apiStatus: null,
         loading: true,
         message: ''
       };
@@ -162,7 +177,7 @@ const session = (state = initialState, action) => {
       return {
         ...state,
         showResetPassword: false,
-        apiStatus : true,
+        apiStatus: true,
         message: action.result.data.message,
         loading: false
       };
@@ -170,7 +185,7 @@ const session = (state = initialState, action) => {
     case types.RESET_PASSWORD_FAILURE:
       return {
         ...state,
-        apiStatus : false,
+        apiStatus: false,
         message: action.error.message,
         loading: false
       };
@@ -178,9 +193,9 @@ const session = (state = initialState, action) => {
     case types.LOAD_VERIFY_EMAIL:
       return {
         ...state,
-        apiStatus : null,
+        apiStatus: null,
         loading: true,
-        message:''
+        message: ''
       };
 
     case types.LOAD_VERIFY_EMAIL_SUCCESS:
@@ -199,7 +214,7 @@ const session = (state = initialState, action) => {
         loading: false
       };
 
-      case types.LOAD_PROFILE:
+    case types.LOAD_PROFILE:
       return {
         ...state,
         loading: true,
@@ -219,6 +234,15 @@ const session = (state = initialState, action) => {
         ...state,
         message: action.error.message,
         loading: false
+      };
+
+    case types.CLEAR_ERRORS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        message: '',
+        apiStatus: null
       };
 
     default:

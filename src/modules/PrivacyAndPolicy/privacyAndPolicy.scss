@@ -5,11 +5,23 @@
 
 .privacy-container {
   padding-top: 3rem;
-  ul {
+  ol {
     padding-left: 1.2rem;
     li {
       list-style-type: decimal;
       padding-left: 1rem;
+
+      span {
+        text-transform: uppercase;
+        font-family: $roboto-medium;
+      }
+
+      ol {
+        li {
+          font-family: $roboto-medium;
+          list-style-type: lower-roman;
+        }
+      }
     }
   }
   h1 {
@@ -21,6 +33,11 @@
   @include fontSize(16);
   line-height: 1.88;
   @include letterSpacing(.5);
+}
+
+.boldList {
+  @extend .desc;
+  font-family: $roboto-medium;
 }
 .sub-heading {
   font-family: $roboto-regular;
