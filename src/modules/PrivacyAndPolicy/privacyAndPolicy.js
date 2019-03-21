@@ -44,12 +44,12 @@ const listData2 = [
   }
 ];
 
-// const listData3 = [
-//   {
-//     heading: 'TERMINATION/ACCESS RESTRICTION',
-//     description: 'Ahwanam reserves the right, in its sole discretion, to terminate the access to the app and the related services or any portion thereof at any time, without notice.'
-//   }
-// ]
+const listData3 = [
+  {
+    heading: 'TERMINATION/ACCESS RESTRICTION',
+    description: 'Ahwanam reserves the right, in its sole discretion, to terminate the access to the app and the related services or any portion thereof at any time, without notice.'
+  }
+]
 
 const jumbotronData = 
   {
@@ -65,9 +65,9 @@ class PrivacyAndPolicy extends Component {
     console.log('sasas', listData2[2].sublist);
     return (
       <div className={styles.privacyContainer}>
-        <h1 className="text-center">Privacy & Policy</h1>
+        <h1 className="text-center">Privacy Policies</h1>
         <Container  className="mb-5">
-          <Row>
+          <Row className="my-4">
             <Col>
               <p className={styles.desc}>
               We value the trust you place in us. Thats why we insist upon the highest standards for secure transactions and applicant information privacy. Please read the following statement to learn about our information gathering and dissemination practices. Note: Our privacy policy is subject to change at any time without notice. To make sure you are aware of any changes, please review this policy periodically.
@@ -77,20 +77,20 @@ class PrivacyAndPolicy extends Component {
 
           <Row>
             <Col>
-              <ul start="2">
+              <ol>
                 {
                   listData1.map((item, index) => {
                     return (
-                      <li className={styles.desc} key={index}>
+                      <li className={styles.boldList} key={index}>
                         <span>{item.heading}&nbsp;</span>{item.description}
                       </li>
                     );
                   })}
-              </ul>
+              </ol>
             </Col>
           </Row>
 
-          <Row>
+          <Row className="my-4">
             <Col>
               <p className={styles.desc}>
               In our efforts to continually improve our product and service offerings, we collect and analyze demographic and profile data about our users’ activity on our app. We identify and use your IP address to help diagnose problems with our server, and to administer our app. Your IP address is also used to help identify you and to gather broad demographic information.
@@ -100,26 +100,26 @@ class PrivacyAndPolicy extends Component {
 
           <Row>
             <Col>
-              <ul start="2">
+              <ol start="4">
                 {
                   listData2.map((item, index) => {
                     return (
                       <li className={styles.desc} key={index}>
                         <span>{item.heading}&nbsp;</span>
                         {item.description}
-                        <ul>
+                        <ol className="my-4">
                           {item.sublist &&  item.sublist.map((item, index) => {
                             return <li key={index}>{item}</li>
                           })}
-                        </ul>
+                        </ol>
                       </li>
                     );
                   })}
-              </ul>
+              </ol>
             </Col>
           </Row>
 
-          <Row>
+          <Row className="my-4">
             <Col>
               <p className={styles.desc}>
                 Ahwanam reserves the right at all times to disclose any information as is necessary to satisfy or comply with any applicable law, regulation, legal process or governmental request, or to edit, refuse to post or to remove any information or materials, in whole or in part, in Ahwanam sole discretion.
@@ -127,6 +127,21 @@ class PrivacyAndPolicy extends Component {
               <p>
                 Ahwanam does not control or endorse the content, messages or information found in any communication service and, therefore, Ahwanam specifically disclaims any liability or responsibility whatsoever with regard to the communication services and any actions resulting from the user’s participation in any communication service Materials uploaded to a Communication Service may be subject to posted limitations on usage, reproduction and/or dissemination. User is responsible for keeping himself updated of and adhering to such limitations if they download the materials
               </p>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <ol start="7">
+                {
+                  listData3.map((item, index) => {
+                    return (
+                      <li className={styles.desc} key={index}>
+                        <span>{item.heading}&nbsp;</span>{item.description}
+                      </li>
+                    );
+                  })}
+              </ol>
             </Col>
           </Row>
 
