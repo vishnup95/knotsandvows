@@ -16,6 +16,7 @@ import { imagePath } from '../../utils/assetUtils';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 import LoaderComponent from '../../components/Loader/loader';
 import { isLoggedIn } from '../../utils/utilities';
+import ShowMoreText from 'react-show-more-text';
 
 
 const mapStateToProps = state => ({
@@ -134,7 +135,6 @@ class DetailPageComponent extends Component {
     render() {
         let details = this.props.details;
         let reviewsData = this.props.reviewsData;
-
         return (
             <div className={style.detailContainer}>
                 {this.props.detailsLoading && <LoaderComponent />}
@@ -196,7 +196,12 @@ class DetailPageComponent extends Component {
                                     {details.about &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>About {details.name}</h3>
-                                            <p>{details.about}</p>
+                                            <ShowMoreText
+                                                lines={10}
+                                                more='more'
+                                                less='less'
+                                            >{details.about}
+                                            </ShowMoreText>
                                         </Col>
                                     }
                                     {details.available_areas && details.available_areas.length > 0 &&

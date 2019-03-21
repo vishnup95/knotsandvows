@@ -101,6 +101,9 @@ a.button {
   @include padding(59.5,0);
   border-bottom: 2px solid #eee;
 
+  a {
+    color: $primary-color;
+  }
   h2 {
     color: $black;
     margin-bottom: 1rem;
