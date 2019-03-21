@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Row, Col, Button, Input } from 'reactstrap';
-import styles from './cartPage.scss';
+import styles from './wishlist.scss';
 import PropTypes from 'prop-types';
 
 class OrderSummaryComponent extends Component {
