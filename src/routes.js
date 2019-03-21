@@ -61,6 +61,13 @@ const LoadableSample = Loadable({
 //   }
 // });
 
+const LoadableServices = Loadable({
+  loader: () => import(/* webpackChunkName: 'login' */ './modules/services/Services'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
 const LoadableLogin = Loadable({
   loader: () => import(/* webpackChunkName: 'login' */ './modules/login/Login'),
   loading() {
@@ -147,6 +154,7 @@ const routes = (
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
     <Route exact path="/wishlist" component={LoadableCartPage} />
     {/* <Route path="/about" component={LoadableAbout} /> */}
+    <Route path="/services" component={LoadableServices} />
     <Route path="/sample" component={LoadableSample} />
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
     <Route path="/:category_name/:vendor_name" component={LoadableDetail} />

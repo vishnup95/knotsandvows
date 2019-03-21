@@ -1,0 +1,32 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
+
+
+.serviceCard {
+  @include margin(15);
+  @include padding(25,25,15);
+  @include borderRadius(10);
+  background-color: $white;
+  box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.15);
+
+  img {
+    @include height(35);
+    @include width(35);
+    margin-right: 1rem;
+  }
+
+  p {
+    font-family: $roboto-regular;
+    @include letterSpacing(.9);
+    @include fontSize(16);
+    color: $black;
+
+    &:first-child {
+      font-family: $frank-regular;
+      @include fontSize(22);
+      color: $black-five;
+    }
+  }
+}
