@@ -39,8 +39,8 @@ const LoadableExclusiveDeals = Loadable({
 //   }
 // });
 
-const LoadableCartPage = Loadable({
-  loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/cartPage/CartPage'),
+const LoadableWishlist = Loadable({
+  loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/wishlist/wishlist'),
   loading() {
     return <div>Loading...</div>;
   }
@@ -152,7 +152,7 @@ const routes = (
     <Route exact path="/categories" component={LoadableCategoryListing} />
     <Route exact path="/packages" component={LoadableExclusiveDeals} />
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
-    <Route exact path="/wishlist" component={LoadableCartPage} />
+    <Route exact path="/wishlist" component={LoadableWishlist} />
     {/* <Route path="/about" component={LoadableAbout} /> */}
     <Route path="/services" component={LoadableServices} />
     <Route path="/sample" component={LoadableSample} />
