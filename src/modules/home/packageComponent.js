@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './home.scss';
 import { formatMoney } from '../../utils/assetUtils';
+import ShowMoreText from 'react-show-more-text';
 
 class PackageComponent extends Component {
   launchLandingPage(){
@@ -18,10 +19,14 @@ class PackageComponent extends Component {
       <div className={`${styles.packageContainer}`}>
         <div className={styles.details}>
           <h2>{packageDetail.name}</h2>
-          <p className={styles.pSmall}>
-            {packageDetail.description}
-          </p>
-
+          <div >
+          <ShowMoreText
+              lines={6}
+              more='more'
+              less='less' >{packageDetail.description}
+        </ShowMoreText>
+          </div>
+          
           <p className={`mt-5 ${styles.price}`}>
             <span className={`mr-1 ${styles.priceBefore}`}>Offer Price: </span>
             <span className={`mr-5 ${styles.priceNow}`}>

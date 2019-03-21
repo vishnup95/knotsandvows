@@ -153,6 +153,11 @@
   @include margin(30,0);
   @include padding(25,35);
 
+  a {
+    color: $primary-color;
+    @include fontSize(18);
+    font-family: $roboto-medium;
+  }
   h3 {
     @include fontSize(30);
     font-family: $roboto-medium;
