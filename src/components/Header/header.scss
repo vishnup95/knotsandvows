@@ -26,6 +26,11 @@
     margin-bottom: 0;
     @include height(86.3);
     padding: 0;
+    @include mobile {
+      position: absolute;
+      top:0;
+      left:0;
+    }
 
     ul {
       @include tablet {
@@ -46,16 +51,22 @@
   @include tablet {
      @include padding(0, 38)
   }
+  @include mobile {
+    @include justify-center()
+    padding: 0 1rem 0 1rem;
+  }
 }
 
 .ahCollapse {
   position: fixed;
-  top: 0;
+  top: 83px;
   left: 0;
-  width: 100%;
+  width: auto;
   background-color: $white;
   box-shadow: 0 3px 6px 0 $black-16;
-  @include padding(27,20);
+  padding: 1.6875rem 5.25rem 1.6875rem 2.25rem;
+  border-radius: 0px 5px 5px 0px;
+  //@include padding(27,20);
   @include tablet {
     height: 100%;
     position: relative;
@@ -76,8 +87,8 @@
       cursor: pointer;
 
       a {
-        @include fontSize(20);
-        line-height: 1.36;
+        font-size: 18px;
+        line-height: 2.36;
         color: $black-fourteen !important;
         position: relative;
         @include tablet {
@@ -122,7 +133,7 @@
   justify-content: flex-end;
   align-items: center;
   @include mobile {
-    justify-content: space-between;
+    display: none;
   }
 
   > li {

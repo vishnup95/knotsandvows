@@ -26,7 +26,7 @@
   top: 10rem;
 }
 
-//Jumbotron 
+//Jumbotron
 
 h1 {
   @include fontSize(58);
@@ -91,6 +91,15 @@ a.button {
     background-image: linear-gradient(to right, rgba(56, 26, 28, 0.53), rgba(58, 27, 29, 0.78) 31%, rgba(95, 43, 48, 0) 65%, rgba(0, 0, 0, 0));
   }
 }
+.carousalImage {
+  @include height(600);
+  width: 100%;
+  background-size: cover;
+  backround-repeat: no-repeat;
+  @include mobile {
+    @include height(440);
+  }
+}
 
 // Package styles
 
@@ -118,6 +127,11 @@ a.button {
     align-items: flex-end;
     cursor: pointer;
     flex-shrink: 0;
+    @include mobile {
+      width: 100px;
+      height: 100px;
+      align-self: center;
+    }
 
     button {
       background-color: $primary-color;
@@ -196,6 +210,57 @@ a.button {
 }
 
 // multicarousel styles - vertical
+.desktopCarousal {
+  @include mobile {
+    display: none;
+  }
+}
+.mobileCarousal {
+  display: none;
+  @include mobile {
+    display: flex;
+  }
+  .verticalMultiItem {
+    min-width: 41%;
+    width: 41%;
+    flex-direction: column;
+    height: auto;
+    .imageContainer {
+      width: 90%;
+      height: 102px;
+      border-radius: 1.125rem 1.125rem 0rem 0rem;
+    }
+    .detailContainer {
+      width: 90%;
+      border-radius: 0rem 0rem 1.125rem 1.125rem;
+      padding: .75rem .75rem 1.4rem .75rem;
+      .handle {
+        display: none;
+      }
+      h3 {
+        font-size: 11px;
+      }
+      p {
+        font-size: 10px;
+      }
+    }
+  }
+}
+.fullWidth {
+  width: calc(100% + 22px);
+}
+.scrollingContainer {
+  width: 100%;
+  overflow-x: scroll;
+  display:flex;
+}
+.staticItemContainer {
+  @include mobile {
+    @include flex();
+    @include flex-row-reverse();
+    @include justify-space-between();
+  }
+}
 
 .staticItem {
   width: 95%;
@@ -204,6 +269,10 @@ a.button {
   @include borderRadius(18);
   position: relative;
   cursor: pointer;
+  @include mobile {
+    width: calc(50% - 10px);
+    height: 110px;
+  }
 
   &:first-child {
     @include margin(0,0,40,0);
@@ -219,6 +288,10 @@ a.button {
     background-color: rgba(0, 0, 0, 0.7);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    @include mobile {
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
   }
 
   h4 {
@@ -230,6 +303,10 @@ a.button {
     color: $white;
     @include fontSize(30);
     @include letterSpacing(0.6);
+    @include mobile {
+      bottom: 6%;
+      font-size: 13px;
+    }
   }
 
   p {
@@ -238,6 +315,9 @@ a.button {
     top: 80%;
     width: 100%;
     text-align: center;
+    @include mobile {
+      display: none;
+    }
   }
 }
 
@@ -341,6 +421,9 @@ a.button {
   @include fontSize(58);
   line-height: 1.24;
   color: white;
+  @include mobile {
+    font-size: 20px;
+  }
 
 }
 
@@ -349,6 +432,9 @@ a.button {
   line-height: 1.21;
   @include fontSize(28);
   margin-bottom: 1.5rem;
+  @include mobile {
+    font-size: 12px;
+  }
 }
 
 .carousel-btn {
@@ -368,10 +454,21 @@ a.button {
   color: white;
   text-align: left;
   padding-right: 50%;
+  @include mobile {
+    padding-right: 1.875rem;
+    @include left(30);
+    text-align: center;
+  }
+  @include tabletOnly {
+    padding-right: 20%;
+  }
 
   .buttonContainer {
     display: flex;
     flex-grow: 1;
+    @include mobile {
+      @include justify-center();
+    }
   }
 }
 

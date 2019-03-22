@@ -30,24 +30,26 @@ class FooterFixedComponent extends Component {
         return (
             <Jumbotron className={`${styles.footerContainer} text-white`}>
                 <Row>
-                    <Col>
-                        <div className="text-left">
+                    <Col className={`${styles.footerContact}`}>
+                        <div className={`${styles.footerContactContainer} text-left`}>
                             <div className={` ${styles.block}`}>
                                 <p>Seven Vows event Planners</p>
                                 <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum,</p>
                                 <p className="mb-0">Road # 2, Banjara Hills, Hyderabad 500034 </p>
                             </div>
-                            <div className={` ${styles.block}`}>
-                                <p>Contact Numbers</p>
-                                <p className="mb-0">+91 770 205  3510</p>
-                            </div>
-                            <div className={` ${styles.block}`}>
-                                <p className="mb-0">Email us @ &nbsp; <span>info@sevenvows.co.in</span></p>
+                            <div className={`${styles.footerPhoneEmail}`}>
+                                <div className={` ${styles.block}`}>
+                                    <p>Contact Numbers</p>
+                                    <p className="mb-0">+91 770 205  3510</p>
+                                </div>
+                                <div className={` ${styles.block}`}>
+                                    <p className="mb-0">Email us @ &nbsp; <span>info@sevenvows.co.in</span></p>
+                                </div>
                             </div>
                         </div>
                     </Col>
 
-                    <Col className={` ${styles.block}`}>
+                    <Col className={` ${styles.block} ${styles.footerNavLinks}`}>
                         <p>Seven Vows</p>
                         <ul>
                             <li>
@@ -72,7 +74,7 @@ class FooterFixedComponent extends Component {
                             </li>
                         </ul>
                     </Col>
-                    <Col className={` ${styles.block}`}>
+                    <Col className={` ${styles.block} ${styles.footerEventLinks}`}>
                         <p>Plan your events</p>
                         <ul>
                             {
@@ -85,8 +87,19 @@ class FooterFixedComponent extends Component {
                                 })
                             }
                         </ul>
+                        <span className={styles.footerImages}>
+                            <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
+                                <img src={imagePath('footer_fb.png')} alt="Facebook" />
+                            </a>
+                            <a href='https://www.instagram.com/ahwanamevents/' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                <img src={imagePath('footer_insta.png')} alt="Instagram" />
+                            </a>
+                            <a href='https://www.pinterest.com' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                <img src={imagePath('pinterest.svg')} alt="Pinterest" />
+                            </a>
+                        </span>
                     </Col>
-                    <Col>
+                    <Col className={`${styles.footerBottomLinks}`}>
                         <div className={`${styles.footerRight}`}>
                             <span className={styles.footerImages}>
                                 <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
@@ -99,9 +112,9 @@ class FooterFixedComponent extends Component {
                                     <img src={imagePath('pinterest.svg')} alt="Pinterest" />
                                 </a>
                             </span>
-                            <p className="">© 2019  All Rights Reserved</p>
+                            <p className="">© 2019  All Rights Reserved&nbsp;</p>
                             <p className="">Seven Vows event Planners</p>
-                            <p className="">
+                            <p className="w-100">
                                 <Link to={'/terms-and-conditions'} >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link></p>
                         </div>
                     </Col>

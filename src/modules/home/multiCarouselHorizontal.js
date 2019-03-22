@@ -29,8 +29,8 @@ const SampleNextArrow = (propvalues) => {
   return (
     <button
       className={`${className} ${styles.hButton}`}
-      style={{ ...style, 
-        display: "block", 
+      style={{ ...style,
+        display: "block",
         background: 'url("images/dropicon_home.svg") no-repeat',
         backgroundSize: '50px',
         transform: 'rotate(270deg)'
@@ -45,12 +45,12 @@ const  SamplePrevArrow = (propvalues) =>  {
   return (
       <button
       className={className}
-      style={{ ...style, 
-          display: "block", 
+      style={{ ...style,
+          display: "block",
           background: 'url("images/dropicon_home.svg") no-repeat',
           transform: 'rotate(90deg)',
           backgroundSize: '50px',
-          zIndex: '10' 
+          zIndex: '10'
       }}
       onClick={onClick}
       >Prev</button>
@@ -89,7 +89,7 @@ export default class HorizontalMultiCarousel extends Component {
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 1,
             slidesToScroll: 1
           }
         }
@@ -103,9 +103,9 @@ export default class HorizontalMultiCarousel extends Component {
                     return(
                         <div key={index} className={styles.multiItem}>
                             <div className={styles.roundImg}>
-                                <img src={imagePath(item.image)} alt="Icon" 
-                                onMouseOver={e => e.currentTarget.src = imagePath(item.hoverimage)} 
-                                onMouseOut={e => e.currentTarget.src = imagePath(item.image)} 
+                                <img src={imagePath(item.image)} alt="Icon"
+                                onMouseOver={e => e.currentTarget.src = imagePath(item.hoverimage)}
+                                onMouseOut={e => e.currentTarget.src = imagePath(item.image)}
                                 onFocus={() => {}} onBlur={() => {}} />
                             </div>
                             <h3 className="mt-5">{item.title}</h3>
@@ -113,7 +113,7 @@ export default class HorizontalMultiCarousel extends Component {
                               {item.description}
                             </p>
                         </div>
-                    ); 
+                    );
                 })
             }
         </Slider>

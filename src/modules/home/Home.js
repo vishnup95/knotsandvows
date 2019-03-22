@@ -15,6 +15,7 @@ import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import PackageComponent from './packageComponent';
 import HorizontalMultiCarousel from './multiCarouselHorizontal';
 import VerticalMultiCarousel from './multiCarouselVertical';
+import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
 
 const jumbotronData = [
   {
@@ -52,7 +53,7 @@ const staticData = [
     description: 'Add to wishlist, compare services, share ideas with family, finalize vendors and more!',
     image: '/images/home_static2.jpg',
   },
-  
+
 ];
 
 const mapStateToProps = state => ({
@@ -109,14 +110,14 @@ class Home extends Component {
     return (
       <div>
         <CarouselComponent />
-        
+
         <JumbotronComponent data={jumbotronData[0]} bgcolor="#ffffff">
           <Row className="pt-5">
-            <Col xs="12" sm="5" className="no-padding no-margin">
+            <Col xs="12" sm="12" md="5" className={`${styles.staticItemContainer} no-padding no-margin`}>
               {
                 staticData.map((item, index) => {
                   return(
-                    <div key={index} className={styles.staticItem} style={{ backgroundImage: `url(${item.image})`}} 
+                    <div key={index} className={styles.staticItem} style={{ backgroundImage: `url(${item.image})`}}
                       onClick={() => this.navigateTo('/categories')} aria-hidden>
                       <h4>{item.title}</h4>
                       <p className={styles.pSmall}>{item.description}</p>
@@ -125,8 +126,11 @@ class Home extends Component {
                 })
               }
             </Col>
-            <Col xs="12" sm="7" className="no-padding" style={{margin: '-1rem 0'}}>
+            <Col xs="12" sm="7" className={`${styles.desktopCarousal} no-padding`} style={{margin: '-1rem 0'}}>
               <VerticalMultiCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)}/>
+            </Col>
+            <Col xs="12" className={`${styles.mobileCarousal} no-padding`} style={{margin: '-1rem 0'}}>
+               <HorizontalScrollingCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)}/>
             </Col>
           </Row>
         </JumbotronComponent>
@@ -136,7 +140,7 @@ class Home extends Component {
             {this.props.exclusives.map((exclusivePackage, index) => {
               return <PackageComponent key={index} details={exclusivePackage}/>;
             })}
-          </div>     
+          </div>
         </JumbotronComponent>
 
         <JumbotronComponent data={jumbotronData[2]} bgcolor="#fef9f9" insideContainer={false} containerStyle="carouselWrap">

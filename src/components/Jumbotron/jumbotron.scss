@@ -41,6 +41,9 @@ hr {
   margin: 0 auto;
   max-width: 100%;
   padding: 3rem 3rem 0;
+  @include mobile {
+    padding:0;
+  }
 }
 
 .carousel-wrap {

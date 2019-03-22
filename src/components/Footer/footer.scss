@@ -25,6 +25,57 @@
       }
     }
   }
+  .footerEventLinks {
+    .footerImages {
+        display: none;
+    }
+  }
+  @include mobile {
+    .footerContact {
+      order: 3;
+      min-width: 100%;
+      .footerContactContainer {
+        @include flex();
+        @include justify-space-between;
+      }
+      .footerPhoneEmail {
+        text-align: right;
+      }
+    }
+    .footerNavLinks {
+      order: 1;
+      min-width: calc(50% - 15px);
+      border-bottom: 1px solid $primary-color;
+      padding-left: 0;
+      margin-left: 15px;
+      text-align: left;
+    }
+    .footerEventLinks {
+      min-width: calc(50% - 15px);
+      border-bottom: 1px solid $primary-color;
+      padding-right: 0;
+      margin-right: 15px;
+      order: 2;
+      text-align: right;
+      ul li {
+        @include justify-right();
+      }
+      .footerImages {
+        display: inline-block;
+      }
+    }
+    .footerBottomLinks {
+      order: 4;
+      .footerImages {
+        display: none;
+      }
+      .footer-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        @include justify-center();
+      }
+    }
+  }
 }
 
 p {

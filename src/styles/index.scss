@@ -34,6 +34,9 @@
 .carousel-indicators {
   z-index: 2;
   bottom: 8rem;
+  @include mobile {
+    bottom: 2rem;
+  }
 
   li {
     border-radius: 50%;
@@ -49,7 +52,7 @@
   }
 }
 
-// modal override 
+// modal override
 
 .modal-dialog {
   @include mobile {
@@ -317,4 +320,7 @@
 
 .slick-disabled {
   display: none !important;
+}
+.width100 {
+  width: 100%;
 }
