@@ -108,7 +108,7 @@ class TalkToWeddingPlanner extends Component {
                             <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} />
                         </Form>
                         <div className="text-center">
-                            <Button className={styles.cancelBtn} onClick={() => this.toggle()}>Cancel</Button>
+                            <Button className="text-btn" onClick={() => this.toggle()}>Cancel</Button>
                             <Button className="primary-button" onClick={() => this.validateForm()}>Submit</Button>
                         </div>
                     </div>

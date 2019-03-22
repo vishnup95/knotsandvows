@@ -28,7 +28,8 @@ class CategoryListing extends Component {
   state = {
     categories: [],
     fixedCategories: [],
-    selectedVendor: 0
+    selectedVendor: 0,
+    isCompare: false
   }
 
   static fetchData(store) {
@@ -63,6 +64,9 @@ class CategoryListing extends Component {
     updatedCategories[index] = temp;
     this.setState({ categories: updatedCategories, selectedVendor: index });
   }
+  setCompare = () => {
+    this.setState({ isCompare: !this.state.isCompare });
+  }
 
   render() {
     return (
@@ -87,7 +91,7 @@ class CategoryListing extends Component {
                               {
                                 this.state.fixedCategories.map((k, index) => {
                                   return (
-                                    <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : '' }`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
+                                    <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
                                   );
                                 })
                               }
@@ -100,18 +104,37 @@ class CategoryListing extends Component {
                   </Col>
                   <Col sm="9" className={styles.listDetailContainer}>
                     <Row>
+                      {
+                        this.state.fixedCategories.length > 0 &&
+                        <Col className="text-left">
+                          <span className={styles.vendorName}>{this.state.fixedCategories[`${this.state.selectedVendor}`].name}</span>
+                          {!this.state.isCompare && <button className="text-btn small" onClick={() => this.setCompare()}>Compare {this.state.fixedCategories[`${this.state.selectedVendor}`].name}</button>}
+                        </Col>
+                      }
+                      {
+                        this.state.isCompare &&
+                        <Col className="text-right">
+                          <button className="text-btn small" onClick={() => this.setCompare()}>Cancel</button>
+                          <button className="primary-button">Compare Vendors</button>
+
+                        </Col>
+                      }
+                    </Row>
+                    <Row>
                       {this.state.categories[0] && this.state.categories[0].vendors &&
                         this.state.categories[0].vendors.map((item, index) => {
                           return (
                             <Col sm="6" md="6" lg="4" key={index}>
-                              <CategoryCard data={item} />
+                              <CategoryCard data={item} isCompare={this.state.isCompare} />
                             </Col>
                           );
                         })
                       }
-                            <Col className={styles.addNew} sm="6" md="6" lg="4">
-                              <div className={styles.addBtn}> + </div>
-                            </Col>
+                      <Col sm="6" md="6" lg="4">
+                        <div className={styles.addNew}>
+                          <div className={styles.addBtn}> + </div>
+                        </div>
+                      </Col>
 
                     </Row>
                   </Col>

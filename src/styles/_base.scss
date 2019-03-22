@@ -79,3 +79,19 @@ h2 {
     background-color: #E54291;
   }
 }
+.text-btn {
+  color: $primary-color;
+  font-family: $roboto-medium;
+  background: none;
+  border: none;
+  @include margin(0,8);
+  cursor: pointer;
+
+  &:hover {
+    background: none;
+    color: $primary-color;
+  }
+  &.small {
+    @include fontSize(16);
+  }
+}
