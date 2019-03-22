@@ -54,12 +54,12 @@ const LoadableSample = Loadable({
   }
 });
 
-// const LoadableAbout = Loadable({
-//   loader: () => import(/* webpackChunkName: 'about' */ './modules/about/About'),
-//   loading() {
-//     return <div>Loading...</div>;
-//   }
-// });
+const LoadableAbout = Loadable({
+  loader: () => import(/* webpackChunkName: 'about' */ './modules/about/About'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
 
 const LoadableServices = Loadable({
   loader: () => import(/* webpackChunkName: 'login' */ './modules/services/Services'),
@@ -153,7 +153,7 @@ const routes = (
     <Route exact path="/packages" component={LoadableExclusiveDeals} />
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
     <Route exact path="/wishlist" component={LoadableWishlist} />
-    {/* <Route path="/about" component={LoadableAbout} /> */}
+    <Route path="/about" component={LoadableAbout} />
     <Route path="/services" component={LoadableServices} />
     <Route path="/sample" component={LoadableSample} />
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
