@@ -35,6 +35,9 @@
 .carousel-indicators {
   z-index: 2;
   bottom: 8rem;
+  @include mobile {
+    bottom: 2rem;
+  }
 
   li {
     border-radius: 50%;
@@ -50,7 +53,7 @@
   }
 }
 
-// modal override 
+// modal override
 
 .modal-dialog {
   @include mobile {
@@ -217,7 +220,7 @@
     }
 
     &.password-unmasked {
-		
+
       .input-password-mask {
         background: center url(/images/filter-search-icon.png) no-repeat;
         background-size: contain;
@@ -379,6 +382,9 @@
 
 .slick-disabled {
   display: none !important;
+}
+.width100 {
+  width: 100%;
 }
 button, a {
   outline: none !important;

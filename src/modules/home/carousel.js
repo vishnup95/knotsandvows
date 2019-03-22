@@ -104,7 +104,7 @@ class CarouselComponent extends Component {
                     onExiting={this.onExiting}
                     onExited={this.onExited}
                     key={index} className={styles.carouselItem}>
-                    <img src={imagePath(item.src)} className="w-100" alt={item.altText} />
+                    <div className={styles.carousalImage} style={{ backgroundImage: `url(${imagePath(item.src)})`}}></div>
                     <div className={styles.carouselContent}>
                         <h3 className={styles.carouselHeader}>{item.caption}</h3>
                         <p className={styles.carouselText}>{item.shortDescription}</p>

@@ -59,3 +59,7 @@
   justify-content: center;
   border-radius: 50%;
 }
+.vendorName {
+  @include fontSize(30);
+  color: $black;
+}

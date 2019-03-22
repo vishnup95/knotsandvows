@@ -1,9 +1,72 @@
 @import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
 
-.title {
-  color: $blue;
+.aboutContainer {
+  .h4Class {
+    @include fontSize(30);
+    width: 92%;
+    @include letterSpacing(.54);
+    line-height: 2.5rem;
+  }
+
+  .pClass {
+    @include fontSize(18);
+    @include letterSpacing(.31);
+    color: #484848;
+    line-height: 1.8rem;
+  }
 }
 
-.react-logo {
-  width: 200px;
+.memberContainer {
+  text-align: center;
+  .memberName {
+    font-family: $roboto-medium;
+    @include fontSize(22);
+    color: $black;
+  }
+
+  .memberPosition {
+    font-family: $roboto-regular;
+    @include fontSize(18);
+    color: #959595;
+    margin-top: -0.5rem;
+  }
+
+  .imageCover {
+    @include borderRadius(10);
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    background-size: cover; 
+
+    &:before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+
+    .hoverContainer {
+      @include borderRadius(10);
+      transition: .5s cubic-bezier(0.4, 0, 1, 1);
+      background-color: rgba(255, 0, 0, 0.41);
+      opacity: 0;
+      position: absolute;
+      padding-bottom: 2rem;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      color: white;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    &:hover {
+      .hoverContainer {
+        opacity: 1;
+      }
+    }
+  }
 }

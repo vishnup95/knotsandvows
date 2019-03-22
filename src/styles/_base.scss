@@ -55,7 +55,9 @@ h2 {
 .main {
   min-height: calc(100vh - 40rem);
   margin-top: 10.33125rem;
-
+  @include mobile {
+    margin-top: 4.9375rem;
+  }
 }
 
 .primary-button {
@@ -77,5 +79,21 @@ h2 {
     background-color: $secondary-color;
     text-decoration: none;
     background-color: #E54291;
+  }
+}
+.text-btn {
+  color: $primary-color;
+  font-family: $roboto-medium;
+  background: none;
+  border: none;
+  @include margin(0,8);
+  cursor: pointer;
+
+  &:hover {
+    background: none;
+    color: $primary-color;
+  }
+  &.small {
+    @include fontSize(16);
   }
 }
