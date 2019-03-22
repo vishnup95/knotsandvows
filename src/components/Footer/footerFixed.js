@@ -33,9 +33,8 @@ class FooterFixedComponent extends Component {
                     <Col className={`${styles.footerContact}`}>
                         <div className={`${styles.footerContactContainer} text-left`}>
                             <div className={` ${styles.block}`}>
-                                <p>Seven Vows event Planners</p>
-                                <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum,</p>
-                                <p className="mb-0">Road # 2, Banjara Hills, Hyderabad 500034 </p>
+                                <p>Seven Vows</p>
+                                <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum, Road # 2, Banjara Hills, Hyderabad 500034 </p>
                             </div>
                             <div className={`${styles.footerPhoneEmail}`}>
                                 <div className={` ${styles.block}`}>
@@ -50,7 +49,7 @@ class FooterFixedComponent extends Component {
                     </Col>
 
                     <Col className={` ${styles.block} ${styles.footerNavLinks}`}>
-                        <p>Seven Vows</p>
+                        <p><Link to={'/'}>Home</Link></p>
                         <ul>
                             <li>
                                 <Link to={'/categories'}>Vendors</Link>
@@ -113,9 +112,9 @@ class FooterFixedComponent extends Component {
                                 </a>
                             </span>
                             <p className="">© 2019  All Rights Reserved&nbsp;</p>
-                            <p className="">Seven Vows event Planners</p>
+                            <p className="">Seven Vows</p>
                             <p className="w-100">
-                                <Link to={'/terms-and-conditions'} >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link></p>
+                                <Link to={'/terms-and-conditions'} >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'}>Privacy Policy</Link></p>
                         </div>
                     </Col>
                 </Row>

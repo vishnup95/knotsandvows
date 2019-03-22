@@ -1,0 +1,49 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
+
+.privacy-container {
+  padding-top: 3rem;
+  ol {
+    padding-left: 1.2rem;
+    li {
+      list-style-type: decimal;
+      padding-left: 1rem;
+
+      span {
+        text-transform: uppercase;
+        font-family: $roboto-medium;
+      }
+
+      ol {
+        li {
+          font-family: $roboto-medium;
+          list-style-type: lower-roman;
+        }
+      }
+    }
+  }
+  h1 {
+    margin-bottom: 2rem;
+  }
+}
+
+.desc {
+  @include fontSize(16);
+  line-height: 1.88;
+  @include letterSpacing(.5);
+}
+
+.boldList {
+  @extend .desc;
+  font-family: $roboto-medium;
+}
+.sub-heading {
+  font-family: $roboto-regular;
+  @include fontSize(28);
+  color: $black-five;
+  line-height: .93;
+  @include letterSpacing(.6);
+  @include margin(32,0,16);
+}

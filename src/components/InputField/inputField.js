@@ -7,11 +7,19 @@ import PropTypes from 'prop-types';
 const defaultPatterns = {
     email: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$',
     password: '^(?=.*[a-z])(?=.*[A-Z])(?=.*)[A-Za-z][A-Za-z0-9!@#$%^&*()_+]{5,19}$',
-    text: '[A-Za-z0-9]+',
+    text: '[A-Za-z0-9_ ]+',
+    tel: '[0-9]{10}'
 }
 
-class InputField extends Component {
-   state = {errorMessage: ''};
+class InputField extends Component { 
+    state = {errorMessage: '', value: ''};  
+
+    componentDidMount() {
+        if (this.props.value) {
+            this.setState({value: this.props.value})
+            this.handleFocus(document.getElementById(this.props.id));
+        }
+    }
 
     handleFocus(inputBox) {
         inputBox.parentNode.classList.add('is-focussed');
@@ -31,6 +39,7 @@ class InputField extends Component {
     }
       
     handleInput(inputBox) {
+        this.setState({value: inputBox.value});
         if(inputBox.value.length > 0) {
             inputBox.parentNode.classList.add('is-dirty');
         } else {
@@ -49,10 +58,24 @@ class InputField extends Component {
             return true;
 
         } else {
-            this.setState({errorMessage: 'Invalid'});
+            this.setState({errorMessage: `Invalid ${this.props.placeHolder}`});
             inputBox.parentNode.classList.add('error');
             return false;
 
+        }
+    }
+
+    togglePasswordMask(maskToggleIcon) {
+        var inputWrapper = maskToggleIcon.parentNode,
+            inputBox = inputWrapper.firstElementChild;
+        
+        if(inputWrapper.classList.contains('password-unmasked')) {
+            inputBox.setAttribute('type', 'password');
+            inputBox.setAttribute('pattern', '^(?=.*[a-z])(?=.*[A-Z])(?=.*)[A-Za-z][A-Za-z0-9!@#$%^&*()_+]{5,19}$');
+            inputWrapper.classList.remove('password-unmasked');
+        } else {
+            inputBox.setAttribute('type', 'text');
+            inputWrapper.classList.add('password-unmasked');
         }
     }
 
@@ -67,11 +90,12 @@ class InputField extends Component {
                 onInput={() =>  this.handleInput(event.target)} 
                 onChange={() => this.props.onChange(event)}
                 disabled={this.props.disabled}
-                // value={this.props.value}
+                value={this.state.value}
                 />
-              <Label className='input-placeholder' htmlFor={this.props.id}>{this.props.placeHolder}</Label>
+              <Label className={this.props.type === 'date' ? 'date-placeholder' : 'input-placeholder'} htmlFor={this.props.id}>{this.props.placeHolder}</Label>
               <span className='input-bar'></span>
               <span className='input-error'>{this.state.errorMessage}</span>
+              {this.props.type === 'show-mask-password' && <span className='input-password-mask' aria-hidden onClick={() => this.togglePasswordMask(event.target)}></span>}
             </div>
         );
     }
@@ -90,7 +114,6 @@ InputField.propTypes = {
 
 InputField.defaultProps = {
     required: true,
-    pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     disabled: false,
     value:''
 }

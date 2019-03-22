@@ -1,0 +1,61 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
+.wishlistContainer {
+  div[class^="container"] {
+    max-width: 80%;
+  }
+}
+.subTitle {
+  text-align: center;
+}
+.listTitle {
+  color: $black;
+  @include fontSize(24);
+  cursor: pointer;
+}
+.vendorList {
+  list-style-type: none;
+  padding: 0;
+}
+.listItem {
+  @include fontSize(20);
+  padding: 1rem;
+  cursor: pointer;
+  &.active {
+    color: $primary-color;
+  }
+}
+.listDetailContainer {
+  background-color: $white-two;
+  box-shadow: 0 0 10px 0 $black-16;
+  @include padding(15,37);
+  @include borderRadius(5);
+}
+.addNew {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #FEF1F7;
+  border: 1px dashed $primary-color;
+  // @include width(403);
+  width: auto;
+  @include height(362);
+  @include borderRadius(18);
+  @include margin(16,0);
+  @include fontSize(24);
+  color: $primary-color;
+  cursor: pointer;
+}
+.addBtn {
+  @include width(114);
+  @include height(114);
+  background-color: $white;
+  border: 1px dashed $primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}

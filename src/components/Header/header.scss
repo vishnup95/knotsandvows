@@ -100,7 +100,7 @@
             left: 20%;
             bottom: -1rem;
             width: 60%;
-            background-color: $tomato-red;
+            background-color: $secondary-color;
             height: 0;
             border-radius: 2px;
           }
@@ -185,18 +185,38 @@
   overflow: hidden;
   opacity: 0;
   display: flex;
+  @include borderRadius(0,0,18,18);
 
   ul {
     padding: 0 !important;
+
     li {
       @extend %pointer;
-      padding: 1rem 1.5rem;
+      padding: 1rem 2.5rem 1.5rem;
       list-style: none;
       white-space: nowrap;
 
       a {
         &:before {
-          display: none;
+          content: '';
+          position: absolute;
+          left: 15%;
+          bottom: -1rem;
+          width: 70%;
+          background-color: $secondary-color;
+          height: 0;
+          border-radius: 2px;
+        }
+
+        &:hover {
+          text-decoration: none;
+
+          &:before {
+            bottom: -.4rem;
+            height: 2px;
+            transition: 300ms all ease;
+
+          }
         }
       }
     }
@@ -213,7 +233,7 @@
       top: 5.4rem;
       transition: 500ms all ease;
       opacity: 1;
-
+      @include padding(0,0,16);
     }
   }
 }

@@ -8,7 +8,7 @@
   background-color: $secondary-color;
   @include tablet {
     text-align: left;
-    @include padding(60,123,30, $important: true);
+    @include padding(60,123,0, $important: true);
   }
 
   ul {
@@ -79,10 +79,12 @@
 }
 
 p {
-  @include fontSize(16);
+  @include fontSize(17.6);
   @include letterSpacing(.3);
+
   a {
     color: inherit;
+
     &:hover {
       color: inherit;
     }
@@ -91,14 +93,12 @@ p {
 }
 
 .block {
-  @include mobile {
-    margin-bottom: 2rem;
-  }
+  margin-bottom: 2rem;
 
   p:first-child {
-    font-family: $frank-bold;
-    @include fontSize(18);
-    margin-bottom: 1rem;
+    font-family: $frank-regular;
+    @include fontSize(20);
+    margin-bottom: .5rem;
 
     span {
       font-family: $roboto-regular;

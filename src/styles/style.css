@@ -1,9 +1,5 @@
 /* Custom styles goes here */
 
-.card {
-    transition: all .3s ease;
-}
-
 .navbar-toggler {
     background: url('/images/nav-icon.svg') center center no-repeat;
     z-index: 3;
