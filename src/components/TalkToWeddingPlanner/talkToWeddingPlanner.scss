@@ -34,15 +34,3 @@
   color: $black-nine;
 }
 
-.cancel-btn {
-  color: $primary-color;
-  font-family: $roboto-medium;
-  background: none;
-  border: none;
-  @include margin(0,8);
-
-  &:hover {
-    background: none;
-    color: inherit;
-  }
-}

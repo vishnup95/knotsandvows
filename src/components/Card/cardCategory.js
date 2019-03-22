@@ -18,7 +18,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch
 });
 class CategoryCard extends Component {
-
+    state = {
+        isChecked: false
+      }
     navigateTo(route) {
         this.props.dispatch(push(route));
         window.scrollTo(0, 0);
@@ -47,7 +49,7 @@ class CategoryCard extends Component {
             <div>
                 <div className={styles.ratingContainer}>
                     <p className={`${styles.rating} mb-2`}>
-                        <img src={imagePath('wishlist_unselected.svg')} className={styles.heartImg} alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden/>
+                        <img src={imagePath('wishlist_unselected.svg')} className={styles.heartImg} alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden />
                     </p>
 
                     <p className={`${styles.rating} mb-1`}>
@@ -80,7 +82,10 @@ class CategoryCard extends Component {
     handleCardClick = () => {
         this.navigateTo(`/${this.props.category}/${this.props.data.page_name}`);
     }
-
+    selectCard = (e) => {
+        this.setState({ isChecked: !this.state.isChecked });
+        e.stopPropagation();
+    }
     render() {
         return (
             <div>
@@ -94,9 +99,15 @@ class CategoryCard extends Component {
                         onError={(e) => { e.target.onerror = null; e.target.src = `${imagePath('card_1_1.jpg')}` }}
                     />
                     {/* <div className={styles.cardImage} style={{ background: "url(" + this.props.data.pic_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div> */}
-                    <CardBody className={styles.categoryBody} style={{backgroundColor: '#f7f7f7'}}>
+                    <CardBody className={styles.categoryBody} style={{ backgroundColor: '#f7f7f7' }}>
                         {this.renderCardBody()}
                     </CardBody>
+                    {
+                        this.props.isCompare &&
+                        <div className={styles.compareMask}>
+                            <span onClick={(e) => this.selectCard(e)} className={`${styles.checkbox} ${this.state.isChecked ? styles.checked : ''}`} aria-hidden></span>
+                        </div>
+                    }
                 </Card>
             </div>
         );
@@ -108,7 +119,8 @@ CategoryCard.propTypes = {
     buttonAction: PropTypes.func,
     dispatch: PropTypes.func,
     category: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    isCompare: PropTypes.bool
 };
 
 export default connect(

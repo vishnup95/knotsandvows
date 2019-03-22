@@ -151,3 +151,28 @@
   @include borderRadius(18,18,0,0);
   object-fit: cover;
 }
+
+.compareMask {
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  @include borderRadius(18);
+
+  .checkbox {
+    background: url('/images/unchecked.svg') center no-repeat / contain;
+    @include width(41.7);
+    @include height(41.7);
+    position: absolute;
+    left: 50%;
+    bottom: 5.7rem;
+    transform: translateX(-50%);
+
+    &.checked {
+      background: url('/images/checked.svg') center no-repeat / contain;
+
+    }
+  }
+}
