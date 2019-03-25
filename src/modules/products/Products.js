@@ -150,13 +150,13 @@ class Products extends Component {
                       onClick={() => this.toggle()}
                       data-toggle="dropdown"
                       aria-expanded={this.state.dropdownOpen}>
-                      {sort_options[this.state.sortBy].name}
+                      {sort_options[this.state.sortBy] ? sort_options[this.state.sortBy].name : ''}
                     </DropdownToggle>
                     <DropdownMenu className={styles.dropMenu}>
                       {
                         sort_options.map((item, index) => {
                           return <div key={index} onClick={() => this.toggle(item)} aria-hidden
-                            className={`${styles.dropItem} ${index === this.state.sortBy ? styles.selectedItem : ''}`}>{item.name}</div>
+                            className={`${styles.dropItemSmall} ${index === this.state.sortBy ? styles.selectedItem : ''}`}>{item.name}</div>
                         })
                       }
                     </DropdownMenu>
