@@ -170,7 +170,7 @@ class Products extends Component {
                   this.props.productListData.results.map((product, index) => {
                     return (
                       <Col xs="12" sm="4" key={index}>
-                        <CategoryCard data={product} category={this.state.category} />
+                        <CategoryCard data={product} category={this.state.category} id={index}/>
                       </Col>
                     );
                   })

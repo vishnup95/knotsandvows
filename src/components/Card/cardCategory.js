@@ -6,6 +6,7 @@ import {
     Card,
     CardImg,
     CardBody,
+    UncontrolledTooltip
 } from 'reactstrap';
 import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
@@ -19,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
 });
 class CategoryCard extends Component {
     state = {
-        isChecked: false
+        isChecked: false,
+        isWishList: false
       }
     navigateTo(route) {
         this.props.dispatch(push(route));
@@ -29,7 +31,9 @@ class CategoryCard extends Component {
     addToWishList = (e) => {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
-        }
+        } else {
+            this.setState({isWishList: !this.state.isWishList});
+        }   
         e.stopPropagation();
     }
 
@@ -49,7 +53,11 @@ class CategoryCard extends Component {
             <div>
                 <div className={styles.ratingContainer}>
                     <p className={`${styles.rating} mb-2`}>
-                        <img src={imagePath('wishlist_unselected.svg')} className={styles.heartImg} alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden />
+                        <img src={imagePath(this.state.isWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg} 
+                            alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`}/>
+                        <UncontrolledTooltip placement="right" target={`WishListTooltip${this.props.id}`}>
+                            {this.state.isWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                        </UncontrolledTooltip>
                     </p>
 
                     <p className={`${styles.rating} mb-1`}>
@@ -120,7 +128,8 @@ CategoryCard.propTypes = {
     dispatch: PropTypes.func,
     category: PropTypes.string,
     type: PropTypes.string,
-    isCompare: PropTypes.bool
+    isCompare: PropTypes.bool,
+    id: PropTypes.number
 };
 
 export default connect(
