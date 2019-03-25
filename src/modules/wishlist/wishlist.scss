@@ -2,37 +2,39 @@
 @import '../../variables/utils';
 @import '../../variables/fonts';
 @import '../../variables/breakpoints';
-.wishlistContainer {
-  div[class^="container"] {
-    max-width: 80%;
-  }
-}
+
 .subTitle {
   text-align: center;
 }
+
 .listTitle {
   color: $black;
   @include fontSize(24);
   cursor: pointer;
 }
+
 .vendorList {
   list-style-type: none;
   padding: 0;
 }
+
 .listItem {
   @include fontSize(20);
   padding: 1rem;
   cursor: pointer;
+
   &.active {
     color: $primary-color;
   }
 }
+
 .listDetailContainer {
   background-color: $white-two;
   box-shadow: 0 0 10px 0 $black-16;
   @include padding(15,37);
   @include borderRadius(5);
 }
+
 .addNew {
   display: flex;
   align-items: center;
@@ -49,6 +51,7 @@
   color: $primary-color;
   cursor: pointer;
 }
+
 .addBtn {
   @include width(114);
   @include height(114);
@@ -59,7 +62,54 @@
   justify-content: center;
   border-radius: 50%;
 }
+
 .vendorName {
   @include fontSize(30);
   color: $black;
+}
+
+.subText {
+  @include fontSize(20);
+}
+
+.selectedCount {
+  @include fontSize(20);
+  font-family: $roboto-medium;
+}
+
+.collaboratorList {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.collaborator {
+  @include width(36);
+  @include height(36);
+  border: 1px solid $primary-color;
+  border-radius: 50%;
+  color: $primary-color;
+  @include fontSize(18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.collaboratorCount {
+  @include width(36);
+  @include height(36);
+  background-color: $primary-color;
+  color: $white;
+  @include fontSize(18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.addCollaborator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

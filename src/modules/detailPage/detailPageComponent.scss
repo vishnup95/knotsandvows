@@ -267,7 +267,7 @@
 }
 
 .right-sub-section {
-  @include padding(18,35);
+  @include padding(25,35);
 }
 
 .section-border {
@@ -302,22 +302,6 @@
   font-family: $roboto-medium;
   margin-bottom: .2rem;
   @extend %pointer;
-}
-
-.price-wrap {
-  background: $white-three;
-  @include height(163);
-  @include borderRadius(3);
-  @include align-center;
-  margin: 0;
-}
-
-.offer-price {
-  font-family: $roboto-medium;
-  @include fontSize(35);
-  @include letterSpacing(1.2);
-  color: $black-eight;
-  white-space: nowrap;
 }
 
 .price {
@@ -472,5 +456,27 @@
         @include right(-37);
       }
     }
+  }
+}
+
+.prices-container {
+  display: flex;
+  justify-content: space-between;
+  @include margin(20,0);
+  @include fontSize(20);
+  line-height: normal;
+  @include letterSpacing(0.6);
+
+  .item {
+    width: 30%;
+  }
+
+  .itemPrice {
+    width: 25%;
+  }
+
+  .grey {
+    @include fontSize(16);
+    color: #343434ab;
   }
 }

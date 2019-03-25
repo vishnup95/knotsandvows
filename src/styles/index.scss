@@ -389,3 +389,8 @@
 button, a {
   outline: none !important;
 }
+.wishlist-container {
+  div[class^="container"] {
+    max-width: 80%;
+  }
+}

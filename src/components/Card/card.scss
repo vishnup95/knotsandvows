@@ -156,10 +156,10 @@
   background-color: rgba(0,0,0,.5);
   position: absolute;
   left: 0;
-  top: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  @include borderRadius(18);
+  height: 55%;
+  @include borderRadius(0,0,18,18);
 
   .checkbox {
     background: url('/images/unchecked.svg') center no-repeat / contain;
