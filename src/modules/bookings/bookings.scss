@@ -1,0 +1,42 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
+
+.bHeader {
+  color: #939393;
+  @include margin(70,0,10);
+  @include fontSize(20);
+  @include letterSpacing(0.48);
+}
+
+.bItem {
+  @include padding(10,10);
+  @include margin(12,0);
+  border-radius: 3px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  @include fontSize(20);
+  @include letterSpacing(0.48);
+  display: flex;
+  align-items: center;
+
+  .vendorImage {
+    @include width(60);
+    @include height(60);
+    border-radius: 50%;
+    background-size: cover;
+    margin-right: 1rem;
+  }
+
+  div {
+    font-family: $roboto-medium;
+    &:first-child {
+      font-family: $roboto-regular;
+    }
+
+    &:nth-child(2){
+      display: flex;
+      align-items: center;
+    }
+  }
+}
