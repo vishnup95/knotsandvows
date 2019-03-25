@@ -28,8 +28,8 @@
     padding: 0;
     @include mobile {
       position: absolute;
-      top:0;
-      left:0;
+      top: 0;
+      left: 0;
     }
 
     ul {
@@ -52,21 +52,21 @@
      @include padding(0, 38)
   }
   @include mobile {
-    @include justify-center()
-    padding: 0 1rem 0 1rem;
+     @include justify-center() padding: 0 1rem 0 1rem;
   }
 }
 
 .ahCollapse {
-  position: fixed;
-  top: 83px;
-  left: 0;
+  @include mobile {
+    position: fixed;
+    top: 83px;
+    left: 0;
+  }
   width: auto;
   background-color: $white;
   box-shadow: 0 3px 6px 0 $black-16;
   padding: 1.6875rem 5.25rem 1.6875rem 2.25rem;
-  border-radius: 0px 5px 5px 0px;
-  //@include padding(27,20);
+  border-radius: 0 5px 5px 0;
   @include tablet {
     height: 100%;
     position: relative;
@@ -255,8 +255,6 @@
   color: $white;
   letter-spacing: .5px;
 }
-
-// user dropdown styles
 
 .userDropdown {
   position: absolute !important;

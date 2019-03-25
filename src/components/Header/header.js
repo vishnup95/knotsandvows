@@ -229,7 +229,7 @@ class Header extends Component {
     render() {
 
         return (
-            <div className={`${styles.ahHeader}`}>
+            <div className={styles.ahHeader}>
                 <div className={styles.navSmall}>
 
                     <NavbarBrand href="/">
