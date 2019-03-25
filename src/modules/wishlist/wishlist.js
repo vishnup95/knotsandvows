@@ -71,74 +71,101 @@ class CategoryListing extends Component {
   render() {
     return (
       <div className="full-height" style={{ marginTop: '14rem' }}>
-        <div className={styles.wishlistContainer}>
+        <div className="wishlist-container">
           <Container>
             {
-              this.props.ceremonyLoading ?
-                <Row>
-                  <Col>
-                    <LoaderComponent />
-                  </Col>
-                </Row> :
-                <Row>
-                  <Col sm="3">
-                    {
-                      wishlist.map((item, index) => {
-                        return (
-                          <div key={index}>
-                            <div className={styles.listTitle}>{item}</div>
-                            <ul className={styles.vendorList}>
-                              {
-                                this.state.fixedCategories.map((k, index) => {
-                                  return (
-                                    <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
-                                  );
-                                })
-                              }
-                            </ul>
-                          </div>
-                        );
-                      })
-                    }
+              this.props.ceremonyLoading &&
+              <div className="row">
+                <div className="col-12">
+                  <LoaderComponent />
+                </div>
+              </div>
+            }
 
-                  </Col>
-                  <Col sm="9" className={styles.listDetailContainer}>
-                    <Row>
-                      {
-                        this.state.fixedCategories.length > 0 &&
-                        <Col className="text-left">
-                          <span className={styles.vendorName}>{this.state.fixedCategories[`${this.state.selectedVendor}`].name}</span>
-                          {!this.state.isCompare && <button className="text-btn small" onClick={() => this.setCompare()}>Compare {this.state.fixedCategories[`${this.state.selectedVendor}`].name}</button>}
-                        </Col>
-                      }
+            {
+              this.state.fixedCategories.length > 0 &&
+              <Row>
+                <Col sm="3">
+                  {
+                    wishlist.map((item, index) => {
+                      return (
+                        <div key={index}>
+                          <div className={styles.listTitle}>{item}</div>
+                          <ul className={styles.vendorList}>
+                            {
+                              this.state.fixedCategories.map((k, index) => {
+                                return (
+                                  <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
+                                );
+                              })
+                            }
+                          </ul>
+                        </div>
+                      );
+                    })
+                  }
+
+                </Col>
+                <Col sm="9">
+                  <Row>
+                    <Col className={`${styles.collaboratorList} text-right`}>
+                      <div className={styles.collaborator}>YA</div>
+                      <div className={styles.collaborator}>YA</div>
+                      <div className={styles.collaborator}>YA</div>
+                      <div className={styles.collaborator}>YA</div>
+                      <div className={styles.collaboratorCount}>5</div>
+                      <div className={styles.addCollaborator}>add</div>
+                    </Col>
+                  </Row>
+                  <Row className={styles.listDetailContainer}>
+                    <Col>
+                      <Row>
+
+                        {
+                          this.state.fixedCategories.length > 0 &&
+                          <Col className="text-left">
+                            <span className={styles.vendorName}>{this.state.fixedCategories[`${this.state.selectedVendor}`].name}</span>
+                            {!this.state.isCompare && <button className="text-btn small" onClick={() => this.setCompare()}>Compare {this.state.fixedCategories[`${this.state.selectedVendor}`].name}</button>}
+                          </Col>
+                        }
+                        {
+                          this.state.isCompare &&
+                          <Col className="text-right">
+                            <button className="text-btn small" onClick={() => this.setCompare()}>Cancel</button>
+                            <button className="primary-button">Compare Vendors</button>
+
+                          </Col>
+                        }
+                      </Row>
                       {
                         this.state.isCompare &&
-                        <Col className="text-right">
-                          <button className="text-btn small" onClick={() => this.setCompare()}>Cancel</button>
-                          <button className="primary-button">Compare Vendors</button>
-
+                        <Row>
+                          <Col xs="12" className={styles.subText}>Choose two vendors of your choice to see how they compare on price, rating, and specialities. </Col>
+                          <Col xs="12" className={styles.selectedCount}>You are selected lorem ipsum of 3 vendors.</Col>
+                        </Row>
+                      }
+                      <Row>
+                        {this.state.categories[0] && this.state.categories[0].vendors &&
+                          this.state.categories[0].vendors.map((item, index) => {
+                            return (
+                              <Col sm="6" md="6" lg="4" key={index}>
+                                <CategoryCard data={item} isCompare={this.state.isCompare} />
+                              </Col>
+                            );
+                          })
+                        }
+                        <Col sm="6" md="6" lg="4">
+                          <div className={styles.addNew}>
+                            <div className={styles.addBtn}> + </div>
+                          </div>
                         </Col>
-                      }
-                    </Row>
-                    <Row>
-                      {this.state.categories[0] && this.state.categories[0].vendors &&
-                        this.state.categories[0].vendors.map((item, index) => {
-                          return (
-                            <Col sm="6" md="6" lg="4" key={index}>
-                              <CategoryCard data={item} isCompare={this.state.isCompare} />
-                            </Col>
-                          );
-                        })
-                      }
-                      <Col sm="6" md="6" lg="4">
-                        <div className={styles.addNew}>
-                          <div className={styles.addBtn}> + </div>
-                        </div>
-                      </Col>
 
-                    </Row>
-                  </Col>
-                </Row>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+
             }
           </Container>
           {/* <Container>

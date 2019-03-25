@@ -87,8 +87,10 @@
       cursor: pointer;
 
       a {
+        @include mobile {
+          line-height: 2.36;
+        }
         font-size: 18px;
-        line-height: 2.36;
         color: $black-fourteen !important;
         position: relative;
         @include tablet {
