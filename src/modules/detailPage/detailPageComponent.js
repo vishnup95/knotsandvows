@@ -271,79 +271,38 @@ class DetailPageComponent extends Component {
                                 </Col>
 
                                 <Col md="5">
-                                    <Col md="12" className={`${style.detailSubSection} ${style.rightSection}`}>
-                                        <Col md="12" className={`${style.rightSubSection} ${style.sectionBorder}`}>
-                                            <h3>The Club</h3>
-                                            <p className={style.venueDesc}>D N Nagar32, Cosmopolitan Education Society Marg, Shanti Nagar, Andheri, Mumbai.</p>
-                                        </Col>
-                                        <Col md="12" className={`${style.rightSubSection} ${style.availableArea} ${style.sectionBorder}`}>
-                                            <div>
-                                                <h5>Ganga</h5>
-                                                <p>225 Seating | Indoor Conference Hall</p>
+                                    <Col md="12" className={`${style.detailSubSection} ${style.rightSection} py-0`}>
+                                        <Col md="12" className={`${style.rightSubSection} py-2`}>
+                                           <div className={style.pricesContainer}> Starting Price</div>
+                                            <div className={style.pricesContainer}>
+                                                <div className={style.item}>
+                                                    Mandap decoration  <br /><span className={style.grey}>(Price per event)</span>
+                                                </div>
+                                                <div className={style.itemPrice}>
+                                                    ₹1,50,000.00  <br /><span className={style.grey}>GST extra</span>
+                                                </div>
                                             </div>
-                                            <button className={style.editBtn}>Change</button>
-                                        </Col>
-                                        <Col md="12" className={`${style.rightSubSection} ${style.sectionBorder}`}>
-                                            <Row>
-                                                <Col xs="6" className={`${style.checkin}`}>
-                                                    <div>
-                                                        <h5>Check In</h5>
-                                                        <p>Evening</p>
-                                                    </div>
-                                                    <button className={style.editBtn}>Change</button>
-                                                </Col>
-                                                <Col xs="6" className={`${style.checkin}`}>
-                                                    <div>
-                                                        <h5>Check Out</h5>
-                                                        <p>Evening</p>
-                                                    </div>
-                                                    <button className={style.editBtn}>Change</button>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col className={`${style.checkin}  ${style.sessionWrap}`}>
-                                                    <div>
-                                                        <h5>Session</h5>
-                                                        <p>Evening</p>
-                                                    </div>
 
-                                                    <button className={style.editBtn}>Change</button>
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                        <Col md="12" className={style.rightSubSection}>
-                                            <h5>Price for</h5>
-                                            <p>Ganga | <span>225 Seating | Indoor Conference Hall</span></p>
-                                            <p>Thu, 03 Jan 2019, Evening </p>
-                                        </Col>
-                                        <Col md="12" className={style.rightSubSection}>
-                                            <Row className={style.priceWrap}>
-                                                <Col>
-                                                    <div className={style.offerPrice}>
-                                                        ₹1,35,000.00
+                                            <div className={style.pricesContainer}>
+                                                <div className={style.item}>
+                                                    Bouquets  <br /><span className={style.grey}>(Price per unit)</span>
+                                                </div>
+                                                <div className={style.itemPrice}>
+                                                    ₹1,50,000.00  <br /><span className={style.grey}>GST extra</span>
+                                                </div>
                                             </div>
-                                                    {/* <div className={style.price}>
-                                                ₹1,35,000.00
-                                            <div className={style.offPercentage}><span>10</span>% OFF</div>
-                                            </div> */}
-                                                </Col>
-                                                <Col>
-                                                    <p>
-                                                        (Prices are exclusive of GST, to be collected at the hotel directly.)
-                                            </p>
-                                                </Col>
-                                            </Row>
 
-                                        </Col>
-                                        <Col md="12" className={style.rightSubSection}>
-                                            {details.cancelation_policy_url &&
-                                                <a href={details.cancelation_policy_url} >+ Cancellation policy</a>
-                                            }
-                                            {details.terms_and_condition_url &&
-                                                <a href={details.terms_and_condition_url}>+Terms and Conditions</a>
-                                            }
-                                        </Col>
+                                            <div className={style.pricesContainer}>
+                                                <div className={style.item}>
+                                                    Mandap decoration  <br /><span className={style.grey}>(Price per event)</span>
+                                                </div>
+                                                <div className={style.itemPrice}>
+                                                    ₹2060.00  <br /><span className={style.grey}>GST extra</span>
+                                                </div>
+                                            </div>
+                                        </Col>                                     
                                     </Col>
+                                    
                                     <Col className={style.detailSubSection}>
                                         <Col md="12" className={`#{style.rightSubSection} text-center`}>
                                             <p className={style.needHelp}>Need some guidance on selecting vendors?</p>
