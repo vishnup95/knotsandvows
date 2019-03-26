@@ -24,7 +24,10 @@
   color: $black;
   opacity: .7;
   cursor: pointer;
+}
 
+.selected-category {
+  color: $primary-color;
 }
 
 .add-new {

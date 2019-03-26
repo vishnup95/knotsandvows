@@ -131,6 +131,10 @@
     transform: translateY(-70%) scale(0.9);
   }
 
+  .comment-placeholder {
+    top: 0em;
+  }
+
   .input-bar {
     content: '';
     position: absolute;
@@ -172,6 +176,10 @@
         text-transform: uppercase;
         letter-spacing: .4px;
         transform: translateY(-70%) scale(0.8);
+      }
+
+      .comment-placeholder {
+        transform: translateY(0%) scale(0.8);
       }
     }
 

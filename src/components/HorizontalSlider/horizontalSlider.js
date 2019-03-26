@@ -90,10 +90,14 @@ const SamplePrevArrowSmall = (propvalues) => {
 
 
 export default class HorizontalSlider extends Component {
-   
-    constructor(props) {
-        super(props);
+    
+    state = {selectedCategoryIndex: 0};
+
+    handleCategoryChange = (selectedCategoryIndex) => {
+        this.setState({selectedCategoryIndex});
+        this.props.buttonAction(selectedCategoryIndex);
     }
+    
     render() {
         var settingsSmall = {
             dots: false,
@@ -171,7 +175,10 @@ export default class HorizontalSlider extends Component {
                                 <div key={index} className={styles.sliderItem}>
                                     <div className={styles.sliderWrap}>
                                         {/* <img className={styles.vendorImage} src={item.thumb_image} alt="Icon" /> */}
-                                        <div className={styles.categoryName} aria-hidden onClick={() => this.props.buttonAction(index)}>{item.name}</div>
+                                        <div className={`${styles.categoryName} ${index === this.state.selectedCategoryIndex ?  styles.selectedCategory : ''}`} 
+                                            aria-hidden onClick={() => this.handleCategoryChange(index)}> 
+                                            {item.name}
+                                        </div>
                                     </div>
                                 </div>
                             );
@@ -202,4 +209,4 @@ HorizontalSlider.propTypes = {
     type: PropTypes.string,
     category: PropTypes.string,
     buttonAction: PropTypes.func
-};
+};0.
