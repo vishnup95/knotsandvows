@@ -184,7 +184,7 @@ export default class HorizontalSlider extends Component {
                         this.props.data.map((item, index) => {
                             return (
                                 <Col key={index}>
-                                    <CategoryCard data={item} category={this.props.category} type={'carousel'}/>
+                                    <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index}/>
                                 </Col>
                             );
                         })
