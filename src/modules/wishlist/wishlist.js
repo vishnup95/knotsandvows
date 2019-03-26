@@ -149,7 +149,7 @@ class CategoryListing extends Component {
                           this.state.categories[0].vendors.map((item, index) => {
                             return (
                               <Col sm="6" md="6" lg="4" key={index}>
-                                <CategoryCard data={item} isCompare={this.state.isCompare} />
+                                <CategoryCard data={item} isCompare={this.state.isCompare} id={index}/>
                               </Col>
                             );
                           })

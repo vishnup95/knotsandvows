@@ -245,6 +245,16 @@
     }
   }
 
+  .dropItemSmall {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    @include fontSize(13);
+
+    &:hover {
+      background-color: #e8e4e4;
+    }
+  }
+
   .selectedItem {
     background-color: #e8e4e4;
   }
