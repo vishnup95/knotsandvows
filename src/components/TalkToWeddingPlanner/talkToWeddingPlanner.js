@@ -80,9 +80,9 @@ class TalkToWeddingPlanner extends Component {
 
         if (this.props.message !== prevProps.message) {
             if (this.props.status === true) {
-                this.toggle();
+               this.setState({modal: false});
             }
-            this.props.dispatch(modalActions.showModal(this.props.message));
+            this.props.dispatch(modalActions.showModal({message: this.props.message, heading: 'Talk to wedding planner'}));
         }
     }
 
@@ -103,9 +103,9 @@ class TalkToWeddingPlanner extends Component {
                             <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Contact Number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Time" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} />
+                            <InputField placeHolder="Date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false}/>
+                            <InputField placeHolder="Time" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} required={false}/>
+                            <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false}/>
                         </Form>
                         <div className="text-center">
                             <Button className="text-btn" onClick={() => this.toggle()}>Cancel</Button>
