@@ -53,10 +53,6 @@ class SignInModal extends Component {
         };
     }
 
-    toggleModal = () => {
-        this.setState({ showModal: !this.state.showModal });
-    }
-
     closeModal = () => {
         this.props.close();
     }
@@ -97,7 +93,7 @@ class SignInModal extends Component {
         }
 
         if (this.state.mode == DisplayMode.signUp && this.props.message) {
-            this.props.dispatch(modalActions.showModal(this.props.message));
+            this.props.dispatch(modalActions.showModal({message: this.props.message, heading: 'Seven Vows Login/Signup'}));
         }
     }
 

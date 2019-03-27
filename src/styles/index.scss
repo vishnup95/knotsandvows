@@ -131,6 +131,10 @@
     transform: translateY(-70%) scale(0.9);
   }
 
+  .comment-placeholder {
+    top: 0em;
+  }
+
   .input-bar {
     content: '';
     position: absolute;
@@ -151,6 +155,11 @@
     font-size: .8em;
     letter-spacing: .39px;
     visibility: hidden;
+    text-transform: lowercase;
+
+    &::first-letter {
+      text-transform: capitalize;
+    }
   }
 
   .input-password-mask {
@@ -172,6 +181,10 @@
         text-transform: uppercase;
         letter-spacing: .4px;
         transform: translateY(-70%) scale(0.8);
+      }
+
+      .comment-placeholder {
+        transform: translateY(0%) scale(0.8);
       }
     }
 

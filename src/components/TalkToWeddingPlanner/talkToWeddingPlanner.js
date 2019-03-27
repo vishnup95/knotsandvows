@@ -80,9 +80,9 @@ class TalkToWeddingPlanner extends Component {
 
         if (this.props.message !== prevProps.message) {
             if (this.props.status === true) {
-                this.toggle();
+               this.setState({modal: false});
             }
-            this.props.dispatch(modalActions.showModal(this.props.message));
+            this.props.dispatch(modalActions.showModal({message: this.props.message, heading: 'Talk to wedding planner'}));
         }
     }
 
