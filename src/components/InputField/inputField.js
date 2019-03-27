@@ -48,10 +48,10 @@ class InputField extends Component {
     }
 
     validateInput(inputBox) {
-        if(inputBox.value.length == 0) {
+        if(inputBox.value.length == 0 && this.props.required) {
             inputBox.parentNode.classList.add('error');   
-            this.props.required ? this.setState({errorMessage: 'Required Field'}) : ''; 
-            return this.props.required ? false : true; 
+            this.setState({errorMessage: 'Required Field'}); 
+            return false; 
 
         } else if(inputBox.validity.valid) {
             inputBox.parentNode.classList.remove('error');
