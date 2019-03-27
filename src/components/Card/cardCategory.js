@@ -22,7 +22,7 @@ class CategoryCard extends Component {
     state = {
         isChecked: false,
         isWishList: false
-      }
+    }
     navigateTo(route) {
         this.props.dispatch(push(route));
         window.scrollTo(0, 0);
@@ -32,8 +32,8 @@ class CategoryCard extends Component {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
         } else {
-            this.setState({isWishList: !this.state.isWishList});
-        }   
+            this.setState({ isWishList: !this.state.isWishList });
+        }
         e.stopPropagation();
     }
 
@@ -53,8 +53,8 @@ class CategoryCard extends Component {
             <div>
                 <div className={styles.ratingContainer}>
                     <p className={`${styles.rating} mb-2`}>
-                        <img src={imagePath(this.state.isWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg} 
-                            alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`}/>
+                        <img src={imagePath(this.state.isWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
+                            alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`} />
                         <UncontrolledTooltip placement="right" target={`WishListTooltip${this.props.id}`}>
                             {this.state.isWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
                         </UncontrolledTooltip>
@@ -98,6 +98,15 @@ class CategoryCard extends Component {
         return (
             <div>
                 <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} onClick={this.handleCardClick}>
+                    {
+                        this.props.isWishlist &&
+                        <div>
+                            <div className={`${styles.addIcon} ${styles.cardIcon}`}></div>
+                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`}></div>
+                            <div className={`${styles.viewIcon} ${styles.cardIcon}`}>2</div>
+                        </div>
+                    }
+
                     <CardImg
                         className={styles.cardImage}
                         top
@@ -129,7 +138,8 @@ CategoryCard.propTypes = {
     category: PropTypes.string,
     type: PropTypes.string,
     isCompare: PropTypes.bool,
-    id: PropTypes.number
+    id: PropTypes.number,
+    isWishlist: PropTypes.bool
 };
 
 export default connect(
