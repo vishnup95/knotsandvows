@@ -155,6 +155,11 @@
     font-size: .8em;
     letter-spacing: .39px;
     visibility: hidden;
+    text-transform: lowercase;
+
+    &::first-letter {
+      text-transform: capitalize;
+    }
   }
 
   .input-password-mask {

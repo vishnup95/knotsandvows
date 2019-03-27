@@ -17,7 +17,6 @@ const jumbotronData = {
 
 const mapStateToProps = state => ({
     user: state.session.user,
-    message: state.session.message,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -87,7 +86,6 @@ MyProfile.propTypes = {
     dispatch: PropTypes.func,
     actions: PropTypes.object,
     user: PropTypes.object,
-    message: PropTypes.string,
 };
 
 export default connect(
