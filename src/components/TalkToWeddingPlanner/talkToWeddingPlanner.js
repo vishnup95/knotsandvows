@@ -6,7 +6,7 @@ import * as actions from './actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 import * as modalActions from '../../reducers/modal/actions';
 import { Modal } from 'reactstrap';
 
@@ -81,8 +81,13 @@ class TalkToWeddingPlanner extends Component {
         if (this.props.message !== prevProps.message) {
             if (this.props.status === true) {
                this.setState({modal: false});
+
+               if (detectMobile()) {
+                    this.props.dispatch(modalActions.showModal({message: 'mobile_contact', heading: 'Talk to wedding planner'}));
+                } else {
+                    this.props.dispatch(modalActions.showModal({message: 'We will contact you soon!', heading: 'Talk to wedding planner'}));
+                }
             }
-            this.props.dispatch(modalActions.showModal({message: this.props.message, heading: 'Talk to wedding planner'}));
         }
     }
 
@@ -99,6 +104,9 @@ class TalkToWeddingPlanner extends Component {
                         <div className={styles.logoWrap}>
                             <div className={styles.heading}>Talk to <br/> our wedding planner</div>
                         </div>
+                        { this.props.status == false && this.props.message &&
+                            <div className={styles.apiError}>{this.props.message}</div>
+                        }
                         <Form style={{ zIndex: '10000' }} className="position-relative">
                             <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />

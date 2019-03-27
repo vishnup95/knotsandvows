@@ -4,6 +4,12 @@ export function imagePath(assetName) {
   return `${process.env.PUBLIC_URL}/images/${assetName}`;
 }
 
+export function detectMobile() {
+  console.log(window);
+  if(window.innerWidth <= 800 && window.innerHeight <= 700) {
+    return true;
+  } else return false;
+}
 
 export function formatMoney(amount, decimalCount = 0, decimal = ".", thousands = ",") {
   try {
