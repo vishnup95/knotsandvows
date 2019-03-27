@@ -38,7 +38,7 @@ export default (options = { logger: true }) => {
     promiseMiddleware(),
     clientMiddleware(client)
   ];
-  if (process.env.NODE_ENV !== 'production' && options.logger) {
+  if (options.logger) {
     const { createLogger } = require('redux-logger');
     const logger = createLogger({ collapsed: true });
     middleware.push(logger);

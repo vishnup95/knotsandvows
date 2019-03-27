@@ -4,11 +4,9 @@ import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import * as actions from '../ceremonyDetail/actions';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Modal } from 'reactstrap';
 import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
-// import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
-// import CategorySection from '../ceremonyDetail/categorySection';
 import CategoryCard from '../../components/Card/cardCategory';
 
 
@@ -25,13 +23,17 @@ const mapDispatchToProps = dispatch => ({
 const wishlist = ["My list", "Subin's List", "Hayas Lis"];
 
 class CategoryListing extends Component {
-  state = {
-    categories: [],
-    fixedCategories: [],
-    selectedVendor: 0,
-    isCompare: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      categories: [],
+      fixedCategories: [],
+      selectedVendor: 0,
+      isCompare: false,
+      modal: false
+    }
+    this.toggle = this.toggle.bind(this);
   }
-
   static fetchData(store) {
     return store.dispatch(actions.fetchCeremonyDetails('wedding'));
   }
@@ -52,7 +54,11 @@ class CategoryListing extends Component {
       this.setState({ categories: filteredCategories, fixedCategories: filteredCategories });
     }
   }
-
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
+  }
   navigateTo(route) {
     this.props.dispatch(push(route));
   }
@@ -109,12 +115,12 @@ class CategoryListing extends Component {
                 <Col sm="9">
                   <Row>
                     <Col className={`${styles.collaboratorList} text-right`}>
-                      <div className={styles.collaborator}>YA</div>
-                      <div className={styles.collaborator}>YA</div>
-                      <div className={styles.collaborator}>YA</div>
-                      <div className={styles.collaborator}>YA</div>
+                      <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
+                      <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
+                      <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
+                      <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
                       <div className={styles.collaboratorCount}>5</div>
-                      <div className={styles.addCollaborator}>add</div>
+                      <div className={styles.addCollaborator}></div>
                     </Col>
                   </Row>
                   <Row className={styles.listDetailContainer}>
@@ -132,7 +138,7 @@ class CategoryListing extends Component {
                           this.state.isCompare &&
                           <Col className="text-right">
                             <button className="text-btn small" onClick={() => this.setCompare()}>Cancel</button>
-                            <button className="primary-button">Compare Vendors</button>
+                            <button className="primary-button" onClick={() => this.toggle()}>Compare Vendors</button>
 
                           </Col>
                         }
@@ -149,50 +155,53 @@ class CategoryListing extends Component {
                           this.state.categories[0].vendors.map((item, index) => {
                             return (
                               <Col sm="6" md="6" lg="4" key={index}>
-                                <CategoryCard data={item} isCompare={this.state.isCompare} id={index}/>
+                                <CategoryCard data={item} isCompare={this.state.isCompare} isWishlist={true} id={index} />
                               </Col>
                             );
                           })
                         }
                         <Col sm="6" md="6" lg="4">
                           <div className={styles.addNew}>
-                            <div className={styles.addBtn}> + </div>
+                            <div className={styles.addBtn}></div>
                           </div>
                         </Col>
 
                       </Row>
                     </Col>
                   </Row>
+                  <Row className={styles.contribution}>
+                    <Col xs='12' className={styles.subText}>
+                      View Collaborators Contribution
+                    </Col>
+                    <Col xs='12'>
+                      <h5>
+                        Ganesh S added following vendors in your wishlist</h5>
+                      <div className={styles.contributionList}>
+                        <span>Venues(4)</span>
+                        <span>Venues(4)</span>
+                        <span>Venues(4)</span>
+
+                      </div>
+                    </Col>
+                    <Col xs='12'>
+                      <h5>
+                        Ganesh S added following vendors in your wishlist</h5>
+                      <div className={styles.contributionList}>
+                        <span>Venues(4)</span>
+                        <span>Venues(4)</span>
+                        <span>Venues(4)</span>
+
+                      </div>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
 
             }
+            <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.comparePopup}>
+
+            </Modal>
           </Container>
-          {/* <Container>
-            <Row>
-              <Col className="mb-4">
-                <h2 className="text-center">Browse all vendors</h2>
-                <p className={styles.subTitle}>Handpicked collection of vendors for the wedding</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                {this.props.ceremonyLoading && <LoaderComponent />}
-              </Col>
-            </Row>
-            <Row className="mb-3">
-              <Col className="no-padding">
-                <HorizontalSlider data={this.state.fixedCategories} type='small' buttonAction={this.handleCategoryChange} />
-              </Col>
-            </Row>
-            {
-              this.state.categories.map((category, index) => {
-                return (
-                  <CategorySection category={category} key={index} dispatch={this.props.dispatch} />
-                );
-              })
-            }
-          </Container> */}
         </div>
       </div>
     );

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.934" height="18.952" viewBox="0 0 18.934 18.952">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:#6d2158;fill-rule:evenodd}.cls-1{opacity:.599}.cls-3{filter:url(#Combined-Shape)}
+        </style>
+        <filter id="Combined-Shape" width="18.934" height="18.952" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset/>
+            <feGaussianBlur result="blur" stdDeviation="1"/>
+            <feFlood flood-opacity=".063"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="Group_9417" data-name="Group 9417" transform="translate(-532 -766)">
+        <g class="cls-3" transform="translate(532 766)">
+            <path id="Combined-Shape-2" d="M0 0h12.91l.023 9.235H9.21v3.714H0zm2.34 2.925h4.329a.334.334 0 1 0 0-.668H2.34a.334.334 0 1 0 0 .668zm0 1.838h8.135a.334.334 0 1 0 0-.668H2.34a.334.334 0 1 0 0 .668zm0 1.838h6.3a.334.334 0 1 0 0-.668h-6.3a.334.334 0 1 0 0 .668zm0 1.755h8.135a.334.334 0 1 0 0-.668H2.34a.334.334 0 1 0 0 .668z" class="cls-1" data-name="Combined-Shape" transform="translate(3 3)"/>
+        </g>
+        <path id="Path-2" d="M112.5 112.5v3.635l3.635-3.635z" class="cls-2" transform="translate(431.774 665.817)"/>
+    </g>
+</svg>

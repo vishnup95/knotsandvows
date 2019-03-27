@@ -176,3 +176,37 @@
     }
   }
 }
+.cardIcon {
+  position: absolute;
+  @include width(25);
+  @include height(25);
+  border-radius: 50%;
+  @include top(11);
+  box-shadow: 0 0 3px 0 $black-16;
+}
+.addIcon {
+  background: url('/images/add-note.svg') center no-repeat;
+  background-size: 50%;
+  @include right(45);
+  background-color: $white;
+}
+.deleteIcon {
+  background: url('/images/delete.svg') center no-repeat;
+  background-size: 50%;
+  @include right(11);
+  background-color: $white;
+}
+.viewIcon {
+  background: url('/images/view-note.svg') center bottom no-repeat;
+  background-size: 75%;
+  @include width(30);
+  @include height(30);
+  @include top(235);
+  left: 2rem;
+  color: $secondary-color;
+  @include fontSize(14);
+  font-family: $roboto-medium;
+  display: flex;
+  justify-content: center;
+  background-color: $white;
+}
