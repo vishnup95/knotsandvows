@@ -54,39 +54,43 @@ class CategoryCard extends Component {
         }
 
         return (
-            <div>
+            <div className={styles.cardbodyContainer}>
+                
+                <div className={styles.mainContent}>
+                    <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
+                    <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
+                    <p className={`${styles.charges}`}>
+                        <span>{formatMoney(this.props.data.price.service_price)}</span> {this.props.data.charge_type}
+                    </p>
+                </div>
+
                 <div className={styles.ratingContainer}>
-                    <p className={`${styles.rating} mb-2`}>
+                    <p className={`mb-2`}>
                         <img src={imagePath(this.state.isWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
                             alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`} />
                         <UncontrolledTooltip placement="right" target={`WishListTooltip${this.props.id}`}>
                             {this.state.isWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
                         </UncontrolledTooltip>
                     </p>
+                    <div>
+                        <p className={`${styles.rating} mb-1`}>
+                            {Array(fullstar).fill().map((key, index) => {
+                                return <span key={index}><img src={imagePath('fullstar.svg')} className={styles.starImg} alt="Fullstar" /></span>;
+                            })}
+                            {Array(halfstar).fill().map((key, index) => {
+                                return <span key={index}><img src={imagePath('halfstar.svg')} className={styles.starImg} alt="Halfstar" /></span>;
+                            })}
+                            {Array(emptystar).fill().map((key, index) => {
+                                return <span key={index}><img src={imagePath('outline_star.svg')} className={styles.starImg} alt="Outline" /></span>;
+                            })}
 
-                    <p className={`${styles.rating} mb-1`}>
-                        {Array(fullstar).fill().map((key, index) => {
-                            return <span key={index}><img src={imagePath('fullstar.svg')} className={styles.starImg} alt="Fullstar" /></span>;
-                        })}
-                        {Array(halfstar).fill().map((key, index) => {
-                            return <span key={index}><img src={imagePath('halfstar.svg')} className={styles.starImg} alt="Halfstar" /></span>;
-                        })}
-                        {Array(emptystar).fill().map((key, index) => {
-                            return <span key={index}><img src={imagePath('outline_star.svg')} className={styles.starImg} alt="Outline" /></span>;
-                        })}
+                        </p>
 
-                    </p>
-
-                    <p className={styles.rating}>
-                        {this.props.data.reviews_count}&nbsp;<span>Reviews</span>
-                    </p>
+                        <p className={styles.rating}>
+                            {this.props.data.reviews_count}&nbsp;<span>Reviews</span>
+                        </p>
+                    </div>
                 </div>
-
-                <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
-                <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
-                <p className={`${styles.charges}`}>
-                    <span>{formatMoney(this.props.data.price.service_price)}</span> {this.props.data.charge_type}
-                </p>
             </div>
         );
     }

@@ -279,3 +279,11 @@
     transform: translate3d(0, 19px, 0px) !important;
   }
 }
+
+.mobileCarousal {
+  display: none;
+  @include mobile {
+    display: flex;
+    margin-top: 2rem;
+  }
+}

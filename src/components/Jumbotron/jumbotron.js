@@ -51,13 +51,13 @@ class JumbotronComponent extends Component {
     }
 
     renderCards = (cardType) => {
-        if (!cardType || !this.props.items || this.props.children) {
+        if (!cardType || !this.props.items) {
             return <div></div>;
         }
 
         const cards = this.props.items.map((item, index) => {
 
-            return <Col xs="12" sm="4" key={index}>
+            return <Col xs="12" sm="4" className="d-none d-sm-block" key={index}>
                 <CardComponent cardDetails={item} cardType={cardType} category={this.props.category}/>
             </Col>
         });

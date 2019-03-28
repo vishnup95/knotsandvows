@@ -20,6 +20,7 @@ import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import FormComponent from './newForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
+import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -150,7 +151,7 @@ class Products extends Component {
                       onClick={() => this.toggle()}
                       data-toggle="dropdown"
                       aria-expanded={this.state.dropdownOpen}>
-                      {sort_options[this.state.sortBy] ? sort_options[this.state.sortBy].name : ''}
+                      {sort_options && sort_options[this.state.sortBy] ? sort_options[this.state.sortBy].name : ''}
                     </DropdownToggle>
                     <DropdownMenu className={styles.dropMenu}>
                       {
@@ -169,7 +170,7 @@ class Products extends Component {
                 {
                   this.props.productListData.results.map((product, index) => {
                     return (
-                      <Col xs="12" sm="4" key={index}>
+                      <Col xs="6" sm="4" key={index}>
                         <CategoryCard data={product} category={this.state.category} id={index}/>
                       </Col>
                     );
@@ -195,8 +196,11 @@ class Products extends Component {
 
             </Container>)
         }
-
-        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap" />
+        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap">
+          <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
+            <HorizontalScrollingCarousel data={this.props.other_categories} type="other_categories"/>
+          </Col>
+        </JumbotronComponent>
       </div>
     );
   }
