@@ -12,12 +12,14 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-import { imagePath } from '../../utils/assetUtils';
+import { Button, Modal} from 'reactstrap';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 
 import styles from './products.scss';
 import CategoryCard from '../../components/Card/cardCategory';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import FormComponent from './newForm';
+import MobileForm from './mobileForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
@@ -45,7 +47,8 @@ class Products extends Component {
     productListData: null,
     sortBy: 0,
     page: 1,
-    dropdownOpen: false
+    dropdownOpen: false,
+    modal: false
   }
 
   static fetchData(store) {
@@ -69,6 +72,10 @@ class Products extends Component {
     if (item) {
       this.setState({ sortBy: item.id });
     }
+  }
+
+  toggleMobileFilter() {
+    this.setState({modal: !this.state.modal});
   }
 
   componentWillMount() {
@@ -123,10 +130,10 @@ class Products extends Component {
     const { header, sort_options, filters } = this.props.filterData;
     return (
       <div>
-        {header && <div className={` ${styles.categoryCover} position-relative text-center`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        {header && <div className={` ${styles.categoryCover} position-relative text-center d-none d-sm-block`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
         </div>}
 
-        {filters.length > 0 ? <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} /> : <div></div>}
+        {filters.length > 0 && !detectMobile()  && <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} />}
         {this.props.productListLoading ? <LoaderComponent /> :
           ((this.props.productListData == null || this.props.productListData.results.length === 0) ? <NoResultComponent /> :
 
@@ -136,6 +143,17 @@ class Products extends Component {
                   <h1 className={styles.imageHeading}>{header ? header.header_text : ''}</h1>
                 </Col>
               </Row>
+
+              {filters.length > 0 && detectMobile()  &&
+                <div>
+                  <Button color="danger" onClick={() => this.toggleMobileFilter()}>Click to filter vendors</Button>
+                  <Modal isOpen={this.state.modal} toggle={() => this.toggleMobileFilter()} style={{margin: 0, marginTop: '50px'}}>
+                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch}/>
+                  </Modal>
+                </div>
+              }
+              
+
               <Row className="mb-3">
 
                 <Col sm="6" className={styles.sideHeading}>

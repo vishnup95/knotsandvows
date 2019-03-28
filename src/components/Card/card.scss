@@ -187,6 +187,11 @@
     height: .85rem;
     margin-bottom: .25rem;
     margin-left: .25rem;
+
+    @include mobile {
+      margin-left:0;
+      margin-right: .5rem;
+    }
   }
 }
 

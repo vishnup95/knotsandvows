@@ -45,4 +45,8 @@
   @include fontSize(24);
   color: $primary-color;
   cursor: pointer;
+
+  @include mobile {
+    @include height(320);
+  }
 }

@@ -5,6 +5,10 @@ import {
 import PropTypes from 'prop-types';
 
 class InputSelect extends Component {
+    componentDidMount() {
+        this.handleFocus(document.getElementById(this.props.id));
+    }
+
     handleFocus(inputBox) {
         inputBox.parentNode.classList.add('is-focussed');
         inputBox.parentNode.classList.remove('error');
@@ -37,14 +41,14 @@ class InputSelect extends Component {
     render() {
         return (
             <div className='input-field floating-label'>
-                <Label for="exampleSelect" className='input-placeholder'>Type of Event</Label>
-                <select name="select" defaultValue="" id="exampleSelect" className='input-box' onFocus={() =>  this.handleFocus(event.target)} onBlur={() =>  this.handleBlur(event.target)} onInput={() =>  this.handleInput(event.target)}>
-                    <option value="" disabled></option>
-                    <option>Wedding</option>
-                    <option>Photography</option>
-                    <option>Photography</option>
-                    <option>Photography</option>
-                    <option>Photography</option>
+                <Label for="exampleSelect" className='input-placeholder'>{this.props.placeHolder}</Label>
+                <select name="select" defaultValue="" id={this.props.id} className='input-box' onFocus={() =>  this.handleFocus(event.target)} onBlur={() =>  this.handleBlur(event.target)} onInput={() =>  this.handleInput(event.target)}>
+                    {
+                        this.props.options.map((item, index) => {
+                            return <option key={index}>{item.name}</option>
+                        })
+                    }
+
                 </select>
                 <span className='input-bar'></span>
                 <span className='input-error'>Error message.</span>
@@ -56,7 +60,8 @@ class InputSelect extends Component {
 
 InputSelect.propTypes = {
     placeHolder: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string,
+    options: PropTypes.array,
 };
 
 export default InputSelect;
