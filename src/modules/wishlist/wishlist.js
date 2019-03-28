@@ -91,7 +91,7 @@ class CategoryListing extends Component {
             {
               this.state.fixedCategories.length > 0 &&
               <Row>
-                <Col sm="3">
+                <Col sm="2">
                   {
                     wishlist.map((item, index) => {
                       return (
@@ -112,7 +112,7 @@ class CategoryListing extends Component {
                   }
 
                 </Col>
-                <Col sm="9">
+                <Col sm="10">
                   <Row>
                     <Col className={`${styles.collaboratorList} text-right`}>
                       <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>

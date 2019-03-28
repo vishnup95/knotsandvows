@@ -282,12 +282,22 @@
 }
 
 .delete-icon {
-  @include width(18);
-  @include height(18);
+  width: 18px;
+  height: 18px;
   position: absolute;
   right: 0;
   @include top(-24);
-  background: url('/images/delete-icon.svg') center center no-repeat;
+  background: url('/images/close-nav.svg') center center no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+.edit-icon {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  right: 2rem;
+  @include top(-24);
+  background: url('/images/edit.svg') center center no-repeat;
   background-size: contain;
   cursor: pointer;
 }
@@ -391,6 +401,6 @@ button, a {
 }
 .wishlist-container {
   div[class^="container"] {
-    max-width: 80%;
+    max-width: 90%;
   }
 }
