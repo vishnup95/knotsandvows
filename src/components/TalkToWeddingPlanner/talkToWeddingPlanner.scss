@@ -34,3 +34,13 @@
   color: $black-nine;
 }
 
+.apiError {
+  @include fontSize(16);
+  color: $bright-red;
+  position: absolute;
+  top: 7.5rem;
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+

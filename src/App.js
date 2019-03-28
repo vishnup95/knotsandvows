@@ -72,7 +72,13 @@ class App extends Component {
     <Modal  isOpen={this.props.showModal} toggle={() => this.toggle()} className={`${styles.forgotContainer} modal-dialog-centered`}>
       <div className={styles.forgotPassword}>
         <div className={styles.header}>{this.props.modalContent.heading}</div>
-        <div className={styles.message}>{this.props.modalContent.message}</div>
+        {
+          this.props.modalContent.message !== 'mobile_contact' ? <div className={styles.message}>{this.props.modalContent.message}</div>:
+          <div className={styles.message}>
+            <a href="tel: +91 7702053510">Click here to contact us now! </a>
+          </div>
+        }
+        
         <div className="text-center mt-5">
           <Button color="primary" className="primary-button" onClick={() => this.navigateTo('/')}>OK</Button>{' '}
         </div> 

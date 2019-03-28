@@ -55,12 +55,15 @@
 .addBtn {
   @include width(114);
   @include height(114);
-  background-color: $white;
   border: 1px dashed $primary-color;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  background: url('/images/plus.svg') center no-repeat;
+  background-size: 40%;
+  background-color: $white;
+
 }
 
 .vendorName {
@@ -93,6 +96,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 2px;
+  position: relative;
+
+  &:hover {
+    .toolTip {
+      display: block;
+    }
+  }
+}
+
+.toolTip {
+  position: absolute;
+  @include top(36);
+  left: 50%;
+  padding: .25rem .5rem;
+  transform: translateX(-50%);
+  background: $white;
+  box-shadow: 0 3px 6px 0 $black-16;
+  white-space: nowrap;
+  color: $black-nine;
+  @include fontSize(13);
+  border-radius: 3px;
+  cursor: pointer;
+  display: none;
+  // &:before {
+  //   content: '';
+  //   width: 1rem;
+  //   height: 1rem;
+  //   transform: rotate(90deg);
+  //   background-color: red;
+  // }
 }
 
 .collaboratorCount {
@@ -105,11 +139,48 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  margin-left: 5px;
+  margin: 0 2px;
 }
 
 .addCollaborator {
+  @include width(36);
+  @include height(36);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 2px;
+  background: url('/images/add-collaborator.svg') center no-repeat;
+  background-size: 80%;
+}
+
+.contribution {
+  box-shadow: 0 0 10px 0 $black-16;
+  @include padding(23,37);
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  @include borderRadius(5);
+
+  h5 {
+    @include fontSize(16);
+    @include padding(0,51);
+    font-family: $roboto-medium;
+    @include margin(16,0);
+
+  }
+
+}
+
+.contributionList {
+  @include padding(0,51);
+
+  span {
+    font-family: $roboto-medium;
+    @include height(26);
+    @include borderRadius(30);
+    border: 1px solid $warm-grey-two;
+    @include fontSize(14);
+    line-height: 1.4;
+    @include padding(4,8);
+    @include margin(4,8);
+  }
 }
