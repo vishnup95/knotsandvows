@@ -6,7 +6,9 @@ import {
     Card,
     CardImg,
     CardBody,
-    UncontrolledTooltip
+    UncontrolledTooltip,
+    Col,
+    Button
 } from 'reactstrap';
 import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
@@ -123,9 +125,59 @@ class CategoryCard extends Component {
                     </CardBody>
                     {
                         this.props.isCompare &&
-                        <div className={styles.compareMask}>
-                            <span onClick={(e) => this.selectCard(e)} className={`${styles.checkbox} ${this.state.isChecked ? styles.checked : ''}`} aria-hidden></span>
+                        <div className={styles.compareMask} onClick={(e) => this.selectCard(e)} aria-hidden>
+                            <span className={`${styles.checkbox} ${this.state.isChecked ? styles.checked : ''}`}></span>
                         </div>
+                    }
+                    {
+                        false && 
+                        <div className={styles.addNote}>
+                            <div className={styles.noteHeader}><span>Add Note</span> <img className={styles.closeNote} src={imagePath('close-blank.svg')} alt="close button" /></div>
+                            <textarea rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors"></textarea>
+                            <div className="text-right">
+                                <Button className="text-btn">Cancel</Button>
+                                <Button className="primary-button">Save</Button>
+                            </div>
+                        </div>
+                    }
+                    {
+                        false && <Col className={styles.noteContainer}>
+                            <Col className={`${styles.noteSection}`}>
+                                <Col md="12" className={`${styles.rightSubSection} text-left`}>
+                                    {/* <h4 className={styles.noteHeader}>Notes</h4> */}
+                                    <div className={styles.noteWrap}>
+                                        <div>
+                                            <span className={styles.noteTitle}>Binu</span>
+                                            <span className={styles.noteDate}>07 Mar 2019</span>
+                                        </div>
+                                        <div className={styles.noteText}>
+                                            <div>
+                                                <span className="edit-icon"></span>
+                                                <span className="delete-icon"></span>
+                                            </div>
+                                            <div>
+                                                Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at elementum eu facilisis sed.
+                                </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.noteWrap}>
+                                        <div>
+                                            <span className={styles.noteTitle}>Binu</span>
+                                            <span className={styles.noteDate}>07 Mar 2019</span>
+                                        </div>
+                                        <div className={styles.noteText}>
+                                            <div>
+                                                <span className="edit-icon"></span>
+                                                <span className="delete-icon"></span>
+                                            </div>
+                                            <div>
+                                                Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at elementum eu facilisis sed.
+                                </div>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Col>
+                        </Col>
                     }
                 </Card>
             </div>

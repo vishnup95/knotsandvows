@@ -176,6 +176,7 @@
     }
   }
 }
+
 .cardIcon {
   position: absolute;
   @include width(25);
@@ -184,18 +185,21 @@
   @include top(11);
   box-shadow: 0 0 3px 0 $black-16;
 }
+
 .addIcon {
   background: url('/images/add-note.svg') center no-repeat;
   background-size: 50%;
   @include right(45);
   background-color: $white;
 }
+
 .deleteIcon {
   background: url('/images/delete.svg') center no-repeat;
   background-size: 50%;
   @include right(11);
   background-color: $white;
 }
+
 .viewIcon {
   background: url('/images/view-note.svg') center bottom no-repeat;
   background-size: 75%;
@@ -210,3 +214,101 @@
   justify-content: center;
   background-color: $white;
 }
+
+// notes styles
+.noteContainer {
+  position: absolute;
+  top: 3rem;
+  left: 20%;
+  @include borderRadius(5);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.36);
+  z-index: 2;
+  background-color: $white;
+  @include padding(21);
+
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 1rem;
+    left: -.4rem;
+    z-index: 2;
+    border-top: .7rem solid transparent;
+    border-right: 1rem solid $white;
+    border-bottom: .7rem solid transparent;
+  }
+}
+
+.noteSection {
+  max-height: 22rem;
+  overflow-y: auto;
+
+  .right-sub-section {
+    padding: 0;
+  }
+}
+
+.note-header {
+  font-family: $roboto-bold;
+  @include fontSize(20);
+  letter-spacing: .6px;
+}
+
+.note-wrap {
+  border-bottom: 1px solid $black-16;
+  margin-bottom: .5rem;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
+
+.note-title {
+  font-family: $roboto-bold;
+  color: $black-fifteen;
+  @include fontSize(14);
+  margin-right: .5rem;
+}
+
+.note-date {
+  color: $brownish-grey-three;
+  @include fontSize(10);
+}
+
+.note-text {
+  @include fontSize(14);
+  line-height: 1.43;
+  @include padding(8,0,8,12);
+  position: relative;
+}
+
+.addNote {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.36);
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+  width: 100%;
+  padding: 0 1rem 1rem;
+  background: $white;
+  textarea {
+    width: 100%;
+    margin-top: 1rem;
+    @include fontSize(16);
+  }
+}
+
+.noteHeader {
+  background-color: $greyish-brown-four;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $white;
+  @include fontSize(16);
+  margin: 0 -1rem;
+}
+
+.closeNote {
+  @include width(17);
+  }

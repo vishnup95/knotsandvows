@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29.699" height="29.7" viewBox="0 0 29.699 29.7">
+    <defs>
+        <style>
+            .cls-1,.cls-3{fill:#e0000c}.cls-2,.cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="Group_7300" data-name="Group 7300" transform="translate(-874.293 -1067.293)">
+        <g id="Union_10" class="cls-1" data-name="Union 10">
+            <path d="M10.507 20.25H9.324v-9.573H-.25V9.493h9.574V-.25h1.183v9.743h9.746V10.677h-9.746v9.573z" class="cls-2" transform="rotate(45 -844.619 1607.29)"/>
+            <path d="M10.257 20v-9.573h9.746v-.684h-9.746V0h-.683v9.743H0v.684h9.574V20h.683m.5.5H9.074v-9.573H-.5V9.243h9.574V-.5h1.683v9.743h9.746V10.927h-9.746V20.5z" class="cls-3" transform="rotate(45 -844.619 1607.29)"/>
+        </g>
+    </g>
+</svg>
