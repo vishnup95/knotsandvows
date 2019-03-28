@@ -163,14 +163,14 @@ const routes = (
     <Route exact path="/wishlist" component={LoadableWishlist} />
     <Route path="/about" component={LoadableAbout} />
     <Route path="/services" component={LoadableServices} />
-    <Route path="/bookings" component={LoadableBookings} />
+    <SecretRoute path="/bookings" component={LoadableBookings} />
     <Route path="/sample" component={LoadableSample} />
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
     <Route path="/:category_name/:vendor_name" component={LoadableDetail} />
     <Route exact path="/terms-and-conditions" component={LoadableTermsAndConditions} />
     <Route exact path="/privacy-policy" component={LoadablePrivacyAndPolicy} />
     <SecretRoute path="/dashboard" component={PrivatePage} />
-    <Route path="/profile" component={LoadableMyProfile} />
+    <SecretRoute path="/profile" component={LoadableMyProfile} />
     <Route component={LoadableNotFound} />
   </Switch>
   // </Suspense>

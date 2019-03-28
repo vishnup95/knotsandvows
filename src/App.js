@@ -17,7 +17,7 @@ import styles from './modals/forgotPasswordModal/forgotPasswordModal.scss';
 
 const mapStateToProps = state => ({
   showModal: state.modal.show,
-  message: state.modal.message
+  modalContent: state.modal.modalContent
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -71,8 +71,14 @@ class App extends Component {
 
     <Modal  isOpen={this.props.showModal} toggle={() => this.toggle()} className={`${styles.forgotContainer} modal-dialog-centered`}>
       <div className={styles.forgotPassword}>
-        <div className={styles.header}>Reset Password</div>
-        <div className={styles.message}>{this.props.message}</div>
+        <div className={styles.header}>{this.props.modalContent.heading}</div>
+        {
+          this.props.modalContent.message !== 'mobile_contact' ? <div className={styles.message}>{this.props.modalContent.message}</div>:
+          <div className={styles.message}>
+            <a href="tel: +91 7702053510">Click here to contact us now! </a>
+          </div>
+        }
+        
         <div className="text-center mt-5">
           <Button color="primary" className="primary-button" onClick={() => this.navigateTo('/')}>OK</Button>{' '}
         </div> 
@@ -86,7 +92,7 @@ class App extends Component {
 App.propTypes = {
   history: PropTypes.any,
   showModal: PropTypes.bool,
-  message: PropTypes.string,
+  modalContent: PropTypes.object,
   dispatch: PropTypes.func
 };
 

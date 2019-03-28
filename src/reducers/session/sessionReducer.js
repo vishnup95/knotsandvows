@@ -27,7 +27,6 @@ const session = (state = initialState, action) => {
       result = action.result || {};
       localStorage.setItem("token", result.data.data.token);
       localStorage.setItem("logged_in", true);
-      localStorage.setItem("user", JSON.stringify(result.data.data.user));
       return {
         ...state,
         user: result.data.data.user,

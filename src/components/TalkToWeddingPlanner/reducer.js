@@ -12,6 +12,7 @@ const TalkToAhwanamReducer = (state = initialState, action) => {
         case types.POST_FORMDATA:
             return {
                 ...state,
+                message: '',
                 loading: true
             };
 

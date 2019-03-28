@@ -53,10 +53,6 @@ class SignInModal extends Component {
         };
     }
 
-    toggleModal = () => {
-        this.setState({ showModal: !this.state.showModal });
-    }
-
     closeModal = () => {
         this.props.close();
     }
@@ -96,8 +92,8 @@ class SignInModal extends Component {
             return false;
         }
 
-        if (this.state.mode == DisplayMode.signUp && this.props.message) {
-            this.props.dispatch(modalActions.showModal(this.props.message));
+        if (this.state.mode == DisplayMode.signUp && this.props.apiStatus == true) {
+            this.props.dispatch(modalActions.showModal({message: `Successfully registered. A link to verify your email has been sent to ${this.state.signUp.email}`, heading: 'Seven Vows'}));
         }
     }
 

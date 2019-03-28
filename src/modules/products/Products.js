@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const jumbotronData = { title: 'Other Categories' };
+const jumbotronData = { title: 'You may also be interested in..' };
 
 
 class Products extends Component {
@@ -138,7 +138,7 @@ class Products extends Component {
               <Row className="mb-3">
 
                 <Col sm="6" className={styles.sideHeading}>
-                 All 
+                 {`All ${this.props.productListData.service_type}`} 
                 {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
                 </Col>
                 <Col sm="6" className={styles.sort}>

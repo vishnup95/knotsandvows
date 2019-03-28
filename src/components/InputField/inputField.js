@@ -49,16 +49,21 @@ class InputField extends Component {
 
     validateInput(inputBox) {
         if(inputBox.value.length == 0) {
-            inputBox.parentNode.classList.add('error');   
-            this.props.required ? this.setState({errorMessage: 'Required Field'}) : ''; 
-            return this.props.required ? false : true; 
+            if(this.props.required) {
+                inputBox.parentNode.classList.add('error'); 
+                this.setState({errorMessage: 'Required Field'});
+                return false;
+            } else {
+                inputBox.parentNode.classList.remove('error'); 
+                return true;
+            }
 
         } else if(inputBox.validity.valid) {
             inputBox.parentNode.classList.remove('error');
             return true;
 
         } else {
-            this.setState({errorMessage: `Invalid ${this.props.placeHolder}`});
+            this.setState({errorMessage: `Please enter a valid ${this.props.placeHolder}`});
             inputBox.parentNode.classList.add('error');
             return false;
 
@@ -71,7 +76,7 @@ class InputField extends Component {
         
         if(inputWrapper.classList.contains('password-unmasked')) {
             inputBox.setAttribute('type', 'password');
-            inputBox.setAttribute('pattern', '^(?=.*[a-z])(?=.*[A-Z])(?=.*)[A-Za-z][A-Za-z0-9!@#$%^&*()_+]{5,19}$');
+            inputBox.setAttribute('pattern', defaultPatterns.password);
             inputWrapper.classList.remove('password-unmasked');
         } else {
             inputBox.setAttribute('type', 'text');
@@ -82,17 +87,35 @@ class InputField extends Component {
     render() {
         return (
             <div className='input-field floating-label'>
-              <input className='input-box' 
-                type={this.props.type} id={this.props.id} required={this.props.required}
-                pattern={this.props.pattern || defaultPatterns[this.props.type]}
-                onFocus={() =>  this.handleFocus(event.target)} 
-                onBlur={() =>  this.handleBlur(event.target)} 
-                onInput={() =>  this.handleInput(event.target)} 
-                onChange={() => this.props.onChange(event)}
-                disabled={this.props.disabled}
-                value={this.state.value}
-                />
-              <Label className={this.props.type === 'date' ? 'date-placeholder' : 'input-placeholder'} htmlFor={this.props.id}>{this.props.placeHolder}</Label>
+                {
+                    this.props.id === 'comments' ? 
+                    <textarea className='input-box' rows="4"
+                        type={this.props.type} id={this.props.id} required={this.props.required}
+                        pattern={this.props.pattern || defaultPatterns[this.props.type]}
+                        onFocus={() =>  this.handleFocus(event.target)} 
+                        onBlur={() =>  this.handleBlur(event.target)} 
+                        onInput={() =>  this.handleInput(event.target)} 
+                        onChange={() => this.props.onChange(event)}
+                        disabled={this.props.disabled}
+                        value={this.state.value}
+                    ></textarea> : 
+
+                    <input className='input-box' 
+                        type={this.props.type} id={this.props.id} required={this.props.required}
+                        pattern={this.props.pattern || defaultPatterns[this.props.type]}
+                        onFocus={() =>  this.handleFocus(event.target)} 
+                        onBlur={() =>  this.handleBlur(event.target)} 
+                        onInput={() =>  this.handleInput(event.target)} 
+                        onChange={() => this.props.onChange(event)}
+                        disabled={this.props.disabled}
+                        value={this.state.value}
+                    />
+                }
+              
+                <Label className={`${this.props.type === 'date' ? 'date-placeholder' : 'input-placeholder'} ${this.props.id === 'comments' ? 'comment-placeholder' : ''}`} 
+                    htmlFor={this.props.id}>
+                  {this.props.placeHolder}
+                </Label>
               <span className='input-bar'></span>
               <span className='input-error'>{this.state.errorMessage}</span>
               {this.props.type === 'show-mask-password' && <span className='input-password-mask' aria-hidden onClick={() => this.togglePasswordMask(event.target)}></span>}
