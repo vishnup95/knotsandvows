@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { isLoggedIn } from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions'
+import * as wishlistActions from '../../modules/wishlist/actions'
 
 const mapDispatchToProps = dispatch => ({
     dispatch
@@ -33,6 +34,8 @@ class CategoryCard extends Component {
             this.props.dispatch(loginActions.showLogin());
         } else {
             this.setState({isWishList: !this.state.isWishList});
+
+            this.props.dispatch(wishlistActions.testAdd(this.props.data, this.props.category));
         }   
         e.stopPropagation();
     }

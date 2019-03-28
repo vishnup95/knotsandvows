@@ -199,7 +199,7 @@ class Header extends Component {
                             <DropdownItem className="text-center" onClick={() => this.navigateTo("/profile")}>
                                 Profile
                         </DropdownItem>
-                            <DropdownItem className="text-center">
+                            <DropdownItem className="text-center" onClick={() => this.navigateTo("/bookings")}>
                                 My bookings
                         </DropdownItem>
                             <DropdownItem className="text-center" onClick={() => this.logout()}>

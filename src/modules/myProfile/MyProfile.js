@@ -31,7 +31,7 @@ class MyProfile extends Component {
         this.emailRef = React.createRef();
         this.nameRef = React.createRef();
         this.phoneRef = React.createRef();
-        // this.passwordRef = React.createRef();
+        this.passwordRef = React.createRef();
         this.state = {
             name: this.nameRef.value,
             phoneno: this.phoneRef.value,
@@ -66,10 +66,10 @@ class MyProfile extends Component {
                 <h1 className="mb-5 text-center">My Profile</h1>
                 <div>
                     <Form>
-                        <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} value="FirstName LastName"/>
-                        <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} value="abc@gmail.com"/>
-                        <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} value="9191919191"/>
-                        {/* <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleFormChange(e)} value="abcdefgh"/> */}
+                        <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} value={this.props.user.name}/>
+                        <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} value={this.props.user.email} disabled={true}/>
+                        <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} value={this.props.user.phoneno}/>
+                        <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleFormChange(e)} value="samplepassword" disabled={true}/>
                     </Form>
                     <div className="text-center mt-4">
                         <Button className="primary-button" onClick={() => this.validateMyProfileForm()}>Update Changes</Button>

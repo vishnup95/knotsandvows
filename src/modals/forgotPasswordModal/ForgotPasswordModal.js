@@ -56,7 +56,8 @@ class ForgotPassword extends Component {
         if (this.props.hash != null){
             let password = this.passwordRef.current.validateFormInput(document.getElementById('password'));
             let confirmPassword = this.confirmPasswordRef.current.validateFormInput(document.getElementById('confirmPassword'));
-            if (password && confirmPassword && this.state.password === this.state.confirmPassword) {
+            if (password && confirmPassword){
+               if(this.state.password === this.state.confirmPassword) {
                 const data = {
                   hash: this.props.hash,
                   password: this.state.password
@@ -64,8 +65,9 @@ class ForgotPassword extends Component {
                 this.setState({error: ''});
                 this.props.dispatch(actions.resetPassword(data));
               } else {
-                this.setState({error: 'Passwords do not match!'});
+                this.setState({error: 'Passwords does not match!'});
               }
+            }
         }else{
             let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
             if (email) {
@@ -89,12 +91,12 @@ class ForgotPassword extends Component {
         return this.props.hash == null ?
         (<div className={styles.forgotPassword}>
             <div className={styles.header}>Forgot Password</div>
-            <div className={styles.message}>{this.props.message}</div>
             <Form className="position-relative">
                 <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleFormChange(e)} />
             </Form>
             <div className="text-center mt-4">
                 <Button color="danger" className="primary-button" onClick={this.validateForm}>Send</Button>
+                <div className={styles.error}>{this.props.message}</div>
             </div>
         </div>) : null;
     }

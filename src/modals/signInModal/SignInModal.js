@@ -92,8 +92,8 @@ class SignInModal extends Component {
             return false;
         }
 
-        if (this.state.mode == DisplayMode.signUp && this.props.message) {
-            this.props.dispatch(modalActions.showModal({message: this.props.message, heading: 'Seven Vows Login/Signup'}));
+        if (this.state.mode == DisplayMode.signUp && this.props.apiStatus == true) {
+            this.props.dispatch(modalActions.showModal({message: `Successfully registered. A link to verify your email has been sent to ${this.state.signUp.email}`, heading: 'Seven Vows'}));
         }
     }
 

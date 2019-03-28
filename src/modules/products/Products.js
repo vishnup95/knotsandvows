@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const jumbotronData = { title: 'Other Categories' };
+const jumbotronData = { title: 'You may also be interested in..' };
 
 
 class Products extends Component {
