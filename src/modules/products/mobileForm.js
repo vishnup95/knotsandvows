@@ -15,12 +15,30 @@ const mapStateToProps = state => ({
 class MobileForm extends Component { 
     constructor(props) {
         super(props);
-        this.props.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
+        this.state = { category: this.props.selectedCategory};
+        this.props.filters.map(filter => 
+            {   if(filter.values[0].id !== -1) {
+                    filter.values.unshift({name: 'All', id: -1})
+                }
+            }
+        );
     } 
 
+    changeCategory = (category) => {
+        this.setState({category});
+    }
+
     componentWillReceiveProps(nextProps) {
+        
         if(nextProps.filters !== this.props.filters) {
-            nextProps.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
+            
+            nextProps.filters.map(filter => 
+                {
+                    if(filter.values[0].id !== -1) {
+                        filter.values.unshift({name: 'All', id: -1})
+                    }
+                }
+            );
         }
     }
 
@@ -28,11 +46,13 @@ class MobileForm extends Component {
         return(
             <div className={styles.mobileFormContainer}>
                 <h5>Search your vendors</h5>
-                <InputSelect placeHolder="I am looking for" id="category" options={this.props.categories}/>
+                <InputSelect placeHolder="I am looking for" id="category" options={this.props.categories} 
+                selectedItem={this.props.selectedCategory} onCategoryChange={this.changeCategory}/>
                 {
                     this.props.filters.map((filter, index) => { 
                         return(
-                            <InputSelect key={index} placeHolder={filter.display_name} id={`selectEvent${filter.name}`} options={filter.values}/>
+                            <InputSelect key={index} placeHolder={filter.display_name} id={`selectEvent${filter.name}`} 
+                                options={filter.values} selectedItem={filter.values[0].id}/>
                         );
                     })
                 }

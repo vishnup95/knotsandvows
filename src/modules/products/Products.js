@@ -145,6 +145,7 @@ class Products extends Component {
               </Row>
 
               {filters.length > 0 && detectMobile()  &&
+                
                 <div>
                   <Button color="danger" onClick={() => this.toggleMobileFilter()}>Click to filter vendors</Button>
                   <Modal isOpen={this.state.modal} toggle={() => this.toggleMobileFilter()} style={{margin: 0, marginTop: '50px'}}>
