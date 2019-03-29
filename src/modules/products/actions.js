@@ -13,13 +13,14 @@ export function fetchProducts(category, page = 1, sortby = 0, searchParams = '')
   };
 }
 
-export function fetchFilters(category) {
+export function fetchFilters(category, isFirstLoading = true) {
   return {
     types: [
       types.LOAD_FILTERS,
       types.LOAD_FILTERS_SUCCESS,
       types.LOAD_FILTERS_FAILURE
     ],
+    isFirstLoading: isFirstLoading,
     promise: client => client.get(`api/results/getfilters?type=${category}`)
   };
 }

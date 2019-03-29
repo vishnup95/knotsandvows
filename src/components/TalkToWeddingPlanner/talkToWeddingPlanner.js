@@ -40,7 +40,7 @@ class TalkToWeddingPlanner extends Component {
             comments: '',
             modal: false
         }
-        this.toggle = this.toggle.bind(this);
+        this.toggle = this.toggle.bind(this);   
     }
 
     toggle() {
@@ -71,7 +71,6 @@ class TalkToWeddingPlanner extends Component {
             this.props.dispatch(actions.postContactDetails(details));
         }
     }
-
 
     componentDidUpdate(prevProps) {
         if (prevProps == undefined) {
@@ -110,9 +109,9 @@ class TalkToWeddingPlanner extends Component {
                         <Form style={{ zIndex: '10000' }} className="position-relative">
                             <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Contact Number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false}/>
-                            <InputField placeHolder="Time" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} required={false}/>
+                            <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />
+                            <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false}/>
+                            <InputField placeHolder="Preferred time to contact" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} required={false}/>
                             <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false}/>
                         </Form>
                         <div className="text-center">

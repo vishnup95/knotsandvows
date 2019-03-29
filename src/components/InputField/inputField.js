@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Label
+    Label,
+    UncontrolledTooltip
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
@@ -13,11 +14,24 @@ const defaultPatterns = {
 
 class InputField extends Component { 
     state = {errorMessage: '', value: ''};  
-
+    
     componentDidMount() {
         if (this.props.value) {
             this.setState({value: this.props.value})
             this.handleFocus(document.getElementById(this.props.id));
+        } 
+        if (this.props.type == "date"){
+            var today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth()+1;//January is 0
+            let year = today.getFullYear();
+            if(day<10){
+                    day='0'+day
+            } 
+            if(month<10){
+                month='0'+month
+            }
+            this.minDate = year+'-'+month+'-'+day;
         }
     }
 
@@ -70,21 +84,27 @@ class InputField extends Component {
         }
     }
 
-    togglePasswordMask(maskToggleIcon) {
-        var inputWrapper = maskToggleIcon.parentNode,
-            inputBox = inputWrapper.firstElementChild;
+    // togglePasswordMask(maskToggleIcon) {
+    //     var inputWrapper = maskToggleIcon.parentNode,
+    //         inputBox = inputWrapper.firstElementChild;
         
-        if(inputWrapper.classList.contains('password-unmasked')) {
-            inputBox.setAttribute('type', 'password');
-            inputBox.setAttribute('pattern', defaultPatterns.password);
-            inputWrapper.classList.remove('password-unmasked');
-        } else {
-            inputBox.setAttribute('type', 'text');
-            inputWrapper.classList.add('password-unmasked');
-        }
-    }
+    //     if(inputWrapper.classList.contains('password-unmasked')) {
+    //         inputBox.setAttribute('type', 'password');
+    //         inputBox.setAttribute('pattern', defaultPatterns.password);
+    //         inputWrapper.classList.remove('password-unmasked');
+    //     } else {
+    //         inputBox.setAttribute('type', 'text');
+    //         inputWrapper.classList.add('password-unmasked');
+    //     }
+    // }
 
     render() {
+
+        let title = null;
+        if (this.props.type == "password" && !this.props.disabled) {
+            title = "Use at least 6 characters including at least 1 letter, 1 capital letter and 1 number";
+        }
+        
         return (
             <div className='input-field floating-label'>
                 {
@@ -109,6 +129,8 @@ class InputField extends Component {
                         onChange={() => this.props.onChange(event)}
                         disabled={this.props.disabled}
                         value={this.state.value}
+                        title={title}
+                        min={this.minDate}
                     />
                 }
               
@@ -118,7 +140,11 @@ class InputField extends Component {
                 </Label>
               <span className='input-bar'></span>
               <span className='input-error'>{this.state.errorMessage}</span>
-              {this.props.type === 'show-mask-password' && <span className='input-password-mask' aria-hidden onClick={() => this.togglePasswordMask(event.target)}></span>}
+              {/* {this.props.type === 'show-mask-password' && <span className='input-password-mask' aria-hidden onClick={() => this.togglePasswordMask(event.target)}></span>} */}
+              {this.props.type === 'password' && <div><span className='input-password-mask'></span>
+              <UncontrolledTooltip placement="right" target={this.props.id}>
+                {title}
+              </UncontrolledTooltip></div>}
             </div>
         );
     }
