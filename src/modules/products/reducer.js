@@ -50,11 +50,11 @@ const ProductsReducer = (state = initialState, action) => {
 
     case types.LOAD_FILTERS_SUCCESS:
       result = action.result || {};
-      return {
-        ...state,
-        filterData: result.data.data,
-      };
-
+        return {
+          ...state,
+          filterData: result.data.data,
+        };
+  
     case types.LOAD_FILTERS_FAILURE:
       return {
         ...state,

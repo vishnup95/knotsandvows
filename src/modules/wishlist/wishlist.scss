@@ -184,3 +184,134 @@
     @include margin(4,8);
   }
 }
+
+.comparePopup {
+  h3 {
+    @include fontSize(30);
+    font-family: $roboto-regular;
+    margin: 2rem 0;
+    text-align: center;
+    color: $black;
+  }
+
+  hr {
+    border-top: 1px solid $warm-grey-two;
+    width: 100%;
+  }
+}
+
+.vendorImage {
+  @include height(250);
+  // @include width(403);
+  width: 100%;
+  max-height: 100%;
+  @include borderRadius(18,18,0,0);
+}
+
+.vendorInfo {
+  @include height(98);
+  background-color: $white-three;
+  padding: 1rem;
+
+  h5 {
+    @include fontSize(18);
+    font-family: $roboto-medium;
+  }
+
+  p {
+    @include fontSize(16);
+  }
+
+}
+
+.price {
+  @include height(51);
+  @include fontSize(14);
+  font-family: $roboto-medium;
+  padding: 1rem;
+
+  span {
+    color: $greyish-brown-five;
+  }
+}
+
+.rating {
+  background-color: $white-three;
+  padding: 1rem 1rem 1px;
+}
+
+.galleryWrap {
+
+  max-height: 30rem;
+  overflow: auto;
+  margin-top: 1rem;
+
+  img {
+    width: 47%;
+    margin: 1.5%;
+    // @include height(107);
+    // height: auto;
+    @include borderRadius(10);
+  }
+
+}
+
+.removeBtn {
+  background-color: $white-three;
+  @include height(90);
+  @include margin(42,0,100);
+  color: $primary-color;
+  font-family: $roboto-medium;
+  @include fontSize(16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include borderRadius(0,0,18,18);
+  cursor: pointer;
+}
+
+.label {
+  font-family: $roboto-medium;
+  @include fontSize(16);
+  color: $black;
+  
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &:first-child {
+    margin-top: 10rem;
+    @include margin(380,0,0);
+    @include height(51);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &:nth-child(2) {
+    height: 4rem;
+  }
+}
+
+.compareContainer {
+  padding: 1rem 3rem;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  cursor: pointer;
+
+}
+
+.closeBtnSmall {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.compareComponent {
+  padding-top: 2rem;
+}
