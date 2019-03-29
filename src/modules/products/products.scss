@@ -25,6 +25,10 @@
 
 .imageHeading {
   text-align: center;
+
+  @include mobile {
+    margin-top: 2rem;
+  }
 }
 
 .sideHeading {
@@ -292,4 +296,44 @@
 
 .mobileFormContainer {
   @include padding(30);
+}
+
+.searchField {
+  @include width(700);
+  margin: 0 auto;
+  border: 1px solid  rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  margin-bottom: 4rem;
+
+  @include mobile {
+      width: 90%;
+  }
+
+  input {
+      border: none;
+      @include height(55);
+      @include padding(0, 20);
+      @include fontSize(18);
+      color: $black-five;
+      letter-spacing: 0.36px;
+      font-family: $roboto-regular;
+
+      &:focus {
+          outline: 0;
+          box-shadow: none;
+      }
+  }
+
+  button {
+    padding: .75rem 2rem;
+    z-index: 1;
+    margin-left: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
+    background-size: 10px;
+    background: url("/images/filter-search-icon.png") center center no-repeat $secondary-color;
+    border: none;
+    @include width(70);
+    @include height(55);
+  }
 }

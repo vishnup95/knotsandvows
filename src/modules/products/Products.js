@@ -12,7 +12,8 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-import { Button, Modal} from 'reactstrap';
+import {Modal} from 'reactstrap';
+import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
 
 import styles from './products.scss';
@@ -145,9 +146,14 @@ class Products extends Component {
               </Row>
 
               {filters.length > 0 && detectMobile()  &&
-                
                 <div>
-                  <Button color="danger" onClick={() => this.toggleMobileFilter()}>Click to filter vendors</Button>
+                  <InputGroup  onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
+                    <Input />
+                    <InputGroupAddon addonType="append">
+                      <Button color="danger"></Button>
+                    </InputGroupAddon>
+                  </InputGroup>
+
                   <Modal isOpen={this.state.modal} toggle={() => this.toggleMobileFilter()} style={{margin: 0, marginTop: '50px'}}>
                     <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch}/>
                   </Modal>
