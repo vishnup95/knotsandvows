@@ -35,7 +35,7 @@ class PlainCard extends Component {
             onError={(e)=>{e.target.onerror = null; e.target.src=imagePath('card_2_1.jpg')}}
             className={styles.plainCardImage}
           />
-          <CardBody>
+          <CardBody className={styles.plainCardBody}>
             <CardTitle className={styles.cardTitleSimple}>{this.props.data.name}</CardTitle>
           </CardBody>
         </Card>

@@ -130,7 +130,7 @@ class Home extends Component {
               <VerticalMultiCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)}/>
             </Col>
             <Col xs="12" className={`${styles.mobileCarousal} no-padding`} style={{margin: '-1rem 0'}}>
-               <HorizontalScrollingCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)}/>
+               <HorizontalScrollingCarousel data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="home"/>
             </Col>
           </Row>
         </JumbotronComponent>

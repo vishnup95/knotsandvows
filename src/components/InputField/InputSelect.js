@@ -2,9 +2,26 @@ import React, { Component } from 'react';
 import {
     Label
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import * as actions from '../../modules/products/actions';
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({ ...actions }),
+    dispatch
+});
 
 class InputSelect extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {selectedItem: this.props.selectedItem};
+    }
+
+    componentDidMount() {
+        this.handleFocus(document.getElementById(this.props.id));
+    }
+
     handleFocus(inputBox) {
         inputBox.parentNode.classList.add('is-focussed');
         inputBox.parentNode.classList.remove('error');
@@ -33,30 +50,54 @@ class InputSelect extends Component {
             inputBox.parentNode.classList.add('error');
         }
     }
+
+    handleChange(e) {
+        this.setState({selectedItem: e.target.value});
+
+        if (this.props.id === 'category') {
+            this.props.dispatch(actions.fetchFilters(e.target.value));
+            this.props.onCategoryChange(e.target.value);
+        } 
+        // else {
+        //     if (e.target.value) {
+        //         selectedFilters[this.props.name] = e.target.value;
+        //     } else {
+        //         delete selectedFilters[this.props.name];
+        //     }
+        // }
+    }
     
     render() {
         return (
             <div className='input-field floating-label'>
-                <Label for="exampleSelect" className='input-placeholder'>Type of Event</Label>
-                <select name="select" defaultValue="" id="exampleSelect" className='input-box' onFocus={() =>  this.handleFocus(event.target)} onBlur={() =>  this.handleBlur(event.target)} onInput={() =>  this.handleInput(event.target)}>
-                    <option value="" disabled></option>
-                    <option>Wedding</option>
-                    <option>Photography</option>
-                    <option>Photography</option>
-                    <option>Photography</option>
-                    <option>Photography</option>
+                <Label for="exampleSelect" className='input-placeholder'>{this.props.placeHolder}</Label>
+                <select name="select" id={this.props.id} className='input-box' 
+                value={this.state.selectedItem} onFocus={() =>  this.handleFocus(event.target)} 
+                onBlur={() =>  this.handleBlur(event.target)} 
+                onInput={() =>  this.handleInput(event.target)} onChange={(event) => this.handleChange(event)}>
+                    {
+                        this.props.options.map((item, index) => {
+                            let value = this.props.id === 'category' ? item.page_name : item.id;
+                            return <option key={index} value={value}>{item.name}</option>
+                        })
+                    }
+
                 </select>
                 <span className='input-bar'></span>
                 <span className='input-error'>Error message.</span>
-            </div>
-            
+            </div>   
         );
     }
 }
 
 InputSelect.propTypes = {
     placeHolder: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string,
+    options: PropTypes.array,
+    selectedItem: PropTypes.any,
+    onCategoryChange: PropTypes.func,
+    dispatch: PropTypes.func
 };
-
-export default InputSelect;
+export default connect(
+    mapDispatchToProps
+)(InputSelect);
