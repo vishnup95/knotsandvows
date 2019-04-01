@@ -12,14 +12,18 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-import { imagePath } from '../../utils/assetUtils';
+import {Modal} from 'reactstrap';
+import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 
 import styles from './products.scss';
 import CategoryCard from '../../components/Card/cardCategory';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import FormComponent from './newForm';
+import MobileForm from './mobileForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
+import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -44,7 +48,8 @@ class Products extends Component {
     productListData: null,
     sortBy: 0,
     page: 1,
-    dropdownOpen: false
+    dropdownOpen: false,
+    modal: false
   }
 
   static fetchData(store) {
@@ -68,6 +73,10 @@ class Products extends Component {
     if (item) {
       this.setState({ sortBy: item.id });
     }
+  }
+
+  toggleMobileFilter() {
+    this.setState({modal: !this.state.modal});
   }
 
   componentWillMount() {
@@ -122,10 +131,10 @@ class Products extends Component {
     const { header, sort_options, filters } = this.props.filterData;
     return (
       <div>
-        {header && <div className={` ${styles.categoryCover} position-relative text-center`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        {header && <div className={` ${styles.categoryCover} position-relative text-center d-none d-sm-block`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
         </div>}
 
-        {filters.length > 0 ? <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} /> : <div></div>}
+        {filters.length > 0 && !detectMobile()  && <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} />}
         {this.props.productListLoading ? <LoaderComponent /> :
           ((this.props.productListData == null || this.props.productListData.results.length === 0) ? <NoResultComponent /> :
 
@@ -135,6 +144,23 @@ class Products extends Component {
                   <h1 className={styles.imageHeading}>{header ? header.header_text : ''}</h1>
                 </Col>
               </Row>
+
+              {filters.length > 0 && detectMobile()  &&
+                <div>
+                  <InputGroup  onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
+                    <Input />
+                    <InputGroupAddon addonType="append">
+                      <Button color="danger"></Button>
+                    </InputGroupAddon>
+                  </InputGroup>
+
+                  <Modal isOpen={this.state.modal} toggle={() => this.toggleMobileFilter()} style={{margin: 0, marginTop: '50px'}}>
+                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch}/>
+                  </Modal>
+                </div>
+              }
+              
+
               <Row className="mb-3">
 
                 <Col sm="6" className={styles.sideHeading}>
@@ -150,7 +176,7 @@ class Products extends Component {
                       onClick={() => this.toggle()}
                       data-toggle="dropdown"
                       aria-expanded={this.state.dropdownOpen}>
-                      {sort_options[this.state.sortBy] ? sort_options[this.state.sortBy].name : ''}
+                      {sort_options && sort_options[this.state.sortBy] ? sort_options[this.state.sortBy].name : ''}
                     </DropdownToggle>
                     <DropdownMenu className={styles.dropMenu}>
                       {
@@ -169,7 +195,7 @@ class Products extends Component {
                 {
                   this.props.productListData.results.map((product, index) => {
                     return (
-                      <Col xs="12" sm="4" key={index}>
+                      <Col xs="6" sm="4" key={index}>
                         <CategoryCard data={product} category={this.state.category} id={index}/>
                       </Col>
                     );
@@ -195,8 +221,11 @@ class Products extends Component {
 
             </Container>)
         }
-
-        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap" />
+        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap">
+          <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
+            <HorizontalScrollingCarousel data={this.props.other_categories} type="other_categories"/>
+          </Col>
+        </JumbotronComponent>
       </div>
     );
   }

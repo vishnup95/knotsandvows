@@ -51,6 +51,10 @@ h1,
 h2 {
   @include fontSize(58);
   color: $secondary-color;
+
+  @include mobile {
+    font-size: 20px !important;
+  }
 }
 
 .main {

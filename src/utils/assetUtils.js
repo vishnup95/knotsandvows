@@ -5,10 +5,13 @@ export function imagePath(assetName) {
 }
 
 export function detectMobile() {
-  console.log(window);
-  if(window.innerWidth <= 800 && window.innerHeight <= 700) {
+  let mobRegex = new RegExp(['/Mobile|Windows Phone|Lumia|Android|webOS|iPhone|iPod|Blackberry|',
+      'PlayBook|BB10|Opera Mini|\bCrMo|Opera Mobi/i'].join(''));
+  if (navigator.userAgent.match(mobRegex)) {
     return true;
-  } else return false;
+  }
+
+  return false;
 }
 
 export function formatMoney(amount, decimalCount = 0, decimal = ".", thousands = ",") {
