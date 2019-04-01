@@ -16,7 +16,7 @@ let baseUrl =
 
 const client = axios.create({
   baseURL: baseUrl,
-  withCredentials: true
+  withCredentials: false
 });
 
 export default (options = { logger: true }) => {

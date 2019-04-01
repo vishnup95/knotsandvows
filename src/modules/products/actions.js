@@ -1,6 +1,6 @@
 import * as types from './constants';
 
-export function fetchProducts(category, page = 1, sortby = 0, searchParams = '') {
+export function fetchProducts(category, page = 1, sortby = 0, searchParams = '', isFirstLoading = true) {
   let getUrl = `api/results/getall?type=${category}&offset=12&page=${page}&sortby=${sortby}`;
   getUrl = searchParams ? `${getUrl}&${searchParams}` : getUrl;
   return {
@@ -9,6 +9,7 @@ export function fetchProducts(category, page = 1, sortby = 0, searchParams = '')
       types.LOAD_PRODUCTS_SUCCESS,
       types.LOAD_PRODUCTS_FAILURE
     ],
+    isFirstLoading: isFirstLoading,
     promise: client => client.get(getUrl)
   };
 }

@@ -107,9 +107,9 @@ class Products extends Component {
 
   filterSearch = (params, category) => {
     this.navigateTo(`/categories/${category}`);
-    this.setState({ category });
+    this.setState({ category : category, page : 1 });
     let searchParams = queryString.stringify(params);
-    this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams));
+    this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams, false));
   }
 
   changeSortOption = (event) => {

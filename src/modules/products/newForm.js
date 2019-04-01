@@ -40,7 +40,7 @@ export class DropdownComponent extends Component {
         this.setState({selectedItem: this.props.options[index]});
 
         if (this.props.name === 'category') {
-            this.props.dispatch(actions.fetchFilters(value));
+            this.props.dispatch(actions.fetchFilters(value, false));
             this.props.onCategoryChange(value);
             selectedFilters = {};
         } else {
