@@ -14,6 +14,11 @@ const initialState = {
     filters:[],
     sort_options: []
   },
+  tempfilterData: {
+    header: null,
+    filters:[],
+    sort_options: []
+  },
   other_categories : []
 };
 
@@ -28,12 +33,21 @@ const ProductsReducer = (state = initialState, action) => {
       };
 
     case types.LOAD_PRODUCTS_SUCCESS:
-      result = action.result || {};
-      return {
-        ...state,
-        productListData: result.data.data,
-        loading: false
-      };
+      result = action.result || {};    
+      if (action.isFirstLoading){
+        return {
+          ...state,
+          productListData: result.data.data,
+          loading: false
+        };
+      }else{
+        return {
+          ...state,
+          productListData: result.data.data,
+          filterData: {...state.filterData, sort_options: state.tempfilterData.sort_options, header: state.tempfilterData.header},
+          loading: false
+        };
+      }
 
     case types.LOAD_PRODUCTS_FAILURE:
       return {
@@ -50,10 +64,19 @@ const ProductsReducer = (state = initialState, action) => {
 
     case types.LOAD_FILTERS_SUCCESS:
       result = action.result || {};
+      if (action.isFirstLoading){
         return {
           ...state,
           filterData: result.data.data,
+          tempfilterData : result.data.data,
         };
+      }else{
+        return {
+          ...state,
+          tempfilterData : result.data.data,
+          filterData : {...state.filterData, filters: result.data.data.filters},
+        };
+      }
   
     case types.LOAD_FILTERS_FAILURE:
       return {
