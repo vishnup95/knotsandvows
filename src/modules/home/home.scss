@@ -107,6 +107,7 @@ a.button {
   display: flex;
   justify-content: space-between;
   // padding: 3.5rem 0;
+  cursor: pointer;
   @include padding(59.5,0);
   border-bottom: 2px solid #eee;
 

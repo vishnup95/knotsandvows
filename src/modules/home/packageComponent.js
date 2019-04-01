@@ -16,7 +16,7 @@ class PackageComponent extends Component {
   render() {
     let packageDetail = this.props.details;
     return (
-      <div className={`${styles.packageContainer}`}>
+      <div className={`${styles.packageContainer}`} onClick={() => this.launchLandingPage()}  aria-hidden>
         <div className={styles.details}>
           <h2>{packageDetail.name}</h2>
           <div >
@@ -47,8 +47,7 @@ class PackageComponent extends Component {
           </p>
         </div>
 
-        <div className={styles.featureImage} style={{ backgroundImage: `url(${packageDetail.imageUrl}) `}} 
-          onClick={() => this.launchLandingPage()}  aria-hidden>
+        <div className={styles.featureImage} style={{ backgroundImage: `url(${packageDetail.imageUrl}) `}} >
         </div>
       </div>
     );
