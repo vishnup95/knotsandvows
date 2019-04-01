@@ -35,6 +35,7 @@ import { isLoggedIn } from '../../utils/utilities';
 const mapStateToProps = state => ({
     route: state.router.location.pathname,
     user: state.session.user,
+    error: state.session.error,
     apiStatus: state.session.apiStatus,
     showLogin: state.session.showLogin,
     showForgotPassword: state.session.showForgotPassword,
@@ -174,11 +175,20 @@ class Header extends Component {
         
         if (this.props.location.pathname === "/verify") {
             if (this.props.apiStatus == true) {
-                this.props.dispatch(modalActions.showModal(`Email Verified Successfully`));
+                let modalContent = {
+                    heading: '',
+                    message: 'Email Verified Successfully'
+                  };
+                this.props.dispatch(modalActions.showModal(modalContent));
                 this.props.dispatch(replace("/"));
             } else if (this.props.apiStatus == false) {
                 this.props.dispatch(replace("/"));
-                this.props.dispatch(modalActions.showModal(`Link expired`));
+                let modalContent = {
+                    heading: '',
+                    message: this.props.error
+                    
+                  };
+                this.props.dispatch(modalActions.showModal(modalContent));
             }
         }
     }
@@ -310,7 +320,8 @@ Header.propTypes = {
     history: PropTypes.any,
     categories: PropTypes.array,
     location: PropTypes.object,
-    apiStatus: PropTypes.bool
+    apiStatus: PropTypes.bool,
+    error: PropTypes.string
 };
 
 export default connect(

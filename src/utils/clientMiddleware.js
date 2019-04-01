@@ -44,6 +44,7 @@ export default function clientMiddleware(client) {
           },
           error => {
             //   dispatch(hideLoader());
+            error.message = "Unexpected error occured, try again later";
             next({ ...rest, error, type: FAILURE });
           }
         )

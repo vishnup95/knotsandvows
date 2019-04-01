@@ -194,22 +194,21 @@ const session = (state = initialState, action) => {
         ...state,
         apiStatus: null,
         loading: true,
-        message: ''
+        error:"",
       };
 
     case types.LOAD_VERIFY_EMAIL_SUCCESS:
       return {
         ...state,
         apiStatus: true,
-        loading: false,
-        message: action.result.data.message,
+        loading: false
       };
 
     case types.LOAD_VERIFY_EMAIL_FAILURE:
       return {
         ...state,
         apiStatus: false,
-        message: action.error.message,
+        error: action.error.message,
         loading: false
       };
 
