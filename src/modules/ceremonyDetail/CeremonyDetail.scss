@@ -3,8 +3,20 @@
 @import '../../variables/fonts';
 
 .ceremony-detail {
+  overflow: hidden;
+  margin-top: 14rem;
+
+  @include mobile {
+    margin-top: 7rem;
+  }
+
   div[class^="container"] {
     max-width: 85%;
+
+    @include mobile {
+      max-width: 92%;
+      padding-right: 0; 
+    }
   }
 
   h3 {
@@ -66,6 +78,10 @@
   font-family: $roboto-medium;
   width: max-content;
   cursor: pointer;
+
+  @include mobile {
+    margin: 0 auto;
+  }
 }
 
 // Browse category specific styles
@@ -76,4 +92,12 @@
   color: $black;
   line-height: 1.56;
   text-align: center;
+}
+
+.fullWidthListing {
+  @include mobile {
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    margin-left: -30px;
+    padding: 0 10px;
+  }
 }

@@ -16,7 +16,7 @@ class CategorySection extends Component {
 
     render() {
         return(
-            <div>
+            <div className="mb-3">
                 <Row>
                     <Col>
                         <h3>{this.props.category.name}</h3>

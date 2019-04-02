@@ -69,7 +69,7 @@ class CategoryListing extends Component {
   render() {
     
     return (
-      <div className="full-height" style={{marginTop: '14rem'}}>
+      <div className="full-height">
           <div className={styles.ceremonyDetail}>
             <Container>
               <Row>
@@ -79,11 +79,11 @@ class CategoryListing extends Component {
                 </Col>
               </Row>
               {this.props.ceremonyLoading && <LoaderComponent />}
-              <Row className="mb-3">
+              {this.state.fixedCategories.length > 0 && <Row className={`mb-3 ${styles.fullWidthListing}`}>
                 <Col className="no-padding">
                   <HorizontalSlider data={this.state.fixedCategories} type='small' buttonAction={this.handleCategoryChange}/>
                 </Col>
-              </Row>
+              </Row>}
               {
                 this.state.categories.map((category, index) => {
                   return (
