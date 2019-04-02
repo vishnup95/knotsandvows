@@ -8,9 +8,8 @@ import { Container, Row, Col, Modal } from 'reactstrap';
 import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
 import CategoryCard from '../../components/Card/cardCategory';
-import StarRating from '../../components/StarRating/starRating';
 import { imagePath } from '../../utils/assetUtils';
-
+import CompareProduct from '../../components/compareProduct/compareProduct';
 
 const mapStateToProps = state => ({
   ceremonyDetails: state.ceremonyDetails.details,
@@ -221,123 +220,8 @@ class CategoryListing extends Component {
                   </Col>
                   <Col sm="11">
                     <Row>
-                      <Col sm="4" className={styles.compareComponent}>
-                        <div className={styles.closeBtnSmall}>
-                          <img src={imagePath('close-blank.svg')} alt="close button" aria-hidden />
-                        </div>
-                        <img src={imagePath('card_1_1.jpg')} className={styles.vendorImage} alt="Outline" />
-                        <div className={styles.vendorInfo}>
-                          <h5>The Lalit Mumbai</h5>
-                          <p>Andheri East, Mumbai</p>
-                        </div>
-                        <div className={styles.price}>
-                          1,50,000 Min. <span>Charges per day</span>
-                        </div>
-                        <div className={styles.rating}>
-                          <StarRating rating={'4'} size={'small'} />
-                        </div>
-                        <div className={styles.galleryWrap}>
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                        </div>
-                        <div className={styles.removeBtn}>
-                          Remove from wishlist
-                        </div>
-                      </Col>
-                      <Col sm="4" className={styles.compareComponent}>
-                        <div className={styles.closeBtnSmall}>
-                          <img src={imagePath('close-blank.svg')} alt="close button" aria-hidden />
-                        </div>
-                        <img src={imagePath('card_1_1.jpg')} className={styles.vendorImage} alt="Outline" />
-                        <div className={styles.vendorInfo}>
-                          <h5>The Lalit Mumbai</h5>
-                          <p>Andheri East, Mumbai</p>
-                        </div>
-                        <div className={styles.price}>
-                          1,50,000 Min. <span>Charges per day</span>
-                        </div>
-                        <div className={styles.rating}>
-                          <StarRating rating={'4'} size={'small'} />
-                        </div>
-                        <div className={styles.galleryWrap}>
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                        </div>
-                        <div className={styles.removeBtn}>
-                          Remove from wishlist
-                        </div>
-                      </Col>
-                      <Col sm="4" className={styles.compareComponent}>
-                        <div className={styles.closeBtnSmall}>
-                          <img src={imagePath('close-blank.svg')} alt="close button" aria-hidden />
-                        </div>
-                        <img src={imagePath('card_1_1.jpg')} className={styles.vendorImage} alt="Outline" />
-                        <div className={styles.vendorInfo}>
-                          <h5>The Lalit Mumbai</h5>
-                          <p>Andheri East, Mumbai</p>
-                        </div>
-                        <div className={styles.price}>
-                          1,50,000 Min. <span>Charges per day</span>
-                        </div>
-                        <div className={styles.rating}>
-                          <StarRating rating={'4'} size={'small'} />
-                        </div>
-                        <div className={styles.galleryWrap}>
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                          <img src={imagePath('card_1_1.jpg')} className={styles.galleryImage} alt="Outline" />
-                        </div>
-                        <div className={styles.removeBtn}>
-                          Remove from wishlist
-                        </div>
-                      </Col>
+                      <CompareProduct/>
+                      <CompareProduct/>
                     </Row>
                   </Col>
                 </Row>
