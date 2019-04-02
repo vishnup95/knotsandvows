@@ -5,6 +5,11 @@
 .slider-item {
   padding: 1.4rem;
   @include width(360);
+
+  @include mobile {
+    padding: 1rem;
+    width: max-content !important;
+  }
 }
 
 .slider-wrap {

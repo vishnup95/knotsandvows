@@ -124,6 +124,11 @@
   letter-spacing: .025rem;
   color: $black-four;
   @extend .addEllipsis;
+  width: 13rem;
+
+  @include mobile {
+    width: 10rem;
+  }
 }
 
 .charges {
