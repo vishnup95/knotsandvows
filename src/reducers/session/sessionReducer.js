@@ -143,7 +143,7 @@ const session = (state = initialState, action) => {
       return {
         ...state,
         apiStatus: null,
-        loading: false,
+        loading: true,
         message: ''
       };
 
@@ -151,7 +151,7 @@ const session = (state = initialState, action) => {
       return {
         ...state,
         apiStatus: true,
-        loading: true,
+        loading: false,
         showForgotPassword: false,
         message: action.result.data.message,
       };
