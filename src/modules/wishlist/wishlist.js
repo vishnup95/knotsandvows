@@ -220,8 +220,13 @@ class CategoryListing extends Component {
                   </Col>
                   <Col sm="11">
                     <Row>
-                      <CompareProduct/>
-                      <CompareProduct/>
+                      <CompareProduct />
+                      <CompareProduct />
+                      <Col sm="6" md="6" lg="4">
+                        <div className={styles.addNew}>
+                          <div className={styles.addBtn}></div>
+                        </div>
+                      </Col>
                     </Row>
                   </Col>
                 </Row>
