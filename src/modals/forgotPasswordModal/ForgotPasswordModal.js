@@ -107,7 +107,7 @@ class ForgotPassword extends Component {
         return this.props.hash != null ?
         (<div className={styles.forgotPassword}>
             <div className={styles.header}>Reset Password</div>
-            <div className={styles.message}>You are resetting the password for {this.props.email}</div>
+            <div className={styles.message}>You are resetting the password for <span>{this.props.email}</span></div>
             <Form className="position-relative mt-3">
                 <InputField placeHolder="New Password" id="password" type="password" ref={this.passwordRef} onChange={e => this.handleFormChange(e)} />
                 <InputField placeHolder="Confirm password" id="confirmPassword" type="password" ref={this.confirmPasswordRef} onChange={e => this.handleFormChange(e)} />
