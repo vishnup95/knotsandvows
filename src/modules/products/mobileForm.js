@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
     categories: state.home.categories,
 });
 
+let selectedFilters = {};
 
 class MobileForm extends Component { 
     constructor(props) {
@@ -26,12 +27,19 @@ class MobileForm extends Component {
 
     changeCategory = (category) => {
         this.setState({category});
+        selectedFilters = {};
     }
 
-    componentWillReceiveProps(nextProps) {
-        
-        if(nextProps.filters !== this.props.filters) {
-            
+    setFilters = (name, value) => {
+        if (value !== "-1") {
+            selectedFilters[name] = value;
+        } else {
+            delete selectedFilters[name];
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {  
+        if(nextProps.selectedCategory !== this.state.selectedCategory) { 
             nextProps.filters.map(filter => 
                 {
                     if(filter.values[0].id !== -1) {
@@ -44,22 +52,26 @@ class MobileForm extends Component {
 
     render() {
         return(
-            <div className={styles.mobileFormContainer}>
-                <h5>Search your vendors</h5>
-                <InputSelect placeHolder="I am looking for" id="category" options={this.props.categories} 
-                selectedItem={this.props.selectedCategory} onCategoryChange={this.changeCategory}/>
-                {
-                    this.props.filters.map((filter, index) => { 
-                        return(
-                            <InputSelect key={index} placeHolder={filter.display_name} id={`selectEvent${filter.name}`} 
-                                options={filter.values} selectedItem={filter.values[0].id}/>
-                        );
-                    })
-                }
-                <div className="text-center">
-                    <Button color="danger" className="primary-button">Search</Button>
+            <div className={styles.mobileFormOverlay} onClick={() => this.props.toggle()} aria-hidden>
+                <div className={styles.mobileFormContainer} onClick={(event) => event.stopPropagation()} aria-hidden>
+                    <h5>Search your vendors</h5>
+                    <InputSelect placeHolder="I am looking for" id="category" options={this.props.categories} 
+                    selectedItem={this.props.selectedCategory} onCategoryChange={this.changeCategory}/>
+                    {
+                        this.props.filters.map((filter, index) => { 
+                            return(
+                                <InputSelect key={index} placeHolder={filter.display_name} id={filter.name} 
+                                    options={filter.values} selectedItem={filter.values[0].id} onFilterChange={this.setFilters}/>
+                            );
+                        })
+                    }
+                    <div className="text-center">
+                        <Button color="danger" className="primary-button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}>
+                            Search
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            </div>  
         );
     }
 }
@@ -69,7 +81,8 @@ MobileForm.propTypes = {
     categories: PropTypes.array,
     selectedCategory: PropTypes.string,
     filterSearch: PropTypes.func,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    toggle: PropTypes.func
 }
 
 export default connect(
