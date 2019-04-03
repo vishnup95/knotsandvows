@@ -7,10 +7,12 @@ import * as modalActions from '../../reducers/modal/actions';
 import { Form, Button } from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import styles from './forgotPasswordModal.scss';
+import ProgressButton from '../../components/ProgressButton/PorgressButton';
 
 const mapStateToProps = state => ({
     message: state.session.message,
     apiStatus: state.session.apiStatus,
+    isLoading: state.session.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -47,7 +49,7 @@ class ForgotPassword extends Component {
             if (this.props.hash != null){
                 this.props.dispatch(modalActions.showModal({message: 'Password changed successfully', heading}));
             }else{
-                this.props.dispatch(modalActions.showModal({message: `A link to reset your password has been sent to ${this.state.email} address`, heading}));
+                this.props.dispatch(modalActions.showModal({message: `A link to reset your password has been sent to given email address`, heading}));
             }
         }
     }
@@ -95,7 +97,7 @@ class ForgotPassword extends Component {
                 <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleFormChange(e)} />
             </Form>
             <div className="text-center mt-4">
-                <Button color="danger" className="primary-button" onClick={this.validateForm}>Send</Button>
+                <ProgressButton title="Send" onClick={this.validateForm} isLoading={this.props.isLoading}></ProgressButton>
                 <div className={styles.error}>{this.props.message}</div>
             </div>
         </div>) : null;
@@ -136,7 +138,8 @@ ForgotPassword.propTypes = {
     email: PropTypes.string,
     close: PropTypes.func,
     message: PropTypes.string,
-    apiStatus: PropTypes.object,
+    apiStatus: PropTypes.bool,
+    isLoading: PropTypes.bool
 };
 export default connect(
     mapStateToProps,

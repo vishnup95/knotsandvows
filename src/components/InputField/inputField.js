@@ -32,6 +32,7 @@ class InputField extends Component {
                 month='0'+month
             }
             this.minDate = year+'-'+month+'-'+day;
+            this.maxDate = (year+4)+'-'+month+'-'+day;
         }
     }
 
@@ -131,6 +132,7 @@ class InputField extends Component {
                         value={this.state.value}
                         title={title}
                         min={this.minDate}
+                        max={this.maxDate}
                     />
                 }
               
@@ -141,7 +143,7 @@ class InputField extends Component {
               <span className='input-bar'></span>
               <span className='input-error'>{this.state.errorMessage}</span>
               {/* {this.props.type === 'show-mask-password' && <span className='input-password-mask' aria-hidden onClick={() => this.togglePasswordMask(event.target)}></span>} */}
-              {this.props.type === 'password' && <div><span className='input-password-mask'></span>
+              {this.props.type === 'password' && this.props.disabled == false && <div><span className='input-password-mask'></span>
               <UncontrolledTooltip placement="right" target={this.props.id}>
                 {title}
               </UncontrolledTooltip></div>}

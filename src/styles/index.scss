@@ -294,6 +294,15 @@
   }
 }
 
+.slick-list {
+  @include mobile {
+    padding:0 20% 0 0;
+
+    .col {
+      padding: 0 5px;
+    }
+  }
+}
 .delete-icon {
   width: 18px;
   height: 18px;

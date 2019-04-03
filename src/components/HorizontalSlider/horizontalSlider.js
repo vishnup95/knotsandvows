@@ -126,8 +126,13 @@ export default class HorizontalSlider extends Component {
                 {
                     breakpoint: 470,
                     settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
+                        className: "slider variable-width",
+                        dots: false,
+                        infinite: true,
+                        centerMode: false,
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        variableWidth: true
                     }
                 }
             ]
@@ -150,7 +155,7 @@ export default class HorizontalSlider extends Component {
                     }
                 },
                 {
-                    breakpoint: 600,
+                    breakpoint: 768,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2,
@@ -159,7 +164,9 @@ export default class HorizontalSlider extends Component {
                 {
                     breakpoint: 470,
                     settings: {
-                        slidesToShow: 2,
+                        nextArrow: null,
+                        prevArrow: null,
+                        slidesToShow: 2.5,
                         slidesToScroll: 2
                     }
                 }
