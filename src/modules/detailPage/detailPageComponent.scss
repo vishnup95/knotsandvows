@@ -16,21 +16,24 @@
 }
 
 .detail-section {
-  width: 85%;
   margin: 0 auto;
+  width: 90%;
+  @include tablet {
+    width: 85%;
+  }
 }
 
 .info-box {
   @include flex;
   @include justify-space-between;
-  align-items: center;
+  align-items: flex-start;
   background-color: rgba(255, 255, 255, .97);
-  @include borderRadius(14,14,0,0);
   box-shadow: 0 3px 6px 0 $black-16;
   @include padding(20,35);
   color: $black-five;
-  @include height(160);
-  @include margin(-160,0,0);
+  flex-direction: column;
+  border-radius: 10px;
+  margin: -60px 0 16px;
 
   h3 {
     font-family: $roboto-bold;
@@ -51,6 +54,12 @@
   a {
     color: $warm-grey;
   }
+  @include tablet {
+     @include height(160);
+    flex-direction: row;
+    @include borderRadius(14,14,0,0);
+    @include margin(-160,0,0);
+  }
 }
 
 .rating {
@@ -65,23 +74,28 @@
 }
 
 .view-btn-wrap {
-  border-left: 1px solid $warm-grey;
   @include flex;
   flex-direction: column;
   @include align-center;
   @include justify-center;
-  @include padding(0, 0, 0, 28.5);
+  @include tablet {
+     @include padding(0, 0, 0, 28.5);
+    border-left: 1px solid $warm-grey;
+
+  }
 }
 
 .detail-nav {
-  @include flex;
-  @include justify-space-between;
-  @include align-center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   @include padding(0,35);
   @include height(60);
-  @include borderRadius(0,0,14,14);
-  margin: auto;
   background-color: $white-four;
+  @include mobile {
+    overflow-x: auto;
+    margin: 0 -5%;
+  }
 
   ul {
     @include flex;
@@ -95,6 +109,7 @@
       @include padding(0,16);
       @include letterSpacing(.4);
       position: relative;
+      white-space: nowrap;
 
       &:before {
         content: '|';
@@ -121,6 +136,11 @@
     }
 
   }
+  @include tablet {
+     @include borderRadius(0,0,14,14);
+    overflow-x: hidden;
+    margin: 0;
+  }
 }
 
 .transparent-btn {
@@ -135,18 +155,6 @@
   @extend %pointer;
 }
 
-.view-btn {
-  background: $primary-color;
-  color: $white;
-  border: none;
-  font-family: $roboto-medium;
-  @include borderRadius(10);
-  @include fontSize(18);
-  @include height(42);
-  @include width(150);
-  @extend %pointer;
-}
-
 .detail-sub-section {
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.10);
   @include borderRadius(14);
@@ -158,9 +166,13 @@
     @include fontSize(18);
     font-family: $roboto-medium;
   }
+
   h3 {
-    @include fontSize(30);
+    font-size: 18px;
     font-family: $roboto-medium;
+    @include tablet {
+       @include fontSize(30);
+    }
   }
 
   h5 {
@@ -182,15 +194,18 @@
     padding: 0;
 
     li {
-      @include fontSize(20);
+      @include fontSize(18);
       width: 100%;
       width: 100%;
       @include padding(0,0,0,45);
       @include margin(8,0);
       position: relative;
+      font-family: $roboto-medium;
 
       span {
-        @include fontSize(18);
+        @include fontSize(16);
+      font-family: $roboto-regular;
+
       }
 
       &:before {
@@ -356,15 +371,26 @@
 
 .info-sub {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  @include tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+  }
 }
 
 .rating-wrap {
-  @include padding(0, 28.5, 0, 0);
+  @include padding(16,0);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: flex-start;
+  @include tablet {
+    align-items: center;
+    @include padding(0, 28.5, 0, 0);
+
+  }
 }
 
 .heart-img {
@@ -438,6 +464,7 @@
     background-color: $warm-grey-two;
     @include borderRadius(18);
     width: 75vw;
+
     div[class^="image-gallery-slide"] {
       background-color: inherit;
 

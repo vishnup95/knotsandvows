@@ -5,10 +5,17 @@
 .slider-item {
   padding: 1.4rem;
   @include width(360);
-
   @include mobile {
     padding: 1rem;
     width: max-content !important;
+  }
+}
+
+.slider-item-basic {
+  width: max-content !important;
+  padding: 0 1rem;
+  .slider-wrap {
+    @include fontSize(18)
   }
 }
 
@@ -50,8 +57,7 @@
   @include fontSize(24);
   color: $primary-color;
   cursor: pointer;
-
   @include mobile {
-    @include height(320);
+     @include height(320);
   }
 }

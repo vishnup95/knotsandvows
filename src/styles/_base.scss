@@ -110,6 +110,19 @@ h2 {
     @include fontSize(16);
   }
 }
+
 .spinner-margin {
   margin: 0 10px 0 -15px;
+}
+
+.mobile-only {
+  @include tablet {
+    display: none !important;
+  }
+}
+
+.tab-only {
+  @include mobile {
+    display: none !important;
+  }
 }
