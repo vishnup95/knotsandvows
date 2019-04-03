@@ -39,6 +39,7 @@
     font-family: $roboto-bold;
     @include fontSize(30);
     letter-spacing: .5px;
+    text-transform: uppercase;
   }
 
   p {
