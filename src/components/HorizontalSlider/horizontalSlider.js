@@ -90,15 +90,24 @@ const SamplePrevArrowSmall = (propvalues) => {
 
 
 export default class HorizontalSlider extends Component {
-    
-    state = {selectedCategoryIndex: 0};
+
+    state = { selectedCategoryIndex: 0 };
 
     handleCategoryChange = (selectedCategoryIndex) => {
-        this.setState({selectedCategoryIndex});
+        this.setState({ selectedCategoryIndex });
         this.props.buttonAction(selectedCategoryIndex);
     }
-    
+
     render() {
+        var settingsBasic = {
+            dots: false,
+            infinite: true,
+            centerMode: false,
+            variableWidth: true,
+            nextArrow: <SampleNextArrowSmall />,
+            prevArrow: <SamplePrevArrowSmall />,
+            initialSlide: 0,
+        };
         var settingsSmall = {
             dots: false,
             infinite: false,
@@ -172,7 +181,7 @@ export default class HorizontalSlider extends Component {
                 }
             ]
         };
-        
+
         return (this.props.type === 'small' &&
             <div className={styles.multiContainer}>
                 <Slider {...settingsSmall}>
@@ -182,8 +191,8 @@ export default class HorizontalSlider extends Component {
                                 <div key={index} className={styles.sliderItem}>
                                     <div className={styles.sliderWrap}>
                                         {/* <img className={styles.vendorImage} src={item.thumb_image} alt="Icon" /> */}
-                                        <div className={`${styles.categoryName} ${index === this.state.selectedCategoryIndex ?  styles.selectedCategory : ''}`} 
-                                            aria-hidden onClick={() => this.handleCategoryChange(index)}> 
+                                        <div className={`${styles.categoryName} ${index === this.state.selectedCategoryIndex ? styles.selectedCategory : ''}`}
+                                            aria-hidden onClick={() => this.handleCategoryChange(index)}>
                                             {item.name}
                                         </div>
                                     </div>
@@ -192,22 +201,42 @@ export default class HorizontalSlider extends Component {
                         })
                     }
                 </Slider>
-            </div> || <div>
-                <Slider {...settings}>
-                    {
-                        this.props.data.map((item, index) => {
-                            return (
-                                <Col key={index}>
-                                    <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index}/>
-                                </Col>
-                            );
-                        })
-                    }
-                    <Col>
-                        <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br/> Vendors</span></div>
-                    </Col>
-                </Slider>
             </div>
+            ||
+            (
+                this.props.type === 'basic' && <div>
+                    <Slider {...settingsBasic}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <div key={index} className={styles.sliderItemBasic}>
+                                        <div className={styles.sliderWrap}>
+                                                {item}
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+                    </Slider>
+                </div>
+                ||
+                <div>
+                    <Slider {...settings}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <Col key={index}>
+                                        <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index} />
+                                    </Col>
+                                );
+                            })
+                        }
+                        <Col>
+                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> Vendors</span></div>
+                        </Col>
+                    </Slider>
+                </div>
+            )
         );
     }
 }
@@ -216,4 +245,4 @@ HorizontalSlider.propTypes = {
     type: PropTypes.string,
     category: PropTypes.string,
     buttonAction: PropTypes.func
-};0.
+}; 0.

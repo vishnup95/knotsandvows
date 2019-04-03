@@ -12,7 +12,7 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-import {Modal} from 'reactstrap';
+// import {Modal} from 'reactstrap';
 import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
 
@@ -49,7 +49,7 @@ class Products extends Component {
     sortBy: 0,
     page: 1,
     dropdownOpen: false,
-    modal: false
+    modal: true
   }
 
   static fetchData(store) {
@@ -116,7 +116,7 @@ class Products extends Component {
 
   filterSearch = (params, category) => {
     this.navigateTo(`/categories/${category}`);
-    this.setState({ category : category, page : 1 });
+    this.setState({ category : category, page : 1 , modal: true});
     let searchParams = queryString.stringify(params);
     this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams, false));
   }
@@ -153,10 +153,11 @@ class Products extends Component {
                       <Button color="danger"></Button>
                     </InputGroupAddon>
                   </InputGroup>
-
-                  <Modal isOpen={this.state.modal} toggle={() => this.toggleMobileFilter()} style={{margin: 0, marginTop: '50px'}}>
-                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch}/>
-                  </Modal>
+                  
+                  <div hidden={this.state.modal} >
+                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch} 
+                    filterSearch={this.filterSearch} toggle={() => this.toggleMobileFilter()}/>
+                  </div>
                 </div>
               }
               

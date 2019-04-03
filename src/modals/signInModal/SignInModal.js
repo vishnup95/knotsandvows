@@ -209,7 +209,7 @@ class SignInModal extends Component {
                 </div>
                 <div className={`${styles.footerText} mt-4`}>
                     By creating an account, you agree to our&nbsp;
-                    <span>Terms of Service</span> and <span>Privacy Policy</span>.
+                    <span><Link to={'/terms-and-conditions'} target="_blank" >Terms of Service</Link></span> and <span><Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link></span>.
                 </div>
             </div>) : null;
     }

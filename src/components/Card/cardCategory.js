@@ -137,7 +137,7 @@ class CategoryCard extends Component {
                         false && 
                         <div className={styles.addNote}>
                             <div className={styles.noteHeader}><span>Add Note</span> <img className={styles.closeNote} src={imagePath('close-blank.svg')} alt="close button" /></div>
-                            <textarea rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors"></textarea>
+                            <textarea rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors" onClick={(event) => {event.stopPropagation()}}></textarea>
                             <div className="text-right">
                                 <Button className="text-btn">Cancel</Button>
                                 <Button className="primary-button">Save</Button>

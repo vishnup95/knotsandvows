@@ -3,15 +3,25 @@
 @import '../../variables/utils';
 
 .large {
-  margin-bottom: 1rem;
+
   .star-img {
-    @include width(27.4);
+    @include width(17.4);
     height: auto;
+  }
+  @include tablet {
+  margin-bottom: 1rem;
+
+    .star-img {
+      @include width(27.4);
+
+    }
+
   }
 }
 
 .small {
   margin-bottom: 1rem;
+
   .star-img {
     @include height(12);
     width: auto;

@@ -58,15 +58,11 @@ class InputSelect extends Component {
             this.props.dispatch(actions.fetchFilters(e.target.value));
             this.props.onCategoryChange(e.target.value);
         } 
-        // else {
-        //     if (e.target.value) {
-        //         selectedFilters[this.props.name] = e.target.value;
-        //     } else {
-        //         delete selectedFilters[this.props.name];
-        //     }
-        // }
+        else {
+            this.props.onFilterChange(this.props.id, e.target.value);
+        }
     }
-    
+
     render() {
         return (
             <div className='input-field floating-label'>
@@ -96,6 +92,7 @@ InputSelect.propTypes = {
     options: PropTypes.array,
     selectedItem: PropTypes.any,
     onCategoryChange: PropTypes.func,
+    onFilterChange: PropTypes.func,
     dispatch: PropTypes.func
 };
 export default connect(

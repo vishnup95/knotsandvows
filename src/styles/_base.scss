@@ -51,7 +51,6 @@ h1,
 h2 {
   @include fontSize(58);
   color: $secondary-color;
-
   @include mobile {
     font-size: 20px !important;
   }
@@ -66,9 +65,9 @@ h2 {
 }
 
 .primary-button {
+  font-size: 14px;
   background-color: $primary-color;
   font-family: $roboto-medium;
-  @include fontSize(16);
   @include letterSpacing(.5);
   @include padding(12,22);
   @include borderRadius(8);
@@ -78,6 +77,10 @@ h2 {
   border: none;
   cursor: pointer;
   @include margin(0,8);
+  @include tablet {
+     @include fontSize(16);
+
+  }
 
   &:hover {
     color: $white;
@@ -89,6 +92,7 @@ h2 {
     background-color: #E54291;
   }
 }
+
 .text-btn {
   color: $primary-color;
   font-family: $roboto-medium;
@@ -101,7 +105,24 @@ h2 {
     background: none;
     color: $primary-color;
   }
+
   &.small {
     @include fontSize(16);
+  }
+}
+
+.spinner-margin {
+  margin: 0 10px 0 -15px;
+}
+
+.mobile-only {
+  @include tablet {
+    display: none !important;
+  }
+}
+
+.tab-only {
+  @include mobile {
+    display: none !important;
   }
 }
