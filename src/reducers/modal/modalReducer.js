@@ -4,7 +4,8 @@ const initialState = {
     show: false,
     modalContent: {
       heading: '',
-      message: ''
+      message: '',
+      proceedAction : null
     }
 };
 
