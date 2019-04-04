@@ -177,7 +177,8 @@ class Header extends Component {
             if (this.props.apiStatus == true) {
                 let modalContent = {
                     heading: '',
-                    message: 'Email Verified Successfully'
+                    message: 'Email has been successfully verified. Please login to continue.',
+                    proceedAction: this.toggleModal
                   };
                 this.props.dispatch(modalActions.showModal(modalContent));
                 this.props.dispatch(replace("/"));
