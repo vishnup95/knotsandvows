@@ -12,7 +12,7 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-import {Modal} from 'reactstrap';
+import { Modal } from 'reactstrap';
 import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
 
@@ -24,6 +24,7 @@ import MobileForm from './mobileForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
+import { getId } from '../../utils/utilities';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -44,7 +45,7 @@ const jumbotronData = { title: 'You may also be interested in..' };
 class Products extends Component {
 
   state = {
-    category: this.props.match.params.category_name,
+    category: this.selectedCategory(),
     productListData: null,
     sortBy: 0,
     page: 1,
@@ -65,7 +66,7 @@ class Products extends Component {
   }
 
   selectedCategory() {
-    return this.props.match.params.category_name;
+    return getId(this.props.match.params.category_name);
   }
 
   toggle(item) {
@@ -76,7 +77,7 @@ class Products extends Component {
   }
 
   toggleMobileFilter() {
-    this.setState({modal: !this.state.modal});
+    this.setState({ modal: !this.state.modal });
   }
 
   componentWillMount() {
@@ -92,7 +93,7 @@ class Products extends Component {
       return false;
     }
 
-    if (this.state.category !== this.props.match.params.category_name) {
+    if (this.state.category !== getId(this.props.match.params.category_name)) {
       let category = this.selectedCategory();
       this.props.dispatch(actions.fetchProducts(category));
       this.props.dispatch(actions.fetchFilters(category));
@@ -116,7 +117,7 @@ class Products extends Component {
 
   filterSearch = (params, category) => {
     this.navigateTo(`/categories/${category}`);
-    this.setState({ category : category, page : 1 });
+    this.setState({ category: category, page: 1 });
     let searchParams = queryString.stringify(params);
     this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams, false));
   }
@@ -131,12 +132,16 @@ class Products extends Component {
     const { header, sort_options, filters } = this.props.filterData;
     return (
       <div>
-        {header && <div className={` ${styles.categoryCover} position-relative text-center d-none d-sm-block`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-        </div>}
+        {header &&
+          <div className={` ${styles.categoryCover} position-relative text-center d-none d-sm-block`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+          </div>
+        }
 
-        {filters.length > 0 && !detectMobile()  && <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} />}
+        {filters && filters.length > 0 && !detectMobile() &&
+          <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} />
+        }
         {this.props.productListLoading ? <LoaderComponent /> :
-          ((this.props.productListData == null || this.props.productListData.results.length === 0) ? <NoResultComponent /> :
+          ((this.props.productListData == null || this.props.productListData.results == null|| this.props.productListData.results.length === 0) ? <NoResultComponent /> :
 
             <Container className={`${styles.listContainer} mt-4 pb-5`}>
               <Row className="mb-3">
@@ -145,27 +150,27 @@ class Products extends Component {
                 </Col>
               </Row>
 
-              {filters.length > 0 && detectMobile()  &&
+              {filters && filters.length > 0 && detectMobile() &&
                 <div>
-                  <InputGroup  onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
+                  <InputGroup onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
                     <Input />
                     <InputGroupAddon addonType="append">
                       <Button color="danger"></Button>
                     </InputGroupAddon>
                   </InputGroup>
 
-                  <Modal isOpen={this.state.modal} toggle={() => this.toggleMobileFilter()} style={{margin: 0, marginTop: '50px'}}>
-                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch}/>
+                  <Modal isOpen={this.state.modal} toggle={() => this.toggleMobileFilter()} style={{ margin: 0, marginTop: '50px' }}>
+                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch} />
                   </Modal>
                 </div>
               }
-              
+
 
               <Row className="mb-3">
 
                 <Col sm="6" className={styles.sideHeading}>
-                 {`All ${this.props.productListData.service_type}`} 
-                {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
+                  {`All ${this.props.productListData.service_type}`}
+                  {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
                 </Col>
                 <Col sm="6" className={styles.sort}>
                   Sort By: &nbsp;
@@ -196,7 +201,7 @@ class Products extends Component {
                   this.props.productListData.results.map((product, index) => {
                     return (
                       <Col xs="6" sm="4" key={index}>
-                        <CategoryCard data={product} category={this.state.category} id={index}/>
+                        <CategoryCard data={product} category={this.state.category} id={index} />
                       </Col>
                     );
                   })
@@ -205,7 +210,7 @@ class Products extends Component {
 
               {this.props.productListData.no_of_pages && this.props.productListData.no_of_pages > 1 &&
                 <ReactPaginate
-                  previousLabel={ <img className="rotate-left" src={imagePath('arrow-small.png')} alt="arrow-previous" />}
+                  previousLabel={<img className="rotate-left" src={imagePath('arrow-small.png')} alt="arrow-previous" />}
                   nextLabel={<img src={imagePath('arrow-small.png')} alt="arrow-next" />}
                   breakLabel={'...'}
                   breakClassName={'break-me'}
@@ -223,7 +228,7 @@ class Products extends Component {
         }
         <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap">
           <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
-            <HorizontalScrollingCarousel data={this.props.other_categories} type="other_categories"/>
+            <HorizontalScrollingCarousel data={this.props.other_categories} type="other_categories" />
           </Col>
         </JumbotronComponent>
       </div>

@@ -11,12 +11,12 @@ const initialState = {
   loading: false,
   filterData: {
     header: null,
-    filters:[],
+    filters:null,
     sort_options: []
   },
   tempfilterData: {
     header: null,
-    filters:[],
+    filters:null,
     sort_options: []
   },
   other_categories : []
@@ -81,7 +81,6 @@ const ProductsReducer = (state = initialState, action) => {
     case types.LOAD_FILTERS_FAILURE:
       return {
         ...state,
-        filterData: initialState.filterData,
         error: action.error.message,
       };
 

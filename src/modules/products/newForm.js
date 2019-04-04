@@ -66,8 +66,8 @@ export class DropdownComponent extends Component {
           <DropdownMenu className={styles.dropMenu}>
 
             {this.props.options.map((item, index) => {
-                let value = this.props.name === "category" ? item.page_name : item.id;
-                let selectedValue = this.props.name === "category" ? this.state.selectedItem.page_name : this.state.selectedItem.id; 
+                let value = this.props.name === "category" ? item.category_id : item.id;
+                let selectedValue = this.props.name === "category" ? this.state.selectedItem.category_id : this.state.selectedItem.id; 
                 return(
                     <div  key={index} className={`${styles.dropItem} ${value === selectedValue ? styles.selectedItem : ''}`}
                     onClick={() => this.handleSelection(index, value)} aria-hidden >
@@ -110,7 +110,7 @@ class FormComponent extends Component {
 
     render() {
         let indexOfSelectedCategory = this.props.categories.findIndex(category => 
-            category.page_name.toLowerCase() === this.props.selectedCategory.toLowerCase());
+            category.category_id === this.props.selectedCategory);
         return(
             
             <div className={`${styles.formContainer} pt-4 pb-4`}>
