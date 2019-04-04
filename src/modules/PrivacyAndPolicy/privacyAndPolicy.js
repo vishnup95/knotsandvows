@@ -6,11 +6,11 @@ import styles from './privacyAndPolicy.scss';
 const listData1 = [
   {
     heading: 'PAYMENT SECURITY',
-    description: 'Our site has stringent security measures in place to protect the loss, misuse, and alteration of the information under our control. Whenever you change or access your account information, we offer the use of a secure server. Once your information is in our possession we adhere to strict security guidelines, protecting it against unauthorized access. Sevenvows ensures that every transaction that takes between you and our Sevenvows through online is in a safe and secure environment. This can be achieved, as Sevenvows is protected by Secured Socket Layer (SSL) technology.'
+    description: 'Our site has stringent security measures in place to protect the loss, misuse, and alteration of the information under our control. Whenever you change or access your account information, we offer the use of a secure server. Once your information is in our possession we adhere to strict security guidelines, protecting it against unauthorized access. Seven Vows ensures that every transaction that takes between you and our Seven Vows through online is in a safe and secure environment. This can be achieved, as Seven Vows is protected by Secured Socket Layer (SSL) technology.'
   },
   {
     heading: 'COLLECTION OF PERSONALLY IDENTIFIABLE INFORMATION',
-    description: 'We collect personally identifiable information (Email Id., Name, Contact number, etc.) from you when you make payment. Anyone can browse some sections of our site without being consumer of the Sevenvows Certain activities (such as applying for the Complaint Status, etc) do require Registration. We do use your contact information to send you information.'
+    description: 'We collect personally identifiable information (Email Id., Name, Contact number, etc.) from you when you make payment. Anyone can browse some sections of our site without being consumer of the Seven Vows Certain activities (such as applying for the Complaint Status, etc) do require Registration. We do use your contact information to send you information.'
   },
   {
     heading: 'USE OF DEMOGRAPHIC AND PROFILE DATA',
@@ -25,15 +25,15 @@ const listData2 = [
   },
   {
     heading: 'PROHIBITION AGAINST UNLAWFUL USE',
-    description: 'As a condition for the use of the Sevenvows , the User warrants that they will not use the app for any purpose that is unlawful or illegal under any law for the time being in force within or outside India or prohibited by this Agreement. In addition, the Sevenvows shall not be used in any manner, which could damage, disable, overburden or impair it or interfere with any other party’s use of the app. The User shall refrain from obtaining or attempting to obtain any materials or information through any means not intentionally made available or provided for or through the app.'
+    description: 'As a condition for the use of the Seven Vows , the User warrants that they will not use the app for any purpose that is unlawful or illegal under any law for the time being in force within or outside India or prohibited by this Agreement. In addition, the Seven Vows shall not be used in any manner, which could damage, disable, overburden or impair it or interfere with any other party’s use of the app. The User shall refrain from obtaining or attempting to obtain any materials or information through any means not intentionally made available or provided for or through the app.'
   },
   {
     heading: 'USE OF COMMUNICATION SERVICES',
-    description: 'Sevenvows may contain services such as email, News bulletin, information related to Regional or local help centers, and/or other message (hereinafter collectively referred to as “Communication Services”). The User agrees and undertakes to use the Communication Services only to post, send and receive messages and material that are proper and related to the Sevenvows. By way of example, and not as a limitation, the User agrees and undertakes that when using a Communication Service, the User will not:',
+    description: 'Seven Vows may contain services such as email, News bulletin, information related to Regional or local help centers, and/or other message (hereinafter collectively referred to as “Communication Services”). The User agrees and undertakes to use the Communication Services only to post, send and receive messages and material that are proper and related to the Seven Vows. By way of example, and not as a limitation, the User agrees and undertakes that when using a Communication Service, the User will not:',
     sublist: [
       'Defame, abuse, harass, stalk, threaten or otherwise violate the legal rights of others.',
       'Upload files that contain software or other material protected by intellectual property laws unless the User owns or controls the rights thereto or have received all necessary consents.',
-      'Upload or distribute files that contain viruses, corrupted files, or any other similar software or programs that may damage the operation of the Sevenvows or another’s computer.',
+      'Upload or distribute files that contain viruses, corrupted files, or any other similar software or programs that may damage the operation of the Seven Vows or another’s computer.',
       'Conduct or forward surveys, contests, pyramid schemes or chain letters;',
       'Download any file posted by another user of a Communication Service that the User know, or reasonably should know, cannot be legally distributed in such manner;',
       'Falsify or delete any author attributions, legal or other proper notices or proprietary designations or labels of the origin or source of software or other material contained in a file that is uploaded;',
@@ -47,7 +47,7 @@ const listData2 = [
 const listData3 = [
   {
     heading: 'TERMINATION/ACCESS RESTRICTION',
-    description: 'Sevenvows reserves the right, in its sole discretion, to terminate the access to the app and the related services or any portion thereof at any time, without notice.'
+    description: 'Seven Vows reserves the right, in its sole discretion, to terminate the access to the app and the related services or any portion thereof at any time, without notice.'
   }
 ]
 
@@ -121,10 +121,10 @@ class PrivacyAndPolicy extends Component {
           <Row className="my-4">
             <Col>
               <p className={styles.desc}>
-                Sevenvows reserves the right at all times to disclose any information as is necessary to satisfy or comply with any applicable law, regulation, legal process or governmental request, or to edit, refuse to post or to remove any information or materials, in whole or in part, in Sevenvows sole discretion.
+                Seven Vows reserves the right at all times to disclose any information as is necessary to satisfy or comply with any applicable law, regulation, legal process or governmental request, or to edit, refuse to post or to remove any information or materials, in whole or in part, in Seven Vows sole discretion.
               </p>
               <p className={styles.desc}>
-                Sevenvows does not control or endorse the content, messages or information found in any communication service and, therefore, Sevenvows specifically disclaims any liability or responsibility whatsoever with regard to the communication services and any actions resulting from the user’s participation in any communication service Materials uploaded to a Communication Service may be subject to posted limitations on usage, reproduction and/or dissemination. User is responsible for keeping himself updated of and adhering to such limitations if they download the materials
+                Seven Vows does not control or endorse the content, messages or information found in any communication service and, therefore, Seven Vows specifically disclaims any liability or responsibility whatsoever with regard to the communication services and any actions resulting from the user’s participation in any communication service Materials uploaded to a Communication Service may be subject to posted limitations on usage, reproduction and/or dissemination. User is responsible for keeping himself updated of and adhering to such limitations if they download the materials
               </p>
             </Col>
           </Row>
