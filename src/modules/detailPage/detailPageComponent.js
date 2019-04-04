@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import style from './detailPageComponent.scss'
-import { Row, Col, Modal } from 'reactstrap';
+import { Row, Col, Modal, Form, Button } from 'reactstrap';
 import MapComponent from '../../components/Map/map';
 import * as actions from './actions';
+import * as loginActions from '../../reducers/session/actions';
+import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import * as loginActions from '../../reducers/session/actions';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import ReviewItem from '../../components/Reviews/reviews';
 import ReactPaginate from 'react-paginate';
 import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
 import { imagePath } from '../../utils/assetUtils';
-import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+// import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 import LoaderComponent from '../../components/Loader/loader';
 import { isLoggedIn } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
-
+import InputField from '../../components/InputField/inputField';
 const mapStateToProps = state => ({
     user: state.session.user,
     details: state.details.details,
@@ -36,12 +37,18 @@ class DetailPageComponent extends Component {
     constructor(props) {
         super(props);
         this.toggleGallery = this.toggleGallery.bind(this);
+        this.dateRef = React.createRef();
+        this.emailRef = React.createRef();
+        this.phoneRef = React.createRef();
 
         this.state = {
             showGallery: false,
             vendor: '',
             category: '',
-            reviewPage: 1
+            reviewPage: 1,
+            email: '',
+            phone: '',
+            date: ''
         };
     }
     toggleGallery = () => {
@@ -130,6 +137,26 @@ class DetailPageComponent extends Component {
         this.setState({ reviewPage: data.selected + 1 });
     }
 
+    sendDetailsToWeddingPlanner() {
+        let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
+        let phone = this.phoneRef.current.validateFormInput(document.getElementById('phone'));
+        let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
+
+        if (email && phone && date) {
+                const params = {};
+                params['email'] = this.state.email;
+                this.state.date ? params['event_date'] = this.state.date : '';
+                this.state.phone ? params['phone'] = this.state.phone : '';
+            
+
+            this.props.dispatch(talkToPlannerActions.postContactDetails(params));
+        }
+    }
+
+    handleFormChange(e) {
+        this.setState({[e.target.id]: e.target.value});
+    }
+
     render() {
         let details = this.props.details;
         let reviewsData = this.props.reviewsData;
@@ -157,7 +184,6 @@ class DetailPageComponent extends Component {
                 detailNavItems.push(`Gallery (${details.gallery.length} Photos)`);
             }
         }
-        console.log(detailNavItems, 'detailNavItems');
 
         return (
             <div className={style.detailContainer}>
@@ -323,7 +349,15 @@ class DetailPageComponent extends Component {
                                         <Col md="12" className={`#{style.rightSubSection} text-center`}>
                                             <p className={style.needHelp}>Need some guidance on selecting vendors?</p>
                                             {/* <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button> */}
-                                            <TalkToWeddingPlanner buttonText={'Talk to our wedding planner!'} />
+                                            <Form style={{ zIndex: '10000' }} className="position-relative">
+                                                <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false}/>
+                                                <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
+                                                <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} required={false}/>
+                                            </Form>
+                                            <div className="text-center">
+                                                <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our wedding planner!</Button>
+                                            </div>
+                                            {/* <TalkToWeddingPlanner buttonText={'Talk to our wedding planner!'} /> */}
                                         </Col>
                                     </Col>
                                     {true &&
