@@ -9,11 +9,12 @@ import PropTypes from 'prop-types';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
 import * as modalActions from '../../reducers/modal/actions';
 import { Modal } from 'reactstrap';
-
+import ProgressButton from '../../components/ProgressButton/PorgressButton';
 
 const mapStateToProps = state => ({
     message: state.talkToAhwanam.message,
-    status: state.talkToAhwanam.status
+    status: state.talkToAhwanam.status,
+    isLoading: state.talkToAhwanam.loading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -116,7 +117,7 @@ class TalkToWeddingPlanner extends Component {
                         </Form>
                         <div className="text-center">
                             <Button className="text-btn" onClick={() => this.toggle()}>Cancel</Button>
-                            <Button className="primary-button" onClick={() => this.validateForm()}>Submit</Button>
+                            <ProgressButton title="Submit" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
                         </div>
                     </div>
 
@@ -134,7 +135,8 @@ TalkToWeddingPlanner.propTypes = {
     message: PropTypes.string,
     status: PropTypes.bool,
     buttonText: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    isLoading: PropTypes.bool
 
 };
 TalkToWeddingPlanner.defaultProps = {
