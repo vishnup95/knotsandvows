@@ -89,8 +89,8 @@
       a {
         @include mobile {
           line-height: 2.36;
+          font-size: 18px;
         }
-        font-size: 18px;
         color: $black-fourteen !important;
         position: relative;
         @include tablet {
