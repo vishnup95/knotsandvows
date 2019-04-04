@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import styles from './horizontalSlider.scss';
 import PropTypes from 'prop-types';
 import CategoryCard from '../../components/Card/cardCategory';
+import MemberComponent from '../../modules/about/memberComponent';
 import { Col } from 'reactstrap';
 
 const SampleNextArrow = (propvalues) => {
@@ -150,8 +151,8 @@ export default class HorizontalSlider extends Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToShow: this.props.type === 'about' ? 3: 4,
+            slidesToScroll: this.props.type === 'about' ? 3: 4,
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />,
             initialSlide: 0,
@@ -182,8 +183,9 @@ export default class HorizontalSlider extends Component {
             ]
         };
 
-        return (this.props.type === 'small' &&
-            <div className={styles.multiContainer}>
+        if (this.props.type === 'small') {
+            return(
+                <div className={styles.multiContainer}>
                 <Slider {...settingsSmall}>
                     {
                         this.props.data.map((item, index) => {
@@ -202,9 +204,10 @@ export default class HorizontalSlider extends Component {
                     }
                 </Slider>
             </div>
-            ||
-            (
-                this.props.type === 'basic' && <div>
+            );
+        } else if (this.props.type === 'basic') {
+            return(
+                <div>
                     <Slider {...settingsBasic}>
                         {
                             this.props.data.map((item, index) => {
@@ -219,7 +222,26 @@ export default class HorizontalSlider extends Component {
                         }
                     </Slider>
                 </div>
-                ||
+            );
+        } else if (this.props.type === 'about') {
+            return(
+                <div>
+                    <Slider {...settings}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <Col key={index}>
+                                        <MemberComponent/>
+                                    </Col>
+                                );
+                            })
+                        }
+                    </Slider>
+                </div>
+            );
+        }
+        else {
+            return(
                 <div>
                     <Slider {...settings}>
                         {
@@ -236,8 +258,8 @@ export default class HorizontalSlider extends Component {
                         </Col>
                     </Slider>
                 </div>
-            )
-        );
+            ); 
+        }
     }
 }
 HorizontalSlider.propTypes = {
