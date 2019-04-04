@@ -76,6 +76,7 @@ h2 {
   outline: none;
   border: none;
   cursor: pointer;
+  white-space: nowrap;
   @include margin(0,8);
   @include tablet {
      @include fontSize(16);

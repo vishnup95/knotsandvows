@@ -16,10 +16,13 @@ hr {
 }
 
 .pLarge {
-  @include fontSize(20);
+  @include fontSize(24);
   line-height: 1.5;
   @include letterSpacing(.7);
   color: $black;
+  @include tablet {
+    max-width: 75%;
+  }
 }
 
 .black-five {
