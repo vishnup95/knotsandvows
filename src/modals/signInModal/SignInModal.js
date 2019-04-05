@@ -8,15 +8,16 @@ import styles from './signInModal.scss';
 import { imagePath } from '../../utils/assetUtils';
 import * as actions from '../../reducers/session/actions';
 import * as modalActions from '../../reducers/modal/actions';
-import { Form, Button } from 'reactstrap';
+import { Form } from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import SocialAuthComponent from '../../components/SocialAuth/SocialAuthComponent';
-
+import ProgressButton from '../../components/ProgressButton/PorgressButton';
 
 const mapStateToProps = state => ({
     message: state.session.message,
     error: state.session.error,
     apiStatus: state.session.apiStatus,
+    isLoading: state.session.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -37,7 +38,7 @@ class SignInModal extends Component {
         this.passwordRef = React.createRef();
         this.nameRef = React.createRef();
         this.phoneRef = React.createRef();
-
+        this.isSocialLogin = false;
         this.state = {
             mode: DisplayMode.signIn,
             signIn: {
@@ -92,12 +93,13 @@ class SignInModal extends Component {
             return false;
         }
 
-        if (this.state.mode == DisplayMode.signUp && this.props.apiStatus == true) {
+        if (this.state.mode == DisplayMode.signUp && this.props.apiStatus == true && this.isSocialLogin == false) {
             this.props.dispatch(modalActions.showModal({message: `Successfully registered. A link to verify your email has been sent to ${this.state.signUp.email}`, heading: 'Seven Vows'}));
         }
     }
 
     validateSignInForm = () => {
+        this.isSocialLogin = false;
         let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
         let password = this.passwordRef.current.validateFormInput(document.getElementById('password'));
 
@@ -112,6 +114,7 @@ class SignInModal extends Component {
     }
 
     validateSignUpForm = () => {
+        this.isSocialLogin = false;
         let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
         let password = this.passwordRef.current.validateFormInput(document.getElementById('password'));
         let name = this.nameRef.current.validateFormInput(document.getElementById('name'));
@@ -147,6 +150,7 @@ class SignInModal extends Component {
     }
 
     handleSocialAuthResponse = (data) => {
+        this.isSocialLogin = true;
         this.props.dispatch(actions.autheticateWithSocialData(data));
     }
 
@@ -164,7 +168,7 @@ class SignInModal extends Component {
                     <div>
                         <button className={styles.detailLink} onClick={this.showForgotPassword}>Forgot Password?</button>
                     </div>
-                    <div className={styles.alignButton}><button className="primary-button" onClick={this.validateSignInForm}>Login</button></div>
+                    <div className={styles.alignButton}><ProgressButton title="Login" onClick={this.validateSignInForm} isLoading={this.props.isLoading}></ProgressButton></div>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
@@ -196,7 +200,7 @@ class SignInModal extends Component {
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)}/>
                 </Form>
                 <div className="text-center">
-                    <Button color="danger" className="primary-button" onClick={this.validateSignUpForm}>Create account</Button>
+                <ProgressButton title="Create account" onClick={this.validateSignUpForm} isLoading={this.props.isLoading}></ProgressButton>
                 </div>
                 <div className={styles.orLine}>
                     <span className={styles.line} ></span>
@@ -241,6 +245,7 @@ SignInModal.propTypes = {
     message: PropTypes.string,
     apiStatus: PropTypes.bool,
     error: PropTypes.string,
+    isLoading: PropTypes.bool
 };
 export default connect(
     mapStateToProps,
