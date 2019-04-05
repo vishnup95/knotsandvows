@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 class FooterFixedComponent extends Component {
 
     componentWillMount() {
-        if (this.props.ceremonies.length === 0) {
+        if (this.props.ceremonies && this.props.ceremonies.length === 0) {
             this.props.dispatch(actions.fetchCeremonies());
         }
     }
@@ -75,17 +75,19 @@ class FooterFixedComponent extends Component {
                     </Col>
                     <Col className={` ${styles.block} ${styles.footerEventLinks}`}>
                         <p>Plan your events</p>
-                        <ul>
-                            {
-                                this.props.ceremonies.map((ceremony, index) => {
-                                    return (
-                                        <li key={index}>
-                                            <Link to={`/ceremonies/${ceremony.page_name}`}>{ceremony.ceremony_name}</Link>
-                                        </li>
-                                    );
-                                })
-                            }
-                        </ul>
+                        {this.props.ceremonies &&
+                            <ul>
+                                {
+                                    this.props.ceremonies.map((ceremony, index) => {
+                                        return (
+                                            <li key={index}>
+                                                <Link to={`/ceremonies/${ceremony.page_name}`}>{ceremony.ceremony_name}</Link>
+                                            </li>
+                                        );
+                                    })
+                                }
+                            </ul>
+                        }
                         <span className={styles.footerImages}>
                             <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
                                 <img src={imagePath('footer_fb.png')} alt="Facebook" />

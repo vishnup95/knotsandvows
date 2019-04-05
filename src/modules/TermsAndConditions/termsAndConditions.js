@@ -5,7 +5,7 @@ import styles from './termsAndConditions.scss';
 
 const listData = [
   {
-    title: 'The website is owned and operated by Ahwanam.com',
+    title: 'The website is owned and operated by sevenvows.co.in',
     subTitle: "You acknowledge that the Website serves as a venue for the online distribution and publication of user submitted information between Service Professionals and Service Users, and, by using, visiting, registering for, and/or otherwise participating in this Website, including the Services presented, promoted, and displayed on the Website, and by clicking on “I have read and agree to the terms of use,",
     listItem: ["You are either a Service Professional or a prospective Service User.",
       "You have the authority to enter into these Terms of Use.",
@@ -33,7 +33,7 @@ const listData = [
   }, {
     title: 'Transfer of information',
     listItem: ["We may distribute your submissions to third parties, as permitted pursuant to our Terms of Service.",
-      "We may share your information with third parties to provide you with services that we offer through Ahwanam to conduct quality assurance Services.",
+      "We may share your information with third parties to provide you with services that we offer through Seven Vows to conduct quality assurance Services.",
       "We maintain a presence on several social networking and blogging platforms, such as Facebook, Instagram, Twitter, Snapchat, WordPress, Pinterest and Google Plus.",
       "We may make available mobile applications (or “apps”) that you are able to download and use from your mobile device. Depending on the nature and functionality of the app, we may collect Personal Information and non-personally identifiable usage information through the app, including from your contacts, camera, photo gallery and calendar on your mobile device to which you grant us access."]
   }, {
@@ -43,9 +43,9 @@ const listData = [
       "If you do not wish to permit changes in our use of your personal information, you must notify us prior to the effective date of the changes that you wish to deactivate your account with us."]
   }, {
     title: 'Transfer of information',
-    listItem: ["Ahwanam will take have the commission of 15% on the total billing of the event given.",
-      "All payments will be taken by Ahwanam from the clients and would be released on timely basis.",
-      "Ahwanam will pay 50% before the event and rest will be paid after the event gets over.",
+    listItem: ["Seven Vows will take have the commission of 15% on the total billing of the event given.",
+      "All payments will be taken by Seven Vows from the clients and would be released on timely basis.",
+      "Seven Vows will pay 50% before the event and rest will be paid after the event gets over.",
       "All transactions will be done by the payment gateway to your given account number."]
   }
 ];
@@ -54,7 +54,7 @@ const jumbotronData =
   {
     title: 'Need Help?',
     buttonText: 'Talk to our wedding planner!',
-    subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by click the Chat button below and they’ll help you get your party started.'
+    subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by clicking the Chat button below and they’ll help you get your party started.'
   };
 class TermsAndConditions extends Component {
   render() {
@@ -65,7 +65,7 @@ class TermsAndConditions extends Component {
           <Row>
             <Col>
               <p className={styles.desc}>
-                These Terms of Use (“Agreement”) sets forth legally binding terms and conditions and the nature of services offered by www.sevenvows.co.in. The website is owned and operated by M/S Shree Impex, a propreitorship firm incorporated under the provisions of the Companies Act, 1956 and has its registered office at H.No. 8-2-120/112/B/5&6, 3rd floor, BBR Forum, Road # 2, Banjara Hills (hereinafter referred to as “Company”). The use of this Website (and any other feature, content or application offered from time to time by the Website) is subject at all times to these Terms of Use (and may be modified by us from time to time) and all applicable laws, rules and regulations. We recommend that before accessing and using sevenvows.co.in, you must read and agree to these Terms of Use.
+                These Terms of Use (“Agreement”) sets forth legally binding terms and conditions and the nature of services offered by www.sevenvows.co.in. The website is owned and operated by M/S Shree Impex, a proprietorship firm incorporated under the provisions of the Companies Act, 1956 and has its registered office at H.No. 8-2-120/112/B/5&6, 3rd floor, BBR Forum, Road # 2, Banjara Hills (hereinafter referred to as “Company”). The use of this Website (and any other feature, content or application offered from time to time by the Website) is subject at all times to these Terms of Use (and may be modified by us from time to time) and all applicable laws, rules and regulations. We recommend that before accessing and using sevenvows.co.in, you must read and agree to these Terms of Use.
           </p>
             </Col>
           </Row>
