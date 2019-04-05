@@ -68,7 +68,7 @@ class CategoryCard extends Component {
                     <p className={`mb-2`}>
                         <img src={imagePath(this.state.isWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
                             alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`} />
-                        <UncontrolledTooltip placement="right" target={`WishListTooltip${this.props.id}`}>
+                        <UncontrolledTooltip placement="top" target={`WishListTooltip${this.props.id}`}>
                             {this.state.isWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
                         </UncontrolledTooltip>
                     </p>

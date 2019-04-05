@@ -88,7 +88,49 @@ const SamplePrevArrowSmall = (propvalues) => {
         >Prev</button>
     );
 }
+const SampleNextArrowBasic = (propvalues) => {
+    const { className, style, onClick } = propvalues;
+    return (
+        <button
+            className={`${className} ${styles.hButton}`}
+            style={{
+                ...style,
+                display: "block",
+                background: 'url("/images/arrow-small.png") no-repeat',
+                backgroundSize: 'contain',
+                top: '50%',
+                // right: '-16px',
+                width: '20px',
+                height: '20px',
+                opacity: '.7'
+            }}
+            onClick={onClick}
+        >Next</button>
+    );
+}
 
+const SamplePrevArrowBasic = (propvalues) => {
+    const { className, style, onClick } = propvalues;
+    return (
+        <button
+            className={className}
+            style={{
+                ...style,
+                display: "block",
+                background: 'url("/images/arrow-small.png") no-repeat',
+                transform: 'rotate(-180deg)',
+                backgroundSize: 'contain',
+                zIndex: '10',
+                top: '15%',
+                // left: '-16px',
+                width: '20px',
+                height: '20px',
+                opacity: '.7'
+            }}
+            onClick={onClick}
+        >Prev</button>
+    );
+}
 
 export default class HorizontalSlider extends Component {
 
@@ -105,8 +147,8 @@ export default class HorizontalSlider extends Component {
             infinite: true,
             centerMode: false,
             variableWidth: true,
-            nextArrow: <SampleNextArrowSmall />,
-            prevArrow: <SamplePrevArrowSmall />,
+            nextArrow: <SampleNextArrowBasic />,
+            prevArrow: <SamplePrevArrowBasic />,
             initialSlide: 0,
         };
         var settingsSmall = {

@@ -426,3 +426,21 @@ button, a {
     max-width: 90%;
   }
 }
+
+//tooltip styles
+
+.tooltip-inner {
+  background-color: $primary-color;
+  @include fontSize(13);
+  font-family: $roboto-regular;
+  @include padding(8);
+}
+
+.tooltip.bs-tooltip-top .arrow:before {
+  border-top: 5px solid $primary-color;
+}
+
+.tooltip.bs-tooltip-right .arrow:before {
+  border-right-color: $primary-color !important;
+}
+

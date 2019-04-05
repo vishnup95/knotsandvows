@@ -396,6 +396,7 @@
 
 .heart-img {
   @include width(17);
+  margin: -.25rem 0 0 .5rem;
 }
 
 .remove-btn {
@@ -496,7 +497,7 @@
   @include letterSpacing(0.6);
 
   .item {
-    width: 30%;
+    width: auto;
   }
 
   .itemPrice {
