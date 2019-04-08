@@ -33,7 +33,8 @@ class CategoryListing extends Component {
       fixedCategories: [],
       selectedVendor: 0,
       isCompare: false,
-      modal: false
+      modal: false,
+      collapse: [true, false, false]
     }
     this.toggle = this.toggle.bind(this);
   }
@@ -63,6 +64,11 @@ class CategoryListing extends Component {
       modal: !prevState.modal
     }));
   }
+
+  toggleCollapse(toggleIndex) {
+    this.setState({collapse: this.state.collapse.map( (item, index) => index === toggleIndex ? !item : false)});
+  }
+
   navigateTo(route) {
     this.props.dispatch(push(route));
   }
@@ -99,17 +105,19 @@ class CategoryListing extends Component {
                   {
                     wishlist.map((item, index) => {
                       return (
-                        <div key={index}>
-                          <div className={styles.listTitle}>{item}</div>
-                          <ul className={styles.vendorList}>
-                            {
-                              this.state.fixedCategories.map((k, index) => {
-                                return (
-                                  <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
-                                );
-                              })
-                            }
-                          </ul>
+                        <div key={index} className="mb-4">
+                          <div className={styles.listTitle} onClick={() => this.toggleCollapse(index)} aria-hidden>{item}</div>
+                          <Collapse isOpen={this.state.collapse[index]}>
+                            <ul className={styles.vendorList}>
+                              {
+                                this.state.fixedCategories.map((k, index) => {
+                                  return (
+                                    <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
+                                  );
+                                })
+                              }
+                            </ul>
+                          </Collapse> 
                         </div>
                       );
                     })

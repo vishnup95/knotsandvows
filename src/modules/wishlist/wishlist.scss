@@ -11,6 +11,9 @@
   color: $black;
   @include fontSize(24);
   cursor: pointer;
+  background: url('/images/filter-dropdown.png') right no-repeat;
+  padding-right: 2.5rem;
+  width: max-content;
 }
 
 .vendorList {
