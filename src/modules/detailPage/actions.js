@@ -15,9 +15,9 @@ export function fetchVendorDetails(vendor) {
 export function fetchPolicies(vendor) {
   return {
     types: [
-      types.LOAD_DETAILS,
-      types.LOAD_DETAILS_SUCCESS,
-      types.LOAD_DETAILS_FAILURE
+      types.LOAD_POLICIES,
+      types.LOAD_POLICIES_SUCCESS,
+      types.LOAD_POLICIES_FAILURE
     ],
     promise: client => client.get(`/api/policies?vendor_id=`+getId(vendor))
   };
@@ -26,9 +26,9 @@ export function fetchPolicies(vendor) {
 export function fetchAmenities(vendor) {
   return {
     types: [
-      types.LOAD_DETAILS,
-      types.LOAD_DETAILS_SUCCESS,
-      types.LOAD_DETAILS_FAILURE
+      types.LOAD_AMINITIES,
+      types.LOAD_AMINITIES_SUCCESS,
+      types.LOAD_AMINITIES_FAILURE
     ],
     promise: client => client.get(`/api/amenities?vendor_id=`+getId(vendor))
   };
@@ -37,9 +37,9 @@ export function fetchAmenities(vendor) {
 export function fetchAvailableAreas(vendor) {
   return {
     types: [
-      types.LOAD_DETAILS,
-      types.LOAD_DETAILS_SUCCESS,
-      types.LOAD_DETAILS_FAILURE
+      types.LOAD_AVAILABLE_AREAS,
+      types.LOAD_AVAILABLE_AREAS_SUCCESS,
+      types.LOAD_AVAILABLE_AREAS_FAILURE
     ],
     promise: client => client.get(`/api/details?vendor_id=`+getId(vendor))
   };

@@ -113,7 +113,7 @@ class DetailPageComponent extends Component {
 
         const availableAmenities = amenities.map((amenity, index) => {
 
-            return <li key={index} ><span className={style.listIcon} style={{ background: "url(" + amenity.icon_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></span>{amenity.name}</li>
+            return <li key={index} ><span className={style.listIcon} style={{ background: "url(" + amenity.icon_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></span>{amenity.amenity_name}</li>
 
         });
         return availableAmenities;
@@ -123,7 +123,7 @@ class DetailPageComponent extends Component {
 
         const termsAndPolicies = policies.map((policy, index) => {
 
-            return <li className={style.policy} key={index}><span>{policy.name}</span></li>
+            return <li className={style.policy} key={index}><span>{policy.policy}</span></li>
 
         });
         return termsAndPolicies;
@@ -208,7 +208,7 @@ class DetailPageComponent extends Component {
                                 <div className={style.infoSub}>
                                     <div className={style.ratingWrap}>
                                         <div>
-                                            <StarRating rating={details.rating} size={'large'} />
+                                            {/* <StarRating rating={details.rating} size={'large'} /> */}
                                         </div>
                                         {/* <div className={style.rating}>4.5/5 rating</div> */}
                                         <div className={style.review}> {details.reviews_count} Reviews</div>

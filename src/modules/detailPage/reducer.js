@@ -52,6 +52,7 @@ const VendorDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         amenities:[],
+        error: action.error.message,
         loading: false
       };
 
@@ -73,6 +74,7 @@ const VendorDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         policies:[],
+        error: action.error.message,
         loading: false
       };
 

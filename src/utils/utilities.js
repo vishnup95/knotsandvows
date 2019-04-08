@@ -29,8 +29,8 @@ export function getId(hyphonatedString){
 
 export function hyphonatedString(name, id){
   var hyphonated = name.toLowerCase();
-  hyphonated = hyphonated.replace(/[^a-zA-Z0-9]/g, "");
-  hyphonated = hyphonated.replace(" ", "-");
+  hyphonated = hyphonated.replace(/ /g, "-");
+  hyphonated = hyphonated.replace(/[^a-zA-Z0-9]-/g, "");
   hyphonated = hyphonated +"-"+ id ;
   return hyphonated;
 }

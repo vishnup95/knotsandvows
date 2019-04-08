@@ -8,6 +8,7 @@ import {
   } from 'reactstrap';
 
 import styles from './products.scss';
+import { getId, hyphonatedString } from '../../utils/utilities';
 
 let selectedFilters = {};
 
@@ -66,8 +67,8 @@ export class DropdownComponent extends Component {
           <DropdownMenu className={styles.dropMenu}>
 
             {this.props.options.map((item, index) => {
-                let value = this.props.name === "category" ? item.category_id : item.id;
-                let selectedValue = this.props.name === "category" ? this.state.selectedItem.category_id : this.state.selectedItem.id; 
+                let value = this.props.name === "category" ? hyphonatedString(item.name, item.category_id) : item.id;
+                let selectedValue = this.props.name === "category" ? hyphonatedString(this.state.selectedItem.name, this.state.selectedItem.category_id) : this.state.selectedItem.id; 
                 return(
                     <div  key={index} className={`${styles.dropItem} ${value === selectedValue ? styles.selectedItem : ''}`}
                     onClick={() => this.handleSelection(index, value)} aria-hidden >
@@ -110,7 +111,7 @@ class FormComponent extends Component {
 
     render() {
         let indexOfSelectedCategory = this.props.categories.findIndex(category => 
-            category.category_id === this.props.selectedCategory);
+            category.category_id == getId(this.props.selectedCategory));
         return(
             
             <div className={`${styles.formContainer} pt-4 pb-4`}>
