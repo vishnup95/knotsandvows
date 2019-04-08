@@ -110,7 +110,7 @@ class ForgotPassword extends Component {
             <div className={styles.message}>You are resetting the password for <span>{this.props.email}</span></div>
             <Form className="position-relative mt-3">
                 <InputField placeHolder="New Password" id="password" type="password" ref={this.passwordRef} onChange={e => this.handleFormChange(e)} />
-                <InputField placeHolder="Confirm password" id="confirmPassword" type="password" ref={this.confirmPasswordRef} onChange={e => this.handleFormChange(e)} />
+                <InputField placeHolder="Confirm Password" id="confirmPassword" type="password" ref={this.confirmPasswordRef} onChange={e => this.handleFormChange(e)} />
             </Form>
             
             <div className="text-center mt-4 position-relative">

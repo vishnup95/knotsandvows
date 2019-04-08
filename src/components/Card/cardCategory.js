@@ -14,9 +14,9 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn } from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString} from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions'
-import * as wishlistActions from '../../modules/wishlist/actions'
+// import * as wishlistActions from '../../modules/wishlist/actions'
 
 const mapDispatchToProps = dispatch => ({
     dispatch
@@ -34,7 +34,7 @@ class CategoryCard extends Component {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
         } else {
-            this.props.dispatch(wishlistActions.testAdd(this.props.data, this.props.category));
+            // this.props.dispatch(wishlistActions.testAdd(this.props.data, this.props.category));
         }
         e.stopPropagation();
     }
@@ -97,7 +97,7 @@ class CategoryCard extends Component {
     }
 
     handleCardClick = () => {
-        this.navigateTo(`/${this.props.category}/${this.props.data.page_name}`);
+        this.navigateTo(`/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`);
     }
     selectCard = (e) => {
         this.setState({ isChecked: !this.state.isChecked });

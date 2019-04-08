@@ -16,6 +16,7 @@ import PackageComponent from './packageComponent';
 import HorizontalMultiCarousel from './multiCarouselHorizontal';
 import VerticalMultiCarousel from './multiCarouselVertical';
 import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
+import { hyphonatedString } from '../../utils/utilities';
 
 const jumbotronData = [
   {
@@ -103,7 +104,7 @@ class Home extends Component {
   }
 
   handleCeremonyClick = (ceremony) => {
-    this.navigateTo(`/ceremonies/${ceremony.page_name}`)
+    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id)}`)
   }
 
   render() {
