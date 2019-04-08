@@ -113,9 +113,10 @@ class FormComponent extends Component {
             category.page_name.toLowerCase() === this.props.selectedCategory.toLowerCase());
         return(
             
-            <div className={`${styles.formContainer} pt-4 pb-4`}>
-                <div className={styles.dropContainer}> 
-                    <DropdownComponent key="categories" placeholder="Looking for" name="category" dispatch={this.props.dispatch}
+            <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.props.toggle()} aria-hidden>
+                <div className={styles.dropContainer} onClick={(event) => event.stopPropagation()} aria-hidden> 
+                    <h5 className="d-block d-sm-none">Search your vendors</h5>
+                    <DropdownComponent key="categories" placeholder="i am looking for" name="category" dispatch={this.props.dispatch}
                         options={this.props.categories} selectedItem={this.props.categories[indexOfSelectedCategory]}
                         onCategoryChange={this.changeCategory}/> 
                     {
@@ -125,9 +126,15 @@ class FormComponent extends Component {
                                 dispatch={this.props.dispatch} options={filter.values} selectedItem={filter.values[0]}/>
                             );
                         })
-                    }                
+                    }  
+
+                    <div className="text-center mt-5 d-block d-sm-none">
+                        <Button color="danger" className="primary-button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}>
+                            Search
+                        </Button>
+                    </div>              
                 </div>
-                <Button color="danger" className={styles.searchButton} name="search button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}></Button>   
+                <Button color="danger" className={`d-none d-sm-block ${styles.searchButton}`} name="search button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}></Button>   
             </div>
         );
     }
@@ -138,7 +145,8 @@ FormComponent.propTypes = {
     categories: PropTypes.array,
     selectedCategory: PropTypes.string,
     filterSearch: PropTypes.func,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    toggle: PropTypes.func
 }
 
 export default connect(

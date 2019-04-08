@@ -12,7 +12,6 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-// import {Modal} from 'reactstrap';
 import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
 
@@ -20,7 +19,6 @@ import styles from './products.scss';
 import CategoryCard from '../../components/Card/cardCategory';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import FormComponent from './newForm';
-import MobileForm from './mobileForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
@@ -174,9 +172,8 @@ class Products extends Component {
                     </InputGroupAddon>
                   </InputGroup>
                   
-                  <div hidden={this.state.modal} >
-                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch} 
-                    filterSearch={this.filterSearch} toggle={() => this.toggleMobileFilter()}/>
+                  <div hidden={this.state.modal}>
+                    <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} toggle={() => this.toggleMobileFilter()}/>
                   </div>
                 </div>
               }
