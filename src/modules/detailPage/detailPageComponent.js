@@ -25,7 +25,10 @@ const mapStateToProps = state => ({
     details: state.details.details,
     detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
-    similarVendors: state.details.similarVendors
+    similarVendors: state.details.similarVendors,
+    amenities: state.details.amenities,
+    policies: state.details.policies,
+    availableAreas: state.details.availableAreas
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -77,9 +80,11 @@ class DetailPageComponent extends Component {
         let category = this.props.match.params.category_name;
         let vendor = this.props.match.params.vendor_name;
         this.setState({ vendor: vendor, category: category, reviewPage: 1 });
-        this.props.dispatch(actions.fetchVendorDetails(category, vendor));
-        this.props.dispatch(actions.fetchSimilarVendors(category, vendor));
-        this.props.dispatch(actions.fetchReviews(category, vendor, 1));
+        this.props.dispatch(actions.fetchVendorDetails(vendor));
+        this.props.dispatch(actions.fetchPolicies(vendor));
+        this.props.dispatch(actions.fetchAmenities(vendor));
+        this.props.dispatch(actions.fetchSimilarVendors(vendor));
+        this.props.dispatch(actions.fetchReviews(vendor, 1));
 
     }
     componentDidMount() {
@@ -108,7 +113,7 @@ class DetailPageComponent extends Component {
 
         const availableAmenities = amenities.map((amenity, index) => {
 
-            return <li key={index} ><span className={style.listIcon} style={{ background: "url(" + amenity.icon_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></span>{amenity.name}</li>
+            return <li key={index} ><span className={style.listIcon} style={{ background: "url(" + amenity.icon_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></span>{amenity.amenity_name}</li>
 
         });
         return availableAmenities;
@@ -118,7 +123,7 @@ class DetailPageComponent extends Component {
 
         const termsAndPolicies = policies.map((policy, index) => {
 
-            return <li className={style.policy} key={index}><span>{policy.name}</span></li>
+            return <li className={style.policy} key={index}><span>{policy.policy}</span></li>
 
         });
         return termsAndPolicies;
@@ -133,7 +138,7 @@ class DetailPageComponent extends Component {
     }
 
     pageChangeHandler(data) {
-        this.props.dispatch(actions.fetchReviews(this.state.category, this.state.vendor, data.selected + 1));
+        this.props.dispatch(actions.fetchReviews(this.state.vendor, data.selected + 1));
         this.setState({ reviewPage: data.selected + 1 });
     }
 
@@ -165,13 +170,13 @@ class DetailPageComponent extends Component {
             if (details.about) {
                 detailNavItems.push("About");
             }
-            if (details.available_areas && details.available_areas.length > 0) {
+            if (this.props.availableAreas && this.props.availableAreas.length > 0) {
                 detailNavItems.push("Available Areas");
             }
-            if (details.amenities && details.amenities.length > 0) {
+            if (this.props.amenities && this.props.amenities.length > 0) {
                 detailNavItems.push("Amenities");
             }
-            if (details.policies && details.policies.length > 0) {
+            if (this.props.policies && this.props.policies.length > 0) {
                 detailNavItems.push("Policies");
             }
             if (details.location && details.location.latitude && details.location.longitude) {
@@ -203,7 +208,7 @@ class DetailPageComponent extends Component {
                                 <div className={style.infoSub}>
                                     <div className={style.ratingWrap}>
                                         <div>
-                                            <StarRating rating={details.rating} size={'large'} />
+                                            {/* <StarRating rating={details.rating} size={'large'} /> */}
                                         </div>
                                         {/* <div className={style.rating}>4.5/5 rating</div> */}
                                         <div className={style.review}> {details.reviews_count} Reviews</div>
@@ -256,20 +261,20 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
 
-                                    {details.amenities && details.amenities.length > 0 &&
+                                    {this.props.amenities && this.props.amenities.length > 0 &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>Amenities</h3>
                                             <ul className={style.listWithIcon}>
-                                                {this.renderAminities(details.amenities)}
+                                                {this.renderAminities(this.props.amenities)}
                                             </ul>
 
                                         </Col>
                                     }
-                                    {details.policies && details.policies.length > 0 &&
+                                    {this.props.policies && this.props.policies.length > 0 &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>Policies</h3>
                                             <ul className={style.selectableList}>
-                                                {this.renderPolicies(details.policies)}
+                                                {this.renderPolicies(this.props.policies)}
                                             </ul>
 
                                         </Col>
@@ -426,7 +431,10 @@ DetailPageComponent.propTypes = {
     details: PropTypes.object,
     similarVendors: PropTypes.array,
     match: PropTypes.object,
-    detailsLoading: PropTypes.bool
+    detailsLoading: PropTypes.bool,
+    amenities: PropTypes.array,
+    policies: PropTypes.array,
+    availableAreas: PropTypes.array
 };
 
 export default connect(

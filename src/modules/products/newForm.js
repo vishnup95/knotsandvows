@@ -8,6 +8,7 @@ import {
   } from 'reactstrap';
 
 import styles from './products.scss';
+import { getId, hyphonatedString } from '../../utils/utilities';
 
 let selectedFilters = {};
 
@@ -66,8 +67,8 @@ export class DropdownComponent extends Component {
           <DropdownMenu className={styles.dropMenu}>
 
             {this.props.options.map((item, index) => {
-                let value = this.props.name === "category" ? item.page_name : item.id;
-                let selectedValue = this.props.name === "category" ? this.state.selectedItem.page_name : this.state.selectedItem.id; 
+                let value = this.props.name === "category" ? hyphonatedString(item.name, item.category_id) : item.id;
+                let selectedValue = this.props.name === "category" ? hyphonatedString(this.state.selectedItem.name, this.state.selectedItem.category_id) : this.state.selectedItem.id; 
                 return(
                     <div  key={index} className={`${styles.dropItem} ${value === selectedValue ? styles.selectedItem : ''}`}
                     onClick={() => this.handleSelection(index, value)} aria-hidden >
@@ -110,12 +111,13 @@ class FormComponent extends Component {
 
     render() {
         let indexOfSelectedCategory = this.props.categories.findIndex(category => 
-            category.page_name.toLowerCase() === this.props.selectedCategory.toLowerCase());
+            category.category_id == getId(this.props.selectedCategory));
         return(
             
-            <div className={`${styles.formContainer} pt-4 pb-4`}>
-                <div className={styles.dropContainer}> 
-                    <DropdownComponent key="categories" placeholder="Looking for" name="category" dispatch={this.props.dispatch}
+            <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.props.toggle()} aria-hidden>
+                <div className={styles.dropContainer} onClick={(event) => event.stopPropagation()} aria-hidden> 
+                    <h5 className="d-block d-sm-none">Search your vendors</h5>
+                    <DropdownComponent key="categories" placeholder="i am looking for" name="category" dispatch={this.props.dispatch}
                         options={this.props.categories} selectedItem={this.props.categories[indexOfSelectedCategory]}
                         onCategoryChange={this.changeCategory}/> 
                     {
@@ -125,9 +127,15 @@ class FormComponent extends Component {
                                 dispatch={this.props.dispatch} options={filter.values} selectedItem={filter.values[0]}/>
                             );
                         })
-                    }                
+                    }  
+
+                    <div className="text-center mt-5 d-block d-sm-none">
+                        <Button color="danger" className="primary-button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}>
+                            Search
+                        </Button>
+                    </div>              
                 </div>
-                <Button color="danger" className={styles.searchButton} name="search button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}></Button>   
+                <Button color="danger" className={`d-none d-sm-block ${styles.searchButton}`} name="search button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}></Button>   
             </div>
         );
     }
@@ -138,7 +146,8 @@ FormComponent.propTypes = {
     categories: PropTypes.array,
     selectedCategory: PropTypes.string,
     filterSearch: PropTypes.func,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    toggle: PropTypes.func
 }
 
 export default connect(

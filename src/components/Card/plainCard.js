@@ -11,6 +11,7 @@ import {
 import PropTypes from 'prop-types';
 import styles from './card.scss';
 import { imagePath } from '../../utils/assetUtils';
+import {hyphonatedString} from '../../utils/utilities';
 
 const mapDispatchToProps = dispatch => ({
   dispatch
@@ -26,7 +27,7 @@ class PlainCard extends Component {
   render() {
     return (
       <div>
-        <Card className="mb-5" style={{backgroundColor: '#ffffff'}} onClick={() => this.navigateTo(`/categories/${this.props.data.page_name}`)}>
+        <Card className="mb-5" style={{backgroundColor: '#ffffff'}} onClick={() => this.navigateTo(`/categories/${hyphonatedString(this.props.data.name,this.props.data.category_id)}`)}>
           <CardImg
             top
             width="100%"

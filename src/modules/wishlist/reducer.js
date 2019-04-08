@@ -1,14 +1,36 @@
 import * as types from './constants';
+
 const initialState = {
   wishListData: null,
+  sharedWishListData: null,
   currentWishListData:null,
-  loading: false,
-  list:[]
+  loading: false
 };
 
 const WishListReducer = (state = initialState, action) => {
   //let result = [];
   switch (action.type) {
+
+    case types.LOAD_MY_WISHLIST:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case types.LOAD_MY_WISHLIST_SUCCESS:
+      return {
+        ...state,
+        wishListData: action.result.data.data, 
+        loading: false
+      };
+
+    case types.LOAD_MY_WISHLIST_FAILURE:
+      return {
+        ...state,
+        error: action.error.message,
+        loading: false
+      };
+
     case types.LOAD_ADD_TO_WISHLIST:
       return {
         ...state,

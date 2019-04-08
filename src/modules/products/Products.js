@@ -12,7 +12,6 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-// import {Modal} from 'reactstrap';
 import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
 
@@ -20,17 +19,19 @@ import styles from './products.scss';
 import CategoryCard from '../../components/Card/cardCategory';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import FormComponent from './newForm';
-import MobileForm from './mobileForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
+
 
 const mapStateToProps = state => ({
   user: state.session.user,
   productListData: state.products.productListData,
   productListLoading: state.products.loading,
   filterData: state.products.filterData,
-  other_categories: state.products.other_categories
+  other_categories: state.products.other_categories,
+  myWishListData: state.wishlist.myWishListData,
+  sharedWishlistData: state.wishlist.sharedWishListData
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -44,7 +45,7 @@ const jumbotronData = { title: 'You may also be interested in..' };
 class Products extends Component {
 
   state = {
-    category: this.props.match.params.category_name,
+    category: this.selectedCategory(),
     productListData: null,
     sortBy: 0,
     page: 1,
@@ -65,6 +66,7 @@ class Products extends Component {
   }
 
   selectedCategory() {
+    // return getId(this.props.match.params.category_name);
     return this.props.match.params.category_name;
   }
 
@@ -76,7 +78,7 @@ class Products extends Component {
   }
 
   toggleMobileFilter() {
-    this.setState({modal: !this.state.modal});
+    this.setState({ modal: !this.state.modal });
   }
 
   componentWillMount() {
@@ -127,16 +129,38 @@ class Products extends Component {
     this.setState({ page: 1, sortBy: sortOption });
   }
 
+  isInWishList = (category_id, vendor_id) => {
+     if (this.props.user == null){
+       return false
+     }else if (this.props.myWishListData == null && this.props.sharedWishlistData == null){
+      return false
+     }else{
+
+         let wishlist = this.props.myWishListData.wishlistitems;
+         let index = wishlist.findIndex( category => { return typeof category.category_id == category_id} );
+         if (index == null || index < 0){
+           return false
+         }
+         let category = wishlist[index];
+         let result = category.vendors.some( vendor => { return typeof vendor.vendor_id == vendor_id} );
+         return result;
+     }
+  }
+
   render() {
     const { header, sort_options, filters } = this.props.filterData;
     return (
       <div>
-        {header && <div className={` ${styles.categoryCover} position-relative text-center d-none d-sm-block`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-        </div>}
+        {header &&
+          <div className={` ${styles.categoryCover} position-relative text-center d-none d-sm-block`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+          </div>
+        }
 
-        {filters.length > 0 && !detectMobile()  && <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} />}
+        {filters && filters.length > 0 && !detectMobile() &&
+          <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} />
+        }
         {this.props.productListLoading ? <LoaderComponent /> :
-          ((this.props.productListData == null || this.props.productListData.results.length === 0) ? <NoResultComponent /> :
+          ((this.props.productListData == null || this.props.productListData.results == null|| this.props.productListData.results.length === 0) ? <NoResultComponent /> :
 
             <Container className={`${styles.listContainer} mt-4 pb-5`}>
               <Row className="mb-3">
@@ -145,28 +169,27 @@ class Products extends Component {
                 </Col>
               </Row>
 
-              {filters.length > 0 && detectMobile()  &&
+              {filters && filters.length > 0 && detectMobile() &&
                 <div>
-                  <InputGroup  onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
+                  <InputGroup onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
                     <Input />
                     <InputGroupAddon addonType="append">
                       <Button color="danger"></Button>
                     </InputGroupAddon>
                   </InputGroup>
                   
-                  <div hidden={this.state.modal} >
-                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch} 
-                    filterSearch={this.filterSearch} toggle={() => this.toggleMobileFilter()}/>
+                  <div hidden={this.state.modal}>
+                    <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} toggle={() => this.toggleMobileFilter()}/>
                   </div>
                 </div>
               }
-              
+
 
               <Row className="mb-3">
 
                 <Col sm="6" className={styles.sideHeading}>
-                 {`All ${this.props.productListData.service_type}`} 
-                {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
+                  {`All ${this.props.productListData.service_type}`}
+                  {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
                 </Col>
                 <Col sm="6" className={styles.sort}>
                   Sort By: &nbsp;
@@ -194,10 +217,10 @@ class Products extends Component {
 
               <Row>
                 {
-                  this.props.productListData.results.map((product, index) => {
+                  this.props.productListData.results.map((vendor, index) => {
                     return (
                       <Col xs="6" sm="4" key={index}>
-                        <CategoryCard data={product} category={this.state.category} id={index}/>
+                        <CategoryCard data={vendor} category={this.state.category} id={index} isInWishList={this.isInWishList(1, vendor.vendor_id)}/>
                       </Col>
                     );
                   })
@@ -206,7 +229,7 @@ class Products extends Component {
 
               {this.props.productListData.no_of_pages && this.props.productListData.no_of_pages > 1 &&
                 <ReactPaginate
-                  previousLabel={ <img className="rotate-left" src={imagePath('arrow-small.png')} alt="arrow-previous" />}
+                  previousLabel={<img className="rotate-left" src={imagePath('arrow-small.png')} alt="arrow-previous" />}
                   nextLabel={<img src={imagePath('arrow-small.png')} alt="arrow-next" />}
                   breakLabel={'...'}
                   breakClassName={'break-me'}
@@ -224,7 +247,7 @@ class Products extends Component {
         }
         <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap">
           <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
-            <HorizontalScrollingCarousel data={this.props.other_categories} type="other_categories"/>
+            <HorizontalScrollingCarousel data={this.props.other_categories} type="other_categories" />
           </Col>
         </JumbotronComponent>
       </div>
@@ -239,7 +262,9 @@ Products.propTypes = {
   filterData: PropTypes.object,
   other_categories: PropTypes.array,
   match: PropTypes.object,
-  productListLoading: PropTypes.bool
+  productListLoading: PropTypes.bool,
+  myWishListData: PropTypes.object,
+  sharedWishlistData: PropTypes.object
 };
 
 export default connect(

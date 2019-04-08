@@ -34,11 +34,11 @@ class CategoryListing extends Component {
   }
 
   static fetchData(store) {
-    return store.dispatch(actions.fetchCeremonyDetails('wedding'));
+    return store.dispatch(actions.fetchCeremonyDetails('planyourreception-3'));
   }
 
   componentWillMount() {
-    this.props.dispatch(actions.fetchCeremonyDetails('wedding'));
+    this.props.dispatch(actions.fetchCeremonyDetails('planyourreception-3'));
   }
 
   componentDidMount() {
