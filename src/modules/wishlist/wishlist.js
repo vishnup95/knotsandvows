@@ -5,7 +5,7 @@ import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import * as testactions from '../ceremonyDetail/actions';
 import * as actions from './actions';
-import { Container, Row, Col, Modal } from 'reactstrap';
+import { Container, Row, Col, Modal, Collapse } from 'reactstrap';
 import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
 import CategoryCard from '../../components/Card/cardCategory';
