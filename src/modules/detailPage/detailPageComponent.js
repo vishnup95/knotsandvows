@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import style from './detailPageComponent.scss'
-import { Row, Col, Modal } from 'reactstrap';
+import { Row, Col, Modal, Form, Button } from 'reactstrap';
 import MapComponent from '../../components/Map/map';
 import * as actions from './actions';
+import * as loginActions from '../../reducers/session/actions';
+import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import * as loginActions from '../../reducers/session/actions';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import ReviewItem from '../../components/Reviews/reviews';
 import ReactPaginate from 'react-paginate';
 import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
 import { imagePath } from '../../utils/assetUtils';
-import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+// import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 import LoaderComponent from '../../components/Loader/loader';
 import { isLoggedIn } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
-
-
+import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
+import InputField from '../../components/InputField/inputField';
 const mapStateToProps = state => ({
     user: state.session.user,
     details: state.details.details,
     detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
-    similarVendors: state.details.similarVendors
+    similarVendors: state.details.similarVendors,
+    amenities: state.details.amenities,
+    policies: state.details.policies,
+    availableAreas: state.details.availableAreas
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,20 +36,24 @@ const mapDispatchToProps = dispatch => ({
     dispatch
 });
 
-
 class DetailPageComponent extends Component {
     constructor(props) {
         super(props);
         this.toggleGallery = this.toggleGallery.bind(this);
+        this.dateRef = React.createRef();
+        this.emailRef = React.createRef();
+        this.phoneRef = React.createRef();
 
         this.state = {
             showGallery: false,
             vendor: '',
             category: '',
-            reviewPage: 1
+            reviewPage: 1,
+            email: '',
+            phone: '',
+            date: ''
         };
     }
-
     toggleGallery = () => {
         this.setState({
             showGallery: !this.state.showGallery
@@ -72,9 +80,11 @@ class DetailPageComponent extends Component {
         let category = this.props.match.params.category_name;
         let vendor = this.props.match.params.vendor_name;
         this.setState({ vendor: vendor, category: category, reviewPage: 1 });
-        this.props.dispatch(actions.fetchVendorDetails(category, vendor));
-        this.props.dispatch(actions.fetchSimilarVendors(category, vendor));
-        this.props.dispatch(actions.fetchReviews(category, vendor, 1));
+        this.props.dispatch(actions.fetchVendorDetails(vendor));
+        this.props.dispatch(actions.fetchPolicies(vendor));
+        this.props.dispatch(actions.fetchAmenities(vendor));
+        this.props.dispatch(actions.fetchSimilarVendors(vendor));
+        this.props.dispatch(actions.fetchReviews(vendor, 1));
 
     }
     componentDidMount() {
@@ -113,7 +123,7 @@ class DetailPageComponent extends Component {
 
         const termsAndPolicies = policies.map((policy, index) => {
 
-            return <li className={style.policy} key={index}>{policy.name}</li>
+            return <li className={style.policy} key={index}><span>{policy.name}</span></li>
 
         });
         return termsAndPolicies;
@@ -128,13 +138,58 @@ class DetailPageComponent extends Component {
     }
 
     pageChangeHandler(data) {
-        this.props.dispatch(actions.fetchReviews(this.state.category, this.state.vendor, data.selected + 1));
+        this.props.dispatch(actions.fetchReviews(this.state.vendor, data.selected + 1));
         this.setState({ reviewPage: data.selected + 1 });
+    }
+
+    sendDetailsToWeddingPlanner() {
+        let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
+        let phone = this.phoneRef.current.validateFormInput(document.getElementById('phone'));
+        let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
+
+        if (email && phone && date) {
+                const params = {};
+                params['email'] = this.state.email;
+                this.state.date ? params['event_date'] = this.state.date : '';
+                this.state.phone ? params['phone'] = this.state.phone : '';
+            
+
+            this.props.dispatch(talkToPlannerActions.postContactDetails(params));
+        }
+    }
+
+    handleFormChange(e) {
+        this.setState({[e.target.id]: e.target.value});
     }
 
     render() {
         let details = this.props.details;
         let reviewsData = this.props.reviewsData;
+        let detailNavItems = [];
+        if (details) {
+            if (details.about) {
+                detailNavItems.push("About");
+            }
+            if (this.props.availableAreas && this.props.availableAreas.length > 0) {
+                detailNavItems.push("Available Areas");
+            }
+            if (this.props.amenities && this.props.amenities.length > 0) {
+                detailNavItems.push("Amenities");
+            }
+            if (this.props.policies && this.props.policies.length > 0) {
+                detailNavItems.push("Policies");
+            }
+            if (details.location && details.location.latitude && details.location.longitude) {
+                detailNavItems.push("Direction");
+            }
+            if (reviewsData && reviewsData.results && reviewsData.results.length > 0) {
+                detailNavItems.push("Reviews");
+            }
+            if (details.gallery && details.gallery.length > 0) {
+                detailNavItems.push(`Gallery (${details.gallery.length} Photos)`);
+            }
+        }
+
         return (
             <div className={style.detailContainer}>
                 {this.props.detailsLoading && <LoaderComponent />}
@@ -159,37 +214,29 @@ class DetailPageComponent extends Component {
                                         <div className={style.review}> {details.reviews_count} Reviews</div>
                                     </div>
                                     <div className={style.viewBtnWrap}>
-                                        <button className={style.viewBtn} onClick={(e) => this.addToWishList(e)}>Add to wishlist</button>
+                                        <button className="primary-button" onClick={(e) => this.addToWishList(e)}>Add to wishlist</button>
                                         <button className={style.removeBtn}>Remove from wishlist</button>
                                     </div>
                                 </div>
-
                             </Row>
-                            <Row className={style.detailNav}>
+                            <Row className={`${style.detailNav} tab-only`}>
 
                                 <ul>
-                                    {details.about &&
-                                        <li>About</li>
-                                    }
-                                    {details.available_areas && details.available_areas.length > 0 &&
-                                        <li>Available Areas</li>
-                                    }
-                                    {details.amenities && details.amenities.length > 0 &&
-                                        <li>Amenities</li>
-                                    }
-                                    {details.policies && details.policies.length > 0 &&
-                                        <li>Policies</li>
-                                    }
-                                    {details.location && details.location.latitude && details.location.longitude &&
-                                        <li>Direction</li>
-                                    }
-                                    <li>Reviews</li>
-                                    {details.gallery && details.gallery.length > 0 &&
-                                        <li><button onClick={() => this.toggleGallery()}>Gallery ({details.gallery.length} Photos)</button></li>
+                                    {
+                                        detailNavItems.map((item, index) => {
+                                            return <li key={index}>{item}</li>
+                                        })
                                     }
                                 </ul>
 
                                 {/* <button className={style.transparentBtn}>Short List</button> */}
+
+
+                            </Row>
+                            <Row className={`${style.detailNav} mobile-only`}>
+                                <Col>
+                                    <HorizontalSlider data={detailNavItems} type='basic' buttonAction={this.handleCategoryChange} />
+                                </Col>
                             </Row>
                             <Row>
                                 <Col md="7">
@@ -214,20 +261,20 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
 
-                                    {details.amenities && details.amenities.length > 0 &&
+                                    {this.props.amenities && this.props.amenities.length > 0 &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>Amenities</h3>
                                             <ul className={style.listWithIcon}>
-                                                {this.renderAminities(details.amenities)}
+                                                {this.renderAminities(this.props.amenities)}
                                             </ul>
 
                                         </Col>
                                     }
-                                    {details.policies && details.policies.length > 0 &&
+                                    {this.props.policies && this.props.policies.length > 0 &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>Policies</h3>
                                             <ul className={style.selectableList}>
-                                                {this.renderPolicies(details.policies)}
+                                                {this.renderPolicies(this.props.policies)}
                                             </ul>
 
                                         </Col>
@@ -273,7 +320,7 @@ class DetailPageComponent extends Component {
                                 <Col md="5">
                                     <Col md="12" className={`${style.detailSubSection} ${style.rightSection} py-0`}>
                                         <Col md="12" className={`${style.rightSubSection} py-2`}>
-                                           <div className={style.pricesContainer}> Starting Price</div>
+                                            <div className={style.pricesContainer}> Starting Price</div>
                                             <div className={style.pricesContainer}>
                                                 <div className={style.item}>
                                                     Mandap decoration  <br /><span className={style.grey}>(Price per event)</span>
@@ -300,17 +347,25 @@ class DetailPageComponent extends Component {
                                                     ₹2060.00  <br /><span className={style.grey}>GST extra</span>
                                                 </div>
                                             </div>
-                                        </Col>                                     
+                                        </Col>
                                     </Col>
-                                    
+
                                     <Col className={style.detailSubSection}>
                                         <Col md="12" className={`#{style.rightSubSection} text-center`}>
                                             <p className={style.needHelp}>Need some guidance on selecting vendors?</p>
                                             {/* <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button> */}
-                                            <TalkToWeddingPlanner buttonText={'Talk to our wedding planner!'} />
+                                            <Form style={{ zIndex: '10000' }} className="position-relative">
+                                                <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false}/>
+                                                <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
+                                                <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} required={false}/>
+                                            </Form>
+                                            <div className="text-center">
+                                                <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our wedding planner!</Button>
+                                            </div>
+                                            {/* <TalkToWeddingPlanner buttonText={'Talk to our wedding planner!'} /> */}
                                         </Col>
                                     </Col>
-                                    {false &&
+                                    {true &&
                                         <Col className={`${style.detailSubSection} ${style.noteSection}`}>
                                             <Col md="12" className={`${style.rightSubSection} text-left`}>
                                                 <h4 className={style.noteHeader}>Notes</h4>
@@ -360,7 +415,7 @@ class DetailPageComponent extends Component {
 
                 </Modal>
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
-                    <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap"/>
+                    <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" />
                 }
             </div>
         );
@@ -376,7 +431,10 @@ DetailPageComponent.propTypes = {
     details: PropTypes.object,
     similarVendors: PropTypes.array,
     match: PropTypes.object,
-    detailsLoading: PropTypes.bool
+    detailsLoading: PropTypes.bool,
+    amenities: PropTypes.array,
+    policies: PropTypes.array,
+    availableAreas: PropTypes.array
 };
 
 export default connect(

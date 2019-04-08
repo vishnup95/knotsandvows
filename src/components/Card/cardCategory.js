@@ -14,17 +14,16 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn } from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString} from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions'
-import * as wishlistActions from '../../modules/wishlist/actions'
+// import * as wishlistActions from '../../modules/wishlist/actions'
 
 const mapDispatchToProps = dispatch => ({
     dispatch
 });
 class CategoryCard extends Component {
     state = {
-        isChecked: false,
-        isWishList: false
+        isChecked: false
     }
     navigateTo(route) {
         this.props.dispatch(push(route));
@@ -35,9 +34,8 @@ class CategoryCard extends Component {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
         } else {
-            this.setState({isWishList: !this.state.isWishList});
-            this.props.dispatch(wishlistActions.testAdd(this.props.data, this.props.category));
-        }   
+            // this.props.dispatch(wishlistActions.testAdd(this.props.data, this.props.category));
+        }
         e.stopPropagation();
     }
 
@@ -55,7 +53,7 @@ class CategoryCard extends Component {
 
         return (
             <div className={styles.cardbodyContainer}>
-                
+
                 <div className={styles.mainContent}>
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
                     <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
@@ -66,11 +64,14 @@ class CategoryCard extends Component {
 
                 <div className={styles.ratingContainer}>
                     <p className={`mb-2`}>
-                        <img src={imagePath(this.state.isWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
+                        <img src={imagePath(this.props.isInWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
                             alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`} />
-                        <UncontrolledTooltip placement="right" target={`WishListTooltip${this.props.id}`}>
-                            {this.state.isWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
-                        </UncontrolledTooltip>
+                        {!this.props.isInWishList &&
+                            <UncontrolledTooltip placement="top" target={`WishListTooltip${this.props.id}`}>
+                                {'Add to Wishlist'}
+                            </UncontrolledTooltip>
+                        }
+
                     </p>
                     <div>
                         <p className={`${styles.rating} mb-1`}>
@@ -96,7 +97,7 @@ class CategoryCard extends Component {
     }
 
     handleCardClick = () => {
-        this.navigateTo(`/${this.props.category}/${this.props.data.page_name}`);
+        this.navigateTo(`/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`);
     }
     selectCard = (e) => {
         this.setState({ isChecked: !this.state.isChecked });
@@ -134,10 +135,10 @@ class CategoryCard extends Component {
                         </div>
                     }
                     {
-                        false && 
+                        false &&
                         <div className={styles.addNote}>
                             <div className={styles.noteHeader}><span>Add Note</span> <img className={styles.closeNote} src={imagePath('close-blank.svg')} alt="close button" /></div>
-                            <textarea rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors"></textarea>
+                            <textarea rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors" onClick={(event) => { event.stopPropagation() }}></textarea>
                             <div className="text-right">
                                 <Button className="text-btn">Cancel</Button>
                                 <Button className="primary-button">Save</Button>
@@ -197,7 +198,8 @@ CategoryCard.propTypes = {
     type: PropTypes.string,
     isCompare: PropTypes.bool,
     id: PropTypes.number,
-    isWishlist: PropTypes.bool
+    isWishlist: PropTypes.bool,
+    isInWishList: PropTypes.bool
 };
 
 export default connect(

@@ -16,6 +16,7 @@ import PackageComponent from './packageComponent';
 import HorizontalMultiCarousel from './multiCarouselHorizontal';
 import VerticalMultiCarousel from './multiCarouselVertical';
 import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
+import { hyphonatedString } from '../../utils/utilities';
 
 const jumbotronData = [
   {
@@ -33,7 +34,7 @@ const jumbotronData = [
   {
     title: 'Need Help?',
     buttonText: 'Talk with wedding planner',
-    subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by click the Chat button below and theyâ€™ll help you get your party started.'
+    subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by clicking the Chat button below and theyâ€™ll help you get your party started.'
   },
   {
     title: 'Joining With Us Is Quick and Easy',
@@ -90,10 +91,10 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    if (this.props.exclusives.length === 0) {
+    if (this.props.exclusives && this.props.exclusives.length === 0) {
       this.props.dispatch(actions.fetchExclusives());
     }
-    if (this.props.ceremonies.length === 0) {
+    if (this.props.ceremonies && this.props.ceremonies.length === 0) {
       this.props.dispatch(actions.fetchCeremonies());
     }
   }
@@ -103,7 +104,7 @@ class Home extends Component {
   }
 
   handleCeremonyClick = (ceremony) => {
-    this.navigateTo(`/ceremonies/${ceremony.page_name}`)
+    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id)}`)
   }
 
   render() {
@@ -116,8 +117,8 @@ class Home extends Component {
             <Col xs="12" sm="12" md="5" className={`${styles.staticItemContainer} no-padding no-margin`}>
               {
                 staticData.map((item, index) => {
-                  return(
-                    <div key={index} className={styles.staticItem} style={{ backgroundImage: `url(${item.image})`}}
+                  return (
+                    <div key={index} className={styles.staticItem} style={{ backgroundImage: `url(${item.image})` }}
                       onClick={() => this.navigateTo('/categories')} aria-hidden>
                       <h4>{item.title}</h4>
                       <p className={styles.pSmall}>{item.description}</p>
@@ -126,25 +127,29 @@ class Home extends Component {
                 })
               }
             </Col>
-            <Col xs="12" sm="7" className={`${styles.desktopCarousal} no-padding`} style={{margin: '-1rem 0'}}>
-              <VerticalMultiCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)}/>
-            </Col>
-            <Col xs="12" className={`${styles.mobileCarousal} no-padding`} style={{margin: '-1rem 0'}}>
-               <HorizontalScrollingCarousel data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="home"/>
-            </Col>
+            {this.props.ceremonies &&
+              <Col xs="12" sm="7" className={`${styles.desktopCarousal} no-padding`} style={{ margin: '-1rem 0' }}>
+                <VerticalMultiCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} />
+              </Col>
+            }
+            {this.props.ceremonies &&
+              <Col xs="12" className={`${styles.mobileCarousal} no-padding`} style={{ margin: '-1rem 0' }}>
+                <HorizontalScrollingCarousel data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="home" />
+              </Col>
+            }
           </Row>
         </JumbotronComponent>
 
         <JumbotronComponent data={jumbotronData[1]} containerStyle="packageWrap" bgcolor="#ffffff">
           <div>
             {this.props.exclusives.map((exclusivePackage, index) => {
-              return <PackageComponent key={index} details={exclusivePackage}/>;
+              return <PackageComponent key={index} details={exclusivePackage} />;
             })}
           </div>
         </JumbotronComponent>
 
         <JumbotronComponent data={jumbotronData[2]} bgcolor="#fef9f9" insideContainer={false} containerStyle="carouselWrap">
-          <HorizontalMultiCarousel/>
+          <HorizontalMultiCarousel />
         </JumbotronComponent>
 
         {/* <JumbotronComponent data={jumbotronData[3]} bgcolor="#ffffff" isTalkToAhwanam={true} /> */}

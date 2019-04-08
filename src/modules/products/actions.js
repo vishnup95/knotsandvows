@@ -1,7 +1,8 @@
 import * as types from './constants';
+import { getId } from '../../utils/utilities';
 
 export function fetchProducts(category, page = 1, sortby = 0, searchParams = '', isFirstLoading = true) {
-  let getUrl = `api/results/getall?type=${category}&offset=12&page=${page}&sortby=${sortby}`;
+  let getUrl = `api/getall?category_id=${getId(category)}&offset=12&page=${page}&sortby=${sortby}`;
   getUrl = searchParams ? `${getUrl}&${searchParams}` : getUrl;
   return {
     types: [
@@ -22,7 +23,7 @@ export function fetchFilters(category, isFirstLoading = true) {
       types.LOAD_FILTERS_FAILURE
     ],
     isFirstLoading: isFirstLoading,
-    promise: client => client.get(`api/results/getfilters?type=${category}`)
+    promise: client => client.get(`api/getfilters?category_id=${getId(category)}`)
   };
 }
 
@@ -33,6 +34,6 @@ export function fetchOtherCategories(category) {
       types.LOAD_OTHER_CATEGORIES_SUCCESS,
       types.LOAD_OTHER_CATEGORIES_FAILURE
     ],
-    promise: client => client.get(`api/category/relatedcategories?type=${category}`)
+    promise: client => client.get(`api/category/relatedcategories?category_id=${getId(category)}`)
   };
 }

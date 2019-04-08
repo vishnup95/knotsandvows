@@ -6,7 +6,7 @@ export function fetchMyWishlist() {
       types.LOAD_MY_WISHLIST_SUCCESS,
       types.LOAD_MY_WISHLIST_FAILURE
     ],
-    promise: client => client.get(`/api/mywishlist`)
+    promise: client => client.get(`/api/wishlist/getmywishlist`)
   };
 }
 
@@ -21,16 +21,15 @@ export function fetchSharedWishlist(wishlist) {
   };
 }
 
-export function addToWishlist(vendor, params) {
+export function addToWishlist(params) {
   return {
     types: [
       types.LOAD_ADD_TO_WISHLIST,
       types.LOAD_ADD_TO_WISHLIST_SUCCESS,
       types.LOAD_ADD_TO_WISHLIST_FAILURE
     ],
-    vendor: vendor,
-    category: params.category,
-    promise: client => client.post(`/api/additem`,params)
+    category: params.category_id,
+    promise: client => client.post(`/api/wishlist/additem`,params)
   };
 }
 

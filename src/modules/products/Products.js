@@ -12,7 +12,7 @@ import {
   Col,
   Dropdown, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-import { Modal } from 'reactstrap';
+
 import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
 
@@ -24,14 +24,16 @@ import MobileForm from './mobileForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
-import { getId } from '../../utils/utilities';
+
 
 const mapStateToProps = state => ({
   user: state.session.user,
   productListData: state.products.productListData,
   productListLoading: state.products.loading,
   filterData: state.products.filterData,
-  other_categories: state.products.other_categories
+  other_categories: state.products.other_categories,
+  myWishListData: state.wishlist.myWishListData,
+  sharedWishlistData: state.wishlist.sharedWishListData
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -50,7 +52,7 @@ class Products extends Component {
     sortBy: 0,
     page: 1,
     dropdownOpen: false,
-    modal: false
+    modal: true
   }
 
   static fetchData(store) {
@@ -66,7 +68,8 @@ class Products extends Component {
   }
 
   selectedCategory() {
-    return getId(this.props.match.params.category_name);
+    // return getId(this.props.match.params.category_name);
+    return this.props.match.params.category_name;
   }
 
   toggle(item) {
@@ -93,7 +96,7 @@ class Products extends Component {
       return false;
     }
 
-    if (this.state.category !== getId(this.props.match.params.category_name)) {
+    if (this.state.category !== this.props.match.params.category_name) {
       let category = this.selectedCategory();
       this.props.dispatch(actions.fetchProducts(category));
       this.props.dispatch(actions.fetchFilters(category));
@@ -117,7 +120,7 @@ class Products extends Component {
 
   filterSearch = (params, category) => {
     this.navigateTo(`/categories/${category}`);
-    this.setState({ category: category, page: 1 });
+    this.setState({ category : category, page : 1 , modal: true});
     let searchParams = queryString.stringify(params);
     this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams, false));
   }
@@ -126,6 +129,24 @@ class Products extends Component {
     let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
     this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption));
     this.setState({ page: 1, sortBy: sortOption });
+  }
+
+  isInWishList = (category_id, vendor_id) => {
+     if (this.props.user == null){
+       return false
+     }else if (this.props.myWishListData == null && this.props.sharedWishlistData == null){
+      return false
+     }else{
+
+         let wishlist = this.props.myWishListData.wishlistitems;
+         let index = wishlist.findIndex( category => { return typeof category.category_id == category_id} );
+         if (index == null || index < 0){
+           return false
+         }
+         let category = wishlist[index];
+         let result = category.vendors.some( vendor => { return typeof vendor.vendor_id == vendor_id} );
+         return result;
+     }
   }
 
   render() {
@@ -158,10 +179,11 @@ class Products extends Component {
                       <Button color="danger"></Button>
                     </InputGroupAddon>
                   </InputGroup>
-
-                  <Modal isOpen={this.state.modal} toggle={() => this.toggleMobileFilter()} style={{ margin: 0, marginTop: '50px' }}>
-                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch} />
-                  </Modal>
+                  
+                  <div hidden={this.state.modal} >
+                    <MobileForm filters={filters} selectedCategory={this.state.category} dispatch={this.props.dispatch} 
+                    filterSearch={this.filterSearch} toggle={() => this.toggleMobileFilter()}/>
+                  </div>
                 </div>
               }
 
@@ -198,10 +220,10 @@ class Products extends Component {
 
               <Row>
                 {
-                  this.props.productListData.results.map((product, index) => {
+                  this.props.productListData.results.map((vendor, index) => {
                     return (
                       <Col xs="6" sm="4" key={index}>
-                        <CategoryCard data={product} category={this.state.category} id={index} />
+                        <CategoryCard data={vendor} category={this.state.category} id={index} isInWishList={this.isInWishList(1, vendor.vendor_id)}/>
                       </Col>
                     );
                   })
@@ -243,7 +265,9 @@ Products.propTypes = {
   filterData: PropTypes.object,
   other_categories: PropTypes.array,
   match: PropTypes.object,
-  productListLoading: PropTypes.bool
+  productListLoading: PropTypes.bool,
+  myWishListData: PropTypes.object,
+  sharedWishlistData: PropTypes.object
 };
 
 export default connect(

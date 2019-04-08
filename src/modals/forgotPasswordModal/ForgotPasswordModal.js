@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../reducers/session/actions';
 import * as modalActions from '../../reducers/modal/actions';
-import { Form, Button } from 'reactstrap';
+import { Form} from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import styles from './forgotPasswordModal.scss';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
@@ -107,14 +107,14 @@ class ForgotPassword extends Component {
         return this.props.hash != null ?
         (<div className={styles.forgotPassword}>
             <div className={styles.header}>Reset Password</div>
-            <div className={styles.message}>You are resetting the password for {this.props.email}</div>
+            <div className={styles.message}>You are resetting the password for <span>{this.props.email}</span></div>
             <Form className="position-relative mt-3">
                 <InputField placeHolder="New Password" id="password" type="password" ref={this.passwordRef} onChange={e => this.handleFormChange(e)} />
                 <InputField placeHolder="Confirm Password" id="confirmPassword" type="password" ref={this.confirmPasswordRef} onChange={e => this.handleFormChange(e)} />
             </Form>
             
             <div className="text-center mt-4 position-relative">
-                <Button color="danger" className="primary-button" onClick={this.validateForm}>Reset</Button>
+                <ProgressButton title="Reset" onClick={this.validateForm} isLoading={this.props.isLoading}></ProgressButton>
                 <div className={styles.error}>{this.state.error}</div>
             </div>
         </div>) : null;

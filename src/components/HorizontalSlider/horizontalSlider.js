@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import styles from './horizontalSlider.scss';
 import PropTypes from 'prop-types';
 import CategoryCard from '../../components/Card/cardCategory';
+import MemberComponent from '../../modules/about/memberComponent';
 import { Col } from 'reactstrap';
 
 const SampleNextArrow = (propvalues) => {
@@ -87,18 +88,69 @@ const SamplePrevArrowSmall = (propvalues) => {
         >Prev</button>
     );
 }
+const SampleNextArrowBasic = (propvalues) => {
+    const { className, style, onClick } = propvalues;
+    return (
+        <button
+            className={`${className} ${styles.hButton}`}
+            style={{
+                ...style,
+                display: "block",
+                background: 'url("/images/arrow-small.png") no-repeat',
+                backgroundSize: 'contain',
+                top: '50%',
+                // right: '-16px',
+                width: '20px',
+                height: '20px',
+                opacity: '.7'
+            }}
+            onClick={onClick}
+        >Next</button>
+    );
+}
 
+const SamplePrevArrowBasic = (propvalues) => {
+    const { className, style, onClick } = propvalues;
+    return (
+        <button
+            className={className}
+            style={{
+                ...style,
+                display: "block",
+                background: 'url("/images/arrow-small.png") no-repeat',
+                transform: 'rotate(-180deg)',
+                backgroundSize: 'contain',
+                zIndex: '10',
+                top: '15%',
+                // left: '-16px',
+                width: '20px',
+                height: '20px',
+                opacity: '.7'
+            }}
+            onClick={onClick}
+        >Prev</button>
+    );
+}
 
 export default class HorizontalSlider extends Component {
-    
-    state = {selectedCategoryIndex: 0};
+
+    state = { selectedCategoryIndex: 0 };
 
     handleCategoryChange = (selectedCategoryIndex) => {
-        this.setState({selectedCategoryIndex});
+        this.setState({ selectedCategoryIndex });
         this.props.buttonAction(selectedCategoryIndex);
     }
-    
+
     render() {
+        var settingsBasic = {
+            dots: false,
+            infinite: true,
+            centerMode: false,
+            variableWidth: true,
+            nextArrow: <SampleNextArrowBasic />,
+            prevArrow: <SamplePrevArrowBasic />,
+            initialSlide: 0,
+        };
         var settingsSmall = {
             dots: false,
             infinite: false,
@@ -141,8 +193,8 @@ export default class HorizontalSlider extends Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToShow: this.props.type === 'about' ? 3: 4,
+            slidesToScroll: this.props.type === 'about' ? 3: 4,
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />,
             initialSlide: 0,
@@ -172,9 +224,10 @@ export default class HorizontalSlider extends Component {
                 }
             ]
         };
-        
-        return (this.props.type === 'small' &&
-            <div className={styles.multiContainer}>
+
+        if (this.props.type === 'small') {
+            return(
+                <div className={styles.multiContainer}>
                 <Slider {...settingsSmall}>
                     {
                         this.props.data.map((item, index) => {
@@ -182,8 +235,8 @@ export default class HorizontalSlider extends Component {
                                 <div key={index} className={styles.sliderItem}>
                                     <div className={styles.sliderWrap}>
                                         {/* <img className={styles.vendorImage} src={item.thumb_image} alt="Icon" /> */}
-                                        <div className={`${styles.categoryName} ${index === this.state.selectedCategoryIndex ?  styles.selectedCategory : ''}`} 
-                                            aria-hidden onClick={() => this.handleCategoryChange(index)}> 
+                                        <div className={`${styles.categoryName} ${index === this.state.selectedCategoryIndex ? styles.selectedCategory : ''}`}
+                                            aria-hidden onClick={() => this.handleCategoryChange(index)}>
                                             {item.name}
                                         </div>
                                     </div>
@@ -192,23 +245,63 @@ export default class HorizontalSlider extends Component {
                         })
                     }
                 </Slider>
-            </div> || <div>
-                <Slider {...settings}>
-                    {
-                        this.props.data.map((item, index) => {
-                            return (
-                                <Col key={index}>
-                                    <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index}/>
-                                </Col>
-                            );
-                        })
-                    }
-                    <Col>
-                        <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br/> Vendors</span></div>
-                    </Col>
-                </Slider>
             </div>
-        );
+            );
+        } else if (this.props.type === 'basic') {
+            return(
+                <div>
+                    <Slider {...settingsBasic}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <div key={index} className={styles.sliderItemBasic}>
+                                        <div className={styles.sliderWrap}>
+                                                {item}
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+                    </Slider>
+                </div>
+            );
+        } else if (this.props.type === 'about') {
+            return(
+                <div>
+                    <Slider {...settings}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <Col key={index}>
+                                        <MemberComponent/>
+                                    </Col>
+                                );
+                            })
+                        }
+                    </Slider>
+                </div>
+            );
+        }
+        else {
+            return(
+                <div>
+                    <Slider {...settings}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <Col key={index}>
+                                        <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index} />
+                                    </Col>
+                                );
+                            })
+                        }
+                        <Col>
+                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> Vendors</span></div>
+                        </Col>
+                    </Slider>
+                </div>
+            ); 
+        }
     }
 }
 HorizontalSlider.propTypes = {
@@ -216,4 +309,4 @@ HorizontalSlider.propTypes = {
     type: PropTypes.string,
     category: PropTypes.string,
     buttonAction: PropTypes.func
-};0.
+}; 0.
