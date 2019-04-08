@@ -30,7 +30,9 @@ const mapStateToProps = state => ({
   productListData: state.products.productListData,
   productListLoading: state.products.loading,
   filterData: state.products.filterData,
-  other_categories: state.products.other_categories
+  other_categories: state.products.other_categories,
+  myWishListData: state.wishlist.myWishListData,
+  sharedWishlistData: state.wishlist.sharedWishListData
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -127,6 +129,24 @@ class Products extends Component {
     this.setState({ page: 1, sortBy: sortOption });
   }
 
+  isInWishList = (category_id, vendor_id) => {
+     if (this.props.user == null){
+       return false
+     }else if (this.props.myWishListData == null && this.props.sharedWishlistData == null){
+      return false
+     }else{
+
+         let wishlist = this.props.myWishListData.wishlistitems;
+         let index = wishlist.findIndex( category => { return typeof category.category_id == category_id} );
+         if (index == null || index < 0){
+           return false
+         }
+         let category = wishlist[index];
+         let result = category.vendors.some( vendor => { return typeof vendor.vendor_id == vendor_id} );
+         return result;
+     }
+  }
+
   render() {
     const { header, sort_options, filters } = this.props.filterData;
     return (
@@ -194,10 +214,10 @@ class Products extends Component {
 
               <Row>
                 {
-                  this.props.productListData.results.map((product, index) => {
+                  this.props.productListData.results.map((vendor, index) => {
                     return (
                       <Col xs="6" sm="4" key={index}>
-                        <CategoryCard data={product} category={this.state.category} id={index}/>
+                        <CategoryCard data={vendor} category={this.state.category} id={index} isInWishList={this.isInWishList(1, vendor.vendor_id)}/>
                       </Col>
                     );
                   })
@@ -239,7 +259,9 @@ Products.propTypes = {
   filterData: PropTypes.object,
   other_categories: PropTypes.array,
   match: PropTypes.object,
-  productListLoading: PropTypes.bool
+  productListLoading: PropTypes.bool,
+  myWishListData: PropTypes.object,
+  sharedWishlistData: PropTypes.object
 };
 
 export default connect(

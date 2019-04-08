@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
-import * as actions from '../ceremonyDetail/actions';
+import * as testactions from '../ceremonyDetail/actions';
+import * as actions from './actions';
 import { Container, Row, Col, Modal } from 'reactstrap';
 import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
@@ -14,6 +15,7 @@ import CompareProduct from '../../components/compareProduct/compareProduct';
 const mapStateToProps = state => ({
   ceremonyDetails: state.ceremonyDetails.details,
   ceremonyLoading: state.ceremonyDetails.loading,
+  myWishListData: state.wishlist.wishListData
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -36,11 +38,12 @@ class CategoryListing extends Component {
     this.toggle = this.toggle.bind(this);
   }
   static fetchData(store) {
-    return store.dispatch(actions.fetchCeremonyDetails('wedding'));
+    return store.dispatch(testactions.fetchCeremonyDetails('wedding'));
   }
 
   componentWillMount() {
-    this.props.dispatch(actions.fetchCeremonyDetails('wedding'));
+    this.props.dispatch(testactions.fetchCeremonyDetails('wedding'));
+    this.props.dispatch(actions.fetchMyWishlist());
   }
 
   componentDidMount() {
