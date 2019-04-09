@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import styles from './CeremonyDetail.scss';
 import { push } from 'connected-react-router';
+import { hyphonatedString } from '../../utils/utilities';
 
 class CategorySection extends Component {
     handleViewAllClick = (category) => {
@@ -25,13 +26,13 @@ class CategorySection extends Component {
 
                 <Row>
                     <Col className="no-padding">
-                        <HorizontalSlider data={this.props.category.vendors} category={this.props.category.page_name} buttonAction={this.handleViewAllClick} />
+                        <HorizontalSlider data={this.props.category.vendors} category={hyphonatedString(this.props.category.name , this.props.category.category_id)} buttonAction={this.handleViewAllClick} />
                     </Col>
                 </Row>
 
                 <Row>
                     <Col>
-                        <p className={styles.viewAll} onClick={() => this.handleViewAllClick(this.props.category.page_name)} aria-hidden >View All</p>
+                        <p className={styles.viewAll} onClick={() => this.handleViewAllClick(hyphonatedString(this.props.category.name , this.props.category.category_id))} aria-hidden >View All</p>
                     </Col>
                 </Row>
             </div>
