@@ -2,6 +2,23 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
+.homeContainer {
+  h1 {
+    @include fontSize(93.5);
+    font-family: $frank-bold;
+    white-space: nowrap;
+  }
+
+  h2 {
+    font-family: $roboto-bold;
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
 .title {
   color: $blue;
 }
@@ -81,6 +98,8 @@ a.button {
 
 // carousel styles
 .carouselItem {
+  display: flex;
+
   &:before {
     content: '';
     position: absolute;
@@ -91,13 +110,14 @@ a.button {
     background-image: linear-gradient(to right, rgba(56, 26, 28, 0.53), rgba(58, 27, 29, 0.78) 31%, rgba(95, 43, 48, 0) 65%, rgba(0, 0, 0, 0));
   }
 }
+
 .carousalImage {
   @include height(600);
-  width: 100%;
+  flex: 1.5;
   background-size: cover;
-  backround-repeat: no-repeat;
+  background-repeat: no-repeat;
   @include mobile {
-    @include height(440);
+     @include height(440);
   }
 }
 
@@ -106,7 +126,6 @@ a.button {
 .packageContainer {
   display: flex;
   justify-content: space-between;
-  // padding: 3.5rem 0;
   cursor: pointer;
   @include padding(59.5,0);
   border-bottom: 2px solid #eee;
@@ -114,6 +133,7 @@ a.button {
   a {
     color: $primary-color;
   }
+
   h2 {
     color: $black;
     margin-bottom: 1rem;
@@ -124,7 +144,6 @@ a.button {
   }
 
   .details {
-    // width: max-content;
     @include width(787);
     padding-top: 2.5rem;
   }
@@ -229,48 +248,58 @@ a.button {
     display: none;
   }
 }
+
 .mobileCarousal {
   display: none;
   @include mobile {
     display: flex;
   }
+
   .verticalMultiItem {
     min-width: 41%;
     width: 41%;
     flex-direction: column;
     height: auto;
+
     .imageContainer {
       width: 90%;
       height: 102px;
-      border-radius: 1.125rem 1.125rem 0rem 0rem;
+      border-radius: 1.125rem 1.125rem 0 0;
     }
+
     .detailContainer {
       width: 90%;
-      border-radius: 0rem 0rem 1.125rem 1.125rem;
-      padding: .75rem .75rem 1.4rem .75rem;
+      border-radius: 0 0 1.125rem 1.125rem;
+      padding: .75rem .75rem 1.4rem;
+
       .handle {
         display: none;
       }
+
       h3 {
         font-size: 11px;
       }
+
       p {
         font-size: 10px;
       }
     }
   }
 }
+
 .fullWidth {
   width: calc(100% + 22px);
 }
+
 .scrollingContainer {
   width: 100%;
   overflow-x: scroll;
-  display:flex;
+  display: flex;
 }
+
 .staticItemContainer {
   @include mobile {
-    @include flex();
+     @include flex();
     @include flex-row-reverse();
     @include justify-space-between();
   }
@@ -460,27 +489,22 @@ a.button {
 }
 
 .carouselContent {
-  position: absolute;
+  flex: 1;
   text-align: center;
-  @include top(104.7);
-  @include left(126);
   color: white;
   text-align: left;
-  padding-right: 50%;
   @include mobile {
     padding-right: 1.875rem;
     @include left(30);
     text-align: center;
   }
-  @include tabletOnly {
-    padding-right: 20%;
-  }
+  @include tabletOnly {}
 
   .buttonContainer {
     display: flex;
     flex-grow: 1;
     @include mobile {
-      @include justify-center();
+       @include justify-center();
     }
   }
 }
@@ -500,4 +524,51 @@ a.button {
   min-width: 41%;
   width: 41%;
   margin-right: 1.2rem;
+}
+
+.homeContent {
+  position: absolute;
+  top: 35%;
+  z-index: 2;
+}
+
+.homeImage {
+  @include height(967);
+  width: auto;
+}
+
+.homeTitle {
+  @include fontSize(93.5);
+  font-family: $frank-bold;
+  white-space: nowrap;
+}
+
+.mediumPinkBg {
+  background-color: $medium-pink;
+}
+
+.detailDesc {
+  color: $secondary-color;
+}
+
+.detailCount {
+  color: $white;
+}
+
+.cardDetail {
+  font-family: $roboto-light;
+}
+
+.cardImageContainer {
+  margin-right: 3rem;
+}
+
+.whiteHeading {
+  color: $white;
+  @include fontSize(93.5);
+  font-family: $frank-bold;
+}
+.whiteDesc {
+  color: $white;
+  @include fontSize(26);
 }

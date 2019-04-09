@@ -58,7 +58,8 @@ h2 {
 
 .main {
   min-height: calc(100vh - 40rem);
-  margin-top: 10.33125rem;
+  // margin-top: 10.33125rem;
+  margin-top: calc(50px + 5.5rem);
   @include mobile {
     margin-top: 4.9375rem;
   }
@@ -91,6 +92,19 @@ h2 {
 
   &:active {
     background-color: #E54291;
+  }
+
+  &.medium-pink {
+    background-color: $medium-pink;
+    font-family: $roboto-bold;
+
+  }
+
+  &.white {
+    background-color: $white;
+    color: $medium-pink;
+    font-family: $roboto-bold;
+
   }
 }
 

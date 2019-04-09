@@ -281,10 +281,6 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
                             </NavItem>
-
-                            <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/services')}>Services</NavLink>
-                            </NavItem>
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/about')}>About</NavLink>
                             </NavItem>

@@ -132,7 +132,7 @@
   }
 
   .comment-placeholder {
-    top: 0em;
+    top: 0;
   }
 
   .input-bar {
@@ -163,16 +163,16 @@
   }
 
   .input-password-mask {
-		background: center url('/images/info.svg') no-repeat;
-		background-size: contain;
-		position: absolute;
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 1.5em;
+    background: center url('/images/info.svg') no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5em;
     height: 1.5em;
     cursor: pointer;
-	}
+  }
 
   &.is-focussed {
     &.floating-label {
@@ -233,9 +233,8 @@
     }
 
     &.password-unmasked {
-
       .input-password-mask {
-        background: center url(/images/filter-search-icon.png) no-repeat;
+        background: center url("/images/filter-search-icon.png") no-repeat;
         background-size: contain;
       }
     }
@@ -296,13 +295,14 @@
 
 .slick-list {
   @include mobile {
-    padding:0 20% 0 0;
+    padding: 0 20% 0 0;
 
     .col {
       padding: 0 5px;
     }
   }
 }
+
 .delete-icon {
   width: 18px;
   height: 18px;
@@ -313,6 +313,7 @@
   background-size: contain;
   cursor: pointer;
 }
+
 .edit-icon {
   width: 18px;
   height: 18px;
@@ -391,6 +392,12 @@
 // talk to poppup fix
 
 .call-btn {
+
+  background-color: $white;
+  @include padding(19);
+  border-radius: 50%;
+  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
+
   img {
     @include width(80);
     @include height(80);
@@ -415,12 +422,16 @@
 .slick-disabled {
   display: none !important;
 }
+
 .width100 {
   width: 100%;
 }
-button, a {
+
+a,
+button {
   outline: none !important;
 }
+
 .wishlist-container {
   div[class^="container"] {
     max-width: 90%;
@@ -443,4 +454,3 @@ button, a {
 .tooltip.bs-tooltip-right .arrow:before {
   border-right-color: $primary-color !important;
 }
-
