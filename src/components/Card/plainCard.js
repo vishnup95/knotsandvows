@@ -25,19 +25,31 @@ class PlainCard extends Component {
   }
   
   render() {
+    let name = "";
+    let imageUrl = "";
+    let id = "";
+    if (this.props.type == "ceremonies"){
+      name = this.props.data.ceremony_name;
+      imageUrl = this.props.data.thumb_image;
+      id = this.props.data.ceremony_id;
+    }else{
+      name = this.props.data.name;
+      imageUrl = this.props.data.image;
+      id = this.props.data.category_id;
+    }
     return (
       <div>
-        <Card className="mb-5" style={{backgroundColor: '#ffffff'}} onClick={() => this.navigateTo(`/categories/${hyphonatedString(this.props.data.name,this.props.data.category_id)}`)}>
+        <Card className="mb-5" style={{backgroundColor: '#ffffff'}} onClick={() => this.navigateTo(`/${this.props.type}/${hyphonatedString(name,id)}`)}>
           <CardImg
             top
             width="100%"
-            src={this.props.data.image}
+            src={imageUrl}
             alt="Categories"
             onError={(e)=>{e.target.onerror = null; e.target.src=imagePath('card_2_1.jpg')}}
             className={styles.plainCardImage}
           />
           <CardBody className={styles.plainCardBody}>
-            <CardTitle className={styles.cardTitleSimple}>{this.props.data.name}</CardTitle>
+            <CardTitle className={styles.cardTitleSimple}>{name}</CardTitle>
           </CardBody>
         </Card>
       </div>
@@ -48,7 +60,12 @@ class PlainCard extends Component {
 PlainCard.propTypes = {
   data: PropTypes.object,
   dispatch: PropTypes.func,
+  type: PropTypes.string
 };
+
+PlainCard.defaultProps = {
+  type:'categories'
+}
 
 export default connect(
   mapDispatchToProps
