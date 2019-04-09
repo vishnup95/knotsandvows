@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
-import * as actions from '../ceremonyDetail/actions';
-import { Container, Row, Col, Modal } from 'reactstrap';
+import * as testactions from '../ceremonyDetail/actions';
+import * as actions from './actions';
+import { Container, Row, Col, Modal, Collapse } from 'reactstrap';
 import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
 import CategoryCard from '../../components/Card/cardCategory';
@@ -14,6 +15,7 @@ import CompareProduct from '../../components/compareProduct/compareProduct';
 const mapStateToProps = state => ({
   ceremonyDetails: state.ceremonyDetails.details,
   ceremonyLoading: state.ceremonyDetails.loading,
+  myWishListData: state.wishlist.wishListData
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -31,16 +33,18 @@ class CategoryListing extends Component {
       fixedCategories: [],
       selectedVendor: 0,
       isCompare: false,
-      modal: false
+      modal: false,
+      collapse: [true, false, false]
     }
     this.toggle = this.toggle.bind(this);
   }
   static fetchData(store) {
-    return store.dispatch(actions.fetchCeremonyDetails('wedding'));
+    return store.dispatch(testactions.fetchCeremonyDetails('wedding'));
   }
 
   componentWillMount() {
-    this.props.dispatch(actions.fetchCeremonyDetails('wedding'));
+    this.props.dispatch(testactions.fetchCeremonyDetails('wedding'));
+    this.props.dispatch(actions.fetchMyWishlist());
   }
 
   componentDidMount() {
@@ -60,6 +64,11 @@ class CategoryListing extends Component {
       modal: !prevState.modal
     }));
   }
+
+  toggleCollapse(toggleIndex) {
+    this.setState({collapse: this.state.collapse.map( (item, index) => index === toggleIndex ? !item : false)});
+  }
+
   navigateTo(route) {
     this.props.dispatch(push(route));
   }
@@ -96,17 +105,19 @@ class CategoryListing extends Component {
                   {
                     wishlist.map((item, index) => {
                       return (
-                        <div key={index}>
-                          <div className={styles.listTitle}>{item}</div>
-                          <ul className={styles.vendorList}>
-                            {
-                              this.state.fixedCategories.map((k, index) => {
-                                return (
-                                  <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
-                                );
-                              })
-                            }
-                          </ul>
+                        <div key={index} className="mb-4">
+                          <div className={styles.listTitle} onClick={() => this.toggleCollapse(index)} aria-hidden>{item}</div>
+                          <Collapse isOpen={this.state.collapse[index]}>
+                            <ul className={styles.vendorList}>
+                              {
+                                this.state.fixedCategories.map((k, index) => {
+                                  return (
+                                    <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
+                                  );
+                                })
+                              }
+                            </ul>
+                          </Collapse> 
                         </div>
                       );
                     })

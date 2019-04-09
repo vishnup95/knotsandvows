@@ -35,6 +35,16 @@ export default class HorizontalScrollingCarousel extends Component {
           );
         })
       )
+    }else if (this.props.type === 'similar_ceremonies') {
+      return(
+        this.props.data.map((ceremony, index) => {
+          return(
+            <div key={index} className={styles.plainCardContainer}>
+              <PlainCard data={ceremony} type="ceremonies"/>
+            </div>
+          );
+        })
+      )
     }
   }
 

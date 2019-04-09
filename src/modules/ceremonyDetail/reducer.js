@@ -1,6 +1,7 @@
 import * as types from './constants';
 const initialState = {
   details: null,
+  similar_ceremonenies:[],
   loading: false
 };
 
@@ -26,6 +27,27 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         details: null,
+        error: action.error.message,
+        loading: false
+      };
+
+      case types.LOAD_SIMILAR_CEREMONIES:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case types.LOAD_SIMILAR_CEREMONIES_SUCCESS:
+      result = action.result || [];
+      return {
+        ...state,
+        similar_ceremonenies: result.data.data.results,
+        loading: false
+      };
+
+    case types.LOAD_SIMILAR_CEREMONIES_FAILURE:
+      return {
+        ...state,
         error: action.error.message,
         loading: false
       };

@@ -30,7 +30,7 @@ import styles from './header.scss';
 import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
 import ForgotPassword from "../../modals/forgotPasswordModal/ForgotPasswordModal"
-import { isLoggedIn } from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString } from '../../utils/utilities';
 
 const mapStateToProps = state => ({
     route: state.router.location.pathname,
@@ -118,7 +118,7 @@ class Header extends Component {
         const listItems = list.map((item, index) => {
             return (
                 <li key={index}>
-                    <Link to={`/categories/${item.page_name}`}>{item.name}</Link>
+                    <Link to={`/categories/${hyphonatedString(item.page_name, item.category_id)}`}>{item.name}</Link>
                 </li>
             );
         });

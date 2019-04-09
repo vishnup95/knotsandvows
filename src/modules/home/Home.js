@@ -106,7 +106,7 @@ class Home extends Component {
   }
 
   handleCeremonyClick = (ceremony) => {
-    this.navigateTo(`/ceremonies/${ceremony.ceremony_id}`)
+    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id)}`)
   }
 
   render() {

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import styles from './footer.scss';
 import * as actions from '../../modules/home/actions';
 import TalkToWeddingPlanner from '../TalkToWeddingPlanner/talkToWeddingPlanner';
+import { hyphonatedString } from '../../utils/utilities';
 
 const mapStateToProps = state => ({
     ceremonies: state.home.ceremonies
@@ -81,7 +82,7 @@ class FooterFixedComponent extends Component {
                                     this.props.ceremonies.map((ceremony, index) => {
                                         return (
                                             <li key={index}>
-                                                <Link to={`/ceremonies/${ceremony.page_name}`}>{ceremony.ceremony_name}</Link>
+                                                <Link to={`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id) }`}>{ceremony.ceremony_name}</Link>
                                             </li>
                                         );
                                     })

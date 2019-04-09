@@ -71,6 +71,17 @@
     z-index: 1;
     border-radius: 5px;
     @include height(60);
+
+    @include mobile {
+      @include padding(30);
+      background-color: white;
+      width: 80%;
+      margin-top: 12vh;
+      border-radius: 10px;
+      flex-direction: column;
+      height: auto;
+      padding: 1.875rem 4rem;
+    }
   }
 
   .selectContainer {
@@ -120,6 +131,19 @@
     border: none;
     @include width(70);
     @include height(60);
+  }
+
+  @include mobile {
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.59);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    transition: 300ms all ease;
+    display: block;
+    margin: 0;
+    width: 100%;
   }
 }
 
@@ -219,6 +243,12 @@
     text-transform: uppercase;
     @include padding(0,16,0, 0);
     margin-bottom: -0.1rem;
+
+    @include mobile {
+      color: $warm-grey-eight;
+      letter-spacing: .5px;
+      @include fontSize(11);
+    }
   }
 
   .dropHeading {
@@ -228,6 +258,20 @@
     font-family: $roboto-regular;
     background: url('/images/filter-dropdown.png') right no-repeat;
     padding-right: 2rem;
+
+    @include mobile {
+      display: block;
+      background-size: 8px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      @include fontSize(18);
+      color: $black-twelve;
+    }
+  }
+
+  @include mobile {
+    border: 0;
+    padding: 0;
+    padding-top: 2rem;
   }
 }
 
@@ -263,6 +307,11 @@
 
   .selectedItem {
     background-color: #e8e4e4;
+  }
+
+  @include mobile {
+    top: -10px !important;
+    max-height: initial;
   }
 }
 
