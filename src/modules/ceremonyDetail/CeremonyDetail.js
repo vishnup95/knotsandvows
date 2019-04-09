@@ -9,13 +9,25 @@ import * as actions from './actions';
 import Select from 'react-select';
 import LoaderComponent from '../../components/Loader/loader';
 import CategorySection from './categorySection';
-// import { workerData } from 'worker_threads';
+import JumbotronComponent from '../../components/Jumbotron/jumbotron';
+import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal'
+
+const cities = {
+  display_name:"City",
+  name:"city",
+  values:[
+      {name: "Hyderabad", id: 0},
+      {name: "Secunderabad", id: 1},
+      {name: "Vijayawada", id: 2},
+      {name: "Vizag", id: 3}
+  ]
+}
 
 const mapStateToProps = state => ({
   user: state.session.user,
   ceremonyDetails: state.ceremonyDetails.details,
   ceremonyLoading: state.ceremonyDetails.loading,
-  other_ceremonenies: state.products.other_categories
+  similar_ceremonenies: state.ceremonyDetails.similar_ceremonenies
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -23,13 +35,16 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
+const jumbotronData = { title: 'Similar Ceremonies' };
 class CeremonyDetail extends Component {
+  
   state = {
-    ceremony: this.props.match.params.ceremony_name,
+    ceremony: this.selectedCategory(),
     selectedOption: null,
     categories: [],
     fixedCategories: []
   }
+  options = [];
 
   selectedCategory() {
     return this.props.match.params.ceremony_name;
@@ -38,14 +53,19 @@ class CeremonyDetail extends Component {
   componentWillMount() {
     let ceremony = this.selectedCategory();
     this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
+    this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
+    this.option = Array.from(cities.values, (value) => ({
+      label: value.name,
+      value: value.id
+    }));   
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.ceremonyDetails !== null) {
+    if (nextProps.ceremonyDetails !== null) {
       let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
         return item.vendors !== null && item.vendors.length > 0
       })
-      this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
+      this.setState({ categories: filteredCategories, fixedCategories: filteredCategories });
     }
   }
 
@@ -57,6 +77,7 @@ class CeremonyDetail extends Component {
     if (this.state.ceremony !== this.props.match.params.ceremony_name) {
       let ceremony = this.props.match.params.ceremony_name;
       this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
+      this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
       this.setState({ ceremony: ceremony, filter: { name: "", id: null } });
     }
   }
@@ -64,13 +85,13 @@ class CeremonyDetail extends Component {
   handleViewAllClick = (category) => {
     this.navigateTo(`/categories/${category}`)
   }
-  
+
   handleCategoryChange = (index) => {
     let updatedCategories = this.state.fixedCategories.slice();
     let temp = updatedCategories[1];
-    updatedCategories[1] = updatedCategories[index+1];
-    updatedCategories[index+1] = temp;
-    this.setState({categories: updatedCategories});
+    updatedCategories[1] = updatedCategories[index + 1];
+    updatedCategories[index + 1] = temp;
+    this.setState({ categories: updatedCategories });
   }
 
   handleDropDownChange = (option) => {
@@ -86,16 +107,7 @@ class CeremonyDetail extends Component {
 
   render() {
     let details = this.props.ceremonyDetails;
-    if (details !== null) {
-      var options = [];
-      if (details.filters && details.filters.length > 0 && details.filters[0].values && details.filters[0].values.length > 0) {
-        options = Array.from(details.filters[0].values, (value) => ({
-          label: value.name,
-          value: value.id
-        }));
-      }
-    }
-
+   
     return (
       <div className="full-height">
         {this.props.ceremonyLoading && <LoaderComponent />}
@@ -115,43 +127,48 @@ class CeremonyDetail extends Component {
             </h3> */}
                 </Col>
                 {/* <Col>Select City</Col> */}
-                {details.filters && details.filters.length > 0 &&
                   <Col>
                     <Select
                       value={this.state.selectedOption}
                       onChange={this.handleDropDownChange}
-                      options={options}
+                      options={this.option}
                       placeholder="City"
                       isClearable={false}
                     />
                   </Col>
-                }
               </Row>
-              
+
               {
-                this.state.fixedCategories.length > 0 ? 
-                <CategorySection category={this.state.fixedCategories[0]} dispatch={this.props.dispatch}/> : ''
+                this.state.fixedCategories.length > 0 ?
+                  <CategorySection category={this.state.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
               }
-              
+
               <Row>
                 <Col>
-                <h2 className="text-center">You may also be interested in</h2>
+                  <h2 className="text-center">You may also be interested in</h2>
                 </Col>
               </Row>
               <Row>
                 <Col className="no-padding">
-                  <HorizontalSlider data={this.state.fixedCategories.slice(1)} type='small' buttonAction={this.handleCategoryChange}/>
+                  <HorizontalSlider data={this.state.fixedCategories.slice(1)} type='small' buttonAction={this.handleCategoryChange} />
                 </Col>
               </Row>
               {
                 this.state.categories.slice(1).map((category, index) => {
                   return (
-                    <CategorySection category={category} key={index} dispatch={this.props.dispatch}/>
+                    <CategorySection category={category} key={index} dispatch={this.props.dispatch} />
                   );
                 })
               }
             </Container>
           </div>
+        }
+        {this.props.similar_ceremonenies &&
+          <JumbotronComponent data={jumbotronData} items={this.props.similar_ceremonenies.slice(0,3)} cardType="ceremonies" bgcolor="#f8f8f8" containerStyle="otherWrap">
+            <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
+              <HorizontalScrollingCarousel data={this.props.similar_ceremonenies} type="similar_ceremonies" />
+            </Col>
+          </JumbotronComponent>
         }
       </div>
     );
@@ -162,7 +179,7 @@ CeremonyDetail.propTypes = {
   user: PropTypes.object,
   dispatch: PropTypes.func,
   ceremonyDetails: PropTypes.object,
-  other_ceremonenies: PropTypes.array,
+  similar_ceremonenies: PropTypes.array,
   match: PropTypes.object,
   ceremonyLoading: PropTypes.bool
 };

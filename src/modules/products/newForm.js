@@ -109,12 +109,17 @@ class FormComponent extends Component {
         this.setState({category});
     }
 
+    toggleForm = () => {
+        if (this.props.toggle){
+            this.props.toggle();
+        }
+    }
     render() {
         let indexOfSelectedCategory = this.props.categories.findIndex(category => 
             category.category_id == getId(this.props.selectedCategory));
         return(
             
-            <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.props.toggle()} aria-hidden>
+            <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.toggleForm} aria-hidden>
                 <div className={styles.dropContainer} onClick={(event) => event.stopPropagation()} aria-hidden> 
                     <h5 className="d-block d-sm-none">Search your vendors</h5>
                     <DropdownComponent key="categories" placeholder="i am looking for" name="category" dispatch={this.props.dispatch}

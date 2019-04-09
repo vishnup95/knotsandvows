@@ -1,4 +1,5 @@
 import * as types from './constants';
+
 const initialState = {
   productListData: {
     no_of_pages: 0,
@@ -64,17 +65,18 @@ const ProductsReducer = (state = initialState, action) => {
 
     case types.LOAD_FILTERS_SUCCESS:
       result = action.result || {};
+      var data = addStaticFilter(result.data.data);
       if (action.isFirstLoading){
         return {
           ...state,
-          filterData: result.data.data,
-          tempfilterData : result.data.data,
+          filterData: data,
+          tempfilterData : data
         };
       }else{
         return {
           ...state,
-          tempfilterData : result.data.data,
-          filterData : {...state.filterData, filters: result.data.data.filters},
+          tempfilterData : data,
+          filterData : {...state.filterData, filters: data.filters}
         };
       }
   
@@ -107,5 +109,22 @@ const ProductsReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+function addStaticFilter(response) {
+   if (response && response.filters && response.filters.length >= 0){
+      var cityFilter  = {
+        display_name:"City",
+        name:"city",
+        values:[
+            {name: "Hyderabad", id: 0},
+            {name: "Secunderabad", id: 1},
+            {name: "Vijayawada", id: 2},
+            {name: "Vizag", id: 3}
+        ]
+      }
+      response.filters.splice(0,0,cityFilter);
+   }
+   return response;
+}
 
 export default ProductsReducer;
