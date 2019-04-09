@@ -9,7 +9,17 @@ import * as actions from './actions';
 import Select from 'react-select';
 import LoaderComponent from '../../components/Loader/loader';
 import CategorySection from './categorySection';
-// import { workerData } from 'worker_threads';
+
+const cities = {
+  display_name:"City",
+  name:"city",
+  values:[
+      {name: "Hyderabad", id: 0},
+      {name: "Secunderabad", id: 1},
+      {name: "Vijayawada", id: 2},
+      {name: "Vizag", id: 3}
+  ]
+}
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -24,12 +34,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class CeremonyDetail extends Component {
+  
   state = {
-    ceremony: this.props.match.params.ceremony_name,
+    ceremony: this.selectedCategory(),
     selectedOption: null,
     categories: [],
     fixedCategories: []
   }
+  options = [];
 
   selectedCategory() {
     return this.props.match.params.ceremony_name;
@@ -38,6 +50,10 @@ class CeremonyDetail extends Component {
   componentWillMount() {
     let ceremony = this.selectedCategory();
     this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
+    this.option = Array.from(cities.values, (value) => ({
+      label: value.name,
+      value: value.id
+}));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -86,16 +102,7 @@ class CeremonyDetail extends Component {
 
   render() {
     let details = this.props.ceremonyDetails;
-    if (details !== null) {
-      var options = [];
-      if (details.filters && details.filters.length > 0 && details.filters[0].values && details.filters[0].values.length > 0) {
-        options = Array.from(details.filters[0].values, (value) => ({
-          label: value.name,
-          value: value.id
-        }));
-      }
-    }
-
+   
     return (
       <div className="full-height">
         {this.props.ceremonyLoading && <LoaderComponent />}
@@ -115,17 +122,15 @@ class CeremonyDetail extends Component {
             </h3> */}
                 </Col>
                 {/* <Col>Select City</Col> */}
-                {details.filters && details.filters.length > 0 &&
                   <Col>
                     <Select
                       value={this.state.selectedOption}
                       onChange={this.handleDropDownChange}
-                      options={options}
+                      options={this.option}
                       placeholder="City"
                       isClearable={false}
                     />
                   </Col>
-                }
               </Row>
               
               {
