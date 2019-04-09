@@ -1,7 +1,7 @@
 import * as types from './constants';
 const initialState = {
   details: null,
-  similarCeremonies:[],
+  similar_ceremonenies:[],
   loading: false
 };
 
@@ -41,7 +41,7 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       result = action.result || [];
       return {
         ...state,
-        similarCeremonies: result.data.data.result,
+        similar_ceremonenies: result.data.data.results,
         loading: false
       };
 
