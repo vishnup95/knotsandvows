@@ -61,7 +61,7 @@ class ForgotPassword extends Component {
             if (password && confirmPassword){
                if(this.state.password === this.state.confirmPassword) {
                 const data = {
-                  hash: this.props.hash,
+                  code: this.props.hash,
                   password: this.state.password
                 }
                 this.setState({error: ''});

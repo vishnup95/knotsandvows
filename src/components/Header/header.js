@@ -168,7 +168,13 @@ class Header extends Component {
                 if (login == "true" && !isLoggedIn()) {
                     this.toggleModal();
                 }else{
-                    this.props.dispatch(replace("/"));
+                    var redirect = queryString.parse(this.props.location.search).redirect;
+                    if(redirect){
+                        this.props.dispatch(replace(`/${redirect}`));
+                    }else{
+                        this.props.dispatch(replace("/"));
+                    }
+                    
                 }
             }   
         }   
