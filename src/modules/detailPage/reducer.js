@@ -1,9 +1,6 @@
 import * as types from './constants';
 const initialState = {
   details: null,
-  amenities:[],
-  policies:[],
-  availableAreas:[],
   reviewsData: null,
   similarVendors:[],
   loading: false
@@ -34,49 +31,49 @@ const VendorDetailReducer = (state = initialState, action) => {
         loading: false
       };
 
-      case types.LOAD_AMINITIES:
+      case types.LOAD_GALLERY:
       return {
         ...state,
         loading: true
       };
 
-    case types.LOAD_AMINITIES_SUCCESS:
+    case types.LOAD_GALLERY_SUCCESS:
       result = action.result || [];
       return {
         ...state,
-        amenities: result.data.data,
+        details: {...state.details, gallery : result.data.data.gallery},
         loading: false
       };
 
-    case types.LOAD_AMINITIES_FAILURE:
+    case types.LOAD_GALLERY_FAILURE:
       return {
         ...state,
-        amenities:[],
+        details: {...state.details, gallery : []},
         error: action.error.message,
         loading: false
       };
 
-      case types.LOAD_POLICIES:
-      return {
-        ...state,
-        loading: true
-      };
+    //   case types.LOAD_POLICIES:
+    //   return {
+    //     ...state,
+    //     loading: true
+    //   };
 
-    case types.LOAD_POLICIES_SUCCESS:
-      result = action.result || [];
-      return {
-        ...state,
-        policies: result.data.data,
-        loading: false
-      };
+    // case types.LOAD_POLICIES_SUCCESS:
+    //   result = action.result || [];
+    //   return {
+    //     ...state,
+    //     policies: result.data.data,
+    //     loading: false
+    //   };
 
-    case types.LOAD_POLICIES_FAILURE:
-      return {
-        ...state,
-        policies:[],
-        error: action.error.message,
-        loading: false
-      };
+    // case types.LOAD_POLICIES_FAILURE:
+    //   return {
+    //     ...state,
+    //     policies:[],
+    //     error: action.error.message,
+    //     loading: false
+    //   };
 
     case types.LOAD_REVIEWS:
       return {
@@ -109,7 +106,7 @@ const VendorDetailReducer = (state = initialState, action) => {
       result = action.result || [];
       return {
         ...state,
-        similarVendors: result.data.data.results,
+        similarVendors: result.data.results,
         loading: false
       };
 

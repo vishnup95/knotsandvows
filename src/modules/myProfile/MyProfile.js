@@ -62,6 +62,7 @@ class MyProfile extends Component {
     render() {
         return (
             <div>
+                {this.props.user &&
             <div className={styles.profileContainer}>
                 <h1 className="mb-5 text-center">My Profile</h1>
                 <div>
@@ -76,6 +77,7 @@ class MyProfile extends Component {
                     </div>
                 </div>
             </div>
+                }
             <JumbotronComponent  data={jumbotronData} bgcolor="#f8f8f8" isTalkToAhwanam={true} containerStyle="otherWrap"/>
             </div>
         );

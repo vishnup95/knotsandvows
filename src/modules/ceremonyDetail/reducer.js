@@ -2,7 +2,7 @@ import * as types from './constants';
 const initialState = {
   details: null,
   similar_ceremonenies:[],
-  loading: false
+  loading: null
 };
 
 const CeremonyDetailReducer = (state = initialState, action) => {

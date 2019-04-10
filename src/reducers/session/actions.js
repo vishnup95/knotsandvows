@@ -107,7 +107,7 @@ export function resetPassword(data) {
       types.RESET_PASSWORD_SUCCESS,
       types.RESET_PASSWORD_FAILURE
     ],
-    promise: client => client.post('/api/UserAuth/reset', data)
+    promise: client => client.post('/api/UserAuth/resetpassword', data)
   };
 }
 
