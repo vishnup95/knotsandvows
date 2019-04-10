@@ -198,7 +198,7 @@ class CategoryCard extends Component {
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
                                     <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4>
                                     {
-                                        this.props.data.notes.map((key, index) => {
+                                        this.props.data.notes.map((note, index) => {
                                             return(
                                             <div className={styles.noteWrap} key={index}>
                                                 <div>            
@@ -211,10 +211,7 @@ class CategoryCard extends Component {
                                                         <span className="delete-icon"></span>
                                                     </div>
                                                     <div>
-                                                        Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet
-                                                        dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus
-                                                        scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at 
-                                                        elementum eu facilisis sed.
+                                                        {note.notes}
                                                     </div>
                                                 </div>
                                             </div>)
