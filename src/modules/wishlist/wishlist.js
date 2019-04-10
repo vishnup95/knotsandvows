@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
-import * as testactions from '../ceremonyDetail/actions';
 import * as actions from './actions';
 import { Container, Row, Col, Modal, Collapse } from 'reactstrap';
 import styles from './wishlist.scss';
@@ -13,8 +12,7 @@ import { imagePath } from '../../utils/assetUtils';
 import CompareProduct from '../../components/compareProduct/compareProduct';
 
 const mapStateToProps = state => ({
-  ceremonyDetails: state.ceremonyDetails.details,
-  ceremonyLoading: state.ceremonyDetails.loading,
+  wishlistLoading: state.wishlist.loading,
   myWishListData: state.wishlist.wishListData
 });
 
@@ -23,14 +21,13 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const wishlist = ["My list", "Second List", "Third List"];
+const wishlist = ["My list"];
 
 class CategoryListing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: [],
-      fixedCategories: [],
+      myWishListCategories: [],
       selectedVendor: 0,
       isCompare: false,
       modal: false,
@@ -38,12 +35,12 @@ class CategoryListing extends Component {
     }
     this.toggle = this.toggle.bind(this);
   }
+  
   static fetchData(store) {
-    return store.dispatch(testactions.fetchCeremonyDetails('wedding'));
+    return store.dispatch(actions.fetchMyWishlist());
   }
 
   componentWillMount() {
-    this.props.dispatch(testactions.fetchCeremonyDetails('wedding'));
     this.props.dispatch(actions.fetchMyWishlist());
   }
 
@@ -52,13 +49,12 @@ class CategoryListing extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.ceremonyDetails !== null) {
-      let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
-        return item.vendors !== null && item.vendors.length > 0
-      })
-      this.setState({ categories: filteredCategories, fixedCategories: filteredCategories });
+    if (nextProps.myWishListData !== null) {
+      let filteredMyWishListItems = nextProps.myWishListData.wishlistitems.filter(item => item.vendors.length > 0);
+      this.setState({myWishListCategories: filteredMyWishListItems});
     }
   }
+
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
@@ -74,12 +70,9 @@ class CategoryListing extends Component {
   }
 
   handleCategoryChange = (index) => {
-    let updatedCategories = this.state.fixedCategories.slice();
-    let temp = updatedCategories[0];
-    updatedCategories[0] = updatedCategories[index];
-    updatedCategories[index] = temp;
-    this.setState({ categories: updatedCategories, selectedVendor: index });
+    this.setState({selectedVendor: index});
   }
+
   setCompare = () => {
     this.setState({ isCompare: !this.state.isCompare });
   }
@@ -90,7 +83,7 @@ class CategoryListing extends Component {
         <div className="wishlist-container">
           <Container>
             {
-              this.props.ceremonyLoading &&
+              this.props.wishlistLoading &&
               <div className="row">
                 <div className="col-12">
                   <LoaderComponent />
@@ -99,7 +92,7 @@ class CategoryListing extends Component {
             }
 
             {
-              this.state.fixedCategories.length > 0 &&
+              this.state.myWishListCategories.length > 0 &&
               <Row>
                 <Col sm="2">
                   {
@@ -110,9 +103,11 @@ class CategoryListing extends Component {
                           <Collapse isOpen={this.state.collapse[index]}>
                             <ul className={styles.vendorList}>
                               {
-                                this.state.fixedCategories.map((k, index) => {
+                                this.state.myWishListCategories.map((item, index) => {
                                   return (
-                                    <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>{k.name}</li>
+                                    <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
+                                      {item.category_name}
+                                    </li>
                                   );
                                 })
                               }
@@ -140,10 +135,10 @@ class CategoryListing extends Component {
                       <Row>
 
                         {
-                          this.state.fixedCategories.length > 0 &&
+                          this.state.myWishListCategories.length > 0 &&
                           <Col className="text-left">
-                            <span className={styles.vendorName}>{this.state.fixedCategories[`${this.state.selectedVendor}`].name}</span>
-                            {!this.state.isCompare && <button className="text-btn small" onClick={() => this.setCompare()}>Compare {this.state.fixedCategories[`${this.state.selectedVendor}`].name}</button>}
+                            <span className={styles.vendorName}>{this.state.myWishListCategories[`${this.state.selectedVendor}`].category_name}</span>
+                            {!this.state.isCompare && <button className="text-btn small" onClick={() => this.setCompare()}>Compare {this.state.myWishListCategories[`${this.state.selectedVendor}`].category_name}</button>}
                           </Col>
                         }
                         {
@@ -163,8 +158,8 @@ class CategoryListing extends Component {
                         </Row>
                       }
                       <Row>
-                        {this.state.categories[0] && this.state.categories[0].vendors &&
-                          this.state.categories[0].vendors.map((item, index) => {
+                        {this.state.myWishListCategories[this.state.selectedVendor].vendors.map((item, index) => {
+                            !item.notes ? item.notes = [] : item.notes;
                             return (
                               <Col sm="6" md="6" lg="4" key={index}>
                                 <CategoryCard data={item} isCompare={this.state.isCompare} isWishlist={true} id={index} />
@@ -252,8 +247,8 @@ class CategoryListing extends Component {
 
 CategoryListing.propTypes = {
   user: PropTypes.object,
-  ceremonyDetails: PropTypes.object,
-  ceremonyLoading: PropTypes.bool,
+  wishlistLoading: PropTypes.bool,
+  myWishListData: PropTypes.object,
   dispatch: PropTypes.func,
 };
 

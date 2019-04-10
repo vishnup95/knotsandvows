@@ -25,3 +25,7 @@ export const LOAD_REMOVE_NOTE_FAILURE = 'my-project/wishlist/LOAD_REMOVE_NOTE_FA
 export const LOAD_EDIT_NOTE = 'my-project/wishlist/LOAD_EDIT_NOTE';
 export const LOAD_EDIT_NOTE_SUCCESS = 'my-project/wishlist/LOAD_EDIT_NOTE_SUCCESS';
 export const LOAD_EDIT_NOTE_FAILURE = 'my-project/wishlist/LOAD_EDIT_NOTE_FAILURE';
+
+export const LOAD_NOTES = 'my-project/wishlist/LOAD_NOTES';
+export const LOAD_NOTES_SUCCESS = 'my-project/wishlist/LOAD_NOTES_SUCCESS';
+export const LOAD_NOTES_FAILURE = 'my-project/wishlist/LOAD_NOTES_FAILURE';
