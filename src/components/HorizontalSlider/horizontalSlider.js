@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-// import { imagePath } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import styles from './horizontalSlider.scss';
 import PropTypes from 'prop-types';
 import CategoryCard from '../../components/Card/cardCategory';
@@ -193,8 +193,8 @@ export default class HorizontalSlider extends Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: this.props.type === 'about' ? 3: 4,
-            slidesToScroll: this.props.type === 'about' ? 3: 4,
+            slidesToShow: this.props.type === 'about' ? 3 : 4,
+            slidesToScroll: this.props.type === 'about' ? 3 : 4,
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />,
             initialSlide: 0,
@@ -226,29 +226,29 @@ export default class HorizontalSlider extends Component {
         };
 
         if (this.props.type === 'small') {
-            return(
+            return (
                 <div className={styles.multiContainer}>
-                <Slider {...settingsSmall}>
-                    {
-                        this.props.data.map((item, index) => {
-                            return (
-                                <div key={index} className={styles.sliderItem}>
-                                    <div className={styles.sliderWrap}>
-                                        {/* <img className={styles.vendorImage} src={item.thumb_image} alt="Icon" /> */}
-                                        <div className={`${styles.categoryName} ${index === this.state.selectedCategoryIndex ? styles.selectedCategory : ''}`}
-                                            aria-hidden onClick={() => this.handleCategoryChange(index)}>
-                                            {item.name}
+                    <Slider {...settingsSmall}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <div key={index} className={styles.sliderItem}>
+                                        <div className={styles.sliderWrap}>
+                                            {/* <img className={styles.vendorImage} src={item.thumb_image} alt="Icon" /> */}
+                                            <div className={`${styles.categoryName} ${index === this.state.selectedCategoryIndex ? styles.selectedCategory : ''}`}
+                                                aria-hidden onClick={() => this.handleCategoryChange(index)}>
+                                                {item.name}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })
-                    }
-                </Slider>
-            </div>
+                                );
+                            })
+                        }
+                    </Slider>
+                </div>
             );
         } else if (this.props.type === 'basic') {
-            return(
+            return (
                 <div>
                     <Slider {...settingsBasic}>
                         {
@@ -256,7 +256,7 @@ export default class HorizontalSlider extends Component {
                                 return (
                                     <div key={index} className={styles.sliderItemBasic}>
                                         <div className={styles.sliderWrap}>
-                                                {item}
+                                            {item}
                                         </div>
                                     </div>
                                 );
@@ -266,14 +266,14 @@ export default class HorizontalSlider extends Component {
                 </div>
             );
         } else if (this.props.type === 'about') {
-            return(
+            return (
                 <div>
                     <Slider {...settings}>
                         {
                             this.props.data.map((item, index) => {
                                 return (
                                     <Col key={index}>
-                                        <MemberComponent/>
+                                        <MemberComponent />
                                     </Col>
                                 );
                             })
@@ -282,8 +282,41 @@ export default class HorizontalSlider extends Component {
                 </div>
             );
         }
+        else if (this.props.type === 'ceremony') {
+            return (
+                <div>
+                    {
+                        styles &&
+                    <Slider {...settings}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <Col key={index}>
+                                    {
+                                        styles.ceremonyCard && 
+                                        <div className={styles.ceremonyCard} aria-hidden onClick={() => this.props.onSelect(item)}>
+                                        {
+                                            styles.ceremonyIg && 
+                                            <img className={styles.ceremonyIg} style={{ backgroundImage: `url(${item.thumb_image}) ` }} alt=""
+                                                onError={(e) => { e.target.onerror = null; e.target.src = imagePath('card_2_1.jpg') }}></img>
+                                        }
+                                            
+                                            <h3>{item.ceremony_name}</h3>
+                                            
+                                        </div>
+                                    }
+
+                                    </Col>
+                                );
+                            })
+                        }
+                    </Slider>
+                    }
+                </div>
+            );
+        }
         else {
-            return(
+            return (
                 <div>
                     <Slider {...settings}>
                         {
@@ -300,7 +333,7 @@ export default class HorizontalSlider extends Component {
                         </Col>
                     </Slider>
                 </div>
-            ); 
+            );
         }
     }
 }

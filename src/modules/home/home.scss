@@ -3,19 +3,22 @@
 @import '../../variables/utils';
 
 .homeContainer {
-  h1 {
-    @include fontSize(93.5);
-    font-family: $frank-bold;
-    white-space: nowrap;
-  }
+  h1 {}
 
   h2 {
     font-family: $roboto-bold;
     text-align: center;
+    margin-bottom: 1rem;
+
+    span {
+      color: $medium-pink;
+    }
   }
 
   p {
+    font-family: $roboto-medium;
     text-align: center;
+    @include fontSize(25.2);
   }
 }
 
@@ -52,8 +55,9 @@ h1 {
 }
 
 hr {
-  width: 20%;
-  border-top: 1px solid $black;
+  width: 25%;
+  border-top: 2px solid #712557;
+  @extend %spacer;
 }
 
 .button {
@@ -98,10 +102,14 @@ a.button {
 
 // carousel styles
 .carouselItem {
-  display: flex;
+  display: flex !important;
+  background-image: linear-gradient(116deg, $secondary-color, $lavender-pink);
+  @include padding(80);
+  border-radius: 6px;
 
   &:before {
     content: '';
+    border-radius: 6px;
     position: absolute;
     left: 0;
     top: 0;
@@ -116,6 +124,17 @@ a.button {
   flex: 1.5;
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+  }
   @include mobile {
      @include height(440);
   }
@@ -474,6 +493,8 @@ a.button {
   line-height: 1.21;
   @include fontSize(28);
   margin-bottom: 1.5rem;
+  @include fontSize(16);
+  text-align: left !important;
   @include mobile {
     font-size: 12px;
   }
@@ -489,10 +510,14 @@ a.button {
 }
 
 .carouselContent {
+  display: flex;
+  align-items: center;
   flex: 1;
   text-align: center;
   color: white;
   text-align: left;
+  flex-direction: column;
+  justify-content: center;
   @include mobile {
     padding-right: 1.875rem;
     @include left(30);
@@ -530,17 +555,26 @@ a.button {
   position: absolute;
   top: 35%;
   z-index: 2;
+
+  p {
+    text-align: left;
+  }
 }
 
 .homeImage {
   @include height(967);
   width: auto;
+  @extend %spacer;
 }
 
 .homeTitle {
-  @include fontSize(93.5);
+  @include fontSize(80);
   font-family: $frank-bold;
   white-space: nowrap;
+
+  span {
+    color: $medium-pink;
+  }
 }
 
 .mediumPinkBg {
@@ -568,7 +602,43 @@ a.button {
   @include fontSize(93.5);
   font-family: $frank-bold;
 }
+
 .whiteDesc {
   color: $white;
   @include fontSize(26);
+}
+
+.contactInput {
+  @include width(570);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(50, 50, 93, 0.11);
+  border: solid 1.5px $medium-pink;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  justify-content: space-between;
+
+  input {
+    border: none;
+    @include fontSize(20.6);
+    outline: none;
+    font-family: $roboto-light;
+    color: $warm-grey-eight-two;
+    background: $white;
+  }
+
+  button {
+    margin: 0;
+    border-radius: 0;
+    @include fontSize(16);
+  }
+}
+
+%spacer {
+  margin-bottom: 7rem;
+}
+
+.author {
+  font-family: $roboto-bold;
+  @include fontSize(16);
 }

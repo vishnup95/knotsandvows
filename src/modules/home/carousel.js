@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { imagePath } from '../../utils/assetUtils';
-import { Link } from 'react-router-dom';
 
 import styles from './home.scss';
 
@@ -17,48 +16,33 @@ const items = [
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
         buttonText: 'Browse caterers',
-        pathToRedirect: 'wishlist'
-    },
-    {
+        pathToRedirect: 'wishlist',
+        descAuthor: 'Name',
+    },{
         src: 'carousel_1.jpg',
-        altText: 'Slide 2',
+        altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
         buttonText: 'Browse caterers',
-        pathToRedirect: 'exclusive'
-    },
-    {
+        pathToRedirect: 'wishlist',
+        descAuthor: 'Name',
+    },{
         src: 'carousel_1.jpg',
-        altText: 'Slide 3',
+        altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
         buttonText: 'Browse caterers',
-        pathToRedirect: 'exclusive'
-    },
-    {
+        pathToRedirect: 'wishlist',
+        descAuthor: 'Name',
+    },{
         src: 'carousel_1.jpg',
-        altText: 'Slide 4',
+        altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
         buttonText: 'Browse caterers',
-        pathToRedirect: 'exclusive'
+        pathToRedirect: 'wishlist',
+        descAuthor: 'Name',
     },
-    {
-        src: 'carousel_1.jpg',
-        altText: 'Slide 5',
-        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
-        buttonText: 'Browse caterers',
-        pathToRedirect: 'exclusive'
-    },
-    {
-        src: 'carousel_1.jpg',
-        altText: 'Slide 6',
-        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
-        buttonText: 'Browse caterers',
-        pathToRedirect: 'exclusive'
-    }
 ];
 
 class CarouselComponent extends Component {
@@ -93,24 +77,18 @@ class CarouselComponent extends Component {
     }
 
     render() {
-
-
-
         const { activeIndex } = this.state;
-
         const slides = items.map((item, index) => {
             return (
                 <CarouselItem
                     onExiting={this.onExiting}
                     onExited={this.onExited}
                     key={index} className={styles.carouselItem}>
-                    <div className={styles.carousalImage} style={{ backgroundImage: `url(${imagePath(item.src)})`}}></div>
+                    <div className={styles.carousalImage} style={{ backgroundImage: `url(${imagePath(item.src)})` }}></div>
                     <div className={styles.carouselContent}>
-                        <h3 className={styles.carouselHeader}>{item.caption}</h3>
+                        <img  src={imagePath('quote.svg')} alt="quote" />
                         <p className={styles.carouselText}>{item.shortDescription}</p>
-                        <div className={styles.buttonContainer}>
-                            <Link to={`/${item.pathToRedirect}`} className={`${styles.carouselBtn} primary-button`}>{item.buttonText}</Link>
-                        </div>
+                        <p className={styles.author}>{item.descAuthor}</p>
                     </div>
 
                 </CarouselItem>
@@ -124,7 +102,6 @@ class CarouselComponent extends Component {
                 previous={this.previous}>
                 <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
                 {slides}
-                <img className={styles.bottomCurve} src={imagePath('curveline.svg')} alt="curve" />
 
             </Carousel>
         );

@@ -10,7 +10,7 @@ import {
   Col,
   Button
 } from 'reactstrap';
-
+import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import * as actions from './actions';
 import CarouselComponent from './carousel';
 // import JumbotronComponent from '../../components/Jumbotron/jumbotron';
@@ -19,45 +19,7 @@ import CarouselComponent from './carousel';
 // import VerticalMultiCarousel from './multiCarouselVertical';
 // import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
 import { imagePath } from '../../utils/assetUtils';
-
-// const jumbotronData = [
-//   {
-//     title: 'Start planning your wedding!',
-//     subtitle: "Find and book your dream team of local vendors based on your style and budget"
-//   },
-//   {
-//     title: 'Overbound with choices?',
-//     subtitle: 'You will be looking for ideas, and all exciting but there are so many that you realise how much planning you need to do and basically we offering the in packages so that also preferred '
-//   },
-//   {
-//     title: 'We are here for you',
-//     subtitle: 'From helping you select vendors to planning all your ceremonies we will be with you every step of the way'
-//   },
-//   {
-//     title: 'Need Help?',
-//     buttonText: 'Talk with wedding planner',
-//     subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by clicking the Chat button below and theyâ€™ll help you get your party started.'
-//   },
-//   {
-//     title: 'Joining With Us Is Quick and Easy',
-//     buttonText: 'Join as Vendor',
-//     subtitle: 'Ahwanam provides a full-service platform for listing services. get leads, send quotes, and collect payments all in one place.'
-//   }
-// ];
-
-// const staticData = [
-//   {
-//     title: 'Browse all vendors',
-//     description: 'Guaranteed best prices from all our vendors',
-//     image: '/images/home_static1.jpg',
-//   },
-//   {
-//     title: 'Wedding dashboard',
-//     description: 'Add to wishlist, compare services, share ideas with family, finalize vendors and more!',
-//     image: '/images/home_static2.jpg',
-//   },
-
-// ];
+import {  hyphonatedString} from '../../utils/utilities';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -110,6 +72,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log(styles, 'styl');
     return (
       <div>
         {
@@ -121,7 +84,7 @@ class Home extends Component {
                   <div className={styles.homeContent}>
                     <h1 className={styles.homeTitle}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1>
                     <p>Sevenvows can help you with x ooxoox xcvxcv xcvxcvxc xo oxo oxo</p>
-                    <div>
+                    <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" />
                       <Button className="primary-button medium-pink">FREE CONSULTATION</Button>
 
@@ -135,7 +98,7 @@ class Home extends Component {
               <hr></hr>
               <Row>
                 <Col>
-                  <h2>60% of couples think wedding planners <br />are unnecessary, until they panic</h2>
+                  <h2>60% of couples think <span>wedding planners</span> <br />are unnecessary, until they panic</h2>
                   <p>Wedding planning takes a lot, but hiring a wedding planner is a surefire<br /> way to lighten your load and focus on enjoying your special day</p>
                 </Col>
               </Row>
@@ -232,8 +195,8 @@ class Home extends Component {
                 </Row>
               </Container>
             </div>
-            <Container>
-              <Row>
+            <Container className={styles.homeContainer}>
+              <Row className="mb-5">
                 <Col>
                 <img src={imagePath('box-one.png')} alt="img" />
                 <div>
@@ -257,6 +220,17 @@ class Home extends Component {
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                   <Button className="primary-button medium-pink">WISHLIST</Button>
                 </div>
+                </Col>
+              </Row>
+              <Row className="mt-5">
+                <Col>
+                <h2>You may also be interested in…</h2>
+
+                { this.props.ceremonies &&
+                  <Col xs="12" className={`${styles.desktopCarousal} no-padding`}>
+                        <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony"/>
+                  </Col>
+                }
                 </Col>
               </Row>
             </Container>
