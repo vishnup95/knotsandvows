@@ -58,7 +58,7 @@ class CategoryCard extends Component {
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
                     <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
                     <p className={`${styles.charges}`}>
-                        <span>{formatMoney(this.props.data.price.service_price)}</span> {this.props.data.charge_type}
+                        <span>{formatMoney(this.props.data.price.minimum_price)}</span> {this.props.data.charge_type}
                     </p>
                 </div>
 
