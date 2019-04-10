@@ -8,7 +8,7 @@ export function fetchVendorDetails(vendor) {
       types.LOAD_DETAILS_SUCCESS,
       types.LOAD_DETAILS_FAILURE
     ],
-    promise: client => client.get(`/api/getvendordetails?vendor_id=`+getId(vendor))
+    promise: client => client.get(`/api/getallvendordetails?vendor_id=`+getId(vendor))
   };
 }
 
@@ -52,7 +52,7 @@ export function fetchSimilarVendors(vendor) {
       types.LOAD_SIMILAR_VENDORS_SUCCESS,
       types.LOAD_SIMILAR_VENDORS_FAILURE
     ],
-    promise: client => client.get(`/api/similarvendors?vendor_id=`+getId(vendor))
+    promise: client => client.get(`/api/getsimilarvendors?vendor_id=`+getId(vendor))
   };
 }
 
@@ -64,5 +64,17 @@ export function fetchReviews(vendor, page) {
       types.LOAD_REVIEWS_FAILURE
     ],
     promise: client => client.get(`/api/reviews?vendor=`+getId(vendor)+`&page=`+page+`&offset=5`)
+  };
+}
+
+
+export function fetchVendorGallery(vendor) {
+  return {
+    types: [
+      types.LOAD_GALLERY,
+      types.LOAD_GALLERY_SUCCESS,
+      types.LOAD_GALLERY_FAILURE
+    ],
+    promise: client => client.get(`/api/getvendorgallery?vendor_id=`+getId(vendor))
   };
 }

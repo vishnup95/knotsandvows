@@ -6,6 +6,7 @@ import { imagePath } from '../../utils/assetUtils';
 import * as actions from '../../reducers/session/actions';
 import * as homeActions from '../../modules/home/actions'
 import * as modalActions from '../../reducers/modal/actions';
+import * as wishlistActions from '../../modules/wishlist/actions';
 import { Link } from 'react-router-dom';
 import { push, replace } from 'connected-react-router';
 import { sendGAEvent } from '../../utils/GAUtilities'
@@ -85,9 +86,9 @@ class Header extends Component {
     }
 
     componentDidMount() {
-
         if (isLoggedIn()) {
             this.props.dispatch(actions.fetchMyProfile());
+            this.props.dispatch(wishlistActions.fetchMyWishlist());
         } 
     }
 
@@ -135,10 +136,12 @@ class Header extends Component {
     }
 
     shortName = (userName) => {
-        let name = userName;
-        var initials = name.match(/\b\w/g) || [];
-        initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-        return (initials);
+        if (userName) {
+            var initials = userName.match(/\b\w/g) || [];
+            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+            return (initials);
+        }
+        return 'NU';
     }
 
     componentDidUpdate(prevProps) {
@@ -168,7 +171,13 @@ class Header extends Component {
                 if (login == "true" && !isLoggedIn()) {
                     this.toggleModal();
                 }else{
-                    this.props.dispatch(replace("/"));
+                    var redirect = queryString.parse(this.props.location.search).redirect;
+                    if(redirect){
+                        this.props.dispatch(replace(`/${redirect}`));
+                    }else{
+                        this.props.dispatch(replace("/"));
+                    }
+                    
                 }
             }   
         }   

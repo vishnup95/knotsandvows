@@ -13,7 +13,7 @@ import ReviewItem from '../../components/Reviews/reviews';
 import ReactPaginate from 'react-paginate';
 import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, formatMoney } from '../../utils/assetUtils';
 // import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 import LoaderComponent from '../../components/Loader/loader';
 import { isLoggedIn } from '../../utils/utilities';
@@ -25,10 +25,7 @@ const mapStateToProps = state => ({
     details: state.details.details,
     detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
-    similarVendors: state.details.similarVendors,
-    amenities: state.details.amenities,
-    policies: state.details.policies,
-    availableAreas: state.details.availableAreas
+    similarVendors: state.details.similarVendors
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -81,10 +78,10 @@ class DetailPageComponent extends Component {
         let vendor = this.props.match.params.vendor_name;
         this.setState({ vendor: vendor, category: category, reviewPage: 1 });
         this.props.dispatch(actions.fetchVendorDetails(vendor));
-        this.props.dispatch(actions.fetchPolicies(vendor));
-        this.props.dispatch(actions.fetchAmenities(vendor));
-        this.props.dispatch(actions.fetchSimilarVendors(vendor));
+        this.props.dispatch(actions.fetchVendorGallery(vendor));
         this.props.dispatch(actions.fetchReviews(vendor, 1));
+        this.props.dispatch(actions.fetchSimilarVendors(vendor));
+
 
     }
     componentDidMount() {
@@ -102,7 +99,7 @@ class DetailPageComponent extends Component {
 
         const availableAreas = availableArea.map((area, index) => {
 
-            return <li key={index}>{area.name} <br />
+            return <li key={index}>{area.area_name} <br />
                 <span>{area.seating_capacity} Seating | {area.type}</span>
             </li>
         });
@@ -113,7 +110,7 @@ class DetailPageComponent extends Component {
 
         const availableAmenities = amenities.map((amenity, index) => {
 
-            return <li key={index} ><span className={style.listIcon} style={{ background: "url(" + amenity.icon_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></span>{amenity.amenity_name}</li>
+            return <li key={index} ><span className={style.listIcon} style={{ background: "url(" + amenity.amenity_icon + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></span>{amenity.amenity_name}</li>
 
         });
         return availableAmenities;
@@ -127,6 +124,20 @@ class DetailPageComponent extends Component {
 
         });
         return termsAndPolicies;
+    }
+
+    renderPackages = (packages) => {
+
+        const packagesToRender = packages.map((item, index) => {
+
+            return (
+            <div className={style.pricesContainer} key={index}>
+                <div className={style.item}>{item.name}<br/><span className={style.grey}>({item.charge_type})</span></div>
+                <div className={style.itemPrice}>{formatMoney(item.price)} <br /><span className={style.grey}>GST extra</span></div>
+            </div>
+            )
+        });
+        return packagesToRender;
     }
 
     jumbotronData = (category) => {
@@ -148,18 +159,18 @@ class DetailPageComponent extends Component {
         let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
 
         if (email && phone && date) {
-                const params = {};
-                params['email'] = this.state.email;
-                this.state.date ? params['event_date'] = this.state.date : '';
-                this.state.phone ? params['phone'] = this.state.phone : '';
-            
+            const params = {};
+            params['email'] = this.state.email;
+            this.state.date ? params['event_date'] = this.state.date : '';
+            this.state.phone ? params['phone'] = this.state.phone : '';
+
 
             this.props.dispatch(talkToPlannerActions.postContactDetails(params));
         }
     }
 
     handleFormChange(e) {
-        this.setState({[e.target.id]: e.target.value});
+        this.setState({ [e.target.id]: e.target.value });
     }
 
     render() {
@@ -167,16 +178,16 @@ class DetailPageComponent extends Component {
         let reviewsData = this.props.reviewsData;
         let detailNavItems = [];
         if (details) {
-            if (details.about) {
+            if (details.description) {
                 detailNavItems.push("About");
             }
-            if (this.props.availableAreas && this.props.availableAreas.length > 0) {
+            if (details.availableareas && details.availableareas.length > 0) {
                 detailNavItems.push("Available Areas");
             }
-            if (this.props.amenities && this.props.amenities.length > 0) {
+            if (details.amenities && details.amenities.length > 0) {
                 detailNavItems.push("Amenities");
             }
-            if (this.props.policies && this.props.policies.length > 0) {
+            if (details.Policies && details.Policies.length > 0) {
                 detailNavItems.push("Policies");
             }
             if (details.location && details.location.latitude && details.location.longitude) {
@@ -195,7 +206,7 @@ class DetailPageComponent extends Component {
                 {this.props.detailsLoading && <LoaderComponent />}
                 {details &&
                     <div>
-                        <div className={style.bgImage} style={{ background: "url(" + details.cover_image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+                        <div className={style.bgImage} style={{ background: "url(" + details.pic_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
                         </div>
                         <div className={style.detailSection}>
                             <Row className={style.infoBox}>
@@ -207,10 +218,9 @@ class DetailPageComponent extends Component {
                                 </div>
                                 <div className={style.infoSub}>
                                     <div className={style.ratingWrap}>
-                                        <div>
-                                            {/* <StarRating rating={details.rating} size={'large'} /> */}
-                                        </div>
-                                        {/* <div className={style.rating}>4.5/5 rating</div> */}
+                                        {details.rating && <div>
+                                            <StarRating rating={String(details.rating)} size={'large'} />
+                                        </div>}
                                         <div className={style.review}> {details.reviews_count} Reviews</div>
                                     </div>
                                     <div className={style.viewBtnWrap}>
@@ -240,41 +250,41 @@ class DetailPageComponent extends Component {
                             </Row>
                             <Row>
                                 <Col md="7">
-                                    {details.about &&
+                                    {details.description &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>About {details.name}</h3>
                                             <ShowMoreText
                                                 lines={10}
                                                 more='more'
                                                 less='less'
-                                            >{details.about}
+                                            >{details.description}
                                             </ShowMoreText>
                                         </Col>
                                     }
-                                    {details.available_areas && details.available_areas.length > 0 &&
+                                    {details.availableareas && details.availableareas.length > 0 &&
                                         <Col md="12" className={style.detailSubSection}>
-                                            <h3>Available Areas ({details.available_areas.length})</h3>
+                                            <h3>Available Areas ({details.availableareas.length})</h3>
                                             <ul className={style.selectableList}>
-                                                {this.renderAvailableArea(details.available_areas)}
+                                                {this.renderAvailableArea(details.availableareas)}
                                             </ul>
 
                                         </Col>
                                     }
 
-                                    {this.props.amenities && this.props.amenities.length > 0 &&
+                                    {details.amenities && details.amenities.length > 0 &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>Amenities</h3>
                                             <ul className={style.listWithIcon}>
-                                                {this.renderAminities(this.props.amenities)}
+                                                {this.renderAminities(details.amenities)}
                                             </ul>
 
                                         </Col>
                                     }
-                                    {this.props.policies && this.props.policies.length > 0 &&
+                                    {details.Policies && details.Policies.length > 0 &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>Policies</h3>
                                             <ul className={style.selectableList}>
-                                                {this.renderPolicies(this.props.policies)}
+                                                {this.renderPolicies(details.Policies)}
                                             </ul>
 
                                         </Col>
@@ -318,51 +328,26 @@ class DetailPageComponent extends Component {
                                 </Col>
 
                                 <Col md="5">
+                                {details.packages && details.packages.length > 0 &&
                                     <Col md="12" className={`${style.detailSubSection} ${style.rightSection} py-0`}>
                                         <Col md="12" className={`${style.rightSubSection} py-2`}>
                                             <div className={style.pricesContainer}> Starting Price</div>
-                                            <div className={style.pricesContainer}>
-                                                <div className={style.item}>
-                                                    Mandap decoration  <br /><span className={style.grey}>(Price per event)</span>
-                                                </div>
-                                                <div className={style.itemPrice}>
-                                                    ₹1,50,000.00  <br /><span className={style.grey}>GST extra</span>
-                                                </div>
-                                            </div>
-
-                                            <div className={style.pricesContainer}>
-                                                <div className={style.item}>
-                                                    Bouquets  <br /><span className={style.grey}>(Price per unit)</span>
-                                                </div>
-                                                <div className={style.itemPrice}>
-                                                    ₹1,50,000.00  <br /><span className={style.grey}>GST extra</span>
-                                                </div>
-                                            </div>
-
-                                            <div className={style.pricesContainer}>
-                                                <div className={style.item}>
-                                                    Mandap decoration  <br /><span className={style.grey}>(Price per event)</span>
-                                                </div>
-                                                <div className={style.itemPrice}>
-                                                    ₹2060.00  <br /><span className={style.grey}>GST extra</span>
-                                                </div>
-                                            </div>
+                                            {this.renderPackages(details.packages)}
                                         </Col>
-                                    </Col>
+                                    </Col>}
 
                                     <Col className={style.detailSubSection}>
                                         <Col md="12" className={`#{style.rightSubSection} text-center`}>
                                             <p className={style.needHelp}>Need some guidance on selecting vendors?</p>
                                             {/* <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button> */}
                                             <Form style={{ zIndex: '10000' }} className="position-relative">
-                                                <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false}/>
+                                                <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
                                                 <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
-                                                <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} required={false}/>
+                                                <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} required={false} />
                                             </Form>
                                             <div className="text-center">
                                                 <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our wedding planner!</Button>
                                             </div>
-                                            {/* <TalkToWeddingPlanner buttonText={'Talk to our wedding planner!'} /> */}
                                         </Col>
                                     </Col>
                                     {true &&
@@ -431,10 +416,7 @@ DetailPageComponent.propTypes = {
     details: PropTypes.object,
     similarVendors: PropTypes.array,
     match: PropTypes.object,
-    detailsLoading: PropTypes.bool,
-    amenities: PropTypes.array,
-    policies: PropTypes.array,
-    availableAreas: PropTypes.array
+    detailsLoading: PropTypes.bool
 };
 
 export default connect(
