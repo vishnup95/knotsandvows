@@ -70,7 +70,7 @@ export const fetchAllNotes = (details) => {
       types.LOAD_NOTES_FAILURE
     ],
     payload: details,
-    promise: client => client.get(`/api/getallnotes?vendor_id=${details.vendor_id}&wishlist_id=${1}`)
+    promise: client => client.get(`/api/getallnotes?vendor_id=${details.vendor_id}&wishlist_id=${details.wishlist_id}`)
   };
 }
 
@@ -81,8 +81,19 @@ export function addNote(params, dispatch) {
       types.LOAD_ADD_NOTE_SUCCESS,
       types.LOAD_ADD_NOTE_FAILURE
     ],
-    promise: client => client.get(`/api.ahwanam.com/api/wishlist/addnote`, params)
+    promise: client => client.get(`/api/wishlist/addnote`, params)
       .then(() => dispatch(this.fetchAllNotes(params)))
         .catch(error => console.log(error))
+  };
+}
+
+export function addCollabrator(params) {
+  return {
+    types: [
+      types.LOAD_ADD_COLLABRATOR,
+      types.LOAD_ADD_COLLABRATOR_SUCCESS,
+      types.LOAD_ADD_COLLABRATOR_FAILURE
+    ],
+    promise: client => client.post(`/api/addcollabrator`, params)
   };
 }

@@ -42,3 +42,13 @@ export function formatDate(date) {
   let formattedDate =  new Intl.DateTimeFormat('en-GB', options).format(newDate);
   return formattedDate.toUpperCase();
 }
+
+export function getDataFromResponse(response) {
+  if (response && response.data && response.data.status && response.data.status == true) {
+    return null;
+  }else  if (response && response.data && response.data.message) {
+    return response.data.message;
+  }else {         
+    return "Unexpected error occured, try again later";
+  }
+}

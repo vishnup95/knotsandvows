@@ -14,13 +14,14 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString, formatDate } from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse } from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions'
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
+import * as modalActions from '../../reducers/modal/actions';
 
 const mapStateToProps = state => ({
-    wishlistId: state.wishlist.wishListData ? state.wishlist.wishListData.wishlist_id : 4,
+    wishlistId: state.wishlist.current.wishlist_id,
     noteloading: state.wishlist.noteloading
 });  
 
@@ -30,7 +31,6 @@ const mapDispatchToProps = dispatch => ({
 
 class CategoryCard extends Component {
     state = {
-        isChecked: false,
         isInWishlist: false,
         showNotes: false,
         showAddNote: false
@@ -60,14 +60,25 @@ class CategoryCard extends Component {
     addToWishList = (e) => {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
-        } else {
+        } else if (!this.state.isInWishlist) {
             let params = {
                 vendor_id: this.props.data.vendor_id,
                 wishlist_id: this.props.wishlistId
             };
 
-            this.props.dispatch(wishlistActions.addToWishlist(params));
-            this.setState({isInWishlist: !this.setState.isInWishlist ? true: this.state.isInWishlist});          
+            this.props.dispatch(wishlistActions.addToWishlist(params)).then((response) => {
+                var error = getDataFromResponse(response);
+                if (error == null){
+                    this.setState({isInWishlist: true});     
+                }else{
+                    let modalContent = {
+                        heading: '',
+                        message: error,
+                        proceedAction: this.toggleModal
+                      };
+                    this.props.dispatch(modalActions.showModal(modalContent));
+                }
+            });           
         }
         e.stopPropagation();
     }
@@ -92,7 +103,7 @@ class CategoryCard extends Component {
 
         if(save) {
             let params = {
-                wishlist_id:1,
+                wishlist_id: this.props.wishlistId,
                 category_id: this.props.data.category_id,
                 vendor_id:4,
                 note: document.getElementById('note').value
@@ -164,7 +175,7 @@ class CategoryCard extends Component {
     }
 
     selectCard = (e) => {
-        this.setState({ isChecked: !this.state.isChecked });
+        this.props.selectedToCompare(this.props.data , this.props.isChecked);
         e.stopPropagation();
     }
 
@@ -196,7 +207,7 @@ class CategoryCard extends Component {
                     {
                         this.props.isCompare &&
                         <div className={styles.compareMask} onClick={(e) => this.selectCard(e)} aria-hidden>
-                            <span className={`${styles.checkbox} ${this.state.isChecked ? styles.checked : ''}`}></span>
+                            <span className={`${styles.checkbox} ${this.props.isChecked ? styles.checked : ''}`}></span>
                         </div>
                     }
                     {
@@ -263,7 +274,9 @@ CategoryCard.propTypes = {
     isWishlist: PropTypes.bool,
     isInWishList: PropTypes.bool,
     wishlistId: PropTypes.number,
-    noteloading: PropTypes.bool
+    noteloading: PropTypes.bool,
+    isChecked: PropTypes.bool,
+    selectedToCompare: PropTypes.func
 };
 
 export default connect(

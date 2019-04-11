@@ -5,7 +5,11 @@ const initialState = {
   sharedWishListData: null,
   currentWishListData:null,
   loading: false,
-  noteloading: false
+  noteloading: false,
+  current:{
+    wishlist_id: 0,
+    shared: false
+  }
 };
 
 const WishListReducer = (state = initialState, action) => {
@@ -22,7 +26,8 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_MY_WISHLIST_SUCCESS:
       return {
         ...state,
-        wishListData: action.result.data.data, 
+        wishListData: action.result.data.data,
+        current:{wishlist_id: action.result.data.data.wishlist_id, shared: false },
         loading: false
       };
 
@@ -100,6 +105,26 @@ const WishListReducer = (state = initialState, action) => {
         ...state,
         error: action.error.message,
         noteloading: false
+      };
+
+      case types.LOAD_ADD_COLLABRATOR:
+      return {
+        ...state,
+        loading : true,
+        error:null
+      };
+
+    case types.LOAD_ADD_COLLABRATOR_SUCCESS:
+      return {
+        ...state,
+        loading : false,
+      };
+
+    case types.LOAD_ADD_COLLABRATOR_FAILURE:
+      return {
+        ...state,
+        error: action.error.message,
+        loading : false
       };
 
     default:

@@ -16,11 +16,13 @@ import StarRating from '../../components/StarRating/starRating';
 import { imagePath, formatMoney } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
-import { isLoggedIn } from '../../utils/utilities';
+import { isLoggedIn , getDataFromResponse } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import InputField from '../../components/InputField/inputField';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
+import * as modalActions from '../../reducers/modal/actions';
+
 const mapStateToProps = state => ({
     user: state.session.user,
     details: state.details.details,
@@ -28,7 +30,7 @@ const mapStateToProps = state => ({
     reviewsData: state.details.reviewsData,
     similarVendors: state.details.similarVendors,
     wishListApiLoading : state.wishlist.loading,
-    addWishListApiStatus : state.wishlist.apiStatus
+    wishlistId : state.wishlist.current.wishlist_id
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -71,10 +73,6 @@ class DetailPageComponent extends Component {
             window.scrollTo(0, 0);
             return
         }
-
-        if ((prevProps.addWishListApiStatus != this.props.addWishListApiStatus) && this.props.addWishListApiStatus == true) {
-            this.setState({isInWishList: !this.state.isInWishList}); 
-        }
     }
 
     componentWillMount() {
@@ -104,9 +102,21 @@ class DetailPageComponent extends Component {
             if (!this.state.isInWishList){
                 let params = {
                     vendor_id: this.props.details.vendor_id,
-                    wishlist_id: 1
+                    wishlist_id: this.props.wishlistId
                 };
-                this.props.dispatch(wishlistActions.addToWishlist(params));
+                this.props.dispatch(wishlistActions.addToWishlist(params)).then((response) => {
+                    var error = getDataFromResponse(response);
+                    if (error == null){
+                        this.setState({isInWishList: true});    
+                    }else{
+                        let modalContent = {
+                            heading: '',
+                            message: error,
+                            proceedAction: this.toggleModal
+                          };
+                        this.props.dispatch(modalActions.showModal(modalContent));
+                    }
+                });   
             }     
         }
         e.stopPropagation();
@@ -116,10 +126,22 @@ class DetailPageComponent extends Component {
             if (this.state.isInWishList){
                 let params = {
                     vendor_id: this.props.details.vendor_id,
-                    wishlist_id: 1,
+                    wishlist_id: this.props.wishlistId,
                     category_id : this.props.details.category_id
                 };
-            this.props.dispatch(wishlistActions.removeFromWishlist(params));  
+                this.props.dispatch(wishlistActions.removeFromWishlist(params)).then((response) => {
+                    var error = getDataFromResponse(response);
+                    if (error == null){
+                        this.setState({isInWishList: false});    
+                    }else{
+                        let modalContent = {
+                            heading: '',
+                            message: error,
+                            proceedAction: this.toggleModal
+                          };
+                        this.props.dispatch(modalActions.showModal(modalContent));
+                    }
+                });   
         }
         e.stopPropagation();
     }
@@ -447,7 +469,7 @@ DetailPageComponent.propTypes = {
     match: PropTypes.object,
     detailsLoading: PropTypes.bool,
     wishListApiLoading:PropTypes.bool,
-    addWishListApiStatus:PropTypes.object
+    wishlistId: PropTypes.number
 };
 
 export default connect(

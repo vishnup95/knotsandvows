@@ -11,6 +11,8 @@ import CategoryCard from '../../components/Card/cardCategory';
 import { imagePath } from '../../utils/assetUtils';
 import { hyphonatedString } from '../../utils/utilities';
 import CompareProduct from '../../components/compareProduct/compareProduct';
+import AddCollabratorModal from './addCollabrator'
+import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 
 const mapStateToProps = state => ({
   wishlistLoading: state.wishlist.loading,
@@ -32,7 +34,9 @@ class CategoryListing extends Component {
       selectedVendor: 0,
       isCompare: false,
       modal: false,
-      collapse: [true, false, false]
+      collapse: [true, false, false],
+      vendorSelectedToCompare: [],
+      showAddCollabrator : false
     }
     this.toggle = this.toggle.bind(this);
   }
@@ -57,9 +61,15 @@ class CategoryListing extends Component {
   }
 
   toggle() {
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }));
+    if (this.state.modal){
+      this.setState({ modal: false});
+    }else if (this.state.vendorSelectedToCompare.length > 1){
+      this.setState({ modal: true});
+    }
+  }
+
+  toggleAddCollabratorModal = () => {
+      this.setState({ showAddCollabrator: !this.state.showAddCollabrator});
   }
 
   toggleCollapse(toggleIndex) {
@@ -71,14 +81,48 @@ class CategoryListing extends Component {
   }
 
   handleCategoryChange = (index) => {
-    this.setState({selectedVendor: index});
+    this.setState({selectedVendor: index, vendorSelectedToCompare:[]});
   }
 
   setCompare = () => {
-    this.setState({ isCompare: !this.state.isCompare });
+
+    this.setState({ isCompare: !this.state.isCompare, vendorSelectedToCompare:[]});
+  }
+
+  addToCompare = (vendor, isRemoving) => {
+    var newArray = [];
+    if (isRemoving){
+      newArray = this.state.vendorSelectedToCompare.slice();
+      newArray.splice(newArray.indexOf(vendor),1)
+      this.setState({vendorSelectedToCompare: newArray, modal: newArray.length == 0 ? false : this.state.modal});
+      return
+    }
+    if (this.state.vendorSelectedToCompare.length < 3){
+      newArray = this.state.vendorSelectedToCompare.slice();    
+      newArray.push(vendor); 
+      this.setState({vendorSelectedToCompare: newArray});
+    }
+  }
+
+  checkIfSelectedForComparison = (vendor) => {
+    if (this.isCompare == false) {
+      return false;
+    }
+    let isChecked = this.state.vendorSelectedToCompare.some( vendorSelected => vendorSelected.vendor_id === vendor.vendor_id);
+    return isChecked;
+  }
+
+  renderCompareVendors = (vendors) => {
+    const compareVendors = vendors.map((vendor, index) => {
+
+      return <CompareProduct data={vendor} key={index} dispatch={this.props.dispatch} removeAction={(vendor) => this.addToCompare(vendor, true)}/>
+
+  });
+  return compareVendors;
   }
 
   render() {
+    
     return (
       <div className="full-height" style={{ marginTop: '14rem' }}>
         <div className="wishlist-container">
@@ -128,7 +172,7 @@ class CategoryListing extends Component {
                       <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
                       <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
                       <div className={styles.collaboratorCount}>5</div>
-                      <div className={styles.addCollaborator}></div>
+                      <div className={styles.addCollaborator} onClick={this.toggleAddCollabratorModal} aria-hidden></div>
                     </Col>
                   </Row>
                   <Row className={styles.listDetailContainer}>
@@ -155,22 +199,24 @@ class CategoryListing extends Component {
                         this.state.isCompare &&
                         <Row>
                           <Col xs="12" className={styles.subText}>Choose two vendors of your choice to see how they compare on price, rating, and specialities. </Col>
-                          <Col xs="12" className={styles.selectedCount}>You are selected lorem ipsum of 3 vendors.</Col>
+                          <Col xs="12" className={styles.selectedCount}>You are selected {this.state.vendorSelectedToCompare.length} of 3 vendors.</Col>
                         </Row>
                       }
                       <Row>
                         {this.state.myWishListCategories[this.state.selectedVendor].vendors.map((item, index) => {
                             !item.notes ? item.notes = [] : item.notes;
+                            let category = hyphonatedString(this.state.myWishListCategories[this.state.selectedVendor].category_name, this.state.myWishListCategories[this.state.selectedVendor].category_id);
+                            
                             return (
                               <Col sm="6" md="6" lg="4" key={index}>
-                                <CategoryCard data={item} isCompare={this.state.isCompare} isWishlist={true} id={index} />
+                                <CategoryCard data={item} category={category} isChecked={this.checkIfSelectedForComparison(item)} selectedToCompare={(vendor,isRemoving) => this.addToCompare(vendor,isRemoving)} isCompare={this.state.isCompare} isWishlist={true} id={index} />
                               </Col>
                             );
                           })
                         }
                         <Col sm="6" md="6" lg="4">
                           <div className={styles.addNew} aria-hidden
-                            onClick={() => this.navigateTo(`/categories/${hyphonatedString(this.state.myWishListCategories[this.state.selectedVendor].page_name, this.state.myWishListCategories[this.state.selectedVendor].category_id)}`)}>
+                            onClick={() => this.navigateTo(`/categories/${hyphonatedString(this.state.myWishListCategories[this.state.selectedVendor].category_name, this.state.myWishListCategories[this.state.selectedVendor].category_id)}`)}>
                             <div className={styles.addBtn}></div>
                           </div>
                         </Col>
@@ -228,18 +274,21 @@ class CategoryListing extends Component {
                   </Col>
                   <Col sm="11">
                     <Row>
-                      <CompareProduct />
-                      <CompareProduct />
+                      {this.renderCompareVendors(this.state.vendorSelectedToCompare)}
+                      {this.state.vendorSelectedToCompare.length < 3 && 
                       <Col sm="6" md="6" lg="4">
                         <div className={styles.addNew}>
-                          <div className={styles.addBtn}></div>
+                          <button className={styles.addBtn} onClick={this.toggle}></button>
                         </div>
-                      </Col>
+                      </Col>}
                     </Row>
                   </Col>
                 </Row>
               </div>
             </Modal>
+            <Modal isOpen={this.state.showAddCollabrator} toggle={this.toggleAddCollabratorModal} className={modalStyles.forgotContainer} centered={true}>
+                    <AddCollabratorModal close={this.toggleAddCollabratorModal}></AddCollabratorModal>
+                </Modal>
           </Container>
         </div>
       </div>
