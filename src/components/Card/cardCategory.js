@@ -14,12 +14,14 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString} from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString, formatDate } from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions'
 import * as wishlistActions from '../../modules/wishlist/actions';
+import LoaderComponent from '../../components/Loader/loader';
 
 const mapStateToProps = state => ({
     wishlistId: state.wishlist.wishListData ? state.wishlist.wishListData.wishlist_id : 4,
+    noteloading: state.wishlist.noteloading
 });  
 
 const mapDispatchToProps = dispatch => ({
@@ -32,6 +34,22 @@ class CategoryCard extends Component {
         isInWishlist: false,
         showNotes: false,
         showAddNote: false
+    }
+
+    componentDidMount() {
+        document.addEventListener('click', this.handleClickOutside, true);
+    }
+    
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside, true);
+    }
+
+    handleClickOutside = event => {
+        if (event.target.id !== `card${this.props.id}`) {
+            this.setState({showNotes: false});
+        } else {
+            this.toggleNotes(event);
+        }
     }
 
     navigateTo(route) {
@@ -96,7 +114,7 @@ class CategoryCard extends Component {
         }
 
         return (
-            <div className={styles.cardbodyContainer}>
+            <div className={styles.cardbodyContainer} id={`card${this.props.id}`}>
 
                 <div className={styles.mainContent}>
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
@@ -197,13 +215,19 @@ class CategoryCard extends Component {
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
                                     <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4>
+                                    {this.props.noteloading &&
+                                    <div className="row">
+                                        <div className="col-12">
+                                        <LoaderComponent />
+                                        </div>
+                                    </div>}
                                     {
                                         this.props.data.notes.map((note, index) => {
                                             return(
                                             <div className={styles.noteWrap} key={index}>
                                                 <div>            
                                                     <span className={styles.noteTitle}>Binu</span>
-                                                    <span className={styles.noteDate}>07 Mar 2019</span>
+                                                    <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
                                                 </div>
                                                 <div className={styles.noteText}>
                                                     <div>
@@ -239,6 +263,7 @@ CategoryCard.propTypes = {
     isWishlist: PropTypes.bool,
     isInWishList: PropTypes.bool,
     wishlistId: PropTypes.number,
+    noteloading: PropTypes.bool
 };
 
 export default connect(

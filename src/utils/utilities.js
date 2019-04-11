@@ -34,3 +34,11 @@ export function hyphonatedString(name, id){
   hyphonated = hyphonated +"-"+ id ;
   return hyphonated;
 }
+
+export function formatDate(date) {
+  let options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+  let newDate = new Date(date);
+  
+  let formattedDate =  new Intl.DateTimeFormat('en-GB', options).format(newDate);
+  return formattedDate.toUpperCase();
+}
