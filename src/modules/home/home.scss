@@ -2,6 +2,27 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
+.homeContainer {
+  h1 {}
+
+  h2 {
+    font-family: $roboto-bold;
+    text-align: center;
+    margin-bottom: 1rem;
+
+    span {
+      color: $medium-pink;
+    }
+  }
+
+  p {
+    font-family: $roboto-medium;
+    text-align: center;
+    @include fontSize(25.2);
+  }
+  @extend %spacer;
+}
+
 .title {
   color: $blue;
 }
@@ -35,8 +56,9 @@ h1 {
 }
 
 hr {
-  width: 20%;
-  border-top: 1px solid $black;
+  width: 25%;
+  border-top: 2px solid #712557;
+  @extend %spacer;
 }
 
 .button {
@@ -81,8 +103,15 @@ a.button {
 
 // carousel styles
 .carouselItem {
+  display: flex !important;
+  background-image: linear-gradient(116deg, $secondary-color, $lavender-pink);
+  @include padding(80);
+  border-radius: 6px;
+  max-width: 935px;
+
   &:before {
     content: '';
+    border-radius: 6px;
     position: absolute;
     left: 0;
     top: 0;
@@ -91,13 +120,26 @@ a.button {
     background-image: linear-gradient(to right, rgba(56, 26, 28, 0.53), rgba(58, 27, 29, 0.78) 31%, rgba(95, 43, 48, 0) 65%, rgba(0, 0, 0, 0));
   }
 }
+
 .carousalImage {
-  @include height(600);
-  width: 100%;
   background-size: cover;
-  backround-repeat: no-repeat;
+  background-repeat: no-repeat;
+  position: relative;
+  @include width(530);
+  @include height(350);
+  flex-shrink: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+  }
   @include mobile {
-    @include height(440);
+     @include height(440);
   }
 }
 
@@ -106,7 +148,6 @@ a.button {
 .packageContainer {
   display: flex;
   justify-content: space-between;
-  // padding: 3.5rem 0;
   cursor: pointer;
   @include padding(59.5,0);
   border-bottom: 2px solid #eee;
@@ -114,6 +155,7 @@ a.button {
   a {
     color: $primary-color;
   }
+
   h2 {
     color: $black;
     margin-bottom: 1rem;
@@ -124,7 +166,6 @@ a.button {
   }
 
   .details {
-    // width: max-content;
     @include width(787);
     padding-top: 2.5rem;
   }
@@ -229,48 +270,58 @@ a.button {
     display: none;
   }
 }
+
 .mobileCarousal {
   display: none;
   @include mobile {
     display: flex;
   }
+
   .verticalMultiItem {
     min-width: 41%;
     width: 41%;
     flex-direction: column;
     height: auto;
+
     .imageContainer {
       width: 90%;
       height: 102px;
-      border-radius: 1.125rem 1.125rem 0rem 0rem;
+      border-radius: 1.125rem 1.125rem 0 0;
     }
+
     .detailContainer {
       width: 90%;
-      border-radius: 0rem 0rem 1.125rem 1.125rem;
-      padding: .75rem .75rem 1.4rem .75rem;
+      border-radius: 0 0 1.125rem 1.125rem;
+      padding: .75rem .75rem 1.4rem;
+
       .handle {
         display: none;
       }
+
       h3 {
         font-size: 11px;
       }
+
       p {
         font-size: 10px;
       }
     }
   }
 }
+
 .fullWidth {
   width: calc(100% + 22px);
 }
+
 .scrollingContainer {
   width: 100%;
   overflow-x: scroll;
-  display:flex;
+  display: flex;
 }
+
 .staticItemContainer {
   @include mobile {
-    @include flex();
+     @include flex();
     @include flex-row-reverse();
     @include justify-space-between();
   }
@@ -443,11 +494,18 @@ a.button {
 .carousel-text {
   font-family: $roboto-regular;
   line-height: 1.21;
-  @include fontSize(28);
   margin-bottom: 1.5rem;
+  @include fontSize(18.3, important=true);
+  text-align: left !important;
   @include mobile {
     font-size: 12px;
   }
+}
+
+.author {
+  font-family: $roboto-bold;
+  @include fontSize(18.3, important=true);
+
 }
 
 .carousel-btn {
@@ -460,27 +518,30 @@ a.button {
 }
 
 .carouselContent {
-  position: absolute;
+  display: flex;
+  align-items: flex-start;
   text-align: center;
-  @include top(104.7);
-  @include left(126);
   color: white;
   text-align: left;
-  padding-right: 50%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+
+  > img {
+    margin-bottom: 1rem;
+  }
   @include mobile {
     padding-right: 1.875rem;
     @include left(30);
     text-align: center;
   }
-  @include tabletOnly {
-    padding-right: 20%;
-  }
+  @include tabletOnly {}
 
   .buttonContainer {
     display: flex;
     flex-grow: 1;
     @include mobile {
-      @include justify-center();
+       @include justify-center();
     }
   }
 }
@@ -500,4 +561,246 @@ a.button {
   min-width: 41%;
   width: 41%;
   margin-right: 1.2rem;
+}
+
+.homeContent {
+  position: absolute;
+  top: 35%;
+  z-index: 2;
+
+  p {
+    text-align: left;
+  }
+}
+
+.homeImage {
+  @include height(967);
+  width: auto;
+  @extend %spacer;
+}
+
+.homeTitle {
+  @include fontSize(80);
+  font-family: $frank-bold;
+  white-space: nowrap;
+
+  span {
+    color: $medium-pink;
+  }
+}
+
+.mediumPinkBg {
+  background-color: $medium-pink;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailDesc {
+  color: $secondary-color;
+  font-family: $roboto-bold;
+  font-size: 3.22rem;
+}
+
+.detailCount {
+  color: $white;
+  text-align: center;
+  padding: 2rem 1rem;
+
+  div {
+    &:first-child {
+      font-size: 3.2rem;
+      font-family: $roboto-medium;
+      border-bottom: 2px solid $white;
+    }
+
+    &:last-child {
+      font-size: 2rem;
+      font-family: $roboto-light;
+    }
+  }
+}
+
+.cardDetail {
+  font-family: $roboto-light;
+}
+
+.cardImage {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 99px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+  }
+}
+
+.whiteHeading {
+  color: $white;
+  @include fontSize(93.5);
+  font-family: $frank-bold;
+}
+
+.whiteDesc {
+  color: $white;
+  @include fontSize(26);
+}
+
+.contactInput {
+  @include width(570);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(50, 50, 93, 0.11);
+  border: solid 1.5px $medium-pink;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  justify-content: space-between;
+
+  input {
+    border: none;
+    @include fontSize(20.6);
+    outline: none;
+    font-family: $roboto-light;
+    color: $warm-grey-eight-two;
+    background: $white;
+  }
+
+  button {
+    margin: 0;
+    border-radius: 0;
+    @include fontSize(16);
+  }
+}
+
+%spacer {
+  margin-bottom: 7rem;
+}
+
+.carousel {
+  max-width: 935px;
+  margin: 0 auto;
+}
+
+.bRadius {
+  border-radius: 6.5px;
+}
+
+.imageCardWrap {
+  @extend %spacer;
+  max-width: 901px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardImageContainer {
+  margin-right: -4.8rem;
+  display: flex;
+  align-items: center;
+  padding: 2.5rem 0;
+
+  img {
+    @include width(665);
+  }
+
+}
+
+.imageCard {
+  display: flex;
+  border-radius: 6px;
+  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
+  border: solid 1.5px #ffc8df;
+  width: 62rem;
+  max-width: 871px;
+  margin: 3rem auto 7rem;
+
+  h3 {
+    font-size: 2.25rem;
+    font-family: $roboto-regular;
+  }
+
+  &:nth-child(even) {
+    margin-right: -2.4rem;
+  }
+
+  &:nth-child(odd) {
+    margin-left: -2.4rem;
+  }
+
+  &.imageCardReverse {
+    .cardImageContainer {
+      margin-left: -4.8rem;
+      margin-right: 0;
+    }
+  }
+}
+
+.imageCardIcon {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.imageCardText {
+  padding: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardDetail {
+  font-family: $roboto-light !important;
+  text-align: left !important;
+  font-size: 1.2rem !important;
+}
+
+.packageBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.packageDetail {
+  display: flex;
+  flex-direction: column;
+  padding: 0 3rem;
+  @extend %spacer;
+  button {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    font-family: $roboto-bold !important;
+  }
+
+  p {
+    font-family: $roboto-light !important;
+    text-align: left !important;
+    font-size: 1.2rem !important;
+  }
+}
+.boxSection {
+  @include height(600);
+  display: flex;
+  align-items: center;
+  h2 {
+    line-height: .8;
+  }
+  img {
+    width: 35rem;
+  }
+  @extend %spacer;
+}
+.dummyClass {
+  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

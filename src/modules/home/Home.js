@@ -1,61 +1,25 @@
+import styles from './home.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import {
+  Container,
   Row,
   Col,
+  Button
 } from 'reactstrap';
-
-import styles from './home.scss';
+import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import * as actions from './actions';
 import CarouselComponent from './carousel';
-import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-import PackageComponent from './packageComponent';
-import HorizontalMultiCarousel from './multiCarouselHorizontal';
-import VerticalMultiCarousel from './multiCarouselVertical';
-import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
-import { hyphonatedString } from '../../utils/utilities';
-
-const jumbotronData = [
-  {
-    title: 'Start planning your wedding!',
-    subtitle: "Find and book your dream team of local vendors based on your style and budget"
-  },
-  {
-    title: 'Overbound with choices?',
-    subtitle: 'You will be looking for ideas, and all exciting but there are so many that you realise how much planning you need to do and basically we offering the in packages so that also preferred '
-  },
-  {
-    title: 'We are here for you',
-    subtitle: 'From helping you select vendors to planning all your ceremonies we will be with you every step of the way'
-  },
-  {
-    title: 'Need Help?',
-    buttonText: 'Talk with wedding planner',
-    subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by clicking the Chat button below and theyâ€™ll help you get your party started.'
-  },
-  {
-    title: 'Joining With Us Is Quick and Easy',
-    buttonText: 'Join as Vendor',
-    subtitle: 'Ahwanam provides a full-service platform for listing services. get leads, send quotes, and collect payments all in one place.'
-  }
-];
-
-const staticData = [
-  {
-    title: 'Browse all vendors',
-    description: 'Guaranteed best prices from all our vendors',
-    image: '/images/home_static1.jpg',
-  },
-  {
-    title: 'Wedding dashboard',
-    description: 'Add to wishlist, compare services, share ideas with family, finalize vendors and more!',
-    image: '/images/home_static2.jpg',
-  },
-
-];
+// import JumbotronComponent from '../../components/Jumbotron/jumbotron';
+// import PackageComponent from './packageComponent';
+// import HorizontalMultiCarousel from './multiCarouselHorizontal';
+// import VerticalMultiCarousel from './multiCarouselVertical';
+// import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
+import { imagePath } from '../../utils/assetUtils';
+import {  hyphonatedString} from '../../utils/utilities';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -110,55 +74,175 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <CarouselComponent />
-
-        <JumbotronComponent data={jumbotronData[0]} bgcolor="#ffffff">
-          <Row className="pt-5">
-            <Col xs="12" sm="12" md="5" className={`${styles.staticItemContainer} no-padding no-margin`}>
-              {
-                staticData.map((item, index) => {
-                  return (
-                    <div key={index} className={styles.staticItem} style={{ backgroundImage: `url(${item.image})` }}
-                      onClick={() => this.navigateTo('/categories')} aria-hidden>
-                      <h4>{item.title}</h4>
-                      <p className={styles.pSmall}>{item.description}</p>
-                    </div>
-                  );
-                })
-              }
-            </Col>
-            {this.props.ceremonies &&
-              <Col xs="12" sm="7" className={`${styles.desktopCarousal} no-padding`} style={{ margin: '-1rem 0' }}>
-                <VerticalMultiCarousel ceremonies={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} />
-              </Col>
-            }
-            {this.props.ceremonies &&
-              <Col xs="12" className={`${styles.mobileCarousal} no-padding`} style={{ margin: '-1rem 0' }}>
-                <HorizontalScrollingCarousel data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="home" />
-              </Col>
-            }
-          </Row>
-        </JumbotronComponent>
-
-        <JumbotronComponent data={jumbotronData[1]} containerStyle="packageWrap" bgcolor="#ffffff">
+        {
+          styles &&
           <div>
-            {this.props.exclusives.map((exclusivePackage, index) => {
-              return <PackageComponent key={index} details={exclusivePackage} />;
-            })}
+            <div className={`${styles.homeContainer} container`}>
+              <Row>
+                <Col>
+                  <div className={styles.homeContent}>
+                    <h1 className={styles.homeTitle}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1>
+                    <p>Sevenvows can help you with x ooxoox xcvxcv xcvxcvxc xo oxo oxo</p>
+                    <div className={styles.contactInput}>
+                      <input type="text" placeholder="Email/Phone" />
+                      <Button className="primary-button medium-pink">FREE CONSULTATION</Button>
+
+                    </div>
+                  </div>
+                </Col>
+                <Col>
+                  <img className={styles.homeImage} src={imagePath('home-image.png')} alt="call-button" />
+                </Col>
+              </Row>
+              <hr></hr>
+              <Row>
+                <Col>
+                  <h2>60% of couples think <span>wedding planners</span> <br />are unnecessary, until they panic</h2>
+                  <p>Wedding planning takes a lot, but hiring a wedding planner is a surefire<br /> way to lighten your load and focus on enjoying your special day</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <CarouselComponent />
+                </Col>
+              </Row>
+              <Row>
+                <Col className="text-center mt-5">
+                  <Button className="primary-button medium-pink">LET US HELP YOU</Button>
+                </Col>
+              </Row>
+
+            </div>
+            <div className={`${styles.mediumPinkBg} ${styles.bRadius} container-fluid`}>
+              <div className={`${styles.homeContainer} container`}>
+                <Row className='justify-center'>
+                  <Col className={styles.row}>
+                    {/* <div className={styles.detailDesc}>We know</div> */}
+                    <div className={styles.detailCount}>
+                      <div>300 +</div>
+                      <div>venues</div>
+                    </div>
+                  </Col>
+                  <Col className={styles.row}>
+                    {/* <div className={styles.detailDesc}>We have</div> */}
+                    <div className={styles.detailCount}>
+                      <div>15 +</div>
+                      <div>years of experience</div>
+                    </div>
+                  </Col>
+                  <Col className={styles.row}>
+                    {/* <div className={styles.detailDesc}>We are in</div> */}
+                    <div className={styles.detailCount}>
+                      <div>10 +</div>
+                      <div>cities</div>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div className={`${styles.homeContainer} ${styles.imageCardWrap} container`}>
+              <Row>
+                <Col className="text-center">
+                  <h2>We make your dreams come true</h2>
+                  <p>Whether it is planning your entire wedding or only parts of it, we <br />will fulfill your needs and make your wedding a lot more enjoyable</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <div className={styles.imageCard}>
+                    <div className={styles.imageCardText}>
+                      <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
+                      <h3>Personalised Services</h3>
+                      <p className={styles.cardDetail}>We believe that individualised, person centred planning is the foundation.</p>
+                    </div>
+                    <div className={styles.cardImageContainer}>
+                      <img className={styles.cardImage} src={imagePath('personalised-services-img.png')} alt="img" />
+                    </div>
+                  </div>
+                  <div className={`${styles.imageCard} ${styles.imageCardReverse} row-reverse`}>
+                    <div className={styles.imageCardText}>
+                      <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
+                      <h3>Discounted Prices</h3>
+                      <p className={styles.cardDetail}>Check out our exclusive wedding deals for your big day at amazing prices!</p>
+                    </div>
+                    <div className={styles.cardImageContainer}>
+                      <img className={styles.cardImage} src={imagePath('discounted-prices-img.png')} alt="img" />
+                    </div>
+                  </div>
+                  <div className={styles.imageCard}>
+                    <div className={styles.imageCardText}>
+                      <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />
+                      <h3>Seven Vows - expert Team</h3>
+                      <p className={styles.cardDetail}>Meet our team of crazy talented planners from across the country! </p>
+                    </div>
+                    <div className={styles.cardImageContainer}>
+                      <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`} id="boxsection">
+              <Container>
+                <Row>
+                    <Col>
+                      <img src={imagePath('packagesimage.png')} alt="img" />
+                    </Col>
+                    <Col className={styles.dummyClass}>
+                      <h2 className={styles.whiteHeading}>Save <br/>money!</h2>
+                      <p className={styles.whiteDesc}>These wedding packages are specially created to make every bride and grooms life easy</p>
+                      <Button className="primary-button white">LET US HELP YOU</Button>
+                    </Col>
+                </Row>
+              </Container>
+            </div>
+            <Container className={styles.homeContainer}>
+              <Row className="mb-5">
+                <Col className={styles.packageBox}>
+                <img src={imagePath('box-one.png')} alt="img" />
+                <div className={styles.packageDetail}>
+                  <h3>Gold Package</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
+                  <Button className="primary-button medium-pink">LEARN MORE</Button>
+                </div>
+                </Col>
+                <Col className={styles.packageBox}>
+                <img src={imagePath('box-two.png')} alt="img" />
+                <div  className={styles.packageDetail}>
+                  <h3>Emerald Package</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
+                  <Button className="primary-button medium-pink">LEARN MORE</Button>
+                </div>
+                </Col>
+                <Col className={styles.packageBox}>
+                <img src={imagePath('box-three.png')} alt="img" />
+                <div  className={styles.packageDetail}>
+                  <h3>Customize</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
+                  <Button className="primary-button medium-pink">WISHLIST</Button>
+                </div>
+                </Col>
+              </Row>
+              <Row className="mt-5">
+                <Col>
+                <h2>You may also be interested in…</h2>
+
+                { this.props.ceremonies &&
+                  <Col xs="12" className={`${styles.desktopCarousal} no-padding`}>
+                        <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony"/>
+                  </Col>
+                }
+                </Col>
+              </Row>
+            </Container>
           </div>
-        </JumbotronComponent>
-
-        <JumbotronComponent data={jumbotronData[2]} bgcolor="#fef9f9" insideContainer={false} containerStyle="carouselWrap">
-          <HorizontalMultiCarousel />
-        </JumbotronComponent>
-
-        {/* <JumbotronComponent data={jumbotronData[3]} bgcolor="#ffffff" isTalkToAhwanam={true} /> */}
-      </div>
+          }
+        </div>
     );
   }
 }
 
-Home.propTypes = {
+    Home.propTypes = {
   user: PropTypes.object,
   dispatch: PropTypes.func,
   categories: PropTypes.array,
