@@ -34,23 +34,25 @@
 
 .carousel-indicators {
   z-index: 2;
-  bottom: 8rem;
+  bottom: 1rem;
+  max-width: 935px;
   @include mobile {
     bottom: 2rem;
   }
 
   li {
     border-radius: 50%;
-    @include width(18);
-    @include height(18);
+    @include width(8);
+    @include height(8);
     opacity: 1 !important;
     border: 1px solid $white;
     background-color: transparent;
+
+    &.active {
+      background-color: $white;
+    }
   }
 
-  .active {
-    background-color: $white;
-  }
 }
 
 // modal override
@@ -453,4 +455,11 @@ button {
 
 .tooltip.bs-tooltip-right .arrow:before {
   border-right-color: $primary-color !important;
+}
+
+.justify-center {
+  justify-content: center;
+}
+.row-reverse {
+  flex-direction: row-reverse;
 }

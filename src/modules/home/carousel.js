@@ -17,31 +17,31 @@ const items = [
         shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'Name',
-    },{
+        descAuthor: 'One',
+    }, {
+        src: 'card_1_2.jpg',
+        altText: 'Slide 1',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'wishlist',
+        descAuthor: 'Two',
+    }, {
         src: 'carousel_1.jpg',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'Name',
-    },{
-        src: 'carousel_1.jpg',
+        descAuthor: 'Three',
+    }, {
+        src: 'card_1_2.jpg',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'Name',
-    },{
-        src: 'carousel_1.jpg',
-        altText: 'Slide 1',
-        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
-        buttonText: 'Browse caterers',
-        pathToRedirect: 'wishlist',
-        descAuthor: 'Name',
+        descAuthor: 'Four',
     },
 ];
 
@@ -83,19 +83,21 @@ class CarouselComponent extends Component {
                 <CarouselItem
                     onExiting={this.onExiting}
                     onExited={this.onExited}
-                    key={index} className={styles.carouselItem}>
-                    <div className={styles.carousalImage} style={{ backgroundImage: `url(${imagePath(item.src)})` }}></div>
-                    <div className={styles.carouselContent}>
-                        <img  src={imagePath('quote.svg')} alt="quote" />
-                        <p className={styles.carouselText}>{item.shortDescription}</p>
-                        <p className={styles.author}>{item.descAuthor}</p>
+                    key={index}>
+                    <div className={styles.carouselItem}>
+                        <div className={styles.carousalImage} style={{ backgroundImage: `url(${imagePath(item.src)})` }}></div>
+                        <div className={styles.carouselContent}>
+                            <img src={imagePath('quote.svg')} alt="quote" />
+                            <p className={styles.carouselText}>{item.shortDescription}</p>
+                            <p className={styles.author}>{item.descAuthor}</p>
+                        </div>
                     </div>
-
                 </CarouselItem>
             );
         });
 
         return (
+            <div className={styles.carousel}>
             <Carousel
                 activeIndex={activeIndex}
                 next={this.next}
@@ -104,6 +106,7 @@ class CarouselComponent extends Component {
                 {slides}
 
             </Carousel>
+            </div>
         );
     }
 }

@@ -20,6 +20,7 @@
     text-align: center;
     @include fontSize(25.2);
   }
+  @extend %spacer;
 }
 
 .title {
@@ -106,6 +107,7 @@ a.button {
   background-image: linear-gradient(116deg, $secondary-color, $lavender-pink);
   @include padding(80);
   border-radius: 6px;
+  max-width: 935px;
 
   &:before {
     content: '';
@@ -120,11 +122,12 @@ a.button {
 }
 
 .carousalImage {
-  @include height(600);
-  flex: 1.5;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+  @include width(530);
+  @include height(350);
+  flex-shrink: 0;
 
   &:before {
     content: '';
@@ -491,13 +494,18 @@ a.button {
 .carousel-text {
   font-family: $roboto-regular;
   line-height: 1.21;
-  @include fontSize(28);
   margin-bottom: 1.5rem;
-  @include fontSize(16);
+  @include fontSize(18.3, important=true);
   text-align: left !important;
   @include mobile {
     font-size: 12px;
   }
+}
+
+.author {
+  font-family: $roboto-bold;
+  @include fontSize(18.3, important=true);
+
 }
 
 .carousel-btn {
@@ -511,13 +519,17 @@ a.button {
 
 .carouselContent {
   display: flex;
-  align-items: center;
-  flex: 1;
+  align-items: flex-start;
   text-align: center;
   color: white;
   text-align: left;
   flex-direction: column;
   justify-content: center;
+  padding: 2rem;
+
+  > img {
+    margin-bottom: 1rem;
+  }
   @include mobile {
     padding-right: 1.875rem;
     @include left(30);
@@ -581,20 +593,53 @@ a.button {
   background-color: $medium-pink;
 }
 
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .detailDesc {
   color: $secondary-color;
+  font-family: $roboto-bold;
+  font-size: 3.22rem;
 }
 
 .detailCount {
   color: $white;
+  text-align: center;
+  padding: 2rem 1rem;
+
+  div {
+    &:first-child {
+      font-size: 3.2rem;
+      font-family: $roboto-medium;
+      border-bottom: 2px solid $white;
+    }
+
+    &:last-child {
+      font-size: 2rem;
+      font-family: $roboto-light;
+    }
+  }
 }
 
 .cardDetail {
   font-family: $roboto-light;
 }
 
-.cardImageContainer {
-  margin-right: 3rem;
+.cardImage {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 99px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+  }
 }
 
 .whiteHeading {
@@ -638,7 +683,101 @@ a.button {
   margin-bottom: 7rem;
 }
 
-.author {
-  font-family: $roboto-bold;
-  @include fontSize(16);
+.carousel {
+  max-width: 935px;
+  margin: 0 auto;
+}
+
+.bRadius {
+  border-radius: 6.5px;
+}
+
+.imageCardWrap {
+  @extend %spacer;
+  max-width: 901px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardImageContainer {
+  margin-right: -4.8rem;
+  display: flex;
+  align-items: center;
+  padding: 2.5rem 0;
+
+  img {
+    @include width(665);
+  }
+
+}
+
+.imageCard {
+  display: flex;
+  border-radius: 6px;
+  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
+  border: solid 1.5px #ffc8df;
+  width: 62rem;
+  max-width: 871px;
+  margin: 3rem auto 7rem;
+
+  h3 {
+    font-size: 2.25rem;
+    font-family: $roboto-regular;
+  }
+
+  &:nth-child(even) {
+    margin-right: -2.4rem;
+  }
+
+  &:nth-child(odd) {
+    margin-left: -2.4rem;
+  }
+
+  &.imageCardReverse {
+    .cardImageContainer {
+      margin-left: -4.8rem;
+      margin-right: 0;
+    }
+  }
+}
+
+.imageCardIcon {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.imageCardText {
+  padding: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardDetail {
+  font-family: $roboto-light !important;
+  text-align: left !important;
+  font-size: 1.2rem !important;
+}
+
+.packageBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.packageDetail {
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    font-size: 2.5rem;
+    font-family: $roboto-bold !important;
+  }
+
+  p {
+    font-family: $roboto-light !important;
+    text-align: left !important;
+    font-size: 1.2rem !important;
+  }
 }

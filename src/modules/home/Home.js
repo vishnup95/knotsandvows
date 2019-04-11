@@ -108,38 +108,40 @@ class Home extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col>
-                  <Button className="primary-button medium-pink">LET  US HELP YOU</Button>
+                <Col className="text-center mt-5">
+                  <Button className="primary-button medium-pink">LET US HELP YOU</Button>
                 </Col>
               </Row>
 
             </div>
-            <div className={`${styles.mediumPinkBg} container-fluid`}>
-              <Row>
-                <Col>
-                  <div className={styles.detailDesc}>We know</div>
-                  <div className={styles.detailCount}>
-                    <div>300 +</div>
-                    <div>venues</div>
-                  </div>
-                </Col>
-                <Col>
-                  <div className={styles.detailDesc}>We have</div>
-                  <div className={styles.detailCount}>
-                    <div>15 +</div>
-                    <div>years of experience</div>
-                  </div>
-                </Col>
-                <Col>
-                  <div className={styles.detailDesc}>We are in</div>
-                  <div className={styles.detailCount}>
-                    <div>10 +</div>
-                    <div>cities</div>
-                  </div>
-                </Col>
-              </Row>
+            <div className={`${styles.mediumPinkBg} ${styles.bRadius} container-fluid`}>
+              <div className={`${styles.homeContainer} container`}>
+                <Row className='justify-center'>
+                  <Col className={styles.row}>
+                    {/* <div className={styles.detailDesc}>We know</div> */}
+                    <div className={styles.detailCount}>
+                      <div>300 +</div>
+                      <div>venues</div>
+                    </div>
+                  </Col>
+                  <Col className={styles.row}>
+                    {/* <div className={styles.detailDesc}>We have</div> */}
+                    <div className={styles.detailCount}>
+                      <div>15 +</div>
+                      <div>years of experience</div>
+                    </div>
+                  </Col>
+                  <Col className={styles.row}>
+                    {/* <div className={styles.detailDesc}>We are in</div> */}
+                    <div className={styles.detailCount}>
+                      <div>10 +</div>
+                      <div>cities</div>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
             </div>
-            <div className={`${styles.homeContainer} container`}>
+            <div className={`${styles.homeContainer} ${styles.imageCardWrap} container`}>
               <Row>
                 <Col className="text-center">
                   <h2>We make your dreams come true</h2>
@@ -148,34 +150,34 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col>
-                  <div>
-                    <div>
-                      <img src={imagePath('personalised-services.png')} alt="img" />
+                  <div className={styles.imageCard}>
+                    <div className={styles.imageCardText}>
+                      <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
                       <h3>Personalised Services</h3>
-                      <p className={styles.cardDetail}></p>
+                      <p className={styles.cardDetail}>We believe that individualised, person centred planning is the foundation.</p>
                     </div>
                     <div className={styles.cardImageContainer}>
-                      <img src={imagePath('personalised-services-img.png')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath('personalised-services-img.png')} alt="img" />
                     </div>
                   </div>
-                  <div>
-                    <div>
-                      <img src={imagePath('discounted-prices.png')} alt="img" />
+                  <div className={`${styles.imageCard} ${styles.imageCardReverse} row-reverse`}>
+                    <div className={styles.imageCardText}>
+                      <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <h3>Discounted Prices</h3>
                       <p className={styles.cardDetail}>Check out our exclusive wedding deals for your big day at amazing prices!</p>
                     </div>
                     <div className={styles.cardImageContainer}>
-                      <img src={imagePath('discounted-prices-img.png')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath('discounted-prices-img.png')} alt="img" />
                     </div>
                   </div>
-                  <div>
-                    <div>
-                      <img src={imagePath('team.png')} alt="img" />
+                  <div className={styles.imageCard}>
+                    <div className={styles.imageCardText}>
+                      <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />
                       <h3>Seven Vows - expert Team</h3>
                       <p className={styles.cardDetail}>Meet our team of crazy talented planners from across the country! </p>
                     </div>
                     <div className={styles.cardImageContainer}>
-                      <img src={imagePath('team-img.png')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />
                     </div>
                   </div>
                 </Col>
@@ -190,32 +192,32 @@ class Home extends Component {
                     <Col>
                       <h2 className={styles.whiteHeading}>Save money!</h2>
                       <p className={styles.whiteDesc}>These wedding packages are specially created to make every bride and grooms life easy</p>
-                      <Button className="primary-button white">LET  US HELP YOU</Button>
+                      <Button className="primary-button white">LET US HELP YOU</Button>
                     </Col>
                 </Row>
               </Container>
             </div>
             <Container className={styles.homeContainer}>
               <Row className="mb-5">
-                <Col>
+                <Col className={styles.packageBox}>
                 <img src={imagePath('box-one.png')} alt="img" />
-                <div>
+                <div className={styles.packageDetail}>
                   <h3>Gold Package</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                   <Button className="primary-button medium-pink">LEARN MORE</Button>
                 </div>
                 </Col>
-                <Col>
-                <img src={imagePath('box-one.png')} alt="img" />
-                <div>
+                <Col className={styles.packageBox}>
+                <img src={imagePath('box-two.png')} alt="img" />
+                <div  className={styles.packageDetail}>
                   <h3>Emerald Package</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                   <Button className="primary-button medium-pink">LEARN MORE</Button>
                 </div>
                 </Col>
-                <Col>
-                <img src={imagePath('box-one.png')} alt="img" />
-                <div>
+                <Col className={styles.packageBox}>
+                <img src={imagePath('box-three.png')} alt="img" />
+                <div  className={styles.packageDetail}>
                   <h3>Customize</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                   <Button className="primary-button medium-pink">WISHLIST</Button>
