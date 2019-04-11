@@ -9,3 +9,6 @@ export const USER_LOCKED = 'USER_LOCKED';
 
 
 export const GOOGLE_CLIENT_ID = '662359187269-cba1gqa2aa45sf174880uve3b8osdnl1.apps.googleusercontent.com';
+
+export const REACT_APP_GA_TRACKING_ID='UA-135937390-1';
+export const REACT_APP_FS_ORG_ID='JWHPP';

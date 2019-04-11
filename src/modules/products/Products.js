@@ -149,6 +149,10 @@ class Products extends Component {
 
   render() {
     const { header, sort_options, filters } = this.props.filterData;
+    var category = "";
+    if (header && header.category_name){
+      category = `All ${header.category_name}`
+    }
     return (
       <div>
         {header &&
@@ -186,9 +190,8 @@ class Products extends Component {
 
 
               <Row className="mb-3">
-
                 <Col sm="6" className={styles.sideHeading}>
-                  {`All ${this.props.productListData.service_type}`}
+                  {category}
                   {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
                 </Col>
                 <Col sm="6" className={styles.sort}>
