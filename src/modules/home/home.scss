@@ -781,3 +781,8 @@ a.button {
     font-size: 1.2rem !important;
   }
 }
+.boxSection {
+  @include height(600);
+  display: flex;
+  align-items: center;
+}
