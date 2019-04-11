@@ -12,12 +12,15 @@ import { Form } from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import SocialAuthComponent from '../../components/SocialAuth/SocialAuthComponent';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
+import queryString from 'query-string';
+import { replace } from 'connected-react-router';
 
 const mapStateToProps = state => ({
     message: state.session.message,
     error: state.session.error,
     apiStatus: state.session.apiStatus,
     isLoading: state.session.loading,
+    location: state.router.location
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -95,6 +98,14 @@ class SignInModal extends Component {
 
         if (this.state.mode == DisplayMode.signUp && this.props.apiStatus == true && this.isSocialLogin == false) {
             this.props.dispatch(modalActions.showModal({message: `Successfully registered. A link to verify your email has been sent to your registered email address`, heading: 'Seven Vows'}));
+            return;
+        }
+
+        if ((this.isSocialLogin || this.state.mode == DisplayMode.signIn) && this.props.apiStatus == true){
+            var redirect = queryString.parse(this.props.location.search).redirect;
+            if(redirect){
+                this.props.dispatch(replace(`${redirect}`));
+            } 
         }
     }
 
@@ -245,7 +256,8 @@ SignInModal.propTypes = {
     message: PropTypes.string,
     apiStatus: PropTypes.bool,
     error: PropTypes.string,
-    isLoading: PropTypes.bool
+    isLoading: PropTypes.bool,
+    location: PropTypes.object
 };
 export default connect(
     mapStateToProps,
