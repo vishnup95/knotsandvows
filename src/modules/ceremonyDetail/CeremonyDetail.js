@@ -11,6 +11,7 @@ import LoaderComponent from '../../components/Loader/loader';
 import CategorySection from './categorySection';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal'
+import NoResultComponent from '../../components/noResult/noResult';
 
 const cities = {
   display_name:"City",
@@ -137,7 +138,12 @@ class CeremonyDetail extends Component {
                     />
                   </Col>
               </Row>
+              {this.state.fixedCategories.length == 0 && 
+                  <NoResultComponent></NoResultComponent>
+              }
 
+              {this.state.fixedCategories && this.state.fixedCategories.length > 0  && 
+              <div>
               {
                 this.state.fixedCategories.length > 0 ?
                   <CategorySection category={this.state.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
@@ -160,6 +166,9 @@ class CeremonyDetail extends Component {
                   );
                 })
               }
+              </div>
+              }
+              
             </Container>
           </div>
         }

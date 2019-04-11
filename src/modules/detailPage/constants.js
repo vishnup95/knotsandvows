@@ -21,3 +21,8 @@ export const LOAD_POLICIES_FAILURE = 'my-project/details/LOAD_POLICIES_FAILURE';
 export const LOAD_AVAILABLE_AREAS = 'my-project/details/LOAD_AVAILABLE_AREAS';
 export const LOAD_AVAILABLE_AREAS_SUCCESS = 'my-project/details/LOAD_AVAILABLE_AREAS_SUCCESS';
 export const LOAD_AVAILABLE_AREAS_FAILURE = 'my-project/details/LOAD_AVAILABLE_AREAS_FAILURE';
+
+
+export const LOAD_GALLERY = 'my-project/details/LOAD_GALLERY';
+export const LOAD_GALLERY_SUCCESS = 'my-project/details/LOAD_GALLERY_SUCCESS';
+export const LOAD_GALLERY_FAILURE = 'my-project/details/LOAD_GALLERY_FAILURE';

@@ -16,15 +16,24 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { isLoggedIn, hyphonatedString} from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions'
-// import * as wishlistActions from '../../modules/wishlist/actions'
+import * as wishlistActions from '../../modules/wishlist/actions';
+
+const mapStateToProps = state => ({
+    wishlistId: state.wishlist.wishListData ? state.wishlist.wishListData.wishlist_id : 4,
+});  
 
 const mapDispatchToProps = dispatch => ({
     dispatch
 });
+
 class CategoryCard extends Component {
     state = {
-        isChecked: false
+        isChecked: false,
+        isInWishlist: false,
+        showNotes: false,
+        showAddNote: false
     }
+
     navigateTo(route) {
         this.props.dispatch(push(route));
         window.scrollTo(0, 0);
@@ -34,9 +43,44 @@ class CategoryCard extends Component {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
         } else {
-            // this.props.dispatch(wishlistActions.testAdd(this.props.data, this.props.category));
+            let params = {
+                vendor_id: this.props.data.vendor_id,
+                wishlist_id: this.props.wishlistId
+            };
+
+            this.props.dispatch(wishlistActions.addToWishlist(params));
+            this.setState({isInWishlist: !this.setState.isInWishlist ? true: this.state.isInWishlist});          
         }
         e.stopPropagation();
+    }
+
+    toggleNotes(e) {
+        e.stopPropagation();
+        if (!this.state.showNotes) {
+            let details = {
+                category_id: this.props.data.category_id,
+                vendor_id: this.props.data.vendor_id,
+                wishlist_id: this.props.wishlistId
+            }
+            this.props.dispatch(wishlistActions.fetchAllNotes(details));
+        }
+        this.setState({showNotes: !this.state.showNotes});
+    }
+
+    toggleAddNote(e, save) {
+        e.stopPropagation();
+        this.setState({showNotes: this.state.showAddNote});
+        this.setState({showAddNote: !this.state.showAddNote});
+
+        if(save) {
+            let params = {
+                wishlist_id:1,
+                category_id: this.props.data.category_id,
+                vendor_id:4,
+                note: document.getElementById('note').value
+            }
+            this.props.dispatch(wishlistActions.addNote(params, this.props.dispatch));
+        }
     }
 
     renderCardBody() {
@@ -64,15 +108,15 @@ class CategoryCard extends Component {
 
                 <div className={styles.ratingContainer}>
                     <p className={`mb-2`}>
-                        <img src={imagePath(this.props.isInWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
+                        <img src={imagePath(this.state.isInWishlist ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
                             alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`} />
                         {!this.props.isInWishList &&
                             <UncontrolledTooltip placement="top" target={`WishListTooltip${this.props.id}`}>
-                                {'Add to Wishlist'}
+                                {this.state.isInWishlist ? 'Added to Wishlist' : 'Add to Wishlist'}
                             </UncontrolledTooltip>
                         }
-
                     </p>
+
                     <div>
                         <p className={`${styles.rating} mb-1`}>
                             {Array(fullstar).fill().map((key, index) => {
@@ -91,6 +135,7 @@ class CategoryCard extends Component {
                             {this.props.data.reviews_count}&nbsp;<span>Reviews</span>
                         </p>
                     </div>
+
                 </div>
             </div>
         );
@@ -99,10 +144,12 @@ class CategoryCard extends Component {
     handleCardClick = () => {
         this.navigateTo(`/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`);
     }
+
     selectCard = (e) => {
         this.setState({ isChecked: !this.state.isChecked });
         e.stopPropagation();
     }
+
     render() {
         return (
             <div>
@@ -110,9 +157,9 @@ class CategoryCard extends Component {
                     {
                         this.props.isWishlist &&
                         <div>
-                            <div className={`${styles.addIcon} ${styles.cardIcon}`}></div>
+                            <div className={`${styles.addIcon} ${styles.cardIcon}`} onClick={(event) => this.toggleNotes(event)} aria-hidden></div>
                             <div className={`${styles.deleteIcon} ${styles.cardIcon}`}></div>
-                            <div className={`${styles.viewIcon} ${styles.cardIcon}`}>2</div>
+                            {/* <div className={`${styles.viewIcon} ${styles.cardIcon}`}>2</div> */}
                         </div>
                     }
 
@@ -124,7 +171,7 @@ class CategoryCard extends Component {
                         alt="Card image cap"
                         onError={(e) => { e.target.onerror = null; e.target.src = `${imagePath('card_1_1.jpg')}` }}
                     />
-                    {/* <div className={styles.cardImage} style={{ background: "url(" + this.props.data.pic_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div> */}
+                    
                     <CardBody className={styles.categoryBody} style={{ backgroundColor: '#f7f7f7' }}>
                         {this.renderCardBody()}
                     </CardBody>
@@ -135,51 +182,42 @@ class CategoryCard extends Component {
                         </div>
                     }
                     {
-                        false &&
+                        this.state.showAddNote &&
                         <div className={styles.addNote}>
                             <div className={styles.noteHeader}><span>Add Note</span> <img className={styles.closeNote} src={imagePath('close-blank.svg')} alt="close button" /></div>
-                            <textarea rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors" onClick={(event) => { event.stopPropagation() }}></textarea>
+                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors" onClick={(event) => { event.stopPropagation() }}></textarea>
                             <div className="text-right">
-                                <Button className="text-btn">Cancel</Button>
-                                <Button className="primary-button">Save</Button>
+                                <Button className="text-btn" onClick={(event) => this.toggleAddNote(event, false)}>Cancel</Button>
+                                <Button className="primary-button" onClick={(event) => this.toggleAddNote(event, true)}>Save</Button>
                             </div>
                         </div>
                     }
                     {
-                        false && <Col className={styles.noteContainer}>
+                       this.state.showNotes && <Col className={styles.noteContainer}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
-                                    {/* <h4 className={styles.noteHeader}>Notes</h4> */}
-                                    <div className={styles.noteWrap}>
-                                        <div>
-                                            <span className={styles.noteTitle}>Binu</span>
-                                            <span className={styles.noteDate}>07 Mar 2019</span>
-                                        </div>
-                                        <div className={styles.noteText}>
-                                            <div>
-                                                <span className="edit-icon"></span>
-                                                <span className="delete-icon"></span>
-                                            </div>
-                                            <div>
-                                                Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at elementum eu facilisis sed.
-                                </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.noteWrap}>
-                                        <div>
-                                            <span className={styles.noteTitle}>Binu</span>
-                                            <span className={styles.noteDate}>07 Mar 2019</span>
-                                        </div>
-                                        <div className={styles.noteText}>
-                                            <div>
-                                                <span className="edit-icon"></span>
-                                                <span className="delete-icon"></span>
-                                            </div>
-                                            <div>
-                                                Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at elementum eu facilisis sed.
-                                </div>
-                                        </div>
-                                    </div>
+                                    <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4>
+                                    {
+                                        this.props.data.notes.map((note, index) => {
+                                            return(
+                                            <div className={styles.noteWrap} key={index}>
+                                                <div>            
+                                                    <span className={styles.noteTitle}>Binu</span>
+                                                    <span className={styles.noteDate}>07 Mar 2019</span>
+                                                </div>
+                                                <div className={styles.noteText}>
+                                                    <div>
+                                                        <span className="edit-icon"></span>
+                                                        <span className="delete-icon"></span>
+                                                    </div>
+                                                    <div>
+                                                        {note.notes}
+                                                    </div>
+                                                </div>
+                                            </div>)
+                                        })
+                                    }
+                                    
                                 </Col>
                             </Col>
                         </Col>
@@ -199,9 +237,11 @@ CategoryCard.propTypes = {
     isCompare: PropTypes.bool,
     id: PropTypes.number,
     isWishlist: PropTypes.bool,
-    isInWishList: PropTypes.bool
+    isInWishList: PropTypes.bool,
+    wishlistId: PropTypes.number,
 };
 
 export default connect(
+    mapStateToProps,
     mapDispatchToProps
 )(CategoryCard);

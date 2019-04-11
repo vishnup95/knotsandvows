@@ -57,3 +57,31 @@ export function testAdd(vendor, category) {
     }
   }
 }
+
+// notes
+
+export const fetchAllNotes = (details) => {
+  // details = {vendor_id, wishlist_id, category_id}
+  return {
+    types: [
+      types.LOAD_NOTES,
+      types.LOAD_NOTES_SUCCESS,
+      types.LOAD_NOTES_FAILURE
+    ],
+    payload: details,
+    promise: client => client.get(`/api/getallnotes?vendor_id=${details.vendor_id}&wishlist_id=${1}`)
+  };
+}
+
+export function addNote(params, dispatch) {
+  return {
+    types: [
+      types.LOAD_ADD_NOTE,
+      types.LOAD_ADD_NOTE_SUCCESS,
+      types.LOAD_ADD_NOTE_FAILURE
+    ],
+    promise: client => client.get(`/api.ahwanam.com/api/wishlist/addnote`, params)
+      .then(() => dispatch(this.fetchAllNotes(params)))
+        .catch(error => console.log(error))
+  };
+}
