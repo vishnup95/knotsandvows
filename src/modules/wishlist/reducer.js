@@ -4,7 +4,12 @@ const initialState = {
   wishListData: null,
   sharedWishListData: null,
   currentWishListData:null,
-  loading: false
+  loading: false,
+  noteloading: false,
+  current:{
+    wishlist_id: 0,
+    shared: false
+  }
 };
 
 const WishListReducer = (state = initialState, action) => {
@@ -14,13 +19,15 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_MY_WISHLIST:
       return {
         ...state,
+        error:null,
         loading: true
       };
 
     case types.LOAD_MY_WISHLIST_SUCCESS:
       return {
         ...state,
-        wishListData: action.result.data.data, 
+        wishListData: action.result.data.data,
+        current:{wishlist_id: action.result.data.data.wishlist_id, shared: false },
         loading: false
       };
 
@@ -34,16 +41,46 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_ADD_TO_WISHLIST:
       return {
         ...state,
+        loading:true,
+        apiStatus:null,
+        error:null,
       };
 
     case types.LOAD_ADD_TO_WISHLIST_SUCCESS:
       return {
         ...state,
+        loading:false,
+        apiStatus:true
       };
 
     case types.LOAD_ADD_TO_WISHLIST_FAILURE:
       return {
         ...state,
+        loading:false,
+        apiStatus:false,
+        error: action.error.message,
+      };
+
+      case types.LOAD_REMOVE_FROM_WISHLIST:
+      return {
+        ...state,
+        loading:true,
+        apiStatus:null,
+        error:null,
+      };
+
+    case types.LOAD_REMOVE_FROM_WISHLIST_SUCCESS:
+      return {
+        ...state,
+        loading:false,
+        apiStatus:true
+      };
+
+    case types.LOAD_REMOVE_FROM_WISHLIST_FAILURE:
+      return {
+        ...state,
+        loading:false,
+        apiStatus:false,
         error: action.error.message,
       };
 
@@ -52,18 +89,42 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_NOTES:
       return {
         ...state,
+        noteloading: true
       };
 
     case types.LOAD_NOTES_SUCCESS:
       return {
         ...state,
-        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data),
+        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data.results),
+        noteloading: false,
+        error: null
       };
 
     case types.LOAD_NOTES_FAILURE:
       return {
         ...state,
         error: action.error.message,
+        noteloading: false
+      };
+
+      case types.LOAD_ADD_COLLABRATOR:
+      return {
+        ...state,
+        loading : true,
+        error:null
+      };
+
+    case types.LOAD_ADD_COLLABRATOR_SUCCESS:
+      return {
+        ...state,
+        loading : false,
+      };
+
+    case types.LOAD_ADD_COLLABRATOR_FAILURE:
+      return {
+        ...state,
+        error: action.error.message,
+        loading : false
       };
 
     default:

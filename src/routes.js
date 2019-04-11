@@ -135,7 +135,7 @@ const SecretRoute = ({ component: Component, ...rest }) => (
        (
         <Component {...props} />
       ) : (
-        <Redirect to={`/?login=true&redirect=profile`} />
+        <Redirect to={`/?login=true&redirect=${props.location.pathname}`} />
         // <Redirect to={{
         //   pathname: '/login',
         //   state: { from: props.location }

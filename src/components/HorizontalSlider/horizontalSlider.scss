@@ -14,6 +14,7 @@
 .slider-item-basic {
   width: max-content !important;
   padding: 0 1rem;
+
   .slider-wrap {
     @include fontSize(18)
   }
@@ -60,4 +61,41 @@
   @include mobile {
      @include height(320);
   }
+}
+
+.ceremonyCard {
+  border: solid 1.5px #ffc8df;
+  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
+  border-radius: 3px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $medium-pink;
+  cursor: pointer;
+  transition: all .7s ease;
+
+  h3 {
+    font-family: $roboto-bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0 0;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $medium-pink;
+  }
+}
+
+.ceremonyIg {
+  // @include width(229);
+  width: 100%;
+  @include height(152);
+  background-size: cover;
+
 }

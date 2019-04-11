@@ -17,14 +17,14 @@
   font-family: $roboto-regular;
   transition: 300ms all ease;
   @include tablet {
-    background: #fff;
+    background: $white;
     border-bottom: 1px solid $black-16;
   }
 
   .ahNav {
     background-color: transparent !important;
     margin-bottom: 0;
-    @include height(86.3);
+    height: 50px;
     padding: 0;
     @include mobile {
       position: absolute;
@@ -71,9 +71,11 @@
     height: 100%;
     position: relative;
     box-shadow: none;
-    background-color: transparent;
+    background-color: $medium-pink;
     padding: 0;
     justify-content: center;
+    border-radius: 0;
+    margin-top: 1.2rem;
   }
 
   > ul {
@@ -91,10 +93,12 @@
           line-height: 2.36;
           font-size: 18px;
         }
-        color: $black-fourteen !important;
+        font-family: $roboto-medium;
+        color: $white !important;
+        opacity: .95;
         position: relative;
         @include tablet {
-          margin: 0 1rem;
+          margin: 0 2rem;
 
           &:before {
             content: '';
@@ -199,6 +203,8 @@
       white-space: nowrap;
 
       a {
+        color: $black-fourteen !important;
+        font-family: $roboto-regular;
         &:before {
           content: '';
           position: absolute;
@@ -232,7 +238,7 @@
   &:hover {
     .categoriesList {
       height: auto;
-      top: 5.4rem;
+      top: 50px;
       transition: 500ms all ease;
       opacity: 1;
       @include padding(0,0,16);

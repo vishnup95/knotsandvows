@@ -95,7 +95,7 @@ class TalkToWeddingPlanner extends Component {
         return (
             <div>
                 {this.props.type === 'link' && <button className="link-btn" onClick={() => this.toggle()}>{this.props.buttonText}</button>}
-                {this.props.type === 'call' && <div className="call-btn"><img onClick={() => this.toggle()} src={imagePath('call-button.svg')} alt="call-button" aria-hidden /></div>}
+                {this.props.type === 'call' && <div className="call-btn"><img onClick={() => this.toggle()} src={imagePath('button-call.png')} alt="call-button" aria-hidden /></div>}
                 {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
@@ -107,7 +107,7 @@ class TalkToWeddingPlanner extends Component {
                         { this.props.status == false && this.props.message &&
                             <div className={styles.apiError}>{this.props.message}</div>
                         }
-                        <Form style={{ zIndex: '10000' }} className="position-relative">
+                        <Form className="position-relative">
                             <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />

@@ -12,12 +12,15 @@ import { Form } from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import SocialAuthComponent from '../../components/SocialAuth/SocialAuthComponent';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
+import queryString from 'query-string';
+import { replace } from 'connected-react-router';
 
 const mapStateToProps = state => ({
     message: state.session.message,
     error: state.session.error,
     apiStatus: state.session.apiStatus,
     isLoading: state.session.loading,
+    location: state.router.location
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -95,6 +98,14 @@ class SignInModal extends Component {
 
         if (this.state.mode == DisplayMode.signUp && this.props.apiStatus == true && this.isSocialLogin == false) {
             this.props.dispatch(modalActions.showModal({message: `Successfully registered. A link to verify your email has been sent to your registered email address`, heading: 'Seven Vows'}));
+            return;
+        }
+
+        if ((this.isSocialLogin || this.state.mode == DisplayMode.signIn) && this.props.apiStatus == true){
+            var redirect = queryString.parse(this.props.location.search).redirect;
+            if(redirect){
+                this.props.dispatch(replace(`${redirect}`));
+            } 
         }
     }
 
@@ -160,7 +171,7 @@ class SignInModal extends Component {
                 { this.props.apiStatus == false && this.props.error &&
                     <div className={styles.apiError}>{this.props.error}</div>
                 }
-                <Form style={{ zIndex: '10000' }} className="position-relative mt-1">
+                <Form className="position-relative mt-1">
                     <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignInFormChange(e)} />
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignInFormChange(e)}/>
                 </Form>
@@ -193,7 +204,7 @@ class SignInModal extends Component {
                 {this.props.apiStatus == false && this.props.error &&
                     <div className={styles.apiError}>{this.props.error}</div>
                 }
-                <Form style={{ zIndex: '10000' }} className="position-relative">
+                <Form className="position-relative">
                     <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)}/>
                     <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignUpFormChange(e)} />
                     <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleSignUpFormChange(e)}/>
@@ -245,7 +256,8 @@ SignInModal.propTypes = {
     message: PropTypes.string,
     apiStatus: PropTypes.bool,
     error: PropTypes.string,
-    isLoading: PropTypes.bool
+    isLoading: PropTypes.bool,
+    location: PropTypes.object
 };
 export default connect(
     mapStateToProps,

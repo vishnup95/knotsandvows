@@ -85,10 +85,15 @@ class Header extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user && nextProps.user != this.props.user) {
+            this.props.dispatch(wishlistActions.fetchMyWishlist());
+        }
+    }
+
     componentDidMount() {
         if (isLoggedIn()) {
             this.props.dispatch(actions.fetchMyProfile());
-            this.props.dispatch(wishlistActions.fetchMyWishlist());
         } 
     }
 
@@ -173,11 +178,10 @@ class Header extends Component {
                 }else{
                     var redirect = queryString.parse(this.props.location.search).redirect;
                     if(redirect){
-                        this.props.dispatch(replace(`/${redirect}`));
+                        this.props.dispatch(replace(`${redirect}`));
                     }else{
                         this.props.dispatch(replace("/"));
-                    }
-                    
+                    }      
                 }
             }   
         }   
@@ -289,10 +293,6 @@ class Header extends Component {
 
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
-                            </NavItem>
-
-                            <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/services')}>Services</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/about')}>About</NavLink>

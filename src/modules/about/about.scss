@@ -4,14 +4,17 @@
 @import '../../variables/breakpoints';
 
 .aboutContainer {
-  @include margin(100, 0);
   .aboutCover {
-    @include height(600);
+    @include height(700);
     position: relative;
     background: url('/images/about_cover.jpg');
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat; 
+
+    @include mobile {
+      @include height(600);
+    }
   }
 
   .h3Class {
@@ -32,6 +35,12 @@
     width: 92%;
     @include letterSpacing(.54);
     line-height: 2.5rem;
+    margin-bottom: 2rem;
+
+    @include mobile {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
   }
 
   .pClass {
@@ -39,6 +48,12 @@
     @include letterSpacing(.31);
     color: #484848;
     line-height: 1.8rem;
+    width: 80%;
+
+    @include mobile {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   .pSmallClass {
@@ -46,6 +61,21 @@
     @include letterSpacing(.31);
     color: #ffffff;
     line-height: 1.6rem;
+
+    height: calc(68% - 10px);
+    overflow: hidden;
+  }
+}
+
+.aboutSubContainer {
+  @media only screen and (min-width: 992px) {
+    max-width: 750px;
+  }
+  @include hd {
+    max-width: 80%;
+  }
+  @include hdPlus {
+    max-width: 80%;
   }
 }
 
@@ -54,12 +84,14 @@
   position: relative;
   background-color: #f4f4f4;
   @include borderRadius(10);
+  @include margin(0, 5);
 
   .memeberInfo {  
     @include padding(20,10);
     @include borderRadius(10);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    height: 100%;
 
     .memberName {
       font-family: $roboto-medium;
@@ -91,7 +123,7 @@
 
     .hoverContainer {
       @include borderRadius(10);
-      @include padding(0, 20);
+      @include padding(10, 20);
       transition: .8s cubic-bezier(0.4, 0, 1, 1);
       background-color: rgba(92, 55, 99, 0.9);
       opacity: 0;
@@ -128,4 +160,7 @@
     }
   }
   margin-bottom: 2rem;
+  @include mobile {
+    margin-top: 2rem;
+  }
 }

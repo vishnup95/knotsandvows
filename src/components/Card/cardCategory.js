@@ -14,12 +14,15 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString} from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse } from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions'
 import * as wishlistActions from '../../modules/wishlist/actions';
+import LoaderComponent from '../../components/Loader/loader';
+import * as modalActions from '../../reducers/modal/actions';
 
 const mapStateToProps = state => ({
-    wishlistId: state.wishlist.wishListData ? state.wishlist.wishListData.wishlist_id : 4,
+    wishlistId: state.wishlist.current.wishlist_id,
+    noteloading: state.wishlist.noteloading
 });  
 
 const mapDispatchToProps = dispatch => ({
@@ -28,10 +31,25 @@ const mapDispatchToProps = dispatch => ({
 
 class CategoryCard extends Component {
     state = {
-        isChecked: false,
         isInWishlist: false,
         showNotes: false,
         showAddNote: false
+    }
+
+    componentDidMount() {
+        document.addEventListener('click', this.handleClickOutside, true);
+    }
+    
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside, true);
+    }
+
+    handleClickOutside = event => {
+        if (event.target.id !== `card${this.props.id}`) {
+            this.setState({showNotes: false});
+        } else {
+            this.toggleNotes(event);
+        }
     }
 
     navigateTo(route) {
@@ -42,14 +60,25 @@ class CategoryCard extends Component {
     addToWishList = (e) => {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
-        } else {
+        } else if (!this.state.isInWishlist) {
             let params = {
                 vendor_id: this.props.data.vendor_id,
                 wishlist_id: this.props.wishlistId
             };
 
-            this.props.dispatch(wishlistActions.addToWishlist(params));
-            this.setState({isInWishlist: !this.setState.isInWishlist ? true: this.state.isInWishlist});          
+            this.props.dispatch(wishlistActions.addToWishlist(params)).then((response) => {
+                var error = getDataFromResponse(response);
+                if (error == null){
+                    this.setState({isInWishlist: true});     
+                }else{
+                    let modalContent = {
+                        heading: '',
+                        message: error,
+                        proceedAction: this.toggleModal
+                      };
+                    this.props.dispatch(modalActions.showModal(modalContent));
+                }
+            });           
         }
         e.stopPropagation();
     }
@@ -74,7 +103,7 @@ class CategoryCard extends Component {
 
         if(save) {
             let params = {
-                wishlist_id:1,
+                wishlist_id: this.props.wishlistId,
                 category_id: this.props.data.category_id,
                 vendor_id:4,
                 note: document.getElementById('note').value
@@ -96,7 +125,7 @@ class CategoryCard extends Component {
         }
 
         return (
-            <div className={styles.cardbodyContainer}>
+            <div className={styles.cardbodyContainer} id={`card${this.props.id}`}>
 
                 <div className={styles.mainContent}>
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
@@ -123,7 +152,7 @@ class CategoryCard extends Component {
                                 return <span key={index}><img src={imagePath('fullstar.svg')} className={styles.starImg} alt="Fullstar" /></span>;
                             })}
                             {Array(halfstar).fill().map((key, index) => {
-                                return <span key={index}><img src={imagePath('halfstar.svg')} className={styles.starImg} alt="Halfstar" /></span>;
+                                return <span key={index}><img src={imagePath('halfstar.png')} className={styles.starImg} alt="Halfstar" /></span>;
                             })}
                             {Array(emptystar).fill().map((key, index) => {
                                 return <span key={index}><img src={imagePath('outline_star.svg')} className={styles.starImg} alt="Outline" /></span>;
@@ -146,7 +175,7 @@ class CategoryCard extends Component {
     }
 
     selectCard = (e) => {
-        this.setState({ isChecked: !this.state.isChecked });
+        this.props.selectedToCompare(this.props.data , this.props.isChecked);
         e.stopPropagation();
     }
 
@@ -178,7 +207,7 @@ class CategoryCard extends Component {
                     {
                         this.props.isCompare &&
                         <div className={styles.compareMask} onClick={(e) => this.selectCard(e)} aria-hidden>
-                            <span className={`${styles.checkbox} ${this.state.isChecked ? styles.checked : ''}`}></span>
+                            <span className={`${styles.checkbox} ${this.props.isChecked ? styles.checked : ''}`}></span>
                         </div>
                     }
                     {
@@ -197,13 +226,19 @@ class CategoryCard extends Component {
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
                                     <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4>
+                                    {this.props.noteloading &&
+                                    <div className="row">
+                                        <div className="col-12">
+                                        <LoaderComponent />
+                                        </div>
+                                    </div>}
                                     {
                                         this.props.data.notes.map((note, index) => {
                                             return(
                                             <div className={styles.noteWrap} key={index}>
                                                 <div>            
                                                     <span className={styles.noteTitle}>Binu</span>
-                                                    <span className={styles.noteDate}>07 Mar 2019</span>
+                                                    <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
                                                 </div>
                                                 <div className={styles.noteText}>
                                                     <div>
@@ -239,6 +274,9 @@ CategoryCard.propTypes = {
     isWishlist: PropTypes.bool,
     isInWishList: PropTypes.bool,
     wishlistId: PropTypes.number,
+    noteloading: PropTypes.bool,
+    isChecked: PropTypes.bool,
+    selectedToCompare: PropTypes.func
 };
 
 export default connect(
