@@ -4,7 +4,8 @@ const initialState = {
   wishListData: null,
   sharedWishListData: null,
   currentWishListData:null,
-  loading: false
+  loading: false,
+  noteloading: false
 };
 
 const WishListReducer = (state = initialState, action) => {
@@ -83,19 +84,22 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_NOTES:
       return {
         ...state,
+        noteloading: true
       };
 
     case types.LOAD_NOTES_SUCCESS:
       return {
         ...state,
-        error:null,
-        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data),
+        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data.results),
+        noteloading: false,
+        error: null
       };
 
     case types.LOAD_NOTES_FAILURE:
       return {
         ...state,
         error: action.error.message,
+        noteloading: false
       };
 
     default:

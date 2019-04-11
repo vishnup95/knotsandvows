@@ -9,6 +9,7 @@ import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
 import CategoryCard from '../../components/Card/cardCategory';
 import { imagePath } from '../../utils/assetUtils';
+import { hyphonatedString } from '../../utils/utilities';
 import CompareProduct from '../../components/compareProduct/compareProduct';
 
 const mapStateToProps = state => ({
@@ -168,7 +169,8 @@ class CategoryListing extends Component {
                           })
                         }
                         <Col sm="6" md="6" lg="4">
-                          <div className={styles.addNew}>
+                          <div className={styles.addNew} aria-hidden
+                            onClick={() => this.navigateTo(`/categories/${hyphonatedString(this.state.myWishListCategories[this.state.selectedVendor].page_name, this.state.myWishListCategories[this.state.selectedVendor].category_id)}`)}>
                             <div className={styles.addBtn}></div>
                           </div>
                         </Col>

@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { Row,Col, Container} from 'reactstrap';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
+import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import styles from './about.scss';
+
+const needHelpData = {
+  title: 'Need Help?',
+  buttonText: 'Talk to our wedding planner!',
+  subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by clicking the Chat button below and they’ll help you get your party started.'
+};
 
 class AboutComponent extends Component {
   render() {
     return (
       <div className={styles.aboutContainer}>
         <div className={styles.aboutCover}></div>
-        <Container>
+        <Container className={`${styles.aboutSubContainer} mb-5 pb-5`}>
           <h3 className={`${styles.h3Class} mt-5`}>
             Lorem Ipsum is simply dummy text of the printing industry has survived 
             not only five centuries, but also the leap into electronic typesettingunchanged.
@@ -68,7 +75,7 @@ class AboutComponent extends Component {
             </Col>
           </Row>
         </Container>
-
+        <JumbotronComponent data={needHelpData} bgcolor="#f8f8f8" containerStyle="otherWrap" isTalkToAhwanam ={true} />
       </div>
     );
   }
