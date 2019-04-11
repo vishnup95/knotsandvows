@@ -123,7 +123,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(styles, 'styl');
     return (
       <div>
         {
@@ -238,10 +237,10 @@ class Home extends Component {
               <Container>
                 <Row>
                     <Col>
-                      {/* <img src={imagePath('team.png')} alt="img" /> */}
+                      <img src={imagePath('packagesimage.png')} alt="img" />
                     </Col>
-                    <Col>
-                      <h2 className={styles.whiteHeading}>Save money!</h2>
+                    <Col className={styles.dummyClass}>
+                      <h2 className={styles.whiteHeading}>Save <br/>money!</h2>
                       <p className={styles.whiteDesc}>These wedding packages are specially created to make every bride and grooms life easy</p>
                       <Button className="primary-button white">LET US HELP YOU</Button>
                     </Col>

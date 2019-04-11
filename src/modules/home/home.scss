@@ -769,6 +769,11 @@ a.button {
 .packageDetail {
   display: flex;
   flex-direction: column;
+  padding: 0 3rem;
+  @extend %spacer;
+  button {
+    margin: 0;
+  }
 
   h3 {
     font-size: 2.5rem;
@@ -785,4 +790,17 @@ a.button {
   @include height(600);
   display: flex;
   align-items: center;
+  h2 {
+    line-height: .8;
+  }
+  img {
+    width: 35rem;
+  }
+  @extend %spacer;
+}
+.dummyClass {
+  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
