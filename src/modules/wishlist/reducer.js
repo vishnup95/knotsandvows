@@ -14,6 +14,7 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_MY_WISHLIST:
       return {
         ...state,
+        error:null,
         loading: true
       };
 
@@ -34,16 +35,46 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_ADD_TO_WISHLIST:
       return {
         ...state,
+        loading:true,
+        apiStatus:null,
+        error:null,
       };
 
     case types.LOAD_ADD_TO_WISHLIST_SUCCESS:
       return {
         ...state,
+        loading:false,
+        apiStatus:true
       };
 
     case types.LOAD_ADD_TO_WISHLIST_FAILURE:
       return {
         ...state,
+        loading:false,
+        apiStatus:false,
+        error: action.error.message,
+      };
+
+      case types.LOAD_REMOVE_FROM_WISHLIST:
+      return {
+        ...state,
+        loading:true,
+        apiStatus:null,
+        error:null,
+      };
+
+    case types.LOAD_REMOVE_FROM_WISHLIST_SUCCESS:
+      return {
+        ...state,
+        loading:false,
+        apiStatus:true
+      };
+
+    case types.LOAD_REMOVE_FROM_WISHLIST_FAILURE:
+      return {
+        ...state,
+        loading:false,
+        apiStatus:false,
         error: action.error.message,
       };
 
@@ -57,6 +88,7 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_NOTES_SUCCESS:
       return {
         ...state,
+        error:null,
         wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data),
       };
 

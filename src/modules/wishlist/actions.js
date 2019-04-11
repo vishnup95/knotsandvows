@@ -33,18 +33,19 @@ export function addToWishlist(params) {
   };
 }
 
-export function removeFromWishlist(vendor, params) {
+export function removeFromWishlist(params) {
   return {
     types: [
-      types.LOAD_ADD_TO_WISHLIST,
-      types.LOAD_ADD_TO_WISHLIST_SUCCESS,
-      types.LOAD_ADD_TO_WISHLIST_FAILURE
+      types.LOAD_REMOVE_FROM_WISHLIST,
+      types.LOAD_REMOVE_FROM_WISHLIST_SUCCESS,
+      types.LOAD_REMOVE_FROM_WISHLIST_FAILURE
     ],
     payload : {
-      vendor: vendor,
-      category: params.category
+      vendor_id: params.vendor_id,
+      wishlist_id: params.wishlist_id,
+      category_id: params.category_id
     },
-    promise: client => client.post(`/api/additem`,params)
+    promise: client => client.delete(`/api/wishlist/removeitem?wishlist_id=${params.wishlist_id}&vendor_id=${params.vendor_id}`)
   };
 }
 

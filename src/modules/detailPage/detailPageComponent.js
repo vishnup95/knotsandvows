@@ -14,18 +14,21 @@ import ReactPaginate from 'react-paginate';
 import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
 import { imagePath, formatMoney } from '../../utils/assetUtils';
-// import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
 import { isLoggedIn } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import InputField from '../../components/InputField/inputField';
+import ProgressButton from '../../components/ProgressButton/PorgressButton';
 const mapStateToProps = state => ({
     user: state.session.user,
     details: state.details.details,
     detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
-    similarVendors: state.details.similarVendors
+    similarVendors: state.details.similarVendors,
+    wishListApiLoading : state.wishlist.loading,
+    addWishListApiStatus : state.wishlist.apiStatus
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -48,7 +51,8 @@ class DetailPageComponent extends Component {
             reviewPage: 1,
             email: '',
             phone: '',
-            date: ''
+            date: '',
+            isInWishList: false
         };
     }
     toggleGallery = () => {
@@ -65,6 +69,11 @@ class DetailPageComponent extends Component {
         if (this.state.vendor !== this.props.match.params.vendor_name) {
             this.updateUIData();
             window.scrollTo(0, 0);
+            return
+        }
+
+        if ((prevProps.addWishListApiStatus != this.props.addWishListApiStatus) && this.props.addWishListApiStatus == true) {
+            this.setState({isInWishList: !this.state.isInWishList}); 
         }
     }
 
@@ -91,6 +100,26 @@ class DetailPageComponent extends Component {
     addToWishList = (e) => {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
+        }else{
+            if (!this.state.isInWishList){
+                let params = {
+                    vendor_id: this.props.details.vendor_id,
+                    wishlist_id: 1
+                };
+                this.props.dispatch(wishlistActions.addToWishlist(params));
+            }     
+        }
+        e.stopPropagation();
+    }
+
+    removeFromWishList = (e) => {
+            if (this.state.isInWishList){
+                let params = {
+                    vendor_id: this.props.details.vendor_id,
+                    wishlist_id: 1,
+                    category_id : this.props.details.category_id
+                };
+            this.props.dispatch(wishlistActions.removeFromWishlist(params));  
         }
         e.stopPropagation();
     }
@@ -187,7 +216,7 @@ class DetailPageComponent extends Component {
             if (details.amenities && details.amenities.length > 0) {
                 detailNavItems.push("Amenities");
             }
-            if (details.Policies && details.Policies.length > 0) {
+            if (details.policies && details.policies.length > 0) {
                 detailNavItems.push("Policies");
             }
             if (details.location && details.location.latitude && details.location.longitude) {
@@ -224,8 +253,8 @@ class DetailPageComponent extends Component {
                                         <div className={style.review}> {details.reviews_count} Reviews</div>
                                     </div>
                                     <div className={style.viewBtnWrap}>
-                                        <button className="primary-button" onClick={(e) => this.addToWishList(e)}>Add to wishlist</button>
-                                        <button className={style.removeBtn}>Remove from wishlist</button>
+                                        <ProgressButton className="primary-button" onClick={(e) => this.addToWishList(e)} title="Add to wishlist" isLoading={this.props.wishListApiLoading}></ProgressButton>
+                                        {this.state.isInWishList && <button className={style.removeBtn} onClick={(e) => this.removeFromWishList(e)}>Remove from wishlist</button>}
                                     </div>
                                 </div>
                             </Row>
@@ -280,11 +309,11 @@ class DetailPageComponent extends Component {
 
                                         </Col>
                                     }
-                                    {details.Policies && details.Policies.length > 0 &&
+                                    {details.policies && details.policies.length > 0 &&
                                         <Col md="12" className={style.detailSubSection}>
                                             <h3>Policies</h3>
                                             <ul className={style.selectableList}>
-                                                {this.renderPolicies(details.Policies)}
+                                                {this.renderPolicies(details.policies)}
                                             </ul>
 
                                         </Col>
@@ -416,7 +445,9 @@ DetailPageComponent.propTypes = {
     details: PropTypes.object,
     similarVendors: PropTypes.array,
     match: PropTypes.object,
-    detailsLoading: PropTypes.bool
+    detailsLoading: PropTypes.bool,
+    wishListApiLoading:PropTypes.bool,
+    addWishListApiStatus:PropTypes.object
 };
 
 export default connect(
