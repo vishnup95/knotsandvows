@@ -113,7 +113,8 @@ h2 {
 }
 
 .spinner-margin {
-  margin: 0 10px 0 -15px;
+  // margin: 0 0px 0 -15px;
+  @include margin(0,5,0,-15);
 }
 
 .mobile-only {

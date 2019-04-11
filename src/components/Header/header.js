@@ -88,7 +88,6 @@ class Header extends Component {
     componentDidMount() {
         if (isLoggedIn()) {
             this.props.dispatch(actions.fetchMyProfile());
-            this.props.dispatch(wishlistActions.fetchMyWishlist());
         } 
     }
 
@@ -136,6 +135,7 @@ class Header extends Component {
     }
 
     shortName = (userName) => {
+        this.props.dispatch(wishlistActions.fetchMyWishlist());
         if (userName) {
             var initials = userName.match(/\b\w/g) || [];
             initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
@@ -173,11 +173,10 @@ class Header extends Component {
                 }else{
                     var redirect = queryString.parse(this.props.location.search).redirect;
                     if(redirect){
-                        this.props.dispatch(replace(`/${redirect}`));
+                        this.props.dispatch(replace(`${redirect}`));
                     }else{
                         this.props.dispatch(replace("/"));
-                    }
-                    
+                    }      
                 }
             }   
         }   
