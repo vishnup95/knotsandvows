@@ -4,7 +4,6 @@
 
 .ceremony-detail {
   overflow: hidden;
-  margin-top: 14rem;
 
   @include mobile {
     margin-top: 7rem;
@@ -30,7 +29,7 @@
 }
 
 .ceremony-cover {
-  @include height(400);
+  @include height(700);
   position: relative;
 
   h1 {
@@ -100,4 +99,13 @@
     margin-left: -30px;
     padding: 0 10px;
   }
+}
+.selectCity {
+  width: 200px;
+  display: flex;
+  justify-content: flex-end;
+}
+.selectDrop {
+  width: 200px;
+  margin-top: 2rem;
 }
