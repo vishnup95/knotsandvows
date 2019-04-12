@@ -73,6 +73,7 @@ const WishListReducer = (state = initialState, action) => {
       return {
         ...state,
         loading:false,
+        wishListData: handleRemoveFromWishList(action.payload, state.wishListData),
         apiStatus:true
       };
 
@@ -81,6 +82,7 @@ const WishListReducer = (state = initialState, action) => {
         ...state,
         loading:false,
         apiStatus:false,
+        wishListData: handleRemoveFromWishList(action.payload, state.wishListData),
         error: action.error.message,
       };
 
@@ -168,8 +170,16 @@ const WishListReducer = (state = initialState, action) => {
 function appendNotesToVendor(details, wishListData, notes) {
   let wishListDataCopy = JSON.parse(JSON.stringify(wishListData));
   wishListDataCopy.wishlistitems.slice().find(
-    item => item.category_id === details.category_id
-  ).vendors.find(item => item.vendor_id === details.vendor_id)['notes'] = notes;
+    item => item.category_id == details.category_id
+  ).vendors.find(item => item.vendor_id == details.vendor_id)['notes'] = notes;
+  return wishListDataCopy;
+}
+
+function handleRemoveFromWishList(details, wishListData) {
+  let wishListDataCopy = JSON.parse(JSON.stringify(wishListData));
+  wishListDataCopy.wishlistitems.slice().find(
+    item => item.category_id == details.category_id
+  ).vendors.filter(item => item.vendor_id != details.vendor_id);
   return wishListDataCopy;
 }
 

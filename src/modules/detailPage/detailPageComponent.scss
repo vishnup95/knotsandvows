@@ -479,10 +479,11 @@
     }
 
     > div {
-      > button {
+      > img {
         position: absolute;
-        @include top(-37);
-        @include right(-37);
+        @include top(-60);
+        @include right(-50);
+        @include width(62);
       }
     }
   }

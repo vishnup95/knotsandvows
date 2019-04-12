@@ -105,6 +105,6 @@ export function removeCollabrator(collabrator) {
       types.LOAD_SHARED_WISHLIST_SUCCESS,
       types.LOAD_REMOVE_COLLABRATOR_FAILURE
     ],
-    promise: client => client.delete(`/api/wishlist/removecollabrator?collabrator_id=${collabrator}`)
+    promise: client => client.delete(`/api/removecollabrator?collabrator_id=${collabrator}`)
   };
 }

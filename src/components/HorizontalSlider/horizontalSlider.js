@@ -256,7 +256,7 @@ export default class HorizontalSlider extends Component {
                                 return (
                                     <div key={index} className={styles.sliderItemBasic}>
                                         <div className={styles.sliderWrap}>
-                                            {item}
+                                            {item.display_name}
                                         </div>
                                     </div>
                                 );

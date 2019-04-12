@@ -1,6 +1,7 @@
 import * as types from './constants';
 const initialState = {
   details: null,
+  gallery : [],
   reviewsData: null,
   similarVendors:[],
   loading: false
@@ -41,14 +42,14 @@ const VendorDetailReducer = (state = initialState, action) => {
       result = action.result || [];
       return {
         ...state,
-        details: {...state.details, gallery : result.data.data.gallery},
+        gallery: result.data.data.gallery,
         loading: false
       };
 
     case types.LOAD_GALLERY_FAILURE:
       return {
         ...state,
-        details: {...state.details, gallery : []},
+        gallery: [],
         error: action.error.message,
         loading: false
       };

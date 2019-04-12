@@ -14,7 +14,7 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse } from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse , getId} from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
@@ -79,12 +79,23 @@ class CategoryCard extends Component {
         }
         e.stopPropagation();
     }
+    
+    removeVendor = (event) => {
+        event.stopPropagation();
+        let params = {
+            vendor_id: this.props.data.vendor_id,
+            wishlist_id: this.props.wishlistId,
+            category_id: getId(this.props.category),
+        };
+        
+        this.props.dispatch(wishlistActions.removeFromWishlist(params));
+    }
 
     toggleNotes(e) {
         e.stopPropagation();
         if (!this.state.showNotes) {
             let details = {
-                category_id: this.props.data.category_id,
+                category_id: getId(this.props.category),
                 vendor_id: this.props.data.vendor_id,
                 wishlist_id: this.props.wishlistId
             }
@@ -95,14 +106,14 @@ class CategoryCard extends Component {
 
     toggleAddNote(e, save) {
         e.stopPropagation();
-        this.setState({showNotes: this.state.showAddNote});
+        // this.setState({showNotes: this.state.showAddNote});
         this.setState({showAddNote: !this.state.showAddNote});
 
         if(save) {
             let params = {
                 wishlist_id: this.props.wishlistId,
-                category_id: this.props.data.category_id,
-                vendor_id:4,
+                category_id: getId(this.props.category),
+                vendor_id:this.props.data.vendor_id,
                 note: document.getElementById('note').value
             }
             this.props.dispatch(wishlistActions.addNote(params, this.props.dispatch));
@@ -185,7 +196,7 @@ class CategoryCard extends Component {
                         this.props.isWishlist &&
                         <div>
                             <div className={`${styles.addIcon} ${styles.cardIcon}`} onClick={(event) => this.toggleNotes(event)} aria-hidden></div>
-                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`}></div>
+                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`} onClick={ (event) => this.removeVendor(event)} aria-hidden></div>
                             {/* <div className={`${styles.viewIcon} ${styles.cardIcon}`}>2</div> */}
                         </div>
                     }
