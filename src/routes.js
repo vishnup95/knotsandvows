@@ -161,7 +161,7 @@ const routes = (
     <Route exact path="/categories" component={LoadableCategoryListing} />
     <Route exact path="/packages" component={LoadableExclusiveDeals} />
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
-    <Route exact path="/wishlist" component={LoadableWishlist} />
+    <SecretRoute exact path="/wishlist" component={LoadableWishlist} />
     <Route path="/about" component={LoadableAbout} />
     <Route path="/services" component={LoadableServices} />
     <SecretRoute path="/bookings" component={LoadableBookings} />

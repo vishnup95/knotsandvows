@@ -127,6 +127,23 @@ const WishListReducer = (state = initialState, action) => {
         loading : false
       };
 
+      case types.LOAD_REMOVE_COLLABRATOR:
+      return {
+        ...state,
+        error:null
+      };
+
+    case types.LOAD_REMOVE_COLLABRATOR_SUCCESS:
+      return {
+        ...state,
+      };
+
+    case types.LOAD_REMOVE_COLLABRATOR_FAILURE:
+      return {
+        ...state,
+        error: action.error.message
+      };
+
     default:
       return state;
   }

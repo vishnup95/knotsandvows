@@ -121,6 +121,10 @@ class CategoryListing extends Component {
   return compareVendors;
   }
 
+  removeCollabrator = (collabrator) => {
+       this.props.dispatch(actions.removeCollabrator(collabrator));
+  }
+
   render() {
     
     return (
@@ -167,7 +171,7 @@ class CategoryListing extends Component {
                 <Col sm="10">
                   <Row>
                     <Col className={`${styles.collaboratorList} text-right`}>
-                      <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
+                      <div className={styles.collaborator} aria-hidden onClick={() => this.removeCollabrator(12)}>YA<div className={styles.toolTip}>Remove from list</div></div>
                       <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
                       <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
                       <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
