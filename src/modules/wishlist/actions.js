@@ -81,7 +81,7 @@ export function addNote(params, dispatch) {
       types.LOAD_ADD_NOTE_SUCCESS,
       types.LOAD_ADD_NOTE_FAILURE
     ],
-    promise: client => client.get(`/api/wishlist/addnote`, params)
+    promise: client => client.post(`/api/wishlist/addnote`, params)
       .then(() => dispatch(this.fetchAllNotes(params)))
         .catch(error => console.log(error))
   };

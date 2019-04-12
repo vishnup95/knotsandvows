@@ -66,8 +66,8 @@ class AddCollbratorModal extends Component {
     render() {
         return (
             <div className={styles.forgotPassword}>
-            <div className={styles.header}>Share your wishlist</div>
-            <div className={styles.message}>Invite your collaborator to view your wishlist</div>
+            <div className={`text-left ${styles.header}`}>Share your wishlist</div>
+            <div className={styles.subheading}>Invite your collaborator to view your wishlist</div>
             <Form className="position-relative mt-3">
                 <InputField placeHolder="Name" id="name" type="text" ref={this.nameRef} onChange={e => this.handleFormChange(e)} />
                 <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleFormChange(e)} />
