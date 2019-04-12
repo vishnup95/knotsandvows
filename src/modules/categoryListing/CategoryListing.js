@@ -12,8 +12,8 @@ import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import CategorySection from '../ceremonyDetail/categorySection';
 
 const mapStateToProps = state => ({
-  ceremonyDetails: state.ceremonyDetails.details,
-  ceremonyLoading: state.ceremonyDetails.loading,
+  allVendorDetails: state.ceremonyDetails.allVendorDetails,
+  isLoading: state.ceremonyDetails.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -34,11 +34,13 @@ class CategoryListing extends Component {
   }
 
   static fetchData(store) {
-    return store.dispatch(actions.fetchCeremonyDetails('planyourreception-3'));
+    return store.dispatch(actions.fetchAllVendors());
   }
 
   componentWillMount() {
-    this.props.dispatch(actions.fetchCeremonyDetails('planyourreception-3'));
+    if (!this.props.allVendorDetails || this.props.allVendorDetails.categories.length == 0){
+      this.props.dispatch(actions.fetchAllVendors());
+    } 
   }
 
   componentDidMount() {
@@ -46,8 +48,8 @@ class CategoryListing extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.ceremonyDetails !== null) {
-      let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
+    if(nextProps.allVendorDetails !== null && nextProps.allVendorDetails.categories !== null) {
+      let filteredCategories = nextProps.allVendorDetails.categories.filter(item => {
         return item.vendors !== null && item.vendors.length > 0
       })
       this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
@@ -78,7 +80,7 @@ class CategoryListing extends Component {
                   <p className={styles.subTitle}>Guaranteed best prices from all our vendors</p>
                 </Col>
               </Row>
-              {this.props.ceremonyLoading && <LoaderComponent />}
+              {this.props.isLoading && <LoaderComponent />}
               {this.state.fixedCategories.length > 0 && <Row className={`mb-3 ${styles.fullWidthListing}`}>
                 <Col className="no-padding">
                   <HorizontalSlider data={this.state.fixedCategories} type='small' buttonAction={this.handleCategoryChange}/>
@@ -102,8 +104,8 @@ class CategoryListing extends Component {
 
 CategoryListing.propTypes = {
   user: PropTypes.object,
-  ceremonyDetails: PropTypes.object,
-  ceremonyLoading: PropTypes.bool,
+  allVendorDetails: PropTypes.object,
+  isLoading: PropTypes.bool,
   dispatch: PropTypes.func,
 };
 

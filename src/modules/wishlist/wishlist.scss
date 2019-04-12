@@ -154,6 +154,12 @@
   margin-left: 2px;
   background: url('/images/add-collaborator.svg') center no-repeat;
   background-size: 80%;
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &:hover {
+    background-size: 100%;
+  }
 }
 
 .contribution {

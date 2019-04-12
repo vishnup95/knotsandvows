@@ -497,14 +497,32 @@ a.button {
   margin-bottom: 1.5rem;
   @include fontSize(18.3, important=true);
   text-align: left !important;
+  transition: all .5s ease;
   @include mobile {
     font-size: 12px;
   }
 }
 
+.carouselTextLarge {
+  @include fontSize(25.3, important=true);
+
+}
+
 .author {
-  font-family: $roboto-bold;
+  font-family: $roboto-bold !important;
   @include fontSize(18.3, important=true);
+  position: relative;
+  padding-left: 45px;
+
+  &:before {
+    content: '';
+    width: 30px;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    top: .75rem;
+    background-color: $white;
+  }
 
 }
 
@@ -525,7 +543,7 @@ a.button {
   text-align: left;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
+  padding: 0 2rem;
 
   > img {
     margin-bottom: 1rem;
@@ -573,22 +591,6 @@ a.button {
   }
 }
 
-.homeImage {
-  @include height(967);
-  width: auto;
-  @extend %spacer;
-}
-
-.homeTitle {
-  @include fontSize(80);
-  font-family: $frank-bold;
-  white-space: nowrap;
-
-  span {
-    color: $medium-pink;
-  }
-}
-
 .mediumPinkBg {
   background-color: $medium-pink;
 }
@@ -626,20 +628,6 @@ a.button {
 
 .cardDetail {
   font-family: $roboto-light;
-}
-
-.cardImage {
-  position: relative;
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 99px;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
-  }
 }
 
 .whiteHeading {
@@ -686,6 +674,7 @@ a.button {
 .carousel {
   max-width: 935px;
   margin: 0 auto;
+  width: 70rem;
 }
 
 .bRadius {
@@ -697,6 +686,7 @@ a.button {
   max-width: 901px;
   margin-left: auto;
   margin-right: auto;
+  width: 64rem;
 }
 
 .cardImageContainer {
@@ -704,11 +694,49 @@ a.button {
   display: flex;
   align-items: center;
   padding: 2.5rem 0;
+  position: relative;
 
   img {
     @include width(665);
   }
 
+  &.cardImageSlide {
+    .cardImage {
+      opacity: 1;
+      margin-top: 0;
+    }
+
+    &:before {
+      content: '';
+      z-index: 1;
+      position: absolute;
+      left: 0;
+      bottom: 2.5rem;
+      width: 100%;
+      height: 99px;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+    }
+
+    &:after {
+      content: '';
+      z-index: 2;
+      position: absolute;
+      right: 5rem;
+      bottom: 2.5rem;
+      width: 36px;
+      height: 36px;
+      background-image: url('/images/fav-icon.png');
+    }
+
+  }
+
+}
+
+.cardImage {
+  position: relative;
+  transition: all .5s ease;
+  margin-top: 3rem;
+  opacity: 0;
 }
 
 .imageCard {
@@ -771,6 +799,7 @@ a.button {
   flex-direction: column;
   padding: 0 3rem;
   @extend %spacer;
+
   button {
     margin: 0;
   }
@@ -786,21 +815,60 @@ a.button {
     font-size: 1.2rem !important;
   }
 }
+
 .boxSection {
   @include height(600);
   display: flex;
   align-items: center;
+  position: relative;
+
   h2 {
     line-height: .8;
   }
+
   img {
     width: 35rem;
   }
   @extend %spacer;
 }
+
 .dummyClass {
   align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.boxMark {}
+@keyframes example {
+  from {
+    transform: perspective(100px) rotateY(-65deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: perspective(100px) rotateY(0);
+    opacity: 1;
+  }
+}
+
+.homeTitle {
+  white-space: nowrap;
+
+  div {
+    > div {
+      // color: $medium-pink;
+      animation-name: example;
+      animation-duration: 5s;
+      display: inline-block;
+      @include fontSize(80);
+      font-family: $frank-bold;
+      white-space: pre;
+      line-height: 1.17;
+    }
+
+    &.pink {
+      color: $medium-pink;
+    }
+  }
 }

@@ -14,8 +14,8 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse } from '../../utils/utilities';
-import * as loginActions from '../../reducers/session/actions'
+import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse , getId} from '../../utils/utilities';
+import * as loginActions from '../../reducers/session/actions';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
 import * as modalActions from '../../reducers/modal/actions';
@@ -45,10 +45,8 @@ class CategoryCard extends Component {
     }
 
     handleClickOutside = event => {
-        if (event.target.id !== `card${this.props.id}`) {
+        if(!document.getElementById(`card${this.props.id}`).contains(event.target)) {
             this.setState({showNotes: false});
-        } else {
-            this.toggleNotes(event);
         }
     }
 
@@ -73,8 +71,7 @@ class CategoryCard extends Component {
                 }else{
                     let modalContent = {
                         heading: '',
-                        message: error,
-                        proceedAction: this.toggleModal
+                        message: error
                       };
                     this.props.dispatch(modalActions.showModal(modalContent));
                 }
@@ -82,12 +79,23 @@ class CategoryCard extends Component {
         }
         e.stopPropagation();
     }
+    
+    removeVendor = (event) => {
+        event.stopPropagation();
+        let params = {
+            vendor_id: this.props.data.vendor_id,
+            wishlist_id: this.props.wishlistId,
+            category_id: getId(this.props.category),
+        };
+        
+        this.props.dispatch(wishlistActions.removeFromWishlist(params));
+    }
 
     toggleNotes(e) {
         e.stopPropagation();
         if (!this.state.showNotes) {
             let details = {
-                category_id: this.props.data.category_id,
+                category_id: getId(this.props.category),
                 vendor_id: this.props.data.vendor_id,
                 wishlist_id: this.props.wishlistId
             }
@@ -98,14 +106,14 @@ class CategoryCard extends Component {
 
     toggleAddNote(e, save) {
         e.stopPropagation();
-        this.setState({showNotes: this.state.showAddNote});
+        // this.setState({showNotes: this.state.showAddNote});
         this.setState({showAddNote: !this.state.showAddNote});
 
         if(save) {
             let params = {
                 wishlist_id: this.props.wishlistId,
-                category_id: this.props.data.category_id,
-                vendor_id:4,
+                category_id: getId(this.props.category),
+                vendor_id:this.props.data.vendor_id,
                 note: document.getElementById('note').value
             }
             this.props.dispatch(wishlistActions.addNote(params, this.props.dispatch));
@@ -125,7 +133,7 @@ class CategoryCard extends Component {
         }
 
         return (
-            <div className={styles.cardbodyContainer} id={`card${this.props.id}`}>
+            <div className={styles.cardbodyContainer}>
 
                 <div className={styles.mainContent}>
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
@@ -182,12 +190,13 @@ class CategoryCard extends Component {
     render() {
         return (
             <div>
-                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} onClick={this.handleCardClick}>
+                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} 
+                    onClick={this.handleCardClick}  id={`card${this.props.id}`}>
                     {
                         this.props.isWishlist &&
                         <div>
                             <div className={`${styles.addIcon} ${styles.cardIcon}`} onClick={(event) => this.toggleNotes(event)} aria-hidden></div>
-                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`}></div>
+                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`} onClick={ (event) => this.removeVendor(event)} aria-hidden></div>
                             {/* <div className={`${styles.viewIcon} ${styles.cardIcon}`}>2</div> */}
                         </div>
                     }
@@ -212,9 +221,12 @@ class CategoryCard extends Component {
                     }
                     {
                         this.state.showAddNote &&
-                        <div className={styles.addNote}>
-                            <div className={styles.noteHeader}><span>Add Note</span> <img className={styles.closeNote} src={imagePath('close-blank.svg')} alt="close button" /></div>
-                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors" onClick={(event) => { event.stopPropagation() }}></textarea>
+                        <div className={styles.addNote} onClick={(event) => { event.stopPropagation()}} aria-hidden>
+                            <div className={styles.noteHeader}>
+                                <span>Add Note</span> 
+                                <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={(event) => this.toggleAddNote(event, false)} aria-hidden/>
+                            </div>
+                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters"></textarea>
                             <div className="text-right">
                                 <Button className="text-btn" onClick={(event) => this.toggleAddNote(event, false)}>Cancel</Button>
                                 <Button className="primary-button" onClick={(event) => this.toggleAddNote(event, true)}>Save</Button>
@@ -225,14 +237,22 @@ class CategoryCard extends Component {
                        this.state.showNotes && <Col className={styles.noteContainer}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
-                                    <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4>
+                                    {/* <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4> */}
+                                    <div className="text-right">
+                                        <Button color="primary" className="primary-button" onClick={(event) => this.toggleAddNote(event)}>
+                                            <span className="mr-2">+</span>
+                                            <span>Add a note</span>
+                                        </Button>
+                                    </div>
+                                    
                                     {this.props.noteloading &&
                                     <div className="row">
                                         <div className="col-12">
                                         <LoaderComponent />
                                         </div>
                                     </div>}
-                                    {
+                                    {   
+                                        this.props.data.notes.length > 0 ?
                                         this.props.data.notes.map((note, index) => {
                                             return(
                                             <div className={styles.noteWrap} key={index}>
@@ -250,7 +270,7 @@ class CategoryCard extends Component {
                                                     </div>
                                                 </div>
                                             </div>)
-                                        })
+                                        }) :  <h4 className="font-italic text-secondary">No notes to show</h4>
                                     }
                                     
                                 </Col>

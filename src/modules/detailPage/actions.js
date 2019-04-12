@@ -63,7 +63,7 @@ export function fetchReviews(vendor, page) {
       types.LOAD_REVIEWS_SUCCESS,
       types.LOAD_REVIEWS_FAILURE
     ],
-    promise: client => client.get(`/api/reviews?vendor=`+getId(vendor)+`&page=`+page+`&offset=5`)
+    promise: client => client.get(`/api/reviews?vendor_id=`+getId(vendor)+`&page=`+page+`&offset=5`)
   };
 }
 
@@ -75,6 +75,6 @@ export function fetchVendorGallery(vendor) {
       types.LOAD_GALLERY_SUCCESS,
       types.LOAD_GALLERY_FAILURE
     ],
-    promise: client => client.get(`/api/getvendorgallery?vendor_id=`+getId(vendor))
+    promise: client => client.get(`/api/gallery?vendor_id=`+getId(vendor))
   };
 }

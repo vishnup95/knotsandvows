@@ -33,3 +33,7 @@ export const LOAD_NOTES_FAILURE = 'my-project/wishlist/LOAD_NOTES_FAILURE';
 export const LOAD_ADD_COLLABRATOR = 'my-project/wishlist/LOAD_ADD_COLLABRATOR';
 export const LOAD_ADD_COLLABRATOR_SUCCESS = 'my-project/wishlist/LOAD_ADD_COLLABRATOR_SUCCESS';
 export const LOAD_ADD_COLLABRATOR_FAILURE = 'my-project/wishlist/LOAD_ADD_COLLABRATOR_FAILURE';
+
+export const LOAD_REMOVE_COLLABRATOR = 'my-project/wishlist/LOAD_REMOVE_COLLABRATOR';
+export const LOAD_REMOVE_COLLABRATOR_SUCCESS = 'my-project/wishlist/LOAD_REMOVE_COLLABRATOR_SUCCESS';
+export const LOAD_REMOVE_COLLABRATOR_FAILURE = 'my-project/wishlist/LOAD_REMOVE_COLLABRATOR_FAILURE';

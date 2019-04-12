@@ -26,6 +26,7 @@ import * as modalActions from '../../reducers/modal/actions';
 const mapStateToProps = state => ({
     user: state.session.user,
     details: state.details.details,
+    gallery: state.details.gallery,
     detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
     similarVendors: state.details.similarVendors,
@@ -111,8 +112,7 @@ class DetailPageComponent extends Component {
                     }else{
                         let modalContent = {
                             heading: '',
-                            message: error,
-                            proceedAction: this.toggleModal
+                            message: error
                           };
                         this.props.dispatch(modalActions.showModal(modalContent));
                     }
@@ -136,8 +136,7 @@ class DetailPageComponent extends Component {
                     }else{
                         let modalContent = {
                             heading: '',
-                            message: error,
-                            proceedAction: this.toggleModal
+                            message: error
                           };
                         this.props.dispatch(modalActions.showModal(modalContent));
                     }
@@ -224,31 +223,38 @@ class DetailPageComponent extends Component {
         this.setState({ [e.target.id]: e.target.value });
     }
 
+    handleNavClick(item) {
+         
+        switch(item.id) {
+            case 'gallery': this.toggleGallery();
+        }
+    }
+
     render() {
         let details = this.props.details;
         let reviewsData = this.props.reviewsData;
         let detailNavItems = [];
         if (details) {
             if (details.description) {
-                detailNavItems.push("About");
+                detailNavItems.push({display_name:"About",id:"about"});
             }
             if (details.availableareas && details.availableareas.length > 0) {
-                detailNavItems.push("Available Areas");
+                detailNavItems.push({display_name:"Available Areas",id:"available_area"});
             }
             if (details.amenities && details.amenities.length > 0) {
-                detailNavItems.push("Amenities");
+                detailNavItems.push({display_name:"Amenities",id:"amenities"});
             }
             if (details.policies && details.policies.length > 0) {
-                detailNavItems.push("Policies");
+                detailNavItems.push({display_name:"Policies",id:"policies"});
             }
             if (details.location && details.location.latitude && details.location.longitude) {
-                detailNavItems.push("Direction");
+                detailNavItems.push({display_name:"Direction",id:"direction"});
             }
             if (reviewsData && reviewsData.results && reviewsData.results.length > 0) {
-                detailNavItems.push("Reviews");
+                detailNavItems.push({display_name:"Reviews",id:"reviews"});
             }
-            if (details.gallery && details.gallery.length > 0) {
-                detailNavItems.push(`Gallery (${details.gallery.length} Photos)`);
+            if (this.props.gallery && this.props.gallery.length > 0) {
+                detailNavItems.push({display_name:`Gallery (${this.props.gallery.length} Photos)`,id:"gallery"});
             }
         }
 
@@ -285,7 +291,7 @@ class DetailPageComponent extends Component {
                                 <ul>
                                     {
                                         detailNavItems.map((item, index) => {
-                                            return <li key={index}>{item}</li>
+                                            return <li key={index} aria-hidden onClick={() =>this.handleNavClick(item)}>{item.display_name}</li>
                                         })
                                     }
                                 </ul>
@@ -446,10 +452,12 @@ class DetailPageComponent extends Component {
                         </div>
                     </div>
                 }
+                {details && 
                 <Modal isOpen={this.state.showGallery} toggle={() => this.toggleGallery()} centered={true} className={style.imageGallery}>
-                    <ProductGallery details={details} close={this.toggleGallery}></ProductGallery>
+                    <ProductGallery images={this.props.gallery} name={details.name} close={this.toggleGallery}></ProductGallery>
 
                 </Modal>
+                }
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
                     <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" />
                 }
@@ -469,7 +477,8 @@ DetailPageComponent.propTypes = {
     match: PropTypes.object,
     detailsLoading: PropTypes.bool,
     wishListApiLoading:PropTypes.bool,
-    wishlistId: PropTypes.number
+    wishlistId: PropTypes.number,
+    gallery: PropTypes.array,  
 };
 
 export default connect(
