@@ -20,6 +20,7 @@ import CarouselComponent from './carousel';
 // import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
 import { imagePath } from '../../utils/assetUtils';
 import {  hyphonatedString} from '../../utils/utilities';
+import ImageFade from '../../components/ImageFade/imageFade';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -39,6 +40,12 @@ class Home extends Component {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
 
+  }
+  state = {
+    zoomCard: false,
+    animateImageOne: false,
+    animateImageTwo: false,
+    animateImageThree: false,
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -69,37 +76,44 @@ class Home extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
   handleScroll = () => {
-    console.log('scrolled');
-    const section1 = document.getElementById('boxsection');
+    const section1 = document.getElementById('numbersection');
     const section1Visible = this.checkVisible(section1);
-    console.log(section1Visible, 'section1Visible');
+    const section2 = document.getElementById('discountedsection');
+    const section2Visible = this.checkVisible(section2);
+    const section3 = document.getElementById('expertteam');
+    const section3Visible = this.checkVisible(section3);
+    const section4 = document.getElementById('thirdcard');
+    const section4Visible = this.checkVisible(section4);
+    // const section2 = document.getElementById('boxsection');
+    // const section2Visible = this.checkVisible(section1);
+    // console.log(section1Visible, 'section1Visible');
+    
     if (section1Visible) {
-      const section1Flag = document.getElementById('boxsection').offsetTop - window.scrollY;
-      console.log(section1Flag, 'section1Flag');
-      console.log(window.innerHeight, 'window.innerHeight');
-      if(section1Flag < (window.innerHeight/2)) {
-        // document.getElementById('box-one').style.transform = 'translate3d(10px,10px,10px)';
-      }
-      
-      // style.transform = 'rotate' + '(' + section2Flag + 'deg' + ')';
-      // const section1Opacity = 1 - (section1Flag / 1000);
-      // if (0 <= section1Flag && section1Flag < 100) {
-      //   if (section1Opacity <= 1) {
-      //     document.getElementById('altimage-1').style.opacity = (section1Opacity - 0.9) * 10;
-      //   }
-      //   const flag = `${-section1Flag}px`;
-      //   document.getElementById('logo-1').style.left = flag;
-      //   document.getElementById('logo-1').style.top = flag;
-      //   document.getElementById('logo-2').style.right = flag;
-      //   document.getElementById('logo-2').style.top = flag;
-      //   document.getElementById('logo-3').style.left = flag;
-      //   document.getElementById('logo-3').style.bottom = flag;
-      //   document.getElementById('logo-4').style.right = flag;
-      //   document.getElementById('logo-4').style.bottom = flag;
-      // }
-      // if (section1Flag > 100) {
-      //   document.getElementById('altimage-1').style.opacity = 0;
-      // }
+      this.setState({zoomCard: true});
+    }
+    else {
+      this.setState({zoomCard: false});
+    }
+
+    if(section2Visible) {
+      this.setState({animateImageOne: true});
+    }
+    else {
+      this.setState({animateImageOne: false});
+    }
+
+    if(section3Visible) {
+      this.setState({animateImageTwo: true});
+    }
+    else {
+      this.setState({animateImageTwo: false});
+    }
+
+    if(section4Visible) {
+      this.setState({animateImageThree: true});
+    }
+    else {
+      this.setState({animateImageThree: false});
     }
     
   }
@@ -123,6 +137,10 @@ class Home extends Component {
   }
 
   render() {
+    console.log(styles, 'styles');
+    const headerString = ['Secret ', 'to a stress ', 'free wedding...'];
+    const headerStringTwo = ['Wedding Planner'];
+    
     return (
       <div>
         {
@@ -132,7 +150,37 @@ class Home extends Component {
               <Row>
                 <Col>
                   <div className={styles.homeContent}>
-                    <h1 className={styles.homeTitle}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1>
+                  <div className={styles.homeTitle}>
+
+                  {
+                    headerString.map((item, index) => {
+                      let name = [];
+                      for (var i = 0; i < item.length; i++) {
+                       name.push (
+                          <div key={`${index}_${i}`}>{item.charAt(i)}</div>
+                        );
+                      }
+
+                      return <div key={index}>{name}</div>;
+                      
+                    })
+                  }
+                  {
+                    headerStringTwo.map((item, index) => {
+                      let name = [];
+                      for (var i = 0; i < item.length; i++) {
+                       name.push (
+                          <div key={`${index}_${i}`}>{item.charAt(i)}</div>
+                        );
+                      }
+
+                      return <div key={index} className={styles.pink}>{name}</div>;
+                      
+                    })
+                  }
+
+                  </div>
+                    {/* <h1 className={styles.homeTitle}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1> */}
                     <p>Sevenvows can help you with x ooxoox xcvxcv xcvxcvxc xo oxo oxo</p>
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" />
@@ -142,7 +190,7 @@ class Home extends Component {
                   </div>
                 </Col>
                 <Col>
-                  <img className={styles.homeImage} src={imagePath('home-image.png')} alt="call-button" />
+                <ImageFade/>
                 </Col>
               </Row>
               <hr></hr>
@@ -154,7 +202,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col>
-                  <CarouselComponent />
+                  <CarouselComponent isZoom={this.state.zoomCard}/>
                 </Col>
               </Row>
               <Row>
@@ -164,7 +212,7 @@ class Home extends Component {
               </Row>
 
             </div>
-            <div className={`${styles.mediumPinkBg} ${styles.bRadius} container-fluid`}>
+            <div className={`${styles.mediumPinkBg} ${styles.bRadius} container-fluid`} id="numbersection">
               <div className={`${styles.homeContainer} container`}>
                 <Row className='justify-center'>
                   <Col className={styles.row}>
@@ -206,35 +254,38 @@ class Home extends Component {
                       <h3>Personalised Services</h3>
                       <p className={styles.cardDetail}>We believe that individualised, person centred planning is the foundation.</p>
                     </div>
-                    <div className={styles.cardImageContainer}>
+                    <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('personalised-services-img.png')} alt="img" />
                     </div>
                   </div>
-                  <div className={`${styles.imageCard} ${styles.imageCardReverse} row-reverse`}>
+                  <div className={`${styles.imageCard} ${styles.imageCardReverse} row-reverse`} id="discountedsection">
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <h3>Discounted Prices</h3>
                       <p className={styles.cardDetail}>Check out our exclusive wedding deals for your big day at amazing prices!</p>
                     </div>
-                    <div className={styles.cardImageContainer}>
-                      <img className={styles.cardImage} src={imagePath('discounted-prices-img.png')} alt="img" />
+                    <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
+                      <img className={styles.cardImage}  src={imagePath('discounted-prices-img.png')} alt="img" />
                     </div>
                   </div>
-                  <div className={styles.imageCard}>
+                  <div className={styles.imageCard} id="expertteam">
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />
                       <h3>Seven Vows - expert Team</h3>
                       <p className={styles.cardDetail}>Meet our team of crazy talented planners from across the country! </p>
                     </div>
-                    <div className={styles.cardImageContainer}>
+                    <div className={`${styles.cardImageContainer} ${this.state.animateImageThree ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />
                     </div>
+                    <div id="thirdcard" style={{position: 'absolute', bottom: '-7rem'}}></div>
                   </div>
                 </Col>
               </Row>
             </div>
             <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`} id="boxsection">
               <Container>
+                <Row className={styles.boxMark}>
+                <Col id="boxmark"></Col></Row>
                 <Row>
                     <Col>
                       <img src={imagePath('packagesimage.png')} alt="img" />
