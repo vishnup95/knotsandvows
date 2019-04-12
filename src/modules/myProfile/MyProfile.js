@@ -5,9 +5,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../reducers/session/actions';
-import { Form, Button } from 'reactstrap';
+import { Form } from 'reactstrap';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-
+import ProgressButton from '../../components/ProgressButton/PorgressButton';
+import * as modalActions from '../../reducers/modal/actions';
 
 const jumbotronData = {
     title: 'Need Help?',
@@ -17,6 +18,10 @@ const jumbotronData = {
 
 const mapStateToProps = state => ({
     user: state.session.user,
+    isLoading : state.session.loading,
+    error : state.session.error,
+    apiStatus : state.session.apiStatus
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -35,12 +40,13 @@ class MyProfile extends Component {
         this.state = {
             name: this.nameRef.value,
             phoneno: this.phoneRef.value,
-            email: this.emailRef.value
         };
     }
 
     componentWillMount() {
-
+        if (this.props.user){
+            this.setState({name: this.props.user.name , phoneno: this.props.user.phoneno});
+        }
     }
 
     handleFormChange = (e) => {
@@ -49,13 +55,29 @@ class MyProfile extends Component {
         });
     }
 
+    componentDidUpdate(prevProps){
+        if (this.props.user != prevProps.user){
+            this.setState({name: this.props.user.name , phoneno: this.props.user.phoneno});
+        }
+        if ((this.props.apiStatus != prevProps.apiStatus) && this.props.apiStatus == true){
+            let modalContent = {
+                heading: 'My profile',
+                message: "Profile updated successfuly"
+              };
+            this.props.dispatch(modalActions.showModal(modalContent));
+        }
+    }
+
     validateMyProfileForm = () => {
-        let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
+       
         let name = this.nameRef.current.validateFormInput(document.getElementById('name'));
         let phoneno = this.phoneRef.current.validateFormInput(document.getElementById('phoneno'));
-
-        if (email && name && phoneno) {
-           console.log('Cool');
+        if (name && phoneno) {
+            const params = {
+                name: this.state.name,
+                phoneno: this.state.phoneno
+            }
+            this.props.dispatch(actions.updateProfile(params));
         }
     }
 
@@ -73,7 +95,8 @@ class MyProfile extends Component {
                         <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleFormChange(e)} value="samplepassword" disabled={true}/>
                     </Form>
                     <div className="text-center mt-4">
-                        <Button className="primary-button" onClick={() => this.validateMyProfileForm()}>Update Changes</Button>
+                        <ProgressButton className="primary-button" onClick={() => this.validateMyProfileForm()} title="Update Changes" isLoading={this.props.isLoading}></ProgressButton>
+                        <div className={styles.error}>{this.props.error}</div>
                     </div>
                 </div>
             </div>
@@ -86,8 +109,10 @@ class MyProfile extends Component {
 
 MyProfile.propTypes = {
     dispatch: PropTypes.func,
-    actions: PropTypes.object,
+    isLoading: PropTypes.bool,
     user: PropTypes.object,
+    apiStatus : PropTypes.object,
+    error : PropTypes.string
 };
 
 export default connect(

@@ -40,9 +40,12 @@ export const LOAD_VERIFY_EMAIL = 'my-project/session/LOAD_VERIFY_EMAIL';
 export const LOAD_VERIFY_EMAIL_SUCCESS = 'my-project/session/LOAD_VERIFY_EMAIL_SUCCESS';
 export const LOAD_VERIFY_EMAIL_FAILURE = 'my-project/session/LOAD_VERIFY_EMAIL_FAILURE';
 
+export const LOAD_UPDATE_PROFILE = 'my-project/session/LOAD_UPDATE_PROFILE';
+export const LOAD_UPDATE_PROFILE_SUCCESS = 'my-project/session/LOAD_UPDATE_PROFILE_SUCCESS';
+export const LOAD_UPDATE_PROFILE_FAILURE = 'my-project/session/LOAD_UPDATE_PROFILE_FAILURE';
+
 export const LOAD_PROFILE = 'my-project/session/LOAD_PROFILE';
 export const LOAD_PROFILE_SUCCESS = 'my-project/session/LOAD_PROFILE_SUCCESS';
 export const LOAD_PROFILE_FAILURE = 'my-project/session/LOAD_PROFILE_FAILURE';
-
 
 export const CLEAR_ERRORS = 'my-project/session/CLEAR_ERRORS';

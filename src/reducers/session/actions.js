@@ -145,6 +145,17 @@ export function fetchMyProfile() {
   };
 }
 
+export function updateProfile(param) {
+  return {
+    types: [
+      types.LOAD_UPDATE_PROFILE,
+      types.LOAD_UPDATE_PROFILE_SUCCESS,
+      types.LOAD_UPDATE_PROFILE_FAILURE
+    ],
+    promise: client => client.post('/api/UserAuth/updateprofile',param)
+  };
+}
+
 export function clearUserData() {
   return {
     type: types.LOAD_LOGOUT_SUCCESS
