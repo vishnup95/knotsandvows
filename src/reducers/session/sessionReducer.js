@@ -234,6 +234,30 @@ const session = (state = initialState, action) => {
         loading: false
       };
 
+      case types.LOAD_UPDATE_PROFILE:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        apiStatus : null
+      };
+
+    case types.LOAD_UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        user: action.result.data.data.user,
+        loading: false,
+        apiStatus : true
+      };
+
+    case types.LOAD_UPDATE_PROFILE_FAILURE:
+      return {
+        ...state,
+        error: action.error.message,
+        loading: false,
+        apiStatus : false
+      };
+
     case types.CLEAR_ERRORS:
       return {
         ...state,

@@ -73,8 +73,7 @@ class CategoryCard extends Component {
                 }else{
                     let modalContent = {
                         heading: '',
-                        message: error,
-                        proceedAction: this.toggleModal
+                        message: error
                       };
                     this.props.dispatch(modalActions.showModal(modalContent));
                 }
