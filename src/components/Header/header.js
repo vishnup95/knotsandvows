@@ -246,8 +246,11 @@ class Header extends Component {
     }
 
     navigateTo(route) {
-        this.props.dispatch(push(route));
-
+        if (route === '/wishlist' && !isLoggedIn()) {
+            this.props.dispatch(actions.showLogin());
+        } else {
+            this.props.dispatch(push(route));
+        }
     }
 
     render() {
@@ -288,7 +291,7 @@ class Header extends Component {
                                 </div>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/packages')}>Packages</NavLink>
+                                <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
                             </NavItem>
 
                             <NavItem>

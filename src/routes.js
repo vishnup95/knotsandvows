@@ -25,12 +25,12 @@ const LoadableCategoryListing = Loadable({
   }
 });
 
-const LoadableExclusiveDeals = Loadable({
-  loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/exclusiveDeals/ExclusiveDeals'),
-  loading() {
-    return <div>Loading...</div>;
-  }
-});
+// const LoadableExclusiveDeals = Loadable({
+//   loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/exclusiveDeals/ExclusiveDeals'),
+//   loading() {
+//     return <div>Loading...</div>;
+//   }
+// });
 
 // const LoadablePlanningTool = Loadable({
 //   loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/planningTool/PlanningTool'),
@@ -159,7 +159,7 @@ const routes = (
     <Route exact path="/resetpassword" component={LoadableHome} />
     <Route exact path="/categories/:category_name" component={LoadableProducts} />
     <Route exact path="/categories" component={LoadableCategoryListing} />
-    <Route exact path="/packages" component={LoadableExclusiveDeals} />
+    {/* <Route exact path="/packages" component={LoadableExclusiveDeals} /> */}
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
     <Route exact path="/wishlist" component={LoadableWishlist} />
     <Route path="/about" component={LoadableAbout} />
