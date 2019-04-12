@@ -128,13 +128,14 @@ class CeremonyDetail extends Component {
             </h3> */}
                 </Col>
                 {/* <Col>Select City</Col> */}
-                  <Col>
+                  <Col className={styles.selectCity}>
                     <Select
                       value={this.state.selectedOption}
                       onChange={this.handleDropDownChange}
                       options={this.option}
                       placeholder="City"
                       isClearable={false}
+                      className={styles.selectDrop}
                     />
                   </Col>
               </Row>
