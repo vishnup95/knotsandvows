@@ -22,3 +22,14 @@ export function fetchSimilarCeremonies(ceremony) {
     promise: client => client.get(`/api/ceremonies/similarceremonies?ceremony_id=${getId(ceremony)}`)
   };
 }
+
+export function fetchAllVendors() {
+  return {
+    types: [
+      types.LOAD_ALL_VENDORS,
+      types.LOAD_ALL_VENDORS_SUCCESS,
+      types.LOAD_ALL_VENDORS_FAILURE
+    ],
+    promise: client => client.get(`/api/allvendors`)
+  };
+}
