@@ -107,7 +107,7 @@ class TalkToWeddingPlanner extends Component {
                         { this.props.status == false && this.props.message &&
                             <div className={styles.apiError}>{this.props.message}</div>
                         }
-                        <Form style={{ zIndex: '10000' }} className="position-relative">
+                        <Form className="position-relative">
                             <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />

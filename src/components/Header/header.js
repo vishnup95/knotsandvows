@@ -85,6 +85,12 @@ class Header extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user && nextProps.user != this.props.user) {
+            this.props.dispatch(wishlistActions.fetchMyWishlist());
+        }
+    }
+
     componentDidMount() {
         if (isLoggedIn()) {
             this.props.dispatch(actions.fetchMyProfile());
@@ -135,7 +141,6 @@ class Header extends Component {
     }
 
     shortName = (userName) => {
-        this.props.dispatch(wishlistActions.fetchMyWishlist());
         if (userName) {
             var initials = userName.match(/\b\w/g) || [];
             initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
@@ -241,8 +246,11 @@ class Header extends Component {
     }
 
     navigateTo(route) {
-        this.props.dispatch(push(route));
-
+        if (route === '/wishlist' && !isLoggedIn()) {
+            this.props.dispatch(actions.showLogin());
+        } else {
+            this.props.dispatch(push(route));
+        }
     }
 
     render() {
@@ -283,7 +291,7 @@ class Header extends Component {
                                 </div>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/packages')}>Packages</NavLink>
+                                <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
                             </NavItem>
 
                             <NavItem>

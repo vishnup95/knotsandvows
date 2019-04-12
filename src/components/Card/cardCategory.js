@@ -14,12 +14,15 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString} from '../../utils/utilities';
-import * as loginActions from '../../reducers/session/actions'
+import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse } from '../../utils/utilities';
+import * as loginActions from '../../reducers/session/actions';
 import * as wishlistActions from '../../modules/wishlist/actions';
+import LoaderComponent from '../../components/Loader/loader';
+import * as modalActions from '../../reducers/modal/actions';
 
 const mapStateToProps = state => ({
-    wishlistId: state.wishlist.wishListData ? state.wishlist.wishListData.wishlist_id : 4,
+    wishlistId: state.wishlist.current.wishlist_id,
+    noteloading: state.wishlist.noteloading
 });  
 
 const mapDispatchToProps = dispatch => ({
@@ -28,10 +31,23 @@ const mapDispatchToProps = dispatch => ({
 
 class CategoryCard extends Component {
     state = {
-        isChecked: false,
         isInWishlist: false,
         showNotes: false,
         showAddNote: false
+    }
+
+    componentDidMount() {
+        document.addEventListener('click', this.handleClickOutside, true);
+    }
+    
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside, true);
+    }
+
+    handleClickOutside = event => {
+        if(!document.getElementById(`card${this.props.id}`).contains(event.target)) {
+            this.setState({showNotes: false});
+        }
     }
 
     navigateTo(route) {
@@ -42,14 +58,24 @@ class CategoryCard extends Component {
     addToWishList = (e) => {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
-        } else {
+        } else if (!this.state.isInWishlist) {
             let params = {
                 vendor_id: this.props.data.vendor_id,
                 wishlist_id: this.props.wishlistId
             };
 
-            this.props.dispatch(wishlistActions.addToWishlist(params));
-            this.setState({isInWishlist: !this.setState.isInWishlist ? true: this.state.isInWishlist});          
+            this.props.dispatch(wishlistActions.addToWishlist(params)).then((response) => {
+                var error = getDataFromResponse(response);
+                if (error == null){
+                    this.setState({isInWishlist: true});     
+                }else{
+                    let modalContent = {
+                        heading: '',
+                        message: error
+                      };
+                    this.props.dispatch(modalActions.showModal(modalContent));
+                }
+            });           
         }
         e.stopPropagation();
     }
@@ -74,7 +100,7 @@ class CategoryCard extends Component {
 
         if(save) {
             let params = {
-                wishlist_id:1,
+                wishlist_id: this.props.wishlistId,
                 category_id: this.props.data.category_id,
                 vendor_id:4,
                 note: document.getElementById('note').value
@@ -146,14 +172,15 @@ class CategoryCard extends Component {
     }
 
     selectCard = (e) => {
-        this.setState({ isChecked: !this.state.isChecked });
+        this.props.selectedToCompare(this.props.data , this.props.isChecked);
         e.stopPropagation();
     }
 
     render() {
         return (
             <div>
-                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} onClick={this.handleCardClick}>
+                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} 
+                    onClick={this.handleCardClick}  id={`card${this.props.id}`}>
                     {
                         this.props.isWishlist &&
                         <div>
@@ -178,14 +205,17 @@ class CategoryCard extends Component {
                     {
                         this.props.isCompare &&
                         <div className={styles.compareMask} onClick={(e) => this.selectCard(e)} aria-hidden>
-                            <span className={`${styles.checkbox} ${this.state.isChecked ? styles.checked : ''}`}></span>
+                            <span className={`${styles.checkbox} ${this.props.isChecked ? styles.checked : ''}`}></span>
                         </div>
                     }
                     {
                         this.state.showAddNote &&
-                        <div className={styles.addNote}>
-                            <div className={styles.noteHeader}><span>Add Note</span> <img className={styles.closeNote} src={imagePath('close-blank.svg')} alt="close button" /></div>
-                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Charectors" onClick={(event) => { event.stopPropagation() }}></textarea>
+                        <div className={styles.addNote} onClick={(event) => { event.stopPropagation()}} aria-hidden>
+                            <div className={styles.noteHeader}>
+                                <span>Add Note</span> 
+                                <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={(event) => this.toggleAddNote(event, false)} aria-hidden/>
+                            </div>
+                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters"></textarea>
                             <div className="text-right">
                                 <Button className="text-btn" onClick={(event) => this.toggleAddNote(event, false)}>Cancel</Button>
                                 <Button className="primary-button" onClick={(event) => this.toggleAddNote(event, true)}>Save</Button>
@@ -196,14 +226,28 @@ class CategoryCard extends Component {
                        this.state.showNotes && <Col className={styles.noteContainer}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
-                                    <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4>
-                                    {
+                                    {/* <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4> */}
+                                    <div className="text-right">
+                                        <Button color="primary" className="primary-button" onClick={(event) => this.toggleAddNote(event)}>
+                                            <span className="mr-2">+</span>
+                                            <span>Add a note</span>
+                                        </Button>
+                                    </div>
+                                    
+                                    {this.props.noteloading &&
+                                    <div className="row">
+                                        <div className="col-12">
+                                        <LoaderComponent />
+                                        </div>
+                                    </div>}
+                                    {   
+                                        this.props.data.notes.length > 0 ?
                                         this.props.data.notes.map((note, index) => {
                                             return(
                                             <div className={styles.noteWrap} key={index}>
                                                 <div>            
                                                     <span className={styles.noteTitle}>Binu</span>
-                                                    <span className={styles.noteDate}>07 Mar 2019</span>
+                                                    <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
                                                 </div>
                                                 <div className={styles.noteText}>
                                                     <div>
@@ -215,7 +259,7 @@ class CategoryCard extends Component {
                                                     </div>
                                                 </div>
                                             </div>)
-                                        })
+                                        }) :  <h4 className="font-italic text-secondary">No notes to show</h4>
                                     }
                                     
                                 </Col>
@@ -239,6 +283,9 @@ CategoryCard.propTypes = {
     isWishlist: PropTypes.bool,
     isInWishList: PropTypes.bool,
     wishlistId: PropTypes.number,
+    noteloading: PropTypes.bool,
+    isChecked: PropTypes.bool,
+    selectedToCompare: PropTypes.func
 };
 
 export default connect(

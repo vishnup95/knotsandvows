@@ -171,7 +171,7 @@ class SignInModal extends Component {
                 { this.props.apiStatus == false && this.props.error &&
                     <div className={styles.apiError}>{this.props.error}</div>
                 }
-                <Form style={{ zIndex: '10000' }} className="position-relative mt-1">
+                <Form className="position-relative mt-1">
                     <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignInFormChange(e)} />
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignInFormChange(e)}/>
                 </Form>
@@ -204,7 +204,7 @@ class SignInModal extends Component {
                 {this.props.apiStatus == false && this.props.error &&
                     <div className={styles.apiError}>{this.props.error}</div>
                 }
-                <Form style={{ zIndex: '10000' }} className="position-relative">
+                <Form className="position-relative">
                     <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)}/>
                     <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignUpFormChange(e)} />
                     <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleSignUpFormChange(e)}/>

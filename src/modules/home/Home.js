@@ -62,6 +62,14 @@ class Home extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     window.addEventListener('scroll', this.handleScroll);
+    if(this.props.location.hash === '#packages') {
+      let yPos =  document.getElementById('packages').offsetTop;
+      window.scrollTo({
+        top: yPos,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
   }
 
   componentWillMount() {
@@ -128,6 +136,17 @@ class Home extends Component {
     }
     return this.scrollasideDiv;
   }
+  componentWillReceiveProps(nextProps) {
+     if(nextProps.location.hash === '#packages') {
+      let yPos =  document.getElementById('packages').offsetTop;
+      window.scrollTo({
+        top: yPos,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+  }
+
   navigateTo(route) {
     this.props.dispatch(push(route));
   }
@@ -282,7 +301,7 @@ class Home extends Component {
                 </Col>
               </Row>
             </div>
-            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`} id="boxsection">
+            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`} id="packages">
               <Container>
                 <Row className={styles.boxMark}>
                 <Col id="boxmark"></Col></Row>
@@ -350,7 +369,8 @@ class Home extends Component {
   categories: PropTypes.array,
   exclusives: PropTypes.array,
   ceremonies: PropTypes.array,
-  router: PropTypes.object
+  router: PropTypes.object,
+  location: PropTypes.object
 };
 
 export default connect(

@@ -13,7 +13,6 @@
       margin-bottom: 1rem;
       font-family: $roboto-medium;
       span {
-        text-transform: uppercase;
         font-family: $roboto-regular;
       }
 
@@ -35,6 +34,7 @@
   @include fontSize(16);
   line-height: 1.88;
   @include letterSpacing(.5);
+  font-family: $roboto-regular;
 }
 
 .boldList {

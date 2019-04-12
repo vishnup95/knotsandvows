@@ -64,7 +64,7 @@ class PrivacyAndPolicy extends Component {
   render() {
     return (
       <div className={styles.privacyContainer}>
-        <h1 className="text-center">Privacy Policies</h1>
+        <h1 className="text-center">Privacy Policy</h1>
         <Container  className="mb-5">
           <Row className="my-4">
             <Col>

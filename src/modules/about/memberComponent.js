@@ -13,17 +13,17 @@ class MemberComponent extends Component {
 
                             <div className={styles.memberPosition} style={{color: 'white'}}>CEO - Founder</div>
 
-                            <p className={`${styles.pSmallClass} d-none d-sm-block`}>
-                            Manage expectations please use “solutionise” instead of solution ideas! :). 
-                            Curate i am dead inside or value-added, and five-year strategic plan. 
-                            High touch client re-inventing the wheel, so loop back, yet enough 
-                            to wash your face but it’s about managing expectations we need a 
-                            paradigm shift. Forcing function at the end of the day strategic 
-                            fit I just wanted to give you a heads-up, or organic growth. 
-                            Win-win fire up your browser programmatically beef up, so gain 
-                            traction. Onward and upward, productize the deliverables and f
-                            ocus on the bottom line work synergestic actionables, 
-                            but first-order optimal strategies. 
+                            <p className={`${styles.pSmallClass} d-none d-sm-block mt-3`}>
+                                Manage expectations please use “solutionise” instead of solution ideas! :). 
+                                Curate i am dead inside or value-added, and five-year strategic plan. 
+                                High touch client re-inventing the wheel, so loop back, yet enough 
+                                to wash your face but it’s about managing expectations we need a 
+                                paradigm shift. Forcing function at the end of the day strategic 
+                                fit I just wanted to give you a heads-up, or organic growth. 
+                                Win-win fire up your browser programmatically beef up, so gain 
+                                traction. Onward and upward, productize the deliverables and f
+                                ocus on the bottom line work synergestic actionables, 
+                                but first-order optimal strategies.        
                             </p>
 
                             <div className={styles.iconContainer}>

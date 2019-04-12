@@ -1,8 +1,9 @@
 import * as types from './constants';
 const initialState = {
-  details: null,
+  details: null, //used for all vendors as well.
   similar_ceremonenies:[],
-  loading: null
+  loading: null,
+  allVendorDetails:null
 };
 
 const CeremonyDetailReducer = (state = initialState, action) => {
@@ -27,6 +28,27 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         details: null,
+        error: action.error.message,
+        loading: false
+      };
+
+      case types.LOAD_ALL_VENDORS:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case types.LOAD_ALL_VENDORS_SUCCESS:
+      result = action.result || [];
+      return {
+        ...state,
+        allVendorDetails: result.data.data,
+        loading: false
+      };
+
+    case types.LOAD_ALL_VENDORS_FAILURE:
+      return {
+        ...state,
         error: action.error.message,
         loading: false
       };

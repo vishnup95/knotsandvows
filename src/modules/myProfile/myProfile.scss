@@ -14,3 +14,11 @@
         margin-bottom: 4rem;
     }
 }
+.error {
+    @include fontSize(15);
+    color: $bright-red;
+    margin-top: .5rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }

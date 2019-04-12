@@ -351,10 +351,13 @@
   width: 100%;
   padding: 0 1rem 1rem;
   background: $white;
+  @include borderRadius(10); 
   textarea {
     width: 100%;
     margin-top: 1rem;
     @include fontSize(16);
+    @include padding(8,16);
+    border: 1px solid rgba(0, 0, 0, 0.13) !important;
   }
 }
 
@@ -365,7 +368,9 @@
   justify-content: space-between;
   color: $white;
   @include fontSize(16);
+  @include padding(8,16);
   margin: 0 -1rem;
+  @include borderRadius(10,10,0,0); 
 }
 
 .closeNote {
