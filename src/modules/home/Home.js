@@ -19,7 +19,7 @@ import CarouselComponent from './carousel';
 // import VerticalMultiCarousel from './multiCarouselVertical';
 // import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
 import { imagePath } from '../../utils/assetUtils';
-import {  hyphonatedString} from '../../utils/utilities';
+import { hyphonatedString } from '../../utils/utilities';
 import ImageFade from '../../components/ImageFade/imageFade';
 
 const mapStateToProps = state => ({
@@ -62,8 +62,8 @@ class Home extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     window.addEventListener('scroll', this.handleScroll);
-    if(this.props.location.hash === '#packages') {
-      let yPos =  document.getElementById('packages').offsetTop;
+    if (this.props.location.hash === '#packages') {
+      let yPos = document.getElementById('packages').offsetTop;
       window.scrollTo({
         top: yPos,
         left: 0,
@@ -92,38 +92,66 @@ class Home extends Component {
     const section3Visible = this.checkVisible(section3);
     const section4 = document.getElementById('thirdcard');
     const section4Visible = this.checkVisible(section4);
+    const section5 = document.getElementById('boxmark');
+    const section5Visible = this.checkVisible(section5);
     // const section2 = document.getElementById('boxsection');
     // const section2Visible = this.checkVisible(section1);
     // console.log(section1Visible, 'section1Visible');
-    
+
     if (section1Visible) {
-      this.setState({zoomCard: true});
+      this.setState({ zoomCard: true });
     }
     else {
-      this.setState({zoomCard: false});
+      this.setState({ zoomCard: false });
     }
 
-    if(section2Visible) {
-      this.setState({animateImageOne: true});
+    if (section2Visible) {
+      this.setState({ animateImageOne: true });
     }
     else {
-      this.setState({animateImageOne: false});
+      this.setState({ animateImageOne: false });
     }
 
-    if(section3Visible) {
-      this.setState({animateImageTwo: true});
+    if (section3Visible) {
+      this.setState({ animateImageTwo: true });
     }
     else {
-      this.setState({animateImageTwo: false});
+      this.setState({ animateImageTwo: false });
     }
 
-    if(section4Visible) {
-      this.setState({animateImageThree: true});
+    if (section4Visible) {
+      this.setState({ animateImageThree: true });
     }
     else {
-      this.setState({animateImageThree: false});
+      this.setState({ animateImageThree: false });
     }
-    
+
+    if (section5Visible) {
+      // this.setState({animateImageThree: true});
+      console.log(section5Visible, 'section5Visible');
+      const section5Flag = document.getElementById('boxmark').getBoundingClientRect().top;
+      console.log(section5Flag, 'top');
+
+      const section5rate = section5Flag / window.innerHeight * 100;
+      console.log(section5rate, 'percentage');
+      const topOne = (-57 * section5rate / 100);
+      const topTwo = (-55 * section5rate / 100);
+      const leftTwo = (-117 * section5rate / 100);
+      document.getElementById('box-one').style.transform = 'translate3d(0px,' + topOne + 'rem,0px)';
+      document.getElementById('box-two').style.transform = 'translate3d('+ leftTwo +'%,' + topTwo + 'rem,0px)';
+      
+    }
+    else if (document.getElementById('boxend').getBoundingClientRect().top <= 0) {
+      document.getElementById('box-one').style.transform = 'translate3d(0px,0rem,0px)';
+      document.getElementById('box-two').style.transform = 'translate3d(0px,0px,0px)';
+
+    }
+    else {
+      document.getElementById('box-one').style.transform = 'translate3d(0px,-57rem,0px)';
+      document.getElementById('box-two').style.transform = 'translate3d(-117%,-55rem,0px)';
+
+    }
+
   }
 
   checkVisible(elm) {
@@ -137,8 +165,8 @@ class Home extends Component {
     return this.scrollasideDiv;
   }
   componentWillReceiveProps(nextProps) {
-     if(nextProps.location.hash === '#packages') {
-      let yPos =  document.getElementById('packages').offsetTop;
+    if (nextProps.location.hash === '#packages') {
+      let yPos = document.getElementById('packages').offsetTop;
       window.scrollTo({
         top: yPos,
         left: 0,
@@ -152,14 +180,14 @@ class Home extends Component {
   }
 
   handleCeremonyClick = (ceremony) => {
-    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id)}`)
+    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`)
   }
 
   render() {
-    console.log(styles, 'styles');
+    // console.log(styles, 'styles');
     const headerString = ['Secret ', 'to a stress ', 'free wedding...'];
     const headerStringTwo = ['Wedding Planner'];
-    
+
     return (
       <div>
         {
@@ -169,36 +197,36 @@ class Home extends Component {
               <Row>
                 <Col>
                   <div className={styles.homeContent}>
-                  <div className={styles.homeTitle}>
+                    <div className={styles.homeTitle}>
 
-                  {
-                    headerString.map((item, index) => {
-                      let name = [];
-                      for (var i = 0; i < item.length; i++) {
-                       name.push (
-                          <div key={`${index}_${i}`}>{item.charAt(i)}</div>
-                        );
+                      {
+                        headerString.map((item, index) => {
+                          let name = [];
+                          for (var i = 0; i < item.length; i++) {
+                            name.push(
+                              <div key={`${index}_${i}`}>{item.charAt(i)}</div>
+                            );
+                          }
+
+                          return <div key={index}>{name}</div>;
+
+                        })
+                      }
+                      {
+                        headerStringTwo.map((item, index) => {
+                          let name = [];
+                          for (var i = 0; i < item.length; i++) {
+                            name.push(
+                              <div key={`${index}_${i}`}>{item.charAt(i)}</div>
+                            );
+                          }
+
+                          return <div key={index} className={styles.pink}>{name}</div>;
+
+                        })
                       }
 
-                      return <div key={index}>{name}</div>;
-                      
-                    })
-                  }
-                  {
-                    headerStringTwo.map((item, index) => {
-                      let name = [];
-                      for (var i = 0; i < item.length; i++) {
-                       name.push (
-                          <div key={`${index}_${i}`}>{item.charAt(i)}</div>
-                        );
-                      }
-
-                      return <div key={index} className={styles.pink}>{name}</div>;
-                      
-                    })
-                  }
-
-                  </div>
+                    </div>
                     {/* <h1 className={styles.homeTitle}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1> */}
                     <p>Sevenvows can help you with x ooxoox xcvxcv xcvxcvxc xo oxo oxo</p>
                     <div className={styles.contactInput}>
@@ -209,7 +237,7 @@ class Home extends Component {
                   </div>
                 </Col>
                 <Col>
-                <ImageFade/>
+                  <ImageFade />
                 </Col>
               </Row>
               <hr></hr>
@@ -221,7 +249,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col>
-                  <CarouselComponent isZoom={this.state.zoomCard}/>
+                  <CarouselComponent isZoom={this.state.zoomCard} />
                 </Col>
               </Row>
               <Row>
@@ -284,7 +312,7 @@ class Home extends Component {
                       <p className={styles.cardDetail}>Check out our exclusive wedding deals for your big day at amazing prices!</p>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage}  src={imagePath('discounted-prices-img.png')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath('discounted-prices-img.png')} alt="img" />
                     </div>
                   </div>
                   <div className={styles.imageCard} id="expertteam">
@@ -296,7 +324,7 @@ class Home extends Component {
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageThree ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />
                     </div>
-                    <div id="thirdcard" style={{position: 'absolute', bottom: '-7rem'}}></div>
+                    <div id="thirdcard" style={{ position: 'absolute', bottom: '-7rem' }}></div>
                   </div>
                 </Col>
               </Row>
@@ -304,20 +332,23 @@ class Home extends Component {
             <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`} id="packages">
               <Container>
                 <Row className={styles.boxMark}>
-                <Col id="boxmark"></Col></Row>
+                  <Col id="boxmark"></Col></Row>
                 <Row>
-                    <Col>
-                      <img src={imagePath('packagesimage.png')} alt="img" />
-                    </Col>
-                    <Col className={styles.dummyClass}>
-                      <h2 className={styles.whiteHeading}>Save <br/>money!</h2>
-                      <p className={styles.whiteDesc}>These wedding packages are specially created to make every bride and grooms life easy</p>
-                      <Button className="primary-button white">LET US HELP YOU</Button>
-                    </Col>
+                  <Col>
+                    <img src={imagePath('packagesimage.png')} alt="img" />
+                  </Col>
+                  <Col className={styles.dummyClass}>
+                    <h2 className={styles.whiteHeading}>Save <br />money!</h2>
+                    <p className={styles.whiteDesc}>These wedding packages are specially created to make every bride and grooms life easy</p>
+                    <Button className="primary-button white">LET US HELP YOU</Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col id="boxend"></Col>
                 </Row>
               </Container>
             </div>
-            <Container className={styles.homeContainer}>
+            <Container className={styles.homeContainer} style={{ marginTop: '25rem' }}>
               <Row className="mb-5">
                 <Col className={styles.packageBox} id="box-one">
                   <img src={imagePath('box-one.png')} alt="img" />
@@ -327,17 +358,17 @@ class Home extends Component {
                     <Button className="primary-button medium-pink">LEARN MORE</Button>
                   </div>
                 </Col>
-                <Col className={styles.packageBox}>
+                <Col className={styles.packageBox} id="box-two">
                   <img src={imagePath('box-two.png')} alt="img" />
-                  <div  className={styles.packageDetail}>
+                  <div className={styles.packageDetail}>
                     <h3>Emerald Package</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                     <Button className="primary-button medium-pink">LEARN MORE</Button>
                   </div>
                 </Col>
-                <Col className={styles.packageBox}>
+                <Col className={styles.packageBox} id="box-three">
                   <img src={imagePath('box-three.png')} alt="img" />
-                  <div  className={styles.packageDetail}>
+                  <div className={styles.packageDetail}>
                     <h3>Customize</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                     <Button className="primary-button medium-pink">WISHLIST</Button>
@@ -346,24 +377,24 @@ class Home extends Component {
               </Row>
               <Row className="mt-5">
                 <Col>
-                <h2>You may also be interested in...</h2>
+                  <h2>You may also be interested in...</h2>
 
-                { this.props.ceremonies &&
-                  <Col xs="12" className={`${styles.desktopCarousal} no-padding`}>
-                        <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony"/>
-                  </Col>
-                }
+                  {this.props.ceremonies &&
+                    <Col xs="12" className={`${styles.desktopCarousal} no-padding`}>
+                      <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony" />
+                    </Col>
+                  }
                 </Col>
               </Row>
             </Container>
           </div>
-          }
-        </div>
+        }
+      </div>
     );
   }
 }
 
-    Home.propTypes = {
+Home.propTypes = {
   user: PropTypes.object,
   dispatch: PropTypes.func,
   categories: PropTypes.array,

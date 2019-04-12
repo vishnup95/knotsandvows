@@ -792,6 +792,20 @@ a.button {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  &:first-child {
+    z-index: 3;
+    transform : translate3d(0px,-57rem,0px);
+    > img {
+      width: 19rem;
+    }
+  }
+  &:nth-child(2) {
+    z-index: 2;
+    transform : translate3d(-117%,-55rem,0px);
+    > img {
+      width: 16rem;
+    }
+  }
 }
 
 .packageDetail {
@@ -839,7 +853,12 @@ a.button {
   justify-content: center;
 }
 
-.boxMark {}
+.boxMark {
+  position: absolute;
+  // top: 50%;
+  left: 50%;
+  bottom: -40%;
+}
 @keyframes example {
   from {
     transform: perspective(100px) rotateY(-65deg);
