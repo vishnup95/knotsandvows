@@ -179,7 +179,7 @@ class CategoryCard extends Component {
     }
 
     handleCardClick = () => {
-        this.navigateTo(`/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`);
+        this.navigateTo(`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`);
     }
 
     selectCard = (e) => {
