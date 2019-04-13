@@ -33,8 +33,6 @@ class ImageFade extends Component {
     }
 
     render() {
-        console.log(styles, 'styles');
-
         return (
             <div className={styles.imageWrap}>
             {
