@@ -22,7 +22,8 @@ import * as modalActions from '../../reducers/modal/actions';
 
 const mapStateToProps = state => ({
     wishlistId: state.wishlist.current.wishlist_id,
-    noteloading: state.wishlist.noteloading
+    noteloading: state.wishlist.noteloading,
+    myID: state.session.user.user_id
 });  
 
 const mapDispatchToProps = dispatch => ({
@@ -106,7 +107,7 @@ class CategoryCard extends Component {
 
     toggleAddNote(e, save) {
         e.stopPropagation();
-        // this.setState({showNotes: this.state.showAddNote});
+        this.setState({showNotes: this.state.showAddNote});
         this.setState({showAddNote: !this.state.showAddNote});
 
         if(save) {
@@ -234,11 +235,11 @@ class CategoryCard extends Component {
                         </div>
                     }
                     {
-                       this.state.showNotes && <Col className={styles.noteContainer}>
+                       this.state.showNotes && <Col className={styles.noteContainer} onClick={event => event.stopPropagation()}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
                                     {/* <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4> */}
-                                    <div className="text-right">
+                                    <div className="text-right mb-3">
                                         <Button color="primary" className="primary-button" onClick={(event) => this.toggleAddNote(event)}>
                                             <span className="mr-2">+</span>
                                             <span>Add a note</span>
@@ -261,16 +262,16 @@ class CategoryCard extends Component {
                                                     <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
                                                 </div>
                                                 <div className={styles.noteText}>
-                                                    <div>
+                                                    {this.props.myID === note.contributorId && <div>
                                                         <span className="edit-icon"></span>
                                                         <span className="delete-icon"></span>
-                                                    </div>
+                                                    </div>}
                                                     <div>
-                                                        {note.notes}
+                                                        {note.note}
                                                     </div>
                                                 </div>
                                             </div>)
-                                        }) :  <h4 className="font-italic text-secondary">No notes to show</h4>
+                                        }) :  !this.props.noteloading && <h4 className="font-italic text-secondary">No notes to show</h4>
                                     }
                                     
                                 </Col>
@@ -296,7 +297,8 @@ CategoryCard.propTypes = {
     wishlistId: PropTypes.number,
     noteloading: PropTypes.bool,
     isChecked: PropTypes.bool,
-    selectedToCompare: PropTypes.func
+    selectedToCompare: PropTypes.func,
+    myID: PropTypes.number
 };
 
 export default connect(

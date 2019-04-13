@@ -1,0 +1,30 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
+.image-wrap {
+  @include height(967);
+  @include width(808);
+  overflow: hidden;
+  .homeImage {
+    @include height(967);
+    @include width(808);
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-name: examle;
+    transition: all 3s ease;
+
+  }
+  margin-bottom: 7rem;
+
+}
+@keyframes examle {
+  from {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}

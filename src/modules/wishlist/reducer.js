@@ -97,7 +97,7 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_NOTES_SUCCESS:
       return {
         ...state,
-        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data.results),
+        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data),
         noteloading: false,
         error: null
       };
@@ -177,9 +177,13 @@ function appendNotesToVendor(details, wishListData, notes) {
 
 function handleRemoveFromWishList(details, wishListData) {
   let wishListDataCopy = JSON.parse(JSON.stringify(wishListData));
+
   wishListDataCopy.wishlistitems.slice().find(
     item => item.category_id == details.category_id
+  ).vendors = wishListDataCopy.wishlistitems.slice().find(
+    item => item.category_id == details.category_id
   ).vendors.filter(item => item.vendor_id != details.vendor_id);
+  
   return wishListDataCopy;
 }
 

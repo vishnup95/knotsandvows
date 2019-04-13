@@ -22,7 +22,7 @@ class StarRating extends Component {
                     return <span key={index}><img src={imagePath('fullstar.svg')} className={styles.starImg} alt="Fullstar" /></span>;
                 })}
                 {Array(halfstar).fill().map((key, index) => {
-                    return <span key={index}><img src={imagePath('halfstar.svg')} className={styles.starImg} alt="Halfstar" /></span>;
+                    return <span key={index}><img src={imagePath('halfstar.png')} className={styles.starImg} alt="Halfstar" /></span>;
                 })}
                 {Array(emptystar).fill().map((key, index) => {
                     return <span key={index}><img src={imagePath('outline_star.svg')} className={styles.starImg} alt="Outline" /></span>;

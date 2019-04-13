@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { imagePath } from '../../utils/assetUtils';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import styles from './home.scss';
 
@@ -9,39 +11,28 @@ import {
     CarouselIndicators
 } from 'reactstrap';
 
+// const mapStateToProps = state => ({});  
+
+// const mapDispatchToProps = dispatch => ({
+//     dispatch
+// });
 const items = [
     {
-        src: 'carousel_1.jpg',
+        src: 'testimonial1.png',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        shortDescription: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry`s standard dummy text ever since.',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'One',
+        descAuthor: 'John Smith, Director',
     }, {
-        src: 'card_1_2.jpg',
+        src: 'testimonial2.png',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
+        shortDescription: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry`s standard dummy text ever since.',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'Two',
-    }, {
-        src: 'carousel_1.jpg',
-        altText: 'Slide 1',
-        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
-        buttonText: 'Browse caterers',
-        pathToRedirect: 'wishlist',
-        descAuthor: 'Three',
-    }, {
-        src: 'card_1_2.jpg',
-        altText: 'Slide 1',
-        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'Great food is what makes your ceremony memorable and you happy! Check out the menus and services offered by our vendors and choose the ones that match your taste',
-        buttonText: 'Browse caterers',
-        pathToRedirect: 'wishlist',
-        descAuthor: 'Four',
+        descAuthor: 'John Smith, Director',
     },
 ];
 
@@ -88,7 +79,7 @@ class CarouselComponent extends Component {
                         <div className={styles.carousalImage} style={{ backgroundImage: `url(${imagePath(item.src)})` }}></div>
                         <div className={styles.carouselContent}>
                             <img src={imagePath('quote.svg')} alt="quote" />
-                            <p className={styles.carouselText}>{item.shortDescription}</p>
+                            <p className={`${styles.carouselText} ${this.props.isZoom ? styles.carouselTextLarge : ''}`}>{item.shortDescription}</p>
                             <p className={styles.author}>{item.descAuthor}</p>
                         </div>
                     </div>
@@ -110,5 +101,9 @@ class CarouselComponent extends Component {
         );
     }
 }
+CarouselComponent.propTypes = {
+    isZoom: PropTypes.bool,
+};
 
-export default CarouselComponent;
+export default connect(
+)(CarouselComponent);
