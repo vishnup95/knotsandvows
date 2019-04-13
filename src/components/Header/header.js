@@ -31,7 +31,7 @@ import styles from './header.scss';
 import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 import SignInModal from '../../modals/signInModal/SignInModal';
 import ForgotPassword from "../../modals/forgotPasswordModal/ForgotPasswordModal"
-import { isLoggedIn, hyphonatedString } from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString, getDataFromResponse } from '../../utils/utilities';
 
 const mapStateToProps = state => ({
     route: state.router.location.pathname,
@@ -160,7 +160,25 @@ class Header extends Component {
                 var email = queryString.parse(this.props.location.search).email;
                 if (hashValue) {
                     this.setState({ hashValue: hashValue, email });
-                    this.toggleResetPasswordModal();
+                    this.props.dispatch(actions.validateLink(hashValue)).then((response) => {
+                        let error = getDataFromResponse(response);
+                        if (error == null){
+                            this.toggleResetPasswordModal();
+                        }else{
+                            let modalContent = {
+                                heading: 'Reset Password',
+                                message: error
+                              };
+                            this.props.dispatch(modalActions.showModal(modalContent));
+                        }
+                    },
+                    error => {
+                        let modalContent = {
+                            heading: 'Reset Password',
+                            message: error.message
+                          };
+                        this.props.dispatch(modalActions.showModal(modalContent));
+                    });
                 }
             }
             else if (this.props.location.pathname === "/verify") {

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import * as actions from './actions';
+import * as modalActions from '../../reducers/modal/actions';
 import { Container, Row, Col, Modal, Collapse } from 'reactstrap';
 import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
@@ -120,12 +121,20 @@ class CategoryListing extends Component {
   return compareVendors;
   }
 
-  removeCollabrator = (collabrator) => {
-       this.props.dispatch(actions.removeCollabrator(collabrator));
+  removeCollaborator(collaborator) {
+    this.props.dispatch(actions.removeCollabrator(collaborator))
+  }
+
+  confirmRemoveCollaborator = (collaborator) => {
+    let modalContent = {
+      heading: 'Remove Collaborator',
+      message: 'Are you sure you want to remove this collaborator?',
+      proceedAction: () => this.removeCollaborator(collaborator)
+    };
+    this.props.dispatch(modalActions.showModal(modalContent));
   }
 
   render() {
-    
     return (
       <div className="full-height" style={{ marginTop: '14rem' }}>
         <div className="wishlist-container">
@@ -170,11 +179,18 @@ class CategoryListing extends Component {
                 <Col sm="10">
                   <Row>
                     <Col className={`${styles.collaboratorList} text-right`}>
-                      <div className={styles.collaborator} aria-hidden onClick={() => this.removeCollabrator(14)}>YA<div className={styles.toolTip}>Remove from list</div></div>
-                      <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
-                      <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
-                      <div className={styles.collaborator}>YA<div className={styles.toolTip}>Remove from list</div></div>
-                      <div className={styles.collaboratorCount}>5</div>
+                      { this.props.myWishListData.collaborators && this.props.myWishListData.collaborators.map((collaborator, index) => {
+                        return(
+                          <div className={styles.collaborator} key={index} aria-hidden onClick={() => this.confirmRemoveCollaborator(collaborator.collabrator_id)}>
+                          NU
+                          <div className={styles.toolTip}>Remove {collaborator.email} from list</div>
+                        </div>
+                        ); 
+                      })}
+                      
+                      <div className={styles.collaboratorCount}>
+                        {(this.props.myWishListData.collaborators && this.props.myWishListData.collaborators.length) || 0}
+                      </div>
                       <div className={styles.addCollaborator} onClick={this.toggleAddCollabratorModal} aria-hidden></div>
                     </Col>
                   </Row>
