@@ -70,11 +70,8 @@ class Products extends Component {
     return this.props.match.params.category_name;
   }
 
-  toggle(item) {
+  toggle() {
     this.setState({ dropdownOpen: !this.state.dropdownOpen });
-    if (item) {
-      this.setState({ sortBy: item.id });
-    }
   }
 
   toggleMobileFilter() {
@@ -123,10 +120,11 @@ class Products extends Component {
     this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams, false));
   }
 
-  changeSortOption = (event) => {
-    let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
+  changeSortOption = (sortOption) => {
+    // let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
     this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption));
     this.setState({ page: 1, sortBy: sortOption });
+    this.toggle();
   }
 
   isInWishList = (category_id, vendor_id) => {
@@ -208,7 +206,7 @@ class Products extends Component {
                     <DropdownMenu className={styles.dropMenu}>
                       {
                         sort_options.map((item, index) => {
-                          return <div key={index} onClick={() => this.toggle(item)} aria-hidden
+                          return <div key={index} onClick={() => this.changeSortOption(item.id)} aria-hidden
                             className={`${styles.dropItemSmall} ${index === this.state.sortBy ? styles.selectedItem : ''}`}>{item.name}</div>
                         })
                       }
