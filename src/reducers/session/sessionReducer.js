@@ -258,6 +258,22 @@ const session = (state = initialState, action) => {
         apiStatus : false
       };
 
+      case types.LOAD_VALIDATE_LINK:
+      return {
+        ...state,
+      };
+
+    case types.LOAD_VALIDATE_LINK_SUCCESS:
+      return {
+        ...state,
+      };
+
+    case types.LOAD_VALIDATE_LINK_FAILURE:
+      return {
+        ...state,
+      };
+
+
     case types.CLEAR_ERRORS:
       return {
         ...state,

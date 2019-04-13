@@ -48,4 +48,8 @@ export const LOAD_PROFILE = 'my-project/session/LOAD_PROFILE';
 export const LOAD_PROFILE_SUCCESS = 'my-project/session/LOAD_PROFILE_SUCCESS';
 export const LOAD_PROFILE_FAILURE = 'my-project/session/LOAD_PROFILE_FAILURE';
 
+export const LOAD_VALIDATE_LINK = 'my-project/session/LOAD_VALIDATE_LINK';
+export const LOAD_VALIDATE_LINK_SUCCESS = 'my-project/session/LOAD_VALIDATE_LINK_SUCCESS';
+export const LOAD_VALIDATE_LINK_FAILURE = 'my-project/session/LOAD_PROFILE_FAILURE';
+
 export const CLEAR_ERRORS = 'my-project/session/CLEAR_ERRORS';
