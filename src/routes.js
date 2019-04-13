@@ -124,6 +124,13 @@ const LoadableMyProfile = Loadable({
   }
 });
 
+const LoadableGoldPackage = Loadable({
+  loader: () => import(/* webpackChunkName: 'goldPackage' */ './modules/packages/Gold/goldPackage'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
 const PrivatePage = () => <div> private Page </div>;
 
 const SecretRoute = ({ component: Component, ...rest }) => (
@@ -167,11 +174,14 @@ const routes = (
     <SecretRoute path="/bookings" component={LoadableBookings} />
     <Route path="/sample" component={LoadableSample} />
     <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
-    <Route path="/:category_name/:vendor_name" component={LoadableDetail} />
+    <Route path="/vendor-detail/:category_name/:vendor_name" component={LoadableDetail} />
     <Route exact path="/terms-and-conditions" component={LoadableTermsAndConditions} />
     <Route exact path="/privacy-policy" component={LoadablePrivacyAndPolicy} />
+    <Route path="/packages/wedding-gold-package/" component={LoadableGoldPackage} />
+
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <SecretRoute path="/profile" component={LoadableMyProfile} />
+    
     <Route component={LoadableNotFound} />
   </Switch>
   // </Suspense>
