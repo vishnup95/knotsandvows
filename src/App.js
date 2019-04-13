@@ -91,13 +91,20 @@ class App extends Component {
           <div className="text-center mt-5">
             <Button color="primary" className="primary-button" onClick={() => this.handleClick()}>OK</Button>{' '}
           </div>
-        </div>
-      </Modal>
+        
+        
+        <div className="text-center mt-5">
+          <Button color="secondary" className="secondary-button" onClick={() => this.toggle()}>Cancel</Button>{' '}
+          <Button color="primary" className="primary-button" onClick={() => this.handleClick()}>OK</Button>{' '}   
+        </div> 
+      </div>
+    </Modal>
 
       {showHeader && <FooterComponent />}
     </div>);
   }
 }
+
 App.propTypes = {
   history: PropTypes.any,
   showModal: PropTypes.bool,

@@ -156,6 +156,17 @@ export function updateProfile(param) {
   };
 }
 
+export function validateLink(code) {
+  return {
+    types: [
+      types.LOAD_VALIDATE_LINK,
+      types.LOAD_VALIDATE_LINK_SUCCESS,
+      types.LOAD_VALIDATE_LINK_FAILURE
+    ],
+    promise: client => client.get(`/api/UserAuth/validateresetpasswordlink?code=${code}`)
+  };
+}
+
 export function clearUserData() {
   return {
     type: types.LOAD_LOGOUT_SUCCESS

@@ -34,7 +34,10 @@ class CategoryCard extends Component {
     state = {
         isInWishlist: false,
         showNotes: false,
-        showAddNote: false
+        showAddNote: false,
+        addNoteMode: 'add',
+        note: '',
+        selectedId: ''
     }
 
     componentDidMount() {
@@ -105,20 +108,54 @@ class CategoryCard extends Component {
         this.setState({showNotes: !this.state.showNotes});
     }
 
-    toggleAddNote(e, save) {
-        e.stopPropagation();
+    handleNoteChange(e) {
+        this.setState({note: e.target.value});
+    }
+
+    toggleAddNote(save) {
         this.setState({showNotes: this.state.showAddNote});
         this.setState({showAddNote: !this.state.showAddNote});
 
-        if(save) {
+        if(save && this.state.addNoteMode === 'add') {
             let params = {
                 wishlist_id: this.props.wishlistId,
                 category_id: getId(this.props.category),
-                vendor_id:this.props.data.vendor_id,
-                note: document.getElementById('note').value
+                vendor_id: this.props.data.vendor_id,
+                note: this.state.note
             }
-            this.props.dispatch(wishlistActions.addNote(params, this.props.dispatch));
+            if (params.note) {
+                this.props.dispatch(wishlistActions.addNote(params, this.props.dispatch));
+                this.setState({note: ''})
+            }
+        } else if (save && this.state.addNoteMode === 'edit') {
+            let params = {
+                wishlist_id: this.props.wishlistId,
+                category_id: getId(this.props.category),
+                vendor_id: this.props.data.vendor_id,
+                note: this.state.note,
+                note_id: this.state.selectedId
+            }
+
+            if(this.state.note) {
+                this.props.dispatch(wishlistActions.editNote(params, this.props.dispatch));
+                this.setState({note: '', selectedId: ''})
+            }
         }
+    }
+
+    editNote(id, note) {
+        this.setState({addNoteMode: 'edit', note: note, selectedId: id});
+        this.toggleAddNote(false, id);
+    }
+
+    removeNote(id) {
+        let params = {
+            wishlist_id: this.props.wishlistId,
+            category_id: getId(this.props.category),
+            vendor_id: this.props.data.vendor_id,
+            note_id: id
+        }
+        this.props.dispatch(wishlistActions.deleteNote(params, this.props.dispatch));
     }
 
     renderCardBody() {
@@ -225,12 +262,13 @@ class CategoryCard extends Component {
                         <div className={styles.addNote} onClick={(event) => { event.stopPropagation()}} aria-hidden>
                             <div className={styles.noteHeader}>
                                 <span>Add Note</span> 
-                                <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={(event) => this.toggleAddNote(event, false)} aria-hidden/>
+                                <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={() => this.toggleAddNote()} aria-hidden/>
                             </div>
-                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters"></textarea>
+                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters" 
+                            value={this.state.note} onChange={(event) => this.handleNoteChange(event)}></textarea>
                             <div className="text-right">
-                                <Button className="text-btn" onClick={(event) => this.toggleAddNote(event, false)}>Cancel</Button>
-                                <Button className="primary-button" onClick={(event) => this.toggleAddNote(event, true)}>Save</Button>
+                                <Button className="text-btn" onClick={() => this.toggleAddNote()}>Cancel</Button>
+                                <Button className="primary-button" onClick={() => this.toggleAddNote(true)}>Save</Button>
                             </div>
                         </div>
                     }
@@ -238,9 +276,8 @@ class CategoryCard extends Component {
                        this.state.showNotes && <Col className={styles.noteContainer} onClick={event => event.stopPropagation()}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
-                                    {/* <h4 className={styles.noteTitle} onClick={(event) => this.toggleAddNote(event)} aria-hidden>Add a note</h4> */}
                                     <div className="text-right mb-3">
-                                        <Button color="primary" className="primary-button" onClick={(event) => this.toggleAddNote(event)}>
+                                        <Button color="primary" className="primary-button" onClick={() => this.toggleAddNote()}>
                                             <span className="mr-2">+</span>
                                             <span>Add a note</span>
                                         </Button>
@@ -263,8 +300,8 @@ class CategoryCard extends Component {
                                                 </div>
                                                 <div className={styles.noteText}>
                                                     {this.props.myID === note.contributorId && <div>
-                                                        <span className="edit-icon"></span>
-                                                        <span className="delete-icon"></span>
+                                                        <span className="edit-icon" onClick={() => this.editNote(note.notes_id, note.note)} aria-hidden></span>
+                                                        <span className="delete-icon" onClick={() => this.removeNote(note.notes_id)} aria-hidden></span>
                                                     </div>}
                                                     <div>
                                                         {note.note}

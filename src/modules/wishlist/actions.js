@@ -49,16 +49,6 @@ export function removeFromWishlist(params) {
   };
 }
 
-export function testAdd(vendor, category) {
-  return {
-    type: types.LOAD_ADD_TO_WISHLIST_SUCCESS,
-    payload : {
-      vendor: vendor,
-      category: category
-    }
-  }
-}
-
 // notes
 
 export const fetchAllNotes = (details) => {
@@ -87,6 +77,36 @@ export function addNote(params, dispatch) {
   };
 }
 
+export function deleteNote(params, dispatch) {
+  return {
+    types: [
+      types.LOAD_REMOVE_NOTE,
+      types.LOAD_REMOVE_NOTE_SUCCESS,
+      types.LOAD_REMOVE_NOTE_FAILURE
+    ],
+    promise: client => client.post(`/api/wishlist/removenote?note_id=${params.note_id}`)
+      .then(() => dispatch(this.fetchAllNotes(params)))
+        .catch(error => console.log(error)) 
+  };
+}
+
+export function editNote(params, dispatch) {
+  return {
+    types: [
+      types.LOAD_EDIT_NOTE,
+      types.LOAD_EDIT_NOTE_SUCCESS,
+      types.LOAD_EDIT_NOTE_FAILURE
+    ],
+    promise: client => client.patch(`/api/wishlist/updatenote`, {note_id: params.note_id, note: params.note})
+      .then(() => dispatch(this.fetchAllNotes(params)))
+        .catch(error => console.log(error)) 
+  };
+}
+
+
+
+// collaborator
+
 export function addCollabrator(params) {
   return {
     types: [
@@ -98,13 +118,14 @@ export function addCollabrator(params) {
   };
 }
 
-export function removeCollabrator(collabrator) {
+export function removeCollabrator(collaborator) {
   return {
     types: [
       types.LOAD_REMOVE_COLLABRATOR,
-      types.LOAD_SHARED_WISHLIST_SUCCESS,
+      types.LOAD_REMOVE_COLLABRATOR_SUCCESS,
       types.LOAD_REMOVE_COLLABRATOR_FAILURE
     ],
-    promise: client => client.delete(`/api/removecollabrator?collabrator_id=${collabrator}`)
+    payload: collaborator,
+    promise: client => client.post(`/api/removecollabrator?collabrator_id=${collaborator}`)
   };
 }
