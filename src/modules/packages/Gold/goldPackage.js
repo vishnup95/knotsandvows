@@ -3,12 +3,20 @@ import PropTypes from 'prop-types';
 // import styles from './goldPackage.scss';
 // import { Link } from 'react-router-dom';
 import { imagePath } from '../../../utils/assetUtils';
+import * as actions from '../../../components/TalkToWeddingPlanner/actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
 
-export default class GoldPackage extends Component {
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ ...actions }),
+  dispatch
+});
+
+class GoldPackage extends Component {
   constructor(props) {
     super(props);
     this.toggleMenu = this.toggleMenu.bind(this);
-
   }
   toggleMenu = () => {
     if (document.getElementById("get-nav").style.display !== "flex") {
@@ -17,6 +25,25 @@ export default class GoldPackage extends Component {
       document.getElementById("get-nav").style.display = "none";
     }
   }
+  sendDetailsToWeddingPlanner() {
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let phone = document.getElementById('phone').value;
+    let date = document.getElementById('date').value;
+    let city = document.getElementById('city').value;
+    let comments = document.getElementById('comments').value;
+
+    if (name || email || phone || date || city || comments) {
+        const params = {};
+        params['name'] = name;
+        params['email'] = email;
+        params['phone'] = phone;
+        params['date'] = date;
+        params['city'] = city;
+        params['comments'] = comments;
+        this.props.dispatch(actions.postContactDetails(params));
+    }
+} 
   render() {
     return (
       <div className="goldPackage">
@@ -280,16 +307,15 @@ export default class GoldPackage extends Component {
               <div className="col-md-6 contact-wrap">
                 <div className="contact-form">
                   <h5>Contact Us</h5>
-                  {/* <form action=""> */}
-                    <input required maxLength="75" type="text" name="name" placeholder="Name" />
-                    <input required maxLength="75" type="email" name="email" placeholder="Email" />
-                    <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" placeholder="Phone" />
-                    <input required type="date" name="date" placeholder="Eg: 18-12-2018" />
-                    <input required maxLength="50" type="text" name="city" placeholder="City" />
-                    <textarea maxLength="200" name="comments" id="" rows="5" placeholder="Additional comments about the wedding"></textarea>
-                    <input type="submit" value="Get Quote" className="get-package" />
-
-                  {/* </form> */}
+                  <form action="">
+                    <input  maxLength="75" type="text" name="name" id="name" placeholder="Name" />
+                    <input  maxLength="75" type="email" name="email" id="email" placeholder="Email" />
+                    <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" id="phone" placeholder="Phone" />
+                    <input  type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
+                    <input  maxLength="50" type="text" name="city" id="city" placeholder="City" />
+                    <textarea maxLength="200" name="comments" id="comments" rows="5" placeholder="Additional comments about the wedding"></textarea>
+                    <input type="submit" value="Get Quote" className="get-package" onClick={() => this.sendDetailsToWeddingPlanner()}/>
+                  </form>
 
                 </div>
                 <div className="bottom-corner-contact"></div>
@@ -316,5 +342,9 @@ export default class GoldPackage extends Component {
 
 GoldPackage.propTypes = {
   user: PropTypes.object,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 };
+
+export default connect(
+  mapDispatchToProps
+)(GoldPackage);
