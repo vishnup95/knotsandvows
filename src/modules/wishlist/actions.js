@@ -49,16 +49,6 @@ export function removeFromWishlist(params) {
   };
 }
 
-export function testAdd(vendor, category) {
-  return {
-    type: types.LOAD_ADD_TO_WISHLIST_SUCCESS,
-    payload : {
-      vendor: vendor,
-      category: category
-    }
-  }
-}
-
 // notes
 
 export const fetchAllNotes = (details) => {
@@ -86,6 +76,36 @@ export function addNote(params, dispatch) {
         .catch(error => console.log(error))
   };
 }
+
+export function deleteNote(params, dispatch) {
+  return {
+    types: [
+      types.LOAD_REMOVE_NOTE,
+      types.LOAD_REMOVE_NOTE_SUCCESS,
+      types.LOAD_REMOVE_NOTE_FAILURE
+    ],
+    promise: client => client.post(`/api/wishlist/removenote?note_id=${params.note_id}`)
+      .then(() => dispatch(this.fetchAllNotes(params)))
+        .catch(error => console.log(error)) 
+  };
+}
+
+export function editNote(params, dispatch) {
+  return {
+    types: [
+      types.LOAD_EDIT_NOTE,
+      types.LOAD_EDIT_NOTE_SUCCESS,
+      types.LOAD_EDIT_NOTE_FAILURE
+    ],
+    promise: client => client.patch(`/api/wishlist/updatenote`, {note_id: params.note_id, note: params.note})
+      .then(() => dispatch(this.fetchAllNotes(params)))
+        .catch(error => console.log(error)) 
+  };
+}
+
+
+
+// collaborator
 
 export function addCollabrator(params) {
   return {
