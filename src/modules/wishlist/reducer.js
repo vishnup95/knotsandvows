@@ -64,7 +64,6 @@ const WishListReducer = (state = initialState, action) => {
       case types.LOAD_REMOVE_FROM_WISHLIST:
       return {
         ...state,
-        loading:true,
         apiStatus:null,
         error:null,
       };
@@ -72,7 +71,6 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_REMOVE_FROM_WISHLIST_SUCCESS:
       return {
         ...state,
-        loading:false,
         wishListData: handleRemoveFromWishList(action.payload, state.wishListData),
         apiStatus:true
       };
@@ -80,7 +78,6 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_REMOVE_FROM_WISHLIST_FAILURE:
       return {
         ...state,
-        loading:false,
         apiStatus:false,
         wishListData: handleRemoveFromWishList(action.payload, state.wishListData),
         error: action.error.message,
@@ -119,6 +116,7 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_ADD_COLLABRATOR_SUCCESS:
       return {
         ...state,
+        wishListData: handleAddCollaborator(action.result.data.result, state.wishListData),
         loading : false,
       };
 
@@ -138,6 +136,7 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_REMOVE_COLLABRATOR_SUCCESS:
       return {
         ...state,
+        wishListData: handleRemoveCollaborator(action.payload, state.wishListData)
       };
 
     case types.LOAD_REMOVE_COLLABRATOR_FAILURE:
@@ -151,22 +150,7 @@ const WishListReducer = (state = initialState, action) => {
   }
 };
 
-// function addItemToWishList(state, payload, userWishlistsID) {
-//   let vendor = payload.vendor;
-//   vendor.notes = [];
-//   vendor.userWishlistsID = userWishlistsID;
-//   let list = state.list;
-//   list.push(vendor);
-//   // let wishlist = state.currentWishListData;
-//   // let index = wishlist.wishlistitems.findIndex( category => { return typeof category.category_id == payload.category} );
-//   // if (index != -1){
-//   //   let category = wishlist.wishlistitems[index];
-//   //   category.vendor.push(vendor);
-//   // }
-//   //return wishlist
-//   return list;
-// }
-
+//append notes to wishlistdata on loading notes for a vendor
 function appendNotesToVendor(details, wishListData, notes) {
   let wishListDataCopy = JSON.parse(JSON.stringify(wishListData));
   wishListDataCopy.wishlistitems.slice().find(
@@ -175,6 +159,7 @@ function appendNotesToVendor(details, wishListData, notes) {
   return wishListDataCopy;
 }
 
+//remove a vendor from wishlist
 function handleRemoveFromWishList(details, wishListData) {
   let wishListDataCopy = JSON.parse(JSON.stringify(wishListData));
 
@@ -185,6 +170,24 @@ function handleRemoveFromWishList(details, wishListData) {
   ).vendors.filter(item => item.vendor_id != details.vendor_id);
   
   return wishListDataCopy;
+}
+
+// remove a collaborator from wishlist
+function handleRemoveCollaborator(collaborator, wishListData) {
+  let wishListDataCopy = JSON.parse(JSON.stringify(wishListData));
+  wishListDataCopy.collaborators = wishListDataCopy.collaborators.filter(user => user.collabrator_id !== collaborator);
+  return wishListDataCopy; 
+}
+
+// add a collaborator to wishlist
+function handleAddCollaborator(collaborator, wishListData) {
+  if (!wishListData.collaborators) {
+    wishListData.collaborators = [];
+  }
+
+  let wishListDataCopy = JSON.parse(JSON.stringify(wishListData));
+  wishListDataCopy.collaborators.push(collaborator);
+  return wishListDataCopy; 
 }
 
 export default WishListReducer;
