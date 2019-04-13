@@ -98,13 +98,14 @@ export function addCollabrator(params) {
   };
 }
 
-export function removeCollabrator(collabrator) {
+export function removeCollabrator(collaborator) {
   return {
     types: [
       types.LOAD_REMOVE_COLLABRATOR,
-      types.LOAD_SHARED_WISHLIST_SUCCESS,
+      types.LOAD_REMOVE_COLLABRATOR_SUCCESS,
       types.LOAD_REMOVE_COLLABRATOR_FAILURE
     ],
-    promise: client => client.delete(`/api/removecollabrator?collabrator_id=${collabrator}`)
+    payload: collaborator,
+    promise: client => client.post(`/api/removecollabrator?collabrator_id=${collaborator}`)
   };
 }
