@@ -160,7 +160,7 @@ class Header extends Component {
                 var email = queryString.parse(this.props.location.search).email;
                 if (hashValue) {
                     this.setState({ hashValue: hashValue, email });
-                    this.props.dispatch(actions.validateLink(activationCode)).then((response) => {
+                    this.props.dispatch(actions.validateLink(hashValue)).then((response) => {
                         let error = getDataFromResponse(response);
                         if (error == null){
                             this.toggleResetPasswordModal();
@@ -171,6 +171,13 @@ class Header extends Component {
                               };
                             this.props.dispatch(modalActions.showModal(modalContent));
                         }
+                    },
+                    error => {
+                        let modalContent = {
+                            heading: 'Reset Password',
+                            message: error.message
+                          };
+                        this.props.dispatch(modalActions.showModal(modalContent));
                     });
                 }
             }
