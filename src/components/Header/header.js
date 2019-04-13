@@ -246,11 +246,7 @@ class Header extends Component {
     }
 
     navigateTo(route) {
-        if (route === '/wishlist' && !isLoggedIn()) {
-            this.props.dispatch(actions.showLogin());
-        } else {
-            this.props.dispatch(push(route));
-        }
+        this.props.dispatch(push(route));
     }
 
     render() {
