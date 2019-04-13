@@ -497,7 +497,7 @@ a.button {
   margin-bottom: 1.5rem;
   @include fontSize(18.3, important=true);
   text-align: left !important;
-  transition: all .5s ease;
+  transition: all .3s ease;
   @include mobile {
     font-size: 12px;
   }
@@ -734,8 +734,8 @@ a.button {
 
 .cardImage {
   position: relative;
-  transition: all .5s ease;
-  margin-top: 3rem;
+  transition: all 2s ease;
+  margin-top: 6rem;
   opacity: 0;
 }
 
@@ -747,6 +747,7 @@ a.button {
   width: 62rem;
   max-width: 871px;
   margin: 3rem auto 7rem;
+  position: relative;
 
   h3 {
     font-size: 2.25rem;
@@ -781,6 +782,12 @@ a.button {
   justify-content: center;
 }
 
+.sectionIdentifier {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
 .cardDetail {
   font-family: $roboto-light !important;
   text-align: left !important;
@@ -792,18 +799,31 @@ a.button {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+
   &:first-child {
     z-index: 3;
-    transform : translate3d(0px,-57rem,0px);
+    transform: translate3d(25%,-73rem,0px);
+
     > img {
-      width: 19rem;
+      width: 21rem;
     }
   }
+
   &:nth-child(2) {
     z-index: 2;
-    transform : translate3d(-117%,-55rem,0px);
+    transform: translate3d(-117%,-79rem,0px);
+
     > img {
-      width: 16rem;
+      width: 18.5rem;
+    }
+  }
+
+  &:last-child {
+    z-index: 1;
+    transform: translate3d(-151%,-83rem,0px);
+
+    > img {
+      width: 23rem;
     }
   }
 }
@@ -811,8 +831,11 @@ a.button {
 .packageDetail {
   display: flex;
   flex-direction: column;
-  padding: 0 3rem;
+  align-items: flex-start;
+  padding: 2rem 4rem 0;
+  opacity: 0;
   @extend %spacer;
+  transition: all .3s ease;
 
   button {
     margin: 0;
@@ -828,10 +851,17 @@ a.button {
     text-align: left !important;
     font-size: 1.2rem !important;
   }
+
+  &.showDetail {
+    display: flex;
+    opacity: 1;
+    transition: all 1.5s ease;
+
+  }
 }
 
 .boxSection {
-  @include height(600);
+  @include height(640);
   display: flex;
   align-items: center;
   position: relative;
@@ -855,7 +885,6 @@ a.button {
 
 .boxMark {
   position: absolute;
-  // top: 50%;
   left: 50%;
   bottom: -40%;
 }

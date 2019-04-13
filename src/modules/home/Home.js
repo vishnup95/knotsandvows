@@ -46,6 +46,7 @@ class Home extends Component {
     animateImageOne: false,
     animateImageTwo: false,
     animateImageThree: false,
+    showDesc: false,
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -86,17 +87,14 @@ class Home extends Component {
   handleScroll = () => {
     const section1 = document.getElementById('numbersection');
     const section1Visible = this.checkVisible(section1);
-    const section2 = document.getElementById('discountedsection');
+    const section2 = document.getElementById('personalisedSection');
     const section2Visible = this.checkVisible(section2);
-    const section3 = document.getElementById('expertteam');
+    const section3 = document.getElementById('discountSection');
     const section3Visible = this.checkVisible(section3);
     const section4 = document.getElementById('thirdcard');
     const section4Visible = this.checkVisible(section4);
     const section5 = document.getElementById('boxmark');
     const section5Visible = this.checkVisible(section5);
-    // const section2 = document.getElementById('boxsection');
-    // const section2Visible = this.checkVisible(section1);
-    // console.log(section1Visible, 'section1Visible');
 
     if (section1Visible) {
       this.setState({ zoomCard: true });
@@ -127,28 +125,32 @@ class Home extends Component {
     }
 
     if (section5Visible) {
-      // this.setState({animateImageThree: true});
-      console.log(section5Visible, 'section5Visible');
       const section5Flag = document.getElementById('boxmark').getBoundingClientRect().top;
-      console.log(section5Flag, 'top');
-
       const section5rate = section5Flag / window.innerHeight * 100;
-      console.log(section5rate, 'percentage');
-      const topOne = (-57 * section5rate / 100);
-      const topTwo = (-55 * section5rate / 100);
+      const topOne = (-73 * section5rate / 100);
+      const leftOne = (25 * section5rate / 100);
+      const topTwo = (-79 * section5rate / 100);
       const leftTwo = (-117 * section5rate / 100);
-      document.getElementById('box-one').style.transform = 'translate3d(0px,' + topOne + 'rem,0px)';
+      const topThree = (-83 * section5rate / 100);
+      const leftThree = (-151 * section5rate / 100);
+      document.getElementById('box-one').style.transform = 'translate3d('+leftOne+'%,' + topOne + 'rem,0px)';
       document.getElementById('box-two').style.transform = 'translate3d('+ leftTwo +'%,' + topTwo + 'rem,0px)';
+      document.getElementById('box-three').style.transform = 'translate3d('+ leftThree +'%,' + topThree + 'rem,0px)';
+      this.setState({ showDesc: false });
       
     }
     else if (document.getElementById('boxend').getBoundingClientRect().top <= 0) {
-      document.getElementById('box-one').style.transform = 'translate3d(0px,0rem,0px)';
+      document.getElementById('box-one').style.transform = 'translate3d(0px,0px,0px)';
       document.getElementById('box-two').style.transform = 'translate3d(0px,0px,0px)';
+      document.getElementById('box-three').style.transform = 'translate3d(0px,0px,0px)';
+      this.setState({ showDesc: true });
 
     }
     else {
-      document.getElementById('box-one').style.transform = 'translate3d(0px,-57rem,0px)';
-      document.getElementById('box-two').style.transform = 'translate3d(-117%,-55rem,0px)';
+      document.getElementById('box-one').style.transform = 'translate3d(25%,-73rem,0px)';
+      document.getElementById('box-two').style.transform = 'translate3d(-117%,-79rem,0px)';
+      document.getElementById('box-three').style.transform = 'translate3d(-151%,-83rem,0px)';
+      this.setState({ showDesc: false });
 
     }
 
@@ -184,7 +186,6 @@ class Home extends Component {
   }
 
   render() {
-    // console.log(styles, 'styles');
     const headerString = ['Secret ', 'to a stress ', 'free wedding...'];
     const headerStringTwo = ['Wedding Planner'];
 
@@ -253,13 +254,13 @@ class Home extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col className="text-center mt-5">
+                <Col className="text-center mt-5"  id="numbersection">
                   <Button className="primary-button medium-pink">LET US HELP YOU</Button>
                 </Col>
               </Row>
 
             </div>
-            <div className={`${styles.mediumPinkBg} ${styles.bRadius} container-fluid`} id="numbersection">
+            <div className={`${styles.mediumPinkBg} ${styles.bRadius} container-fluid`}>
               <div className={`${styles.homeContainer} container`}>
                 <Row className='justify-center'>
                   <Col className={styles.row}>
@@ -304,8 +305,9 @@ class Home extends Component {
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('personalised-services-img.png')} alt="img" />
                     </div>
+                    <div className={styles.sectionIdentifier} id="personalisedSection"></div>
                   </div>
-                  <div className={`${styles.imageCard} ${styles.imageCardReverse} row-reverse`} id="discountedsection">
+                  <div className={`${styles.imageCard} ${styles.imageCardReverse} row-reverse`}>
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <h3>Discounted Prices</h3>
@@ -314,8 +316,9 @@ class Home extends Component {
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('discounted-prices-img.png')} alt="img" />
                     </div>
+                    <div className={styles.sectionIdentifier} id="discountSection"></div>
                   </div>
-                  <div className={styles.imageCard} id="expertteam">
+                  <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />
                       <h3>Seven Vows - expert Team</h3>
@@ -324,7 +327,7 @@ class Home extends Component {
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageThree ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />
                     </div>
-                    <div id="thirdcard" style={{ position: 'absolute', bottom: '-7rem' }}></div>
+                    <div className={styles.sectionIdentifier} id="thirdcard"></div>
                   </div>
                 </Col>
               </Row>
@@ -335,7 +338,7 @@ class Home extends Component {
                   <Col id="boxmark"></Col></Row>
                 <Row>
                   <Col>
-                    <img src={imagePath('packagesimage.png')} alt="img" />
+                    {/* <img src={imagePath('packagesimage.png')} alt="img" /> */}
                   </Col>
                   <Col className={styles.dummyClass}>
                     <h2 className={styles.whiteHeading}>Save <br />money!</h2>
@@ -348,11 +351,11 @@ class Home extends Component {
                 </Row>
               </Container>
             </div>
-            <Container className={styles.homeContainer} style={{ marginTop: '25rem' }}>
+            <Container className={styles.homeContainer} style={{ marginTop: '45rem' }}>
               <Row className="mb-5">
                 <Col className={styles.packageBox} id="box-one">
                   <img src={imagePath('box-one.png')} alt="img" />
-                  <div className={styles.packageDetail}>
+                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Gold Package</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                     <Button className="primary-button medium-pink">LEARN MORE</Button>
@@ -360,7 +363,7 @@ class Home extends Component {
                 </Col>
                 <Col className={styles.packageBox} id="box-two">
                   <img src={imagePath('box-two.png')} alt="img" />
-                  <div className={styles.packageDetail}>
+                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Emerald Package</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                     <Button className="primary-button medium-pink">LEARN MORE</Button>
@@ -368,7 +371,7 @@ class Home extends Component {
                 </Col>
                 <Col className={styles.packageBox} id="box-three">
                   <img src={imagePath('box-three.png')} alt="img" />
-                  <div className={styles.packageDetail}>
+                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Customize</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
                     <Button className="primary-button medium-pink">WISHLIST</Button>
