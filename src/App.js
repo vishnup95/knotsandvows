@@ -52,10 +52,9 @@ class App extends Component {
 
   handleClick = () => {
     this.props.dispatch(modalActions.hideModal());
+
     if (this.props.modalContent.proceedAction) {
       this.props.modalContent.proceedAction();
-    } else {
-      //this.props.dispatch(push(route));
     }
   }
 
@@ -89,7 +88,10 @@ class App extends Component {
           }
 
           <div className="text-center mt-5">
-            <Button color="secondary" className="secondary-button" onClick={() => this.toggle()}>Cancel</Button>{' '}
+            {
+              this.props.modalContent.proceedAction && 
+              <Button color="secondary" className="secondary-button" onClick={() => this.toggle()}>Cancel</Button>
+            }
             <Button color="primary" className="primary-button" onClick={() => this.handleClick()}>OK</Button>{' '}   
           </div> 
       </div>
