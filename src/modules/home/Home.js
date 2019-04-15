@@ -66,7 +66,7 @@ class Home extends Component {
     if (this.props.location.hash === '#packages') {
       let yPos = document.getElementById('packages').offsetTop;
       window.scrollTo({
-        top: yPos,
+        top: yPos - 50,
         left: 0,
         behavior: 'smooth'
       });
@@ -170,7 +170,7 @@ class Home extends Component {
     if (nextProps.location.hash === '#packages') {
       let yPos = document.getElementById('packages').offsetTop;
       window.scrollTo({
-        top: yPos,
+        top: yPos - 50,
         left: 0,
         behavior: 'smooth'
       });
@@ -332,7 +332,7 @@ class Home extends Component {
                 </Col>
               </Row>
             </div>
-            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`} id="packages">
+            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`}>
               <Container>
                 <Row className={styles.boxMark}>
                   <Col id="boxmark"></Col></Row>
@@ -352,7 +352,7 @@ class Home extends Component {
               </Container>
             </div>
             <Container className={styles.homeContainer} style={{ marginTop: '45rem' }}>
-              <Row className="mb-5">
+              <Row className="mb-5" id="packages">
                 <Col className={styles.packageBox} id="box-one">
                   <img src={imagePath('box-one.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
