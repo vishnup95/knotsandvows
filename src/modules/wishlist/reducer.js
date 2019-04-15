@@ -94,7 +94,7 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_NOTES_SUCCESS:
       return {
         ...state,
-        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data),
+        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data.results),
         noteloading: false,
         error: null
       };
@@ -109,22 +109,19 @@ const WishListReducer = (state = initialState, action) => {
       case types.LOAD_ADD_COLLABRATOR:
       return {
         ...state,
-        loading : true,
         error:null
       };
 
     case types.LOAD_ADD_COLLABRATOR_SUCCESS:
       return {
         ...state,
-        wishListData: handleAddCollaborator(action.result.data.result, state.wishListData),
-        loading : false,
+        wishListData: handleAddCollaborator(action.result.data.data, state.wishListData),
       };
 
     case types.LOAD_ADD_COLLABRATOR_FAILURE:
       return {
         ...state,
         error: action.error.message,
-        loading : false
       };
 
       case types.LOAD_REMOVE_COLLABRATOR:
