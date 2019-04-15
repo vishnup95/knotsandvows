@@ -392,7 +392,9 @@ class Home extends Component {
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Emerald Package</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
-                    <Button className="primary-button medium-pink">LEARN MORE</Button>
+                    <a className="primary-button medium-pink" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">LEARN MORE</a>
+
+                    {/* <Button className="primary-button medium-pink">LEARN MORE</Button> */}
                   </div>
                 </Col>
                 <Col className={styles.packageBox} id="box-three">

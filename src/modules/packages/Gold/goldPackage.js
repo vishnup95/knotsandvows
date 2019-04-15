@@ -268,7 +268,7 @@ class GoldPackage extends Component {
                   <div className="contact-corner"></div>
                   <div className="address-section"><img className="contact-office" src={imagePath('office.png')} alt="" />
                     <div className="office-address">
-                      <div className="address-heading">Seven Vows Party Planners</div>
+                      <div className="address-heading">Seven Vows</div>
                       <p>H.No. 8-2-120/112/B/5&amp;6, 3rd floor, BBR Forum, Road # 2, Banjara Hills,
                           Hyderabad
                                         500034</p>
@@ -280,7 +280,7 @@ class GoldPackage extends Component {
                 </div>
                 <div className="row">
                   <div className="col-md-6 contact-details"><img src={imagePath('location.png')} alt="" />
-                    <h6>Seven Vows Party Planners</h6>
+                    <h6>Seven Vows</h6>
                     <p>H.No. 8-2-120/112/B/5&amp;6, 3rd floor, BBR Forum, Road # 2, Banjara Hills,
                         Hyderabad
                                     500034</p>
@@ -328,7 +328,7 @@ class GoldPackage extends Component {
                     alt="instagram-icon" /></a>
               </div>
               <h5>Thank you</h5>
-              <div className="text-center">&copy;2019 Seven Vows Party Planners
+              <div className="text-center">&copy;2019 Seven Vows
                         <a target="_blank" rel="noopener noreferrer" href="/terms-and-conditions">Terms Of Use</a> | <a target="_blank"
                   rel="noopener noreferrer" href="/privacy-policy">Privacy Policy</a></div>
               <div className="back-to-top"></div>
