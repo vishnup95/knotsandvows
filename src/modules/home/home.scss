@@ -2,7 +2,17 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
+.homeOuter {
+  @include mobile {
+    background: $black;
+  }
+}
+
 .homeContainer {
+  @include mobile {
+    // background: black;
+  }
+
   h1 {}
 
   h2 {
@@ -21,6 +31,9 @@
     @include fontSize(25.2);
   }
   @extend %spacer;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .title {
@@ -99,48 +112,6 @@ a.button {
 
 .center {
   margin: 0 auto;
-}
-
-// carousel styles
-.carouselItem {
-  display: flex !important;
-  background-image: linear-gradient(116deg, $secondary-color, $lavender-pink);
-  @include padding(80);
-  border-radius: 6px;
-  max-width: 935px;
-
-  &:before {
-    content: '';
-    border-radius: 6px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to right, rgba(56, 26, 28, 0.53), rgba(58, 27, 29, 0.78) 31%, rgba(95, 43, 48, 0) 65%, rgba(0, 0, 0, 0));
-  }
-}
-
-.carousalImage {
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-  @include width(530);
-  @include height(350);
-  flex-shrink: 0;
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
-  }
-  @include mobile {
-     @include height(440);
-  }
 }
 
 // Package styles
@@ -535,35 +506,6 @@ a.button {
   }
 }
 
-.carouselContent {
-  display: flex;
-  align-items: flex-start;
-  text-align: center;
-  color: white;
-  text-align: left;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 2rem;
-
-  > img {
-    margin-bottom: 1rem;
-  }
-  @include mobile {
-    padding-right: 1.875rem;
-    @include left(30);
-    text-align: center;
-  }
-  @include tabletOnly {}
-
-  .buttonContainer {
-    display: flex;
-    flex-grow: 1;
-    @include mobile {
-       @include justify-center();
-    }
-  }
-}
-
 .bottom-curve {
   position: absolute;
   left: 0;
@@ -585,6 +527,9 @@ a.button {
   position: absolute;
   top: 35%;
   z-index: 2;
+  @include mobile {
+    width: 100%;
+  }
 
   p {
     text-align: left;
@@ -626,22 +571,189 @@ a.button {
   }
 }
 
-.cardDetail {
-  font-family: $roboto-light;
+%spacer {
+  margin-bottom: 7rem;
 }
 
-.whiteHeading {
-  color: $white;
-  @include fontSize(93.5);
-  font-family: $frank-bold;
+.bRadius {
+  border-radius: 6.5px;
 }
 
-.whiteDesc {
-  color: $white;
-  @include fontSize(26);
+.packageWrap {
+  @include desktop {
+    margin-top: 45rem;
+  }
+}
+
+.packageBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  @include desktop {
+    &:first-child {
+      z-index: 3;
+      transform: translate3d(25%,-73rem,0px);
+
+      > img {
+        width: 21rem;
+      }
+
+    }
+
+    &:nth-child(2) {
+      z-index: 2;
+      transform: translate3d(-117%,-79rem,0px);
+
+      > img {
+        width: 18.5rem;
+      }
+    }
+
+    &:last-child {
+      z-index: 1;
+      transform: translate3d(-151%,-83rem,0px);
+
+      > img {
+        width: 23rem;
+      }
+    }
+  }
+
+}
+
+.packageDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 4rem 0;
+  @extend %spacer;
+  transition: all .3s ease;
+  @include desktop {
+    align-items: flex-start;
+    opacity: 0;
+  }
+
+  button {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    font-family: $roboto-bold !important;
+  }
+
+  p {
+    font-family: $roboto-light !important;
+    text-align: left !important;
+    font-size: 1.2rem !important;
+  }
+
+  &.showDetail {
+    display: flex;
+    transition: all 1.5s ease;
+    @include desktop {
+      opacity: 1;
+    }
+  }
+}
+
+.boxSection {
+  @include height(640);
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  h2 {
+    line-height: .8;
+  }
+
+  img {
+    width: 25rem;
+    margin: 0 auto 3rem;
+  }
+  @extend %spacer;
+}
+
+.dummyClass {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.boxMark {
+  position: absolute;
+  left: 50%;
+  bottom: -40%;
+}
+@keyframes example {
+  from {
+    transform: perspective(100px) rotateY(-65deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: perspective(100px) rotateY(0);
+    opacity: 1;
+  }
+}
+
+.homeTitle {
+  white-space: nowrap;
+  color: $secondary-color;
+
+  div {
+    > div {
+      animation-name: example;
+      animation-duration: 5s;
+      display: inline-block;
+      font-family: $frank-bold;
+      white-space: pre;
+      line-height: 1.17;
+      font-size: 25px;
+      @include tablet {
+         @include fontSize(80);
+
+      }
+    }
+
+    &.pink {
+      color: $medium-pink;
+    }
+  }
+}
+
+h1.homeTitle {
+  font-size: 28px !important;
+  font-family: $frank-bold !important;
+  width: 40%;
+  white-space: initial;
+  margin-top: 19vw;
+  margin-left: 7vw;
+}
+
+.error {
+  color: $bright-red;
+  font-size: 1rem !important;
+  margin-top: .25rem;
 }
 
 .contactInput {
+  @include mobile {
+    width: 80%;
+    margin: 33vw auto 3vw;
+
+    button {
+      width: 50%;
+    }
+
+    input {
+      width: 47%;
+    }
+  }
+  background-color: $white;
+
   @include width(570);
   border-radius: 4px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(50, 50, 93, 0.11);
@@ -666,22 +778,119 @@ a.button {
     @include fontSize(16);
   }
 }
-
-%spacer {
-  margin-bottom: 7rem;
-}
-
+// carousel styles
 .carousel {
+  @include mobile {
+    max-width: 100%;
+  }
   max-width: 935px;
   margin: 0 auto;
   width: 70rem;
 }
 
-.bRadius {
-  border-radius: 6.5px;
+.carouselItem {
+  display: flex !important;
+  background-image: linear-gradient(116deg, $secondary-color, $lavender-pink);
+  @include padding(80);
+  border-radius: 6px;
+  max-width: 935px;
+  position: relative;
+  @include mobile {
+    flex-direction: column;
+    padding: 2rem;
+
+    &:before {
+      display: none;
+    }
+  }
+
+  &:before {
+    content: '';
+    border-radius: 6px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(56, 26, 28, 0.53), rgba(58, 27, 29, 0.78) 31%, rgba(95, 43, 48, 0) 65%, rgba(0, 0, 0, 0));
+  }
+}
+
+.carousalImage {
+  @include mobile {
+    max-width: 100%;
+    height: 56vw;
+  }
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  @include width(530);
+  @include height(350);
+  flex-shrink: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+  }
+}
+
+.carouselContent {
+  display: flex;
+  align-items: flex-start;
+  text-align: center;
+  color: white;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2rem;
+
+  > img {
+    margin-bottom: 1rem;
+  }
+  @include mobile {
+    text-align: center;
+    padding: 2rem 0;
+
+  }
+  @include tabletOnly {}
+
+  .buttonContainer {
+    display: flex;
+    flex-grow: 1;
+    @include mobile {
+       @include justify-center();
+    }
+  }
+}
+
+.venueCount {
+  @include mobile {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 0;
+
+    .row {
+      border-bottom: 2px solid #712557;
+      width: 82%;
+      margin: 0 auto;
+      padding: 0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
 }
 
 .imageCardWrap {
+  @include mobile {
+    width: 100%;
+  }
   @extend %spacer;
   max-width: 901px;
   margin-left: auto;
@@ -690,6 +899,15 @@ a.button {
 }
 
 .cardImageContainer {
+  @include mobile {
+    padding: 0;
+    margin-right: 0;
+    margin-left: 0;
+
+    img {
+      margin-right: 0 !important;
+    }
+  }
   margin-right: -4.8rem;
   display: flex;
   align-items: center;
@@ -697,13 +915,19 @@ a.button {
   position: relative;
 
   img {
+    @include mobile {
+      height: 56vw;
+      width: 100%;
+    }
     @include width(665);
   }
 
   &.cardImageSlide {
     .cardImage {
-      opacity: 1;
-      margin-top: 0;
+      @include desktop {
+        opacity: 1;
+        margin-top: 0;
+      }
     }
 
     &:before {
@@ -735,11 +959,23 @@ a.button {
 .cardImage {
   position: relative;
   transition: all 2s ease;
-  margin-top: 6rem;
-  opacity: 0;
+  @include desktop {
+    margin-top: 6rem;
+    opacity: 0;
+  }
 }
 
 .imageCard {
+  @include mobile {
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: #fff;
+    width: 100%;
+
+    &:last-child {
+      margin: 3rem auto 0;
+    }
+  }
   display: flex;
   border-radius: 6px;
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
@@ -749,21 +985,30 @@ a.button {
   margin: 3rem auto 7rem;
   position: relative;
 
-  h3 {
-    font-size: 2.25rem;
-    font-family: $roboto-regular;
-  }
+  .cardDetail {
+    @include mobile {
+      padding-left: 1rem;
+    }
 
-  &:nth-child(even) {
-    // margin-right: -2.4rem;
-  }
+    p {
 
-  &:nth-child(odd) {
-    // margin-left: -2.4rem;
+      font-family: $roboto-light !important;
+      text-align: left !important;
+      font-size: 1.2rem !important;
+
+    }
+
+    h3 {
+      font-size: 2.25rem;
+      font-family: $roboto-regular;
+    }
   }
 
   &.imageCardReverse {
     .cardImageContainer {
+      @include mobile {
+        margin-left: 0;
+      }
       margin-left: -4.8rem;
       margin-right: 0;
     }
@@ -776,6 +1021,10 @@ a.button {
 }
 
 .imageCardText {
+  @include mobile {
+    flex-direction: row;
+    padding: 1rem 0;
+  }
   padding: 4.5rem;
   display: flex;
   flex-direction: column;
@@ -788,141 +1037,20 @@ a.button {
   left: 50%;
 }
 
-.cardDetail {
-  font-family: $roboto-light !important;
-  text-align: left !important;
-  font-size: 1.2rem !important;
+.whiteHeading {
+  @include mobile {
+    font-size: 52px !important;
+  }
+  color: $white;
+  @include fontSize(93.5);
+  font-family: $frank-bold;
 }
 
-.packageBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-
-  &:first-child {
-    z-index: 3;
-    transform: translate3d(25%,-73rem,0px);
-
-    > img {
-      width: 21rem;
-    }
+.whiteDesc {
+  color: $white;
+  @include fontSize(26);
+  @include mobile {
+    text-align: center;
+    font-size: 14px;
   }
-
-  &:nth-child(2) {
-    z-index: 2;
-    transform: translate3d(-117%,-79rem,0px);
-
-    > img {
-      width: 18.5rem;
-    }
-  }
-
-  &:last-child {
-    z-index: 1;
-    transform: translate3d(-151%,-83rem,0px);
-
-    > img {
-      width: 23rem;
-    }
-  }
-}
-
-.packageDetail {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 2rem 4rem 0;
-  opacity: 0;
-  @extend %spacer;
-  transition: all .3s ease;
-
-  button {
-    margin: 0;
-  }
-
-  h3 {
-    font-size: 2.5rem;
-    font-family: $roboto-bold !important;
-  }
-
-  p {
-    font-family: $roboto-light !important;
-    text-align: left !important;
-    font-size: 1.2rem !important;
-  }
-
-  &.showDetail {
-    display: flex;
-    opacity: 1;
-    transition: all 1.5s ease;
-
-  }
-}
-
-.boxSection {
-  @include height(640);
-  display: flex;
-  align-items: center;
-  position: relative;
-
-  h2 {
-    line-height: .8;
-  }
-
-  img {
-    width: 35rem;
-  }
-  @extend %spacer;
-}
-
-.dummyClass {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.boxMark {
-  position: absolute;
-  left: 50%;
-  bottom: -40%;
-}
-@keyframes example {
-  from {
-    transform: perspective(100px) rotateY(-65deg);
-    opacity: 0;
-  }
-
-  to {
-    transform: perspective(100px) rotateY(0);
-    opacity: 1;
-  }
-}
-
-.homeTitle {
-  white-space: nowrap;
-
-  div {
-    > div {
-      // color: $medium-pink;
-      animation-name: example;
-      animation-duration: 5s;
-      display: inline-block;
-      @include fontSize(80);
-      font-family: $frank-bold;
-      white-space: pre;
-      line-height: 1.17;
-    }
-
-    &.pink {
-      color: $medium-pink;
-    }
-  }
-}
-
-.error {
-  color: $bright-red;
-  font-size: 1rem !important;
-  margin-top: 0.25rem;
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './imageFade.scss';
 import { imagePath } from '../../utils/assetUtils';
 
-// const images =[banner]
 class ImageFade extends Component {
 
     constructor(props) {
@@ -23,9 +22,9 @@ class ImageFade extends Component {
                 i = 1;
             }
             this.setState({ imageSrc: imagebaseName + i + '.jpg', imageSrcTwo: imagebaseName + i + 1 + '.jpg',scale: 1});
-            // setTimeout(() => {
-            //     this.setState({scale: 1.5})
-            // }, 500)
+            setTimeout(() => {
+                this.setState({scale: 1.5})
+            }, 500)
         }, 3000)
     }
     componentWillUnmount() {

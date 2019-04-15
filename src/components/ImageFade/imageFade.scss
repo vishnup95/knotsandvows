@@ -3,28 +3,37 @@
 @import '../../variables/fonts';
 
 .image-wrap {
-  @include height(967);
-  @include width(808);
   overflow: hidden;
-  .homeImage {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  @include tablet {
     @include height(967);
-    @include width(808);
+  }
+  .homeImage {
     animation-duration: 3s;
-    animation-timing-function: ease;
     animation-iteration-count: infinite;
-    animation-name: examle;
-    transition: all 3s ease;
+    // animation-name: examle;
+    transition: all 1.8s ease;
+    width: 80%;
+    height: 90vw;
+    @include tablet {
+
+      @include height(967);
+      width: 100%;
+    }
 
   }
   margin-bottom: 7rem;
 
 }
 @keyframes examle {
-  from {
+  0% {
     transform: scale(1.2);
   }
 
-  to {
+  100% {
     transform: scale(1);
   }
 }

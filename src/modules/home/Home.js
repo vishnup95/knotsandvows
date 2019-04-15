@@ -87,75 +87,77 @@ class Home extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
   handleScroll = () => {
-    const section1 = document.getElementById('numbersection');
-    const section1Visible = this.checkVisible(section1);
-    const section2 = document.getElementById('personalisedSection');
-    const section2Visible = this.checkVisible(section2);
-    const section3 = document.getElementById('discountSection');
-    const section3Visible = this.checkVisible(section3);
-    const section4 = document.getElementById('thirdcard');
-    const section4Visible = this.checkVisible(section4);
-    const section5 = document.getElementById('boxmark');
-    const section5Visible = this.checkVisible(section5);
+    if (window.innerWidth > 1023) {
+      const section1 = document.getElementById('numbersection');
+      const section1Visible = this.checkVisible(section1);
+      const section2 = document.getElementById('personalisedSection');
+      const section2Visible = this.checkVisible(section2);
+      const section3 = document.getElementById('discountSection');
+      const section3Visible = this.checkVisible(section3);
+      const section4 = document.getElementById('thirdcard');
+      const section4Visible = this.checkVisible(section4);
+      const section5 = document.getElementById('boxmark');
+      const section5Visible = this.checkVisible(section5);
 
-    if (section1Visible) {
-      this.setState({ zoomCard: true });
-    }
-    else {
-      this.setState({ zoomCard: false });
-    }
+      if (section1Visible) {
+        this.setState({ zoomCard: true });
+      }
+      else {
+        this.setState({ zoomCard: false });
+      }
 
-    if (section2Visible) {
-      this.setState({ animateImageOne: true });
-    }
-    else {
-      this.setState({ animateImageOne: false });
-    }
+      if (section2Visible) {
+        this.setState({ animateImageOne: true });
+      }
+      else {
+        this.setState({ animateImageOne: false });
+      }
 
-    if (section3Visible) {
-      this.setState({ animateImageTwo: true });
-    }
-    else {
-      this.setState({ animateImageTwo: false });
-    }
+      if (section3Visible) {
+        this.setState({ animateImageTwo: true });
+      }
+      else {
+        this.setState({ animateImageTwo: false });
+      }
 
-    if (section4Visible) {
-      this.setState({ animateImageThree: true });
-    }
-    else {
-      this.setState({ animateImageThree: false });
-    }
+      if (section4Visible) {
+        this.setState({ animateImageThree: true });
+      }
+      else {
+        this.setState({ animateImageThree: false });
+      }
 
-    if (section5Visible) {
-      const section5Flag = document.getElementById('boxmark').getBoundingClientRect().top;
-      const section5rate = section5Flag / window.innerHeight * 100;
-      const topOne = (-73 * section5rate / 100);
-      const leftOne = (25 * section5rate / 100);
-      const topTwo = (-79 * section5rate / 100);
-      const leftTwo = (-117 * section5rate / 100);
-      const topThree = (-83 * section5rate / 100);
-      const leftThree = (-151 * section5rate / 100);
-      document.getElementById('box-one').style.transform = 'translate3d('+leftOne+'%,' + topOne + 'rem,0px)';
-      document.getElementById('box-two').style.transform = 'translate3d('+ leftTwo +'%,' + topTwo + 'rem,0px)';
-      document.getElementById('box-three').style.transform = 'translate3d('+ leftThree +'%,' + topThree + 'rem,0px)';
-      this.setState({ showDesc: false });
-      
-    }
-    else if (document.getElementById('boxend').getBoundingClientRect().top <= 0) {
-      document.getElementById('box-one').style.transform = 'translate3d(0px,0px,0px)';
-      document.getElementById('box-two').style.transform = 'translate3d(0px,0px,0px)';
-      document.getElementById('box-three').style.transform = 'translate3d(0px,0px,0px)';
-      this.setState({ showDesc: true });
+      if (section5Visible) {
+        const section5Flag = document.getElementById('boxmark').getBoundingClientRect().top;
+        const section5rate = section5Flag / window.innerHeight * 100;
+        const topOne = (-73 * section5rate / 100);
+        const leftOne = (25 * section5rate / 100);
+        const topTwo = (-79 * section5rate / 100);
+        const leftTwo = (-117 * section5rate / 100);
+        const topThree = (-83 * section5rate / 100);
+        const leftThree = (-151 * section5rate / 100);
+        document.getElementById('box-one').style.transform = 'translate3d(' + leftOne + '%,' + topOne + 'rem,0px)';
+        document.getElementById('box-two').style.transform = 'translate3d(' + leftTwo + '%,' + topTwo + 'rem,0px)';
+        document.getElementById('box-three').style.transform = 'translate3d(' + leftThree + '%,' + topThree + 'rem,0px)';
+        this.setState({ showDesc: false });
+
+      }
+      else if (document.getElementById('boxend').getBoundingClientRect().top <= 0) {
+        document.getElementById('box-one').style.transform = 'translate3d(0px,0px,0px)';
+        document.getElementById('box-two').style.transform = 'translate3d(0px,0px,0px)';
+        document.getElementById('box-three').style.transform = 'translate3d(0px,0px,0px)';
+        this.setState({ showDesc: true });
+
+      }
+      else {
+        document.getElementById('box-one').style.transform = 'translate3d(25%,-73rem,0px)';
+        document.getElementById('box-two').style.transform = 'translate3d(-117%,-79rem,0px)';
+        document.getElementById('box-three').style.transform = 'translate3d(-151%,-83rem,0px)';
+        this.setState({ showDesc: false });
+
+      }
 
     }
-    else {
-      document.getElementById('box-one').style.transform = 'translate3d(25%,-73rem,0px)';
-      document.getElementById('box-two').style.transform = 'translate3d(-117%,-79rem,0px)';
-      document.getElementById('box-three').style.transform = 'translate3d(-151%,-83rem,0px)';
-      this.setState({ showDesc: false });
-
-    }
-
   }
 
   checkVisible(elm) {
@@ -183,7 +185,7 @@ class Home extends Component {
   componentDidUpdate() {
     if (this.state.errorMessage) {
       setTimeout(() => {
-        this.setState({errorMessage:''})
+        this.setState({ errorMessage: '' })
       }, 15000)
     }
   }
@@ -200,10 +202,10 @@ class Home extends Component {
     let inputValue = document.getElementById('freeConsult').value;
 
     if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue) && !/^\d{10}$/.test(inputValue)) {
-      this.setState({errorMessage: 'Please enter a valid email or phone number'});
+      this.setState({ errorMessage: 'Please enter a valid email or phone number' });
     } else {
       let params = {
-        email : inputValue
+        email: inputValue
       }
 
       this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
@@ -213,17 +215,18 @@ class Home extends Component {
   render() {
     const headerString = ['Secret ', 'to a stress ', 'free wedding...'];
     const headerStringTwo = ['Wedding Planner'];
+    console.log(styles);
 
     return (
-      <div>
+      <div className={styles.homeOuter}>
         {
           styles &&
           <div>
             <div className={`${styles.homeContainer} container`}>
               <Row>
-                <Col>
+                <Col xs='12' md='3' className="p-relative no-padding-mobile">
                   <div className={styles.homeContent}>
-                    <div className={styles.homeTitle}>
+                    <div className={`${styles.homeTitle} tab-only`}>
 
                       {
                         headerString.map((item, index) => {
@@ -253,20 +256,20 @@ class Home extends Component {
                       }
 
                     </div>
-                    {/* <h1 className={styles.homeTitle}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1> */}
-                    <p>Sevenvows can help you with x ooxoox xcvxcv xcvxcvxc xo oxo oxo</p>
+                    <h1 className={`${styles.homeTitle} mobile-only`}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1>
+                    <p className="tab-only">Sevenvows can help you with x ooxoox xcvxcv xcvxcvxc xo oxo oxo</p>
                     <div className={styles.contactInput}>
-                      <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({errorMessage: ''})}/>
+                      <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
                       <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>FREE CONSULTATION</Button>
                     </div>
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
                 </Col>
-                <Col>
+                <Col xs='12' md='9' className="no-padding-mobile">
                   <ImageFade />
                 </Col>
               </Row>
-              <hr></hr>
+              <hr className="tab-only"></hr>
               <Row>
                 <Col>
                   <h2>60% of couples think <span>wedding planners</span> <br />are unnecessary, until they panic</h2>
@@ -279,15 +282,15 @@ class Home extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col className="text-center mt-5"  id="numbersection">
+                <Col className="text-center mt-5" id="numbersection">
                   <Button className="primary-button medium-pink">LET US HELP YOU</Button>
                 </Col>
               </Row>
 
             </div>
-            <div className={`${styles.mediumPinkBg} ${styles.bRadius} container-fluid`}>
+            <div className={`${styles.mediumPinkBg} ${styles.bRadius} ${styles.venueCount} container-fluid`}>
               <div className={`${styles.homeContainer} container`}>
-                <Row className='justify-center'>
+                <Row className='justify-center mobile-column'>
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We know</div> */}
                     <div className={styles.detailCount}>
@@ -324,8 +327,10 @@ class Home extends Component {
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
-                      <h3>Personalised Services</h3>
-                      <p className={styles.cardDetail}>We believe that individualised, person centred planning is the foundation.</p>
+                      <div className={styles.cardDetail}>
+                        <h3>Personalised Services</h3>
+                        <p>We believe that individualised, person centred planning is the foundation.</p>
+                      </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('personalised-services-img.png')} alt="img" />
@@ -335,8 +340,10 @@ class Home extends Component {
                   <div className={`${styles.imageCard} ${styles.imageCardReverse} row-reverse`}>
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
-                      <h3>Discounted Prices</h3>
-                      <p className={styles.cardDetail}>Check out our exclusive wedding deals for your big day at amazing prices!</p>
+                      <div className={styles.cardDetail}>
+                        <h3>Discounted Prices</h3>
+                        <p>Check out our exclusive wedding deals for your big day at amazing prices!</p>
+                      </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('discounted-prices-img.png')} alt="img" />
@@ -346,8 +353,10 @@ class Home extends Component {
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />
-                      <h3>Seven Vows - expert Team</h3>
-                      <p className={styles.cardDetail}>Meet our team of crazy talented planners from across the country! </p>
+                      <div className={styles.cardDetail}>
+                        <h3>Seven Vows - expert Team</h3>
+                        <p>Meet our team of crazy talented planners from across the country! </p>
+                      </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageThree ? styles.cardImageSlide : ''}`}>
                       <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />
@@ -361,14 +370,15 @@ class Home extends Component {
               <Container>
                 <Row className={styles.boxMark}>
                   <Col id="boxmark"></Col></Row>
-                <Row>
-                  <Col>
-                    {/* <img src={imagePath('packagesimage.png')} alt="img" /> */}
+                <Row className="mobile-col-reverse">
+                  <Col className="justify-center flex align-center mobile-column">
+                    <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
+                    <Button className="mobile-only primary-button white">LET’S DO IT</Button>
                   </Col>
                   <Col className={styles.dummyClass}>
-                    <h2 className={styles.whiteHeading}>Save <br />money!</h2>
+                    <h2 className={styles.whiteHeading}>Save <span className="tab-only"><br /></span>money!</h2>
                     <p className={styles.whiteDesc}>These wedding packages are specially created to make every bride and grooms life easy</p>
-                    <Button className="primary-button white">LET US HELP YOU</Button>
+                    <Button className="tab-only primary-button white">LET’S DO IT</Button>
                   </Col>
                 </Row>
                 <Row>
@@ -376,7 +386,7 @@ class Home extends Component {
                 </Row>
               </Container>
             </div>
-            <Container className={styles.homeContainer} style={{ marginTop: '45rem' }}>
+            <Container className={`${styles.homeContainer} ${styles.packageWrap}`}>
               <Row className="mb-5" id="packages">
                 <Col className={styles.packageBox} id="box-one">
                   <img src={imagePath('box-one.png')} alt="img" />
@@ -402,7 +412,9 @@ class Home extends Component {
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Customize</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
-                    <Button className="primary-button medium-pink">WISHLIST</Button>
+                    {/* <Button className="primary-button medium-pink">WISHLIST</Button> */}
+                    <a className="primary-button medium-pink" href='/wishlist' rel="noopener noreferrer" alt="">WISHLIST</a>
+
                   </div>
                 </Col>
               </Row>
@@ -411,7 +423,7 @@ class Home extends Component {
                   <h2>You may also be interested in...</h2>
 
                   {this.props.ceremonies &&
-                    <Col xs="12" className={`${styles.desktopCarousal} no-padding`}>
+                    <Col xs="12" className={` no-padding mb-5`}>
                       <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony" />
                     </Col>
                   }
