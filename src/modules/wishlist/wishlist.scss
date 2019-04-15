@@ -29,6 +29,10 @@
   &.active {
     color: $primary-color;
   }
+
+  @include mobile {
+    padding-left: 0;
+  }
 }
 
 .listDetailContainer {
@@ -246,4 +250,16 @@
   right: 1rem;
   cursor: pointer;
 
+}
+
+
+// mobile view
+
+.view-all {
+  color: $primary-color;
+  @include fontSize(18);
+  font-family: $roboto-medium;
+  width: max-content;
+  cursor: pointer;
+  margin: 0 auto;
 }
