@@ -314,8 +314,8 @@ class GoldPackage extends Component {
                     <input  type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
                     <input  maxLength="50" type="text" name="city" id="city" placeholder="City" />
                     <textarea maxLength="200" name="comments" id="comments" rows="5" placeholder="Additional comments about the wedding"></textarea>
-                    <input type="submit" value="Get Quote" className="get-package" onClick={() => this.sendDetailsToWeddingPlanner()}/>
                   </form>
+                    <input type="submit" value="Get Quote" className="get-package" onClick={() => this.sendDetailsToWeddingPlanner()}/>
 
                 </div>
                 <div className="bottom-corner-contact"></div>
