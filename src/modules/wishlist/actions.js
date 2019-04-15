@@ -97,7 +97,7 @@ export function editNote(params, dispatch) {
       types.LOAD_EDIT_NOTE_SUCCESS,
       types.LOAD_EDIT_NOTE_FAILURE
     ],
-    promise: client => client.patch(`/api/wishlist/updatenote`, {note_id: params.note_id, note: params.note})
+    promise: client => client.post(`/api/wishlist/updatenote`, {note_id: params.note_id, note: params.note})
       .then(() => dispatch(this.fetchAllNotes(params)))
         .catch(error => console.log(error)) 
   };

@@ -9,10 +9,11 @@ import { Container, Row, Col, Modal, Collapse } from 'reactstrap';
 import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
 import CategoryCard from '../../components/Card/cardCategory';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 import { hyphonatedString } from '../../utils/utilities';
 import CompareProduct from '../../components/compareProduct/compareProduct';
-import AddCollabratorModal from './addCollabrator'
+import AddCollabratorModal from './addCollabrator';
+import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 
 const mapStateToProps = state => ({
@@ -32,6 +33,7 @@ class CategoryListing extends Component {
     super(props);
     this.state = {
       myWishListCategories: [],
+      mobileCategoriesCollapse: [],
       selectedVendor: 0,
       isCompare: false,
       modal: false,
@@ -57,6 +59,12 @@ class CategoryListing extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.myWishListData !== null && nextProps.myWishListData.wishlistitems) {
       this.setState({myWishListCategories: nextProps.myWishListData.wishlistitems});
+      
+      if (detectMobile()) {
+        let collapseArray = this.state.myWishListCategories.length > 0 ? Array(this.state.myWishListCategories.length).fill(false) : [];
+        collapseArray.length > 0 ? collapseArray[0] = true : [];
+        this.setState({mobileCategoriesCollapse: collapseArray});
+      }
     }
   }
 
@@ -76,12 +84,20 @@ class CategoryListing extends Component {
     this.setState({collapse: this.state.collapse.map( (item, index) => index === toggleIndex ? !item : false)});
   }
 
+  toggleMobileMenu(toggleIndex) {
+    this.setState({mobileCategoriesCollapse: this.state.mobileCategoriesCollapse.map( (item, index) => index === toggleIndex ? !item : false)});
+  }
+
   navigateTo(route) {
     this.props.dispatch(push(route));
   }
 
   handleCategoryChange = (index) => {
     this.setState({selectedVendor: index, vendorSelectedToCompare:[]});
+
+    if (detectMobile()) {
+      this.toggleMobileMenu(index);
+    } 
   }
 
   setCompare = () => {
@@ -162,9 +178,26 @@ class CategoryListing extends Component {
                               {
                                 this.state.myWishListCategories.map((item, index) => {
                                   return (
-                                    <li key={index} className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
-                                      {item.category_name}
-                                    </li>
+                                    <div key={index}>
+                                      <li  className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
+                                        {item.category_name}
+                                        {!this.state.isCompare && this.state.mobileCategoriesCollapse[index] && 
+                                          <button className="text-btn small float-right" onClick={() => this.setCompare}>Compare {item.category_name}</button>}
+                                      </li>
+                                      { detectMobile() && 
+                                        <Collapse  isOpen={this.state.mobileCategoriesCollapse[index]}>
+                                          <Row>
+                                            <Col className="no-padding">
+                                              <HorizontalSlider data={item.vendors} 
+                                              category={hyphonatedString(item.category_name , item.category_id)} buttonAction={this.handleViewAllClick} />
+                                            </Col>
+                                            <Col>
+                                              <p className={styles.viewAll}>View All</p>
+                                            </Col>
+                                          </Row>
+                                        </Collapse>   
+                                      }
+                                    </div>     
                                   );
                                 })
                               }
