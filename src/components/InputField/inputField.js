@@ -78,10 +78,16 @@ class InputField extends Component {
             return true;
 
         } else {
-            this.setState({errorMessage: `Please enter a valid ${this.props.placeHolder}`});
-            inputBox.parentNode.classList.add('error');
-            return false;
-
+            if (this.props.phoneCheck) { 
+                if (/^\d{10}$/.test(inputBox.value)) {
+                    inputBox.parentNode.classList.remove('error');
+                    return true;
+                } else {
+                    this.setState({errorMessage: `Please enter a valid ${this.props.placeHolder} ${this.props.phoneCheck ? 'or phone number' : ''}`});
+                    inputBox.parentNode.classList.add('error');
+                    return false;
+                }
+            }
         }
     }
 
@@ -160,13 +166,15 @@ InputField.propTypes = {
     required: PropTypes.bool,
     pattern: PropTypes.string,
     disabled: PropTypes.bool,
-    value: PropTypes.string
+    value: PropTypes.string,
+    phoneCheck: PropTypes.bool
 };
 
 InputField.defaultProps = {
     required: true,
     disabled: false,
-    value:''
+    value:'',
+    phoneCheck: false
 }
 
 export default InputField;

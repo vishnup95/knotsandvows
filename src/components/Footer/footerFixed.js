@@ -56,7 +56,7 @@ class FooterFixedComponent extends Component {
                                 <Link to={'/categories'}>Vendors</Link>
                             </li>
                             <li>
-                                <Link to={'/packages'}>Packages</Link>
+                                <Link to={'/#packages'}>Packages</Link>
                             </li>
 
                             <li>
