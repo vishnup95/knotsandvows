@@ -45,7 +45,6 @@ class DetailPageComponent extends Component {
         this.toggleGallery = this.toggleGallery.bind(this);
         this.dateRef = React.createRef();
         this.emailRef = React.createRef();
-        this.phoneRef = React.createRef();
 
         this.state = {
             showGallery: false,
@@ -205,16 +204,12 @@ class DetailPageComponent extends Component {
 
     sendDetailsToWeddingPlanner() {
         let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
-        let phone = this.phoneRef.current.validateFormInput(document.getElementById('phone'));
         let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
-
-        if (email && phone && date) {
+ 
+        if (email && date) {
             const params = {};
             params['email'] = this.state.email;
             this.state.date ? params['event_date'] = this.state.date : '';
-            this.state.phone ? params['phone'] = this.state.phone : '';
-
-
             this.props.dispatch(talkToPlannerActions.postContactDetails(params));
         }
     }
@@ -399,10 +394,9 @@ class DetailPageComponent extends Component {
                                             {/* <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button> */}
                                             <Form className="position-relative">
                                                 <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
-                                                <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
-                                                <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} required={false} />
+                                                <InputField placeHolder="Email address or Phone number" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} phoneCheck={true}/>
                                             </Form>
-                                            <div className="text-center">
+                                            <div className="text-center mt-2">
                                                 <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our wedding planner!</Button>
                                             </div>
                                         </Col>

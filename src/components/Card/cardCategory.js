@@ -23,7 +23,6 @@ import * as modalActions from '../../reducers/modal/actions';
 const mapStateToProps = state => ({
     wishlistId: state.wishlist.current.wishlist_id,
     noteloading: state.wishlist.noteloading,
-    myID: state.session.user.user_id
 });  
 
 const mapDispatchToProps = dispatch => ({
@@ -299,10 +298,10 @@ class CategoryCard extends Component {
                                                     <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
                                                 </div>
                                                 <div className={styles.noteText}>
-                                                    {this.props.myID === note.contributorId && <div>
+                                                    <div>
                                                         <span className="edit-icon" onClick={() => this.editNote(note.notes_id, note.note)} aria-hidden></span>
                                                         <span className="delete-icon" onClick={() => this.removeNote(note.notes_id)} aria-hidden></span>
-                                                    </div>}
+                                                    </div>
                                                     <div>
                                                         {note.note}
                                                     </div>
@@ -335,7 +334,6 @@ CategoryCard.propTypes = {
     noteloading: PropTypes.bool,
     isChecked: PropTypes.bool,
     selectedToCompare: PropTypes.func,
-    myID: PropTypes.number
 };
 
 export default connect(

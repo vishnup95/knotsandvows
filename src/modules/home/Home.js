@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import * as actions from './actions';
+import * as talktoAhwanamActions from '../../components/TalkToWeddingPlanner/actions';
 import CarouselComponent from './carousel';
 // import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 // import PackageComponent from './packageComponent';
@@ -47,6 +48,7 @@ class Home extends Component {
     animateImageTwo: false,
     animateImageThree: false,
     showDesc: false,
+    errorMessage: ''
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -66,7 +68,7 @@ class Home extends Component {
     if (this.props.location.hash === '#packages') {
       let yPos = document.getElementById('packages').offsetTop;
       window.scrollTo({
-        top: yPos,
+        top: yPos - 50,
         left: 0,
         behavior: 'smooth'
       });
@@ -166,14 +168,23 @@ class Home extends Component {
     }
     return this.scrollasideDiv;
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.hash === '#packages') {
       let yPos = document.getElementById('packages').offsetTop;
       window.scrollTo({
-        top: yPos,
+        top: yPos - 50,
         left: 0,
         behavior: 'smooth'
       });
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.errorMessage) {
+      setTimeout(() => {
+        this.setState({errorMessage:''})
+      }, 15000)
     }
   }
 
@@ -183,6 +194,20 @@ class Home extends Component {
 
   handleCeremonyClick = (ceremony) => {
     this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`)
+  }
+
+  validateInput() {
+    let inputValue = document.getElementById('freeConsult').value;
+
+    if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue) && !/^\d{10}$/.test(inputValue)) {
+      this.setState({errorMessage: 'Please enter a valid email or phone number'});
+    } else {
+      let params = {
+        email : inputValue
+      }
+
+      this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
+    }
   }
 
   render() {
@@ -231,10 +256,10 @@ class Home extends Component {
                     {/* <h1 className={styles.homeTitle}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1> */}
                     <p>Sevenvows can help you with x ooxoox xcvxcv xcvxcvxc xo oxo oxo</p>
                     <div className={styles.contactInput}>
-                      <input type="text" placeholder="Email/Phone" />
-                      <Button className="primary-button medium-pink">FREE CONSULTATION</Button>
-
+                      <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({errorMessage: ''})}/>
+                      <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>FREE CONSULTATION</Button>
                     </div>
+                    <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
                 </Col>
                 <Col>
@@ -332,7 +357,7 @@ class Home extends Component {
                 </Col>
               </Row>
             </div>
-            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`} id="packages">
+            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`}>
               <Container>
                 <Row className={styles.boxMark}>
                   <Col id="boxmark"></Col></Row>
@@ -352,7 +377,7 @@ class Home extends Component {
               </Container>
             </div>
             <Container className={styles.homeContainer} style={{ marginTop: '45rem' }}>
-              <Row className="mb-5">
+              <Row className="mb-5" id="packages">
                 <Col className={styles.packageBox} id="box-one">
                   <img src={imagePath('box-one.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
