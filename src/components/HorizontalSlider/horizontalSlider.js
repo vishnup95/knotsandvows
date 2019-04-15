@@ -315,6 +315,39 @@ export default class HorizontalSlider extends Component {
                 </div>
             );
         }
+        else if (this.props.type === 'image') {
+            return (
+                <div>
+                    {
+                        styles &&
+                    <Slider {...settings}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <Col key={index}>
+                                    {
+                                        styles.ceremonyCard && 
+                                        <div aria-hidden>
+                                        {
+                                            styles.packageImg && 
+                                            <img className={styles.packageImg} src={imagePath(item)} alt=""
+                                                onError={(e) => { e.target.onerror = null; e.target.src = imagePath('card_2_1.jpg') }}></img>
+                                        }
+                                            
+                                            {/* <h3>{item.ceremony_name}</h3> */}
+                                            
+                                        </div>
+                                    }
+
+                                    </Col>
+                                );
+                            })
+                        }
+                    </Slider>
+                    }
+                </div>
+            );
+        }
         else {
             return (
                 <div>
