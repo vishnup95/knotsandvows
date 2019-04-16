@@ -355,7 +355,9 @@ export default class HorizontalSlider extends Component {
                             this.props.data.map((item, index) => {
                                 return (
                                     <Col key={index}>
-                                        <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index} isWishlist={true}/>
+                                        <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index} isWishlist={true}
+                                        isCompare={this.props.isCompare} isChecked={this.props.checkIfSelectedForComparison(item)}
+                                        selectedToCompare={(vendor,isRemoving) => this.props.addToCompare(vendor,isRemoving)}/>
                                     </Col>
                                 );
                             })
@@ -373,7 +375,7 @@ export default class HorizontalSlider extends Component {
                     <Slider {...settings}>
                         {
                             this.props.data.map((item, index) => {
-                                return (
+                                return (          
                                     <Col key={index}>
                                         <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index}/>
                                     </Col>
@@ -395,4 +397,8 @@ HorizontalSlider.propTypes = {
     type: PropTypes.string,
     category: PropTypes.string,
     buttonAction: PropTypes.func,
+
+    checkIfSelectedForComparison: PropTypes.func,
+    addToCompare: PropTypes.func,
+    isCompare: PropTypes.bool
 };

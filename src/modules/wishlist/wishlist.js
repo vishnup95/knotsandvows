@@ -68,7 +68,10 @@ class CategoryListing extends Component {
     }
   }
 
-  toggle() {
+  toggle(event) {
+    if (event) {
+      event.stopPropagation();
+    }
     if (this.state.modal){
       this.setState({ modal: false});
     }else if (this.state.vendorSelectedToCompare.length > 1){
@@ -85,6 +88,7 @@ class CategoryListing extends Component {
   }
 
   toggleMobileMenu(toggleIndex) {
+    this.setState({isCompare: false, vendorSelectedToCompare:[]});
     this.setState({mobileCategoriesCollapse: this.state.mobileCategoriesCollapse.map( (item, index) => index === toggleIndex ? !item : false)});
   }
 
@@ -211,19 +215,33 @@ class CategoryListing extends Component {
                                     <div key={index}>
                                       <li  className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
                                         {item.category_name}
-                                        {!this.state.isCompare && this.state.mobileCategoriesCollapse[index] && 
-                                          <button className="text-btn small float-right" onClick={(event) => this.setCompare(event)}>Compare {item.category_name}</button>}
+                                        {
+                                          !this.state.isCompare && this.state.mobileCategoriesCollapse[index] && item.vendors.length >= 2 &&
+                                          <button className="text-btn small float-right" onClick={(event) => this.setCompare(event)}>Compare {item.category_name}</button>
+                                        }
+                                        <span>
+                                          {
+                                            this.state.isCompare && this.state.mobileCategoriesCollapse[index] &&  
+                                              <button className="text-btn small float-right" onClick={(event) => this.toggle(event)}>Compare Vendors</button>  
+                                          }
+                                          {
+                                            this.state.isCompare && this.state.mobileCategoriesCollapse[index] && 
+                                            <button className="text-btn small float-right text-secondary" onClick={(event) => this.setCompare(event)}>Cancel</button>
+                                          }
+                                        </span>
                                       </li>
                                       { detectMobile() && 
                                         <Collapse  isOpen={this.state.mobileCategoriesCollapse[index]}>
                                           <Row>
                                             <Col className="no-padding">
-                                              <HorizontalSlider data={item.vendors} category={hyphonatedString(item.category_name , item.category_id)}  type="wishlist"/>
-                                            </Col>
-                                            <Col>
-                                              <p className={styles.viewAll}>View All</p>
+                                              <HorizontalSlider data={item.vendors} category={hyphonatedString(item.category_name , item.category_id)}  
+                                              type="wishlist" isCompare={this.state.isCompare} checkIfSelectedForComparison={this.checkIfSelectedForComparison}
+                                              addToCompare={this.addToCompare}/>
                                             </Col>
                                           </Row>
+                                          <Col>
+                                            <p className={styles.viewAll}>View All</p>
+                                          </Col>
                                         </Collapse>   
                                       }
                                     </div>     
