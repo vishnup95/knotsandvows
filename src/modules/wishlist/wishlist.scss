@@ -32,6 +32,15 @@
 
   @include mobile {
     padding-left: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-family: $frank-regular;
+    color: $black;
+    background: url(/images/dropicon.svg) no-repeat 90% 47%;
+
+    &.active {
+      background: none;
+    }
   }
 }
 
@@ -80,6 +89,10 @@
 
 .subText {
   @include fontSize(20);
+
+  @include mobile {
+    font-family: $frank-regular;
+  }
 }
 
 .selectedCount {
@@ -183,6 +196,11 @@
 
   }
 
+  @include mobile {
+    margin: 0 -2.5rem;
+    background-color: rgb(254, 250, 250);
+  }
+
 }
 
 .contributionList {
@@ -195,8 +213,16 @@
     border: 1px solid $warm-grey-two;
     @include fontSize(14);
     line-height: 1.4;
-    @include padding(4,8);
+    @include padding(5,10);
     @include margin(4,8);
+  }
+
+  @include mobile {
+    margin-bottom: 2rem;
+
+    span {
+      color: $warm-grey-two;
+    }
   }
 }
 

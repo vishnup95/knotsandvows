@@ -347,6 +347,25 @@ export default class HorizontalSlider extends Component {
                     }
                 </div>
             );
+        } else if (this.props.type === 'wishlist') {
+            return (
+                <div>
+                    <Slider {...settings}>
+                        {
+                            this.props.data.map((item, index) => {
+                                return (
+                                    <Col key={index}>
+                                        <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index} isWishlist={true}/>
+                                    </Col>
+                                );
+                            })
+                        }
+                        <Col>
+                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> Vendors</span></div>
+                        </Col>
+                    </Slider>
+                </div>
+            );
         }
         else {
             return (
@@ -356,7 +375,7 @@ export default class HorizontalSlider extends Component {
                             this.props.data.map((item, index) => {
                                 return (
                                     <Col key={index}>
-                                        <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index} />
+                                        <CategoryCard data={item} category={this.props.category} type={'carousel'} id={index}/>
                                     </Col>
                                 );
                             })
@@ -370,9 +389,10 @@ export default class HorizontalSlider extends Component {
         }
     }
 }
+
 HorizontalSlider.propTypes = {
     data: PropTypes.array,
     type: PropTypes.string,
     category: PropTypes.string,
-    buttonAction: PropTypes.func
-}; 0.
+    buttonAction: PropTypes.func,
+};
