@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'reactstrap';
+import { Form } from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import styles from './talkToWeddingPlanner.scss';
 import * as actions from './actions';
@@ -41,7 +41,7 @@ class TalkToWeddingPlanner extends Component {
             comments: '',
             modal: false
         }
-        this.toggle = this.toggle.bind(this);   
+        this.toggle = this.toggle.bind(this);
     }
 
     toggle() {
@@ -80,12 +80,12 @@ class TalkToWeddingPlanner extends Component {
 
         if (this.props.message !== prevProps.message) {
             if (this.props.status === true) {
-               this.setState({modal: false});
+                this.setState({ modal: false });
 
-               if (detectMobile()) {
-                    this.props.dispatch(modalActions.showModal({message: 'mobile_contact', heading: 'Talk to wedding planner'}));
+                if (detectMobile()) {
+                    this.props.dispatch(modalActions.showModal({ message: 'mobile_contact', heading: 'Talk to wedding planner' }));
                 } else {
-                    this.props.dispatch(modalActions.showModal({message: 'We will contact you soon!', heading: 'Talk to wedding planner'}));
+                    this.props.dispatch(modalActions.showModal({ message: 'We will contact you soon!', heading: 'Talk to wedding planner' }));
                 }
             }
         }
@@ -99,24 +99,24 @@ class TalkToWeddingPlanner extends Component {
                 {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
+                    <img className={styles.closeBtn} src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.toggle()}/>
                     <div className={styles.loginForm}>
 
                         <div className={styles.logoWrap}>
-                            <div className={styles.heading}>Talk to <br/> our wedding planner</div>
+                            <div className={styles.heading}>Talk to <br /> our wedding planner</div>
                         </div>
-                        { this.props.status == false && this.props.message &&
+                        {this.props.status == false && this.props.message &&
                             <div className={styles.apiError}>{this.props.message}</div>
                         }
                         <Form className="position-relative">
                             <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false}/>
-                            <InputField placeHolder="Preferred time to contact" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} required={false}/>
-                            <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false}/>
+                            <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
+                            <InputField placeHolder="Preferred time to contact" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
+                            <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
                         </Form>
                         <div className="text-center">
-                            <Button className="text-btn" onClick={() => this.toggle()}>Cancel</Button>
                             <ProgressButton title="Submit" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
                         </div>
                     </div>

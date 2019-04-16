@@ -83,7 +83,7 @@ class InputField extends Component {
                     inputBox.parentNode.classList.remove('error');
                     return true;
                 } else {
-                    this.setState({errorMessage: `Please enter a valid ${this.props.placeHolder} ${this.props.phoneCheck ? 'or phone number' : ''}`});
+                    this.setState({errorMessage: `Please enter a valid ${this.props.placeHolder}`});
                     inputBox.parentNode.classList.add('error');
                     return false;
                 }
@@ -116,7 +116,7 @@ class InputField extends Component {
             <div className='input-field floating-label'>
                 {
                     this.props.id === 'comments' ? 
-                    <textarea className='input-box' rows="4"
+                    <textarea className='input-box' rows="1"
                         type={this.props.type} id={this.props.id} required={this.props.required}
                         pattern={this.props.pattern || defaultPatterns[this.props.type]}
                         onFocus={() =>  this.handleFocus(event.target)} 
@@ -142,7 +142,7 @@ class InputField extends Component {
                     />
                 }
               
-                <Label className={`${this.props.type === 'date' ? 'date-placeholder' : 'input-placeholder'} ${this.props.id === 'comments' ? 'comment-placeholder' : ''}`} 
+                <Label className={`${this.props.type === 'date' ? 'date-placeholder' : 'input-placeholder'} ${this.props.id === 'comments' ? 'input-placeholder' : ''}`} 
                     htmlFor={this.props.id}>
                   {this.props.placeHolder}
                 </Label>
