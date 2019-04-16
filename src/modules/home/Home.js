@@ -338,7 +338,7 @@ class Home extends Component {
                     </div>
                     <div className={styles.sectionIdentifier} id="personalisedSection"></div>
                   </div>
-                  <div className={`${styles.imageCard} ${styles.imageCardReverse} row-reverse`}>
+                  <div className={`${styles.imageCard} ${styles.imageCardReverse}`}>
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <div className={styles.cardDetail}>

@@ -9,14 +9,8 @@
 }
 
 .homeContainer {
-  @include mobile {
-    // background: black;
-  }
-
-  h1 {}
 
   h2 {
-    // font-family: $roboto-medium;
     text-align: center;
     margin-bottom: 1rem;
 
@@ -731,6 +725,9 @@ h1.homeTitle {
   white-space: initial;
   margin-top: 19vw;
   margin-left: 7vw;
+  span {
+    color: $medium-pink;
+  }
 }
 
 .error {
@@ -871,7 +868,7 @@ h1.homeTitle {
 .venueCount {
   @include mobile {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 7rem;
     border-radius: 0;
 
     .row {
@@ -1012,6 +1009,9 @@ h1.homeTitle {
       }
       margin-left: -4.8rem;
       margin-right: 0;
+    }
+    @include tablet {
+      flex-direction: row-reverse;
     }
   }
 }
