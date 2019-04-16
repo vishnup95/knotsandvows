@@ -51,3 +51,19 @@
   top: 2rem;
   cursor: pointer;
 }
+
+.pulsateRing {
+  border: 2px solid $secondary-color;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  animation: pulsate 1.5s ease-out;
+  animation-iteration-count: infinite; 
+  opacity: 0.0
+}
+@keyframes pulsate {
+  0% {opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {transform: scale(1.5, 1.5); opacity: 0.0;}
+}
