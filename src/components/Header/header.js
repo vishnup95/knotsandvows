@@ -307,7 +307,9 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
                             </NavItem>
-
+                            <NavItem>
+                                <NavLink onClick={() => this.navigateTo('/#ceremonies')}>Ceremonies</NavLink>
+                            </NavItem>
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
                             </NavItem>
