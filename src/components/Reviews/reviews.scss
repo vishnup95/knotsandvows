@@ -19,13 +19,8 @@
   display: flex;
   align-items: center;
 
-  img {
-    @include width(16);
-    @include margin(0,8,0,0);
-  }
-
-  span {
-    margin-top: .4rem;
+  > span {
+    margin: 0 0 .6rem .5rem;
   }
 }
 

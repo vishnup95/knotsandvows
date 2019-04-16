@@ -16,7 +16,7 @@ import StarRating from '../../components/StarRating/starRating';
 import { imagePath, formatMoney } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
-import { isLoggedIn , getDataFromResponse } from '../../utils/utilities';
+import { isLoggedIn, getDataFromResponse } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import InputField from '../../components/InputField/inputField';
@@ -30,8 +30,8 @@ const mapStateToProps = state => ({
     detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
     similarVendors: state.details.similarVendors,
-    wishListApiLoading : state.wishlist.loading,
-    wishlistId : state.wishlist.current.wishlist_id
+    wishListApiLoading: state.wishlist.loading,
+    wishlistId: state.wishlist.current.wishlist_id
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -98,48 +98,48 @@ class DetailPageComponent extends Component {
     addToWishList = (e) => {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
-        }else{
-            if (!this.state.isInWishList){
+        } else {
+            if (!this.state.isInWishList) {
                 let params = {
                     vendor_id: this.props.details.vendor_id,
                     wishlist_id: this.props.wishlistId
                 };
                 this.props.dispatch(wishlistActions.addToWishlist(params)).then((response) => {
                     var error = getDataFromResponse(response);
-                    if (error == null){
-                        this.setState({isInWishList: true});    
-                    }else{
+                    if (error == null) {
+                        this.setState({ isInWishList: true });
+                    } else {
                         let modalContent = {
                             heading: '',
                             message: error
-                          };
+                        };
                         this.props.dispatch(modalActions.showModal(modalContent));
                     }
-                });   
-            }     
+                });
+            }
         }
         e.stopPropagation();
     }
 
     removeFromWishList = (e) => {
-            if (this.state.isInWishList){
-                let params = {
-                    vendor_id: this.props.details.vendor_id,
-                    wishlist_id: this.props.wishlistId,
-                    category_id : this.props.details.category_id
-                };
-                this.props.dispatch(wishlistActions.removeFromWishlist(params)).then((response) => {
-                    var error = getDataFromResponse(response);
-                    if (error == null){
-                        this.setState({isInWishList: false});    
-                    }else{
-                        let modalContent = {
-                            heading: '',
-                            message: error
-                          };
-                        this.props.dispatch(modalActions.showModal(modalContent));
-                    }
-                });   
+        if (this.state.isInWishList) {
+            let params = {
+                vendor_id: this.props.details.vendor_id,
+                wishlist_id: this.props.wishlistId,
+                category_id: this.props.details.category_id
+            };
+            this.props.dispatch(wishlistActions.removeFromWishlist(params)).then((response) => {
+                var error = getDataFromResponse(response);
+                if (error == null) {
+                    this.setState({ isInWishList: false });
+                } else {
+                    let modalContent = {
+                        heading: '',
+                        message: error
+                    };
+                    this.props.dispatch(modalActions.showModal(modalContent));
+                }
+            });
         }
         e.stopPropagation();
     }
@@ -180,10 +180,10 @@ class DetailPageComponent extends Component {
         const packagesToRender = packages.map((item, index) => {
 
             return (
-            <div className={style.pricesContainer} key={index}>
-                <div className={style.item}>{item.name}<br/><span className={style.grey}>({item.charge_type})</span></div>
-                <div className={style.itemPrice}>{formatMoney(item.price)} <br /><span className={style.grey}>GST extra</span></div>
-            </div>
+                <div className={style.pricesContainer} key={index}>
+                    <div className={style.item}>{item.name}<br /><span className={style.grey}>({item.charge_type})</span></div>
+                    <div className={style.itemPrice}>{formatMoney(item.price)} <br /><span className={style.grey}>GST extra</span></div>
+                </div>
             )
         });
         return packagesToRender;
@@ -205,10 +205,18 @@ class DetailPageComponent extends Component {
     sendDetailsToWeddingPlanner() {
         let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
         let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
- 
+
         if (email && date) {
             const params = {};
-            params['email'] = this.state.email;
+
+            if (/^\d{10}$/.test(email)) {
+                params['phone'] = this.state.email;
+
+            }
+            else {
+                params['email'] = this.state.email;
+
+            }
             this.state.date ? params['event_date'] = this.state.date : '';
             this.props.dispatch(talkToPlannerActions.postContactDetails(params));
         }
@@ -219,8 +227,8 @@ class DetailPageComponent extends Component {
     }
 
     handleNavClick(item) {
-         
-        switch(item.id) {
+
+        switch (item.id) {
             case 'gallery': this.toggleGallery();
         }
     }
@@ -231,25 +239,25 @@ class DetailPageComponent extends Component {
         let detailNavItems = [];
         if (details) {
             if (details.description) {
-                detailNavItems.push({display_name:"About",id:"about"});
+                detailNavItems.push({ display_name: "About", id: "about" });
             }
             if (details.availableareas && details.availableareas.length > 0) {
-                detailNavItems.push({display_name:"Available Areas",id:"available_area"});
+                detailNavItems.push({ display_name: "Available Areas", id: "available_area" });
             }
             if (details.amenities && details.amenities.length > 0) {
-                detailNavItems.push({display_name:"Amenities",id:"amenities"});
+                detailNavItems.push({ display_name: "Amenities", id: "amenities" });
             }
             if (details.policies && details.policies.length > 0) {
-                detailNavItems.push({display_name:"Policies",id:"policies"});
+                detailNavItems.push({ display_name: "Policies", id: "policies" });
             }
             if (details.location && details.location.latitude && details.location.longitude) {
-                detailNavItems.push({display_name:"Direction",id:"direction"});
+                detailNavItems.push({ display_name: "Direction", id: "direction" });
             }
             if (reviewsData && reviewsData.results && reviewsData.results.length > 0) {
-                detailNavItems.push({display_name:"Reviews",id:"reviews"});
+                detailNavItems.push({ display_name: "Reviews", id: "reviews" });
             }
             if (this.props.gallery && this.props.gallery.length > 0) {
-                detailNavItems.push({display_name:`Gallery (${this.props.gallery.length} Photos)`,id:"gallery"});
+                detailNavItems.push({ display_name: `Gallery (${this.props.gallery.length} Photos)`, id: "gallery" });
             }
         }
 
@@ -286,7 +294,7 @@ class DetailPageComponent extends Component {
                                 <ul>
                                     {
                                         detailNavItems.map((item, index) => {
-                                            return <li key={index} aria-hidden onClick={() =>this.handleNavClick(item)}>{item.display_name}</li>
+                                            return <li key={index} aria-hidden onClick={() => this.handleNavClick(item)}>{item.display_name}</li>
                                         })
                                     }
                                 </ul>
@@ -380,21 +388,21 @@ class DetailPageComponent extends Component {
                                 </Col>
 
                                 <Col md="5">
-                                {details.packages && details.packages.length > 0 &&
-                                    <Col md="12" className={`${style.detailSubSection} ${style.rightSection} py-0`}>
-                                        <Col md="12" className={`${style.rightSubSection} py-2`}>
-                                            <div className={style.pricesContainer}> Starting Price</div>
-                                            {this.renderPackages(details.packages)}
-                                        </Col>
-                                    </Col>}
+                                    {details.packages && details.packages.length > 0 &&
+                                        <Col md="12" className={`${style.detailSubSection} ${style.rightSection} py-0`}>
+                                            <Col md="12" className={`${style.rightSubSection} py-2`}>
+                                                <div className={style.pricesContainer}> Starting Price</div>
+                                                {this.renderPackages(details.packages)}
+                                            </Col>
+                                        </Col>}
 
                                     <Col className={style.detailSubSection}>
                                         <Col md="12" className={`#{style.rightSubSection} text-center`}>
                                             <p className={style.needHelp}>Need some guidance on selecting vendors?</p>
                                             {/* <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button> */}
                                             <Form className="position-relative">
+                                                <InputField placeHolder="Email address/Phone number" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} phoneCheck={true} />
                                                 <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
-                                                <InputField placeHolder="Email address or Phone number" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} phoneCheck={true}/>
                                             </Form>
                                             <div className="text-center mt-2">
                                                 <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our wedding planner!</Button>
@@ -446,11 +454,11 @@ class DetailPageComponent extends Component {
                         </div>
                     </div>
                 }
-                {details && 
-                <Modal isOpen={this.state.showGallery} toggle={() => this.toggleGallery()} centered={true} className={style.imageGallery}>
-                    <ProductGallery images={this.props.gallery} name={details.name} close={this.toggleGallery}></ProductGallery>
+                {details &&
+                    <Modal isOpen={this.state.showGallery} toggle={() => this.toggleGallery()} centered={true} className={style.imageGallery}>
+                        <ProductGallery images={this.props.gallery} name={details.name} close={this.toggleGallery}></ProductGallery>
 
-                </Modal>
+                    </Modal>
                 }
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
                     <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" />
@@ -470,9 +478,9 @@ DetailPageComponent.propTypes = {
     similarVendors: PropTypes.array,
     match: PropTypes.object,
     detailsLoading: PropTypes.bool,
-    wishListApiLoading:PropTypes.bool,
+    wishListApiLoading: PropTypes.bool,
     wishlistId: PropTypes.number,
-    gallery: PropTypes.array,  
+    gallery: PropTypes.array,
 };
 
 export default connect(

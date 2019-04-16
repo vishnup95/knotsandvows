@@ -131,6 +131,7 @@
     text-transform: uppercase;
     letter-spacing: .4px;
     transform: translateY(-70%) scale(0.9);
+    text-align: left;
   }
 
   .comment-placeholder {
@@ -481,7 +482,7 @@ button {
 .goldPackage {
   margin-top: calc(-50px + -1.5rem);
   @include tablet {
-    margin-top: calc(-50px + -5.5rem);
+    margin-top: calc(-50px + -4.3rem);
   }
 
   /* Ahwanam styles */
@@ -1805,7 +1806,7 @@ button {
 .emeraldPackage {
   margin-top: calc(-50px + -1.5rem);
   @include tablet {
-    margin-top: calc(-50px + -5.5rem);
+    margin-top: calc(-50px + -4.3rem);
   }
 
   * {
