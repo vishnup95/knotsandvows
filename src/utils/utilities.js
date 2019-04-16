@@ -52,3 +52,12 @@ export function getDataFromResponse(response) {
     return "Unexpected error occured, try again later";
   }
 }
+
+export function shortName(userName){
+    if (userName) {
+        var initials = userName.match(/\b\w/g) || [];
+        initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+        return (initials);
+    }
+    return 'NU';
+}

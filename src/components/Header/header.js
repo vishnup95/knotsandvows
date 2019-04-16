@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { imagePath } from '../../utils/assetUtils';
+import { shortName } from '../../utils/utilities';
 import * as actions from '../../reducers/session/actions';
 import * as homeActions from '../../modules/home/actions'
 import * as modalActions from '../../reducers/modal/actions';
@@ -140,15 +141,6 @@ class Header extends Component {
         this.navigateTo("/");
     }
 
-    shortName = (userName) => {
-        if (userName) {
-            var initials = userName.match(/\b\w/g) || [];
-            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-            return (initials);
-        }
-        return 'NU';
-    }
-
     componentDidUpdate(prevProps) {
         if (prevProps == undefined) {
             return false;
@@ -233,7 +225,7 @@ class Header extends Component {
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }}>
                             <span className={styles.userInfo}>
-                                {this.shortName(this.props.user.name)}
+                                {shortName(this.props.user.name)}
                             </span>
                         </DropdownToggle>
 

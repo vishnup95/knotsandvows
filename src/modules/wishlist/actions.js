@@ -45,7 +45,7 @@ export function removeFromWishlist(params) {
       wishlist_id: params.wishlist_id,
       category_id: params.category_id
     },
-    promise: client => client.delete(`/api/wishlist/removeitem?wishlist_id=${params.wishlist_id}&vendor_id=${params.vendor_id}`)
+    promise: client => client.post(`/api/wishlist/removeitem?wishlist_id=${params.wishlist_id}&vendor_id=${params.vendor_id}`)
   };
 }
 
@@ -107,25 +107,25 @@ export function editNote(params, dispatch) {
 
 // collaborator
 
-export function addCollabrator(params) {
+export function addCollaborator(params) {
   return {
     types: [
-      types.LOAD_ADD_COLLABRATOR,
-      types.LOAD_ADD_COLLABRATOR_SUCCESS,
-      types.LOAD_ADD_COLLABRATOR_FAILURE
+      types.LOAD_ADD_COLLABORATOR,
+      types.LOAD_ADD_COLLABORATOR_SUCCESS,
+      types.LOAD_ADD_COLLABORATOR_FAILURE
     ],
-    promise: client => client.post(`/api/addcollabrator`, params)
+    promise: client => client.post(`/api/addcollaborator`, params)
   };
 }
 
-export function removeCollabrator(collaborator) {
+export function removeCollaborator(collaborator) {
   return {
     types: [
-      types.LOAD_REMOVE_COLLABRATOR,
-      types.LOAD_REMOVE_COLLABRATOR_SUCCESS,
-      types.LOAD_REMOVE_COLLABRATOR_FAILURE
+      types.LOAD_REMOVE_COLLABORATOR,
+      types.LOAD_REMOVE_COLLABORATOR_SUCCESS,
+      types.LOAD_REMOVE_COLLABORATOR_FAILURE
     ],
     payload: collaborator,
-    promise: client => client.post(`/api/removecollabrator?collabrator_id=${collaborator}`)
+    promise: client => client.post(`/api/removecollaborator?collaborator_id=${collaborator}`)
   };
 }
