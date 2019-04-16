@@ -10,7 +10,7 @@ import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
 import CategoryCard from '../../components/Card/cardCategory';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
-import { hyphonatedString} from '../../utils/utilities';
+import { hyphonatedString, shortName} from '../../utils/utilities';
 import CompareProduct from '../../components/compareProduct/compareProduct';
 import AddCollaboratorModal from './addCollaborator';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
@@ -150,9 +150,9 @@ class CategoryListing extends Component {
           <Col className={`${styles.collaboratorList} text-right`}>
             { this.props.myWishListData.collaborators && this.props.myWishListData.collaborators.map((collaborator, index) => {
               return(
-                <div className={styles.collaborator} key={index} aria-hidden onClick={() => this.confirmRemoveCollaborator(collaborator.collabrator_id)}>
-                NU
-                <div className={styles.toolTip}>Remove {collaborator.email} from list</div>
+                <div className={styles.collaborator} key={index} aria-hidden onClick={() => this.confirmRemoveCollaborator(collaborator)}>
+                {shortName(collaborator.collaborator_name)}
+                <div className={styles.toolTip}>Remove {collaborator.collaborator_name} from list</div>
               </div>
               ); 
             })}
@@ -160,7 +160,7 @@ class CategoryListing extends Component {
             <div className={styles.collaboratorCount}>
               {(this.props.myWishListData.collaborators && this.props.myWishListData.collaborators.length) || 0}
             </div>
-            <div className={styles.addCollaborator} onClick={this.toggleAddCollabratorModal} aria-hidden></div>
+            <div className={styles.addCollaborator} onClick={() => this.toggleAddCollaboratorModal()} aria-hidden></div>
           </Col>
         </Row>
       );
