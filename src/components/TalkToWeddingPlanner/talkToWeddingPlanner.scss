@@ -39,7 +39,15 @@
   color: $bright-red;
   position: absolute;
   top: 7.5rem;
+
   &::first-letter {
     text-transform: capitalize;
   }
+}
+
+.closeBtn {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  cursor: pointer;
 }
