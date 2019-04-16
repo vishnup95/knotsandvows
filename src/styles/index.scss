@@ -400,11 +400,11 @@
   @include padding(19);
   border-radius: 50%;
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
-
+  cursor: pointer;
+  
   img {
     @include width(80);
     @include height(80);
-    cursor: pointer;
   }
 }
 
@@ -445,7 +445,7 @@ button {
     @include mobile {
       max-width: 100%;
       padding-left: 2.5rem;
-      padding-right: 0;
+      padding-right: 2.5rem;
     }
   }
 }
@@ -2762,4 +2762,20 @@ button {
   .slider-outer {
     padding: 0 20px;
   }
+}
+
+.pulsateRing {
+  border: 2px solid $secondary-color;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  animation: pulsate 1.5s ease-out;
+  animation-iteration-count: infinite; 
+  opacity: 0.0
+}
+@keyframes pulsate {
+  0% {opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {transform: scale(1.5, 1.5); opacity: 0.0;}
 }

@@ -9,14 +9,10 @@
 }
 
 .homeContainer {
-  @include mobile {
-    // background: black;
-  }
-
-  h1 {}
+  max-width: 78%;
+  padding: 0;
 
   h2 {
-    // font-family: $roboto-medium;
     text-align: center;
     margin-bottom: 1rem;
 
@@ -525,7 +521,7 @@ a.button {
 
 .homeContent {
   position: absolute;
-  top: 35%;
+  top: 28%;
   z-index: 2;
   @include mobile {
     width: 100%;
@@ -612,7 +608,7 @@ a.button {
 
     &:last-child {
       z-index: 1;
-      transform: translate3d(-151%,-83rem,0px);
+      transform: translate3d(-164%,-83rem,0px);
 
       > img {
         width: 23rem;
@@ -634,7 +630,7 @@ a.button {
     opacity: 0;
   }
 
-  button {
+  button, a {
     margin: 0;
   }
 
@@ -687,7 +683,7 @@ a.button {
   left: 50%;
   bottom: -40%;
 }
-@keyframes example {
+@keyframes textanimation {
   from {
     transform: perspective(100px) rotateY(-65deg);
     opacity: 0;
@@ -705,7 +701,7 @@ a.button {
 
   div {
     > div {
-      animation-name: example;
+      animation-name: textanimation;
       animation-duration: 5s;
       display: inline-block;
       font-family: $frank-bold;
@@ -731,6 +727,9 @@ h1.homeTitle {
   white-space: initial;
   margin-top: 19vw;
   margin-left: 7vw;
+  span {
+    color: $medium-pink;
+  }
 }
 
 .error {
@@ -783,7 +782,7 @@ h1.homeTitle {
   @include mobile {
     max-width: 100%;
   }
-  max-width: 935px;
+  // max-width: 935px;
   margin: 0 auto;
   width: 70rem;
 }
@@ -793,7 +792,7 @@ h1.homeTitle {
   background-image: linear-gradient(116deg, $secondary-color, $lavender-pink);
   @include padding(80);
   border-radius: 6px;
-  max-width: 935px;
+  // max-width: 935px;
   position: relative;
   @include mobile {
     flex-direction: column;
@@ -825,7 +824,7 @@ h1.homeTitle {
   background-repeat: no-repeat;
   position: relative;
   @include width(530);
-  @include height(350);
+  @include height(416);
   flex-shrink: 0;
 
   &:before {
@@ -871,7 +870,7 @@ h1.homeTitle {
 .venueCount {
   @include mobile {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 7rem;
     border-radius: 0;
 
     .row {
@@ -893,7 +892,7 @@ h1.homeTitle {
     width: 100%;
   }
   @extend %spacer;
-  max-width: 901px;
+  // max-width: 901px;
   margin-left: auto;
   margin-right: auto;
   width: 64rem;
@@ -982,7 +981,7 @@ h1.homeTitle {
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
   border: solid 1.5px #ffc8df;
   width: 62rem;
-  max-width: 871px;
+  // max-width: 871px;
   margin: 3rem auto 7rem;
   position: relative;
 
@@ -1012,6 +1011,9 @@ h1.homeTitle {
       }
       margin-left: -4.8rem;
       margin-right: 0;
+    }
+    @include tablet {
+      flex-direction: row-reverse;
     }
   }
 }

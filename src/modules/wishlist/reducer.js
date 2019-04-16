@@ -106,37 +106,37 @@ const WishListReducer = (state = initialState, action) => {
         noteloading: false
       };
 
-      case types.LOAD_ADD_COLLABRATOR:
+      case types.LOAD_ADD_COLLABORATOR:
       return {
         ...state,
         error:null
       };
 
-    case types.LOAD_ADD_COLLABRATOR_SUCCESS:
+    case types.LOAD_ADD_COLLABORATOR_SUCCESS:
       return {
         ...state,
         wishListData: handleAddCollaborator(action.result.data.data, state.wishListData),
       };
 
-    case types.LOAD_ADD_COLLABRATOR_FAILURE:
+    case types.LOAD_ADD_COLLABORATOR_FAILURE:
       return {
         ...state,
         error: action.error.message,
       };
 
-      case types.LOAD_REMOVE_COLLABRATOR:
+      case types.LOAD_REMOVE_COLLABORATOR:
       return {
         ...state,
         error:null
       };
 
-    case types.LOAD_REMOVE_COLLABRATOR_SUCCESS:
+    case types.LOAD_REMOVE_COLLABORATOR_SUCCESS:
       return {
         ...state,
         wishListData: handleRemoveCollaborator(action.payload, state.wishListData)
       };
 
-    case types.LOAD_REMOVE_COLLABRATOR_FAILURE:
+    case types.LOAD_REMOVE_COLLABORATOR_FAILURE:
       return {
         ...state,
         error: action.error.message
@@ -172,7 +172,7 @@ function handleRemoveFromWishList(details, wishListData) {
 // remove a collaborator from wishlist
 function handleRemoveCollaborator(collaborator, wishListData) {
   let wishListDataCopy = JSON.parse(JSON.stringify(wishListData));
-  wishListDataCopy.collaborators = wishListDataCopy.collaborators.filter(user => user.collabrator_id !== collaborator);
+  wishListDataCopy.collaborators = wishListDataCopy.collaborators.filter(user => user.collaborator_id !== collaborator);
   return wishListDataCopy; 
 }
 

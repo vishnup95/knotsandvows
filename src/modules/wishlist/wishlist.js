@@ -10,9 +10,9 @@ import styles from './wishlist.scss';
 import LoaderComponent from '../../components/Loader/loader';
 import CategoryCard from '../../components/Card/cardCategory';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
-import { hyphonatedString } from '../../utils/utilities';
+import { hyphonatedString, shortName} from '../../utils/utilities';
 import CompareProduct from '../../components/compareProduct/compareProduct';
-import AddCollabratorModal from './addCollabrator';
+import AddCollaboratorModal from './addCollaborator';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 
@@ -39,7 +39,7 @@ class CategoryListing extends Component {
       modal: false,
       collapse: [true, false, false],
       vendorSelectedToCompare: [],
-      showAddCollabrator : false
+      showAddCollaborator : false
     }
     this.toggle = this.toggle.bind(this);
   }
@@ -68,7 +68,10 @@ class CategoryListing extends Component {
     }
   }
 
-  toggle() {
+  toggle(event) {
+    if (event) {
+      event.stopPropagation();
+    }
     if (this.state.modal){
       this.setState({ modal: false});
     }else if (this.state.vendorSelectedToCompare.length > 1){
@@ -76,8 +79,8 @@ class CategoryListing extends Component {
     }
   }
 
-  toggleAddCollabratorModal = () => {
-      this.setState({ showAddCollabrator: !this.state.showAddCollabrator});
+  toggleAddCollaboratorModal = () => {
+      this.setState({ showAddCollaborator: !this.state.showAddCollaborator});
   }
 
   toggleCollapse(toggleIndex) {
@@ -85,6 +88,7 @@ class CategoryListing extends Component {
   }
 
   toggleMobileMenu(toggleIndex) {
+    this.setState({isCompare: false, vendorSelectedToCompare:[]});
     this.setState({mobileCategoriesCollapse: this.state.mobileCategoriesCollapse.map( (item, index) => index === toggleIndex ? !item : false)});
   }
 
@@ -100,8 +104,10 @@ class CategoryListing extends Component {
     } 
   }
 
-  setCompare = () => {
-
+  setCompare = (event) => {
+    if (event) {
+      event.stopPropagation();
+    }
     this.setState({ isCompare: !this.state.isCompare, vendorSelectedToCompare:[]});
   }
 
@@ -137,15 +143,39 @@ class CategoryListing extends Component {
   return compareVendors;
   }
 
+  renderCollaboratorsSection() {
+    if (this.props.myWishListData) {
+      return(
+        <Row>
+          <Col className={`${styles.collaboratorList} text-right`}>
+            { this.props.myWishListData.collaborators && this.props.myWishListData.collaborators.map((collaborator, index) => {
+              return(
+                <div className={styles.collaborator} key={index} aria-hidden onClick={() => this.confirmRemoveCollaborator(collaborator)}>
+                {shortName(collaborator.collaborator_name)}
+                <div className={styles.toolTip}>Remove {collaborator.collaborator_name} from list</div>
+              </div>
+              ); 
+            })}
+            
+            <div className={styles.collaboratorCount}>
+              {(this.props.myWishListData.collaborators && this.props.myWishListData.collaborators.length) || 0}
+            </div>
+            <div className={styles.addCollaborator} onClick={() => this.toggleAddCollaboratorModal()} aria-hidden></div>
+          </Col>
+        </Row>
+      );
+    }
+  }
+
   removeCollaborator(collaborator) {
-    this.props.dispatch(actions.removeCollabrator(collaborator))
+    this.props.dispatch(actions.removeCollaborator(collaborator))
   }
 
   confirmRemoveCollaborator = (collaborator) => {
     let modalContent = {
       heading: 'Remove Collaborator',
-      message: 'Are you sure you want to remove this collaborator?',
-      proceedAction: () => this.removeCollaborator(collaborator)
+      message: `Are you sure you want to remove ${collaborator.collaborator_name}?`,
+      proceedAction: () => this.removeCollaborator(collaborator.collaborator_id)
     };
     this.props.dispatch(modalActions.showModal(modalContent));
   }
@@ -164,6 +194,10 @@ class CategoryListing extends Component {
               </div>
             }
 
+            <div className="d-block d-sm-none">
+              {this.renderCollaboratorsSection()}
+            </div>
+        
             {
               this.state.myWishListCategories.length > 0 &&
               <Row>
@@ -181,20 +215,33 @@ class CategoryListing extends Component {
                                     <div key={index}>
                                       <li  className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
                                         {item.category_name}
-                                        {!this.state.isCompare && this.state.mobileCategoriesCollapse[index] && 
-                                          <button className="text-btn small float-right" onClick={() => this.setCompare}>Compare {item.category_name}</button>}
+                                        {
+                                          !this.state.isCompare && this.state.mobileCategoriesCollapse[index] && item.vendors.length >= 2 &&
+                                          <button className="text-btn small float-right" onClick={(event) => this.setCompare(event)}>Compare {item.category_name}</button>
+                                        }
+                                        <span>
+                                          {
+                                            this.state.isCompare && this.state.mobileCategoriesCollapse[index] &&  
+                                              <button className="text-btn small float-right" onClick={(event) => this.toggle(event)}>Compare Vendors</button>  
+                                          }
+                                          {
+                                            this.state.isCompare && this.state.mobileCategoriesCollapse[index] && 
+                                            <button className="text-btn small float-right text-secondary" onClick={(event) => this.setCompare(event)}>Cancel</button>
+                                          }
+                                        </span>
                                       </li>
                                       { detectMobile() && 
                                         <Collapse  isOpen={this.state.mobileCategoriesCollapse[index]}>
                                           <Row>
                                             <Col className="no-padding">
-                                              <HorizontalSlider data={item.vendors} 
-                                              category={hyphonatedString(item.category_name , item.category_id)} buttonAction={this.handleViewAllClick} />
-                                            </Col>
-                                            <Col>
-                                              <p className={styles.viewAll}>View All</p>
+                                              <HorizontalSlider data={item.vendors} category={hyphonatedString(item.category_name , item.category_id)}  
+                                              type="wishlist" isCompare={this.state.isCompare} checkIfSelectedForComparison={this.checkIfSelectedForComparison}
+                                              addToCompare={this.addToCompare}/>
                                             </Col>
                                           </Row>
+                                          <Col>
+                                            <p className={styles.viewAll}>View All</p>
+                                          </Col>
                                         </Collapse>   
                                       }
                                     </div>     
@@ -210,24 +257,11 @@ class CategoryListing extends Component {
 
                 </Col>
                 <Col sm="10">
-                  <Row>
-                    <Col className={`${styles.collaboratorList} text-right`}>
-                      { this.props.myWishListData.collaborators && this.props.myWishListData.collaborators.map((collaborator, index) => {
-                        return(
-                          <div className={styles.collaborator} key={index} aria-hidden onClick={() => this.confirmRemoveCollaborator(collaborator.collabrator_id)}>
-                          NU
-                          <div className={styles.toolTip}>Remove {collaborator.email} from list</div>
-                        </div>
-                        ); 
-                      })}
-                      
-                      <div className={styles.collaboratorCount}>
-                        {(this.props.myWishListData.collaborators && this.props.myWishListData.collaborators.length) || 0}
-                      </div>
-                      <div className={styles.addCollaborator} onClick={this.toggleAddCollabratorModal} aria-hidden></div>
-                    </Col>
-                  </Row>
-                  <Row className={styles.listDetailContainer}>
+                  <div className="d-none d-sm-block">
+                    {this.renderCollaboratorsSection()}
+                  </div>
+                  
+                  <Row className={`d-none d-sm-block ${styles.listDetailContainer}`}>
                     <Col>
                       <Row>
 
@@ -276,6 +310,7 @@ class CategoryListing extends Component {
                       </Row>
                     </Col>
                   </Row>
+
                   <Row className={styles.contribution}>
                     <Col xs='12' className={styles.subText}>
                       View Collaborators Contribution
@@ -284,9 +319,9 @@ class CategoryListing extends Component {
                       <h5>
                         Ganesh S added following vendors in your wishlist</h5>
                       <div className={styles.contributionList}>
-                        <span>Venues(4)</span>
-                        <span>Venues(4)</span>
-                        <span>Venues(4)</span>
+                        <span>Venues (4)</span>
+                        <span>Venues (4)</span>
+                        <span>Venues (4)</span>
 
                       </div>
                     </Col>
@@ -294,9 +329,9 @@ class CategoryListing extends Component {
                       <h5>
                         Ganesh S added following vendors in your wishlist</h5>
                       <div className={styles.contributionList}>
-                        <span>Venues(4)</span>
-                        <span>Venues(4)</span>
-                        <span>Venues(4)</span>
+                        <span>Venues (4)</span>
+                        <span>Venues (4)</span>
+                        <span>Venues (4)</span>
 
                       </div>
                     </Col>
@@ -338,8 +373,8 @@ class CategoryListing extends Component {
                 </Row>
               </div>
             </Modal>
-            <Modal isOpen={this.state.showAddCollabrator} toggle={this.toggleAddCollabratorModal} className={modalStyles.forgotContainer} centered={true}>
-                    <AddCollabratorModal close={this.toggleAddCollabratorModal}></AddCollabratorModal>
+            <Modal isOpen={this.state.showAddCollaborator} toggle={this.toggleAddCollaboratorModal} className={modalStyles.forgotContainer} centered={true}>
+                    <AddCollaboratorModal close={this.toggleAddCollaboratorModal}></AddCollaboratorModal>
                 </Modal>
           </Container>
         </div>

@@ -90,6 +90,9 @@
         @include mobile {
           line-height: 2.36;
           font-size: 18px;
+          color: $black !important;
+          font-family: $roboto-regular;
+
         }
         font-family: $roboto-medium;
         color: $white !important;
@@ -203,6 +206,7 @@
       a {
         color: $black-fourteen !important;
         font-family: $roboto-regular;
+
         &:before {
           content: '';
           position: absolute;

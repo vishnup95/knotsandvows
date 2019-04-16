@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch
   });
 
-class AddCollbratorModal extends Component {
+class AddCollaboratorModal extends Component {
 
     constructor(props) {
         super(props);
@@ -46,7 +46,7 @@ class AddCollbratorModal extends Component {
                 name: this.state.name,
                 wishlist_id : this.props.wishlistId
             }
-            this.props.dispatch(actions.addCollabrator(params)).then((response) => {
+            this.props.dispatch(actions.addCollaborator(params)).then((response) => {
               let error = getDataFromResponse(response);
               if (error == null){
                  this.closeModal();
@@ -82,7 +82,7 @@ class AddCollbratorModal extends Component {
     }
 }
 
-AddCollbratorModal.propTypes = {
+AddCollaboratorModal.propTypes = {
     close: PropTypes.func,
     wishlistId: PropTypes.number,
     isLoading: PropTypes.bool,
@@ -92,4 +92,4 @@ AddCollbratorModal.propTypes = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddCollbratorModal);
+)(AddCollaboratorModal);

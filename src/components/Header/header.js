@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { imagePath } from '../../utils/assetUtils';
+import { shortName } from '../../utils/utilities';
 import * as actions from '../../reducers/session/actions';
 import * as homeActions from '../../modules/home/actions'
 import * as modalActions from '../../reducers/modal/actions';
@@ -94,7 +95,7 @@ class Header extends Component {
     componentDidMount() {
         if (isLoggedIn()) {
             this.props.dispatch(actions.fetchMyProfile());
-        } 
+        }
     }
 
     toggleForgotPasswordModal = () => {
@@ -133,20 +134,11 @@ class Header extends Component {
     }
 
     logout = () => {
-        if(localStorage){
+        if (localStorage) {
             localStorage.clear();
         }
         this.props.dispatch(actions.clearUserData());
         this.navigateTo("/");
-    }
-
-    shortName = (userName) => {
-        if (userName) {
-            var initials = userName.match(/\b\w/g) || [];
-            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-            return (initials);
-        }
-        return 'NU';
     }
 
     componentDidUpdate(prevProps) {
@@ -162,23 +154,23 @@ class Header extends Component {
                     this.setState({ hashValue: hashValue, email });
                     this.props.dispatch(actions.validateLink(hashValue)).then((response) => {
                         let error = getDataFromResponse(response);
-                        if (error == null){
+                        if (error == null) {
                             this.toggleResetPasswordModal();
-                        }else{
+                        } else {
                             let modalContent = {
                                 heading: 'Reset Password',
                                 message: error
-                              };
+                            };
                             this.props.dispatch(modalActions.showModal(modalContent));
                         }
                     },
-                    error => {
-                        let modalContent = {
-                            heading: 'Reset Password',
-                            message: error.message
-                          };
-                        this.props.dispatch(modalActions.showModal(modalContent));
-                    });
+                        error => {
+                            let modalContent = {
+                                heading: 'Reset Password',
+                                message: error.message
+                            };
+                            this.props.dispatch(modalActions.showModal(modalContent));
+                        });
                 }
             }
             else if (this.props.location.pathname === "/verify") {
@@ -188,29 +180,29 @@ class Header extends Component {
                     this.props.dispatch(actions.verifyEmail(activationCode, email));
                 }
             }
-            else if (queryString.parse(this.props.location.search).login){
+            else if (queryString.parse(this.props.location.search).login) {
                 // const { from } = this.props.location.state || { from: { pathname: '/' } }
                 var login = queryString.parse(this.props.location.search).login;
                 if (login == "true" && !isLoggedIn()) {
                     this.toggleModal();
-                }else{
+                } else {
                     var redirect = queryString.parse(this.props.location.search).redirect;
-                    if(redirect){
+                    if (redirect) {
                         this.props.dispatch(replace(`${redirect}`));
-                    }else{
+                    } else {
                         this.props.dispatch(replace("/"));
-                    }      
+                    }
                 }
-            }   
-        }   
-        
+            }
+        }
+
         if (this.props.location.pathname === "/verify") {
             if (this.props.apiStatus == true) {
                 let modalContent = {
                     heading: '',
                     message: 'Email has been successfully verified. Please login to continue.',
                     proceedAction: this.toggleModal
-                  };
+                };
                 this.props.dispatch(modalActions.showModal(modalContent));
                 this.props.dispatch(replace("/"));
             } else if (this.props.apiStatus == false) {
@@ -218,8 +210,8 @@ class Header extends Component {
                 let modalContent = {
                     heading: '',
                     message: this.props.error
-                    
-                  };
+
+                };
                 this.props.dispatch(modalActions.showModal(modalContent));
             }
         }
@@ -233,7 +225,7 @@ class Header extends Component {
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav className={styles.iconLink} style={{ cursor: "pointer", alignItems: "flex-end" }}>
                             <span className={styles.userInfo}>
-                                {this.shortName(this.props.user.name)}
+                                {shortName(this.props.user.name)}
                             </span>
                         </DropdownToggle>
 
@@ -255,7 +247,7 @@ class Header extends Component {
             return (
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
-                        <img src={imagePath('avatar.svg')} alt="avatar" />
+                        <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only" />
                         Login / Sign Up
                 </NavLink>
                 </NavItem>
@@ -316,6 +308,9 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/about')}>About</NavLink>
                             </NavItem>
+                            <span className="mobile-only">
+                                {this.renderLoginItem()}
+                            </span>
 
                         </Nav>
                     </Collapse>

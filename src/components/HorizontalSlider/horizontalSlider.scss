@@ -59,7 +59,7 @@
   color: $primary-color;
   cursor: pointer;
   @include mobile {
-     @include height(320);
+     @include height(316);
   }
 }
 
