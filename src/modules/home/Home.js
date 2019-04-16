@@ -215,8 +215,6 @@ class Home extends Component {
   render() {
     const headerString = ['Secret ', 'to a stress ', 'free wedding...'];
     const headerStringTwo = ['Wedding Planner'];
-    console.log(styles);
-
     return (
       <div className={styles.homeOuter}>
         {
