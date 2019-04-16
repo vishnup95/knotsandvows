@@ -22,6 +22,12 @@ html {
   @include fullHd {
     font-size: 14px;
   }
+  @include threeK {
+    font-size: 20px;
+  }
+  @include uHd {
+    font-size: 24px;
+  }
 }
 
 body {
@@ -59,7 +65,7 @@ h2 {
 .main {
   min-height: calc(100vh - 40rem);
   // margin-top: 10.33125rem;
-  margin-top: calc(50px + 4.3rem);
+  margin-top: calc(50px + 4.9rem);
   @include mobile {
     margin-top: 4.9375rem;
   }

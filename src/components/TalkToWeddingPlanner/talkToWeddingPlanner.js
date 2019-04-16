@@ -92,10 +92,14 @@ class TalkToWeddingPlanner extends Component {
     }
 
     render() {
+        console.log(styles);
         return (
             <div>
                 {this.props.type === 'link' && <button className="link-btn" onClick={() => this.toggle()}>{this.props.buttonText}</button>}
-                {this.props.type === 'call' && <div className="call-btn"><img onClick={() => this.toggle()} src={imagePath('button-call.png')} alt="call-button" aria-hidden /></div>}
+                {this.props.type === 'call' && <div className="call-btn">
+                    <div className="pulsateRing"></div>
+                    <img onClick={() => this.toggle()} src={imagePath('button-call.png')} alt="call-button" aria-hidden />
+                </div>}
                 {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>

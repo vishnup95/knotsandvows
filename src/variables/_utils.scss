@@ -176,6 +176,11 @@ $base-font-size: 16;
     @content;
   }
 }
+@mixin threeK{
+  @media #{$three-k} {
+    @content;
+  }
+}
 @mixin uHd{
   @media #{$u-hd} {
     @content;
