@@ -216,8 +216,8 @@ class Home extends Component {
   }
 
   render() {
-    const headerString = ['Secret ', 'to a stress ', 'free wedding...'];
-    const headerStringTwo = ['Wedding Planner'];
+    const headerString = ['Customised Wedding Packages ', 'to help you celebrate...'];
+    const headerStringTwo = ['Your day. Your way'];
     return (
       <div className={styles.homeOuter}>
         {
@@ -227,6 +227,8 @@ class Home extends Component {
               <Row>
                 <Col xs='12' md='3' className="p-relative no-padding-mobile">
                   <div className={styles.homeContent}>
+                  <p className="tab-only">You can’t plan love. <br/>But you can plan<br/>how to celebrate it.</p>
+
                     <div className={`${styles.homeTitle} tab-only`}>
 
                       {
@@ -257,8 +259,7 @@ class Home extends Component {
                       }
 
                     </div>
-                    <h1 className={`${styles.homeTitle} mobile-only`}>Secret<br />to a stress<br />free wedding...<br /><span>Wedding Planner</span></h1>
-                    <p className="tab-only">Sevenvows can help you with x ooxoox xcvxcv xcvxcvxc xo oxo oxo</p>
+                    <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br/>to help you celebrate...<br/><span>Your day. Your way.</span></h1>
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
                       <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>FREE CONSULTATION</Button>
@@ -273,8 +274,8 @@ class Home extends Component {
               <hr className="tab-only"></hr>
               <Row>
                 <Col>
-                  <h2>60% of couples think <span>wedding planners</span> <br />are unnecessary, until they panic</h2>
-                  <p>Wedding planning takes a lot, but hiring a wedding planner is a surefire<br /> way to lighten your load and focus on enjoying your special day</p>
+                  <h2>70% of couples regret not hiring <span>wedding planners</span></h2>
+                  <p>It doesn’t take much time for your blissful day to turn stressful.<br/>Wedding planners, with their array of services,<br/>help you plan the biggest day of your life in the best possible way. </p>
                 </Col>
               </Row>
               <Row>
@@ -319,8 +320,8 @@ class Home extends Component {
             <div className={`${styles.homeContainer} ${styles.imageCardWrap} container`}>
               <Row>
                 <Col className="text-center">
-                  <h2>We make your dreams come true</h2>
-                  <p>Whether it is planning your entire wedding or only parts of it, we <br />will fulfill your needs and make your wedding a lot more enjoyable</p>
+                  <h2>Get hitched. Without a hitch</h2>
+                  {/* <p>Whether it is planning your entire wedding or only parts of it, we <br />will fulfill your needs and make your wedding a lot more enjoyable</p> */}
                 </Col>
               </Row>
               <Row>
@@ -329,8 +330,8 @@ class Home extends Component {
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
                       <div className={styles.cardDetail}>
-                        <h3>Personalised Services</h3>
-                        <p>We believe that individualised, person centred planning is the foundation.</p>
+                        <h3>Bespoke services</h3>
+                        <p>All our actions adhere to our credo - ‘Your day. Your way’. We plan your dream wedding entirely or let you choose your preferred services.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
@@ -342,8 +343,8 @@ class Home extends Component {
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <div className={styles.cardDetail}>
-                        <h3>Discounted Prices</h3>
-                        <p>Check out our exclusive wedding deals for your big day at amazing prices!</p>
+                        <h3>Attractive rates</h3>
+                        <p>Our relationship with vendors and our general goodwill help us deliver quality services at a discounted rate.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
@@ -355,8 +356,8 @@ class Home extends Component {
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />
                       <div className={styles.cardDetail}>
-                        <h3>Seven Vows - expert Team</h3>
-                        <p>Meet our team of crazy talented planners from across the country! </p>
+                        <h3>Expert team</h3>
+                        <p>We are a team of passionate professionals with over 15 years of experience, striving to make the world a happier place, one wedding at a time.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageThree ? styles.cardImageSlide : ''}`}>
@@ -377,8 +378,8 @@ class Home extends Component {
                     <Button className="mobile-only primary-button white">LET’S DO IT</Button>
                   </Col>
                   <Col className={styles.dummyClass}>
-                    <h2 className={styles.whiteHeading}>Save <span className="tab-only"><br /></span>money!</h2>
-                    <p className={styles.whiteDesc}>These wedding packages are specially created to make every bride and grooms life easy</p>
+                    <h2 className={styles.whiteHeading}>Less worries.<span className="tab-only"><br /></span>More savings.</h2>
+                    <p className={styles.whiteDesc}>Choose from one of our customised packages <br/>to steer clear of stress and get attractive discounts.</p>
                     <Button className="tab-only primary-button white">LET’S DO IT</Button>
                   </Col>
                 </Row>
@@ -393,8 +394,8 @@ class Home extends Component {
                   <img src={imagePath('box-one.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Gold Package</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
-                    <a className="primary-button medium-pink" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">LEARN MORE</a>
+                    <p>Give your dream wedding a golden touch.<br/>Here’s a complete wedding solution crafted just for you.</p>
+                    <a className="primary-button medium-pink" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
                     {/* <Button className="primary-button medium-pink">LEARN MORE</Button> */}
                   </div>
                 </Col>
@@ -402,8 +403,8 @@ class Home extends Component {
                   <img src={imagePath('box-two.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Emerald Package</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
-                    <a className="primary-button medium-pink" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">LEARN MORE</a>
+                    <p>Add shine to your wedding celebration.<br/>Here’s a package that’s packed with wedding goodness.</p>
+                    <a className="primary-button medium-pink" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
 
                     {/* <Button className="primary-button medium-pink">LEARN MORE</Button> */}
                   </div>
@@ -411,10 +412,10 @@ class Home extends Component {
                 <Col className={styles.packageBox} id="box-three">
                   <img src={imagePath('box-three.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                    <h3>Customize</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet.</p>
+                    <h3>Genie Package</h3>
+                    <p>Your wish is our command. <br/>Choose what you need<br/>and make your dream team of wedding vendors.</p>
                     {/* <Button className="primary-button medium-pink">WISHLIST</Button> */}
-                    <a className="primary-button medium-pink" href='/wishlist' rel="noopener noreferrer" alt="">WISHLIST</a>
+                    <a className="primary-button medium-pink" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 
                   </div>
                 </Col>

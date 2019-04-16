@@ -9,6 +9,8 @@
 }
 
 .homeContainer {
+  max-width: 78%;
+  padding: 0;
 
   h2 {
     text-align: center;
@@ -519,7 +521,7 @@ a.button {
 
 .homeContent {
   position: absolute;
-  top: 35%;
+  top: 28%;
   z-index: 2;
   @include mobile {
     width: 100%;
@@ -628,7 +630,7 @@ a.button {
     opacity: 0;
   }
 
-  button {
+  button, a {
     margin: 0;
   }
 
@@ -822,7 +824,7 @@ h1.homeTitle {
   background-repeat: no-repeat;
   position: relative;
   @include width(530);
-  @include height(350);
+  @include height(416);
   flex-shrink: 0;
 
   &:before {
