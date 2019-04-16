@@ -96,9 +96,9 @@ class TalkToWeddingPlanner extends Component {
         return (
             <div>
                 {this.props.type === 'link' && <button className="link-btn" onClick={() => this.toggle()}>{this.props.buttonText}</button>}
-                {this.props.type === 'call' && <div className="call-btn">
+                {this.props.type === 'call' && <div className="call-btn" onClick={() => this.toggle()} aria-hidden >
                     <div className="pulsateRing"></div>
-                    <img onClick={() => this.toggle()} src={imagePath('button-call.png')} alt="call-button" aria-hidden />
+                    <img src={imagePath('button-call.png')} alt="call-button"/>
                 </div>}
                 {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>}
 

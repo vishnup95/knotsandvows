@@ -400,11 +400,11 @@
   @include padding(19);
   border-radius: 50%;
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
-
+  cursor: pointer;
+  
   img {
     @include width(80);
     @include height(80);
-    cursor: pointer;
   }
 }
 
