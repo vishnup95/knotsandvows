@@ -9,18 +9,21 @@
   display: flex;
   justify-content: flex-end;
   @include tablet {
-    @include height(967);
+    // height: 71rem;
+    width: 56vw;
+    height: 59vw;
   }
+
   .homeImage {
     animation-duration: 3s;
     animation-iteration-count: infinite;
-    // animation-name: examle;
     transition: all 1.8s ease;
     width: 80%;
     height: 90vw;
     @include tablet {
-
-      @include height(967);
+      // height: 71rem;
+      height: 59vw;
+      width: 56vw;
       width: 100%;
     }
 

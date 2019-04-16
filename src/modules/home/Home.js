@@ -128,7 +128,7 @@ class Home extends Component {
         const topTwo = (-79 * section5rate / 100);
         const leftTwo = (-117 * section5rate / 100);
         const topThree = (-83 * section5rate / 100);
-        const leftThree = (-151 * section5rate / 100);
+        const leftThree = (-164 * section5rate / 100);
         document.getElementById('box-one').style.transform = 'translate3d(' + leftOne + '%,' + topOne + 'rem,0px)';
         document.getElementById('box-two').style.transform = 'translate3d(' + leftTwo + '%,' + topTwo + 'rem,0px)';
         document.getElementById('box-three').style.transform = 'translate3d(' + leftThree + '%,' + topThree + 'rem,0px)';
@@ -145,7 +145,7 @@ class Home extends Component {
       else {
         document.getElementById('box-one').style.transform = 'translate3d(25%,-73rem,0px)';
         document.getElementById('box-two').style.transform = 'translate3d(-117%,-79rem,0px)';
-        document.getElementById('box-three').style.transform = 'translate3d(-151%,-83rem,0px)';
+        document.getElementById('box-three').style.transform = 'translate3d(-164%,-83rem,0px)';
         this.setState({ showDesc: false });
 
       }
@@ -413,7 +413,7 @@ class Home extends Component {
                   <img src={imagePath('box-three.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Genie Package</h3>
-                    <p>Your wish is our command. <br/>Choose what you need<br/>and make your dream team of wedding vendors.</p>
+                    <p>Your wish is our command. <br/>Choose what you need and make your dream team of wedding vendors.</p>
                     {/* <Button className="primary-button medium-pink">WISHLIST</Button> */}
                     <a className="primary-button medium-pink" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 
