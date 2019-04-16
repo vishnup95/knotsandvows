@@ -65,14 +65,7 @@ class Home extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     window.addEventListener('scroll', this.handleScroll);
-    if (this.props.location.hash === '#packages') {
-      let yPos = document.getElementById('packages').offsetTop;
-      window.scrollTo({
-        top: yPos - 50,
-        left: 0,
-        behavior: 'smooth'
-      });
-    }
+    this.handleSectionScroll(this.props);
   }
 
   componentWillMount() {
@@ -172,8 +165,18 @@ class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location.hash === '#packages') {
+    this.handleSectionScroll(nextProps);
+  }
+  handleSectionScroll = (props) => {
+    if (props.location.hash === '#packages') {
       let yPos = document.getElementById('packages').offsetTop;
+      window.scrollTo({
+        top: yPos - 50,
+        left: 0,
+        behavior: 'smooth'
+      });
+    } else if (props.location.hash === '#ceremonies') {
+      let yPos = document.getElementById('ceremonies').offsetTop;
       window.scrollTo({
         top: yPos - 50,
         left: 0,
@@ -416,7 +419,7 @@ class Home extends Component {
                   </div>
                 </Col>
               </Row>
-              <Row className="mt-5">
+              <Row className="mt-5" id="ceremonies">
                 <Col>
                   <h2>You may also be interested in...</h2>
 

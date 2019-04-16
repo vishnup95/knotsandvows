@@ -83,7 +83,7 @@ class InputField extends Component {
                     inputBox.parentNode.classList.remove('error');
                     return true;
                 } else {
-                    this.setState({errorMessage: `Please enter a valid ${this.props.placeHolder} ${this.props.phoneCheck ? 'or phone number' : ''}`});
+                    this.setState({errorMessage: `Please enter a valid ${this.props.placeHolder}`});
                     inputBox.parentNode.classList.add('error');
                     return false;
                 }
