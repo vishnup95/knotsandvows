@@ -247,7 +247,7 @@ class Header extends Component {
             return (
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
-                        <img src={imagePath('avatar.svg')} alt="avatar" />
+                        <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only"/>
                         Login / Sign Up
                 </NavLink>
                 </NavItem>
@@ -308,6 +308,7 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/about')}>About</NavLink>
                             </NavItem>
+                            {this.renderLoginItem()}
 
                         </Nav>
                     </Collapse>
