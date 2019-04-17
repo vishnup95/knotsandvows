@@ -1,7 +1,7 @@
 image: node:10
 pipelines:
   branches:
-    sandbox:
+    master:
       - step:
           name: Build app
           script:
