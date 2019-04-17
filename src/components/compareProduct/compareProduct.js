@@ -43,7 +43,7 @@ const mapDispatchToProps = dispatch => ({
                 </div>
                 <img src={this.props.data.pic_url || imagePath('card_1_1.jpg')} className={styles.vendorImage} alt="Outline"
                  onError={(e) => { e.target.onerror = null; e.target.src = `${imagePath('card_1_1.jpg')}` }} />
-                <div className={styles.vendrInfo}>
+                <div className={styles.vendorInfo}>
                     <h5>{vendor.name}</h5>
                     <p>{vendor.city}</p>
                 </div>
@@ -61,7 +61,7 @@ const mapDispatchToProps = dispatch => ({
                 }
                 <div className={styles.removeBtn} onClick={() => this.props.removeAction(vendor)} aria-hidden>
                     Remove from wishlist
-            </div>
+                </div>
             </Col>
         );
     }

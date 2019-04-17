@@ -229,6 +229,7 @@ class CategoryCard extends Component {
             <div>
                 <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} 
                     onClick={this.handleCardClick}  id={`card${this.props.id}`}>
+                    <a href={`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`} className="d-none">To vendor detail</a>
                     {
                         this.props.isWishlist &&
                         <div>
@@ -275,13 +276,11 @@ class CategoryCard extends Component {
                        this.state.showNotes && <Col className={styles.noteContainer} onClick={event => event.stopPropagation()}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
-                                    <div className="text-right mb-3">
-                                        <Button color="primary" className="primary-button" onClick={() => this.toggleAddNote()}>
-                                            <span className="mr-2">+</span>
-                                            <span>Add a note</span>
-                                        </Button>
+                                    <div className={styles.addHeader} onClick={() => this.toggleAddNote()} aria-hidden>
+                                        <img src={imagePath('plusbtn.svg')} alt=""/>
+                                        Add note
                                     </div>
-                                    
+                                         
                                     {this.props.noteloading &&
                                     <div className="row">
                                         <div className="col-12">
@@ -294,7 +293,7 @@ class CategoryCard extends Component {
                                             return(
                                             <div className={styles.noteWrap} key={index}>
                                                 <div>            
-                                                    <span className={styles.noteTitle}>Binu</span>
+                                                    <span className={styles.noteTitle}>{note.author_name || 'Author'}</span>
                                                     <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
                                                 </div>
                                                 <div className={styles.noteText}>

@@ -119,7 +119,7 @@ class CategoryListing extends Component {
       this.setState({vendorSelectedToCompare: newArray, modal: newArray.length == 0 ? false : this.state.modal});
       return
     }
-    if (this.state.vendorSelectedToCompare.length < 3){
+    if ((this.state.vendorSelectedToCompare.length < 3 && !detectMobile()) || (this.state.vendorSelectedToCompare.length < 2 && detectMobile())){
       newArray = this.state.vendorSelectedToCompare.slice();    
       newArray.push(vendor); 
       this.setState({vendorSelectedToCompare: newArray});
@@ -175,6 +175,7 @@ class CategoryListing extends Component {
     let modalContent = {
       heading: 'Remove Collaborator',
       message: `Are you sure you want to remove ${collaborator.collaborator_name}?`,
+      showCancel: true,
       proceedAction: () => this.removeCollaborator(collaborator.collaborator_id)
     };
     this.props.dispatch(modalActions.showModal(modalContent));
@@ -285,7 +286,7 @@ class CategoryListing extends Component {
                         this.state.isCompare &&
                         <Row>
                           <Col xs="12" className={styles.subText}>Choose two vendors of your choice to see how they compare on price, rating, and specialities. </Col>
-                          <Col xs="12" className={styles.selectedCount}>You are selected {this.state.vendorSelectedToCompare.length} of 3 vendors.</Col>
+                          <Col xs="12" className={styles.selectedCount}>You have selected {this.state.vendorSelectedToCompare.length} of 3 vendors.</Col>
                         </Row>
                       }
                       <Row>
@@ -346,7 +347,7 @@ class CategoryListing extends Component {
                 <div className={styles.closeBtn}>
                   <img src={imagePath('close-large.svg')} alt="close button" aria-hidden onClick={this.toggle} />
                 </div>
-                <hr />
+                <hr className="mb-5"/>
                 <Row>
                   <Col sm="1">
                     <div className={styles.label}>

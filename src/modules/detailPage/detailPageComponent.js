@@ -359,7 +359,7 @@ class DetailPageComponent extends Component {
                                         <Col md="12" className={style.detailSubSection}>
                                             <div className={style.reviewHeader}>Reviews <span>({reviewsData.total_review_count})</span></div>
                                             <div className={style.starWrap}>
-                                                <StarRating rating={details.rating} size={'large'} />
+                                                <StarRating rating={String(details.rating)} size={'large'} />
                                             </div>
                                             {
                                                 reviewsData.results.map((review, index) => {

@@ -7,7 +7,11 @@ class StarRating extends Component {
     render() {
         let rating = Math.floor(parseFloat(this.props.rating) * 2) / 2;
         let halfstar = 0, fullstar = 0, emptystar = 0;
-        if (rating * 2 % 2 === 0) {
+        if (isNaN(rating) || rating == null){
+            fullstar = 0;
+            halfstar = 0;
+            emptystar = 5;
+        }else if (rating * 2 % 2 === 0) {
             fullstar = rating;
             emptystar = 5 - rating;
         } else {

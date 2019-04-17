@@ -297,11 +297,18 @@
     border-right: 1rem solid $white;
     border-bottom: .7rem solid transparent;
   }
+
+  @include mobile {
+    position: fixed;
+    width: 40%;
+    left: unset;
+  }
 }
 
 .noteSection {
   max-height: 22rem;
   overflow-y: auto;
+  padding: 0;
 
   .right-sub-section {
     padding: 0;
@@ -317,6 +324,7 @@
 .note-wrap {
   border-bottom: 1px solid $black-16;
   margin-bottom: .5rem;
+  @include padding(0,10,10,10);
 
   &:last-child {
     border-bottom: none;
@@ -359,6 +367,13 @@
     @include padding(8,16);
     border: 1px solid rgba(0, 0, 0, 0.13) !important;
   }
+
+  @include mobile {
+    position: fixed;
+    right: auto;
+    width: 40%;
+    z-index: 1;
+  }
 }
 
 .noteHeader {
@@ -376,3 +391,19 @@
 .closeNote {
   @include width(17);
   }
+
+// addnote button in note container
+
+.addHeader {
+  display: flex;
+  justify-content: flex-end;
+  color: $primary-color;
+  font-size: 13px;
+  align-items: center;
+  padding: 10px 0;
+
+  img {
+    width: 20px;
+    margin-right: 5px;
+  }
+}

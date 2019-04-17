@@ -89,7 +89,7 @@ class App extends Component {
 
           <div className="text-center mt-5">
             {
-              this.props.modalContent.proceedAction && 
+              this.props.modalContent.showCancel && 
               <Button color="secondary" className="secondary-button" onClick={() => this.toggle()}>Cancel</Button>
             }
             <Button color="primary" className="primary-button" onClick={() => this.handleClick()}>OK</Button>{' '}   
