@@ -175,6 +175,7 @@ class CategoryListing extends Component {
     let modalContent = {
       heading: 'Remove Collaborator',
       message: `Are you sure you want to remove ${collaborator.collaborator_name}?`,
+      showCancel: true,
       proceedAction: () => this.removeCollaborator(collaborator.collaborator_id)
     };
     this.props.dispatch(modalActions.showModal(modalContent));
