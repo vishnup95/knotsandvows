@@ -2,9 +2,9 @@
 rm -rf consumerportal
 export PATH=$PATH:/usr/local/bin
 source ~/.profile
-export NODE_PATH=/home/sandbox/.nvm/versions/node/v10.9.0/bin/node
-export USER=sandbox
-export HOME=/home/sandbox
+export NODE_PATH=/home/sevenvows/.nvm/versions/node/v10.9.0/bin/node
+export USER=sevenvows
+export HOME=/home/sevenvows
 source $HOME/.nvm/nvm.sh
 nvm use v10.9.0
 set -e
