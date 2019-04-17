@@ -343,8 +343,8 @@ class Home extends Component {
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <div className={styles.cardDetail}>
-                        <h3>Attractive rates</h3>
-                        <p>Our relationship with vendors and our general goodwill help us deliver quality services at a discounted rate.</p>
+                        <h3>No pocket pinch</h3>
+                        <p>It feels nice to spend the world on your wedding. However, savings can go a long way. We help you get attractive discounts on quality services. </p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
