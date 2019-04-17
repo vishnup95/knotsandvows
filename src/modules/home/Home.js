@@ -275,7 +275,7 @@ class Home extends Component {
               <Row>
                 <Col>
                   <h2>70% of couples regret not hiring <span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful.<br/>Wedding planners, with their array of services,<br/>help you plan the biggest day of your life in the best possible way. </p>
+                  <p>It doesn’t take much time for your blissful day to turn stressful.<br/>SevenVows, with their array of services, <br/>help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -330,8 +330,8 @@ class Home extends Component {
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
                       <div className={styles.cardDetail}>
-                        <h3>Bespoke services</h3>
-                        <p>All our actions adhere to our credo - ‘Your day. Your way’. We plan your dream wedding entirely or let you choose your preferred services.</p>
+                        <h3>Customisable services</h3>
+                        <p>All our actions adhere to our credo - ‘Your day. Your way’. We help as much as you want us to. You can choose us to plan your entire wedding or you can pick which of your ceremonies you need our help with.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
@@ -343,8 +343,8 @@ class Home extends Component {
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <div className={styles.cardDetail}>
-                        <h3>Attractive rates</h3>
-                        <p>Our relationship with vendors and our general goodwill help us deliver quality services at a discounted rate.</p>
+                        <h3>No pocket pinch</h3>
+                        <p>It feels nice to spend the world on your wedding. However, savings can go a long way. We help you get attractive discounts on quality services. </p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>

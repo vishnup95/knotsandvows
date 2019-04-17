@@ -49,6 +49,14 @@ const items = [
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
         descAuthor: 'Malini Singh',
+    }, {
+        src: 'testimonial1.png',
+        altText: 'Slide 1',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'Though everything was in place, getting the right venue for my wedding was proving to be a huge task. Seven Vows helped me find that perfect venue at the right price. I love the fact that I could select only the specific service that I needed and not go for the entire package.',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'wishlist',
+        descAuthor: 'Malini Singh',
     },
 ];
 
