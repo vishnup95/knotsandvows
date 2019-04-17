@@ -262,7 +262,7 @@ class Home extends Component {
                     <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br/>to help you celebrate...<br/><span>Your day. Your way.</span></h1>
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
-                      <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>FREE CONSULTATION</Button>
+                      <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>FREE CONSULTATION </Button>
                     </div>
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
