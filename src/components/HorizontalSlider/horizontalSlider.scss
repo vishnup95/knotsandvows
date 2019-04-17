@@ -1,0 +1,105 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
+.slider-item {
+  padding: 1.4rem;
+  @include width(360);
+  @include mobile {
+    padding: 1rem;
+    width: max-content !important;
+  }
+}
+
+.slider-item-basic {
+  width: max-content !important;
+  padding: 0 1rem;
+
+  .slider-wrap {
+    @include fontSize(18)
+  }
+}
+
+.slider-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.vendor-image {
+  @include width(114.3);
+  @include height(80);
+}
+
+.category-name {
+  font-family: $roboto-medium;
+  @include fontSize(20);
+  color: $black;
+  opacity: .7;
+  cursor: pointer;
+}
+
+.selected-category {
+  color: $primary-color;
+}
+
+.add-new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #FEF1F7;
+  border: 1px dashed $secondary-color;
+  // @include width(403);
+  width: auto;
+  @include height(362);
+  @include borderRadius(18);
+  @include margin(16,0);
+  @include fontSize(24);
+  color: $primary-color;
+  cursor: pointer;
+  @include mobile {
+     @include height(316);
+  }
+}
+
+.ceremonyCard {
+  border: solid 1.5px #ffc8df;
+  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
+  border-radius: 3px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $medium-pink;
+  background-color: $white;
+  cursor: pointer;
+  transition: all .7s ease;
+
+  h3 {
+    font-family: $roboto-bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0 0;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $medium-pink;
+  }
+}
+
+.ceremonyIg {
+  // @include width(229);
+  width: 100%;
+  @include height(152);
+  background-size: cover;
+
+}
+.packageImg {
+  height: 300px;
+}

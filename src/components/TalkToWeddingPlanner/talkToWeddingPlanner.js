@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'reactstrap';
+import { Form } from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import styles from './talkToWeddingPlanner.scss';
 import * as actions from './actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 import * as modalActions from '../../reducers/modal/actions';
 import { Modal } from 'reactstrap';
-
+import ProgressButton from '../../components/ProgressButton/PorgressButton';
 
 const mapStateToProps = state => ({
     message: state.talkToAhwanam.message,
-    status: state.talkToAhwanam.status
+    status: state.talkToAhwanam.status,
+    isLoading: state.talkToAhwanam.loading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -72,7 +73,6 @@ class TalkToWeddingPlanner extends Component {
         }
     }
 
-
     componentDidUpdate(prevProps) {
         if (prevProps == undefined) {
             return false;
@@ -80,34 +80,48 @@ class TalkToWeddingPlanner extends Component {
 
         if (this.props.message !== prevProps.message) {
             if (this.props.status === true) {
-                this.toggle();
+                this.setState({ modal: false });
+
+                if (detectMobile()) {
+                    this.props.dispatch(modalActions.showModal({ message: 'mobile_contact', heading: 'Talk to wedding planner' }));
+                } else {
+                    this.props.dispatch(modalActions.showModal({ message: 'We will contact you soon!', heading: 'Talk to wedding planner' }));
+                }
             }
-            this.props.dispatch(modalActions.showModal(this.props.message));
         }
     }
 
     render() {
+        console.log(styles);
         return (
             <div>
-                <button onClick={() => this.toggle()} className={styles.button}>{this.props.buttonText}</button>
+                {this.props.type === 'link' && <button className="link-btn" onClick={() => this.toggle()}>{this.props.buttonText}</button>}
+                {this.props.type === 'call' && <div className="call-btn" onClick={() => this.toggle()} aria-hidden >
+                    <div className="pulsateRing"></div>
+                    <img src={imagePath('button-call.png')} alt="call-button"/>
+                </div>}
+                {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>}
+
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
+                    <img className={styles.closeBtn} src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.toggle()}/>
                     <div className={styles.loginForm}>
 
                         <div className={styles.logoWrap}>
-                            <img className={styles.image} src={imagePath('logo.svg')} alt="logo"></img>
-                            <div className={styles.heading}>Talk to our wedding planner</div>
+                            <div className={styles.heading}>Talk to <br /> our wedding planner</div>
                         </div>
-                        <Form style={{ zIndex: '10000' }} className="position-relative">
+                        {this.props.status == false && this.props.message &&
+                            <div className={styles.apiError}>{this.props.message}</div>
+                        }
+                        <Form className="position-relative">
                             <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
                             <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Contact Number" id="phone" ref={this.phoneRef} type="number" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Time" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} />
+                            <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />
+                            <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
+                            <InputField placeHolder="Preferred time to contact" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
+                            <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
                         </Form>
                         <div className="text-center">
-                            <Button className={styles.cancelBtn} onClick={() => this.props.onclick()}>Cancel</Button>
-                            <Button color="danger" className={styles.button} onClick={() => this.validateForm()}>Submit</Button>
+                            <ProgressButton title="Submit" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
                         </div>
                     </div>
 
@@ -124,9 +138,14 @@ TalkToWeddingPlanner.propTypes = {
     onclick: PropTypes.func,
     message: PropTypes.string,
     status: PropTypes.bool,
-    buttonText: PropTypes.string
+    buttonText: PropTypes.string,
+    type: PropTypes.string,
+    isLoading: PropTypes.bool
 
 };
+TalkToWeddingPlanner.defaultProps = {
+    type: ''
+}
 export default connect(
     mapStateToProps,
     mapDispatchToProps

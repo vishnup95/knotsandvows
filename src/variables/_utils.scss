@@ -14,6 +14,9 @@ $base-font-size: 16;
 @mixin flex-column() {
   flex-direction: column;
 }
+@mixin flex-row-reverse() {
+  flex-direction: row-reverse;
+}
 @mixin align-center() {
   align-items: center;
 }
@@ -111,7 +114,37 @@ $base-font-size: 16;
   }
   letter-spacing: #{$size/$base-font-size}rem #{$imp};
 }
+@mixin top ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  top: #{$value/$base-font-size}rem #{$imp};
+}
 
+@mixin bottom ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  bottom: #{$value/$base-font-size}rem #{$imp};
+}
+
+@mixin left ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  left: #{$value/$base-font-size}rem #{$imp};
+}
+
+@mixin right ($value, $important: false) {
+  $imp: '';
+  @if $important {
+    $imp: !important;
+  }
+  right: #{$value/$base-font-size}rem #{$imp};
+}
 // mixins for responsive styling
 @mixin mobile{
   @media #{$mobile} {
@@ -140,6 +173,11 @@ $base-font-size: 16;
 }
 @mixin fullHd{
   @media #{$full-hd} {
+    @content;
+  }
+}
+@mixin threeK{
+  @media #{$three-k} {
     @content;
   }
 }

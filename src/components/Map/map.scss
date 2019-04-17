@@ -1,4 +1,14 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
 .map {
-    width: '100%';
-    height: '100%';
+    width: 100%;
+    height: 100%;
+}
+.mapWrap {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    @include height(450);
 }

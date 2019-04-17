@@ -3,8 +3,9 @@
 @import '../../variables/utils';
 
 .logo-test {
-  width: 3rem;
-  max-width: 60px;
+  @include height(50);
+  width: auto;
+  max-width: 143px;
 }
 
 .ah-header {
@@ -13,49 +14,66 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  @include height(97);
-  font-family: $nunito-regular;
+  font-family: $roboto-regular;
+  transition: 300ms all ease;
   @include tablet {
-    background-color: rgba(255,255,255,.6);
+    background: $white;
   }
 
   .ahNav {
     background-color: transparent !important;
     margin-bottom: 0;
-    height: 100%;
+    height: 50px;
+    padding: 0;
+    @include mobile {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
 
     ul {
       @include tablet {
          @include align-center();
       }
     }
-    @include tablet {
-      padding: 0 3rem 0 3.125rem;
-    }
   }
 }
 
-.header-shadow {
+.nav-small {
+  @include height(79);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem 0 1rem;
+  box-shadow: 0 2px 6px 0 $black-16;
   background: #fff;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  transition: 300ms all ease;
+  @include tablet {
+     @include padding(0, 38)
+  }
+  @include mobile {
+     @include justify-center() padding: 0 1rem 0 1rem;
+  }
 }
 
 .ahCollapse {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  @include mobile {
+    position: fixed;
+    top: 83px;
+    left: 0;
+  }
+  width: auto;
   background-color: $white;
   box-shadow: 0 3px 6px 0 $black-16;
-  @include padding(27,20);
+  padding: 1.6875rem 5.25rem 1.6875rem 2.25rem;
+  border-radius: 0 5px 5px 0;
   @include tablet {
     height: 100%;
     position: relative;
     box-shadow: none;
-    background-color: transparent;
+    background-color: $medium-pink;
     padding: 0;
-    justify-content: flex-end;
+    justify-content: center;
+    border-radius: 0;
   }
 
   > ul {
@@ -69,12 +87,19 @@
       cursor: pointer;
 
       a {
-        font-size: 1.375rem;
-        line-height: 1.36;
-        color: $greyish-brown;
+        @include mobile {
+          line-height: 2.36;
+          font-size: 18px;
+          color: $black !important;
+          font-family: $roboto-regular;
+
+        }
+        font-family: $roboto-medium;
+        color: $white !important;
+        opacity: .95;
         position: relative;
         @include tablet {
-          margin: 0 1rem;
+          margin: 0 2rem;
 
           &:before {
             content: '';
@@ -82,7 +107,7 @@
             left: 20%;
             bottom: -1rem;
             width: 60%;
-            background-color: $tomato-red;
+            background-color: $secondary-color;
             height: 0;
             border-radius: 2px;
           }
@@ -106,36 +131,51 @@
     }
   }
 
-  .icon-nav {
+}
+
+.icon-nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  @include mobile {
+    display: none;
+  }
+
+  > li {
     height: 100%;
-    @include mobile {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-top: 1rem;
+    display: flex;
+    align-items: center;
+
+    &:last-child {
+      .icon-link {
+        @include mobile {
+          border-right: 1px solid $black-16;
+        }
+      }
+    }
+  }
+
+  .icon-link {
+    @include flex();
+    @include flex-column();
+    @include justify-center();
+    font-size: .875rem !important;
+    color: $black-six !important;
+    background-color: rgba(255,255,255,.5);
+    height: calc(100% - 1rem);
+    width: 113px / 16px * 1rem;
+    @include align-center();
+    margin: 0 1px !important;
+
+    &:before {
+      display: none;
     }
 
-    .icon-link {
-      @include flex();
-      @include flex-column();
-      @include justify-center();
-      font-size: .875rem !important;
-      color: $black-six !important;
-      background-color: rgba(255,255,255,.5);
-      height: calc(100% - .5rem);
-      width: 113px / 16px * 1rem;
-      box-shadow: 0 1px 3px 0 $black-16;
-      @include align-center();
-      margin: 0 2px !important;
-
-      &:before {
-        display: none;
-      }
-
-      > img {
-        margin-bottom: .4rem;
-      }
-
+    > img {
+      margin-bottom: .4rem;
+      @include height(30);
     }
   }
 }
@@ -151,15 +191,48 @@
   height: 0;
   overflow: hidden;
   opacity: 0;
-  li {
-    @extend %pointer;
-    padding: 1rem 1.5rem;
+  display: flex;
+  @include borderRadius(0,0,18,18);
 
-    a {
-      &:before {
-        display: none;
+  ul {
+    padding: 0 !important;
+
+    li {
+      @extend %pointer;
+      padding: 1rem 2.5rem 1.5rem;
+      list-style: none;
+      white-space: nowrap;
+
+      a {
+        color: $black-fourteen !important;
+        font-family: $roboto-regular;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 15%;
+          bottom: -1rem;
+          width: 70%;
+          background-color: $secondary-color;
+          height: 0;
+          border-radius: 2px;
+        }
+
+        &:hover {
+          text-decoration: none;
+
+          &:before {
+            bottom: -.4rem;
+            height: 2px;
+            transition: 300ms all ease;
+
+          }
+        }
       }
     }
+  }
+  @include mobile {
+    display: none;
   }
 }
 
@@ -167,12 +240,68 @@
   &:hover {
     .categoriesList {
       height: auto;
-      top: 6.0625rem;
+      top: 50px;
       transition: 500ms all ease;
       opacity: 1;
+      @include padding(0,0,16);
     }
   }
 }
+
 .login-modal {
   @include width(1385);
+}
+
+.user-info {
+  background-color: $primary-color;
+  @include width(48);
+  @include height(48);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $roboto-bold;
+  @include fontSize(18);
+  color: $white;
+  letter-spacing: .5px;
+}
+
+.userDropdown {
+  position: absolute !important;
+  left: auto;
+  right: -1.25rem;
+  top: 4.7rem;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+  border: none;
+  @include borderRadius(8);
+
+  &:before {
+    content: '';
+    height: .7rem;
+    width: .7rem;
+    background: $white;
+    position: absolute;
+    top: -0.25rem;
+    right: 25%;
+    transform: rotate(45deg);
+  }
+
+  button {
+    cursor: pointer;
+    padding: .7rem;
+    font-family: $roboto-light;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: #ee4d9b29;
+      outline: 0;
+    }
+  }
+}
+
+.talk-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
 }

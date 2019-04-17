@@ -1,0 +1,42 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
+.image-wrap {
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  @include tablet {
+    // height: 71rem;
+    width: 56vw;
+    height: 59vw;
+  }
+
+  .homeImage {
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transition: all 1.8s ease;
+    width: 80%;
+    height: 90vw;
+    @include tablet {
+      // height: 71rem;
+      height: 59vw;
+      width: 56vw;
+      width: 100%;
+    }
+
+  }
+  margin-bottom: 7rem;
+
+}
+@keyframes examle {
+  0% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

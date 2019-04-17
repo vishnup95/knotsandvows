@@ -4,8 +4,11 @@ const initialState = {
   user: null,
   loading: false,
   showLogin: false,
+  showForgotPassword: false,
+  showResetPassword: false,
   error: null,
   message: '',
+  apiStatus: null
 };
 
 const session = (state = initialState, action) => {
@@ -14,33 +17,40 @@ const session = (state = initialState, action) => {
     case types.LOAD_SIGNIN:
       return {
         ...state,
-        loading: true
+        loading: true,
+        apiStatus: null,
+        message: null,
+        error: null
       };
 
     case types.LOAD_SIGNIN_SUCCESS:
       result = action.result || {};
       localStorage.setItem("token", result.data.data.token);
       localStorage.setItem("logged_in", true);
-      localStorage.setItem("user", JSON.stringify(result.data.data.user));
       return {
         ...state,
         user: result.data.data.user,
         loading: false,
         showLogin: false,
-        error: null
+        error: null,
+        apiStatus: true
       };
 
     case types.LOAD_SIGNIN_FAILURE:
       return {
         ...state,
         error: action.error.message,
-        loading: false
+        loading: false,
+        apiStatus: false
       };
 
     case types.LOAD_SIGNUP:
       return {
         ...state,
-        loading: true
+        loading: true,
+        apiStatus: null,
+        error: null,
+        message: ''
       };
 
     case types.LOAD_SIGNUP_SUCCESS:
@@ -49,14 +59,17 @@ const session = (state = initialState, action) => {
         ...state,
         loading: false,
         showLogin: false,
-        error: null
+        message: result.data.message,
+        error: null,
+        apiStatus: true
       };
 
     case types.LOAD_SIGNUP_FAILURE:
       return {
         ...state,
         error: action.error.message,
-        loading: false
+        loading: false,
+        apiStatus: false
       };
 
     case types.LOAD_LOGOUT:
@@ -66,7 +79,6 @@ const session = (state = initialState, action) => {
       };
 
     case types.LOAD_LOGOUT_SUCCESS:
-      result = action.result || {};
       return {
         ...state,
         user: null,
@@ -85,7 +97,10 @@ const session = (state = initialState, action) => {
     case types.SHOW_LOGIN:
       return {
         ...state,
-        showLogin: true
+        message: '',
+        showLogin: true,
+        error: null,
+        apiStatus: null
       };
 
     case types.HIDE_LOGIN:
@@ -94,27 +109,65 @@ const session = (state = initialState, action) => {
         showLogin: false
       };
 
-      case types.REQUEST_FORGOT:
+    case types.SHOW_FORGOT_PASSWORD:
       return {
         ...state,
+        message: '',
+        apiStatus: null,
+        error: null,
+        showForgotPassword: true
+      };
+
+    case types.HIDE_FORGOT_PASSWORD:
+      return {
+        ...state,
+        showForgotPassword: false
+      };
+
+    case types.SHOW_RESET_PASSWORD:
+      return {
+        ...state,
+        message: '',
+        apiStatus: null,
+        error: null,
+        showResetPassword: true
+      };
+
+    case types.HIDE_RESET_PASSWORD:
+      return {
+        ...state,
+        showResetPassword: false
+      };
+
+    case types.REQUEST_FORGOT:
+      return {
+        ...state,
+        apiStatus: null,
+        loading: true,
         message: ''
       };
 
     case types.REQUEST_FORGOT_SUCCESS:
       return {
         ...state,
+        apiStatus: true,
+        loading: false,
+        showForgotPassword: false,
         message: action.result.data.message,
       };
-    
+
     case types.REQUEST_FORGOT_FAILURE:
-    return {
-      ...state,
-      message: action.error.message,
+      return {
+        ...state,
+        loading: false,
+        apiStatus: false,
+        message: action.error.message,
       };
 
     case types.RESET_PASSWORD:
       return {
         ...state,
+        apiStatus: null,
         loading: true,
         message: ''
       };
@@ -122,6 +175,8 @@ const session = (state = initialState, action) => {
     case types.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
+        showResetPassword: false,
+        apiStatus: true,
         message: action.result.data.message,
         loading: false
       };
@@ -129,8 +184,103 @@ const session = (state = initialState, action) => {
     case types.RESET_PASSWORD_FAILURE:
       return {
         ...state,
+        apiStatus: false,
         message: action.error.message,
         loading: false
+      };
+
+    case types.LOAD_VERIFY_EMAIL:
+      return {
+        ...state,
+        apiStatus: null,
+        loading: true,
+        error:"",
+      };
+
+    case types.LOAD_VERIFY_EMAIL_SUCCESS:
+      return {
+        ...state,
+        apiStatus: true,
+        loading: false
+      };
+
+    case types.LOAD_VERIFY_EMAIL_FAILURE:
+      return {
+        ...state,
+        apiStatus: false,
+        error: action.error.message,
+        loading: false
+      };
+
+    case types.LOAD_PROFILE:
+      return {
+        ...state,
+        loading: true,
+        message: ''
+      };
+
+    case types.LOAD_PROFILE_SUCCESS:
+      return {
+        ...state,
+        message: action.result.data.message,
+        user: action.result.data.data.user,
+        loading: false
+      };
+
+    case types.LOAD_PROFILE_FAILURE:
+      return {
+        ...state,
+        message: action.error.message,
+        loading: false
+      };
+
+      case types.LOAD_UPDATE_PROFILE:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        apiStatus : null
+      };
+
+    case types.LOAD_UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        user: action.result.data.data.user,
+        loading: false,
+        apiStatus : true
+      };
+
+    case types.LOAD_UPDATE_PROFILE_FAILURE:
+      return {
+        ...state,
+        error: action.error.message,
+        loading: false,
+        apiStatus : false
+      };
+
+      case types.LOAD_VALIDATE_LINK:
+      return {
+        ...state,
+      };
+
+    case types.LOAD_VALIDATE_LINK_SUCCESS:
+      return {
+        ...state,
+      };
+
+    case types.LOAD_VALIDATE_LINK_FAILURE:
+      return {
+        ...state,
+      };
+
+
+    case types.CLEAR_ERRORS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        message: '',
+        apiStatus: null
       };
 
     default:

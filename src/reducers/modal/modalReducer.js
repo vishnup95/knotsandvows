@@ -2,7 +2,11 @@ import * as types from './constants';
 
 const initialState = {
     show: false,
-    message: ''
+    modalContent: {
+      heading: '',
+      message: '',
+      proceedAction : null
+    }
 };
 
 const modal = (state = initialState, action) => {
@@ -11,14 +15,14 @@ const modal = (state = initialState, action) => {
         return {
           ...state,
           show: true,
-          message: action.message
+          modalContent: action.popupContent
         };
   
       case types.HIDE_MODAL:
         return {
           ...state,
           show: false,
-          message: ''
+          modalContent: initialState.modalContent
         };
 
       default:

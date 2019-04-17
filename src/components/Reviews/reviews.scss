@@ -1,0 +1,31 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+
+.reviewItem {
+  border-bottom: 1px solid $black-16;
+  margin-bottom: 1rem;
+}
+
+.review-user {
+  font-family: $roboto-medium;
+  color: $secondary-color;
+  @include fontSize(18);
+}
+
+.reviewRating {
+  color: $black-ten;
+  @include fontSize(16);
+  display: flex;
+  align-items: center;
+
+  > span {
+    margin: 0 0 .6rem .5rem;
+  }
+}
+
+.reviewText {
+  @include fontSize(16);
+  @include margin(16,0,8);
+  color: $black-ten;
+}

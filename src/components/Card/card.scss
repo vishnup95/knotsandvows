@@ -2,113 +2,377 @@
 @import '../../variables/fonts';
 @import '../../variables/utils';
 
-//general 
+//general
+
+.addEllipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .cardImage {
-    width: 100%;
-    height: 16.194rem;
+  width: 100%;
+  @include height(250);
+  @include borderRadius(20,20,0,0);
+  object-fit: cover;
+
+  @include mobile {
+    @include height(150);
+  }
 }
 
 //simple card style
 .cardTitleSimple {
-    @include fontSize(20);
-    font-family: $nunito-bold;
-    @include letterSpacing(1.8);
-    @extend %uppercase;
-    color: $black-four;
-    text-align: center;
+  @include fontSize(18);
+  font-family: $roboto-medium;
+  @include letterSpacing(1.8);
+  color: $black-four;
+  text-align: center;
+}
+
+.plainCardBody {
+  @include mobile {
+    @include padding(12,0,4);
+  }
 }
 
 // exclusive card styles
 .cardTitle {
-    @include fontSize(20);
-    font-family: $nunito-bold;
-    @include letterSpacing(2);
-    color: $black;
+  @include fontSize(20);
+  font-family: $roboto-bold;
+  @include letterSpacing(2);
+  color: $black;
 }
 
-
 .cardText {
-    @include fontSize(16);
-    line-height: 1.38;
-    @include letterSpacing(.5);
-    overflow: hidden;
-    font-family: $nunito-regular;
+  @include fontSize(16);
+  line-height: 1.38;
+  @include letterSpacing(.5);
+  overflow: hidden;
+  font-family: $roboto-regular;
 }
 
 .price {
-    @include fontSize(18);
-    line-height: 1.22;
-    letter-spacing: 0.025rem;
+  @include fontSize(18);
+  line-height: 1.22;
+  letter-spacing: .025rem;
 }
 
 .priceNow {
-    color: $bright-red;
-    font-family: $opensans-semi-bold;
+  color: $primary-color;
+  font-family: $roboto-medium;
 }
 
 .priceBefore {
-    color: $black-two;
-    font-family: $opensans-regular;
+  color: $black-two;
+  font-family: $roboto-regular;
 }
 
 .cardButton {
-    letter-spacing: 0.02rem;
-    text-transform: uppercase;
-    line-height: 1.71;
-    @include width(150);
-    @include height(40);
-    @include fontSize(14);
-    @include borderRadius(3);
-    font-family: $nunito-bold;
+  letter-spacing: .02rem;
+  text-transform: uppercase;
+  line-height: 1.71;
+  @include width(150);
+  @include height(40);
+  @include fontSize(14);
+  @include borderRadius(3);
+  font-family: $roboto-bold;
 }
 
 // category card styles
 
+.mainContent {
+  width: 100%;
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.cardbodyContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: -0.5rem;
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.categoryCard {
+  @include borderRadius(20);
+  @include margin(16,0,48);
+
+  &.carouselCard {
+    @include margin(16,0,16);
+  }
+}
+
+.categoryBody {
+  background-color: #f7f7f7;
+  @include borderRadius(0,0,20,20);
+  @include height(112);
+
+  @include mobile {
+    height: auto;
+  }
+}
+
 .cardTitleCat {
-    @include fontSize(18);
-    font-family: $nunito-bold;
-    letter-spacing: 0.025rem;
-    color: $black-four;
+  @include fontSize(18);
+  font-family: $roboto-bold;
+  letter-spacing: .025rem;
+  color: $black-four;
+  @extend .addEllipsis;
+  width: 13rem;
+
+  @include mobile {
+    width: 10rem;
+  }
 }
 
 .charges {
-    font-family: $nunito-regular;
-    color: $brownish-grey-two;
-    letter-spacing: 0.48px;
-    @include fontSize(15);
+  font-family: $roboto-regular;
+  color: $brownish-grey-two;
+  letter-spacing: .48px;
+  @include fontSize(15);
 
-    span {
-        font-family: $nunito-semi-bold;
-        color: $black-four;
-    }
+  span {
+    font-family: $roboto-medium;
+    color: $black-four;
+  }
+
+  @include mobile {
+    margin-bottom: 0;
+  }
 }
 
 .ratingContainer {
-    float: right;
-    width: max-content;
+  float: right;
+  width: max-content;
+  padding: .45rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  @include mobile {
+    width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .rating {
-    @extend .charges;
-    font-family: $nunito-semi-bold;
-    text-align: right;
-    margin: 0;
+  @extend .charges;
+  font-family: $roboto-medium;
+  text-align: right;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 
-    span {
-        font-family: $nunito-regular;
-        color: $brownish-grey-two;
-        @include fontSize(13);
-    }
-    .heartImg {
-        @include width(19);
-        @include height(17);
-    }
+  @include mobile {
+    justify-content: flex-start;
+  }
 
-    .starImg {
-        width: 0.85rem;
-        height: 0.85rem;
-        margin-bottom: 0.25rem;
-        margin-left: 0.25rem;
+  span {
+    font-family: $roboto-regular;
+    color: $brownish-grey-two;
+    @include fontSize(13);
+  }
+
+  .heartImg {
+    @include width(19);
+    @include height(17);
+  }
+
+  .starImg {
+    width: .85rem;
+    height: .85rem;
+    margin-bottom: .25rem;
+    margin-left: .25rem;
+
+    @include mobile {
+      margin-left:0;
+      margin-right: .5rem;
     }
+  }
 }
-    
+
+.plainCardImage {
+  @include height(318);
+  width: auto;
+  @include borderRadius(18,18,0,0);
+  object-fit: cover;
+
+  @include mobile {
+    @include height(150);
+  }
+}
+
+.compareMask {
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 55%;
+  @include borderRadius(0,0,18,18);
+
+  .checkbox {
+    background: url('/images/unchecked.svg') center no-repeat / contain;
+    @include width(41.7);
+    @include height(41.7);
+    position: absolute;
+    left: 50%;
+    bottom: 5.7rem;
+    transform: translateX(-50%);
+
+    &.checked {
+      background: url('/images/checked.svg') center no-repeat / contain;
+
+    }
+  }
+}
+
+.cardIcon {
+  position: absolute;
+  @include width(25);
+  @include height(25);
+  border-radius: 50%;
+  @include top(11);
+  box-shadow: 0 0 3px 0 $black-16;
+}
+
+.addIcon {
+  background: url('/images/add-note.svg') center no-repeat;
+  background-size: 50%;
+  @include right(45);
+  background-color: $white;
+}
+
+.deleteIcon {
+  background: url('/images/delete.svg') center no-repeat;
+  background-size: 50%;
+  @include right(11);
+  background-color: $white;
+}
+
+.viewIcon {
+  background: url('/images/view-note.svg') center bottom no-repeat;
+  background-size: 75%;
+  @include width(30);
+  @include height(30);
+  @include top(235);
+  left: 2rem;
+  color: $secondary-color;
+  @include fontSize(14);
+  font-family: $roboto-medium;
+  display: flex;
+  justify-content: center;
+  background-color: $white;
+}
+
+// notes styles
+.noteContainer {
+  position: absolute;
+  top: 3rem;
+  left: 20%;
+  @include borderRadius(5);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.36);
+  z-index: 2;
+  background-color: $white;
+  @include padding(21);
+
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 1rem;
+    left: -.4rem;
+    z-index: 2;
+    border-top: .7rem solid transparent;
+    border-right: 1rem solid $white;
+    border-bottom: .7rem solid transparent;
+  }
+}
+
+.noteSection {
+  max-height: 22rem;
+  overflow-y: auto;
+
+  .right-sub-section {
+    padding: 0;
+  }
+}
+
+.note-header {
+  font-family: $roboto-bold;
+  @include fontSize(20);
+  letter-spacing: .6px;
+}
+
+.note-wrap {
+  border-bottom: 1px solid $black-16;
+  margin-bottom: .5rem;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
+
+.note-title {
+  font-family: $roboto-bold;
+  color: $black-fifteen;
+  @include fontSize(14);
+  margin-right: .5rem;
+}
+
+.note-date {
+  color: $brownish-grey-three;
+  @include fontSize(10);
+}
+
+.note-text {
+  @include fontSize(14);
+  line-height: 1.43;
+  @include padding(8,0,8,12);
+  position: relative;
+}
+
+.addNote {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.36);
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+  width: 100%;
+  padding: 0 1rem 1rem;
+  background: $white;
+  @include borderRadius(10); 
+  textarea {
+    width: 100%;
+    margin-top: 1rem;
+    @include fontSize(16);
+    @include padding(8,16);
+    border: 1px solid rgba(0, 0, 0, 0.13) !important;
+  }
+}
+
+.noteHeader {
+  background-color: $greyish-brown-four;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $white;
+  @include fontSize(16);
+  @include padding(8,16);
+  margin: 0 -1rem;
+  @include borderRadius(10,10,0,0); 
+}
+
+.closeNote {
+  @include width(17);
+  }

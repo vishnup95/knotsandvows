@@ -40,7 +40,7 @@ class SocialAuthComponent extends Component {
             if (response && response.accessToken){
                 this.signIn(response.accessToken,"google");
             }else{
-                console.log(response.error);
+                // console.log(response.error);
             }
         }
 
@@ -48,7 +48,7 @@ class SocialAuthComponent extends Component {
             if (response && response.accessToken){
                 this.signIn(response.accessToken,"facebook");
             }else{
-                console.log(response);
+                // console.log(response);
             }
         }
 
@@ -62,7 +62,8 @@ class SocialAuthComponent extends Component {
                             callback={responseFacebook}
                             render={renderProps => (
                                 <Button color="primary" name="facebook" className={styles.authButton} onClick={renderProps.onClick}>
-                                    Sign up With Facebook
+                                    <span className={styles.fbimage}></span>
+                                    <span>Facebook</span>
                                 </Button>
                             )}
                         />
@@ -70,7 +71,8 @@ class SocialAuthComponent extends Component {
                             clientId="1085846553127-ano2e37t3a3jrtm9k19a588v63grvrfp.apps.googleusercontent.com"
                             render={renderProps => (
                                 <Button  name="google" onClick={renderProps.onClick} className={`${styles.authButton} ${styles.googleButton} mt-3` }>
-                                    Sign up With Google
+                                    <span className={styles.gmimage}></span>
+                                    <span>Google</span>
                                 </Button>
                             )}
                             buttonText="Login"

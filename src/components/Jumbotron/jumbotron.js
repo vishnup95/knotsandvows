@@ -7,21 +7,8 @@ import {
 } from 'reactstrap';
 import CardComponent from '../../components/Card/card';
 import PropTypes from 'prop-types';
-// import { imagePath } from '../../utils/assetUtils';
 import styles from './jumbotron.scss';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
-
-
-// const cardDetail = {
-//   title: "Gold Package",
-//   description:  "The Gold Package is designed to be all inclusive. It covers everything couples could possibly need on your wedding day, from a resident pianist to entertain your guests on arrival, a bridal suite and two guest rooms for the wedding night",
-//   buttonText: "Get Quote",
-//   priceNow: "₹1,600,000",
-//   priceBefore: "₹1,840,000",
-//   save: "₹2.4 Lacks (15% Off)"
-// }
-
-//  const mapArray = [1,2,3];
 
 class JumbotronComponent extends Component {
     constructor(props) {
@@ -36,7 +23,7 @@ class JumbotronComponent extends Component {
         return (
             <div className="mt-5 text-center">
                 {
-                    this.props.isTalkToAhwanam === true ? <TalkToWeddingPlanner buttonText={buttonText}/> : <Button color="danger" className={styles.button} onClick={this.props.buttonAction}>{buttonText}</Button>
+                    this.props.isTalkToAhwanam === true ? <TalkToWeddingPlanner buttonText={buttonText}/> : <Button className="primary-button" onClick={this.props.buttonAction}>{buttonText}</Button>
                 }
             </div>
         );
@@ -49,13 +36,13 @@ class JumbotronComponent extends Component {
 
         if (this.props.cardType) {
             return (
-                <p className={`w-75 mb-5 text-center ${styles.center} ${styles.pSmall}`}>
+                <p className={`w-75 mb-4 text-center ${styles.center} ${styles.pSmall}`}>
                     {subtitle}
                 </p>
             );
         } else {
             return (
-                <p className={`${styles.pLarge} ${styles.center} col-md-6 text-center`}>
+                <p className={`${styles.pLarge} ${styles.center} text-center mb-4`}>
                     {subtitle}
                 </p>
             )
@@ -64,14 +51,14 @@ class JumbotronComponent extends Component {
     }
 
     renderCards = (cardType) => {
-        if (!cardType || !this.props.items || this.props.children) {
+        if (!cardType || !this.props.items) {
             return <div></div>;
         }
 
         const cards = this.props.items.map((item, index) => {
 
-            return <Col xs="12" sm="4" key={index}>
-                <CardComponent cardDetails={item} cardType={cardType} />
+            return <Col xs="12" sm="4" className="d-none d-sm-block" key={index}>
+                <CardComponent cardDetails={item} cardType={cardType} category={this.props.category}/>
             </Col>
         });
 
@@ -82,14 +69,15 @@ class JumbotronComponent extends Component {
         return (
             <div>
                 <Jumbotron style={{ backgroundColor: this.props.bgcolor }} className="mb-0">
-                    <div className="container">
+                    <div className={this.props.containerStyle != 'packageWrap' ? (this.props.containerStyle != 'carouselWrap' ? (this.props.containerStyle === 'otherWrap' ? styles.otherWrap : 'container') : styles.carouselWrap) : styles.packageWrap}>
                         <h1 className="text-center">{this.props.data.title}</h1>
-                        <hr className="mt-3 mb-5" />
+                        {/* <hr className="mt-3 mb-5" /> */}
                         {this.renderSubtitle(this.props.data.subtitle)}
-                        {this.props.children}
+                        {this.props.insideContainer ?  this.props.children : ''}
                         {this.renderCards(this.props.cardType)}
                         {this.renderButton(this.props.data.buttonText)}
                     </div>
+                    {!this.props.insideContainer ?  this.props.children : ''}
                 </Jumbotron>
             </div>
         );
@@ -104,7 +92,14 @@ JumbotronComponent.propTypes = {
     buttonAction: PropTypes.func,
     items: PropTypes.array,
     children: PropTypes.node,
-    isTalkToAhwanam: PropTypes.bool
+    isTalkToAhwanam: PropTypes.bool,
+    category: PropTypes.string,
+    insideContainer: PropTypes.bool,
+    containerStyle: PropTypes.string
 };
+
+JumbotronComponent.defaultProps = {
+    insideContainer: true
+}
 
 export default JumbotronComponent;

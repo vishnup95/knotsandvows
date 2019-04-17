@@ -1,7 +1,6 @@
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
-// import { connectRouter } from 'connected-react-router';
 import { history, isServer } from './utilities';
 import axios from 'axios';
 import promiseMiddleware from 'redux-promise-middleware';
@@ -17,12 +16,11 @@ let baseUrl =
 
 const client = axios.create({
   baseURL: baseUrl,
-  withCredentials: true
+  withCredentials: false
 });
 
 export default (options = { logger: true }) => {
   // Create a history depending on the environment
-
   const enhancers = [];
 
   // Dev tools are helpful
@@ -40,7 +38,7 @@ export default (options = { logger: true }) => {
     promiseMiddleware(),
     clientMiddleware(client)
   ];
-  if (process.env.NODE_ENV !== 'production' && options.logger) {
+  if (options.logger) {
     const { createLogger } = require('redux-logger');
     const logger = createLogger({ collapsed: true });
     middleware.push(logger);

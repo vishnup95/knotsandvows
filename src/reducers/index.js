@@ -7,8 +7,10 @@ import SampleReducer from '../modules/sample/reducer';
 
 import { history } from '../utils/utilities';
 import ProductsReducer from '../modules/products/reducer';
-import VerifyEmailReducer from '../modules/verifyEmail/reducer';
 import TalkToAhwanamReducer from '../components/TalkToWeddingPlanner/reducer';
+import VendorDetailReducer from '../modules/detailPage/reducer';
+import CeremonyDetailReducer from '../modules/ceremonyDetail/reducer';
+import WishListReducer from '../modules/wishlist/reducer';
 
 const appReducer = combineReducers({
   session,
@@ -16,10 +18,11 @@ const appReducer = combineReducers({
   router: connectRouter(history),
   home: HomeReducer,
   sample: SampleReducer,
-  verifyEmail : VerifyEmailReducer,
   products: ProductsReducer,
-  talkToAhwanam: TalkToAhwanamReducer
-
+  talkToAhwanam: TalkToAhwanamReducer,
+  details: VendorDetailReducer,
+  ceremonyDetails : CeremonyDetailReducer,
+  wishlist : WishListReducer
 });
 
 const rootReducer = (state, action) => {

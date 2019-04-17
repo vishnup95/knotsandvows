@@ -1,4 +1,5 @@
 import * as types from './constants';
+
 const initialState = {
   productListData: {
     no_of_pages: 0,
@@ -11,7 +12,12 @@ const initialState = {
   loading: false,
   filterData: {
     header: null,
-    filters:[],
+    filters:null,
+    sort_options: []
+  },
+  tempfilterData: {
+    header: null,
+    filters:null,
     sort_options: []
   },
   other_categories : []
@@ -23,16 +29,26 @@ const ProductsReducer = (state = initialState, action) => {
     case types.LOAD_PRODUCTS:
       return {
         ...state,
+        productListData: initialState.productListData,
         loading: true
       };
 
     case types.LOAD_PRODUCTS_SUCCESS:
-      result = action.result || {};
-      return {
-        ...state,
-        productListData: result.data.data,
-        loading: false
-      };
+      result = action.result || {};    
+      if (action.isFirstLoading){
+        return {
+          ...state,
+          productListData: result.data.data,
+          loading: false
+        };
+      }else{
+        return {
+          ...state,
+          productListData: result.data.data,
+          filterData: {...state.filterData, sort_options: state.tempfilterData.sort_options, header: state.tempfilterData.header},
+          loading: false
+        };
+      }
 
     case types.LOAD_PRODUCTS_FAILURE:
       return {
@@ -45,37 +61,41 @@ const ProductsReducer = (state = initialState, action) => {
       case types.LOAD_FILTERS:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_FILTERS_SUCCESS:
       result = action.result || {};
-      return {
-        ...state,
-        filterData: result.data.data,
-        loading: false
-      };
-
+      var data = addStaticFilter(result.data.data);
+      if (action.isFirstLoading){
+        return {
+          ...state,
+          filterData: data,
+          tempfilterData : data
+        };
+      }else{
+        return {
+          ...state,
+          tempfilterData : data,
+          filterData : {...state.filterData, filters: data.filters}
+        };
+      }
+  
     case types.LOAD_FILTERS_FAILURE:
       return {
         ...state,
-        filterData: initialState.filterData,
         error: action.error.message,
-        loading: false
       };
 
       case types.LOAD_OTHER_CATEGORIES:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_OTHER_CATEGORIES_SUCCESS:
       result = action.result || {};
       return {
         ...state,
-        other_categories: result.data.results,
-        loading: false
+        other_categories: result.data.data.results,
       };
 
     case types.LOAD_OTHER_CATEGORIES_FAILURE:
@@ -83,12 +103,28 @@ const ProductsReducer = (state = initialState, action) => {
         ...state,
         other_categories: [],
         error: action.error.message,
-        loading: false
       };
 
     default:
       return state;
   }
 };
+
+function addStaticFilter(response) {
+   if (response && response.filters && response.filters.length >= 0){
+      var cityFilter  = {
+        display_name:"City",
+        name:"city",
+        values:[
+            {name: "Hyderabad", id: 0},
+            {name: "Secunderabad", id: 1},
+            {name: "Vijayawada", id: 2},
+            {name: "Vizag", id: 3}
+        ]
+      }
+      response.filters.splice(0,0,cityFilter);
+   }
+   return response;
+}
 
 export default ProductsReducer;

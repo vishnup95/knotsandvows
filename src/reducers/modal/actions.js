@@ -3,7 +3,7 @@ import * as types from './constants';
 export function showModal(message) {
     return {
         type: types.SHOW_MODAL,
-        message: message
+        popupContent: message
     }
 }
 

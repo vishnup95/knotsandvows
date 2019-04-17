@@ -4,33 +4,39 @@
 
 html {
   height: 100%;
-
- @include mobile{
+  @include mobile {
     font-size: 11px;
   }
- @include tablet{
+  @include tablet {
     font-size: 11px;
   }
- @include desktop{
+  @include desktop {
     font-size: 11px;
   }
- @include hd{
+  @include hd {
     font-size: 11px;
   }
- @include hdPlus{
+  @include hdPlus {
     font-size: 12px;
   }
- @include fullHd{
+  @include fullHd {
     font-size: 14px;
+  }
+  @include threeK {
+    font-size: 20px;
+  }
+  @include uHd {
+    font-size: 24px;
   }
 }
 
 body {
-  font-family: $nunito-regular;
+  font-family: $roboto-regular;
   font-size: 16px;
-  padding: 0;
+  padding: 0 !important;
+  overflow: auto !important;
   margin: 0;
-  color: $blue-dark;
+  color: $black-five;
 }
 
 #root {
@@ -38,6 +44,133 @@ body {
   position: relative;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: $playfair-regular;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $frank-regular;
+}
+
+h1,
+h2 {
+  @include fontSize(58);
+  color: $secondary-color;
+  @include mobile {
+    font-size: 20px !important;
+  }
+}
+
+.main {
+  min-height: calc(100vh - 40rem);
+  // margin-top: 10.33125rem;
+  margin-top: calc(50px + 4.9rem);
+  @include mobile {
+    margin-top: 4.9375rem;
+  }
+}
+
+.primary-button {
+  font-size: 14px;
+  background-color: $primary-color;
+  font-family: $roboto-medium;
+  @include letterSpacing(.5);
+  @include padding(12,22);
+  @include borderRadius(8);
+  min-width: 8rem;
+  color: $white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  @include margin(0,8);
+  @include tablet {
+     @include fontSize(16);
+
+  }
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+    background-color: #E54291;
+  }
+
+  &:active {
+    background-color: #E54291;
+  }
+
+  &.medium-pink {
+    background-color: $medium-pink;
+    font-family: $roboto-bold;
+
+  }
+
+  &.white {
+    background-color: $white;
+    color: $medium-pink;
+    font-family: $roboto-bold;
+
+  }
+}
+
+.secondary-button {
+  @extend .primary-button;
+  background-color: grey;
+}
+
+.text-btn {
+  color: $primary-color;
+  font-family: $roboto-medium;
+  background: none;
+  border: none;
+  @include margin(0,8);
+  cursor: pointer;
+
+  &:hover {
+    background: none;
+    color: $primary-color;
+  }
+
+  &.small {
+    @include fontSize(16);
+  }
+}
+
+.spinner-margin {
+  // margin: 0 0px 0 -15px;
+  @include margin(0,5,0,-15);
+}
+
+.mobile-only {
+  @include tablet {
+    display: none !important;
+  }
+}
+
+.tab-only {
+  @include mobile {
+    display: none !important;
+  }
+}
+.p-relative {
+  position: relative;
+}
+.no-padding-mobile {
+  @include mobile {
+    padding: 0;
+  }
+}
+.mobile-column {
+  @include mobile {
+    flex-direction: column !important;
+  }
+}
+.align-center {
+  align-items: center !important;
+}
+.mobile-col-reverse {
+  @include mobile {
+    flex-direction: column-reverse;
+  }
 }

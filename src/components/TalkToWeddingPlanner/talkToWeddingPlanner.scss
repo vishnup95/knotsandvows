@@ -3,13 +3,14 @@
 @import '../../variables/utils';
 
 .talk-popup {
-  @include width(503);
+  @include width(544);
 }
+
 .login-form {
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  @include width(503);
+  // @include width(544);
   @include tablet {
      @include padding(55);
   }
@@ -22,38 +23,31 @@
 }
 
 .image {
-  @include height(60);
-  @include width(60);
-  @include margin(0,25.8,0,0);
+  @include width(143);
+  height: auto;
+  max-width: 143px;
 }
 
 .heading {
   @include fontSize(22);
-  font-family: $nunito-bold;
+  font-family: $roboto-medium;
   color: $black-nine;
 }
 
-.button {
-  @include borderRadius(3);
-  @include padding(12,24);
-  font-family: $nunito-bold;
-  border-radius: .15rem;
-  background-color: $bright-red;
-  border: none;
+.apiError {
   @include fontSize(16);
-  @include letterSpacing(.4);
-  @extend %uppercase;
-  color: $white;
+  color: $bright-red;
+  position: absolute;
+  top: 7.5rem;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }
 
-.cancel-btn {
-  color: $warm-grey-six;
-  font-family: $nunito-bold;
-  background: none;
-  border: none;
-
-  &:hover {
-    background: none;
-    color: inherit;
-  }
+.closeBtn {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  cursor: pointer;
 }

@@ -19,8 +19,13 @@ export const LOAD_LOGOUT_SUCCESS =
       'my-project/session/LOAD_LOGOUT_FAILURE';
 
 export const SHOW_LOGIN = 'my-project/session/SHOW_LOGIN';
-
 export const HIDE_LOGIN = 'my-project/session/HIDE_LOGIN';
+
+export const SHOW_FORGOT_PASSWORD = 'my-project/session/SHOW_FORGOT_PASSWORD';
+export const HIDE_FORGOT_PASSWORD = 'my-project/session/HIDE_FORGOT_PASSWORD';
+
+export const SHOW_RESET_PASSWORD = 'my-project/session/SHOW_RESET_PASSWORD';
+export const HIDE_RESET_PASSWORD = 'my-project/session/HIDE_RESET_PASSWORD';
 
 export const REQUEST_FORGOT = 'my-project/session/REQUEST_FORGOT';
 export const REQUEST_FORGOT_SUCCESS = 'my-project/session/REQUEST_FORGOT_SUCCESS';
@@ -29,3 +34,22 @@ export const REQUEST_FORGOT_FAILURE = 'my-project/session/REQUEST_FORGOT_FAILURE
 export const RESET_PASSWORD = 'my-project/session/RESET_PASSWORD';
 export const RESET_PASSWORD_SUCCESS = 'my-project/session/RESET_PASSWORD_SUCCESS';
 export const RESET_PASSWORD_FAILURE = 'my-project/session/RESET_PASSWORD_FAILURE';
+
+
+export const LOAD_VERIFY_EMAIL = 'my-project/session/LOAD_VERIFY_EMAIL';
+export const LOAD_VERIFY_EMAIL_SUCCESS = 'my-project/session/LOAD_VERIFY_EMAIL_SUCCESS';
+export const LOAD_VERIFY_EMAIL_FAILURE = 'my-project/session/LOAD_VERIFY_EMAIL_FAILURE';
+
+export const LOAD_UPDATE_PROFILE = 'my-project/session/LOAD_UPDATE_PROFILE';
+export const LOAD_UPDATE_PROFILE_SUCCESS = 'my-project/session/LOAD_UPDATE_PROFILE_SUCCESS';
+export const LOAD_UPDATE_PROFILE_FAILURE = 'my-project/session/LOAD_UPDATE_PROFILE_FAILURE';
+
+export const LOAD_PROFILE = 'my-project/session/LOAD_PROFILE';
+export const LOAD_PROFILE_SUCCESS = 'my-project/session/LOAD_PROFILE_SUCCESS';
+export const LOAD_PROFILE_FAILURE = 'my-project/session/LOAD_PROFILE_FAILURE';
+
+export const LOAD_VALIDATE_LINK = 'my-project/session/LOAD_VALIDATE_LINK';
+export const LOAD_VALIDATE_LINK_SUCCESS = 'my-project/session/LOAD_VALIDATE_LINK_SUCCESS';
+export const LOAD_VALIDATE_LINK_FAILURE = 'my-project/session/LOAD_PROFILE_FAILURE';
+
+export const CLEAR_ERRORS = 'my-project/session/CLEAR_ERRORS';

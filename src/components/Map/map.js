@@ -29,7 +29,7 @@ class MapComponent extends Component {
          let lat = this.props.lat;
          let lng = this.props.lng;
         return (
-            <div style={{width:'400px', height:'500px'}}>
+            <div className={styles.mapWrap}>
                 <Map className={styles.map} google={this.props.google} zoom={8}
                 initialCenter={{
                     lat: lat,

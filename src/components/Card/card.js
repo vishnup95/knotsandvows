@@ -10,10 +10,12 @@ class CardComponent extends Component {
     switch(this.props.cardType) {
       case 'plain':
         return <PlainCard data={this.props.cardDetails}></PlainCard>;
+      case 'ceremonies':
+        return <PlainCard data={this.props.cardDetails} type={this.props.cardType}></PlainCard>;
       case 'detailed':
         return <ExclusiveCard data={this.props.cardDetails}/>
       case 'category':
-        return <CategoryCard data={this.props.cardDetails}/>
+        return <CategoryCard data={this.props.cardDetails} category={this.props.category}/>
     }
   }
 
@@ -28,7 +30,8 @@ class CardComponent extends Component {
 
 CardComponent.propTypes = {
   cardType: PropTypes.string,
-  cardDetails: PropTypes.object
+  cardDetails: PropTypes.object,
+  category: PropTypes.string
 };
 
 export default CardComponent;

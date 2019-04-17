@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 62 62">
+    <defs>
+        <style>
+            .cls-1,.cls-2,.cls-4{fill:none}.cls-1,.cls-2{stroke:#fff;stroke-width:2px}.cls-2{stroke-linecap:round}.cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="Group_1192" data-name="Group 1192" transform="translate(-1757 -126)">
+        <g id="Ellipse_8" class="cls-1" data-name="Ellipse 8" transform="translate(1757 126)">
+            <circle cx="31" cy="31" r="31" class="cls-3"/>
+            <circle cx="31" cy="31" r="30" class="cls-4"/>
+        </g>
+        <g id="Group_1191" data-name="Group 1191" transform="translate(-8.5 11.5)">
+            <path id="Line_60" d="M0 20L19.866 0" class="cls-2" data-name="Line 60" transform="translate(1786.5 135.5)"/>
+            <path id="Line_61" d="M19.866 20L0 0" class="cls-2" data-name="Line 61" transform="translate(1786.5 135.5)"/>
+        </g>
+    </g>
+</svg>

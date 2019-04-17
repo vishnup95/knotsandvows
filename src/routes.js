@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import AuthService from './services/auth-service';
 import PropTypes from 'prop-types';
+import { isLoggedIn } from '../src/utils/utilities';
 
 const LoadableHome = Loadable({
   loader: () => import(/* webpackChunkName: 'home' */ './modules/home/Home'),
@@ -25,12 +25,12 @@ const LoadableCategoryListing = Loadable({
   }
 });
 
-const LoadableExclusiveDeals = Loadable({
-  loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/exclusiveDeals/ExclusiveDeals'),
-  loading() {
-    return <div>Loading...</div>;
-  }
-});
+// const LoadableExclusiveDeals = Loadable({
+//   loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/exclusiveDeals/ExclusiveDeals'),
+//   loading() {
+//     return <div>Loading...</div>;
+//   }
+// });
 
 // const LoadablePlanningTool = Loadable({
 //   loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/planningTool/PlanningTool'),
@@ -39,19 +39,12 @@ const LoadableExclusiveDeals = Loadable({
 //   }
 // });
 
-const LoadableCartPage = Loadable({
-  loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/cartPage/CartPage'),
+const LoadableWishlist = Loadable({
+  loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/wishlist/wishlist'),
   loading() {
     return <div>Loading...</div>;
   }
 });
-
-// const LoadableCheckout = Loadable({
-//   loader: () => import(/* webpackChunkName: 'exclusiveDeals' */ './modules/checkout/Checkout'),
-//   loading() {
-//     return <div>Loading...</div>;
-//   }
-// });
 
 const LoadableSample = Loadable({
   loader: () =>
@@ -67,6 +60,21 @@ const LoadableAbout = Loadable({
     return <div>Loading...</div>;
   }
 });
+
+const LoadableServices = Loadable({
+  loader: () => import(/* webpackChunkName: 'login' */ './modules/services/Services'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
+const LoadableBookings = Loadable({
+  loader: () => import(/* webpackChunkName: 'login' */ './modules/bookings/Bookings'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
 
 const LoadableLogin = Loadable({
   loader: () => import(/* webpackChunkName: 'login' */ './modules/login/Login'),
@@ -89,26 +97,46 @@ const LoadableNotFound = Loadable({
   }
 });
 
-const LoadableVerifyEmail = Loadable({
-  loader: () => import(/* webpackChunkName: 'login' */ './modules/verifyEmail/VerifyEmail'),
+const LoadableCeremonyDetail = Loadable({
+  loader: () => import(/* webpackChunkName: 'planyourparty' */ './modules/ceremonyDetail/CeremonyDetail'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+const LoadableTermsAndConditions = Loadable({
+  loader: () => import(/* webpackChunkName: 'termsandconditions' */ './modules/TermsAndConditions/termsAndConditions'),
   loading() {
     return <div>Loading...</div>;
   }
 });
 
-const LoadableResetPassword = Loadable({
-  loader: () => import(/* webpackChunkName: 'resetpassword' */ './modules/resetPassword/ResetPassword'),
+const LoadablePrivacyAndPolicy = Loadable({
+  loader: () => import(/* webpackChunkName: 'termsandconditions' */ './modules/PrivacyAndPolicy/privacyAndPolicy'),
   loading() {
     return <div>Loading...</div>;
   }
 });
 
-// const LoadableBookingConfirmation = Loadable({
-//   loader: () => import(/* webpackChunkName: 'login' */ './modules/bookingConfirmation/BookingConfirmation'),
-//   loading() {
-//     return <div>Loading...</div>;
-//   }
-// });
+const LoadableMyProfile = Loadable({
+  loader: () => import(/* webpackChunkName: 'planyourparty' */ './modules/myProfile/MyProfile'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
+const LoadableGoldPackage = Loadable({
+  loader: () => import(/* webpackChunkName: 'goldPackage' */ './modules/packages/Gold/goldPackage'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
+
+const LoadableEmeraldPackage = Loadable({
+  loader: () => import(/* webpackChunkName: 'goldPackage' */ './modules/packages/Emerald/emeraldPackage'),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
 
 const PrivatePage = () => <div> private Page </div>;
 
@@ -116,17 +144,24 @@ const SecretRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      AuthService.isAuthenticated === true ? (
+        
+       isLoggedIn() ?
+       (
         <Component {...props} />
       ) : (
-        <Redirect to="/?login=true" />
+        <Redirect to={`/?login=true&redirect=${props.location.pathname}`} />
+        // <Redirect to={{
+        //   pathname: '/login',
+        //   state: { from: props.location }
+        // }} />
       )
     }
   />
 );
 
 SecretRoute.propTypes = {
-  component: PropTypes.func
+  component: PropTypes.func,
+  location: PropTypes.object
 };
 
 const routes = (
@@ -134,19 +169,27 @@ const routes = (
   <Switch>
     <Route exact path="/login" component={LoadableLogin} />
     <Route exact path="/" component={LoadableHome} />
-    <Route exact path="/verify" component={LoadableVerifyEmail} />
-    <Route exact path="/resetpassword" component={LoadableResetPassword} />
-    <Route exact path="/category/:category_name" component={LoadableProducts} />
+    <Route exact path="/verify" component={LoadableHome} />
+    <Route exact path="/resetpassword" component={LoadableHome} />
+    <Route exact path="/categories/:category_name" component={LoadableProducts} />
     <Route exact path="/categories" component={LoadableCategoryListing} />
-    <Route exact path="/exclusive" component={LoadableExclusiveDeals} />
+    {/* <Route exact path="/packages" component={LoadableExclusiveDeals} /> */}
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
-    <Route exact path="/wishlist" component={LoadableCartPage} />
-    {/* <Route exact path="/checkout" component={LoadableCheckout} /> */}
+    <SecretRoute exact path="/wishlist" component={LoadableWishlist} />
     <Route path="/about" component={LoadableAbout} />
+    <Route path="/services" component={LoadableServices} />
+    <SecretRoute path="/bookings" component={LoadableBookings} />
     <Route path="/sample" component={LoadableSample} />
-    <Route path="/detail" component={LoadableDetail} />
-    {/* <Route path="/booking-confirmation" component={LoadableBookingConfirmation} /> Will change to secret route  */}
+    <Route path="/ceremonies/:ceremony_name" component={LoadableCeremonyDetail} />
+    <Route path="/vendor-detail/:category_name/:vendor_name" component={LoadableDetail} />
+    <Route exact path="/terms-and-conditions" component={LoadableTermsAndConditions} />
+    <Route exact path="/privacy-policy" component={LoadablePrivacyAndPolicy} />
+    <Route path="/packages/wedding-gold-package/" component={LoadableGoldPackage} />
+    <Route path="/packages/wedding-emerald-package/" component={LoadableEmeraldPackage} />
+
     <SecretRoute path="/dashboard" component={PrivatePage} />
+    <SecretRoute path="/profile" component={LoadableMyProfile} />
+    
     <Route component={LoadableNotFound} />
   </Switch>
   // </Suspense>

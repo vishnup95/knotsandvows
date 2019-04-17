@@ -1,9 +1,166 @@
 @import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
 
-.title {
-  color: $blue;
+.aboutContainer {
+  .aboutCover {
+    @include height(700);
+    position: relative;
+    background: url('/images/about_cover.jpg');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat; 
+
+    @include mobile {
+      @include height(600);
+    }
+  }
+
+  .h3Class {
+    @include fontSize(48);
+    line-height: 4rem;
+    @include letterSpacing(1.44);
+    width: 95%;
+    text-align: center;
+    
+    @include mobile {
+      @include fontSize(35);
+      width: 98%;
+    }  
+  }
+
+  .h4Class {
+    @include fontSize(30);
+    width: 92%;
+    @include letterSpacing(.54);
+    line-height: 2.5rem;
+    margin-bottom: 2rem;
+
+    @include mobile {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .pClass {
+    @include fontSize(18);
+    @include letterSpacing(.31);
+    color: #484848;
+    line-height: 1.8rem;
+    width: 80%;
+
+    @include mobile {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .pSmallClass {
+    @include fontSize(14);
+    @include letterSpacing(.31);
+    color: #ffffff;
+    line-height: 1.6rem;
+
+    height: calc(68% - 10px);
+    overflow: hidden;
+  }
 }
 
-.react-logo {
-  width: 200px;
+.aboutSubContainer {
+  @media only screen and (min-width: 992px) {
+    max-width: 750px;
+  }
+  @include hd {
+    max-width: 80%;
+  }
+  @include hdPlus {
+    max-width: 80%;
+  }
+}
+
+.memberContainer {
+  text-align: center;
+  position: relative;
+  background-color: #f4f4f4;
+  @include borderRadius(10);
+  @include margin(0, 5);
+
+  .memeberInfo {  
+    @include padding(20,10);
+    @include borderRadius(10);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    height: 100%;
+
+    .memberName {
+      font-family: $roboto-medium;
+      @include fontSize(22);
+      color: $black;
+    }
+  
+    .memberPosition {
+      font-family: $roboto-regular;
+      @include fontSize(18);
+      color: #959595;
+    }
+
+  }
+
+  .imageCover {
+    @include borderRadius(10);
+    cursor: pointer;
+    width: 100%;
+    background-size: cover; 
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &:before {
+      content: "";
+      display: block;
+      padding-top: 110%;
+    }
+
+    .hoverContainer {
+      @include borderRadius(10);
+      @include padding(10, 20);
+      transition: .8s cubic-bezier(0.4, 0, 1, 1);
+      background-color: rgba(92, 55, 99, 0.9);
+      opacity: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 0%;
+      width: 100%;
+      color: white;
+    }
+
+    &:hover {
+      .hoverContainer {
+        height: 85%;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.iconContainer {
+  a {
+    img {
+      height: 1.52rem;
+      width: 1.52rem;
+      margin-left: 1rem;
+      display: inline-block;
+    }
+
+    &:first-child {
+      img {
+        margin-left: 0;
+      }
+    }
+  }
+  margin-bottom: 2rem;
+  @include mobile {
+    margin-top: 2rem;
+  }
 }

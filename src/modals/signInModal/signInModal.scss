@@ -9,14 +9,14 @@
 }
 
 .heading {
-  @include fontSize(22);
-  font-family: $nunito-bold;
+  @include fontSize(18);
+  font-family: $roboto-medium;
   color: $black-nine;
 }
 
 .input {
   font-size: 1.1rem;
-  font-family: $nunito-regular;
+  font-family: $roboto-regular;
   color: $black-five;
   margin: .5rem;
   letter-spacing: .035px;
@@ -24,31 +24,20 @@
 
 .detail-bold {
   font-size: 1.1rem;
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   color: $black-five;
   letter-spacing: .035px;
 }
 
 .detail-link {
   font-size: 1.1rem;
-  font-family: $nunito-regular;
-  color: $bright-red;
+  font-family: $roboto-regular;
+  color: $primary-color;
   letter-spacing: .035px;
   cursor: pointer;
   background-color: transparent;
   border: none;
   padding: 0;
-}
-
-.button {
-  @include padding(16, 29);
-  @include fontSize(16);
-  border-radius: .15rem;
-  background-color: $bright-red;
-  font-family: $nunito-bold;
-  letter-spacing: .4px;
-  text-transform: uppercase;
-  color: white;
 }
 
 .forgotButton {
@@ -65,8 +54,8 @@
 .orLine {
   display: flex;
   justify-content: space-between;
-  margin-top: 1.4rem;
-  font-family: $nunito-regular;
+  margin-top: 1.5rem;
+  font-family: $roboto-regular;
   @include fontSize(16);
   color: #535353;
   letter-spacing: .48px;
@@ -80,16 +69,23 @@
   }
 }
 
+.pWith {
+  @include fontSize(18);
+  font-family: $roboto-regular;
+  color: #070707;
+  @include letterSpacing(0.54);
+}
+
 .login {
   @include fontSize(16);
-  font-family: $nunito-bold;
-  color: $bright-red;
+  font-family: $roboto-bold;
+  color: $primary-color;
   background-color: transparent;
   cursor: pointer;
   border: 0;
 
   &:hover {
-    color: $bright-red;
+    color: $primary-color;
     text-decoration: none;
   }
 }
@@ -99,8 +95,8 @@
   @include width(260);
   @include fontSize(16);
   border-radius: .15rem;
-  background-color: $bright-red;
-  font-family: $nunito-bold;
+  background-color: $primary-color;
+  font-family: $roboto-bold;
   letter-spacing: .4px;
   text-transform: uppercase;
   color: white;
@@ -114,17 +110,20 @@
 }
 
 .footerText {
-  font-family: $nunito-regular;
+  font-family: $roboto-regular;
   @include fontSize(16);
   letter-spacing: .48px;
   color: $black-ten;
 
   span {
-    color: $bright-red;
+    a {
+      color: $primary-color;
+
+    }
   }
 
   .bold {
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
   }
 }
 
@@ -137,6 +136,8 @@
 
 .login-container {
   display: flex;
+  // @include height(817);
+  height: 57rem;
 }
 
 .login-form {
@@ -161,12 +162,24 @@
 .logoWrap {
   display: flex;
   align-items: center;
-  @include margin(0,0,35)
+  @include margin(0,0,40)
+}
+
+.apiError {
+  @include fontSize(16);
+  color: $bright-red;
+  position: absolute;
+  top: 7rem;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }
 
 .image {
-  @include height(60);
-  @include width(60);
+  @include height(50);
+  width: auto;
+  max-width: 143px;
   @include margin(0,25.8,0,0);
 }
 
@@ -174,4 +187,5 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include margin(32, 0, 48);
 }

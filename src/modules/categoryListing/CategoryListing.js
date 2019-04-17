@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
-import { InputGroup, Button, InputGroupAddon, Input, Jumbotron, Container, Row, Col } from 'reactstrap';
-import styles from './categoryListing.scss';
-import * as actions from '../home/actions';
+import * as actions from '../ceremonyDetail/actions';
+import { Container, Row, Col } from 'reactstrap';
+import styles from '../ceremonyDetail/CeremonyDetail.scss';
+import LoaderComponent from '../../components/Loader/loader';
+import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-import NoResultComponent from '../../components/noResult/noResult';
-import CardComponent from '../../components/Card/card';
+import CategorySection from '../ceremonyDetail/categorySection';
 
 const mapStateToProps = state => ({
-  user: state.session.user,
-  categories: state.home.categories,
+  allVendorDetails: state.ceremonyDetails.allVendorDetails,
+  isLoading: state.ceremonyDetails.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,26 +23,24 @@ const mapDispatchToProps = dispatch => ({
 
 const jumbotronData = {
   title: 'Need Help?',
-  buttonText: 'Chat With Ahwanam',
-  subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by click the Chat button below and they’ll help you get your party started.'
+  buttonText: 'Talk to our wedding planner!',
+  subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by clicking the Chat button below and they’ll help you get your party started.'
 };
   
 class CategoryListing extends Component {
-  state = {filteredItems : [], searchTerm: ''};
-  static fetchData(store) {
-    // Normally you'd pass action creators to "connect" from react-redux,
-    // but since this is a static method you don't have access to "this.props".
+  state = {
+    categories: [],
+    fixedCategories: []
+  }
 
-    // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
-    return store.dispatch(actions.fetchCategories());
+  static fetchData(store) {
+    return store.dispatch(actions.fetchAllVendors());
   }
 
   componentWillMount() {
-    if (this.props.categories.length === 0) {
-      this.props.dispatch(actions.fetchCategories());
-    } else {
-      this.setState({filteredItems: this.props.categories});
-    }
+    if (!this.props.allVendorDetails || this.props.allVendorDetails.categories.length == 0){
+      this.props.dispatch(actions.fetchAllVendors());
+    } 
   }
 
   componentDidMount() {
@@ -49,22 +48,11 @@ class CategoryListing extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({filteredItems: nextProps.categories});
-  }
-
-  onSearchInputChange(e) {
-    this.setState({searchTerm: e.target.value});
-
-    if (e.target.value.length === 0) {
-      this.setState({ filteredItems: this.props.categories });    
-    } else {
-      let filteredItems = this.props.categories.filter((item) => {
-        let itemName = item.name.toLowerCase();
-        return itemName.indexOf(
-          e.target.value.toLowerCase()) !== -1
-      });
-  
-      this.setState({filteredItems});
+    if(nextProps.allVendorDetails !== null && nextProps.allVendorDetails.categories !== null) {
+      let filteredCategories = nextProps.allVendorDetails.categories.filter(item => {
+        return item.vendors !== null && item.vendors.length > 0
+      })
+      this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
     }
   }
 
@@ -72,39 +60,43 @@ class CategoryListing extends Component {
     this.props.dispatch(push(route));
   }
 
+  handleCategoryChange = (index) => {
+    let updatedCategories = this.state.fixedCategories.slice();
+    let temp = updatedCategories[0];
+    updatedCategories[0] = updatedCategories[index];
+    updatedCategories[index] = temp;
+    this.setState({categories: updatedCategories});
+  }
+
   render() {
+    
     return (
-      <div style={{marginTop:'6.0625rem'}}>
-        <Jumbotron className="mb-0 bg-white">
-            <h1 className="text-center">Browse Categories</h1>
-            <hr className="mt-3 mb-5" />
+      <div className="full-height">
+          <div className={styles.ceremonyDetail}>
+            <Container>
+              <Row>
+                <Col className="mb-4">
+                  <h2 className="text-center">Browse all vendors</h2>
+                  <p className={styles.subTitle}>Guaranteed best prices from all our vendors</p>
+                </Col>
+              </Row>
+              {this.props.isLoading && <LoaderComponent />}
+              {this.state.fixedCategories.length > 0 && <Row className={`mb-3 ${styles.fullWidthListing}`}>
+                <Col className="no-padding">
+                  <HorizontalSlider data={this.state.fixedCategories} type='small' buttonAction={this.handleCategoryChange}/>
+                </Col>
+              </Row>}
+              {
+                this.state.categories.map((category, index) => {
+                  return (
+                    <CategorySection category={category} key={index} dispatch={this.props.dispatch}/>
+                  );
+                })
+              }
+            </Container>
+          </div>
 
-            <InputGroup className={styles.searchField}>
-              <Input bsSize="lg" placeholder="Search Categories" onChange={(event) => this.onSearchInputChange(event)} value={this.state.searchTerm}/>
-              <InputGroupAddon addonType="append">
-                <Button color="danger"></Button>
-              </InputGroupAddon>
-            </InputGroup>
-
-            {
-              this.state.filteredItems.length === 0 ? <NoResultComponent/> : 
-
-              <Container>
-                <Row>
-                  {
-                    this.state.filteredItems.map((item, index) => {
-                      return  <Col xs="12" sm="4" key={index}>
-                                <CardComponent cardDetails={item} cardType="plain"/>
-                              </Col>
-                    })
-                  }
-                </Row>
-              </Container>
-            }
-
-        </Jumbotron>
-
-        <JumbotronComponent  data={jumbotronData} bgcolor="#f8f8f8" />
+        <JumbotronComponent  data={jumbotronData} bgcolor="#f8f8f8" isTalkToAhwanam={true} containerStyle="otherWrap"/>
       </div>
     );
   }
@@ -112,9 +104,9 @@ class CategoryListing extends Component {
 
 CategoryListing.propTypes = {
   user: PropTypes.object,
+  allVendorDetails: PropTypes.object,
+  isLoading: PropTypes.bool,
   dispatch: PropTypes.func,
-  categories: PropTypes.array,
-  router: PropTypes.object,
 };
 
 export default connect(

@@ -1,6 +1,7 @@
 // import { hideLoader } from '../../modules/app/actions';
 // import { updateUser } from '../../modules/auth/actions';
 import { SUCCESS_DEFAULT, FAILURE_DEFAULT } from '../constants';
+import { isLoggedIn } from './utilities';
 
 export default function clientMiddleware(client) {
   
@@ -13,7 +14,7 @@ export default function clientMiddleware(client) {
       if (!promise) {
         return next(action);
       }
-
+      client.defaults.headers = authHeader();
       // dispatch(showLoadingIndicator());
       const [
         REQUEST,
@@ -43,6 +44,7 @@ export default function clientMiddleware(client) {
           },
           error => {
             //   dispatch(hideLoader());
+            error.message = "Unexpected error occured, try again later";
             next({ ...rest, error, type: FAILURE });
           }
         )
@@ -56,4 +58,13 @@ export default function clientMiddleware(client) {
       return actionPromise;
     };
   };
+}
+
+export function authHeader() {
+  // return authorization header with basic auth credentials
+  if (isLoggedIn()) {
+       return { 'Authorization': window.localStorage.getItem('token') };
+  } else {
+      return {};
+  }
 }

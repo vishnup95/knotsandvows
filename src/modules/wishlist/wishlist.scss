@@ -1,0 +1,296 @@
+@import '../../variables/colors';
+@import '../../variables/utils';
+@import '../../variables/fonts';
+@import '../../variables/breakpoints';
+
+.subTitle {
+  text-align: center;
+}
+
+.listTitle {
+  color: $black;
+  @include fontSize(24);
+  cursor: pointer;
+  background: url('/images/filter-dropdown.png') right no-repeat;
+  padding-right: 2.5rem;
+  width: max-content;
+}
+
+.vendorList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.listItem {
+  @include fontSize(20);
+  padding: 1rem;
+  cursor: pointer;
+
+  &.active {
+    color: $primary-color;
+  }
+
+  @include mobile {
+    padding-left: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-family: $frank-regular;
+    color: $black;
+    background: url(/images/dropicon.svg) no-repeat 90% 47%;
+
+    &.active {
+      background: none;
+    }
+  }
+}
+
+.listDetailContainer {
+  background-color: $white-two;
+  box-shadow: 0 0 10px 0 $black-16;
+  @include padding(15,37);
+  @include borderRadius(5);
+}
+
+.addNew {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #FEF1F7;
+  border: 1px dashed $primary-color;
+  // @include width(403);
+  width: auto;
+  @include height(362);
+  @include borderRadius(18);
+  @include margin(16,0);
+  @include fontSize(24);
+  color: $primary-color;
+  cursor: pointer;
+}
+
+.addBtn {
+  @include width(114);
+  @include height(114);
+  border: 1px dashed $primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: url('/images/plus.svg') center no-repeat;
+  background-size: 40%;
+  background-color: $white;
+
+}
+
+.vendorName {
+  @include fontSize(30);
+  color: $black;
+}
+
+.subText {
+  @include fontSize(20);
+
+  @include mobile {
+    font-family: $frank-regular;
+  }
+}
+
+.selectedCount {
+  @include fontSize(20);
+  font-family: $roboto-medium;
+}
+
+.collaboratorList {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.collaborator {
+  @include width(36);
+  @include height(36);
+  border: 1px solid $primary-color;
+  border-radius: 50%;
+  color: $primary-color;
+  @include fontSize(18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2px;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    .toolTip {
+      display: block;
+    }
+  }
+
+  @include mobile {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.toolTip {
+  position: absolute;
+  @include top(36);
+  left: 50%;
+  padding: .25rem .5rem;
+  transform: translateX(-50%);
+  background: $white;
+  box-shadow: 0 3px 6px 0 $black-16;
+  white-space: nowrap;
+  color: $black-nine;
+  @include fontSize(13);
+  border-radius: 3px;
+  cursor: pointer;
+  display: none;
+  // &:before {
+  //   content: '';
+  //   width: 1rem;
+  //   height: 1rem;
+  //   transform: rotate(90deg);
+  //   background-color: red;
+  // }
+}
+
+.collaboratorCount {
+  @include width(36);
+  @include height(36);
+  background-color: $primary-color;
+  color: $white;
+  @include fontSize(18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 0 2px;
+  cursor: default;
+}
+
+.addCollaborator {
+  @include width(36);
+  @include height(36);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2px;
+  background: url('/images/add-collaborator.svg') center no-repeat;
+  background-size: 80%;
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &:hover {
+    background-size: 100%;
+  }
+}
+
+.contribution {
+  box-shadow: 0 0 10px 0 $black-16;
+  @include padding(23,37);
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  @include borderRadius(5);
+
+  h5 {
+    @include fontSize(16);
+    @include padding(0,51);
+    font-family: $roboto-medium;
+    @include margin(16,0);
+
+  }
+
+  @include mobile {
+    margin: 0 -2.5rem;
+    background-color: rgb(254, 250, 250);
+  }
+
+}
+
+.contributionList {
+  @include padding(0,51);
+
+  span {
+    font-family: $roboto-medium;
+    @include height(26);
+    @include borderRadius(30);
+    border: 1px solid $warm-grey-two;
+    @include fontSize(14);
+    line-height: 1.4;
+    @include padding(5,10);
+    @include margin(4,8);
+  }
+
+  @include mobile {
+    margin-bottom: 2rem;
+
+    span {
+      color: $warm-grey-two;
+    }
+  }
+}
+
+
+.comparePopup {
+  h3 {
+    @include fontSize(30);
+    font-family: $roboto-regular;
+    margin: 2rem 0;
+    text-align: center;
+    color: $black;
+  }
+
+  hr {
+    border-top: 1px solid $warm-grey-two;
+    width: 100%;
+  }
+}
+
+.label {
+  font-family: $roboto-medium;
+  @include fontSize(16);
+  color: $black;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &:first-child {
+    margin-top: 10rem;
+    @include margin(380,0,0);
+    @include height(51);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &:nth-child(2) {
+    height: 4rem;
+  }
+}
+
+.compareContainer {
+  padding: 1rem 3rem;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  cursor: pointer;
+
+}
+
+
+// mobile view
+
+.view-all {
+  color: $primary-color;
+  @include fontSize(18);
+  font-family: $roboto-medium;
+  width: max-content;
+  cursor: pointer;
+  margin: 0 auto;
+}

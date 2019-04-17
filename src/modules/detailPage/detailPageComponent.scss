@@ -12,33 +12,38 @@
 
 .bg-image {
   width: 100%;
-  height: 712px / 16px * 1rem;
+  @include height(450);
 }
 
 .detail-section {
-  width: 85%;
   margin: 0 auto;
+  width: 90%;
+  @include tablet {
+    width: 85%;
+  }
 }
 
 .info-box {
   @include flex;
   @include justify-space-between;
+  align-items: flex-start;
   background-color: rgba(255, 255, 255, .97);
-  @include borderRadius(3,3,0,0);
   box-shadow: 0 3px 6px 0 $black-16;
   @include padding(20,35);
   color: $black-five;
-  @include height(160);
-  @include margin(-160,0,0);
+  flex-direction: column;
+  border-radius: 10px;
+  margin: -60px 0 16px;
 
   h3 {
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     @include fontSize(30);
     letter-spacing: .5px;
+    text-transform: uppercase;
   }
 
   p {
-    font-family: $nunito-regular;
+    font-family: $roboto-regular;
     @include fontSize(18);
     letter-spacing: .9px;
 
@@ -50,6 +55,12 @@
   a {
     color: $warm-grey;
   }
+  @include tablet {
+     @include height(160);
+    flex-direction: row;
+    @include borderRadius(14,14,0,0);
+    @include margin(-160,0,0);
+  }
 }
 
 .rating {
@@ -59,25 +70,33 @@
 
 .review {
   @include fontSize(14);
-  @extend %uppercase;
+  font-family: $roboto-medium;
+  color: $black-ten;
 }
 
 .view-btn-wrap {
-  border-left: 1px solid $warm-grey;
   @include flex;
+  flex-direction: column;
   @include align-center;
   @include justify-center;
-  @include padding(28.5, 0, 28.5, 28.5);
+  @include tablet {
+     @include padding(0, 0, 0, 28.5);
+    border-left: 1px solid $warm-grey;
+
+  }
 }
 
 .detail-nav {
-  @include flex;
-  @include justify-space-between;
-  @include align-center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   @include padding(0,35);
   @include height(60);
-  margin: auto;
   background-color: $white-four;
+  @include mobile {
+    overflow-x: auto;
+    margin: 0 -5%;
+  }
 
   ul {
     @include flex;
@@ -85,18 +104,43 @@
     margin: 0;
 
     li {
-      // border-right: 1px solid $black-five;
       @include fontSize(18);
       color: $black-five;
-      font-family: $nunito-regular;
-      @include margin(0,16);
+      font-family: $roboto-regular;
+      @include padding(0,16);
       @include letterSpacing(.4);
+      position: relative;
+      white-space: nowrap;
+
+      &:before {
+        content: '|';
+        position: absolute;
+        left: 0;
+      }
+
+      button {
+        border: none;
+        background: transparent;
+        color: inherit;
+        outline: none;
+        cursor: pointer;
+      }
 
       &:first-child {
         margin-left: 0;
+        padding-left: 0;
+
+        &:before {
+          content: '';
+        }
       }
     }
 
+  }
+  @include tablet {
+     @include borderRadius(0,0,14,14);
+    overflow-x: hidden;
+    margin: 0;
   }
 }
 
@@ -106,38 +150,35 @@
   @include width(150);
   @include height(42);
   background: transparent;
-  font-family: $nunito-semi-bold;
+  font-family: $roboto-medium;
   color: $black-seven;
   @include letterSpacing(.4);
   @extend %pointer;
 }
 
-.view-btn {
-  background: $bright-red;
-  color: $white;
-  border: none;
-  font-family: $nunito-semi-bold;
-  @include borderRadius(3);
-  @include fontSize(18);
-  @include height(42);
-  @include width(150);
-  @extend %pointer;
-}
-
 .detail-sub-section {
-  box-shadow: 1px 3px 8px 0 $black-16;
-  @include borderRadius(3);
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.10);
+  @include borderRadius(14);
   @include margin(30,0);
   @include padding(25,35);
 
+  a {
+    color: $primary-color;
+    @include fontSize(18);
+    font-family: $roboto-medium;
+  }
+
   h3 {
-    @include fontSize(30);
-    font-family: $nunito-semi-bold;
+    font-size: 18px;
+    font-family: $roboto-medium;
+    @include tablet {
+       @include fontSize(30);
+    }
   }
 
   h5 {
     @include fontSize(20);
-    font-family: $nunito-semi-bold;
+    font-family: $roboto-medium;
     margin-bottom: 1rem;
   }
 
@@ -154,33 +195,36 @@
     padding: 0;
 
     li {
-      @include fontSize(20);
+      @include fontSize(18);
       width: 100%;
       width: 100%;
       @include padding(0,0,0,45);
       @include margin(8,0);
       position: relative;
+      font-family: $roboto-medium;
 
       span {
-        @include fontSize(18);
+        @include fontSize(16);
+      font-family: $roboto-regular;
+
       }
 
       &:before {
         content: '';
         position: absolute;
         left: 0;
-        top: 0;
+        top: 2px;
         @include width(25);
         @include height(25);
-        background-image: url('/images/check-box.svg');
+        background-image: url('/images/available.svg');
         background-size: contain;
         background-repeat: no-repeat;
 
       }
 
-      &.selected {
+      &.policy {
         &:before {
-          background-image: url('/images/check-box-ticked.svg');
+          background-image: url('/images/policy.svg');
           background-size: contain;
         }
       }
@@ -206,20 +250,19 @@
       span {
         @include fontSize(18);
       }
+      @include tablet {
+        width: 50%;
+      }
 
-      &:before {
-        content: '';
+      .list-icon {
         position: absolute;
         left: 0;
         top: 0;
         @include width(25);
         @include height(25);
-        background-image: url('/images/dining.svg');
+        background: url('/images/dining.svg');
         background-size: contain;
         background-repeat: no-repeat;
-      }
-      @include tablet {
-        width: 50%;
       }
     }
   }
@@ -240,7 +283,7 @@
 }
 
 .right-sub-section {
-  @include padding(18,35);
+  @include padding(25,35);
 }
 
 .section-border {
@@ -265,32 +308,16 @@
 }
 
 .edit-btn {
-  border: 1px solid $bright-red;
+  border: 1px solid $primary-color;
   @include borderRadius(3);
   @include height(24);
   @include width(68);
   @include fontSize(14);
   background-color: $white;
-  color: $bright-red;
-  font-family: $nunito-semi-bold;
+  color: $primary-color;
+  font-family: $roboto-medium;
   margin-bottom: .2rem;
   @extend %pointer;
-}
-
-.price-wrap {
-  background: $white-three;
-  @include height(163);
-  @include borderRadius(3);
-  @include align-center;
-  margin: 0;
-}
-
-.offer-price {
-  font-family: $nunito-semi-bold;
-  @include fontSize(35);
-  @include letterSpacing(1.2);
-  color: $black-eight;
-  white-space: nowrap;
 }
 
 .price {
@@ -301,7 +328,7 @@
 }
 
 .off-percentage {
-  background: $bright-red;
+  background: $primary-color;
   color: $white;
   @include fontSize(18);
   @include padding(0,5);
@@ -310,13 +337,13 @@
   @include margin(0,4);
 
   span {
-    font-family: $nunito-bold;
+    font-family: $roboto-bold;
     @include fontSize(20);
   }
 }
 
 .add-to-cart {
-  background: $bright-red;
+  background: $primary-color;
   @include height(83);
   @include borderRadius(3);
   width: 100%;
@@ -325,6 +352,161 @@
   @extend %pointer;
   color: $white;
   @include fontSize(28);
-  font-family: $nunito-bold;
+  font-family: $roboto-bold;
   @include letterSpacing(.8);
+}
+
+.review-header {
+  font-family: $roboto-medium;
+  color: $black-five;
+  @include fontSize(28);
+
+  span {
+    @include fontSize(16);
+  }
+}
+
+.star-wrap {
+  margin-bottom: 1rem;
+}
+
+.info-sub {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @include tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+  }
+}
+
+.rating-wrap {
+  @include padding(16,0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  @include tablet {
+    align-items: center;
+    @include padding(0, 28.5, 0, 0);
+
+  }
+}
+
+.heart-img {
+  @include width(17);
+  margin: -.25rem 0 0 .5rem;
+}
+
+.remove-btn {
+  color: $secondary-color;
+  border: none;
+  background: transparent;
+  @include fontSize(13);
+  opacity: .85;
+  margin-top: 1rem;
+  @extend %pointer;
+}
+
+.need-help {
+  @include fontSize(22);
+  color: $black;
+}
+
+.note-section {
+  @include padding(21);
+
+  .right-sub-section {
+    padding: 0;
+  }
+}
+
+.note-header {
+  font-family: $roboto-bold;
+  @include fontSize(20);
+  letter-spacing: .6px;
+}
+
+.note-wrap {
+  border-bottom: 1px solid $black-16;
+  margin-bottom: .5rem;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
+
+.note-title {
+  font-family: $roboto-bold;
+  color: $black-fifteen;
+  @include fontSize(14);
+  margin-right: .5rem;
+}
+
+.note-date {
+  color: $brownish-grey-three;
+  @include fontSize(10);
+}
+
+.note-text {
+  @include fontSize(14);
+  line-height: 1.43;
+  @include padding(8,0,8,12);
+  position: relative;
+}
+
+.image-gallery {
+  width: 80vw;
+  // height: 20vw;
+  overflow: auto;
+
+  div[class^="modal-content"] {
+    background-color: $warm-grey-two;
+    @include borderRadius(18);
+    width: 75vw;
+
+    div[class^="image-gallery-slide"] {
+      background-color: inherit;
+
+      img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+      }
+    }
+
+    > div {
+      > img {
+        position: absolute;
+        @include top(-60);
+        @include right(-50);
+        @include width(62);
+      }
+    }
+  }
+}
+
+.prices-container {
+  display: flex;
+  justify-content: space-between;
+  @include margin(20,0);
+  @include fontSize(20);
+  line-height: normal;
+  @include letterSpacing(0.6);
+
+  .item {
+    width: auto;
+  }
+
+  .itemPrice {
+    width: 25%;
+  }
+
+  .grey {
+    @include fontSize(16);
+    color: #343434ab;
+  }
 }

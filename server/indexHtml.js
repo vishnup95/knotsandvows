@@ -60,12 +60,14 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
     <!doctype html>
     <html lang="en" ${htmlAttrs}>
       <head>
-      <meta name="google-site-verification" content="THMpDLU_F3n6EzWzSQJT8TKgZn4uyGXJLdXz55oNRO0" />
+      <meta name="google-site-verification" content="xrR2YnjgYQSLskpRVcptSSslT_wODKhrjf8bWZP-An4" />
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${preloadScripts(bundles)}
         ${helmet.link.toString()}
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         ${cssLinks()}
         ${helmet.style.toString()}
         ${helmet.script.toString()}

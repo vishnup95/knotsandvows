@@ -25,9 +25,7 @@ export function registerWithDetails(details) {
 
 export function logoutProcedure(history) {
   if(localStorage) {
-    localStorage.setItem("token",null);
-    localStorage.setItem("logged_in",false);
-    localStorage.setItem("user",null);
+    localStorage.clear();
   }
   
   return function (dispatch) {
@@ -67,6 +65,30 @@ export function hideLogin() {
   }
 }
 
+export function showForgotPassword() {
+  return {
+    type: types.SHOW_FORGOT_PASSWORD
+  }
+}
+
+export function hideForgotPassword() {
+  return {
+    type: types.HIDE_FORGOT_PASSWORD
+  }
+}
+
+export function showResetPassword() {
+  return {
+    type: types.SHOW_RESET_PASSWORD
+  }
+}
+
+export function hideResetPassword() {
+  return {
+    type: types.HIDE_RESET_PASSWORD
+  }
+}
+
 export function forgotPasswordRequest(data) {
   return {
     types: [
@@ -85,7 +107,7 @@ export function resetPassword(data) {
       types.RESET_PASSWORD_SUCCESS,
       types.RESET_PASSWORD_FAILURE
     ],
-    promise: client => client.post('/api/UserAuth/reset', data)
+    promise: client => client.post('/api/UserAuth/resetpassword', data)
   };
 }
 
@@ -99,4 +121,60 @@ export function autheticateWithSocialData(data) {
     ],
     promise: client => client.post('/api/UserAuth/sociallogin', data)
   };
+}
+
+export function verifyEmail(code, email) {
+  return {
+    types: [
+      types.LOAD_VERIFY_EMAIL,
+      types.LOAD_VERIFY_EMAIL_SUCCESS,
+      types.LOAD_VERIFY_EMAIL_FAILURE
+    ],
+    promise: client => client.get(`/api/UserAuth/verify?activation_code=`+code+"&email="+email)
+  };
+}
+
+export function fetchMyProfile() {
+  return {
+    types: [
+      types.LOAD_PROFILE,
+      types.LOAD_PROFILE_SUCCESS,
+      types.LOAD_PROFILE_FAILURE
+    ],
+    promise: client => client.get('/api/myprofile')
+  };
+}
+
+export function updateProfile(param) {
+  return {
+    types: [
+      types.LOAD_UPDATE_PROFILE,
+      types.LOAD_UPDATE_PROFILE_SUCCESS,
+      types.LOAD_UPDATE_PROFILE_FAILURE
+    ],
+    promise: client => client.post('/api/UserAuth/updateprofile',param)
+  };
+}
+
+export function validateLink(code) {
+  return {
+    types: [
+      types.LOAD_VALIDATE_LINK,
+      types.LOAD_VALIDATE_LINK_SUCCESS,
+      types.LOAD_VALIDATE_LINK_FAILURE
+    ],
+    promise: client => client.get(`/api/UserAuth/validateresetpasswordlink?code=${code}`)
+  };
+}
+
+export function clearUserData() {
+  return {
+    type: types.LOAD_LOGOUT_SUCCESS
+  }
+}
+
+export function clearErrors() {
+  return {
+    type: types.CLEAR_ERRORS
+  }
 }

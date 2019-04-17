@@ -2,41 +2,31 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
-title {
-  color: $bright-red;
-  font-family: $nunito-regular;
-}
-
 .not-found-container {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem 0;
-  @include margin(97,0,0);
-  background-color: $white-two;
+  padding: 4rem 0;
+  @include margin(165.3,0,0);
+  background-color: $white;
 
   h1 {
     @include fontSize(120);
-    font-family: $nunito-bold;
-    line-height: 0.73;
+    font-family: $roboto-bold;
+    line-height: .73;
   }
 
   h2 {
-    @include fontSize(25);
-    font-family: $nunito-regular;
+    @include fontSize(14);
+    font-family: $roboto-regular;
+    color: $black;
   }
 }
 
-.back-button {
-  width: auto;
-  @include borderRadius(50);
-  background-color: $red;
-  color: $white;
-  padding: .5rem 2rem;
-  margin-top: 2rem;
-  &:hover {
-    color: $white;
-    text-decoration: none;
-  }
+.image {
+  @include width(586.3);
+}
+h2 {
+  margin-bottom: 3rem;
 }
