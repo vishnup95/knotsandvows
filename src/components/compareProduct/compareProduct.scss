@@ -3,7 +3,7 @@
 @import '../../variables/fonts';
 
 .compareComponent {
-  padding-top: 2rem;
+  @include padding(32,28,0,28);
 }
 
 .vendorImage {
