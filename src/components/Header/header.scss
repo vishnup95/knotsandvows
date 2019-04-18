@@ -51,7 +51,8 @@
      @include padding(0, 38)
   }
   @include mobile {
-     @include justify-center() padding: 0 1rem 0 1rem;
+     @include justify-center();
+     padding: 0 1rem 0 1rem;
   }
 }
 
