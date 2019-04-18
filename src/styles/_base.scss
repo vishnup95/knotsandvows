@@ -64,7 +64,6 @@ h2 {
 
 .main {
   min-height: calc(100vh - 40rem);
-  // margin-top: 10.33125rem;
   margin-top: calc(50px + 4.9rem);
   @include mobile {
     margin-top: 4.9375rem;
@@ -112,6 +111,13 @@ h2 {
     font-family: $roboto-bold;
 
   }
+
+  &.home-btn {
+    width: 15rem;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+  }
 }
 
 .secondary-button {
@@ -153,24 +159,32 @@ h2 {
     display: none !important;
   }
 }
+
 .p-relative {
   position: relative;
 }
+
 .no-padding-mobile {
   @include mobile {
     padding: 0;
   }
 }
+
 .mobile-column {
   @include mobile {
     flex-direction: column !important;
   }
 }
+
 .align-center {
   align-items: center !important;
 }
+
 .mobile-col-reverse {
   @include mobile {
     flex-direction: column-reverse;
   }
+}
+textarea {
+  resize: none;
 }

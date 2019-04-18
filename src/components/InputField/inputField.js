@@ -87,6 +87,10 @@ class InputField extends Component {
                     inputBox.parentNode.classList.add('error');
                     return false;
                 }
+            }else{
+                this.setState({errorMessage: `Please enter a valid ${this.props.placeHolder}`});
+                inputBox.parentNode.classList.add('error');
+                return false;
             }
         }
     }

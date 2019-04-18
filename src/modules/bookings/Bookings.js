@@ -19,7 +19,7 @@ const jumbotronData = [
 class AboutComponent extends Component {
   render() {
     return (
-      <div>
+      <div className={styles.bookContainer}>
         <JumbotronComponent data={jumbotronData[1]} containerStyle="packageWrap" bgcolor="#ffffff">
           <Row className={styles.bHeader}>
             <Col sm="2">Vendor Category</Col>

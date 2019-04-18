@@ -2,12 +2,16 @@
 @import '../../variables/utils';
 @import '../../variables/fonts';
 @import '../../variables/breakpoints';
-
+.bookContainer {
+  margin-bottom: 3rem;
+}
 .bHeader {
   color: #939393;
   @include margin(70,0,10);
   @include fontSize(20);
   @include letterSpacing(0.48);
+  @include padding(10,10);
+
 }
 
 .bItem {

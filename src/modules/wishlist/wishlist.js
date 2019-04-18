@@ -347,9 +347,9 @@ class CategoryListing extends Component {
                 <div className={styles.closeBtn}>
                   <img src={imagePath('close-large.svg')} alt="close button" aria-hidden onClick={this.toggle} />
                 </div>
-                <hr className="mb-5"/>
+                <hr className="mb-5 d-none d-sm-block"/>
                 <Row>
-                  <Col sm="1">
+                  <Col xs="2" sm="2" md="11" className={styles.labelColumn}>
                     <div className={styles.label}>
                       Price
                     </div>
@@ -360,11 +360,11 @@ class CategoryListing extends Component {
                       Gallery
                     </div>
                   </Col>
-                  <Col sm="11">
+                  <Col xs="10" sm="10" md="11">
                     <Row>
                       {this.renderCompareVendors(this.state.vendorSelectedToCompare)}
                       {this.state.vendorSelectedToCompare.length < 3 && 
-                      <Col sm="6" md="6" lg="4">
+                      <Col xs="6" sm="6" md="6" lg="4" className="d-none d-sm-block">
                         <div className={styles.addNew}>
                           <button className={styles.addBtn} onClick={this.toggle}></button>
                         </div>

@@ -3,7 +3,7 @@
 @import '../../variables/utils';
 
 .logo-test {
-  @include height(50);
+  height: 4.5rem;
   width: auto;
   max-width: 143px;
 }
@@ -40,7 +40,11 @@
 }
 
 .nav-small {
-  @include height(79);
+  @include mobile {
+     @include justify-center();
+    padding: 0 1rem;
+  }
+  height: 6.6875rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,11 +52,9 @@
   box-shadow: 0 2px 6px 0 $black-16;
   background: #fff;
   @include tablet {
-     @include padding(0, 38)
+    padding: 0 8.333333%;    
   }
-  @include mobile {
-     @include justify-center() padding: 0 1rem 0 1rem;
-  }
+
 }
 
 .ahCollapse {

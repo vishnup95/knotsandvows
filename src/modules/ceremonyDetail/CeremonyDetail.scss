@@ -29,7 +29,7 @@
 }
 
 .ceremony-cover {
-  @include height(700);
+  height: 50rem;
   position: relative;
 
   h1 {
@@ -60,8 +60,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: center;
-  @include padding(0,0,24);
+  align-items: flex-start;
+  padding: 0 calc(7.5% + 15px) 2rem;
   h1 {
     letter-spacing: 1px;
   }
@@ -72,7 +72,7 @@
 }
 
 .view-all {
-  color: $primary-color;
+  color: $secondary-color;
   @include fontSize(18);
   font-family: $roboto-medium;
   width: max-content;
@@ -84,8 +84,10 @@
 }
 
 // Browse category specific styles
-
-.subTitle {
+.browseAllContainer {
+  padding-top: 4rem;
+}
+.subTitleTwo {
   font-family: $roboto-regular;
   @include fontSize(18);
   color: $black;
