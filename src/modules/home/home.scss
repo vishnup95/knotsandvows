@@ -2,8 +2,7 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
-.homeOuter {
-}
+.homeOuter {}
 
 .homeContainer {
   max-width: 78%;
@@ -24,6 +23,7 @@
     @include fontSize(25.2);
   }
   @extend %spacer;
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -631,7 +631,8 @@ a.button {
     opacity: 0;
   }
 
-  button, a {
+  a,
+  button {
     margin: 0;
   }
 
@@ -657,10 +658,11 @@ a.button {
 }
 
 .boxSection {
-  @include height(640);
+  min-height: 34rem;
   display: flex;
   align-items: center;
   position: relative;
+  padding-top: 2rem;
 
   h2 {
     line-height: .8;
@@ -728,6 +730,7 @@ h1.homeTitle {
   white-space: initial;
   margin-top: 19vw;
   margin-left: 7vw;
+
   span {
     color: $medium-pink;
   }
@@ -753,7 +756,6 @@ h1.homeTitle {
     }
   }
   background-color: $white;
-
   @include width(570);
   border-radius: 4px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(50, 50, 93, 0.11);
@@ -817,7 +819,6 @@ h1.homeTitle {
 .carousalImage {
   @include mobile {
     max-width: 100%;
-    height: 56vw;
   }
   background-size: cover;
   background-repeat: no-repeat;
@@ -981,11 +982,14 @@ h1.homeTitle {
   width: 62rem;
   margin: 3rem auto 7rem;
   position: relative;
-  &:nth-child(odd) {
-    margin-left: -1.2rem;
-  }
-  &:nth-child(even) {
-    margin-right: -1.2rem;
+  @include desktop {
+    &:nth-child(odd) {
+      margin-left: -1.2rem;
+    }
+
+    &:nth-child(even) {
+      margin-right: -1.2rem;
+    }
   }
 
   .cardDetail {
@@ -1060,8 +1064,10 @@ h1.homeTitle {
     font-size: 14px;
   }
 }
+
 .ceremony {
   margin: 0 0 7rem;
+
   h2 {
     margin-bottom: 3rem;
   }
