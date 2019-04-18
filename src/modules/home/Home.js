@@ -220,8 +220,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(styles);
-
     return (
       <div className={styles.homeOuter}>
         {
