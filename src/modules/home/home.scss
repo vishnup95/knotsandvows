@@ -3,7 +3,9 @@
 @import '../../variables/utils';
 
 .homeOuter {}
-
+.homeTopContainer {
+  @extend %spacer;
+}
 .homeContainer {
   max-width: 78%;
   padding: 0;
@@ -518,7 +520,8 @@ a.button {
 
 .homeContent {
   position: absolute;
-  top: 28%;
+  bottom: 0;
+  left: 0;
   z-index: 2;
   @include mobile {
     width: 100%;
@@ -707,7 +710,7 @@ a.button {
       animation-name: textanimation;
       animation-duration: 5s;
       display: inline-block;
-      font-family: $frank-bold;
+      font-family: $frank-medium;
       white-space: pre;
       line-height: 1.17;
       font-size: 25px;
@@ -725,7 +728,7 @@ a.button {
 
 h1.homeTitle {
   font-size: 28px !important;
-  font-family: $frank-bold !important;
+  font-family: $frank-medium !important;
   width: 40%;
   white-space: initial;
   margin-top: 19vw;
@@ -740,6 +743,8 @@ h1.homeTitle {
   color: $bright-red;
   font-size: 1rem !important;
   margin-top: .25rem;
+  position: absolute;
+  bottom: -3rem;
 }
 
 .contactInput {
@@ -756,7 +761,7 @@ h1.homeTitle {
     }
   }
   background-color: $white;
-  @include width(570);
+  width: 38rem;
   border-radius: 4px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(50, 50, 93, 0.11);
   border: solid 1.5px $medium-pink;
@@ -772,6 +777,7 @@ h1.homeTitle {
     font-family: $roboto-light;
     color: $warm-grey-eight-two;
     background: $white;
+    flex-grow: 1;
   }
 
   button {

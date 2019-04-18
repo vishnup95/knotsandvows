@@ -482,7 +482,7 @@ button {
 .goldPackage {
   margin-top: calc(-50px + -1.5rem);
   @include tablet {
-    margin-top: calc(-50px + -4.3rem);
+    margin-top: calc(-50px - 6.6875rem);
   }
 
   /* Ahwanam styles */
@@ -1806,7 +1806,7 @@ button {
 .emeraldPackage {
   margin-top: calc(-50px + -1.5rem);
   @include tablet {
-    margin-top: calc(-50px + -4.3rem);
+    margin-top: calc(-50px - 6.6875rem);
   }
 
   * {
