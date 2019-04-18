@@ -4,6 +4,7 @@
 @import '../../variables/breakpoints';
 
 .aboutContainer {
+  color: $black;
   .aboutCover {
     @include height(700);
     position: relative;
@@ -40,6 +41,9 @@
     @include mobile {
       text-align: center;
       margin-bottom: 1rem;
+    }
+    &.roboto {
+      font-family: $roboto-regular;
     }
   }
 
