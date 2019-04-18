@@ -92,7 +92,6 @@ class TalkToWeddingPlanner extends Component {
     }
 
     render() {
-        console.log(styles);
         return (
             <div>
                 {this.props.type === 'link' && <button className="link-btn" onClick={() => this.toggle()}>{this.props.buttonText}</button>}
