@@ -14,11 +14,6 @@ import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider
 import * as actions from './actions';
 import * as talktoAhwanamActions from '../../components/TalkToWeddingPlanner/actions';
 import CarouselComponent from './carousel';
-// import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-// import PackageComponent from './packageComponent';
-// import HorizontalMultiCarousel from './multiCarouselHorizontal';
-// import VerticalMultiCarousel from './multiCarouselVertical';
-// import HorizontalScrollingCarousel from './horizontalScrollingCarousal';
 import { imagePath } from '../../utils/assetUtils';
 import { hyphonatedString } from '../../utils/utilities';
 import ImageFade from '../../components/ImageFade/imageFade';
@@ -151,6 +146,12 @@ class Home extends Component {
       }
 
     }
+    else {
+      document.getElementById('box-one').style.transform = 'translate3d(0px,0px,0px)';
+      document.getElementById('box-two').style.transform = 'translate3d(0px,0px,0px)';
+      document.getElementById('box-three').style.transform = 'translate3d(0px,0px,0px)';
+      this.setState({ showDesc: true });
+    }
   }
 
   checkVisible(elm) {
@@ -227,7 +228,7 @@ class Home extends Component {
               <Row>
                 <Col xs='12' md='3' className="p-relative no-padding-mobile">
                   <div className={styles.homeContent}>
-                  <p className="tab-only">You can’t plan love. <br/>But you can plan<br/>how to celebrate it.</p>
+                    <p className="tab-only">You can’t plan love. <br />But you can plan<br />how to celebrate it.</p>
 
                     <div className={`${styles.homeTitle} tab-only`}>
 
@@ -259,7 +260,7 @@ class Home extends Component {
                       }
 
                     </div>
-                    <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br/>to help you celebrate...<br/><span>Your day. Your way.</span></h1>
+                    <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br />to help you celebrate...<br /><span>Your day. Your way.</span></h1>
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
                       <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>FREE CONSULTATION</Button>
@@ -275,7 +276,7 @@ class Home extends Component {
               <Row>
                 <Col>
                   <h2>70% of couples regret not hiring <span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful.<br/>SevenVows, with their array of services, <br/>help you plan the biggest day of your life in the best possible way.</p>
+                  <p>It doesn’t take much time for your blissful day to turn stressful.<br />SevenVows, with their array of services, <br />help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -284,8 +285,8 @@ class Home extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col className="text-center mt-5" id="numbersection">
-                  <Button className="primary-button medium-pink">LET US HELP YOU</Button>
+                <Col className="text-center flex justify-center mt-5" id="numbersection">
+                  <Button className="primary-button home-btn medium-pink">LET US HELP YOU</Button>
                 </Col>
               </Row>
 
@@ -375,12 +376,12 @@ class Home extends Component {
                 <Row className="mobile-col-reverse">
                   <Col className="justify-center flex align-center mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
-                    <Button className="mobile-only primary-button white">LET’S DO IT</Button>
+                    <Button className="mobile-only primary-button home-btn white">LET’S DO IT</Button>
                   </Col>
                   <Col className={styles.dummyClass}>
                     <h2 className={styles.whiteHeading}>Less worries.<span className="tab-only"><br /></span>More savings.</h2>
-                    <p className={styles.whiteDesc}>Choose from one of our customised packages <br/>to steer clear of stress and get attractive discounts.</p>
-                    <Button className="tab-only primary-button white">LET’S DO IT</Button>
+                    <p className={styles.whiteDesc}>Choose from one of our customised packages <br />to steer clear of stress and get attractive discounts.</p>
+                    <Button className="tab-only primary-button home-btn white">LET’S DO IT</Button>
                   </Col>
                 </Row>
                 <Row>
@@ -394,28 +395,28 @@ class Home extends Component {
                   <img src={imagePath('box-one.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Gold Package</h3>
-                    <p>Give your dream wedding a golden touch.<br/>Here’s a complete wedding solution crafted just for you.</p>
-                    <a className="primary-button medium-pink" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
-                    {/* <Button className="primary-button medium-pink">LEARN MORE</Button> */}
+                    <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
+                    <a className="primary-button home-btn medium-pink" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
+                    {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                   </div>
                 </Col>
                 <Col className={styles.packageBox} id="box-two">
                   <img src={imagePath('box-two.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Emerald Package</h3>
-                    <p>Add shine to your wedding celebration.<br/>Here’s a package that’s packed with wedding goodness.</p>
-                    <a className="primary-button medium-pink" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
+                    <p>Add shine to your wedding celebration.<br />Here’s a package that’s packed with wedding goodness.</p>
+                    <a className="primary-button home-btn medium-pink" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
 
-                    {/* <Button className="primary-button medium-pink">LEARN MORE</Button> */}
+                    {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                   </div>
                 </Col>
                 <Col className={styles.packageBox} id="box-three">
                   <img src={imagePath('box-three.png')} alt="img" />
                   <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                     <h3>Genie Package</h3>
-                    <p>Your wish is our command. <br/>Choose what you need and make your dream team of wedding vendors.</p>
-                    {/* <Button className="primary-button medium-pink">WISHLIST</Button> */}
-                    <a className="primary-button medium-pink" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
+                    <p>Your wish is our command. <br />Choose what you need and make your dream team of wedding vendors.</p>
+                    {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
+                    <a className="primary-button home-btn medium-pink" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 
                   </div>
                 </Col>

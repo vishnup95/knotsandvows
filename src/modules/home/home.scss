@@ -3,9 +3,6 @@
 @import '../../variables/utils';
 
 .homeOuter {
-  @include mobile {
-    background: $black;
-  }
 }
 
 .homeContainer {
@@ -643,6 +640,7 @@ a.button {
     font-family: $roboto-light !important;
     text-align: left !important;
     font-size: 1.2rem !important;
+    max-width: 16rem;
   }
 
   &.showDetail {
@@ -920,6 +918,7 @@ h1.homeTitle {
       width: 100%;
     }
     @include width(665);
+    // @include height()
   }
 
   &.cardImageSlide {
@@ -927,6 +926,8 @@ h1.homeTitle {
       @include desktop {
         opacity: 1;
         margin-top: 0;
+        // height: 27.64rem;
+
       }
     }
 
@@ -961,6 +962,7 @@ h1.homeTitle {
   transition: all 2s ease;
   @include desktop {
     margin-top: 6rem;
+    // height: 21.64rem;
     opacity: 0;
   }
 }
