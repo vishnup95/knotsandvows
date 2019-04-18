@@ -573,8 +573,11 @@ a.button {
 }
 
 .packageWrap {
+  background-color: $medium-pink;
+  @extend %spacer;
+  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
   @include desktop {
-    margin-top: 45rem;
+    padding-top: 52rem;
   }
 }
 
@@ -621,6 +624,7 @@ a.button {
   align-items: center;
   padding: 2rem 4rem 0;
   @extend %spacer;
+  color: $white;
   transition: all .3s ease;
   @include desktop {
     align-items: flex-start;
@@ -666,7 +670,6 @@ a.button {
     width: 25rem;
     margin: 0 auto 3rem;
   }
-  @extend %spacer;
 }
 
 .dummyClass {
@@ -780,7 +783,6 @@ h1.homeTitle {
   @include mobile {
     max-width: 100%;
   }
-  // max-width: 935px;
   margin: 0 auto;
   width: 70rem;
 }
@@ -790,7 +792,6 @@ h1.homeTitle {
   background-image: linear-gradient(116deg, $secondary-color, $lavender-pink);
   @include padding(80);
   border-radius: 6px;
-  // max-width: 935px;
   position: relative;
   @include mobile {
     flex-direction: column;
@@ -890,7 +891,6 @@ h1.homeTitle {
     width: 100%;
   }
   @extend %spacer;
-  // max-width: 901px;
   margin-left: auto;
   margin-right: auto;
   width: 64rem;
@@ -918,7 +918,6 @@ h1.homeTitle {
       width: 100%;
     }
     @include width(665);
-    // @include height()
   }
 
   &.cardImageSlide {
@@ -926,8 +925,6 @@ h1.homeTitle {
       @include desktop {
         opacity: 1;
         margin-top: 0;
-        // height: 27.64rem;
-
       }
     }
 
@@ -962,7 +959,6 @@ h1.homeTitle {
   transition: all 2s ease;
   @include desktop {
     margin-top: 6rem;
-    // height: 21.64rem;
     opacity: 0;
   }
 }
@@ -983,9 +979,14 @@ h1.homeTitle {
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
   border: solid 1.5px #ffc8df;
   width: 62rem;
-  // max-width: 871px;
   margin: 3rem auto 7rem;
   position: relative;
+  &:nth-child(odd) {
+    margin-left: -1.2rem;
+  }
+  &:nth-child(even) {
+    margin-right: -1.2rem;
+  }
 
   .cardDetail {
     @include mobile {
@@ -1057,5 +1058,11 @@ h1.homeTitle {
   @include mobile {
     text-align: center;
     font-size: 14px;
+  }
+}
+.ceremony {
+  margin: 0 0 7rem;
+  h2 {
+    margin-bottom: 3rem;
   }
 }
