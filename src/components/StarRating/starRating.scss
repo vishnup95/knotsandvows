@@ -25,5 +25,6 @@
   .star-img {
     @include height(12);
     width: auto;
+    margin-right: 0.15rem;
   }
 }

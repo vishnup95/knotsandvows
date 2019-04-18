@@ -238,6 +238,10 @@
     border-top: 1px solid $warm-grey-two;
     width: 100%;
   }
+
+  @include mobile {
+    max-width: 95% !important;
+  }
 }
 
 .label {
@@ -256,6 +260,10 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    @include mobile {
+      margin-top: 16.25rem;
+    }
   }
 
   &:nth-child(2) {
@@ -266,14 +274,23 @@
 .compareContainer {
   padding: 1rem 3rem;
   position: relative;
+
+  @include mobile {
+    h3 {
+      font-size: 18px;
+    }
+  }
 }
 
 .closeBtn {
   position: absolute;
   top: 0;
-  right: 1rem;
+  right: 0;
   cursor: pointer;
-
+  img {
+    @include height(40);
+    @include width(40);
+  }
 }
 
 
@@ -286,4 +303,10 @@
   width: max-content;
   cursor: pointer;
   margin: 0 auto;
+}
+
+.labelColumn {
+  @include mobile {
+    padding-left: 0;
+  }
 }

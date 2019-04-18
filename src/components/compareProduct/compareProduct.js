@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => ({
         var vendor = this.props.data;
         console.log(vendor);
         return (
-            <Col sm="4" className={styles.compareComponent}>
+            <Col xs="6" sm="4" className={styles.compareComponent}>
                 <div className={styles.closeBtnSmall}>
                     <img src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.props.removeAction(vendor)}/>
                 </div>
