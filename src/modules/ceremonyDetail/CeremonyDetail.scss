@@ -84,8 +84,10 @@
 }
 
 // Browse category specific styles
-
-.subTitle {
+.browseAllContainer {
+  padding-top: 4rem;
+}
+.subTitleTwo {
   font-family: $roboto-regular;
   @include fontSize(18);
   color: $black;

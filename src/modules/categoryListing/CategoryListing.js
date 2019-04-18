@@ -72,12 +72,12 @@ class CategoryListing extends Component {
     
     return (
       <div className="full-height">
-          <div className={styles.ceremonyDetail}>
+          <div className={styles.browseAllContainer}>
             <Container>
               <Row>
                 <Col className="mb-4">
                   <h2 className="text-center">Browse all vendors</h2>
-                  <p className={styles.subTitle}>Guaranteed best prices from all our vendors</p>
+                  <p className={styles.subTitleTwo}>Guaranteed best prices from all our vendors</p>
                 </Col>
               </Row>
               {this.props.isLoading && <LoaderComponent />}
