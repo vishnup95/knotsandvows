@@ -72,8 +72,7 @@ class CategoryListing extends Component {
     
     return (
       <div className="full-height">
-          <div className={styles.browseAllContainer}>
-            <Container>
+            <Container className={styles.browseAllContainer}>
               <Row>
                 <Col className="mb-4">
                   <h2 className="text-center">Browse all vendors</h2>
@@ -94,7 +93,6 @@ class CategoryListing extends Component {
                 })
               }
             </Container>
-          </div>
 
         <JumbotronComponent  data={jumbotronData} bgcolor="#f8f8f8" isTalkToAhwanam={true} containerStyle="otherWrap"/>
       </div>
