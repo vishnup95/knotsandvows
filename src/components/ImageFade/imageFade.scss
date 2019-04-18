@@ -10,8 +10,8 @@
   justify-content: flex-end;
   @include tablet {
     // height: 71rem;
-    width: 56vw;
-    height: 59vw;
+    // width: 56vw;
+    // height: 47vw;
   }
 
   .homeImage {
@@ -22,13 +22,13 @@
     height: 90vw;
     @include tablet {
       // height: 71rem;
-      height: 59vw;
-      width: 56vw;
+      height: 44vw;
+      // width: 56vw;
       width: 100%;
     }
 
   }
-  margin-bottom: 7rem;
+  // margin-bottom: 7rem;
 
 }
 @keyframes examle {

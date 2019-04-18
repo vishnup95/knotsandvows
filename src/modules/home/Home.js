@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const headerString = ['Customised Wedding Packages ', 'to help you celebrate...'];
+const headerString = ['Customised', 'Wedding Packages', 'to help you celebrate...'];
 const headerStringTwo = ['Your day. Your way'];
 
 class Home extends Component {
@@ -225,11 +225,12 @@ class Home extends Component {
         {
           styles &&
           <div>
-            <div className={`${styles.homeContainer} container-fluid`}>
+            <div className={`${styles.homeTopContainer} container-fluid`}>
               <Row>
-                <Col xs='12' md='3' className="p-relative no-padding-mobile">
+                <Col md="1"></Col>
+                <Col xs='12' md='2' className="p-relative no-padding-mobile">
                   <div className={styles.homeContent}>
-                    <p className="tab-only">You can’t plan love. <br />But you can plan<br />how to celebrate it.</p>
+                    {/* <p className="tab-only">You can’t plan love. <br />But you can plan<br />how to celebrate it.</p> */}
 
                     <div className={`${styles.homeTitle} tab-only`}>
 
@@ -269,14 +270,14 @@ class Home extends Component {
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
                 </Col>
-                <Col xs='12' md='9' className="no-padding-mobile">
+                <Col xs='12' md='9' className="no-padding">
                   <ImageFade />
                 </Col>
               </Row>
             </div>
             <div className={`${styles.homeContainer} container`}>
 
-              <hr className="tab-only"></hr>
+              {/* <hr className="tab-only"></hr> */}
               <Row>
                 <Col>
                   <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
