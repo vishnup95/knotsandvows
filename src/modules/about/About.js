@@ -20,7 +20,7 @@ class AboutComponent extends Component {
             Lorem Ipsum is simply dummy text of the printing industry has survived 
             not only five centuries, but also the leap into electronic typesettingunchanged.
           </h3>
-          <h4 className={`${styles.h4Class} font-italic text-center mt-2`}>
+          <h4 className={`${styles.h4Class} ${styles.roboto} font-italic text-center mt-2`}>
             Stallman
           </h4>
 

@@ -133,7 +133,7 @@ class CeremonyDetail extends Component {
                       value={this.state.selectedOption}
                       onChange={this.handleDropDownChange}
                       options={this.option}
-                      placeholder="City"
+                      placeholder="select city"
                       isClearable={false}
                       className={styles.selectDrop}
                     />
