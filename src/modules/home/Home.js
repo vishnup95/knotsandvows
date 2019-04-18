@@ -31,6 +31,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
+const headerString = ['Customised Wedding Packages ', 'to help you celebrate...'];
+const headerStringTwo = ['Your day. Your way'];
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -217,14 +220,12 @@ class Home extends Component {
   }
 
   render() {
-    const headerString = ['Customised Wedding Packages ', 'to help you celebrate...'];
-    const headerStringTwo = ['Your day. Your way'];
     return (
       <div className={styles.homeOuter}>
         {
           styles &&
           <div>
-            <div className={`${styles.homeContainer} container`}>
+            <div className={`${styles.homeContainer} container-fluid`}>
               <Row>
                 <Col xs='12' md='3' className="p-relative no-padding-mobile">
                   <div className={styles.homeContent}>
@@ -272,11 +273,14 @@ class Home extends Component {
                   <ImageFade />
                 </Col>
               </Row>
+            </div>
+            <div className={`${styles.homeContainer} container`}>
+
               <hr className="tab-only"></hr>
               <Row>
                 <Col>
-                  <h2>70% of couples regret not hiring <span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful.<br />SevenVows, with their array of services, <br />help you plan the biggest day of your life in the best possible way.</p>
+                  <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. <br />SevenVows, with their array <br />of services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -389,42 +393,45 @@ class Home extends Component {
                 </Row>
               </Container>
             </div>
-            <Container className={`${styles.homeContainer} ${styles.packageWrap}`}>
-              <Row className="mb-5" id="packages">
-                <Col className={styles.packageBox} id="box-one">
-                  <img src={imagePath('box-one.png')} alt="img" />
-                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                    <h3>Gold Package</h3>
-                    <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
-                    <a className="primary-button home-btn medium-pink" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
-                    {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
-                  </div>
-                </Col>
-                <Col className={styles.packageBox} id="box-two">
-                  <img src={imagePath('box-two.png')} alt="img" />
-                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                    <h3>Emerald Package</h3>
-                    <p>Add shine to your wedding celebration.<br />Here’s a package that’s packed with wedding goodness.</p>
-                    <a className="primary-button home-btn medium-pink" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
+            <div className={styles.packageWrap}>
+              <Container className={`${styles.homeContainer}`}>
+                <Row className="mb-5" id="packages">
+                  <Col className={styles.packageBox} id="box-one">
+                    <img src={imagePath('box-one.png')} alt="img" />
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Gold Package</h3>
+                      <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
+                      <a className="primary-button home-btn white" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
+                      {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
+                    </div>
+                  </Col>
+                  <Col className={styles.packageBox} id="box-two">
+                    <img src={imagePath('box-two.png')} alt="img" />
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Emerald Package</h3>
+                      <p>Add shine to your wedding celebration.<br />Here’s a package that’s packed with wedding goodness.</p>
+                      <a className="primary-button home-btn white" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
 
-                    {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
-                  </div>
-                </Col>
-                <Col className={styles.packageBox} id="box-three">
-                  <img src={imagePath('box-three.png')} alt="img" />
-                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                    <h3>Genie Package</h3>
-                    <p>Your wish is our command. <br />Choose what you need and make your dream team of wedding vendors.</p>
-                    {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
-                    <a className="primary-button home-btn medium-pink" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
+                      {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
+                    </div>
+                  </Col>
+                  <Col className={styles.packageBox} id="box-three">
+                    <img src={imagePath('box-three.png')} alt="img" />
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Genie Package</h3>
+                      <p>Your wish is our command. <br />Choose what you need and make your dream team of wedding vendors.</p>
+                      {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
+                      <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 
-                  </div>
-                </Col>
-              </Row>
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+            <Container>
               <Row className="mt-5" id="ceremonies">
-                <Col>
+                <Col className={`${styles.ceremony} text-center`}>
                   <h2>You may also be interested in...</h2>
-
                   {this.props.ceremonies &&
                     <Col xs="12" className={` no-padding mb-5`}>
                       <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony" />
