@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import styles from './CeremonyDetail.scss';
-import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
+// import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -150,6 +150,8 @@ class CeremonyDetail extends Component {
                   <CategorySection category={this.state.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
               }
 
+              {/* 
+              this section removed temporerly
               <Row>
                 <Col>
                   <h2 className="text-center">You may also be interested in</h2>
@@ -159,7 +161,7 @@ class CeremonyDetail extends Component {
                 <Col className="no-padding">
                   <HorizontalSlider data={this.state.fixedCategories.slice(1)} type='small' buttonAction={this.handleCategoryChange} />
                 </Col>
-              </Row>
+              </Row> */}
               {
                 this.state.categories.slice(1).map((category, index) => {
                   return (
