@@ -4,7 +4,8 @@ const initialState = {
   gallery : [],
   reviewsData: null,
   similarVendors:[],
-  loading: false
+  loading: false,
+  notes:[]
 };
 
 const VendorDetailReducer = (state = initialState, action) => {
@@ -54,27 +55,25 @@ const VendorDetailReducer = (state = initialState, action) => {
         loading: false
       };
 
-    //   case types.LOAD_POLICIES:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
+      case types.LOAD_NOTES:
+      return {
+        ...state,
+        notes:[]
+      };
 
-    // case types.LOAD_POLICIES_SUCCESS:
-    //   result = action.result || [];
-    //   return {
-    //     ...state,
-    //     policies: result.data.data,
-    //     loading: false
-    //   };
+    case types.LOAD_NOTES_SUCCESS:
+      return {
+        ...state,
+        notes:  action.result.data.data.results,
+        error: null
+      };
 
-    // case types.LOAD_POLICIES_FAILURE:
-    //   return {
-    //     ...state,
-    //     policies:[],
-    //     error: action.error.message,
-    //     loading: false
-    //   };
+    case types.LOAD_NOTES_FAILURE:
+      return {
+        ...state,
+        error: action.error.message,
+        notes:[]
+      };
 
     case types.LOAD_REVIEWS:
       return {
@@ -107,7 +106,7 @@ const VendorDetailReducer = (state = initialState, action) => {
       result = action.result || [];
       return {
         ...state,
-        similarVendors: result.data.results,
+        similarVendors: result.data.data.results,
         loading: false
       };
 

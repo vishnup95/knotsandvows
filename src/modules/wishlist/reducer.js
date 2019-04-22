@@ -38,6 +38,28 @@ const WishListReducer = (state = initialState, action) => {
         loading: false
       };
 
+      case types.LOAD_SHARED_WISHLIST:
+      return {
+        ...state,
+        error:null,
+        loading: true
+      };
+
+    case types.LOAD_SHARED_WISHLIST_SUCCESS:
+      return {
+        ...state,
+        sharedWishListData: action.result.data.data,
+        current:{wishlist_id: action.result.data.data.wishlist_id, shared: true },
+        loading: false
+      };
+
+    case types.LOAD_SHARED_WISHLIST_FAILURE:
+      return {
+        ...state,
+        error: action.error.message,
+        loading: false
+      };
+
     case types.LOAD_ADD_TO_WISHLIST:
       return {
         ...state,

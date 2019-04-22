@@ -78,3 +78,14 @@ export function fetchVendorGallery(vendor) {
     promise: client => client.get(`/api/gallery?vendor_id=`+getId(vendor))
   };
 }
+
+export const fetchAllNotes = (details) => {
+  return {
+    types: [
+      types.LOAD_NOTES,
+      types.LOAD_NOTES_SUCCESS,
+      types.LOAD_NOTES_FAILURE
+    ],
+    promise: client => client.get(`/api/getallnotes?vendor_id=${details.vendor_id}&wishlist_id=${details.wishlist_id}`)
+  };
+}

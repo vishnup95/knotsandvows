@@ -67,6 +67,8 @@ class Home extends Component {
   }
 
   componentWillMount() {
+    this.props.dispatch(talktoAhwanamActions.clearTalkToErrors());
+
     if (this.props.exclusives && this.props.exclusives.length === 0) {
       this.props.dispatch(actions.fetchExclusives());
     }
@@ -207,15 +209,20 @@ class Home extends Component {
 
   validateInput() {
     let inputValue = document.getElementById('freeConsult').value;
-
-    if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue) && !/^\d{10}$/.test(inputValue)) {
-      this.setState({ errorMessage: 'Please enter a valid email or phone number' });
-    } else {
-      let params = {
+    if (/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue)) {
+      const params = {
+        origin:"HOME",
         email: inputValue
       }
-
       this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
+    }else if (/^\d{10}$/.test(inputValue)){
+      const params = {
+        origin:"HOME",
+        phoneno: inputValue
+      }
+      this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
+    }else{
+      this.setState({ errorMessage: 'Please enter a valid email or phone number' });
     }
   }
 
@@ -291,7 +298,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col className="text-center flex justify-center mt-5" id="numbersection">
-                  <Button className="primary-button home-btn medium-pink">LET US HELP YOU</Button>
+                  <Button className="primary-button home-btn medium-pink">Let us help you</Button>
                 </Col>
               </Row>
 
@@ -381,12 +388,12 @@ class Home extends Component {
                 <Row className="mobile-col-reverse">
                   <Col className="justify-center flex align-center mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
-                    <Button className="mobile-only primary-button home-btn white">LET’S DO IT</Button>
+                    <Button className="mobile-only primary-button home-btn white">Let’s do it</Button>
                   </Col>
                   <Col className={styles.dummyClass}>
                     <h2 className={styles.whiteHeading}>Less worries.<span className="tab-only"><br /></span>More savings.</h2>
                     <p className={styles.whiteDesc}>Choose from one of our customised packages <br />to steer clear of stress and get attractive discounts.</p>
-                    <Button className="tab-only primary-button home-btn white">LET’S DO IT</Button>
+                    <Button className="tab-only primary-button home-btn white">Let’s do it</Button>
                   </Col>
                 </Row>
                 <Row>
@@ -429,7 +436,7 @@ class Home extends Component {
                 </Row>
               </Container>
             </div>
-            <Container>
+            <Container className={styles.homeContainer}>
               <Row className="mt-5" id="ceremonies">
                 <Col className={`${styles.ceremony} text-center`}>
                   <h2>You may also be interested in...</h2>

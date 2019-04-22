@@ -10,3 +10,9 @@ export function postContactDetails(details) {
       promise: client => client.post(`/api/home/savecontact`, details)
     };
   }
+
+  export function clearTalkToErrors() {
+    return {
+      type: types.CLEAR_TALKTO_ERRORS
+    }
+  }
