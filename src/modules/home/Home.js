@@ -429,7 +429,7 @@ class Home extends Component {
                 </Row>
               </Container>
             </div>
-            <Container>
+            <Container className={styles.homeContainer}>
               <Row className="mt-5" id="ceremonies">
                 <Col className={`${styles.ceremony} text-center`}>
                   <h2>You may also be interested in...</h2>
