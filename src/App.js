@@ -14,6 +14,7 @@ import { Button, Modal } from 'reactstrap';
 import ReactGA from 'react-ga';
 import FullStory from 'react-fullstory';
 import styles from './modals/forgotPasswordModal/forgotPasswordModal.scss';
+import { imagePath } from './utils/assetUtils';
 
 const mapStateToProps = state => ({
   showModal: state.modal.show,
@@ -79,7 +80,21 @@ class App extends Component {
 
       <Modal isOpen={this.props.showModal} toggle={() => this.toggle()} className={`${styles.forgotContainer} modal-dialog-centered`}>
         <div className={styles.forgotPassword}>
-          <div className={styles.header}>{this.props.modalContent.heading}</div>
+          <div className={styles.logoContainer}>
+            <img src={imagePath('logo.svg')} alt="seven vows"/>
+            <hr/>
+          </div>
+          
+          <div className={styles.iconContainer}>
+            {
+              !this.props.modalContent.type ?
+              <img src={imagePath('confirmation_generic.svg')} alt="generic icon"/> :
+              <img src={imagePath(this.props.modalContent.type === 'success' ?'success_generic.svg' : 'failure_generic.svg')} 
+                  alt="generic icon"/>  
+            }
+          </div>
+          <div className={styles.genericHeader}>{this.props.modalContent.heading}</div>
+          
           {
             this.props.modalContent.message !== 'mobile_contact' ? <div className={styles.message}>{this.props.modalContent.message}</div> :
               <div className={styles.message}>
@@ -87,7 +102,7 @@ class App extends Component {
               </div>
           }
 
-          <div className="text-center mt-5">
+          <div className="text-center mt-3">
             {
               this.props.modalContent.showCancel && 
               <Button color="secondary" className="secondary-button" onClick={() => this.toggle()}>Cancel</Button>

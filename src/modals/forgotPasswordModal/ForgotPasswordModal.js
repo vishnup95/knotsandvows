@@ -47,9 +47,11 @@ class ForgotPassword extends Component {
         if (this.props.apiStatus == true) {
             let heading = 'Reset Password';
             if (this.props.hash != null){
-                this.props.dispatch(modalActions.showModal({message: 'Password changed successfully', heading}));
+                let message = 'Password changed successfully';
+                this.props.dispatch(modalActions.showModal({message, heading, type: 'success'}));
             }else{
-                this.props.dispatch(modalActions.showModal({message: `A link to reset your password has been sent to given email address`, heading}));
+                let message = 'A link to reset your password has been sent to given email address';
+                this.props.dispatch(modalActions.showModal({message, heading, type: 'success'}));
             }
         }
     }

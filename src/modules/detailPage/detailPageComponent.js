@@ -122,7 +122,8 @@ class DetailPageComponent extends Component {
                     } else {
                         let modalContent = {
                             heading: '',
-                            message: error
+                            message: error,
+                            type: 'failure'
                         };
                         this.props.dispatch(modalActions.showModal(modalContent));
                     }
@@ -146,7 +147,8 @@ class DetailPageComponent extends Component {
                 } else {
                     let modalContent = {
                         heading: '',
-                        message: error
+                        message: error,
+                        type: 'failure'
                     };
                     this.props.dispatch(modalActions.showModal(modalContent));
                 }

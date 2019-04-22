@@ -400,5 +400,6 @@ HorizontalSlider.propTypes = {
 
     checkIfSelectedForComparison: PropTypes.func,
     addToCompare: PropTypes.func,
-    isCompare: PropTypes.bool
+    isCompare: PropTypes.bool,
+    onSelect: PropTypes.func
 };
