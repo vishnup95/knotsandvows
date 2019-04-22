@@ -3,9 +3,14 @@
 @import '../../variables/utils';
 
 .homeOuter {}
+
 .homeTopContainer {
   @extend %spacer;
+  @include mobile {
+    margin-bottom: 8rem !important;
+  }
 }
+
 .homeContainer {
   max-width: 78%;
   padding: 0;
@@ -520,11 +525,16 @@ a.button {
 
 .homeContent {
   position: absolute;
-  bottom: 0;
+  bottom: 4.37rem;
   left: 0;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   @include mobile {
     width: 100%;
+    bottom: 1.37rem;
   }
 
   p {
@@ -703,7 +713,8 @@ a.button {
 
 .homeTitle {
   white-space: nowrap;
-  color: $secondary-color;
+  color: $white;
+  text-align: center;
 
   div {
     > div {
@@ -715,7 +726,7 @@ a.button {
       line-height: 1.17;
       font-size: 25px;
       @include tablet {
-         @include fontSize(80);
+        font-size: 4.285rem;
 
       }
     }
@@ -727,12 +738,9 @@ a.button {
 }
 
 h1.homeTitle {
-  font-size: 28px !important;
+  font-size: 21px !important;
   font-family: $frank-medium !important;
-  width: 40%;
   white-space: initial;
-  margin-top: 19vw;
-  margin-left: 7vw;
 
   span {
     color: $medium-pink;
@@ -745,12 +753,17 @@ h1.homeTitle {
   margin-top: .25rem;
   position: absolute;
   bottom: -3rem;
+  @include mobile {
+    bottom: -9.4rem;
+  }
 }
 
 .contactInput {
   @include mobile {
     width: 80%;
-    margin: 33vw auto 3vw;
+    margin: 0 auto 3vw;
+    position: absolute;
+    bottom: -8rem;
 
     button {
       width: 50%;
@@ -761,7 +774,7 @@ h1.homeTitle {
     }
   }
   background-color: $white;
-  width: 38rem;
+  width: 54rem;
   border-radius: 4px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(50, 50, 93, 0.11);
   border: solid 1.5px $medium-pink;
@@ -769,6 +782,7 @@ h1.homeTitle {
   align-items: center;
   padding-left: 1rem;
   justify-content: space-between;
+  margin-top: 2.5rem;
 
   input {
     border: none;
@@ -784,6 +798,9 @@ h1.homeTitle {
     margin: 0;
     border-radius: 0;
     @include fontSize(16);
+    @include tablet {
+      width: 18rem;
+    }
   }
 }
 // carousel styles

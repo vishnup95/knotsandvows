@@ -414,9 +414,10 @@
   color: #fff;
   padding: 0;
   cursor: pointer;
-  @include fontSize(16);
+  @include fontSize(20.5);
   outline: none !important;
-
+  font-family: $roboto-medium;
+  opacity: .95;
   &:hover {
     text-decoration: underline;
   }
@@ -2778,4 +2779,7 @@ button {
   0% {opacity: 0.0;}
   50% {opacity: 1.0;}
   100% {transform: scale(1.5, 1.5); opacity: 0.0;}
+}
+.navbar-brand {
+  padding:  0 !important;
 }

@@ -249,8 +249,8 @@ class Header extends Component {
             return (
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
-                        <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only" />
-                        Login / Sign Up
+                        {/* <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only" /> */}
+                        Login
                 </NavLink>
                 </NavItem>
             );
@@ -265,22 +265,14 @@ class Header extends Component {
 
         return (
             <div className={styles.ahHeader}>
-                <div className={styles.navSmall}>
 
-                    <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
-                    </NavbarBrand>
-                    <Nav className={`${styles.iconNav}`} navbar>
-                        {/* <NavItem>
-                            <NavLink href="" className={styles.iconLink}>
-                                <img src={imagePath('vendor.svg')} alt="vendor" />
-                                For Vendors
-                                </NavLink>
-                        </NavItem> */}
-                        {this.renderLoginItem()}
-                    </Nav>
+                <div className={styles.navSmall}>
+                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our wedding planner'} />
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
+                    <NavbarBrand href="/">
+                        <img className={styles.logoTest} src={imagePath('logo.png')} alt="logo" />
+                    </NavbarBrand>
                     <NavbarToggler className={this.state.isOpen ? 'close-nav' : ''} onClick={this.toggle} />
                     <Collapse navbar className={`${styles.ahCollapse} ${this.state.isOpen ? 'show' : ''}`} >
                         <Nav className="" navbar>
@@ -312,13 +304,12 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/about')}>About</NavLink>
                             </NavItem>
-                            <span className="mobile-only">
-                                {this.renderLoginItem()}
-                            </span>
+                            {this.renderLoginItem()}
 
                         </Nav>
                     </Collapse>
                 </Navbar>
+
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>
