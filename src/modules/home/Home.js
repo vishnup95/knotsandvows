@@ -207,15 +207,20 @@ class Home extends Component {
 
   validateInput() {
     let inputValue = document.getElementById('freeConsult').value;
-
-    if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue) && !/^\d{10}$/.test(inputValue)) {
-      this.setState({ errorMessage: 'Please enter a valid email or phone number' });
-    } else {
-      let params = {
+    if (/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue)) {
+      const params = {
+        origin:"HOME",
         email: inputValue
       }
-
       this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
+    }else if (/^\d{10}$/.test(inputValue)){
+      const params = {
+        origin:"HOME",
+        phoneno: inputValue
+      }
+      this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
+    }else{
+      this.setState({ errorMessage: 'Please enter a valid email or phone number' });
     }
   }
 
