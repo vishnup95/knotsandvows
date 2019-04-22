@@ -77,6 +77,8 @@ class DetailPageComponent extends Component {
 
     componentWillMount() {
         this.updateUIData();
+        this.props.dispatch(talkToPlannerActions.clearTalkToErrors());
+
     }
 
     updateUIData = () => {

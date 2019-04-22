@@ -48,6 +48,7 @@ class TalkToWeddingPlanner extends Component {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
+        this.props.dispatch(actions.clearTalkToErrors());
     }
     handleFormChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
@@ -89,6 +90,9 @@ class TalkToWeddingPlanner extends Component {
                 }
             }
         }
+    }
+    componentWillMount() {
+        this.props.dispatch(actions.clearTalkToErrors());
     }
 
     render() {

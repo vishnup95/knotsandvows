@@ -67,6 +67,8 @@ class Home extends Component {
   }
 
   componentWillMount() {
+    this.props.dispatch(talktoAhwanamActions.clearTalkToErrors());
+
     if (this.props.exclusives && this.props.exclusives.length === 0) {
       this.props.dispatch(actions.fetchExclusives());
     }
