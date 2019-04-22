@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const headerString = ['Customised', 'Wedding Packages', 'to help you celebrate...'];
+const headerString = ['Customised Wedding Packages', 'to help you celebrate...'];
 const headerStringTwo = ['Your day. Your way'];
 
 class Home extends Component {
@@ -234,9 +234,8 @@ class Home extends Component {
           <div>
             <div className={`${styles.homeTopContainer} container-fluid`}>
               <Row>
-                <Col md="1"></Col>
-                <Col xs='12' md='2' className="p-relative no-padding-mobile">
-                  <div className={styles.homeContent}>
+                <Col xs='12' className="p-relative no-padding">
+                <div className={styles.homeContent}>
                     {/* <p className="tab-only">You can’t plan love. <br />But you can plan<br />how to celebrate it.</p> */}
 
                     <div className={`${styles.homeTitle} tab-only`}>
@@ -276,8 +275,7 @@ class Home extends Component {
                     </div>
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
-                </Col>
-                <Col xs='12' md='9' className="no-padding">
+                
                   <ImageFade />
                 </Col>
               </Row>
