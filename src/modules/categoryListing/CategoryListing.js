@@ -40,7 +40,16 @@ class CategoryListing extends Component {
   componentWillMount() {
     if (!this.props.allVendorDetails || this.props.allVendorDetails.categories.length == 0){
       this.props.dispatch(actions.fetchAllVendors());
-    } 
+    }else{
+      this.updateData(this.props);
+    }
+  }
+
+  updateData(props){
+    let filteredCategories = props.allVendorDetails.categories.filter(item => {
+      return item.vendors !== null && item.vendors.length > 0
+    })
+    this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
   }
 
   componentDidMount() {
@@ -49,10 +58,7 @@ class CategoryListing extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.allVendorDetails !== null && nextProps.allVendorDetails.categories !== null) {
-      let filteredCategories = nextProps.allVendorDetails.categories.filter(item => {
-        return item.vendors !== null && item.vendors.length > 0
-      })
-      this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
+      this.updateData(nextProps);
     }
   }
 
@@ -76,7 +82,6 @@ class CategoryListing extends Component {
               <Row>
                 <Col className="mb-4">
                   <h2 className="text-center">Browse all vendors</h2>
-                  <p className={styles.subTitleTwo}>Guaranteed best prices from all our vendors</p>
                 </Col>
               </Row>
               {this.props.isLoading && <LoaderComponent />}
