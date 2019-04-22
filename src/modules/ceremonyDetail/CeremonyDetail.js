@@ -128,7 +128,8 @@ class CeremonyDetail extends Component {
             </h3> */}
                 </Col>
                 {/* <Col>Select City</Col> */}
-                  <Col className={styles.selectCity}>
+                <Col>
+                  <div className={styles.selectCity}>
                     <Select
                       value={this.state.selectedOption}
                       onChange={this.handleDropDownChange}
@@ -137,6 +138,7 @@ class CeremonyDetail extends Component {
                       isClearable={false}
                       className={styles.selectDrop}
                     />
+                    </div>
                   </Col>
               </Row>
               {this.state.fixedCategories.length == 0 && 
