@@ -109,6 +109,10 @@
   width: 200px;
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 3;
 }
 
 .selectDrop {

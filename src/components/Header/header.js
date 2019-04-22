@@ -284,6 +284,8 @@ class Header extends Component {
                         <Nav className="" navbar>
                             <NavItem className={styles.vendors}>
                                 <NavLink onClick={() => this.navigateTo('/categories')}>Vendors</NavLink>
+                                {/* 
+                                this section is temporarily removed
                                 <div className={styles.categoriesList}>
                                     <ul>{this.renderCategoryLists(this.props.categories).splice(0, 6)}</ul>
                                     {this.renderCategoryLists(this.props.categories).length > 6 &&
@@ -294,7 +296,7 @@ class Header extends Component {
 
                                         <ul>{this.renderCategoryLists(this.props.categories).splice(12, 6)}</ul>
                                     }
-                                </div>
+                                </div> */}
                             </NavItem>
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
