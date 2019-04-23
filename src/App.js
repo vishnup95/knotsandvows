@@ -79,7 +79,7 @@ class App extends Component {
       </div>
 
       <Modal isOpen={this.props.showModal} toggle={() => this.toggle()} className={`${styles.forgotContainer} modal-dialog-centered`}>
-        <div className={styles.forgotPassword}>
+        <div className={styles.genericPopup}>
           <div className={styles.logoContainer}>
             <img src={imagePath('logo.svg')} alt="seven vows"/>
             <hr/>
