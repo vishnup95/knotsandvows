@@ -110,7 +110,7 @@ class TalkToWeddingPlanner extends Component {
                     <div className="pulsateRing"></div>
                     <img src={imagePath('button-call.png')} alt="call-button" />
                 </div>}
-                {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>}
+                {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button home-btn medium-pink">{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
                     <img className={styles.closeBtn} src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.toggle()} />

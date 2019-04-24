@@ -12,6 +12,7 @@ import CategorySection from './categorySection';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal'
 import NoResultComponent from '../../components/noResult/noResult';
+import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 const cities = {
   display_name:"City",
@@ -119,7 +120,7 @@ class CeremonyDetail extends Component {
               <div className={styles.coverMask}>
                 <h1 className={styles.title}>{details.ceremony_name}</h1>
                 <p>{details.description}</p>
-                <button className="primary-button home-btn medium-pink">Let us help you</button>
+                <TalkToWeddingPlanner buttonText={'Let us help you'}/>
               </div>
             </div>
             <Container>
