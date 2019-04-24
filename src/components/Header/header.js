@@ -159,7 +159,8 @@ class Header extends Component {
                         } else {
                             let modalContent = {
                                 heading: 'Reset Password',
-                                message: error
+                                message: error,
+                                type: 'failure'
                             };
                             this.props.dispatch(modalActions.showModal(modalContent));
                         }
@@ -167,7 +168,8 @@ class Header extends Component {
                         error => {
                             let modalContent = {
                                 heading: 'Reset Password',
-                                message: error.message
+                                message: error.message,
+                                type: 'failure'
                             };
                             this.props.dispatch(modalActions.showModal(modalContent));
                         });
@@ -209,8 +211,8 @@ class Header extends Component {
                 this.props.dispatch(replace("/"));
                 let modalContent = {
                     heading: '',
-                    message: this.props.error
-
+                    message: this.props.error,
+                    type: 'failure'
                 };
                 this.props.dispatch(modalActions.showModal(modalContent));
             }

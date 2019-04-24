@@ -5,6 +5,7 @@ const initialState = {
     modalContent: {
       heading: '',
       message: '',
+      type: '',
       proceedAction : null
     }
 };
