@@ -18,9 +18,7 @@
   z-index: 100;
   font-family: $roboto-regular;
   transition: 300ms all ease;
-  @include tablet {
-    background: $white;
-  }
+  background: $white;
 
   .ahNav {
     background-color: transparent !important;
@@ -69,6 +67,7 @@
   box-shadow: 0 3px 6px 0 $black-16;
   padding: 1.6875rem 5.25rem 1.6875rem 2.25rem;
   border-radius: 0 5px 5px 0;
+  flex-grow: 0 !important;
   @include tablet {
     height: 100%;
     position: relative;
@@ -86,9 +85,9 @@
       @include flex();
       @include align-center();
       position: relative;
-      cursor: pointer;
 
       a {
+        cursor: pointer;
         @include mobile {
           line-height: 2.36;
           font-size: 18px;
@@ -181,6 +180,10 @@
       @include height(30);
     }
   }
+}
+
+.icon-link {
+  padding: 0 !important;
 }
 
 .categoriesList {

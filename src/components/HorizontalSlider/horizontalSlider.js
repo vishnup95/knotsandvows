@@ -224,6 +224,43 @@ export default class HorizontalSlider extends Component {
                 }
             ]
         };
+        var ceremonySettings = {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: this.props.type === 'about' ? 3 : 4,
+            slidesToScroll: this.props.type === 'about' ? 3 : 4,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+            initialSlide: 0,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 6,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        nextArrow: null,
+                        prevArrow: null,
+                        slidesToShow: 1.5,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 470,
+                    settings: {
+                        nextArrow: null,
+                        prevArrow: null,
+                        slidesToShow: 1.5,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        };
 
         if (this.props.type === 'small') {
             return (
@@ -287,7 +324,7 @@ export default class HorizontalSlider extends Component {
                 <div>
                     {
                         styles &&
-                    <Slider {...settings}>
+                    <Slider {...ceremonySettings}>
                         {
                             this.props.data.map((item, index) => {
                                 return (

@@ -20,8 +20,8 @@ import ImageFade from '../../components/ImageFade/imageFade';
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  categories: state.home.categories,
-  exclusives: state.home.exclusives,
+  // categories: state.home.categories,
+  // exclusives: state.home.exclusives,
   ceremonies: state.home.ceremonies
 });
 
@@ -55,7 +55,7 @@ class Home extends Component {
     // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
 
     let promises = [];
-    promises.push(store.dispatch(actions.fetchExclusives()));
+    // promises.push(store.dispatch(actions.fetchExclusives()));
     promises.push(store.dispatch(actions.fetchCeremonies()));
     return Promise.all(promises);
   }
@@ -123,12 +123,12 @@ class Home extends Component {
       if (section5Visible) {
         const section5Flag = document.getElementById('boxmark').getBoundingClientRect().top;
         const section5rate = section5Flag / window.innerHeight * 100;
-        const topOne = (-73 * section5rate / 100);
-        const leftOne = (25 * section5rate / 100);
-        const topTwo = (-79 * section5rate / 100);
-        const leftTwo = (-117 * section5rate / 100);
-        const topThree = (-83 * section5rate / 100);
-        const leftThree = (-164 * section5rate / 100);
+        const topOne = (-80.5 * section5rate / 100);
+        const leftOne = (56 * section5rate / 100);
+        const topTwo = (-88 * section5rate / 100);
+        const leftTwo = (-77 * section5rate / 100);
+        const topThree = (-90.3 * section5rate / 100);
+        const leftThree = (-124 * section5rate / 100);
         document.getElementById('box-one').style.transform = 'translate3d(' + leftOne + '%,' + topOne + 'rem,0px)';
         document.getElementById('box-two').style.transform = 'translate3d(' + leftTwo + '%,' + topTwo + 'rem,0px)';
         document.getElementById('box-three').style.transform = 'translate3d(' + leftThree + '%,' + topThree + 'rem,0px)';
@@ -143,9 +143,9 @@ class Home extends Component {
 
       }
       else {
-        document.getElementById('box-one').style.transform = 'translate3d(25%,-73rem,0px)';
-        document.getElementById('box-two').style.transform = 'translate3d(-117%,-79rem,0px)';
-        document.getElementById('box-three').style.transform = 'translate3d(-164%,-83rem,0px)';
+        document.getElementById('box-one').style.transform = 'translate3d(56%,-80.5rem,0px)';
+        document.getElementById('box-two').style.transform = 'translate3d(-77%,-88rem,0px)';
+        document.getElementById('box-three').style.transform = 'translate3d(-124%,-90.3rem,0px)';
         this.setState({ showDesc: false });
 
       }
@@ -269,10 +269,11 @@ class Home extends Component {
 
                     </div>
                     <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br />to help you celebrate...<br /><span>Your day. Your way.</span></h1>
+                    {/* this section is temporarily removed
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
                       <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>Free consultation</Button>
-                    </div>
+                    </div> */}
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
                 
@@ -286,7 +287,7 @@ class Home extends Component {
               <Row>
                 <Col>
                   <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful. <br />SevenVows, with their array <br />of services,help you plan the biggest day of your life in the best possible way.</p>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<br />services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -341,12 +342,12 @@ class Home extends Component {
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
                       <div className={styles.cardDetail}>
-                        <h3>Customisable services</h3>
+                        <h3>Personalized services</h3>
                         <p>All our actions adhere to our credo - ‘Your day. Your way’. We help as much as you want us to. You can choose us to plan your entire wedding or you can pick which of your ceremonies you need our help with.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('personalised-services-img.png')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath('personalized-services.jpg')} alt="img" />
                     </div>
                     <div className={styles.sectionIdentifier} id="personalisedSection"></div>
                   </div>
@@ -359,7 +360,7 @@ class Home extends Component {
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('discounted-prices-img.png')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath('no-pocket-pinch.jpg')} alt="img" />
                     </div>
                     <div className={styles.sectionIdentifier} id="discountSection"></div>
                   </div>
@@ -379,20 +380,20 @@ class Home extends Component {
                 </Col>
               </Row>
             </div>
-            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`}>
-              <Container>
+            <div className={`${styles.mediumPinkBg}  container-fluid`}>
+              <Container className={styles.boxSection}>
                 <Row className={styles.boxMark}>
                   <Col id="boxmark"></Col></Row>
                 <Row className="mobile-col-reverse">
-                  <Col className="justify-center flex align-center mobile-column">
+                  <div className="justify-center flex align-flex-top mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
                     <Button className="mobile-only primary-button home-btn white">Let’s do it</Button>
-                  </Col>
-                  <Col className={styles.dummyClass}>
-                    <h2 className={styles.whiteHeading}>Less worries.<span className="tab-only"><br /></span>More savings.</h2>
-                    <p className={styles.whiteDesc}>Choose from one of our customised packages <br />to steer clear of stress and get attractive discounts.</p>
+                  </div>
+                  <div className={styles.dummyClass}>
+                    <h2 className={styles.whiteHeading}>Less <span className="tab-only"><br /></span>worries.<br/>More <span className="tab-only"><br /></span>savings.</h2>
+                    <p className={styles.whiteDesc}>Choose from one of our customised packages to steer clear of stress and get attractive discounts.</p>
                     <Button className="tab-only primary-button home-btn white">Let’s do it</Button>
-                  </Col>
+                  </div>
                 </Row>
                 <Row>
                   <Col id="boxend"></Col>
@@ -403,10 +404,10 @@ class Home extends Component {
               <Container className={`${styles.homeContainer}`}>
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
-                    <img src={imagePath('box-one.png')} alt="img" />
+                    <img src={imagePath('box-one-n.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Gold Package</h3>
-                      <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
+                      <h3>Gold</h3>
+                      <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
                       <a className="primary-button home-btn white" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
@@ -414,8 +415,8 @@ class Home extends Component {
                   <Col className={styles.packageBox} id="box-two">
                     <img src={imagePath('box-two.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Emerald Package</h3>
-                      <p>Add shine to your wedding celebration.<br />Here’s a package that’s packed with wedding goodness.</p>
+                      <h3>Emerald</h3>
+                      <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
                       <a className="primary-button home-btn white" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
 
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
@@ -424,8 +425,8 @@ class Home extends Component {
                   <Col className={styles.packageBox} id="box-three">
                     <img src={imagePath('box-three.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Genie Package</h3>
-                      <p>Your wish is our command. <br />Choose what you need and make your dream team of wedding vendors.</p>
+                      <h3>Genie</h3>
+                      <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
                       {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
                       <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 

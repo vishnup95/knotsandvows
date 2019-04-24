@@ -101,14 +101,16 @@ class TalkToWeddingPlanner extends Component {
     }
 
     render() {
+        console.log(styles.footerLink);
+        
         return (
             <div>
-                {this.props.type === 'link' && <button className="link-btn" onClick={() => this.toggle()}>{this.props.buttonText}</button>}
+                {this.props.type === 'link' && styles.footerLink && <button className={`${this.props.origin === 'footer' ? styles.footerLink : 's'} link-btn`} onClick={() => this.toggle()}>{this.props.buttonText}</button>}
                 {this.props.type === 'call' && <div className="call-btn" onClick={() => this.toggle()} aria-hidden >
                     <div className="pulsateRing"></div>
                     <img src={imagePath('button-call.png')} alt="call-button" />
                 </div>}
-                {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button">{this.props.buttonText}</button>}
+                {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button home-btn medium-pink">{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
                     <img className={styles.closeBtn} src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.toggle()} />
@@ -131,7 +133,7 @@ class TalkToWeddingPlanner extends Component {
                         </Form>
                         <div className="text-center">
                             <ProgressButton title="Submit" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
-                            <p>Call sevenvows <a href="tel:+917702053510">+91 770 205 3510</a></p>
+                            <p className={styles.phone}>Call Seven Vows <a href="tel:+917702053510">+91 770 205 3510</a></p>
 
                         </div>
                     </div>
@@ -151,7 +153,8 @@ TalkToWeddingPlanner.propTypes = {
     status: PropTypes.bool,
     buttonText: PropTypes.string,
     type: PropTypes.string,
-    isLoading: PropTypes.bool
+    isLoading: PropTypes.bool,
+    origin: PropTypes.string
 
 };
 TalkToWeddingPlanner.defaultProps = {

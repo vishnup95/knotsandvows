@@ -98,6 +98,9 @@
   height: 10VW;
   border-radius: 15px;
   background-size: cover;
+  @include mobile {
+    height: 41vw;
+  }
 
 }
 .packageImg {

@@ -108,7 +108,7 @@ class SignInModal extends Component {
         if ((this.isSocialLogin || this.state.mode == DisplayMode.signIn) && this.props.apiStatus == true){
             var redirect = queryString.parse(this.props.location.search).redirect;
             if(redirect){
-                this.props.dispatch(replace(`${redirect}`));
+                this.props.dispatch(replace(`${Buffer.from(redirect, 'base64').toString()}`));
             } 
         }
     }

@@ -21,12 +21,20 @@ const items = [
         src: 'testimonial1.png',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'I really thought that I can plan my wedding single-handedly with some additional support from my family. But after opting for Seven Vows I understood how a wedding planner can make a world of difference.',
+        shortDescription: 'Though everything was in place, getting the right venue for my wedding was proving to be a huge task. Seven Vows helped me find that perfect venue at the right price. I love the fact that I could select only the specific service that I needed and not go for the entire package.',
+        buttonText: 'Browse caterers',
+        pathToRedirect: 'wishlist',
+        descAuthor: '',
+    }, {
+        src: 'testimonial2.png',
+        altText: 'Slide 1',
+        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
+        shortDescription: 'I really thought that I can plan my own wedding with help of my friends & family. After talking to SevenVows I realized the amount of work & stress the planning would be. Their services & price made it a no brainer for me to pick them as my wedding planner. ',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
         descAuthor: 'Sanjeev Sharma',
     }, {
-        src: 'testimonial2.png',
+        src: 'testimonial1.png',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'Seven Vows really helped me turn my dreams into reality. From the decor to the food and from the photographer to the mehendi artist, everything was top-notch to say the least.',
@@ -34,30 +42,14 @@ const items = [
         pathToRedirect: 'wishlist',
         descAuthor: 'Ajith Menon',
     }, {
-        src: 'testimonial1.png',
-        altText: 'Slide 1',
-        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'I thank my friend for recommending Seven Vows. I was planning a simple wedding but with a lot of warmth. With the help of Seven Vows, I achieved exactly that. They also added a lot of value to my vision.',
-        buttonText: 'Browse caterers',
-        pathToRedirect: 'wishlist',
-        descAuthor: 'Meera Cerejo',
-    }, {
         src: 'testimonial2.png',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'My father always wanted my wedding to be an extraordinary extravaganza. Seven Vows left no stone unturned to make my wedding a glitzy gala. I thank them from the bottom of my heart.',
+        shortDescription: 'I thank my friend for recommending Seven Vows. I was planning a simple wedding but with a lot of warmth. With the help of Seven Vows, I achieved exactly that. ',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'Malini Singh',
-    }, {
-        src: 'testimonial1.png',
-        altText: 'Slide 1',
-        caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
-        shortDescription: 'Though everything was in place, getting the right venue for my wedding was proving to be a huge task. Seven Vows helped me find that perfect venue at the right price. I love the fact that I could select only the specific service that I needed and not go for the entire package.',
-        buttonText: 'Browse caterers',
-        pathToRedirect: 'wishlist',
-        descAuthor: 'Malini Singh',
-    },
+        descAuthor: 'Meera Cerejo',
+    }
 ];
 
 class CarouselComponent extends Component {
@@ -100,7 +92,7 @@ class CarouselComponent extends Component {
                     onExited={this.onExited}
                     key={index}>
                     <div className={styles.carouselItem}>
-                        <div className={styles.carousalImage} style={{ backgroundImage: `url(${imagePath(item.src)})` }}></div>
+                        <div className={styles.carouselImage} style={{ backgroundImage: `url(${imagePath(item.src)})` }}></div>
                         <div className={styles.carouselContent}>
                             <img src={imagePath('quote.svg')} alt="quote" />
                             <p className={`${styles.carouselText} ${this.props.isZoom ? styles.carouselTextLarge : ''}`}>{item.shortDescription}</p>
