@@ -90,6 +90,7 @@ a {
   width: 100%;
   @include mobile {
     width: 100%;
+    text-align: left;
   }
 }
 
@@ -440,6 +441,6 @@ a {
   border-radius: 15px;
   background-size: cover;
   @include mobile {
-    height: 32vw;
+    height: 41vw;
   }
 }
