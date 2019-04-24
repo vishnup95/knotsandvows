@@ -56,7 +56,7 @@ class SocialAuthComponent extends Component {
             <div>
                <div className={`${styles.socialBtnWrap} text-center w-100`}>
                         <FacebookLogin
-                            appId="2249060602088158"
+                            appId="2286883458036161"
                             autoLoad={true}
                             fields="name,email,picture"
                             callback={responseFacebook}
