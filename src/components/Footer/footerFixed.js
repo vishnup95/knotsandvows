@@ -58,19 +58,18 @@ class FooterFixedComponent extends Component {
                             <li>
                                 <Link to={'/#packages'}>Packages</Link>
                             </li>
-
+                            <li>
+                                <Link to={'/#ceremonies'}>Ceremonies</Link>
+                            </li>
                             <li>
                                 <Link to={'/wishlist'}>Wishlist</Link>
                             </li>
 
                             <li>
-                                <Link to={'/services'}>Services</Link>
-                            </li>
-                            <li>
                                 <Link to={'/about'}>About</Link>
                             </li>
                             <li>
-                                <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} />
+                                <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} origin={'footer'}/>
                             </li>
                         </ul>
                     </Col>
