@@ -7,13 +7,13 @@
 .homeTopContainer {
   @extend %spacer;
   @include mobile {
-    margin-bottom: 8rem !important;
+    margin-bottom: 5rem !important;
   }
 }
 
 .homeContainer {
-  max-width: 78%;
-  padding: 0;
+  padding: 0 5%;
+  max-width: 100%;
 
   h2 {
     text-align: center;
@@ -35,6 +35,10 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+  @include tablet {
+    max-width: 78%;
+    padding: 0;
   }
 }
 
@@ -487,7 +491,7 @@ a.button {
   @include fontSize(18.3, important=true);
   position: relative;
   padding-left: 45px;
-  color: $white !important; 
+  color: $white !important;
 
   &:before {
     content: '';
@@ -603,6 +607,24 @@ a.button {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+
+  &:first-child {
+    > img {
+      width: 16rem;
+    }
+  }
+
+  &:nth-child(2) {
+    > img {
+      width: 18rem;
+    }
+  }
+
+  &:last-child {
+    > img {
+      width: 23rem;
+    }
+  }
   @include desktop {
     &:first-child {
       z-index: 3;
@@ -643,6 +665,19 @@ a.button {
   @extend %spacer;
   color: $white;
   transition: all .3s ease;
+
+  p {
+    font-family: $roboto-light !important;
+    font-size: 16px !important;
+    color: $white;
+  }
+  @include tablet {
+    p {
+      max-width: 16rem;
+      text-align: left !important;
+      font-size: 1.2rem !important;
+    }
+  }
   @include desktop {
     align-items: flex-start;
     opacity: 0;
@@ -656,14 +691,6 @@ a.button {
   h3 {
     font-size: 2.5rem;
     font-family: $roboto-medium !important;
-  }
-
-  p {
-    font-family: $roboto-light !important;
-    text-align: left !important;
-    font-size: 1.2rem !important;
-    max-width: 16rem;
-    color: $white;
   }
 
   &.showDetail {
@@ -681,25 +708,42 @@ a.button {
   align-items: center;
   position: relative;
   padding-top: 3rem;
-  width: 72rem;
   margin: 0 auto;
   justify-content: flex-end;
+  padding-bottom: 3rem;
+
   h2 {
     line-height: .8;
   }
 
   img {
-    width: 41rem;
-    margin: 0 auto 3rem;
+    width: 24rem;
+    margin: 3rem auto;
+  }
+  @include tablet {
+    width: 72rem;
+    margin: 0 auto;
+    padding-bottom: 0;
+
+    img {
+
+      width: 41rem;
+      margin: 0 auto 3rem;
+    }
+
   }
 }
 
 .dummyClass {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 1rem 0 0 3rem;
+  @include tablet {
+    padding: 1rem 0 0 3rem;
+    align-items: flex-start;
+  }
+
   button {
     margin: 0;
   }
@@ -850,9 +894,10 @@ h1.homeTitle {
   }
 }
 
-.carousalImage {
+.carouselImage {
   @include mobile {
     max-width: 100%;
+    height: 43vw;
   }
   background-size: cover;
   background-repeat: no-repeat;
@@ -949,7 +994,7 @@ h1.homeTitle {
 
   img {
     @include mobile {
-      height: 56vw;
+      height: auto;
       width: 100%;
     }
     @include width(665);
@@ -1084,6 +1129,7 @@ h1.homeTitle {
 .whiteHeading {
   @include mobile {
     font-size: 52px !important;
+    text-align: center;
   }
   color: $white;
   @include fontSize(93.5);

@@ -269,10 +269,11 @@ class Home extends Component {
 
                     </div>
                     <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br />to help you celebrate...<br /><span>Your day. Your way.</span></h1>
+                    {/* this section is temporarily removed
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
                       <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>Free consultation</Button>
-                    </div>
+                    </div> */}
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
                 
@@ -389,7 +390,7 @@ class Home extends Component {
                     <Button className="mobile-only primary-button home-btn white">Let’s do it</Button>
                   </div>
                   <div className={styles.dummyClass}>
-                    <h2 className={styles.whiteHeading}>Less<br/>worries.<span className="tab-only"><br /></span>More<br/>savings.</h2>
+                    <h2 className={styles.whiteHeading}>Less <span className="tab-only"><br /></span>worries.<br/>More <span className="tab-only"><br /></span>savings.</h2>
                     <p className={styles.whiteDesc}>Choose from one of our customised packages to steer clear of stress and get attractive discounts.</p>
                     <Button className="tab-only primary-button home-btn white">Let’s do it</Button>
                   </div>
@@ -406,7 +407,7 @@ class Home extends Component {
                     <img src={imagePath('box-one-n.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
-                      <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
+                      <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
                       <a className="primary-button home-btn white" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
@@ -415,7 +416,7 @@ class Home extends Component {
                     <img src={imagePath('box-two.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Emerald</h3>
-                      <p>Add shine to your wedding celebration.<br />Here’s a package that’s packed with wedding goodness.</p>
+                      <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
                       <a className="primary-button home-btn white" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
 
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
@@ -425,7 +426,7 @@ class Home extends Component {
                     <img src={imagePath('box-three.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
-                      <p>Your wish is our command. <br />Choose what you need and make your dream team of wedding vendors.</p>
+                      <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
                       {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
                       <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 
