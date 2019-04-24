@@ -16,9 +16,12 @@ import AddCollaboratorModal from './addCollaborator';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
 
+
 const mapStateToProps = state => ({
   wishlistLoading: state.wishlist.loading,
-  myWishListData: state.wishlist.wishListData
+  myWishListData: state.wishlist.wishListData,
+  location: state.router.location,
+  user: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -389,6 +392,7 @@ CategoryListing.propTypes = {
   wishlistLoading: PropTypes.bool,
   myWishListData: PropTypes.object,
   dispatch: PropTypes.func,
+  location: PropTypes.object
 };
 
 export default connect(

@@ -27,6 +27,7 @@ const session = (state = initialState, action) => {
       result = action.result || {};
       localStorage.setItem("token", result.data.data.token);
       localStorage.setItem("logged_in", true);
+      localStorage.setItem("user", JSON.stringify(result.data.data.user));
       return {
         ...state,
         user: result.data.data.user,
@@ -220,6 +221,7 @@ const session = (state = initialState, action) => {
       };
 
     case types.LOAD_PROFILE_SUCCESS:
+      localStorage.setItem("user", JSON.stringify(action.result.data.data.user));
       return {
         ...state,
         message: action.result.data.message,
@@ -281,6 +283,12 @@ const session = (state = initialState, action) => {
         error: null,
         message: '',
         apiStatus: null
+      };
+
+      case types.LOAD_USER_DATA:
+      return {
+        ...state,
+        user: action.payload
       };
 
     default:

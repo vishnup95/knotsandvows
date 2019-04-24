@@ -143,18 +143,14 @@ const PrivatePage = () => <div> private Page </div>;
 const SecretRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-        
-       isLoggedIn() ?
-       (
-        <Component {...props} />
-      ) : (
-        <Redirect to={`/?login=true&redirect=${props.location.pathname}`} />
-        // <Redirect to={{
-        //   pathname: '/login',
-        //   state: { from: props.location }
-        // }} />
-      )
+    render={props => {
+      if (isLoggedIn()) {
+        return <Component {...props} />;
+      } else {
+        const redirectValue = Buffer.from(`${props.location.pathname}${props.location.search}`).toString('base64');
+        return <Redirect to={`/?login=true&redirect=${redirectValue}`} />
+      }
+    }
     }
   />
 );
@@ -189,7 +185,7 @@ const routes = (
 
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <SecretRoute path="/profile" component={LoadableMyProfile} />
-    
+    {/* <SecretRoute path="/addcollabrator" component={LoadableWishlist}/> */}
     <Route component={LoadableNotFound} />
   </Switch>
   // </Suspense>

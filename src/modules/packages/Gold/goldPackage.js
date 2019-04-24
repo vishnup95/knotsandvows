@@ -35,6 +35,7 @@ class GoldPackage extends Component {
 
     if (name || email || phone || date || city || comments) {
         const params = {};
+        params['origin'] = 'GOLD_PACKAGE';
         params['name'] = name;
         params['email'] = email;
         params['phone'] = phone;
