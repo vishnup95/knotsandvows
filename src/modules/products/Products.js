@@ -97,7 +97,7 @@ class Products extends Component {
       this.props.dispatch(actions.fetchProducts(category));
       this.props.dispatch(actions.fetchFilters(category));
       this.props.dispatch(actions.fetchOtherCategories(category));
-      this.setState({ category: category, page: 1, sortBy: 0 });
+      this.setState({ category: category, page: 1, sortBy: 0, search:''});
     }
 
     if (this.state.productListData !== this.props.productListData) {
