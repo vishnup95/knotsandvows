@@ -116,7 +116,8 @@ const WishListReducer = (state = initialState, action) => {
     case types.LOAD_NOTES_SUCCESS:
       return {
         ...state,
-        wishListData: appendNotesToVendor(action.payload, state.wishListData, action.result.data.data.results),
+        wishListData: !state.current.shared ? appendNotesToVendor(action.payload, state.wishListData, action.result.data.data.results) : state.wishListData,
+        sharedWishListData: state.current.shared ? appendNotesToVendor(action.payload, state.sharedWishListData, action.result.data.data.results) : state.sharedWishListData,
         noteloading: false,
         error: null
       };
@@ -163,6 +164,12 @@ const WishListReducer = (state = initialState, action) => {
         ...state,
         error: action.error.message
       };
+    
+    case types.TOGGLE_SHARED_WISHLIST:
+      return {
+        ...state,
+        current: {wishlist_id: action.payload.wishlist_id, shared: action.payload.shared}
+      }
 
     default:
       return state;
