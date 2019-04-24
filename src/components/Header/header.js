@@ -159,7 +159,8 @@ class Header extends Component {
                         } else {
                             let modalContent = {
                                 heading: 'Reset Password',
-                                message: error
+                                message: error,
+                                type: 'failure'
                             };
                             this.props.dispatch(modalActions.showModal(modalContent));
                         }
@@ -167,7 +168,8 @@ class Header extends Component {
                         error => {
                             let modalContent = {
                                 heading: 'Reset Password',
-                                message: error.message
+                                message: error.message,
+                                type: 'failure'
                             };
                             this.props.dispatch(modalActions.showModal(modalContent));
                         });
@@ -209,8 +211,8 @@ class Header extends Component {
                 this.props.dispatch(replace("/"));
                 let modalContent = {
                     heading: '',
-                    message: this.props.error
-
+                    message: this.props.error,
+                    type: 'failure'
                 };
                 this.props.dispatch(modalActions.showModal(modalContent));
             }
@@ -247,8 +249,8 @@ class Header extends Component {
             return (
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
-                        <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only" />
-                        Login / Sign Up
+                        {/* <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only" /> */}
+                        Login
                 </NavLink>
                 </NavItem>
             );
@@ -263,27 +265,21 @@ class Header extends Component {
 
         return (
             <div className={styles.ahHeader}>
-                <div className={styles.navSmall}>
 
-                    <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
-                    </NavbarBrand>
-                    <Nav className={`${styles.iconNav}`} navbar>
-                        {/* <NavItem>
-                            <NavLink href="" className={styles.iconLink}>
-                                <img src={imagePath('vendor.svg')} alt="vendor" />
-                                For Vendors
-                                </NavLink>
-                        </NavItem> */}
-                        {this.renderLoginItem()}
-                    </Nav>
+                <div className={styles.navSmall}>
+                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our wedding planner'} />
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
+                    <NavbarBrand href="/">
+                        <img className={styles.logoTest} src={imagePath('logo.png')} alt="logo" />
+                    </NavbarBrand>
                     <NavbarToggler className={this.state.isOpen ? 'close-nav' : ''} onClick={this.toggle} />
                     <Collapse navbar className={`${styles.ahCollapse} ${this.state.isOpen ? 'show' : ''}`} >
                         <Nav className="" navbar>
                             <NavItem className={styles.vendors}>
                                 <NavLink onClick={() => this.navigateTo('/categories')}>Vendors</NavLink>
+                                {/* 
+                                this section is temporarily removed
                                 <div className={styles.categoriesList}>
                                     <ul>{this.renderCategoryLists(this.props.categories).splice(0, 6)}</ul>
                                     {this.renderCategoryLists(this.props.categories).length > 6 &&
@@ -294,7 +290,7 @@ class Header extends Component {
 
                                         <ul>{this.renderCategoryLists(this.props.categories).splice(12, 6)}</ul>
                                     }
-                                </div>
+                                </div> */}
                             </NavItem>
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
@@ -308,13 +304,12 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/about')}>About</NavLink>
                             </NavItem>
-                            <span className="mobile-only">
-                                {this.renderLoginItem()}
-                            </span>
+                            {this.renderLoginItem()}
 
                         </Nav>
                     </Collapse>
                 </Navbar>
+
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>

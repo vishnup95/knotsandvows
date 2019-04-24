@@ -28,9 +28,18 @@ const TalkToAhwanamReducer = (state = initialState, action) => {
         case types.POST_FORMDATA_FAILURE:
             return {
                 ...state,
-                status:false,
+                status: false,
                 message: action.error.message,
                 loading: false
+            };
+
+        case types.CLEAR_TALKTO_ERRORS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                message: '',
+                apiStatus: null
             };
 
         default:

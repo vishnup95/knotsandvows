@@ -2,7 +2,13 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
-.homeOuter {
+.homeOuter {}
+
+.homeTopContainer {
+  @extend %spacer;
+  @include mobile {
+    margin-bottom: 8rem !important;
+  }
 }
 
 .homeContainer {
@@ -24,6 +30,7 @@
     @include fontSize(25.2);
   }
   @extend %spacer;
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -518,10 +525,16 @@ a.button {
 
 .homeContent {
   position: absolute;
-  top: 28%;
+  bottom: 4.37rem;
+  left: 0;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   @include mobile {
     width: 100%;
+    bottom: 1.37rem;
   }
 
   p {
@@ -573,8 +586,11 @@ a.button {
 }
 
 .packageWrap {
+  background-color: $medium-pink;
+  @extend %spacer;
+  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
   @include desktop {
-    margin-top: 45rem;
+    padding-top: 52rem;
   }
 }
 
@@ -621,13 +637,15 @@ a.button {
   align-items: center;
   padding: 2rem 4rem 0;
   @extend %spacer;
+  color: $white;
   transition: all .3s ease;
   @include desktop {
     align-items: flex-start;
     opacity: 0;
   }
 
-  button, a {
+  a,
+  button {
     margin: 0;
   }
 
@@ -653,10 +671,11 @@ a.button {
 }
 
 .boxSection {
-  @include height(640);
+  min-height: 34rem;
   display: flex;
   align-items: center;
   position: relative;
+  padding-top: 2rem;
 
   h2 {
     line-height: .8;
@@ -666,7 +685,6 @@ a.button {
     width: 25rem;
     margin: 0 auto 3rem;
   }
-  @extend %spacer;
 }
 
 .dummyClass {
@@ -695,19 +713,20 @@ a.button {
 
 .homeTitle {
   white-space: nowrap;
-  color: $secondary-color;
+  color: $white;
+  text-align: center;
 
   div {
     > div {
       animation-name: textanimation;
       animation-duration: 5s;
       display: inline-block;
-      font-family: $frank-bold;
+      font-family: $frank-medium;
       white-space: pre;
       line-height: 1.17;
       font-size: 25px;
       @include tablet {
-         @include fontSize(80);
+        font-size: 4.285rem;
 
       }
     }
@@ -719,12 +738,10 @@ a.button {
 }
 
 h1.homeTitle {
-  font-size: 28px !important;
-  font-family: $frank-bold !important;
-  width: 40%;
+  font-size: 21px !important;
+  font-family: $frank-medium !important;
   white-space: initial;
-  margin-top: 19vw;
-  margin-left: 7vw;
+
   span {
     color: $medium-pink;
   }
@@ -734,12 +751,19 @@ h1.homeTitle {
   color: $bright-red;
   font-size: 1rem !important;
   margin-top: .25rem;
+  position: absolute;
+  bottom: -3rem;
+  @include mobile {
+    bottom: -9.4rem;
+  }
 }
 
 .contactInput {
   @include mobile {
     width: 80%;
-    margin: 33vw auto 3vw;
+    margin: 0 auto 3vw;
+    position: absolute;
+    bottom: -8rem;
 
     button {
       width: 50%;
@@ -750,8 +774,7 @@ h1.homeTitle {
     }
   }
   background-color: $white;
-
-  @include width(570);
+  width: 54rem;
   border-radius: 4px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(50, 50, 93, 0.11);
   border: solid 1.5px $medium-pink;
@@ -759,6 +782,7 @@ h1.homeTitle {
   align-items: center;
   padding-left: 1rem;
   justify-content: space-between;
+  margin-top: 2.5rem;
 
   input {
     border: none;
@@ -767,12 +791,16 @@ h1.homeTitle {
     font-family: $roboto-light;
     color: $warm-grey-eight-two;
     background: $white;
+    flex-grow: 1;
   }
 
   button {
     margin: 0;
     border-radius: 0;
     @include fontSize(16);
+    @include tablet {
+      width: 18rem;
+    }
   }
 }
 // carousel styles
@@ -780,7 +808,6 @@ h1.homeTitle {
   @include mobile {
     max-width: 100%;
   }
-  // max-width: 935px;
   margin: 0 auto;
   width: 70rem;
 }
@@ -790,7 +817,6 @@ h1.homeTitle {
   background-image: linear-gradient(116deg, $secondary-color, $lavender-pink);
   @include padding(80);
   border-radius: 6px;
-  // max-width: 935px;
   position: relative;
   @include mobile {
     flex-direction: column;
@@ -816,7 +842,6 @@ h1.homeTitle {
 .carousalImage {
   @include mobile {
     max-width: 100%;
-    height: 56vw;
   }
   background-size: cover;
   background-repeat: no-repeat;
@@ -890,7 +915,6 @@ h1.homeTitle {
     width: 100%;
   }
   @extend %spacer;
-  // max-width: 901px;
   margin-left: auto;
   margin-right: auto;
   width: 64rem;
@@ -918,7 +942,6 @@ h1.homeTitle {
       width: 100%;
     }
     @include width(665);
-    // @include height()
   }
 
   &.cardImageSlide {
@@ -926,8 +949,6 @@ h1.homeTitle {
       @include desktop {
         opacity: 1;
         margin-top: 0;
-        // height: 27.64rem;
-
       }
     }
 
@@ -962,7 +983,6 @@ h1.homeTitle {
   transition: all 2s ease;
   @include desktop {
     margin-top: 6rem;
-    // height: 21.64rem;
     opacity: 0;
   }
 }
@@ -983,9 +1003,17 @@ h1.homeTitle {
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
   border: solid 1.5px #ffc8df;
   width: 62rem;
-  // max-width: 871px;
   margin: 3rem auto 7rem;
   position: relative;
+  @include desktop {
+    &:nth-child(odd) {
+      margin-left: -1.2rem;
+    }
+
+    &:nth-child(even) {
+      margin-right: -1.2rem;
+    }
+  }
 
   .cardDetail {
     @include mobile {
@@ -1057,5 +1085,13 @@ h1.homeTitle {
   @include mobile {
     text-align: center;
     font-size: 14px;
+  }
+}
+
+.ceremony {
+  margin: 0 0 7rem;
+
+  h2 {
+    margin-bottom: 3rem;
   }
 }

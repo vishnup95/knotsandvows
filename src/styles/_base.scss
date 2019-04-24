@@ -64,7 +64,7 @@ h2 {
 
 .main {
   min-height: calc(100vh - 40rem);
-  margin-top: calc(50px + 4.9rem);
+  margin-top: calc(50px + 6.6875rem);
   @include mobile {
     margin-top: 4.9375rem;
   }
@@ -116,7 +116,6 @@ h2 {
     width: 15rem;
     display: flex;
     justify-content: center;
-    text-transform: uppercase;
   }
 }
 

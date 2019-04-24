@@ -4,17 +4,15 @@
 
 .ceremony-detail {
   overflow: hidden;
-
   @include mobile {
     margin-top: 7rem;
   }
 
   div[class^="container"] {
     max-width: 85%;
-
     @include mobile {
       max-width: 92%;
-      padding-right: 0; 
+      padding-right: 0;
     }
   }
 
@@ -62,6 +60,7 @@
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0 calc(7.5% + 15px) 2rem;
+
   h1 {
     letter-spacing: 1px;
   }
@@ -77,7 +76,6 @@
   font-family: $roboto-medium;
   width: max-content;
   cursor: pointer;
-
   @include mobile {
     margin: 0 auto;
   }
@@ -86,7 +84,11 @@
 // Browse category specific styles
 .browseAllContainer {
   padding-top: 4rem;
+  @include hdPlus {
+    max-width: 1350px;
+  }
 }
+
 .subTitleTwo {
   font-family: $roboto-regular;
   @include fontSize(18);
@@ -102,11 +104,17 @@
     padding: 0 10px;
   }
 }
+
 .selectCity {
   width: 200px;
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 3;
 }
+
 .selectDrop {
   width: 200px;
   margin-top: 2rem;

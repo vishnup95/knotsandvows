@@ -3,9 +3,11 @@
 @import '../../variables/utils';
 
 .logo-test {
-  @include height(50);
-  width: auto;
-  max-width: 143px;
+
+  max-height: 4.8rem;
+  @include tablet {
+    max-height: 8.1rem;
+  }
 }
 
 .ah-header {
@@ -23,12 +25,13 @@
   .ahNav {
     background-color: transparent !important;
     margin-bottom: 0;
-    height: 50px;
-    padding: 0;
+    height: 8.1rem;
+    justify-content: space-between !important;
+    padding: 0 10%;
     @include mobile {
-      position: absolute;
-      top: 0;
-      left: 0;
+      height: 5rem;
+      padding: 0 5%;
+
     }
 
     ul {
@@ -40,20 +43,19 @@
 }
 
 .nav-small {
-  @include height(79);
+  @include mobile {
+    display: none;
+  }
+  height: 48px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 5rem 0 1rem;
-  box-shadow: 0 2px 6px 0 $black-16;
-  background: #fff;
+  background: $medium-pink;
   @include tablet {
-     @include padding(0, 38)
+    padding: 0 8.333333%;
   }
-  @include mobile {
-     @include justify-center();
-     padding: 0 1rem 0 1rem;
-  }
+
 }
 
 .ahCollapse {
@@ -71,7 +73,6 @@
     height: 100%;
     position: relative;
     box-shadow: none;
-    background-color: $medium-pink;
     padding: 0;
     justify-content: center;
     border-radius: 0;
@@ -91,14 +92,15 @@
         @include mobile {
           line-height: 2.36;
           font-size: 18px;
-          color: $black !important;
+          color: $greyish-brown-six !important;
           font-family: $roboto-regular;
 
         }
         font-family: $roboto-medium;
-        color: $white !important;
+        color: $greyish-brown-six !important;
         opacity: .95;
         position: relative;
+        @include fontSize(20.5);
         @include tablet {
           margin: 0 2rem;
 

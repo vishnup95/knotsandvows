@@ -129,3 +129,14 @@ export function removeCollaborator(collaborator) {
     promise: client => client.post(`/api/removecollaborator?collaborator_id=${collaborator}`)
   };
 }
+
+export function getSharedWishlist(wishlist_id) {
+  return {
+    types: [
+      types.LOAD_SHARED_WISHLIST,
+      types.LOAD_SHARED_WISHLIST_SUCCESS,
+      types.LOAD_SHARED_WISHLIST_FAILURE
+    ],
+    promise: client => client.post(`/api/wishlist/getsharedwishlist?wishlist_id=${wishlist_id}`)
+  };
+}

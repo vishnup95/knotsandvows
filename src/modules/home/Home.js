@@ -31,6 +31,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
+const headerString = ['Customised Wedding Packages', 'to help you celebrate...'];
+const headerStringTwo = ['Your day. Your way'];
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -64,6 +67,8 @@ class Home extends Component {
   }
 
   componentWillMount() {
+    this.props.dispatch(talktoAhwanamActions.clearTalkToErrors());
+
     if (this.props.exclusives && this.props.exclusives.length === 0) {
       this.props.dispatch(actions.fetchExclusives());
     }
@@ -204,31 +209,34 @@ class Home extends Component {
 
   validateInput() {
     let inputValue = document.getElementById('freeConsult').value;
-
-    if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue) && !/^\d{10}$/.test(inputValue)) {
-      this.setState({ errorMessage: 'Please enter a valid email or phone number' });
-    } else {
-      let params = {
+    if (/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue)) {
+      const params = {
+        origin:"HOME",
         email: inputValue
       }
-
       this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
+    }else if (/^\d{10}$/.test(inputValue)){
+      const params = {
+        origin:"HOME",
+        phoneno: inputValue
+      }
+      this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
+    }else{
+      this.setState({ errorMessage: 'Please enter a valid email or phone number' });
     }
   }
 
   render() {
-    const headerString = ['Customised Wedding Packages ', 'to help you celebrate...'];
-    const headerStringTwo = ['Your day. Your way'];
     return (
       <div className={styles.homeOuter}>
         {
           styles &&
           <div>
-            <div className={`${styles.homeContainer} container`}>
+            <div className={`${styles.homeTopContainer} container-fluid`}>
               <Row>
-                <Col xs='12' md='3' className="p-relative no-padding-mobile">
-                  <div className={styles.homeContent}>
-                    <p className="tab-only">You can’t plan love. <br />But you can plan<br />how to celebrate it.</p>
+                <Col xs='12' className="p-relative no-padding">
+                <div className={styles.homeContent}>
+                    {/* <p className="tab-only">You can’t plan love. <br />But you can plan<br />how to celebrate it.</p> */}
 
                     <div className={`${styles.homeTitle} tab-only`}>
 
@@ -263,20 +271,22 @@ class Home extends Component {
                     <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br />to help you celebrate...<br /><span>Your day. Your way.</span></h1>
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
-                      <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>FREE CONSULTATION</Button>
+                      <Button className="primary-button medium-pink" onClick={() => this.validateInput()}>Free consultation</Button>
                     </div>
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
-                </Col>
-                <Col xs='12' md='9' className="no-padding-mobile">
+                
                   <ImageFade />
                 </Col>
               </Row>
-              <hr className="tab-only"></hr>
+            </div>
+            <div className={`${styles.homeContainer} container`}>
+
+              {/* <hr className="tab-only"></hr> */}
               <Row>
                 <Col>
-                  <h2>70% of couples regret not hiring <span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful.<br />SevenVows, with their array of services, <br />help you plan the biggest day of your life in the best possible way.</p>
+                  <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. <br />SevenVows, with their array <br />of services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -286,7 +296,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col className="text-center flex justify-center mt-5" id="numbersection">
-                  <Button className="primary-button home-btn medium-pink">LET US HELP YOU</Button>
+                  <Button className="primary-button home-btn medium-pink">Let us help you</Button>
                 </Col>
               </Row>
 
@@ -376,12 +386,12 @@ class Home extends Component {
                 <Row className="mobile-col-reverse">
                   <Col className="justify-center flex align-center mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
-                    <Button className="mobile-only primary-button home-btn white">LET’S DO IT</Button>
+                    <Button className="mobile-only primary-button home-btn white">Let’s do it</Button>
                   </Col>
                   <Col className={styles.dummyClass}>
                     <h2 className={styles.whiteHeading}>Less worries.<span className="tab-only"><br /></span>More savings.</h2>
                     <p className={styles.whiteDesc}>Choose from one of our customised packages <br />to steer clear of stress and get attractive discounts.</p>
-                    <Button className="tab-only primary-button home-btn white">LET’S DO IT</Button>
+                    <Button className="tab-only primary-button home-btn white">Let’s do it</Button>
                   </Col>
                 </Row>
                 <Row>
@@ -389,42 +399,45 @@ class Home extends Component {
                 </Row>
               </Container>
             </div>
-            <Container className={`${styles.homeContainer} ${styles.packageWrap}`}>
-              <Row className="mb-5" id="packages">
-                <Col className={styles.packageBox} id="box-one">
-                  <img src={imagePath('box-one.png')} alt="img" />
-                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                    <h3>Gold Package</h3>
-                    <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
-                    <a className="primary-button home-btn medium-pink" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
-                    {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
-                  </div>
-                </Col>
-                <Col className={styles.packageBox} id="box-two">
-                  <img src={imagePath('box-two.png')} alt="img" />
-                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                    <h3>Emerald Package</h3>
-                    <p>Add shine to your wedding celebration.<br />Here’s a package that’s packed with wedding goodness.</p>
-                    <a className="primary-button home-btn medium-pink" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
+            <div className={styles.packageWrap}>
+              <Container className={`${styles.homeContainer}`}>
+                <Row className="mb-5" id="packages">
+                  <Col className={styles.packageBox} id="box-one">
+                    <img src={imagePath('box-one.png')} alt="img" />
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Gold Package</h3>
+                      <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
+                      <a className="primary-button home-btn white" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
+                      {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
+                    </div>
+                  </Col>
+                  <Col className={styles.packageBox} id="box-two">
+                    <img src={imagePath('box-two.png')} alt="img" />
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Emerald Package</h3>
+                      <p>Add shine to your wedding celebration.<br />Here’s a package that’s packed with wedding goodness.</p>
+                      <a className="primary-button home-btn white" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
 
-                    {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
-                  </div>
-                </Col>
-                <Col className={styles.packageBox} id="box-three">
-                  <img src={imagePath('box-three.png')} alt="img" />
-                  <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                    <h3>Genie Package</h3>
-                    <p>Your wish is our command. <br />Choose what you need and make your dream team of wedding vendors.</p>
-                    {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
-                    <a className="primary-button home-btn medium-pink" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
+                      {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
+                    </div>
+                  </Col>
+                  <Col className={styles.packageBox} id="box-three">
+                    <img src={imagePath('box-three.png')} alt="img" />
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Genie Package</h3>
+                      <p>Your wish is our command. <br />Choose what you need and make your dream team of wedding vendors.</p>
+                      {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
+                      <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 
-                  </div>
-                </Col>
-              </Row>
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+            <Container className={styles.homeContainer}>
               <Row className="mt-5" id="ceremonies">
-                <Col>
+                <Col className={`${styles.ceremony} text-center`}>
                   <h2>You may also be interested in...</h2>
-
                   {this.props.ceremonies &&
                     <Col xs="12" className={` no-padding mb-5`}>
                       <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony" />

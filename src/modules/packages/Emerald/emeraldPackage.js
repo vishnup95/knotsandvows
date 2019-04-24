@@ -43,6 +43,7 @@ class emeraldPackage extends Component {
 
     if (name || email || phone ) {
       const params = {};
+      params['origin'] = 'EMERALD_PACKAGE';
       params['name'] = name;
       params['email'] = email;
       params['phone'] = phone;

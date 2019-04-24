@@ -16,7 +16,7 @@ import StarRating from '../../components/StarRating/starRating';
 import { imagePath, formatMoney } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
-import { isLoggedIn, getDataFromResponse } from '../../utils/utilities';
+import { isLoggedIn, getDataFromResponse, getId, formatDate } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import InputField from '../../components/InputField/inputField';
@@ -26,6 +26,7 @@ import * as modalActions from '../../reducers/modal/actions';
 const mapStateToProps = state => ({
     user: state.session.user,
     details: state.details.details,
+    notes: state.details.notes,
     gallery: state.details.gallery,
     detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
@@ -77,6 +78,8 @@ class DetailPageComponent extends Component {
 
     componentWillMount() {
         this.updateUIData();
+        this.props.dispatch(talkToPlannerActions.clearTalkToErrors());
+
     }
 
     updateUIData = () => {
@@ -88,6 +91,14 @@ class DetailPageComponent extends Component {
         this.props.dispatch(actions.fetchVendorGallery(vendor));
         this.props.dispatch(actions.fetchReviews(vendor, 1));
         this.props.dispatch(actions.fetchSimilarVendors(vendor));
+
+        if (isLoggedIn() && this.props.wishlistId != 0) {
+            let details = {
+                vendor_id: getId(vendor),
+                wishlist_id: this.props.wishlistId
+            }
+            this.props.dispatch(actions.fetchAllNotes(details));
+        }
 
 
     }
@@ -111,7 +122,8 @@ class DetailPageComponent extends Component {
                     } else {
                         let modalContent = {
                             heading: '',
-                            message: error
+                            message: error,
+                            type: 'failure'
                         };
                         this.props.dispatch(modalActions.showModal(modalContent));
                     }
@@ -135,7 +147,8 @@ class DetailPageComponent extends Component {
                 } else {
                     let modalContent = {
                         heading: '',
-                        message: error
+                        message: error,
+                        type: 'failure'
                     };
                     this.props.dispatch(modalActions.showModal(modalContent));
                 }
@@ -189,6 +202,31 @@ class DetailPageComponent extends Component {
         return packagesToRender;
     }
 
+    renderNotes = (notes) => {
+
+        const notesToRender = notes.map((note, index) => {
+
+            return (
+                <div className={style.noteWrap} key={index}>
+                    <div>
+                        <span className={style.noteTitle}>{note.author_name}</span>
+                        <span className={style.noteDate}>{formatDate(note.added_datetime)}</span>
+                    </div>
+                    <div className={style.noteText}>
+                        <div>
+                            <span className="edit-icon"></span>
+                            <span className="delete-icon"></span>
+                        </div>
+                        <div>
+                            {note.note}
+                                                    </div>
+                    </div>
+                </div>
+            )
+        });
+        return notesToRender;
+    }
+
     jumbotronData = (category) => {
         const jumbotronData =
         {
@@ -208,7 +246,7 @@ class DetailPageComponent extends Component {
 
         if (email && date) {
             const params = {};
-
+            params['origin'] = 'DETAIL_PAGE_FORM';
             if (/^\d{10}$/.test(email)) {
                 params['phone'] = this.state.email;
 
@@ -409,40 +447,11 @@ class DetailPageComponent extends Component {
                                             </div>
                                         </Col>
                                     </Col>
-                                    {true &&
+                                    {details && this.props.notes && this.props.notes.length > 0 &&
                                         <Col className={`${style.detailSubSection} ${style.noteSection}`}>
                                             <Col md="12" className={`${style.rightSubSection} text-left`}>
                                                 <h4 className={style.noteHeader}>Notes</h4>
-                                                <div className={style.noteWrap}>
-                                                    <div>
-                                                        <span className={style.noteTitle}>Binu</span>
-                                                        <span className={style.noteDate}>07 Mar 2019</span>
-                                                    </div>
-                                                    <div className={style.noteText}>
-                                                        <div>
-                                                            <span className="edit-icon"></span>
-                                                            <span className="delete-icon"></span>
-                                                        </div>
-                                                        <div>
-                                                            Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at elementum eu facilisis sed.
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div className={style.noteWrap}>
-                                                    <div>
-                                                        <span className={style.noteTitle}>Binu</span>
-                                                        <span className={style.noteDate}>07 Mar 2019</span>
-                                                    </div>
-                                                    <div className={style.noteText}>
-                                                        <div>
-                                                            <span className="edit-icon"></span>
-                                                            <span className="delete-icon"></span>
-                                                        </div>
-                                                        <div>
-                                                            Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at elementum eu facilisis sed.
-                                                    </div>
-                                                    </div>
-                                                </div>
+                                                <div>{this.renderNotes(this.props.notes)}</div>
                                             </Col>
                                         </Col>
                                     }
@@ -481,6 +490,7 @@ DetailPageComponent.propTypes = {
     wishListApiLoading: PropTypes.bool,
     wishlistId: PropTypes.number,
     gallery: PropTypes.array,
+    notes: PropTypes.array,
 };
 
 export default connect(

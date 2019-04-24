@@ -64,9 +64,8 @@
 }
 
 .ceremonyCard {
-  border: solid 1.5px #ffc8df;
-  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
-  border-radius: 3px;
+  border: solid 1px $medium-pink;
+  border-radius: 15px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -78,13 +77,14 @@
   transition: all .7s ease;
 
   h3 {
-    font-family: $roboto-bold;
+    font-family: $roboto-medium;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
     text-align: center;
     margin: 1rem 0 0;
+    text-transform: uppercase;
   }
 
   &:hover {
@@ -94,9 +94,9 @@
 }
 
 .ceremonyIg {
-  // @include width(229);
   width: 100%;
-  @include height(152);
+  height: 10VW;
+  border-radius: 15px;
   background-size: cover;
 
 }
