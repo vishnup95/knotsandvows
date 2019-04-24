@@ -54,6 +54,9 @@ hr {
 }
 
 .other-wrap {
+  @include mobile {
+    padding: 2rem 5%;
+  }
   @include padding(48);
   margin: 0 auto;
 

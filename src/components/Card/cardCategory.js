@@ -14,7 +14,7 @@ import styles from './card.scss';
 import { formatMoney, imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse , getId} from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse, getId } from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
@@ -23,7 +23,7 @@ import * as modalActions from '../../reducers/modal/actions';
 const mapStateToProps = state => ({
     wishlistId: state.wishlist.current.wishlist_id,
     noteloading: state.wishlist.noteloading,
-});  
+});
 
 const mapDispatchToProps = dispatch => ({
     dispatch
@@ -42,14 +42,14 @@ class CategoryCard extends Component {
     componentDidMount() {
         document.addEventListener('click', this.handleClickOutside, true);
     }
-    
+
     componentWillUnmount() {
         document.removeEventListener('click', this.handleClickOutside, true);
     }
 
     handleClickOutside = event => {
-        if(!document.getElementById(`card${this.props.id}`).contains(event.target)) {
-            this.setState({showNotes: false});
+        if (!document.getElementById(`card${this.props.id}`).contains(event.target)) {
+            this.setState({ showNotes: false });
         }
     }
 
@@ -69,21 +69,21 @@ class CategoryCard extends Component {
 
             this.props.dispatch(wishlistActions.addToWishlist(params)).then((response) => {
                 var error = getDataFromResponse(response);
-                if (error == null){
-                    this.setState({isInWishlist: true});     
-                }else{
+                if (error == null) {
+                    this.setState({ isInWishlist: true });
+                } else {
                     let modalContent = {
                         heading: '',
                         message: error,
                         type: 'failure'
-                      };
+                    };
                     this.props.dispatch(modalActions.showModal(modalContent));
                 }
-            });           
+            });
         }
         e.stopPropagation();
     }
-    
+
     removeVendor = (event) => {
         event.stopPropagation();
         let params = {
@@ -91,7 +91,7 @@ class CategoryCard extends Component {
             wishlist_id: this.props.wishlistId,
             category_id: getId(this.props.category),
         };
-        
+
         this.props.dispatch(wishlistActions.removeFromWishlist(params));
     }
 
@@ -105,18 +105,18 @@ class CategoryCard extends Component {
             }
             this.props.dispatch(wishlistActions.fetchAllNotes(details));
         }
-        this.setState({showNotes: !this.state.showNotes});
+        this.setState({ showNotes: !this.state.showNotes });
     }
 
     handleNoteChange(e) {
-        this.setState({note: e.target.value});
+        this.setState({ note: e.target.value });
     }
 
     toggleAddNote(save) {
-        this.setState({showNotes: this.state.showAddNote});
-        this.setState({showAddNote: !this.state.showAddNote});
+        this.setState({ showNotes: this.state.showAddNote });
+        this.setState({ showAddNote: !this.state.showAddNote });
 
-        if(save && this.state.addNoteMode === 'add') {
+        if (save && this.state.addNoteMode === 'add') {
             let params = {
                 wishlist_id: this.props.wishlistId,
                 category_id: getId(this.props.category),
@@ -125,7 +125,7 @@ class CategoryCard extends Component {
             }
             if (params.note) {
                 this.props.dispatch(wishlistActions.addNote(params, this.props.dispatch));
-                this.setState({note: ''})
+                this.setState({ note: '' })
             }
         } else if (save && this.state.addNoteMode === 'edit') {
             let params = {
@@ -136,15 +136,15 @@ class CategoryCard extends Component {
                 note_id: this.state.selectedId
             }
 
-            if(this.state.note) {
+            if (this.state.note) {
                 this.props.dispatch(wishlistActions.editNote(params, this.props.dispatch));
-                this.setState({note: '', selectedId: ''})
+                this.setState({ note: '', selectedId: '' })
             }
         }
     }
 
     editNote(id, note) {
-        this.setState({addNoteMode: 'edit', note: note, selectedId: id});
+        this.setState({ addNoteMode: 'edit', note: note, selectedId: id });
         this.toggleAddNote(false, id);
     }
 
@@ -217,25 +217,25 @@ class CategoryCard extends Component {
     }
 
     handleCardClick = () => {
-        this.navigateTo(`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`);
+        this.navigateTo(`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`);
     }
 
     selectCard = (e) => {
-        this.props.selectedToCompare(this.props.data , this.props.isChecked);
+        this.props.selectedToCompare(this.props.data, this.props.isChecked);
         e.stopPropagation();
     }
 
     render() {
         return (
-            <div>
-                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} 
-                    onClick={this.handleCardClick}  id={`card${this.props.id}`}>
-                    <a href={`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`} className="d-none">To vendor detail</a>
+            <div><a href={`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`}>
+                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`}
+                    id={`card${this.props.id}`}>
+
                     {
                         this.props.isWishlist &&
                         <div>
                             <div className={`${styles.addIcon} ${styles.cardIcon}`} onClick={(event) => this.toggleNotes(event)} aria-hidden></div>
-                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`} onClick={ (event) => this.removeVendor(event)} aria-hidden></div>
+                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`} onClick={(event) => this.removeVendor(event)} aria-hidden></div>
                             {/* <div className={`${styles.viewIcon} ${styles.cardIcon}`}>2</div> */}
                         </div>
                     }
@@ -248,7 +248,7 @@ class CategoryCard extends Component {
                         alt="Card image cap"
                         onError={(e) => { e.target.onerror = null; e.target.src = `${imagePath('card_1_1.jpg')}` }}
                     />
-                    
+
                     <CardBody className={styles.categoryBody} style={{ backgroundColor: '#f7f7f7' }}>
                         {this.renderCardBody()}
                     </CardBody>
@@ -260,13 +260,13 @@ class CategoryCard extends Component {
                     }
                     {
                         this.state.showAddNote &&
-                        <div className={styles.addNote} onClick={(event) => { event.stopPropagation()}} aria-hidden>
+                        <div className={styles.addNote} onClick={(event) => { event.stopPropagation() }} aria-hidden>
                             <div className={styles.noteHeader}>
-                                <span>Add Note</span> 
-                                <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={() => this.toggleAddNote()} aria-hidden/>
+                                <span>Add Note</span>
+                                <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={() => this.toggleAddNote()} aria-hidden />
                             </div>
-                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters" 
-                            value={this.state.note} onChange={(event) => this.handleNoteChange(event)}></textarea>
+                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters"
+                                value={this.state.note} onChange={(event) => this.handleNoteChange(event)}></textarea>
                             <div className="text-right">
                                 <Button className="text-btn" onClick={() => this.toggleAddNote()}>Cancel</Button>
                                 <Button className="primary-button" onClick={() => this.toggleAddNote(true)}>Save</Button>
@@ -274,47 +274,48 @@ class CategoryCard extends Component {
                         </div>
                     }
                     {
-                       this.state.showNotes && <Col className={styles.noteContainer} onClick={event => event.stopPropagation()}>
+                        this.state.showNotes && <Col className={styles.noteContainer} onClick={event => event.stopPropagation()}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
                                     <div className={styles.addHeader} onClick={() => this.toggleAddNote()} aria-hidden>
-                                        <img src={imagePath('plusbtn.svg')} alt=""/>
+                                        <img src={imagePath('plusbtn.svg')} alt="" />
                                         Add note
                                     </div>
-                                         
+
                                     {this.props.noteloading &&
-                                    <div className="row">
-                                        <div className="col-12">
-                                        <LoaderComponent />
-                                        </div>
-                                    </div>}
-                                    {   
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <LoaderComponent />
+                                            </div>
+                                        </div>}
+                                    {
                                         this.props.data.notes.length > 0 ?
-                                        this.props.data.notes.map((note, index) => {
-                                            return(
-                                            <div className={styles.noteWrap} key={index}>
-                                                <div>            
-                                                    <span className={styles.noteTitle}>{note.author_name || 'Author'}</span>
-                                                    <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
-                                                </div>
-                                                <div className={styles.noteText}>
-                                                    <div>
-                                                        <span className="edit-icon" onClick={() => this.editNote(note.notes_id, note.note)} aria-hidden></span>
-                                                        <span className="delete-icon" onClick={() => this.removeNote(note.notes_id)} aria-hidden></span>
-                                                    </div>
-                                                    <div>
-                                                        {note.note}
-                                                    </div>
-                                                </div>
-                                            </div>)
-                                        }) :  !this.props.noteloading && <h4 className="font-italic text-secondary">No notes to show</h4>
+                                            this.props.data.notes.map((note, index) => {
+                                                return (
+                                                    <div className={styles.noteWrap} key={index}>
+                                                        <div>
+                                                            <span className={styles.noteTitle}>{note.author_name || 'Author'}</span>
+                                                            <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
+                                                        </div>
+                                                        <div className={styles.noteText}>
+                                                            <div>
+                                                                <span className="edit-icon" onClick={() => this.editNote(note.notes_id, note.note)} aria-hidden></span>
+                                                                <span className="delete-icon" onClick={() => this.removeNote(note.notes_id)} aria-hidden></span>
+                                                            </div>
+                                                            <div>
+                                                                {note.note}
+                                                            </div>
+                                                        </div>
+                                                    </div>)
+                                            }) : !this.props.noteloading && <h4 className="font-italic text-secondary">No notes to show</h4>
                                     }
-                                    
+
                                 </Col>
                             </Col>
                         </Col>
                     }
                 </Card>
+            </a>
             </div>
         );
     }

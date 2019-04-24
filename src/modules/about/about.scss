@@ -5,16 +5,16 @@
 
 .aboutContainer {
   color: $black;
+
   .aboutCover {
-    @include height(700);
+    height: 42vw;
     position: relative;
     background: url('/images/about_cover.jpg');
     background-position: top;
     background-size: cover;
-    background-repeat: no-repeat; 
-
+    background-repeat: no-repeat;
     @include mobile {
-      @include height(600);
+      height: 42vw;
     }
   }
 
@@ -24,11 +24,10 @@
     @include letterSpacing(1.44);
     width: 95%;
     text-align: center;
-    
     @include mobile {
-      @include fontSize(35);
+       @include fontSize(35);
       width: 98%;
-    }  
+    }
   }
 
   .h4Class {
@@ -37,11 +36,11 @@
     @include letterSpacing(.54);
     line-height: 2.5rem;
     margin-bottom: 2rem;
-
     @include mobile {
       text-align: center;
       margin-bottom: 1rem;
     }
+
     &.roboto {
       font-family: $roboto-regular;
     }
@@ -53,7 +52,6 @@
     color: #484848;
     line-height: 1.8rem;
     width: 80%;
-
     @include mobile {
       width: 100%;
       text-align: center;
@@ -90,7 +88,7 @@
   @include borderRadius(10);
   @include margin(0, 5);
 
-  .memeberInfo {  
+  .memeberInfo {
     @include padding(20,10);
     @include borderRadius(10);
     border-top-left-radius: 0;
@@ -102,7 +100,7 @@
       @include fontSize(22);
       color: $black;
     }
-  
+
     .memberPosition {
       font-family: $roboto-regular;
       @include fontSize(18);
@@ -115,7 +113,7 @@
     @include borderRadius(10);
     cursor: pointer;
     width: 100%;
-    background-size: cover; 
+    background-size: cover;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 
@@ -134,7 +132,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      height: 0%;
+      height: 0;
       width: 100%;
       color: white;
     }

@@ -104,7 +104,7 @@ class TalkToWeddingPlanner extends Component {
         console.log(styles.footerLink);
         
         return (
-            <div>
+            <div className="flex justify-center">
                 {this.props.type === 'link' && styles.footerLink && <button className={`${this.props.origin === 'footer' ? styles.footerLink : 's'} link-btn`} onClick={() => this.toggle()}>{this.props.buttonText}</button>}
                 {this.props.type === 'call' && <div className="call-btn" onClick={() => this.toggle()} aria-hidden >
                     <div className="pulsateRing"></div>
