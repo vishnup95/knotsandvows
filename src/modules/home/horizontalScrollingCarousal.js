@@ -3,6 +3,7 @@ import styles from './home.scss';
 import PropTypes from 'prop-types';
 import { imagePath } from "../../utils/assetUtils";
 import PlainCard from '../../components/Card/plainCard';
+import CategoryCard from "../../components/Card/cardCategory";
 
 export default class HorizontalScrollingCarousel extends Component {
 
@@ -35,12 +36,22 @@ export default class HorizontalScrollingCarousel extends Component {
           );
         })
       )
-    }else if (this.props.type === 'similar_ceremonies') {
+    } else if (this.props.type === 'similar_ceremonies') {
       return(
         this.props.data.map((ceremony, index) => {
           return(
             <div key={index} className={styles.plainCardContainer}>
               <PlainCard data={ceremony} type="ceremonies"/>
+            </div>
+          );
+        })
+      )
+    } else if (this.props.type === 'similar_vendors') {
+      return(
+        this.props.data.map((vendor, index) => {
+          return(
+            <div key={index} className={styles.plainCardTwo}>
+              <CategoryCard data={vendor} type="ceremonies"/>
             </div>
           );
         })
@@ -64,7 +75,8 @@ export default class HorizontalScrollingCarousel extends Component {
 HorizontalScrollingCarousel.propTypes = {
   data: PropTypes.array,
   onSelect: PropTypes.func,
-  type: PropTypes.string
+  type: PropTypes.string,
+  category: PropTypes.string
 };
 
 //type - home, other_categories

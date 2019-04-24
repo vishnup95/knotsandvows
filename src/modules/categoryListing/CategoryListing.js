@@ -86,7 +86,7 @@ class CategoryListing extends Component {
               </Row>
               {this.props.isLoading && <LoaderComponent />}
               {this.state.fixedCategories.length > 0 && <Row className={`mb-3 ${styles.fullWidthListing}`}>
-                <Col className="no-padding">
+                <Col>
                   <HorizontalSlider data={this.state.fixedCategories} type='small' buttonAction={this.handleCategoryChange}/>
                 </Col>
               </Row>}

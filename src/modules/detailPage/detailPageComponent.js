@@ -22,6 +22,7 @@ import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider
 import InputField from '../../components/InputField/inputField';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import * as modalActions from '../../reducers/modal/actions';
+import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -219,7 +220,7 @@ class DetailPageComponent extends Component {
                         </div>
                         <div>
                             {note.note}
-                                                    </div>
+                        </div>
                     </div>
                 </div>
             )
@@ -470,7 +471,11 @@ class DetailPageComponent extends Component {
                     </Modal>
                 }
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
-                    <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" />
+                    <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" >
+                        <Col xs="12" className={`${style.mobileCarousal} no-padding d-block d-sm-none`}>
+                            <HorizontalScrollingCarousel data={this.props.similarVendors} type="similar_vendors" category={this.state.category}/>
+                        </Col>
+                    </JumbotronComponent>
                 }
             </div>
         );

@@ -362,6 +362,9 @@
 // jumbotron fix
 .jumbotron {
   padding: 0 2rem 4rem;
+  @include mobile {
+    padding: 0;
+  }
 }
 // pagination fixes
 

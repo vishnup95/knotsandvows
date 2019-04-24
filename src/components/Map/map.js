@@ -35,6 +35,8 @@ class MapComponent extends Component {
                     lat: lat,
                     lng: lng
                   }}
+                  streetViewControl = {false}
+                  mapTypeControl = {false}
                 >
             <Marker
                  name={this.props.title}
@@ -50,7 +52,7 @@ class MapComponent extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyCRBZikmRSyDvGo95nb0uIe4VTQ6nOip2E",
+    apiKey: "AIzaSyBlDLoh8zk0WWSITPjDbO4tfV1VducHeio",
     mapDispatchToProps
 })(MapComponent);
 
