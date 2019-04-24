@@ -286,7 +286,7 @@ class Home extends Component {
               <Row>
                 <Col>
                   <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful. <br />SevenVows, with their array <br />of services,help you plan the biggest day of your life in the best possible way.</p>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<br />services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -341,12 +341,12 @@ class Home extends Component {
                     <div className={styles.imageCardText}>
                       <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
                       <div className={styles.cardDetail}>
-                        <h3>Customisable services</h3>
+                        <h3>Personalized services</h3>
                         <p>All our actions adhere to our credo - ‘Your day. Your way’. We help as much as you want us to. You can choose us to plan your entire wedding or you can pick which of your ceremonies you need our help with.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('personalised-services-img.png')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath('personalized-services.jpg')} alt="img" />
                     </div>
                     <div className={styles.sectionIdentifier} id="personalisedSection"></div>
                   </div>
@@ -359,7 +359,7 @@ class Home extends Component {
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('discounted-prices-img.png')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath('no-pocket-pinch.jpg')} alt="img" />
                     </div>
                     <div className={styles.sectionIdentifier} id="discountSection"></div>
                   </div>
@@ -405,7 +405,7 @@ class Home extends Component {
                   <Col className={styles.packageBox} id="box-one">
                     <img src={imagePath('box-one.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Gold Package</h3>
+                      <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
                       <a className="primary-button home-btn white" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
@@ -414,7 +414,7 @@ class Home extends Component {
                   <Col className={styles.packageBox} id="box-two">
                     <img src={imagePath('box-two.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Emerald Package</h3>
+                      <h3>Emerald</h3>
                       <p>Add shine to your wedding celebration.<br />Here’s a package that’s packed with wedding goodness.</p>
                       <a className="primary-button home-btn white" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
 
@@ -424,7 +424,7 @@ class Home extends Component {
                   <Col className={styles.packageBox} id="box-three">
                     <img src={imagePath('box-three.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Genie Package</h3>
+                      <h3>Genie</h3>
                       <p>Your wish is our command. <br />Choose what you need and make your dream team of wedding vendors.</p>
                       {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
                       <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
