@@ -20,8 +20,8 @@ import ImageFade from '../../components/ImageFade/imageFade';
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  categories: state.home.categories,
-  exclusives: state.home.exclusives,
+  // categories: state.home.categories,
+  // exclusives: state.home.exclusives,
   ceremonies: state.home.ceremonies
 });
 
@@ -55,7 +55,7 @@ class Home extends Component {
     // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
 
     let promises = [];
-    promises.push(store.dispatch(actions.fetchExclusives()));
+    // promises.push(store.dispatch(actions.fetchExclusives()));
     promises.push(store.dispatch(actions.fetchCeremonies()));
     return Promise.all(promises);
   }
