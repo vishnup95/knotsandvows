@@ -133,7 +133,7 @@ class TalkToWeddingPlanner extends Component {
                         </Form>
                         <div className="text-center">
                             <ProgressButton title="Submit" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
-                            <p>Call sevenvows <a href="tel:+917702053510">+91 770 205 3510</a></p>
+                            <p className={styles.phone}>Call Seven Vows <a href="tel:+917702053510">+91 770 205 3510</a></p>
 
                         </div>
                     </div>

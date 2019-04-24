@@ -119,6 +119,7 @@ class CeremonyDetail extends Component {
               <div className={styles.coverMask}>
                 <h1 className={styles.title}>{details.ceremony_name}</h1>
                 <p>{details.description}</p>
+                <button className="primary-button home-btn medium-pink">Let us help you</button>
               </div>
             </div>
             <Container>
