@@ -128,24 +128,6 @@ class Products extends Component {
     this.toggle();
   }
 
-  isInWishList = (category_id, vendor_id) => {
-     if (this.props.user == null){
-       return false
-     }else if (this.props.myWishListData == null && this.props.sharedWishlistData == null){
-      return false
-     }else{
-
-         let wishlist = this.props.myWishListData.wishlistitems;
-         let index = wishlist.findIndex( category => { return typeof category.category_id == category_id} );
-         if (index == null || index < 0){
-           return false
-         }
-         let category = wishlist[index];
-         let result = category.vendors.some( vendor => { return typeof vendor.vendor_id == vendor_id} );
-         return result;
-     }
-  }
-
   render() {
     const { header, sort_options, filters } = this.props.filterData;
     var category = "";
@@ -222,7 +204,7 @@ class Products extends Component {
                   this.props.productListData.results.map((vendor, index) => {
                     return (
                       <Col xs="6" sm="4" key={index}>
-                        <CategoryCard data={vendor} category={this.state.category} id={index} isInWishList={this.isInWishList(1, vendor.vendor_id)}/>
+                        <CategoryCard data={vendor} category={this.state.category} id={index}/>
                       </Col>
                     );
                   })
