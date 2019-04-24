@@ -172,13 +172,14 @@ class SignInModal extends Component {
     renderSignIn = () => {
         return this.state.mode == DisplayMode.signIn ?
             (<div>
-                { this.props.apiStatus == false && this.props.error &&
-                    <div className={styles.apiError}>{this.props.error}</div>
-                }
+                
                 <Form className="position-relative mt-1">
                     <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignInFormChange(e)} />
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignInFormChange(e)}/>
                 </Form>
+                { this.props.apiStatus == false && this.props.error &&
+                    <div className={styles.apiError}>{this.props.error}</div>
+                }
                 <div className={styles.formRow}>
                     <div>
                         <button className={styles.detailLink} onClick={this.showForgotPassword}>Forgot Password?</button>
@@ -205,15 +206,16 @@ class SignInModal extends Component {
                 <div className={`${styles.footerText} ${styles.maxWidth} mb-3`}>
                     If you have a Seven Vows account please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Login</Link></span>
                 </div>
-                {this.props.apiStatus == false && this.props.error &&
-                    <div className={styles.apiError}>{this.props.error}</div>
-                }
+               
                 <Form className="position-relative">
                     <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)}/>
                     <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignUpFormChange(e)} />
                     <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleSignUpFormChange(e)}/>
                     <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)}/>
                 </Form>
+                {this.props.apiStatus == false && this.props.error &&
+                    <div className={styles.apiError}>{this.props.error}</div>
+                }
                 <div className="text-center">
                 <ProgressButton title="Create account" onClick={this.validateSignUpForm} isLoading={this.props.isLoading}></ProgressButton>
                 </div>

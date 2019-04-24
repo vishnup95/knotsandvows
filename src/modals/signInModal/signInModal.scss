@@ -168,8 +168,6 @@
 .apiError {
   @include fontSize(16);
   color: $bright-red;
-  position: absolute;
-  top: 7rem;
 
   &::first-letter {
     text-transform: capitalize;
