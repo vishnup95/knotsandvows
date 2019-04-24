@@ -8,6 +8,7 @@ a {
     text-decoration: none;
   }
 }
+
 .addEllipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -19,9 +20,8 @@ a {
   @include height(250);
   @include borderRadius(20,20,0,0);
   object-fit: cover;
-
   @include mobile {
-    @include height(150);
+     @include height(150);
   }
 }
 
@@ -36,7 +36,7 @@ a {
 
 .plainCardBody {
   @include mobile {
-    @include padding(12,0,4);
+     @include padding(12,0,4);
   }
 }
 
@@ -98,7 +98,6 @@ a {
   justify-content: space-between;
   align-items: baseline;
   margin-top: -0.5rem;
-
   @include mobile {
     flex-direction: column;
   }
@@ -117,7 +116,6 @@ a {
   background-color: #f7f7f7;
   @include borderRadius(0,0,20,20);
   @include height(112);
-
   @include mobile {
     height: auto;
   }
@@ -130,7 +128,6 @@ a {
   color: $black-four;
   @extend .addEllipsis;
   width: 13rem;
-
   @include mobile {
     width: 10rem;
   }
@@ -146,7 +143,6 @@ a {
     font-family: $roboto-medium;
     color: $black-four;
   }
-
   @include mobile {
     margin-bottom: 0;
   }
@@ -159,7 +155,6 @@ a {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
   @include mobile {
     width: 100%;
     flex-direction: row-reverse;
@@ -176,7 +171,6 @@ a {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
   @include mobile {
     justify-content: flex-start;
   }
@@ -197,9 +191,8 @@ a {
     height: .85rem;
     margin-bottom: .25rem;
     margin-left: .25rem;
-
     @include mobile {
-      margin-left:0;
+      margin-left: 0;
       margin-right: .5rem;
     }
   }
@@ -210,9 +203,8 @@ a {
   width: auto;
   @include borderRadius(18,18,0,0);
   object-fit: cover;
-
   @include mobile {
-    @include height(150);
+     @include height(150);
   }
 }
 
@@ -302,7 +294,6 @@ a {
     border-right: 1rem solid $white;
     border-bottom: .7rem solid transparent;
   }
-
   @include mobile {
     position: fixed;
     width: 40%;
@@ -364,7 +355,8 @@ a {
   width: 100%;
   padding: 0 1rem 1rem;
   background: $white;
-  @include borderRadius(10); 
+  @include borderRadius(10);
+
   textarea {
     width: 100%;
     margin-top: 1rem;
@@ -372,7 +364,6 @@ a {
     @include padding(8,16);
     border: 1px solid rgba(0, 0, 0, 0.13) !important;
   }
-
   @include mobile {
     position: fixed;
     right: auto;
@@ -390,12 +381,12 @@ a {
   @include fontSize(16);
   @include padding(8,16);
   margin: 0 -1rem;
-  @include borderRadius(10,10,0,0); 
+  @include borderRadius(10,10,0,0);
 }
 
 .closeNote {
   @include width(17);
-  }
+}
 
 // addnote button in note container
 
@@ -412,6 +403,7 @@ a {
     margin-right: 5px;
   }
 }
+
 .ceremonyCard {
   border: solid 1px $medium-pink;
   border-radius: 15px;
@@ -441,10 +433,13 @@ a {
     background-color: $medium-pink;
   }
 }
+
 .ceremonyIg {
   width: 100%;
   height: 10VW;
   border-radius: 15px;
   background-size: cover;
-
+  @include mobile {
+    height: 32vw;
+  }
 }
