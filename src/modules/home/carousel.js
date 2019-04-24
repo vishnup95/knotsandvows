@@ -92,7 +92,7 @@ class CarouselComponent extends Component {
                     onExited={this.onExited}
                     key={index}>
                     <div className={styles.carouselItem}>
-                        <div className={styles.carousalImage} style={{ backgroundImage: `url(${imagePath(item.src)})` }}></div>
+                        <div className={styles.carouselImage} style={{ backgroundImage: `url(${imagePath(item.src)})` }}></div>
                         <div className={styles.carouselContent}>
                             <img src={imagePath('quote.svg')} alt="quote" />
                             <p className={`${styles.carouselText} ${this.props.isZoom ? styles.carouselTextLarge : ''}`}>{item.shortDescription}</p>

@@ -76,13 +76,14 @@ h2 {
   font-family: $roboto-medium;
   @include letterSpacing(.5);
   @include padding(12,22);
-  @include borderRadius(8);
+  border-radius: 3.9px;
   min-width: 8rem;
   color: $white;
   outline: none;
   border: none;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.08), 0 4px 7px 0 rgba(50, 50, 93, 0.11);
   @include margin(0,8);
   @include tablet {
      @include fontSize(16);
@@ -184,9 +185,14 @@ h2 {
     flex-direction: column-reverse;
   }
 }
+
 textarea {
   resize: none;
 }
+
 .align-flex-top {
+  @include mobile {
+    align-items: center !important;
+  }
   align-items: flex-start !important;
 }
