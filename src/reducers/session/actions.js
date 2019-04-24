@@ -178,3 +178,10 @@ export function clearErrors() {
     type: types.CLEAR_ERRORS
   }
 }
+
+export function loadUserData(user) {
+  return {
+    type: types.LOAD_USER_DATA,
+    payload : user,
+  }
+}

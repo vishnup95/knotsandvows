@@ -81,6 +81,11 @@ class Header extends Component {
     }
 
     componentWillMount() {
+        if (isLoggedIn()) {
+            let user = JSON.parse(localStorage.getItem('user'));
+            this.props.dispatch(actions.loadUserData(user));
+            this.props.dispatch(actions.fetchMyProfile());
+        }
         if (this.props.categories.length === 0) {
             this.props.dispatch(homeActions.fetchCategories());
         }
@@ -89,12 +94,6 @@ class Header extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.user && nextProps.user != this.props.user) {
             this.props.dispatch(wishlistActions.fetchMyWishlist());
-        }
-    }
-
-    componentDidMount() {
-        if (isLoggedIn()) {
-            this.props.dispatch(actions.fetchMyProfile());
         }
     }
 
@@ -190,7 +189,7 @@ class Header extends Component {
                 } else {
                     var redirect = queryString.parse(this.props.location.search).redirect;
                     if (redirect) {
-                        this.props.dispatch(replace(`${redirect}`));
+                        this.props.dispatch(replace(`${Buffer.from(redirect, 'base64').toString()}`));
                     } else {
                         this.props.dispatch(replace("/"));
                     }

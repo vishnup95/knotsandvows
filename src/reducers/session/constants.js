@@ -53,3 +53,4 @@ export const LOAD_VALIDATE_LINK_SUCCESS = 'my-project/session/LOAD_VALIDATE_LINK
 export const LOAD_VALIDATE_LINK_FAILURE = 'my-project/session/LOAD_PROFILE_FAILURE';
 
 export const CLEAR_ERRORS = 'my-project/session/CLEAR_ERRORS';
+export const LOAD_USER_DATA = 'my-project/session/LOAD_USER_DATA';
