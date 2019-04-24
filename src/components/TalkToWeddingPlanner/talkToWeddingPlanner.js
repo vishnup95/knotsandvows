@@ -101,9 +101,11 @@ class TalkToWeddingPlanner extends Component {
     }
 
     render() {
+        console.log(styles.footerLink);
+        
         return (
             <div>
-                {this.props.type === 'link' && <button className="link-btn" onClick={() => this.toggle()}>{this.props.buttonText}</button>}
+                {this.props.type === 'link' && styles.footerLink && <button className={`${this.props.origin === 'footer' ? styles.footerLink : 's'} link-btn`} onClick={() => this.toggle()}>{this.props.buttonText}</button>}
                 {this.props.type === 'call' && <div className="call-btn" onClick={() => this.toggle()} aria-hidden >
                     <div className="pulsateRing"></div>
                     <img src={imagePath('button-call.png')} alt="call-button" />
@@ -151,7 +153,8 @@ TalkToWeddingPlanner.propTypes = {
     status: PropTypes.bool,
     buttonText: PropTypes.string,
     type: PropTypes.string,
-    isLoading: PropTypes.bool
+    isLoading: PropTypes.bool,
+    origin: PropTypes.string
 
 };
 TalkToWeddingPlanner.defaultProps = {

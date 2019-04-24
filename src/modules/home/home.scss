@@ -18,6 +18,7 @@
   h2 {
     text-align: center;
     margin-bottom: 1rem;
+    font-family: $frank-medium;
 
     span {
       color: $medium-pink;
@@ -25,9 +26,10 @@
   }
 
   p {
-    font-family: $roboto-medium;
+    font-family: $roboto-light;
     text-align: center;
     @include fontSize(25.2);
+    color: $greyish-brown-six;
   }
   @extend %spacer;
 
@@ -463,12 +465,13 @@ a.button {
 }
 
 .carousel-text {
-  font-family: $roboto-regular;
+  font-family: $roboto-medium !important;
   line-height: 1.21;
   margin-bottom: 1.5rem;
   @include fontSize(18.3, important=true);
   text-align: left !important;
   transition: all .3s ease;
+  color: $white !important;
   @include mobile {
     font-size: 12px;
   }
@@ -484,6 +487,7 @@ a.button {
   @include fontSize(18.3, important=true);
   position: relative;
   padding-left: 45px;
+  color: $white !important; 
 
   &:before {
     content: '';
@@ -659,6 +663,7 @@ a.button {
     text-align: left !important;
     font-size: 1.2rem !important;
     max-width: 16rem;
+    color: $white;
   }
 
   &.showDetail {
@@ -982,7 +987,7 @@ h1.homeTitle {
   position: relative;
   transition: all 2s ease;
   @include desktop {
-    margin-top: 6rem;
+    margin-top: 3rem;
     opacity: 0;
   }
 }
@@ -1000,7 +1005,7 @@ h1.homeTitle {
   }
   display: flex;
   border-radius: 6px;
-  box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
+  box-shadow: 6px 11px 5px 0 rgba(204, 26, 102, 0.12);
   border: solid 1.5px #ffc8df;
   width: 62rem;
   margin: 3rem auto 7rem;
