@@ -5,5 +5,15 @@ pipelines:
       - step:
           name: Build app
           script:
-            - ssh sandbox@52.66.202.144 'bash -s' < deploy.sh
+            - ssh sandbox@52.66.202.144 'bash -s' < deploy-sandbox.sh
+    staging:
+      - step:
+          name: Build app
+          script:
+            - ssh staging@52.66.202.144 'bash -s' < deploy-staging.sh
+    master:
+      - step:
+          name: Build app
+          script:
+            - ssh sevenvows@13.232.253.171 'bash -s' < deploy-prod.sh
 
