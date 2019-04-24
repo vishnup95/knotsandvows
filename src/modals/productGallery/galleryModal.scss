@@ -1,0 +1,14 @@
+@import '../../variables/utils';
+
+.galleryDetails {
+    border-top: 2px solid #312e2e;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.larger {
+    @include fontSize(30);
+}
