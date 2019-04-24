@@ -18,9 +18,7 @@
   z-index: 100;
   font-family: $roboto-regular;
   transition: 300ms all ease;
-  @include tablet {
-    background: $white;
-  }
+  background: $white;
 
   .ahNav {
     background-color: transparent !important;
