@@ -3,7 +3,11 @@
 @import '../../variables/utils';
 
 //general
-
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
 .addEllipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -50,6 +54,7 @@
   @include letterSpacing(.5);
   overflow: hidden;
   font-family: $roboto-regular;
+  color: $black-five;
 }
 
 .price {
