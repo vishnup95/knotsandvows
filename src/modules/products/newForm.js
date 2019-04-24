@@ -45,7 +45,7 @@ export class DropdownComponent extends Component {
             this.props.onCategoryChange(value);
             selectedFilters = {};
         } else {
-            if (value) {
+            if (value !== '') {
                 selectedFilters[this.props.name] = value;
             } else {
                 delete selectedFilters[this.props.name];
@@ -98,6 +98,10 @@ class FormComponent extends Component {
         this.state = { category: this.props.selectedCategory};
         this.props.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
     } 
+
+    componentDidMount(){
+        selectedFilters = {};
+    }
 
     componentWillReceiveProps(nextProps) {
         if(nextProps.filters !== this.props.filters) {

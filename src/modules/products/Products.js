@@ -50,7 +50,8 @@ class Products extends Component {
     sortBy: 0,
     page: 1,
     dropdownOpen: false,
-    modal: true
+    modal: true,
+    search: ''
   }
 
   static fetchData(store) {
@@ -96,7 +97,7 @@ class Products extends Component {
       this.props.dispatch(actions.fetchProducts(category));
       this.props.dispatch(actions.fetchFilters(category));
       this.props.dispatch(actions.fetchOtherCategories(category));
-      this.setState({ category: category, page: 1, sortBy: 0 });
+      this.setState({ category: category, page: 1, sortBy: 0, search:''});
     }
 
     if (this.state.productListData !== this.props.productListData) {
@@ -105,7 +106,7 @@ class Products extends Component {
     }
   }
   pageChangeHandler(data) {
-    this.props.dispatch(actions.fetchProducts(this.state.category, data.selected + 1, this.state.sortBy));
+    this.props.dispatch(actions.fetchProducts(this.state.category, data.selected + 1, this.state.sortBy, this.state.search));
     this.setState({ page: data.selected + 1 });
   }
 
@@ -115,14 +116,14 @@ class Products extends Component {
 
   filterSearch = (params, category) => {
     this.navigateTo(`/categories/${category}`);
-    this.setState({ category : category, page : 1 , modal: true});
     let searchParams = queryString.stringify(params);
+    this.setState({ category : category, page : 1 , modal: true, search : searchParams});
     this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams, false));
   }
 
   changeSortOption = (sortOption) => {
     // let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
-    this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption));
+    this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption, this.state.search));
     this.setState({ page: 1, sortBy: sortOption });
     this.toggle();
   }
