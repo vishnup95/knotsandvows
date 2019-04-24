@@ -594,7 +594,7 @@ a.button {
   @extend %spacer;
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
   @include desktop {
-    padding-top: 52rem;
+    padding-top: 57rem;
   }
 }
 
@@ -606,17 +606,17 @@ a.button {
   @include desktop {
     &:first-child {
       z-index: 3;
-      transform: translate3d(25%,-73rem,0px);
+      transform: translate3d(56%,-80.5rem,0px);
 
       > img {
-        width: 21rem;
+        width: 16rem;
       }
 
     }
 
     &:nth-child(2) {
       z-index: 2;
-      transform: translate3d(-117%,-79rem,0px);
+      transform: translate3d(-77%,-88rem,0px);
 
       > img {
         width: 18.5rem;
@@ -625,10 +625,10 @@ a.button {
 
     &:last-child {
       z-index: 1;
-      transform: translate3d(-164%,-83rem,0px);
+      transform: translate3d(-124%,-90.3rem,0px);
 
       > img {
-        width: 23rem;
+        width: 26.5rem;
       }
     }
   }
@@ -680,14 +680,16 @@ a.button {
   display: flex;
   align-items: center;
   position: relative;
-  padding-top: 2rem;
-
+  padding-top: 3rem;
+  width: 72rem;
+  margin: 0 auto;
+  justify-content: flex-end;
   h2 {
     line-height: .8;
   }
 
   img {
-    width: 25rem;
+    width: 41rem;
     margin: 0 auto 3rem;
   }
 }
@@ -696,7 +698,11 @@ a.button {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 1rem 0 0 3rem;
+  button {
+    margin: 0;
+  }
 }
 
 .boxMark {
@@ -1086,7 +1092,10 @@ h1.homeTitle {
 
 .whiteDesc {
   color: $white;
+  font-family: $roboto-medium;
   @include fontSize(26);
+  margin-top: 1rem;
+  width: 28rem;
   @include mobile {
     text-align: center;
     font-size: 14px;

@@ -18,9 +18,7 @@
   z-index: 100;
   font-family: $roboto-regular;
   transition: 300ms all ease;
-  @include tablet {
-    background: $white;
-  }
+  background: $white;
 
   .ahNav {
     background-color: transparent !important;
@@ -87,9 +85,9 @@
       @include flex();
       @include align-center();
       position: relative;
-      cursor: pointer;
 
       a {
+        cursor: pointer;
         @include mobile {
           line-height: 2.36;
           font-size: 18px;
@@ -182,6 +180,10 @@
       @include height(30);
     }
   }
+}
+
+.icon-link {
+  padding: 0 !important;
 }
 
 .categoriesList {

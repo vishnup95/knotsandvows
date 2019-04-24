@@ -20,8 +20,8 @@ import ImageFade from '../../components/ImageFade/imageFade';
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  categories: state.home.categories,
-  exclusives: state.home.exclusives,
+  // categories: state.home.categories,
+  // exclusives: state.home.exclusives,
   ceremonies: state.home.ceremonies
 });
 
@@ -55,7 +55,7 @@ class Home extends Component {
     // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
 
     let promises = [];
-    promises.push(store.dispatch(actions.fetchExclusives()));
+    // promises.push(store.dispatch(actions.fetchExclusives()));
     promises.push(store.dispatch(actions.fetchCeremonies()));
     return Promise.all(promises);
   }
@@ -123,12 +123,12 @@ class Home extends Component {
       if (section5Visible) {
         const section5Flag = document.getElementById('boxmark').getBoundingClientRect().top;
         const section5rate = section5Flag / window.innerHeight * 100;
-        const topOne = (-73 * section5rate / 100);
-        const leftOne = (25 * section5rate / 100);
-        const topTwo = (-79 * section5rate / 100);
-        const leftTwo = (-117 * section5rate / 100);
-        const topThree = (-83 * section5rate / 100);
-        const leftThree = (-164 * section5rate / 100);
+        const topOne = (-80.5 * section5rate / 100);
+        const leftOne = (56 * section5rate / 100);
+        const topTwo = (-88 * section5rate / 100);
+        const leftTwo = (-77 * section5rate / 100);
+        const topThree = (-90.3 * section5rate / 100);
+        const leftThree = (-124 * section5rate / 100);
         document.getElementById('box-one').style.transform = 'translate3d(' + leftOne + '%,' + topOne + 'rem,0px)';
         document.getElementById('box-two').style.transform = 'translate3d(' + leftTwo + '%,' + topTwo + 'rem,0px)';
         document.getElementById('box-three').style.transform = 'translate3d(' + leftThree + '%,' + topThree + 'rem,0px)';
@@ -143,9 +143,9 @@ class Home extends Component {
 
       }
       else {
-        document.getElementById('box-one').style.transform = 'translate3d(25%,-73rem,0px)';
-        document.getElementById('box-two').style.transform = 'translate3d(-117%,-79rem,0px)';
-        document.getElementById('box-three').style.transform = 'translate3d(-164%,-83rem,0px)';
+        document.getElementById('box-one').style.transform = 'translate3d(56%,-80.5rem,0px)';
+        document.getElementById('box-two').style.transform = 'translate3d(-77%,-88rem,0px)';
+        document.getElementById('box-three').style.transform = 'translate3d(-124%,-90.3rem,0px)';
         this.setState({ showDesc: false });
 
       }
@@ -379,20 +379,20 @@ class Home extends Component {
                 </Col>
               </Row>
             </div>
-            <div className={`${styles.mediumPinkBg} ${styles.boxSection} container-fluid`}>
-              <Container>
+            <div className={`${styles.mediumPinkBg}  container-fluid`}>
+              <Container className={styles.boxSection}>
                 <Row className={styles.boxMark}>
                   <Col id="boxmark"></Col></Row>
                 <Row className="mobile-col-reverse">
-                  <Col className="justify-center flex align-center mobile-column">
+                  <div className="justify-center flex align-flex-top mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
                     <Button className="mobile-only primary-button home-btn white">Let’s do it</Button>
-                  </Col>
-                  <Col className={styles.dummyClass}>
-                    <h2 className={styles.whiteHeading}>Less worries.<span className="tab-only"><br /></span>More savings.</h2>
-                    <p className={styles.whiteDesc}>Choose from one of our customised packages <br />to steer clear of stress and get attractive discounts.</p>
+                  </div>
+                  <div className={styles.dummyClass}>
+                    <h2 className={styles.whiteHeading}>Less<br/>worries.<span className="tab-only"><br /></span>More<br/>savings.</h2>
+                    <p className={styles.whiteDesc}>Choose from one of our customised packages to steer clear of stress and get attractive discounts.</p>
                     <Button className="tab-only primary-button home-btn white">Let’s do it</Button>
-                  </Col>
+                  </div>
                 </Row>
                 <Row>
                   <Col id="boxend"></Col>
@@ -403,7 +403,7 @@ class Home extends Component {
               <Container className={`${styles.homeContainer}`}>
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
-                    <img src={imagePath('box-one.png')} alt="img" />
+                    <img src={imagePath('box-one-n.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch.<br />Here’s a complete wedding solution crafted just for you.</p>
