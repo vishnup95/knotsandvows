@@ -7,11 +7,6 @@
     right: 1rem
 }
 
-.navbar-toggler.close-nav {
-    background: url('/images/close-nav.svg') center center no-repeat;
-    background-size: contain;
-}
-
 .navbar-toggler:focus {
     outline: none;
 }
