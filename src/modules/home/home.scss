@@ -939,6 +939,7 @@ h1.homeTitle {
   @include mobile {
     text-align: center;
     padding: 2rem 0;
+    height: 24rem;
 
   }
   @include tabletOnly {}
