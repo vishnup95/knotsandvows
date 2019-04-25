@@ -340,6 +340,10 @@
   img {
     @include borderRadius(10);
   }
+
+  @include mobile {
+    height: 60vw;
+  }
 }
 
 .image-gallery-thumbnail {
@@ -377,12 +381,24 @@
   background: url(/images/gallery-right-arrow.svg) 50% 50% no-repeat;
   background-size: 30px;
   font-size: 0;
+  @include mobile {
+    padding: 13px 15px;
+  }
 }
 
 .image-gallery-left-nav {
   background: url(/images/gallery-left-arrow.svg) 50% 50% no-repeat;
   background-size: 30px;
   font-size: 0;
+  @include mobile {
+    padding: 13px 15px;
+  }
+}
+
+.image-gallery-thumbnails {
+  @include mobile {
+    display: none;
+  }
 }
 
 // Gallery styles ends here

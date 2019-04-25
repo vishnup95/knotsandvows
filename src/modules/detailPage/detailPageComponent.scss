@@ -498,8 +498,18 @@
         @include top(-60);
         @include right(-50);
         @include width(62);
+
+        @include mobile {
+          top: -0.75rem;
+          right: -1.125rem;
+          width: 1.875rem;
+        }
       }
     }
+  }
+
+  @include mobile {
+    transform: rotate(90deg) !important;
   }
 }
 
