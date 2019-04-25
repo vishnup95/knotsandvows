@@ -715,8 +715,8 @@ a.button {
   position: relative;
   padding-top: 3rem;
   margin: 0 auto;
-  justify-content: flex-end;
   padding-bottom: 3rem;
+  justify-content: center;
 
   h2 {
     line-height: .8;
@@ -730,6 +730,7 @@ a.button {
     width: 72rem;
     margin: 0 auto;
     padding-bottom: 0;
+    justify-content: flex-end;
 
     img {
 
