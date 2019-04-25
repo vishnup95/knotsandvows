@@ -314,7 +314,7 @@ class CategoryListing extends Component {
                           this.state.isCompare &&
                           <Col className="text-right">
                             <button className="text-btn small" onClick={() => this.setCompare()}>Cancel</button>
-                            <button className="primary-button" onClick={() => this.toggle()}>Compare Vendors</button>
+                            <button className="primary-button" onClick={() => this.toggle()}>Compare {this.state.currentCategories[`${this.state.selectedVendor}`].category_name}</button>
 
                           </Col>
                         }
@@ -322,8 +322,8 @@ class CategoryListing extends Component {
                       {
                         this.state.isCompare &&
                         <Row>
-                          <Col xs="12" className={styles.subText}>Choose two vendors of your choice to see how they compare on price, rating, and specialities. </Col>
-                          <Col xs="12" className={styles.selectedCount}>You have selected {this.state.vendorSelectedToCompare.length} of 3 vendors.</Col>
+                          <Col xs="12" className={styles.subText}>Choose two {this.state.currentCategories[`${this.state.selectedVendor}`].category_name} of your choice to see how they compare on price, rating, and specialities. </Col>
+                          <Col xs="12" className={styles.selectedCount}>You have selected {this.state.vendorSelectedToCompare.length} of 3 {this.state.currentCategories[`${this.state.selectedVendor}`].category_name}.</Col>
                         </Row>
                       }
                       <Row>

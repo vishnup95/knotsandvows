@@ -419,8 +419,8 @@ export default class HorizontalSlider extends Component {
                                 );
                             })
                         }
-                        <Col>
-                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> Vendors</span></div>
+                        <Col className="text-center">
+                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> {this.props.categoryName}</span></div>
                         </Col>
                     </Slider>
                 </div>
@@ -433,6 +433,7 @@ HorizontalSlider.propTypes = {
     data: PropTypes.array,
     type: PropTypes.string,
     category: PropTypes.string,
+    categoryName: PropTypes.string,
     buttonAction: PropTypes.func,
 
     checkIfSelectedForComparison: PropTypes.func,
