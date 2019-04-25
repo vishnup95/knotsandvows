@@ -52,9 +52,16 @@
     }
   }
 
-  a {
+  span {
     color: $warm-grey;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      font-weight: bold;
+    }
   }
+
   @include tablet {
     height: 11rem;
     flex-direction: row;
@@ -113,6 +120,7 @@
       @include letterSpacing(.4);
       position: relative;
       white-space: nowrap;
+      cursor: pointer;
 
       &:before {
         content: '|';
@@ -136,6 +144,10 @@
           content: '';
         }
       }
+    }
+
+    .selectedItem {
+      color: $primary-color;
     }
 
   }
