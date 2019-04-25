@@ -330,27 +330,59 @@
 
 //  Gallery styles
 .image-gallery-image {
-  width: 75vw;
+  width: auto;
   height: 25vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 3rem;
+
+  img {
+    @include borderRadius(10);
+  }
 }
 
 .image-gallery-thumbnail {
   &.active {
     border: 4px solid $white;
     @include borderRadius(10);
+
+    img {
+      filter: brightness(100%);
+    }
   }
 }
 
 .image-gallery-thumbnail {
   @include width(137);
   @include height(137);
+  vertical-align: top;
 
   img {
-    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+    @include borderRadius(10);
   }
+}
+
+.image-gallery-thumbnail-inner {
+  height: 100%;
+  width: 100%;
+  @include borderRadius(10);
+}
+
+.image-gallery-right-nav {
+  background: url(/images/gallery-right-arrow.svg) 50% 50% no-repeat;
+  background-size: 30px;
+  font-size: 0;
+}
+
+.image-gallery-left-nav {
+  background: url(/images/gallery-left-arrow.svg) 50% 50% no-repeat;
+  background-size: 30px;
+  font-size: 0;
 }
 
 // Gallery styles ends here
