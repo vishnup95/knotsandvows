@@ -6,7 +6,7 @@ import * as actions from './actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { imagePath, detectMobile } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import * as modalActions from '../../reducers/modal/actions';
 import { Modal } from 'reactstrap';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
@@ -54,6 +54,7 @@ class TalkToWeddingPlanner extends Component {
     }
     handleFormChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
+        this.props.dispatch(actions.clearTalkToErrors());
     }
     validateForm = () => {
         let name = this.nameRef.current.validateFormInput(document.getElementById('name'));
@@ -83,23 +84,12 @@ class TalkToWeddingPlanner extends Component {
         if (prevProps == undefined) {
             return false;
         }
-
-        if (this.props.message !== prevProps.message) {
-            if (this.props.status === true) {
-                this.setState({ modal: false });
-
-                if (detectMobile()) {
-                    this.props.dispatch(modalActions.showModal({ message: 'mobile_contact', heading: 'Talk to wedding planner' }));
-                } else {
-                    this.props.dispatch(modalActions.showModal({ message: 'We will contact you soon!', heading: 'Talk to wedding planner' }));
-                }
-            }
-        }
+       if (this.props.status != prevProps.status && this.props.status === true) {
+            this.props.dispatch(modalActions.showModal({ message: 'Our wedding consultant will get in touch with you within 24 hours.', heading: 'We are on it!', type: 'success' }));   
+            this.setState({modal: false});
+         }
     }
-    componentWillMount() {
-        this.props.dispatch(actions.clearTalkToErrors());
-    }
-
+   
     render() {
         console.log(styles.footerLink);
         
@@ -119,9 +109,6 @@ class TalkToWeddingPlanner extends Component {
                         <div className={styles.logoWrap}>
                             <div className={styles.heading}>Talk to <br /> our wedding planner</div>
                         </div>
-                        {this.props.status == false && this.props.message &&
-                            <div className={styles.apiError}>{this.props.message}</div>
-                        }
                         <Form className="position-relative">
                             <InputField maxLength="50" placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
                             <InputField maxLength="50" placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
@@ -131,6 +118,10 @@ class TalkToWeddingPlanner extends Component {
                             <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
                             <InputField maxLength="200" placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
                         </Form>
+
+                        {this.props.status == false && this.props.message &&
+                            <div className={styles.apiError}>{this.props.message}</div>
+                        }
                         <div className="text-center">
                             <ProgressButton title="Submit" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
                             <p className={styles.phone}>Call Seven Vows <a href="tel:+917702053510">+91 770 205 3510</a></p>

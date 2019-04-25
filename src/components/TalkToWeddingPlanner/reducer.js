@@ -6,22 +6,20 @@ const initialState = {
 };
 
 const TalkToAhwanamReducer = (state = initialState, action) => {
-    let result = [];
     switch (action.type) {
 
         case types.POST_FORMDATA:
             return {
                 ...state,
                 message: '',
-                loading: true
+                loading: true,
+                status:null
             };
 
         case types.POST_FORMDATA_SUCCESS:
-            result = action.result || [];
             return {
                 ...state,
                 status: true,
-                message: result.data.message,
                 loading: false
             };
 
@@ -39,7 +37,7 @@ const TalkToAhwanamReducer = (state = initialState, action) => {
                 loading: false,
                 error: null,
                 message: '',
-                apiStatus: null
+                status: null
             };
 
         default:

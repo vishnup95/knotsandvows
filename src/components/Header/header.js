@@ -279,7 +279,7 @@ class Header extends Component {
                     <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
                             <NavItem className={styles.vendors}>
-                                <NavLink onClick={() => this.navigateTo('/categories')}>Vendors</NavLink>
+                                <NavLink onClick={() => this.navigateTo('/categories')}>VowVendors</NavLink>
                                 {/* 
                                 this section is temporarily removed
                                 <div className={styles.categoriesList}>
