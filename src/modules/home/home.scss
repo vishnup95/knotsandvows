@@ -1117,8 +1117,9 @@ h1.homeTitle {
   @include mobile {
     flex-direction: row;
     padding: 1rem 0;
+    align-items: center;
   }
-  padding: 4.5rem;
+  padding: 4.2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

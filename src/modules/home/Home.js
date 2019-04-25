@@ -332,7 +332,7 @@ class Home extends Component {
             <div className={`${styles.homeContainer} ${styles.imageCardWrap} container`}>
               <Row>
                 <Col className="text-center">
-                  <h2>Get hitched. Without a hitch</h2>
+                  <h2>Get hitched. Without a hitch.</h2>
                   {/* <p>Whether it is planning your entire wedding or only parts of it, we <br />will fulfill your needs and make your wedding a lot more enjoyable</p> */}
                 </Col>
               </Row>
@@ -388,7 +388,7 @@ class Home extends Component {
                   <div className="justify-center flex align-flex-top mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
                     <div className="mobile-only">
-                      <TalkToWeddingPlanner buttonText={'Let us help you'} />
+                      <TalkToWeddingPlanner buttonText={'Let us help you'} buttonColor={'white'}/>
                     </div>
                   </div>
                   <div className={styles.dummyClass}>
