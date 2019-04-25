@@ -270,7 +270,7 @@ class DetailPageComponent extends Component {
         this.setState({ [e.target.id]: e.target.value });
     }
 
-    handleNavClick(item, index) {
+    handleNavClick = (item, index) => {
         this.setState({ selectedNavItem: index });
 
         switch (item.id) {
@@ -362,7 +362,7 @@ class DetailPageComponent extends Component {
                             </Row>
                             <Row className={`${style.detailNav} mobile-only`}>
                                 <Col>
-                                    <HorizontalSlider data={detailNavItems} type='basic' buttonAction={this.handleCategoryChange} />
+                                    <HorizontalSlider data={detailNavItems} type='basic' buttonAction={this.handleNavClick} />
                                 </Col>
                             </Row>
                             <Row>

@@ -36,7 +36,7 @@ class ImageFade extends Component {
             <div className={styles.imageWrap}>
             {
                 styles.homeImage &&
-                <div className={styles.homeImage} style={{ backgroundImage: "url(" + imagePath(this.state.imageSrc) + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'  }}></div>
+                <div className={styles.homeImage} style={{ backgroundImage: "url(" + imagePath(this.state.imageSrc) + ")", backgroundPosition: 'center top', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'  }}></div>
             }
             
                 </div>
