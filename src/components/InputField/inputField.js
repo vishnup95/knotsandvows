@@ -129,6 +129,7 @@ class InputField extends Component {
                         onChange={() => this.props.onChange(event)}
                         disabled={this.props.disabled}
                         value={this.state.value}
+                        maxLength={this.props.maxLength}
                     ></textarea> : 
 
                     <input className='input-box' 
@@ -143,6 +144,7 @@ class InputField extends Component {
                         title={title}
                         min={this.minDate}
                         max={this.maxDate}
+                        maxLength={this.props.maxLength}
                     />
                 }
               
@@ -171,7 +173,8 @@ InputField.propTypes = {
     pattern: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.string,
-    phoneCheck: PropTypes.bool
+    phoneCheck: PropTypes.bool,
+    maxLength: PropTypes.string
 };
 
 InputField.defaultProps = {
