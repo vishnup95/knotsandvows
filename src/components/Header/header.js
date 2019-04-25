@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 import { shortName } from '../../utils/utilities';
 import * as actions from '../../reducers/session/actions';
 import * as homeActions from '../../modules/home/actions'
@@ -258,6 +258,9 @@ class Header extends Component {
 
     navigateTo(route) {
         this.props.dispatch(push(route));
+        if (detectMobile()) {
+            this.toggle();
+        }
     }
 
     render() {
@@ -269,11 +272,11 @@ class Header extends Component {
                     <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our wedding planner'} />
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
-                    <NavbarToggler className={this.state.isOpen ? 'close-nav' : ''} onClick={this.toggle} />
+                    <NavbarToggler onClick={this.toggle} />
                     <NavbarBrand href="/">
                         <img className={styles.logoTest} src={imagePath('logo.png')} alt="logo" />
                     </NavbarBrand>
-                    <Collapse navbar className={`${styles.ahCollapse} ${this.state.isOpen ? 'show' : ''}`} >
+                    <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
                             <NavItem className={styles.vendors}>
                                 <NavLink onClick={() => this.navigateTo('/categories')}>Vendors</NavLink>
@@ -321,6 +324,16 @@ class Header extends Component {
                 <div className={styles.talkBtn}>
                     <TalkToWeddingPlanner type={'call'} />
                 </div>
+                <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={styles.mobileMenuModal}>
+                    <ul>
+                        <li onClick={() => this.navigateTo('/categories')} aria-hidden>Vendors</li>
+                        <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
+                        <li onClick={() => this.navigateTo('/#ceremonies')} aria-hidden>Ceremonies</li>
+                        <li onClick={() => this.navigateTo('/wishlist')} aria-hidden>Wishlist</li>
+                        <li onClick={() => this.navigateTo('/about')} aria-hidden>About</li>
+                        {this.renderLoginItem()}
+                    </ul>
+                </Modal>
             </div>
         );
     }

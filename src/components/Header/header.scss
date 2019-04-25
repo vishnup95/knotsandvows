@@ -311,3 +311,19 @@
   bottom: 2rem;
   right: 2rem;
 }
+
+.mobileMenuModal {
+  top: 5rem;
+  left: 0;
+  position: absolute;
+  width: max-content;
+
+  ul {
+    padding: 20px;
+    list-style: none;
+
+    li {
+      padding: 10px 6px;
+    }
+  }
+}
