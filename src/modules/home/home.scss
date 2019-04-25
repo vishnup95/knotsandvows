@@ -560,11 +560,6 @@ a.button {
   background-color: $medium-pink;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .detailDesc {
   color: $secondary-color;
@@ -576,14 +571,15 @@ a.button {
   color: $white;
   text-align: center;
   padding: 2rem 1rem;
+  flex-shrink: 0;
+  span {
+    padding: 0 1rem;
+    font-size: 3.2rem;
+    font-family: $roboto-medium;
+    border-bottom: 2px solid $white;
+  }
 
   div {
-    &:first-child {
-      font-size: 3.2rem;
-      font-family: $roboto-medium;
-      border-bottom: 2px solid $white;
-    }
-
     &:last-child {
       font-size: 2rem;
       font-family: $roboto-light;
@@ -965,7 +961,6 @@ h1.homeTitle {
       width: 82%;
       margin: 0 auto;
       padding: 0;
-
       &:last-child {
         border-bottom: none;
       }

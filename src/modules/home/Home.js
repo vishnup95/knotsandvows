@@ -308,21 +308,21 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We know</div> */}
                     <div className={styles.detailCount}>
-                      <div>300 +</div>
+                      <span>300 +</span>
                       <div>venues</div>
                     </div>
                   </Col>
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We have</div> */}
                     <div className={styles.detailCount}>
-                      <div>15 +</div>
+                      <span>15 +</span>
                       <div>years of experience</div>
                     </div>
                   </Col>
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We are in</div> */}
                     <div className={styles.detailCount}>
-                      <div>10 +</div>
+                      <span>10 +</span>
                       <div>cities</div>
                     </div>
                   </Col>
