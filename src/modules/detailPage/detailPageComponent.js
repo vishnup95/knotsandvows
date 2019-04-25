@@ -56,7 +56,8 @@ class DetailPageComponent extends Component {
             email: '',
             phone: '',
             date: '',
-            isInWishList: false
+            isInWishList: false,
+            selectedNavItem: 0
         };
     }
     toggleGallery = () => {
@@ -265,11 +266,18 @@ class DetailPageComponent extends Component {
         this.setState({ [e.target.id]: e.target.value });
     }
 
-    handleNavClick(item) {
+    handleNavClick(item, index) {
+        this.setState({selectedNavItem: index});
 
         switch (item.id) {
-            case 'gallery': this.toggleGallery();
+            case 'gallery': this.toggleGallery(); break;
+            default: this.scrollToDetailSection(item.id); break;
         }
+    }
+
+    scrollToDetailSection(id) {
+        var sectionId = document.getElementById(id);
+        sectionId.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
     }
 
     render() {
@@ -309,10 +317,16 @@ class DetailPageComponent extends Component {
                         </div>
                         <div className={style.detailSection}>
                             <Row className={style.infoBox}>
-                                <div>
+                                <div className={style.infoText}>
                                     <h3 >{details.name} <img src={imagePath('wishlist_unselected.svg')} className={style.heartImg} alt="Unselected heart" />
                                     </h3>
-                                    <p >{details.city} (<a href="/">View on Map</a>)</p>
+                                    <p >
+                                        {details.city} 
+                                        {
+                                            this.props.details.location && this.props.details.location.latitude && this.props.details.location.longitude && 
+                                            <span onClick={() => this.scrollToDetailSection('direction')} aria-hidden>(View on Map)</span>
+                                        }
+                                    </p>
                                     <p >{details.address}</p>
                                 </div>
                                 <div className={style.infoSub}>
@@ -333,7 +347,7 @@ class DetailPageComponent extends Component {
                                 <ul>
                                     {
                                         detailNavItems.map((item, index) => {
-                                            return <li key={index} aria-hidden onClick={() => this.handleNavClick(item)}>{item.display_name}</li>
+                                            return <li key={index} className={this.state.selectedNavItem ===  index ? style.selectedItem : ''} aria-hidden onClick={() => this.handleNavClick(item, index)}>{item.display_name}</li>
                                         })
                                     }
                                 </ul>
@@ -350,7 +364,7 @@ class DetailPageComponent extends Component {
                             <Row>
                                 <Col md="7">
                                     {details.description &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="about">
                                             <h3>About {details.name}</h3>
                                             <ShowMoreText
                                                 lines={10}
@@ -361,7 +375,7 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
                                     {details.availableareas && details.availableareas.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="available_area">
                                             <h3>Available Areas ({details.availableareas.length})</h3>
                                             <ul className={style.selectableList}>
                                                 {this.renderAvailableArea(details.availableareas)}
@@ -371,7 +385,7 @@ class DetailPageComponent extends Component {
                                     }
 
                                     {details.amenities && details.amenities.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="amenities">
                                             <h3>Amenities</h3>
                                             <ul className={style.listWithIcon}>
                                                 {this.renderAminities(details.amenities)}
@@ -380,7 +394,7 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
                                     {details.policies && details.policies.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="policies">
                                             <h3>Policies</h3>
                                             <ul className={style.selectableList}>
                                                 {this.renderPolicies(details.policies)}
@@ -389,13 +403,13 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
                                     {details.location && details.location.latitude && details.location.longitude &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="direction">
                                             <h3>Direction</h3>
                                             <MapComponent lat={Number(details.location.latitude)} lng={Number(details.location.longitude)}></MapComponent>
                                         </Col>
                                     }
                                     {reviewsData && reviewsData.results && reviewsData.results.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="reviews">
                                             <div className={style.reviewHeader}>Reviews <span>({reviewsData.total_review_count})</span></div>
                                             <div className={style.starWrap}>
                                                 <StarRating rating={String(details.rating)} size={'large'} />

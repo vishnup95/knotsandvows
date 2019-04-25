@@ -20,7 +20,7 @@ export default class ReviewItem extends Component {
 
                 {/* <img src={imagePath('fullstar.svg')} className={styles.starImg} alt="Fullstar" /> <span>{review.rating}</span> */}
                 </div>
-                <div className={styles.reviewText}>{review.review}</div>
+                <div className={styles.reviewText}>{(review.review === '' || review.review === 'null') ? 'No review' : review.review}</div>
             </div>
         )
     }
