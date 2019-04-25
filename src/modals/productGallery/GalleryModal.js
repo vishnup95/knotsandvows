@@ -36,7 +36,7 @@ class ProductGallery extends Component {
         const images = this.getImages(this.props.images);
         return (
             <div>
-             <img src={imagePath('close-round.svg')} onClick={this.props.close} aria-hidden alt="close button"/>
+             <img src={imagePath('close-round.svg')} onClick={this.props.close} aria-hidden alt="close button" style={{cursor: 'pointer'}}/>
                 <div className="p-4">
                     <ImageGallery
                         ref={i => this._imageGallery = i}
@@ -49,7 +49,7 @@ class ProductGallery extends Component {
                         onSlide={this.handleOnSlide}
                     />
                 </div>
-                
+
                 <div className={styles.galleryDetails}>
                     <div className={styles.larger}>{this.props.name}</div>
                     <div>{`${this.state.currentIndex+1}/${images.length} Photos`}</div>
