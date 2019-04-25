@@ -309,7 +309,7 @@ class DetailPageComponent extends Component {
                         </div>
                         <div className={style.detailSection}>
                             <Row className={style.infoBox}>
-                                <div>
+                                <div className={style.infoText}>
                                     <h3 >{details.name} <img src={imagePath('wishlist_unselected.svg')} className={style.heartImg} alt="Unselected heart" />
                                     </h3>
                                     <p >{details.city} (<a href="/">View on Map</a>)</p>
