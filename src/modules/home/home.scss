@@ -1114,6 +1114,7 @@ h1.homeTitle {
 .imageCardIcon {
   width: 4.5rem;
   height: 4.5rem;
+  flex-shrink: 0;
 }
 
 .imageCardText {
