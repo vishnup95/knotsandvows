@@ -31,7 +31,7 @@ class CategorySection extends Component {
                 </Row>
 
                 <Row>
-                    <Col className="text-center">
+                    <Col>
                         <p className={styles.viewAll} onClick={() => this.handleViewAllClick(hyphonatedString(this.props.category.name , this.props.category.category_id))} aria-hidden >View All</p>
                     </Col>
                 </Row>

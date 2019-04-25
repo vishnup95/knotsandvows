@@ -56,7 +56,8 @@ class DetailPageComponent extends Component {
             email: '',
             phone: '',
             date: '',
-            isInWishList: false
+            isInWishList: false,
+            selectedNavItem: 0
         };
     }
     toggleGallery = () => {
@@ -76,8 +77,8 @@ class DetailPageComponent extends Component {
             return
         }
 
-        if (this.props.details != prevProps.details && this.props.details != null){
-            this.setState({isInWishList:this.props.details.is_in_wishlist});
+        if (this.props.details != prevProps.details && this.props.details != null) {
+            this.setState({ isInWishList: this.props.details.is_in_wishlist });
         }
     }
 
@@ -269,11 +270,18 @@ class DetailPageComponent extends Component {
         this.setState({ [e.target.id]: e.target.value });
     }
 
-    handleNavClick(item) {
+    handleNavClick(item, index) {
+        this.setState({ selectedNavItem: index });
 
         switch (item.id) {
-            case 'gallery': this.toggleGallery();
+            case 'gallery': this.toggleGallery(); break;
+            default: this.scrollToDetailSection(item.id); break;
         }
+    }
+
+    scrollToDetailSection(id) {
+        var sectionId = document.getElementById(id);
+        sectionId.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
     }
 
     render() {
@@ -300,7 +308,7 @@ class DetailPageComponent extends Component {
                 detailNavItems.push({ display_name: "Reviews", id: "reviews" });
             }
             if (this.props.gallery && this.props.gallery.length > 0) {
-                detailNavItems.push({ display_name: `Gallery (${this.props.gallery.length} Photos)`, id: "gallery" });
+                detailNavItems.push({ display_name: `Gallery (${this.props.gallery.length})`, id: "gallery" });
             }
         }
         const heartIcon = this.state.isInWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg';
@@ -313,10 +321,16 @@ class DetailPageComponent extends Component {
                         </div>
                         <div className={style.detailSection}>
                             <Row className={style.infoBox}>
-                                <div>
-                                    <h3 >{details.name} <img src={imagePath(heartIcon)} className={style.heartImg} alt="Unselected heart" />
+                                <div className={style.infoText}>
+                                    <h3 >{details.name} <img src={imagePath(heartIcon)} className={style.heartImg} alt="heart" />
                                     </h3>
-                                    <p >{details.city} (<a href="/">View on Map</a>)</p>
+                                    <p >
+                                        {details.city}
+                                        {
+                                            this.props.details.location && this.props.details.location.latitude && this.props.details.location.longitude &&
+                                            <span onClick={() => this.scrollToDetailSection('direction')} aria-hidden>(View on Map)</span>
+                                        }
+                                    </p>
                                     <p >{details.address}</p>
                                 </div>
                                 <div className={style.infoSub}>
@@ -337,7 +351,7 @@ class DetailPageComponent extends Component {
                                 <ul>
                                     {
                                         detailNavItems.map((item, index) => {
-                                            return <li key={index} aria-hidden onClick={() => this.handleNavClick(item)}>{item.display_name}</li>
+                                            return <li key={index} className={this.state.selectedNavItem === index ? style.selectedItem : ''} aria-hidden onClick={() => this.handleNavClick(item, index)}>{item.display_name}</li>
                                         })
                                     }
                                 </ul>
@@ -354,7 +368,7 @@ class DetailPageComponent extends Component {
                             <Row>
                                 <Col md="7">
                                     {details.description &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="about">
                                             <h3>About {details.name}</h3>
                                             <ShowMoreText
                                                 lines={10}
@@ -365,7 +379,7 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
                                     {details.availableareas && details.availableareas.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="available_area">
                                             <h3>Available Areas ({details.availableareas.length})</h3>
                                             <ul className={style.selectableList}>
                                                 {this.renderAvailableArea(details.availableareas)}
@@ -375,7 +389,7 @@ class DetailPageComponent extends Component {
                                     }
 
                                     {details.amenities && details.amenities.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="amenities">
                                             <h3>Amenities</h3>
                                             <ul className={style.listWithIcon}>
                                                 {this.renderAminities(details.amenities)}
@@ -384,7 +398,7 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
                                     {details.policies && details.policies.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="policies">
                                             <h3>Policies</h3>
                                             <ul className={style.selectableList}>
                                                 {this.renderPolicies(details.policies)}
@@ -393,13 +407,13 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
                                     {details.location && details.location.latitude && details.location.longitude &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="direction">
                                             <h3>Direction</h3>
                                             <MapComponent lat={Number(details.location.latitude)} lng={Number(details.location.longitude)}></MapComponent>
                                         </Col>
                                     }
                                     {reviewsData && reviewsData.results && reviewsData.results.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="reviews">
                                             <div className={style.reviewHeader}>Reviews <span>({reviewsData.total_review_count})</span></div>
                                             <div className={style.starWrap}>
                                                 <StarRating rating={String(details.rating)} size={'large'} />
@@ -477,7 +491,7 @@ class DetailPageComponent extends Component {
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
                     <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" >
                         <Col xs="12" className={`${style.mobileCarousal} no-padding d-block d-sm-none`}>
-                            <HorizontalScrollingCarousel data={this.props.similarVendors} type="similar_vendors" category={this.state.category}/>
+                            <HorizontalScrollingCarousel data={this.props.similarVendors} type="similar_vendors" category={this.state.category} />
                         </Col>
                     </JumbotronComponent>
                 }

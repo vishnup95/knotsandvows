@@ -269,10 +269,10 @@ class Header extends Component {
                     <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our wedding planner'} />
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
+                    <NavbarToggler className={this.state.isOpen ? 'close-nav' : ''} onClick={this.toggle} />
                     <NavbarBrand href="/">
                         <img className={styles.logoTest} src={imagePath('logo.png')} alt="logo" />
                     </NavbarBrand>
-                    <NavbarToggler className={this.state.isOpen ? 'close-nav' : ''} onClick={this.toggle} />
                     <Collapse navbar className={`${styles.ahCollapse} ${this.state.isOpen ? 'show' : ''}`} >
                         <Nav className="" navbar>
                             <NavItem className={styles.vendors}>

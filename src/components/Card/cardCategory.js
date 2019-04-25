@@ -59,6 +59,7 @@ class CategoryCard extends Component {
     }
 
     addToWishList = (e) => {
+        
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
         } else if (!this.state.isInWishlist) {
@@ -82,10 +83,17 @@ class CategoryCard extends Component {
             });
         }
         e.stopPropagation();
+        e.preventDefault();
+    }
+
+    stopClicks(event) {
+        event.stopPropagation();
+        event.preventDefault();
     }
 
     removeVendor = (event) => {
         event.stopPropagation();
+        event.preventDefault();
         let params = {
             vendor_id: this.props.data.vendor_id,
             wishlist_id: this.props.wishlistId,
@@ -97,6 +105,7 @@ class CategoryCard extends Component {
 
     toggleNotes(e) {
         e.stopPropagation();
+        e.preventDefault();
         if (!this.state.showNotes) {
             let details = {
                 category_id: getId(this.props.category),
@@ -216,18 +225,20 @@ class CategoryCard extends Component {
         );
     }
 
-    handleCardClick = () => {
+    handleCardClick = (e) => {
         this.navigateTo(`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`);
+        e.preventDefault();
     }
 
     selectCard = (e) => {
         this.props.selectedToCompare(this.props.data, this.props.isChecked);
         e.stopPropagation();
+        e.preventDefault();
     }
 
     render() {
         return (
-            <div><a href={`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`}>
+            <div><a href={`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`} onClick={(event) => this.handleCardClick(event)}>
                 <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`}
                     id={`card${this.props.id}`}>
 
@@ -260,7 +271,7 @@ class CategoryCard extends Component {
                     }
                     {
                         this.state.showAddNote &&
-                        <div className={styles.addNote} onClick={(event) => { event.stopPropagation() }} aria-hidden>
+                        <div className={styles.addNote} onClick={event => this.stopClicks(event)} aria-hidden>
                             <div className={styles.noteHeader}>
                                 <span>Add Note</span>
                                 <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={() => this.toggleAddNote()} aria-hidden />
@@ -274,7 +285,7 @@ class CategoryCard extends Component {
                         </div>
                     }
                     {
-                        this.state.showNotes && <Col className={styles.noteContainer} onClick={event => event.stopPropagation()}>
+                        this.state.showNotes && <Col className={styles.noteContainer} onClick={event => this.stopClicks(event)}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
                                     <div className={styles.addHeader} onClick={() => this.toggleAddNote()} aria-hidden>
