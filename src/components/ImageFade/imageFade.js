@@ -18,7 +18,7 @@ class ImageFade extends Component {
         let i = 1;
         this.imageUpdater = setInterval(() => {
             i++;
-            if (i > 15) {
+            if (i > 4) {
                 i = 1;
             }
             this.setState({ imageSrc: imagebaseName + i + '.jpg', imageSrcTwo: imagebaseName + i + 1 + '.jpg',scale: 1});
