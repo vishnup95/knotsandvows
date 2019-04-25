@@ -56,7 +56,6 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       case types.LOAD_SIMILAR_CEREMONIES:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_SIMILAR_CEREMONIES_SUCCESS:
@@ -64,14 +63,12 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         similar_ceremonenies: result.data.data.results,
-        loading: false
       };
 
     case types.LOAD_SIMILAR_CEREMONIES_FAILURE:
       return {
         ...state,
         error: action.error.message,
-        loading: false
       };
 
     default:

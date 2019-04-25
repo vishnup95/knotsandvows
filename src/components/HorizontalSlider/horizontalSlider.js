@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import { imagePath } from '../../utils/assetUtils';
+import { hyphonatedString } from '../../utils/utilities';
 import styles from './horizontalSlider.scss';
 import PropTypes from 'prop-types';
 import CategoryCard from '../../components/Card/cardCategory';
@@ -330,8 +331,9 @@ export default class HorizontalSlider extends Component {
                                 return (
                                     <Col key={index}>
                                     {
-                                        styles.ceremonyCard && 
-                                        <div className={styles.ceremonyCard} aria-hidden onClick={() => this.props.onSelect(item)}>
+                                        styles.ceremonyCard &&
+                                        <a href={`/ceremonies/${hyphonatedString(item.ceremony_name, item.ceremony_id)}`} onClick={(event) => this.props.onSelect(item, event)}>
+                                        <div className={styles.ceremonyCard}>
                                         {
                                             styles.ceremonyIg && 
                                             <img className={styles.ceremonyIg} style={{ backgroundImage: `url(${item.thumb_image}) ` }} alt=""
@@ -341,6 +343,7 @@ export default class HorizontalSlider extends Component {
                                             <h3>{item.ceremony_name}</h3>
                                             
                                         </div>
+                                        </a>
                                     }
 
                                     </Col>

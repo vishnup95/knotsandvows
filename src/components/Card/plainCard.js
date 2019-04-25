@@ -21,8 +21,12 @@ class PlainCard extends Component {
 
   navigateTo(route) {
     this.props.dispatch(push(route));
-    window.scrollTo(0, 0);
   }
+
+  handleCardClick = (e, name, id) => {
+    this.navigateTo(`/${this.props.type}/${hyphonatedString(name,id)}`);
+    e.preventDefault();
+}
   
   render() {
     let name = "";
@@ -38,8 +42,8 @@ class PlainCard extends Component {
       id = this.props.data.category_id;
     }
     return (
-      <div>
-        <div className={`${styles.ceremonyCard} mb-5`} onClick={() => this.navigateTo(`/${this.props.type}/${hyphonatedString(name,id)}`)} aria-hidden>
+      <div>< a href={`/${this.props.type}/${hyphonatedString(name,id)}`} onClick={(event) => this.handleCardClick(event, name, id)}>
+        <div className={`${styles.ceremonyCard} mb-5`}>
           <img src={imageUrl}
             alt="Categories"
             onError={(e)=>{e.target.onerror = null; e.target.src=imagePath('card_2_1.jpg')}}
@@ -48,6 +52,7 @@ class PlainCard extends Component {
           />
             <h3>{name}</h3>
         </div>
+        </a>
       </div>
     );
   }

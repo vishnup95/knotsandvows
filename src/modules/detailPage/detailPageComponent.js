@@ -197,11 +197,13 @@ class DetailPageComponent extends Component {
     renderPackages = (packages) => {
 
         const packagesToRender = packages.map((item, index) => {
-
             return (
                 <div className={style.pricesContainer} key={index}>
-                    <div className={style.item}>{item.name}<br /><span className={style.grey}>({item.charge_type})</span></div>
-                    <div className={style.itemPrice}>{item.price} <br /><span className={style.grey}>GST extra</span></div>
+                    <div className={style.item}>{item.name}<br />
+                    { item.charge_type &&
+                    <span className={style.grey}>({item.charge_type})</span>
+                    }</div>
+                    <div className={style.itemPrice}>{`₹`+item.format_price} <br /><span className={style.grey}>GST extra</span></div>
                 </div>
             )
         });

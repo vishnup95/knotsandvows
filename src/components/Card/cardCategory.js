@@ -186,7 +186,7 @@ class CategoryCard extends Component {
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
                     <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
                     <p className={`${styles.charges}`}>
-                        <span>{this.props.data.price.format_price}</span> {this.props.data.charge_type}
+                        <span>{`₹`+this.props.data.price.format_price}</span> {this.props.data.charge_type}
                     </p>
                 </div>
 
