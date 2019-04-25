@@ -53,7 +53,7 @@ class FooterFixedComponent extends Component {
                         <p><Link to={'/'}>Home</Link></p>
                         <ul>
                             <li>
-                                <Link to={'/categories'}>Vendors</Link>
+                                <Link to={'/categories'}>VowVendors</Link>
                             </li>
                             <li>
                                 <Link to={'/#packages'}>Packages</Link>

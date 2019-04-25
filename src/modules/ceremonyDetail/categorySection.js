@@ -26,7 +26,7 @@ class CategorySection extends Component {
 
                 <Row>
                     <Col className="no-padding">
-                        <HorizontalSlider data={this.props.category.vendors} category={hyphonatedString(this.props.category.name , this.props.category.category_id)} buttonAction={this.handleViewAllClick} />
+                        <HorizontalSlider data={this.props.category.vendors} categoryName={this.props.category.name} category={hyphonatedString(this.props.category.name , this.props.category.category_id)} buttonAction={this.handleViewAllClick} />
                     </Col>
                 </Row>
 

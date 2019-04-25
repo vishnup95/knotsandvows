@@ -11,7 +11,7 @@ import {
     Button
 } from 'reactstrap';
 import styles from './card.scss';
-import { formatMoney, imagePath } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse, getId } from '../../utils/utilities';
@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 
 class CategoryCard extends Component {
     state = {
-        isInWishlist: false,
+        isInWishlist: this.props.data.is_in_wishlist,
         showNotes: false,
         showAddNote: false,
         addNoteMode: 'add',
@@ -186,7 +186,7 @@ class CategoryCard extends Component {
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
                     <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
                     <p className={`${styles.charges}`}>
-                        <span>{formatMoney(this.props.data.price.minimum_price)}</span> {this.props.data.charge_type}
+                        <span>{this.props.data.price.format_price}</span> {this.props.data.charge_type}
                     </p>
                 </div>
 

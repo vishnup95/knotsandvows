@@ -9,6 +9,7 @@ import {
 
 import styles from './products.scss';
 import { getId, hyphonatedString } from '../../utils/utilities';
+import { imagePath } from '../../utils/assetUtils';
 
 let selectedFilters = {};
 
@@ -123,8 +124,9 @@ class FormComponent extends Component {
             category.category_id == getId(this.props.selectedCategory));
         return(
             
-            <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.toggleForm} aria-hidden>
+            <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.toggleForm()} aria-hidden>
                 <div className={styles.dropContainer} onClick={(event) => event.stopPropagation()} aria-hidden> 
+                    <img className={styles.closeBtn} src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.toggleForm()}/>
                     <h5 className="d-block d-sm-none">Search your vendors</h5>
                     <DropdownComponent key="categories" placeholder="i am looking for" name="category" dispatch={this.props.dispatch}
                         options={this.props.categories} selectedItem={this.props.categories[indexOfSelectedCategory]}

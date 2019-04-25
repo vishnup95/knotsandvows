@@ -81,7 +81,7 @@ class CategoryListing extends Component {
             <Container className={styles.browseAllContainer}>
               <Row>
                 <Col className="mb-4">
-                  <h2 className="text-center">Browse all vendors</h2>
+                  <h2 className="text-center">Browse all VowVendors</h2>
                 </Col>
               </Row>
               {this.props.isLoading && <LoaderComponent />}

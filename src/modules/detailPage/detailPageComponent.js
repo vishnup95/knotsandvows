@@ -13,7 +13,7 @@ import ReviewItem from '../../components/Reviews/reviews';
 import ReactPaginate from 'react-paginate';
 import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
-import { imagePath, formatMoney } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
 import { isLoggedIn, getDataFromResponse, getId, formatDate } from '../../utils/utilities';
@@ -75,6 +75,10 @@ class DetailPageComponent extends Component {
             this.updateUIData();
             window.scrollTo(0, 0);
             return
+        }
+
+        if (this.props.details != prevProps.details && this.props.details != null) {
+            this.setState({ isInWishList: this.props.details.is_in_wishlist });
         }
     }
 
@@ -197,7 +201,7 @@ class DetailPageComponent extends Component {
             return (
                 <div className={style.pricesContainer} key={index}>
                     <div className={style.item}>{item.name}<br /><span className={style.grey}>({item.charge_type})</span></div>
-                    <div className={style.itemPrice}>{formatMoney(item.price)} <br /><span className={style.grey}>GST extra</span></div>
+                    <div className={style.itemPrice}>{item.price} <br /><span className={style.grey}>GST extra</span></div>
                 </div>
             )
         });
@@ -267,7 +271,7 @@ class DetailPageComponent extends Component {
     }
 
     handleNavClick(item, index) {
-        this.setState({selectedNavItem: index});
+        this.setState({ selectedNavItem: index });
 
         switch (item.id) {
             case 'gallery': this.toggleGallery(); break;
@@ -277,7 +281,7 @@ class DetailPageComponent extends Component {
 
     scrollToDetailSection(id) {
         var sectionId = document.getElementById(id);
-        sectionId.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+        sectionId.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
     }
 
     render() {
@@ -307,7 +311,7 @@ class DetailPageComponent extends Component {
                 detailNavItems.push({ display_name: `Gallery (${this.props.gallery.length})`, id: "gallery" });
             }
         }
-
+        const heartIcon = this.state.isInWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg';
         return (
             <div className={style.detailContainer}>
                 {this.props.detailsLoading && <LoaderComponent />}
@@ -318,12 +322,12 @@ class DetailPageComponent extends Component {
                         <div className={style.detailSection}>
                             <Row className={style.infoBox}>
                                 <div className={style.infoText}>
-                                    <h3 >{details.name} <img src={imagePath('wishlist_unselected.svg')} className={style.heartImg} alt="Unselected heart" />
+                                    <h3 >{details.name} <img src={imagePath(heartIcon)} className={style.heartImg} alt="heart" />
                                     </h3>
                                     <p >
-                                        {details.city} 
+                                        {details.city}
                                         {
-                                            this.props.details.location && this.props.details.location.latitude && this.props.details.location.longitude && 
+                                            this.props.details.location && this.props.details.location.latitude && this.props.details.location.longitude &&
                                             <span onClick={() => this.scrollToDetailSection('direction')} aria-hidden>(View on Map)</span>
                                         }
                                     </p>
@@ -347,7 +351,7 @@ class DetailPageComponent extends Component {
                                 <ul>
                                     {
                                         detailNavItems.map((item, index) => {
-                                            return <li key={index} className={this.state.selectedNavItem ===  index ? style.selectedItem : ''} aria-hidden onClick={() => this.handleNavClick(item, index)}>{item.display_name}</li>
+                                            return <li key={index} className={this.state.selectedNavItem === index ? style.selectedItem : ''} aria-hidden onClick={() => this.handleNavClick(item, index)}>{item.display_name}</li>
                                         })
                                     }
                                 </ul>
@@ -487,7 +491,7 @@ class DetailPageComponent extends Component {
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
                     <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" >
                         <Col xs="12" className={`${style.mobileCarousal} no-padding d-block d-sm-none`}>
-                            <HorizontalScrollingCarousel data={this.props.similarVendors} type="similar_vendors" category={this.state.category}/>
+                            <HorizontalScrollingCarousel data={this.props.similarVendors} type="similar_vendors" category={this.state.category} />
                         </Col>
                     </JumbotronComponent>
                 }
