@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
 
 
 const headerString = ['Customised Wedding Packages', 'to help you celebrate...'];
-const headerStringTwo = ['Your day. Your way'];
+const headerStringTwo = ['Your day. Your way.'];
 
 class Home extends Component {
   constructor(props) {
