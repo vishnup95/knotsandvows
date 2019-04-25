@@ -421,9 +421,7 @@
   outline: none !important;
   font-family: $roboto-medium;
   opacity: .95;
-  &:hover {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
 }
 
 .slick-disabled {

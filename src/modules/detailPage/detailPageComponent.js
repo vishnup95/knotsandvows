@@ -304,7 +304,7 @@ class DetailPageComponent extends Component {
                 detailNavItems.push({ display_name: "Reviews", id: "reviews" });
             }
             if (this.props.gallery && this.props.gallery.length > 0) {
-                detailNavItems.push({ display_name: `Gallery (${this.props.gallery.length} Photos)`, id: "gallery" });
+                detailNavItems.push({ display_name: `Gallery (${this.props.gallery.length})`, id: "gallery" });
             }
         }
 
