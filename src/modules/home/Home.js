@@ -203,8 +203,9 @@ class Home extends Component {
     this.props.dispatch(push(route));
   }
 
-  handleCeremonyClick = (ceremony) => {
-    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`)
+  handleCeremonyClick = (ceremony, event) => {
+    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
+    event.preventDefault();
   }
 
   validateInput() {
@@ -388,7 +389,7 @@ class Home extends Component {
                   <div className="justify-center flex align-flex-top mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
                     <div className="mobile-only">
-                      <TalkToWeddingPlanner buttonText={'Let us help you'} buttonColor={'white'}/>
+                      <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'}/>
                     </div>
                   </div>
                   <div className={styles.dummyClass}>
@@ -446,7 +447,7 @@ class Home extends Component {
                   <h2>You may also be interested in...</h2>
                   {this.props.ceremonies &&
                     <Col xs="12" className={` no-padding mb-5`}>
-                      <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony" />
+                      <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)}/>
                     </Col>
                   }
                 </Col>
