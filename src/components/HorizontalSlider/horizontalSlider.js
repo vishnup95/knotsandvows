@@ -291,7 +291,7 @@ export default class HorizontalSlider extends Component {
                         {
                             this.props.data.map((item, index) => {
                                 return (
-                                    <div key={index} className={styles.sliderItemBasic}>
+                                    <div key={index} className={styles.sliderItemBasic} onClick={() => this.props.buttonAction(item, index)} aria-hidden> 
                                         <div className={styles.sliderWrap}>
                                             {item.display_name}
                                         </div>
