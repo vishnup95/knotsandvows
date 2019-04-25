@@ -560,11 +560,6 @@ a.button {
   background-color: $medium-pink;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .detailDesc {
   color: $secondary-color;
@@ -576,14 +571,15 @@ a.button {
   color: $white;
   text-align: center;
   padding: 2rem 1rem;
+  flex-shrink: 0;
+  span {
+    padding: 0 1rem;
+    font-size: 3.2rem;
+    font-family: $roboto-medium;
+    border-bottom: 2px solid $white;
+  }
 
   div {
-    &:first-child {
-      font-size: 3.2rem;
-      font-family: $roboto-medium;
-      border-bottom: 2px solid $white;
-    }
-
     &:last-child {
       font-size: 2rem;
       font-family: $roboto-light;
@@ -715,8 +711,8 @@ a.button {
   position: relative;
   padding-top: 3rem;
   margin: 0 auto;
-  justify-content: flex-end;
   padding-bottom: 3rem;
+  justify-content: center;
 
   h2 {
     line-height: .8;
@@ -730,6 +726,7 @@ a.button {
     width: 72rem;
     margin: 0 auto;
     padding-bottom: 0;
+    justify-content: flex-end;
 
     img {
 
@@ -939,6 +936,7 @@ h1.homeTitle {
   @include mobile {
     text-align: center;
     padding: 2rem 0;
+    height: 24rem;
 
   }
   @include tabletOnly {}
@@ -963,7 +961,6 @@ h1.homeTitle {
       width: 82%;
       margin: 0 auto;
       padding: 0;
-
       &:last-child {
         border-bottom: none;
       }
@@ -1113,6 +1110,7 @@ h1.homeTitle {
 .imageCardIcon {
   width: 4.5rem;
   height: 4.5rem;
+  flex-shrink: 0;
 }
 
 .imageCardText {

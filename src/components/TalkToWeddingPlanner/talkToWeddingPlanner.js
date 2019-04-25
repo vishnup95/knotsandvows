@@ -110,7 +110,7 @@ class TalkToWeddingPlanner extends Component {
                     <div className="pulsateRing"></div>
                     <img src={imagePath('button-call.png')} alt="call-button" />
                 </div>}
-                {this.props.type === '' && <button onClick={() => this.toggle()} className="primary-button home-btn medium-pink">{this.props.buttonText}</button>}
+                {this.props.type === '' && <button onClick={() => this.toggle()} className={`${this.props.buttonColor === 'white' ? 'white' : ''} primary-button home-btn medium-pink`}>{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
                     <img className={styles.closeBtn} src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.toggle()} />
@@ -123,13 +123,13 @@ class TalkToWeddingPlanner extends Component {
                             <div className={styles.apiError}>{this.props.message}</div>
                         }
                         <Form className="position-relative">
-                            <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />
-                            <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
-                            <InputField placeHolder="Preferred time to contact" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
-                            <InputField placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
-                            <InputField placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
+                            <InputField maxLength="50" placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} />
+                            <InputField maxLength="50" placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} />
+                            <InputField maxLength="50" placeHolder="Phone number" id="phone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} />
+                            <InputField maxLength="50" placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
+                            <InputField maxLength="50" placeHolder="Preferred time to contact" id="time" ref={this.timeRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
+                            <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
+                            <InputField maxLength="200" placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} />
                         </Form>
                         <div className="text-center">
                             <ProgressButton title="Submit" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
@@ -154,7 +154,8 @@ TalkToWeddingPlanner.propTypes = {
     buttonText: PropTypes.string,
     type: PropTypes.string,
     isLoading: PropTypes.bool,
-    origin: PropTypes.string
+    origin: PropTypes.string,
+    buttonColor: PropTypes.string
 
 };
 TalkToWeddingPlanner.defaultProps = {

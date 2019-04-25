@@ -8,7 +8,6 @@ import {
   Container,
   Row,
   Col,
-  Button
 } from 'reactstrap';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import * as actions from './actions';
@@ -17,6 +16,7 @@ import CarouselComponent from './carousel';
 import { imagePath } from '../../utils/assetUtils';
 import { hyphonatedString } from '../../utils/utilities';
 import ImageFade from '../../components/ImageFade/imageFade';
+import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
 
 
 const headerString = ['Customised Wedding Packages', 'to help you celebrate...'];
-const headerStringTwo = ['Your day. Your way'];
+const headerStringTwo = ['Your day. Your way.'];
 
 class Home extends Component {
   constructor(props) {
@@ -211,17 +211,17 @@ class Home extends Component {
     let inputValue = document.getElementById('freeConsult').value;
     if (/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/.test(inputValue)) {
       const params = {
-        origin:"HOME",
+        origin: "HOME",
         email: inputValue
       }
       this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
-    }else if (/^\d{10}$/.test(inputValue)){
+    } else if (/^\d{10}$/.test(inputValue)) {
       const params = {
-        origin:"HOME",
+        origin: "HOME",
         phoneno: inputValue
       }
       this.props.dispatch(talktoAhwanamActions.postContactDetails(params));
-    }else{
+    } else {
       this.setState({ errorMessage: 'Please enter a valid email or phone number' });
     }
   }
@@ -235,7 +235,7 @@ class Home extends Component {
             <div className={`${styles.homeTopContainer} container-fluid`}>
               <Row>
                 <Col xs='12' className="p-relative no-padding">
-                <div className={styles.homeContent}>
+                  <div className={styles.homeContent}>
                     {/* <p className="tab-only">You can’t plan love. <br />But you can plan<br />how to celebrate it.</p> */}
 
                     <div className={`${styles.homeTitle} tab-only`}>
@@ -276,7 +276,7 @@ class Home extends Component {
                     </div> */}
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
-                
+
                   <ImageFade />
                 </Col>
               </Row>
@@ -297,7 +297,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col className="text-center flex justify-center mt-5" id="numbersection">
-                  <Button className="primary-button home-btn medium-pink">Let us help you</Button>
+                  <TalkToWeddingPlanner buttonText={'Let us help you'} />
                 </Col>
               </Row>
 
@@ -308,21 +308,21 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We know</div> */}
                     <div className={styles.detailCount}>
-                      <div>300 +</div>
+                      <span>300 +</span>
                       <div>venues</div>
                     </div>
                   </Col>
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We have</div> */}
                     <div className={styles.detailCount}>
-                      <div>15 +</div>
+                      <span>15 +</span>
                       <div>years of experience</div>
                     </div>
                   </Col>
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We are in</div> */}
                     <div className={styles.detailCount}>
-                      <div>10 +</div>
+                      <span>10 +</span>
                       <div>cities</div>
                     </div>
                   </Col>
@@ -387,12 +387,17 @@ class Home extends Component {
                 <Row className="mobile-col-reverse">
                   <div className="justify-center flex align-flex-top mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
-                    <Button className="mobile-only primary-button home-btn white">Let’s do it</Button>
+                    <div className="mobile-only">
+                      <TalkToWeddingPlanner buttonText={'Let us help you'} />
+                    </div>
                   </div>
                   <div className={styles.dummyClass}>
-                    <h2 className={styles.whiteHeading}>Less <span className="tab-only"><br /></span>worries.<br/>More <span className="tab-only"><br /></span>savings.</h2>
+                    <h2 className={styles.whiteHeading}>Less <span className="tab-only"><br /></span>worries.<br />More <span className="tab-only"><br /></span>savings.</h2>
                     <p className={styles.whiteDesc}>Choose from one of our customised packages to steer clear of stress and get attractive discounts.</p>
-                    <Button className="tab-only primary-button home-btn white">Let’s do it</Button>
+                    <div className="tab-only">
+                      <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'} />
+                    </div>
+
                   </div>
                 </Row>
                 <Row>
