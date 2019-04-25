@@ -388,7 +388,7 @@ class Home extends Component {
                   <div className="justify-center flex align-flex-top mobile-column">
                     <img className="mobile-only" src={imagePath('packagesimage.png')} alt="img" />
                     <div className="mobile-only">
-                      <TalkToWeddingPlanner buttonText={'Let us help you'} />
+                      <TalkToWeddingPlanner buttonText={'Let us help you'} buttonColor={'white'}/>
                     </div>
                   </div>
                   <div className={styles.dummyClass}>
