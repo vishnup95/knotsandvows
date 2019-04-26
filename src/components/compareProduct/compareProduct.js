@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { imagePath, formatMoney } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import styles from './compareProduct.scss';
 import PropTypes from 'prop-types';
 import { Col } from 'reactstrap';
 import StarRating from '../../components/StarRating/starRating';
 import { connect } from 'react-redux';
 import * as actions from '../../modules/detailPage/actions';
-import { getDataFromResponse } from "../../utils/utilities";
+import { getDataFromResponse, formatMoney } from "../../utils/utilities";
 
 const mapDispatchToProps = dispatch => ({
     dispatch
@@ -48,7 +48,7 @@ const mapDispatchToProps = dispatch => ({
                     <p>{vendor.city}</p>
                 </div>
                 <div className={styles.price}>
-                    {formatMoney(vendor.price.minimum_price)} <span>{vendor.charge_type}</span>
+                    {formatMoney(vendor.price.format_price)} <span>{vendor.charge_type}</span>
                 </div>
                 <div className={styles.rating}>
                     <StarRating rating={String(vendor.rating)} size={'small'} />

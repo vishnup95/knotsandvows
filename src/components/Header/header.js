@@ -202,7 +202,8 @@ class Header extends Component {
                 let modalContent = {
                     heading: '',
                     message: 'Email has been successfully verified. Please login to continue.',
-                    proceedAction: this.toggleModal
+                    proceedAction: this.toggleModal,
+                    type: 'success'
                 };
                 this.props.dispatch(modalActions.showModal(modalContent));
                 this.props.dispatch(replace("/"));
@@ -234,9 +235,9 @@ class Header extends Component {
                             <DropdownItem className="text-center" onClick={() => this.navigateTo("/profile")}>
                                 Profile
                         </DropdownItem>
-                            <DropdownItem className="text-center" onClick={() => this.navigateTo("/bookings")}>
+                            {/* <DropdownItem className="text-center" onClick={() => this.navigateTo("/bookings")}>
                                 My bookings
-                        </DropdownItem>
+                        </DropdownItem> */}
                             <DropdownItem className="text-center" onClick={() => this.logout()}>
                                 Logout
                         </DropdownItem>
@@ -326,7 +327,7 @@ class Header extends Component {
                 </div>
                 <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={styles.mobileMenuModal}>
                     <ul>
-                        <li onClick={() => this.navigateTo('/categories')} aria-hidden>Vendors</li>
+                        <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
                         <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
                         <li onClick={() => this.navigateTo('/#ceremonies')} aria-hidden>Ceremonies</li>
                         <li onClick={() => this.navigateTo('/wishlist')} aria-hidden>Wishlist</li>

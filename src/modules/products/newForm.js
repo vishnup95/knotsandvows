@@ -97,21 +97,14 @@ class FormComponent extends Component {
     constructor(props) {
         super(props);
         this.state = { category: this.props.selectedCategory};
-        this.props.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
     } 
 
     componentDidMount(){
         selectedFilters = {};
     }
 
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.filters !== this.props.filters) {
-            nextProps.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
-        }
-    }
-
     changeCategory = (category) => {
-        this.setState({category});
+        this.setState({category: category});
     }
 
     toggleForm = () => {
@@ -119,9 +112,14 @@ class FormComponent extends Component {
             this.props.toggle();
         }
     }
+
     render() {
         let indexOfSelectedCategory = this.props.categories.findIndex(category => 
             category.category_id == getId(this.props.selectedCategory));
+            if(!this.props.filters){
+                return <div></div>
+            }
+            
         return(
             
             <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.toggleForm()} aria-hidden>
@@ -133,9 +131,10 @@ class FormComponent extends Component {
                         onCategoryChange={this.changeCategory}/> 
                     {
                         this.props.filters.map((filter) => { 
+                            let selectedItem = filter.values[0];
                             return(
                                 <DropdownComponent key={filter.name} placeholder={filter.display_name} name={filter.name}
-                                dispatch={this.props.dispatch} options={filter.values} selectedItem={filter.values[0]}/>
+                                dispatch={this.props.dispatch} options={filter.values} selectedItem={selectedItem}/>
                             );
                         })
                     }  
