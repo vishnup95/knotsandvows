@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, 
-    Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Row, Col} from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import styles from './talkToWeddingPlanner.scss';
 import * as actions from './actions';
@@ -23,14 +22,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch
 });
 
-const cities = [
-    {name: "Hyderabad", id: 0},
-    {name: "Secunderabad", id: 1},
-    {name: "Vijayawada", id: 2},
-    {name: "Vizag", id: 3}
-];
-
-
 class TalkToWeddingPlanner extends Component {
 
     constructor(props) {
@@ -39,6 +30,7 @@ class TalkToWeddingPlanner extends Component {
         this.emailRef = React.createRef();
         this.phoneRef = React.createRef();
         this.dateRef = React.createRef();
+        this.cityRef = React.createRef();
         this.commentsRef = React.createRef();
         this.state = {
             contactName: '',
@@ -81,10 +73,10 @@ class TalkToWeddingPlanner extends Component {
         let email = this.emailRef.current.validateFormInput(document.getElementById('contactEmail'));
         let phone = this.phoneRef.current.validateFormInput(document.getElementById('contactPhone'));
         let date = this.dateRef.current.validateFormInput(document.getElementById('contactDate'));
-        let city = this.state.city;
+        let city = this.cityRef.current.validateFormInput(document.getElementById('city'));
         let comments = this.commentsRef.current.validateFormInput(document.getElementById('comments'));
 
-        if (name && email && phone && date && comments || city) {
+        if (name && email && phone && date && comments && city) {
             const details = {
                 origin:'CALL_BUTTON_FORM',
                 name: this.state.contactName,
@@ -130,7 +122,7 @@ class TalkToWeddingPlanner extends Component {
                         </div>
                         <Row className="position-relative">
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} withBorder={true} required={false}/>
                             </Col>
 
                             <Col md="12">
@@ -146,27 +138,7 @@ class TalkToWeddingPlanner extends Component {
                             </Col>
 
                             <Col md="6">
-                                <div className={styles.cityContainer} onClick={() => this.toggleDropdown()} aria-hidden>
-                                    <Dropdown isOpen={this.state.cityDropdown} toggle={() => this.toggleDropdown()} className={styles.cityDropdown}>
-                                        <DropdownToggle
-                                        tag="span"
-                                        onClick={() => this.toggleDropdown()}
-                                        data-toggle="dropdown"
-                                        aria-expanded={this.state.cityDropdown}
-                                        >
-                                        { !this.state.city ? 'City' : this.state.city}
-                                        </DropdownToggle>
-                                        <DropdownMenu className={styles.menuItems}>
-                                            {
-                                                cities.map((item, index) => {
-                                                    return <div key={index} onClick={() => this.toggleDropdown(item.name)} aria-hidden className={this.state.city === item.name ? styles.citySelected : ''}>
-                                                                {item.name}
-                                                            </div>
-                                                })
-                                            }
-                                        </DropdownMenu>
-                                    </Dropdown>
-                                </div>
+                                <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                           
                             </Col>
 
                             <Col md="12">
