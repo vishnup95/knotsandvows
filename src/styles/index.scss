@@ -348,10 +348,6 @@
   img {
     @include borderRadius(10);
   }
-
-  @include mobile {
-    height: 60vw;
-  }
 }
 
 .image-gallery-thumbnail {
@@ -390,7 +386,7 @@
   background-size: 30px;
   font-size: 0;
   @include mobile {
-    padding: 13px 15px;
+    display: none;
   }
 }
 
@@ -399,7 +395,7 @@
   background-size: 30px;
   font-size: 0;
   @include mobile {
-    padding: 13px 15px;
+    display: none;
   }
 }
 

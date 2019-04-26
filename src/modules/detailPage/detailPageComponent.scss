@@ -489,6 +489,11 @@
         max-width: 100%;
         height: auto;
         max-height: 100%;
+
+        @include mobile {
+          max-width: none;
+          max-height: none;
+        }
       }
     }
 
@@ -506,10 +511,6 @@
         }
       }
     }
-  }
-
-  @include mobile {
-    transform: rotate(90deg) !important;
   }
 }
 
