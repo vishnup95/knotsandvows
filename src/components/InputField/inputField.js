@@ -20,6 +20,7 @@ class InputField extends Component {
             this.setState({value: this.props.value})
             this.handleFocus(document.getElementById(this.props.id));
         } 
+
         if (this.props.type == "date"){
             var today = new Date();
             let day = today.getDate();
@@ -34,6 +35,8 @@ class InputField extends Component {
             this.minDate = year+'-'+month+'-'+day;
             this.maxDate = (year+4)+'-'+month+'-'+day;
         }
+
+        this.props.id === 'contactDate' ? document.getElementById(this.props.id).classList.add('placeholderclass') : '';
     }
 
     handleFocus(inputBox) {
@@ -46,10 +49,13 @@ class InputField extends Component {
     }
       
     handleBlur(inputBox) {
-        if(inputBox.value.length == 0) {
+        if(inputBox.value.length === 0) {
             inputBox.parentNode.classList.remove('is-focussed');
+            this.props.id === 'contactDate' ? inputBox.classList.add('placeholderclass') : '';
+        } else {
+            this.props.id === 'contactDate' ? inputBox.classList.remove('placeholderclass') : '';
         }
-
+        
        return this.validateInput(inputBox);
     }
       
@@ -57,6 +63,7 @@ class InputField extends Component {
         this.setState({value: inputBox.value});
         if(inputBox.value.length > 0) {
             inputBox.parentNode.classList.add('is-dirty');
+            this.props.id === 'contactDate' ? inputBox.classList.remove('placeholderclass') : '';
         } else {
             inputBox.parentNode.classList.remove('is-dirty');
         }
@@ -95,20 +102,6 @@ class InputField extends Component {
         }
     }
 
-    // togglePasswordMask(maskToggleIcon) {
-    //     var inputWrapper = maskToggleIcon.parentNode,
-    //         inputBox = inputWrapper.firstElementChild;
-        
-    //     if(inputWrapper.classList.contains('password-unmasked')) {
-    //         inputBox.setAttribute('type', 'password');
-    //         inputBox.setAttribute('pattern', defaultPatterns.password);
-    //         inputWrapper.classList.remove('password-unmasked');
-    //     } else {
-    //         inputBox.setAttribute('type', 'text');
-    //         inputWrapper.classList.add('password-unmasked');
-    //     }
-    // }
-
     render() {
 
         let title = null;
@@ -117,10 +110,10 @@ class InputField extends Component {
         }
         
         return (
-            <div className='input-field floating-label'>
+            <div className='input-field floating-label' style={{padding: this.props.withBorder ? '0.8em 0' : '1.4em 0'}}>
                 {
                     this.props.id === 'comments' ? 
-                    <textarea className='input-box' rows="1"
+                    <textarea className={`input-box ${this.props.withBorder && 'input-box-border'}`} rows="4"
                         type={this.props.type} id={this.props.id} required={this.props.required}
                         pattern={this.props.pattern || defaultPatterns[this.props.type]}
                         onFocus={() =>  this.handleFocus(event.target)} 
@@ -130,9 +123,10 @@ class InputField extends Component {
                         disabled={this.props.disabled}
                         value={this.state.value}
                         maxLength={this.props.maxLength}
+                        placeholder={this.props.withBorder ? this.props.placeHolder : ''}
                     ></textarea> : 
 
-                    <input className='input-box' 
+                    <input className={`input-box ${this.props.withBorder && 'input-box-border'}`} 
                         type={this.props.type} id={this.props.id} required={this.props.required}
                         pattern={this.props.pattern || defaultPatterns[this.props.type]}
                         onFocus={() =>  this.handleFocus(event.target)} 
@@ -145,13 +139,16 @@ class InputField extends Component {
                         min={this.minDate}
                         max={this.maxDate}
                         maxLength={this.props.maxLength}
+                        placeholder={this.props.withBorder ? this.props.placeHolder : ''}
                     />
                 }
-              
-                <Label className={`${this.props.type === 'date' ? 'date-placeholder' : 'input-placeholder'} ${this.props.id === 'comments' ? 'input-placeholder' : ''}`} 
-                    htmlFor={this.props.id}>
-                  {this.props.placeHolder}
-                </Label>
+
+                {   !this.props.withBorder &&
+                    <Label className={`${this.props.type === 'date' ? 'date-placeholder' : 'input-placeholder'} ${this.props.id === 'comments' ? 'input-placeholder' : ''}`} 
+                        htmlFor={this.props.id}>
+                    {this.props.placeHolder}
+                    </Label>
+                }
               <span className='input-bar'></span>
               <span className='input-error'>{this.state.errorMessage}</span>
               {/* {this.props.type === 'show-mask-password' && <span className='input-password-mask' aria-hidden onClick={() => this.togglePasswordMask(event.target)}></span>} */}
@@ -174,14 +171,16 @@ InputField.propTypes = {
     disabled: PropTypes.bool,
     value: PropTypes.string,
     phoneCheck: PropTypes.bool,
-    maxLength: PropTypes.string
+    maxLength: PropTypes.string,
+    withBorder: PropTypes.bool
 };
 
 InputField.defaultProps = {
     required: true,
     disabled: false,
     value:'',
-    phoneCheck: false
+    phoneCheck: false,
+    withBorder: false
 }
 
 export default InputField;
