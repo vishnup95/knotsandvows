@@ -35,6 +35,7 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       case types.LOAD_ALL_VENDORS:
       return {
         ...state,
+        allVendorDetails:null,
         loading: true
       };
 

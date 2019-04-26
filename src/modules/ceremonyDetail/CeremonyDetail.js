@@ -82,6 +82,11 @@ class CeremonyDetail extends Component {
       this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
       this.setState({ ceremony: ceremony, filter: { name: "", id: null } });
     }
+
+    if(this.props.user != prevProps.user && this.props.user) {
+      this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
+      this.props.dispatch(actions.fetchSimilarCeremonies(this.state.ceremony));
+  }
   }
 
   handleViewAllClick = (category) => {

@@ -80,6 +80,11 @@ class DetailPageComponent extends Component {
         if (this.props.details != prevProps.details && this.props.details != null) {
             this.setState({ isInWishList: this.props.details.is_in_wishlist });
         }
+
+        if(this.props.user != prevProps.user && this.props.user) {
+            this.props.dispatch(actions.fetchVendorDetails(this.state.vendor));
+            this.props.dispatch(actions.fetchSimilarVendors(this.state.vendor));
+        }
     }
 
     componentWillMount() {

@@ -104,6 +104,10 @@ class Products extends Component {
       this.setState({ productListData: this.props.productListData });
       window.scrollTo(0, 0);
     }
+
+    if(this.props.user != prevProps.user && this.props.user) {
+      this.props.dispatch(actions.fetchProducts(this.state.category, this.state.page, this.state.sortBy, this.state.search));
+    }
   }
   pageChangeHandler(data) {
     this.props.dispatch(actions.fetchProducts(this.state.category, data.selected + 1, this.state.sortBy, this.state.search));
