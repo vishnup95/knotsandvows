@@ -6,7 +6,7 @@ class ProgressButton extends Component {
 
     render() {
         return (
-            <button className="primary-button" type="button" disabled = {this.props.isLoading} onClick={this.props.onClick}>
+            <button className={this.props.isDisabled ? "primary-button-disabled" : "primary-button"} type="button" disabled = {this.props.isLoading} onClick={this.props.onClick}>
             {this.props.isLoading && <span className="spinner-border spinner-border-sm spinner-margin" role="status" aria-hidden="true"></span>}
                 {this.props.title}
           </button>
@@ -18,7 +18,8 @@ ProgressButton.propTypes = {
     isLoading: PropTypes.bool,
     title: PropTypes.string,
     loadingTitle: PropTypes.string,
-    onClick : PropTypes.func
+    onClick : PropTypes.func,
+    isDisabled: PropTypes.bool,
 };
 
 export default ProgressButton;

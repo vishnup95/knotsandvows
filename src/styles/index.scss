@@ -85,13 +85,17 @@
     border-bottom: 1px solid $warm-grey-two;
     @include fontSize(18);
     margin: 0;
-    padding: .3em 0;
+    padding: .5em;
     width: 100%;
     background: 0 0;
     text-align: left;
     color: $black-twelve;
-    font-family: $roboto-regular;
+    font-family: $roboto-regular; 
+  }
 
+  .input-box-border {
+    border: 1px solid $medium-pink;
+    border-radius: 5px; 
   }
 
   .input-placeholder {
@@ -153,7 +157,7 @@
   .input-error {
     display: block;
     position: absolute;
-    margin-top: .4em;
+    margin-top: 0.1em;
     color: #d50000;
     font-size: .8em;
     letter-spacing: .39px;
@@ -212,9 +216,9 @@
         color: #d50000;
       }
 
-      .input-bar {
-        background-color: #d50000;
-      }
+      // .input-bar {
+      //   background-color: #d50000;
+      // }
 
       .input-error {
         visibility: visible;
@@ -229,6 +233,10 @@
 
     .input-box {
       border-bottom: 1px solid #d50000;
+    }
+
+    .input-box-border {
+      border: 1px solid #d50000;
     }
 
     .input-error {
@@ -1515,4 +1523,21 @@ button {
     top: 50%;
     transform: translate(-50%,-50%);
   }
+}
+
+input[id="contactDate"] {
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+input[id="contactDate"].placeholderclass::before {
+  width: 100%;
+  content: attr(placeholder);
+  color: $warm-grey-two;
+}
+
+input[id="contactDate"].placeholderclass:focus::before {
+  width: 0%;
+  content: "";
+  color: $warm-grey-two;
 }

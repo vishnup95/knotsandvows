@@ -129,6 +129,11 @@ h2 {
   }
 }
 
+.primary-button-disabled {
+  @extend .primary-button;
+  opacity: 0.5;
+}
+
 .text-btn {
   color: $primary-color;
   font-family: $roboto-medium;

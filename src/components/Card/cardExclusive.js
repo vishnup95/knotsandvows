@@ -9,7 +9,8 @@ import {
     Button
   } from 'reactstrap';
 import styles from './card.scss';
-import { formatMoney, imagePath } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
+import { formatMoney } from '../../utils/utilities';
 class ExclusiveCard extends Component {
     
     constructor(props){

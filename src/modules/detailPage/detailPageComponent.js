@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './detailPageComponent.scss'
 import { Row, Col, Modal, Form, Button } from 'reactstrap';
-import MapComponent from '../../components/Map/map';
+// import MapComponent from '../../components/Map/map';
 import * as actions from './actions';
 import * as loginActions from '../../reducers/session/actions';
 import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
@@ -16,7 +16,7 @@ import StarRating from '../../components/StarRating/starRating';
 import { imagePath } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
-import { isLoggedIn, getDataFromResponse, getId, formatDate } from '../../utils/utilities';
+import { isLoggedIn, getDataFromResponse, getId, formatDate, formatMoney } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import InputField from '../../components/InputField/inputField';
@@ -197,11 +197,13 @@ class DetailPageComponent extends Component {
     renderPackages = (packages) => {
 
         const packagesToRender = packages.map((item, index) => {
-
             return (
                 <div className={style.pricesContainer} key={index}>
-                    <div className={style.item}>{item.name}<br /><span className={style.grey}>({item.charge_type})</span></div>
-                    <div className={style.itemPrice}>{item.price} <br /><span className={style.grey}>GST extra</span></div>
+                    <div className={style.item}>{item.name}<br />
+                    { item.charge_type &&
+                    <span className={style.grey}>({item.charge_type})</span>
+                    }</div>
+                    <div className={style.itemPrice}>{formatMoney(item.format_price)} <br />{item.format_price && <span className={style.grey}>(GST not included)</span>}</div>
                 </div>
             )
         });
@@ -301,9 +303,9 @@ class DetailPageComponent extends Component {
             if (details.policies && details.policies.length > 0) {
                 detailNavItems.push({ display_name: "Policies", id: "policies" });
             }
-            if (details.location && details.location.latitude && details.location.longitude) {
-                detailNavItems.push({ display_name: "Direction", id: "direction" });
-            }
+            // if (details.location && details.location.latitude && details.location.longitude) {
+            //     detailNavItems.push({ display_name: "Direction", id: "direction" });
+            // }
             if (reviewsData && reviewsData.results && reviewsData.results.length > 0) {
                 detailNavItems.push({ display_name: "Reviews", id: "reviews" });
             }
@@ -326,10 +328,10 @@ class DetailPageComponent extends Component {
                                     </h3>
                                     <p >
                                         {details.city}
-                                        {
+                                        {/* {
                                             this.props.details.location && this.props.details.location.latitude && this.props.details.location.longitude &&
                                             <span onClick={() => this.scrollToDetailSection('direction')} aria-hidden>(View on Map)</span>
-                                        }
+                                        } */}
                                     </p>
                                     <p >{details.address}</p>
                                 </div>
@@ -341,7 +343,7 @@ class DetailPageComponent extends Component {
                                         <div className={style.review}> {details.reviews_count} Reviews</div>
                                     </div>
                                     <div className={style.viewBtnWrap}>
-                                        <ProgressButton className="primary-button" onClick={(e) => this.addToWishList(e)} title="Add to wishlist" isLoading={this.props.wishListApiLoading}></ProgressButton>
+                                        <ProgressButton isDisabled={this.state.isInWishList} onClick={(e) => this.addToWishList(e)} title="Add to wishlist" isLoading={this.props.wishListApiLoading}></ProgressButton>
                                         {this.state.isInWishList && <button className={style.removeBtn} onClick={(e) => this.removeFromWishList(e)}>Remove from wishlist</button>}
                                     </div>
                                 </div>
@@ -406,12 +408,12 @@ class DetailPageComponent extends Component {
 
                                         </Col>
                                     }
-                                    {details.location && details.location.latitude && details.location.longitude &&
+                                    {/* {details.location && details.location.latitude && details.location.longitude &&
                                         <Col md="12" className={style.detailSubSection} id="direction">
                                             <h3>Direction</h3>
                                             <MapComponent lat={Number(details.location.latitude)} lng={Number(details.location.longitude)}></MapComponent>
                                         </Col>
-                                    }
+                                    } */}
                                     {reviewsData && reviewsData.results && reviewsData.results.length > 0 &&
                                         <Col md="12" className={style.detailSubSection} id="reviews">
                                             <div className={style.reviewHeader}>Reviews <span>({reviewsData.total_review_count})</span></div>
