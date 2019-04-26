@@ -232,9 +232,9 @@ class CategoryListing extends Component {
               </div>
             }
 
-            <div className="d-block d-sm-none">
+            {/* <div className="d-block d-sm-none">
               {this.renderCollaboratorsSection()}
-            </div>
+            </div> */}
         
             {
               this.state.currentCategories.length > 0 &&
@@ -295,9 +295,9 @@ class CategoryListing extends Component {
 
                 </Col>
                 <Col sm="10">
-                  <div className="d-none d-sm-block">
+                  {/* <div className="d-none d-sm-block">
                     {this.renderCollaboratorsSection()}
-                  </div>
+                  </div> */}
                   
                   <Row className={`d-none d-sm-block ${styles.listDetailContainer}`}>
                     <Col>

@@ -14,6 +14,7 @@ import CategorySection from '../ceremonyDetail/categorySection';
 const mapStateToProps = state => ({
   allVendorDetails: state.ceremonyDetails.allVendorDetails,
   isLoading: state.ceremonyDetails.loading,
+  user: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -38,11 +39,7 @@ class CategoryListing extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.allVendorDetails || this.props.allVendorDetails.categories.length == 0){
-      this.props.dispatch(actions.fetchAllVendors());
-    }else{
-      this.updateData(this.props);
-    }
+    this.props.dispatch(actions.fetchAllVendors());
   }
 
   updateData(props){
@@ -59,6 +56,11 @@ class CategoryListing extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.allVendorDetails !== null && nextProps.allVendorDetails.categories !== null) {
       this.updateData(nextProps);
+    }else{
+      this.setState({categories: [], fixedCategories: []});
+    }
+    if(this.props.user != nextProps.user && nextProps.user) {
+      this.props.dispatch(actions.fetchAllVendors());
     }
   }
 

@@ -61,7 +61,7 @@ class App extends Component {
 
   render() {
     var showHeader = true;
-    if (this.props.history.location.pathname === '/packages/wedding-gold-package' || this.props.history.location.pathname === '/packages/wedding-emerald-package') {
+    if (this.props.history.location.pathname === '/packages/wedding-emerald-package') {
       showHeader = false;
     }
     return (<div className="app">

@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 
 class CategoryCard extends Component {
     state = {
-        isInWishlist: this.props.data.is_in_wishlist,
+        isInWishlist: this.props.isWishlist == true ? true :this.props.data.is_in_wishlist,
         showNotes: false,
         showAddNote: false,
         addNoteMode: 'add',
@@ -45,6 +45,15 @@ class CategoryCard extends Component {
 
     componentWillUnmount() {
         document.removeEventListener('click', this.handleClickOutside, true);
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(!nextProps){
+            return;
+        }
+        if (nextProps.data.is_in_wishlist != this.state.isInWishlist){
+            this.setState({ isInWishlist: this.props.isWishlist == true ? true :this.nextProps.data.is_in_wishlist });
+        }
     }
 
     handleClickOutside = event => {
@@ -194,7 +203,7 @@ class CategoryCard extends Component {
                     <p className={`mb-2`}>
                         <img src={imagePath(this.state.isInWishlist ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
                             alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`} />
-                        {!this.props.isInWishList &&
+                        {!this.props.isWishlist &&
                             <UncontrolledTooltip placement="top" target={`WishListTooltip${this.props.id}`}>
                                 {this.state.isInWishlist ? 'Added to Wishlist' : 'Add to Wishlist'}
                             </UncontrolledTooltip>
@@ -341,7 +350,6 @@ CategoryCard.propTypes = {
     isCompare: PropTypes.bool,
     id: PropTypes.number,
     isWishlist: PropTypes.bool,
-    isInWishList: PropTypes.bool,
     wishlistId: PropTypes.number,
     noteloading: PropTypes.bool,
     isChecked: PropTypes.bool,

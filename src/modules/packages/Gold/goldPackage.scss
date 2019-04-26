@@ -2,3 +2,292 @@
 @import '../../../variables/colors';
 @import '../../../variables/utils';
 
+.goldPackage {
+  h2 {
+    font-family: $frank-medium;
+    font-size: 3.57rem;
+    margin-bottom: 3rem;
+    text-align: center;
+
+  }
+}
+
+.goldCover {
+  height: 37.7vw;
+  position: relative;
+  background: url('/images/gold-bg.jpg') center top no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 3rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 15rem;
+    width: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
+  }
+
+  h1 {
+    font-family: $frank-medium;
+    color: #fff;
+    z-index: 1;
+    font-size: 3.57rem;
+  }
+}
+
+.bannerTwo {
+  background: url('/images/mask-one.svg') center top no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include height(200);
+
+  h2 {
+    color: $medium-pink;
+    font-family: $frank-medium;
+    font-size: 3.57rem;
+    margin-top: 2rem;
+  }
+}
+
+.goldContainer {
+  max-width: 79rem;
+  margin: 0 auto;
+}
+
+.packageItem {
+  color: $medium-pink;
+  margin-bottom: 3rem;
+
+  &.large {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    &:first-child {
+      flex-direction: row-reverse;
+    }
+    .packageItemContent {
+        padding-left: .5rem;
+    }
+  }
+
+  ul {
+    padding: 0 0 0 1.4rem;
+    list-style-image: url('/images/package-list-icon.png');
+
+    li {
+      font-family: $roboto-light;
+      @include fontSize(18.3);
+    }
+  }
+}
+
+.packageItemContent {
+  display: flex;
+  flex-direction: column;
+  @include width(220);
+}
+
+.packageItemName {
+  @include fontSize(27.4);
+  text-transform: capitalize;
+  margin-bottom: .5rem;
+}
+
+.packageItemImgBg {
+  flex-shrink: 0;
+  @include width(270);
+  @include height(270);
+  @include padding(10);
+  border-radius: 50%;
+  background: url('/images/package-img-bg.jpg') center center no-repeat;
+  background-size: cover;
+  margin-bottom: 1rem;
+
+  &.large {
+    @include width(330);
+    @include height(330);
+  }
+
+  img {
+    border-radius: 50%;
+    max-width: 100%;
+  }
+}
+
+.offerPrice {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.offerPriceImg {
+  width: 36.6rem;
+}
+
+.lastPack {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.offer {
+  font-family: $roboto-bold;
+  font-size: 2.7rem;
+  text-transform: uppercase;
+  position: absolute;
+  color: $white;
+  transform: rotate(-8deg);
+  top: 4rem;
+  left: 9rem;
+}
+
+.originalStrike {
+  position: absolute;
+  top: 13rem;
+  left: 7rem;
+  transform: rotate(-5deg);
+  text-transform: uppercase;
+  text-decoration: line-through;
+  font-size: 1.8rem;
+  color: $secondary-color;
+  white-space: nowrap;
+}
+
+.original {
+  position: absolute;
+  top: 16rem;
+  left: 10.5rem;
+  transform: rotate(-5deg);
+  font-size: 3.57rem;
+  font-family: $roboto-bold;
+  color: $secondary-color;
+}
+
+.save {
+  position: absolute;
+  bottom: 7rem;
+  right: 1.7rem;
+  transform: rotate(-5deg);
+  color: $white;
+  font-size: 2.5rem;
+  font-family: $roboto-bold;
+  line-height: normal;
+}
+
+h3 {
+  text-align: center;
+}
+
+.headerWithIcon {
+  color: $medium-pink;
+  font-family: $roboto-regular;
+  text-align: center;
+  border-bottom: 1.5px solid $secondary-color;
+  padding: 0 2rem 0 4rem;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: -5rem;
+    bottom: -1.5px;
+    background: url('/images/love-mark.png') center center no-repeat;
+    background-size: cover;
+    width: 10rem;
+    height: 2rem;
+  }
+}
+
+.mediumPinkBg {
+  background-color: $medium-pink;
+}
+
+.contactImg {
+  width: 26.6rem;
+  height: 29rem;
+  margin-top: 1rem;
+}
+
+.contactWrap {
+  padding: 4rem 15px;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+
+  h3 {
+    font-family: $roboto-bold;
+    color: $white;
+    text-align: left;
+    font-size: 2.28rem;
+  }
+
+  form {
+    input,
+    textarea {
+      width: 100%;
+      margin: .8rem 0;
+      padding: 0 1.5rem;
+      @include fontSize(16);
+      border-radius: 4px;
+    }
+
+    input {
+      @include height(40);
+      border: none;
+    }
+
+    textarea {
+      padding: .5rem 1.5rem;
+    }
+
+    input::-webkit-input-placeholder {
+      color: #282828;
+      @include fontSize(16);
+    }
+
+    textarea::-webkit-input-placeholder {
+      color: #282828;
+      @include fontSize(16);
+    }
+  }
+}
+
+.ceremonyContainer {
+  max-width: 78%;
+}
+.packageBox {
+    box-shadow: 6px 11px 5px 0 rgba(204, 26, 102, 0.12);
+    border-radius: 6px;
+    border: .5px solid $medium-pink;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 43rem;
+    padding-bottom: 3rem;
+    > img {
+        width: 19.7rem;
+    }
+    h3 {
+        color: $greyish-brown-six;
+        font-family: $roboto-bold;
+        font-size: 2.25rem;
+        margin: 2rem 0 1rem;
+    }
+
+}
+.packageDetail {
+    width: 19.7rem;
+    p {
+        font-family: $roboto-light !important;
+        font-size: 1.14rem !important;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+}
