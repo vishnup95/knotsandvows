@@ -121,7 +121,12 @@ h2 {
 
 .secondary-button {
   @extend .primary-button;
-  background-color: grey;
+  background-color: $secondary-color;
+  &:hover {
+    color: $white;
+    text-decoration: none;
+    background-color: $secondary-color;
+  }
 }
 
 .text-btn {
