@@ -77,7 +77,11 @@ class Header extends Component {
         } else {
             sendGAEvent("Header", "Show Login");
             this.props.dispatch(actions.showLogin());
+            if (detectMobile()) {
+                this.toggle();
+            }
         }
+        
     }
 
     componentWillMount() {
