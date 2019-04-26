@@ -123,6 +123,7 @@ function addStaticFilter(response) {
         ]
       }
       response.filters.splice(0,0,cityFilter);
+      response.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
    }
    return response;
 }
