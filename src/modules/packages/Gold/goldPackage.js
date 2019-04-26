@@ -1,30 +1,85 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import styles from './goldPackage.scss';
+import styles from './goldPackage.scss';
 // import { Link } from 'react-router-dom';
 import { imagePath } from '../../../utils/assetUtils';
 import * as actions from '../../../components/TalkToWeddingPlanner/actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
+import { Container, Row, Col } from 'reactstrap';
+import HorizontalSlider from '../../../components/HorizontalSlider/horizontalSlider';
+
+
+const mapStateToProps = state => ({
+  user: state.session.user,
+  // categories: state.home.categories,
+  // exclusives: state.home.exclusives,
+  ceremonies: state.home.ceremonies
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ ...actions }),
   dispatch
 });
 
+const packageItems = [
+  {
+    imgSrc: 'engagement.jpg',
+    itemName: 'Engagement',
+    itemList: ['Venue (200 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
+  },
+  {
+    imgSrc: 'pasupudanchudu.jpg',
+    itemName: 'pasupudanchudu',
+    itemList: ['Catering — Vegetarian (100 people)', 'Venue Decor', 'Photography, videography, Light & sound']
+
+  },
+  {
+    imgSrc: 'sangeeth.jpg',
+    itemName: 'sangeeth',
+    itemList: ['Venue (150 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography,Light & sound']
+
+  },
+  {
+    imgSrc: 'pellikuturu.jpg',
+    itemName: 'pellikuturu',
+    itemList: ['Venue (150 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography,Light & sound']
+
+  },
+  {
+    imgSrc: 'wedding.jpg',
+    itemName: 'wedding',
+    itemList: ['Venue (500 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography', 'videography', 'Light & sound']
+
+  },
+  {
+    imgSrc: 'reception.jpg',
+    itemName: 'reception',
+    itemList: ['Venue (200 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography,Light & sound']
+
+  },
+  {
+    imgSrc: 'photoshoot.jpg',
+    itemName: 'photoshoot',
+    itemList: ['Photography, videography, Light & sound', 'Venue for couple', 'Food for Couple']
+
+  },
+  {
+    imgSrc: 'vratam.jpg',
+    itemName: 'vratam',
+    itemList: ['Venue (150 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography,Light & sound']
+
+  },
+]
+// const packageItemsFirst = packageItems.slice(0, 4);
+// const packageItemsSecond = packageItems.slice(4, 6);
+
 class GoldPackage extends Component {
   constructor(props) {
     super(props);
-    this.toggleMenu = this.toggleMenu.bind(this);
   }
-  toggleMenu = () => {
-    if (document.getElementById("get-nav").style.display !== "flex") {
-      document.getElementById("get-nav").style.display = "flex";
-    } else {
-      document.getElementById("get-nav").style.display = "none";
-    }
-  }
+
   sendDetailsToWeddingPlanner() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
@@ -34,308 +89,240 @@ class GoldPackage extends Component {
     let comments = document.getElementById('comments').value;
 
     if (name || email || phone || date || city || comments) {
-        const params = {};
-        params['origin'] = 'GOLD_PACKAGE';
-        params['name'] = name;
-        params['email'] = email;
-        params['phone'] = phone;
-        params['date'] = date;
-        params['city'] = city;
-        params['comments'] = comments;
-        this.props.dispatch(actions.postContactDetails(params));
+      const params = {};
+      params['origin'] = 'GOLD_PACKAGE';
+      params['name'] = name;
+      params['email'] = email;
+      params['phone'] = phone;
+      params['date'] = date;
+      params['city'] = city;
+      params['comments'] = comments;
+      this.props.dispatch(actions.postContactDetails(params));
     }
-} 
+  }
   render() {
     return (
-      <div className="goldPackage">
-        <div className="container  entry-content">
-          <div className="wp-ahwanam-container">
-            <div className="header-nav "><a href="/" >
-              <img src={imagePath('logo.svg')} alt="" />
-            </a>
-              <div className="mobile-nav-btn" onClick={this.toggleMenu} aria-hidden>
-                <div className="btn-bar"></div>
-                <div className="btn-bar"></div>
-                <div className="btn-bar"></div>
-              </div>
-              <ul id="get-nav">
-                <li><a className="page-scroll" href="#about">About Package</a></li>
-                <li className="active-item"><a className="page-scroll" href="#about">Offer</a></li>
-                <li><a className="page-scroll" href="#gallery">Gallery</a></li>
-                <li><a className="page-scroll" href="#contactus">Contact Us</a></li>
-              </ul>
-            </div>
-            <div className="left-cornor"></div>
-            <div className="banner-wrap"><img className="top-banner" src={imagePath('banner-sh.jpg')} alt="" />
-              <div className="banner-caption">srirastu subhamastu avignamastu
-                        <img className="main-caption" src={imagePath('banner-caption-main.png')} alt="" /></div>
-              <div className="bottom-corner"></div>
-            </div>
-            <h1>Your wedding is more than just a day!</h1>
-            <p className="description">At Seven Vows we have used our 20 years of wedding planning experience to create a
-                carefully hand crafted wedding package to cover all your wedding needs. Our exclusive packages
-                    cover ceremonies leading upto the big day to all the ceremonies after your wedding day </p>
-            <div className="row column-wrap">
-              <div className="col-md-6 column-one">
-                <div>
-                  <h5 className="first-one">Ceremonies before wedding</h5>
-                  <ul>
-                    <li>Pre Wedding shoot ( venue and food for couple )</li>
-                    <li>Engagement
-                                    <ul>
-                        <li>
-                          Venue for 200 people</li>
-                        <li>Catering - Vegetarian Food for 200 People</li>
-                        <li>Professional Decoration</li>
-                        <li>Professional Photography, videography, Light & sound</li>
-                      </ul>
-                    </li>
-
-                    <li>Pasupudanchudu ( Haldi)
-                                    <ul>
-                        <li>Catering - Vegetarian Food for 100 people</li>
-                        <li>Professional Decoration</li>
-                        <li>Professional Photography and videography</li>
-                      </ul>
-                    </li>
-
-                    <li>Sangeeth
-                                    <ul>
-                        <li>Venue 150 people</li>
-                        <li>Catering - Vegetarian Food for 150 people</li>
-                        <li>Professional Decoration</li>
-                        <li>Professional Photography, videography,Light & sound</li>
-                      </ul>
-                    </li>
-                    <li>
-                      Pendelekuthuru or Mehendi
-                                    <ul>
-                        <li>Venue for 150 people</li>
-                        <li>Catering - Vegetarian Food for 150 people</li>
-                        <li>Professional Decoration</li>
-                        <li>Professional Photography, videography,Light & sound</li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-                <div className="image-wrapper">
-                  <div className="img-corner-2"></div>
-                  <img className="column-image alignnone size-medium wp-image-39" src={imagePath('pre-wedding-sh.jpg')} alt="" />
-                </div>
-
-
-
-              </div>
-              <div className="col-md-6">
-                <div className="image-wrapper">
-                  <div className="img-corner-1"></div>
-                  <img className="column-image alignnone size-medium wp-image-29" src={imagePath('wedding-day-sh.jpg')} alt="" />
-
-                </div>
-                <h5 className="third-one">Wedding day</h5>
-                <ul>
-                  <li>
-                    Wedding
-                                <ul>
-                      <li>Venue for 500 people</li>
-                      <li>Catering - Vegetarian Food for 500 People</li>
-                      <li>Professional Decoration</li>
-                      <li>Professional Photography, videography, Light & sound</li>
-                    </ul>
-                  </li>
-                </ul>
-                <div className="image-wrapper">
-                  <div className="img-corner-3"></div>
-                  <img className="column-image alignnone size-medium wp-image-38" src={imagePath('post-wedding-sh.jpg')} alt="" />
-
-                </div>
-                <h5 className="second-one">After wedding ceremonies</h5>
-                <ul>
-                  <li>
-                    Reception
-                                <ul>
-                      <li>Venue for 200 people</li>
-                      <li>Catering - Vegetarian Food for 200 People</li>
-                      <li>Professional Decoration</li>
-                      <li>Professional Photography, videography,Light & sound</li>
-                    </ul>
-                  </li>
-                  <li>
-                    Satyanarayana vratham
-                                <ul>
-                      <li>Venue for 150 people</li>
-                      <li>Catering - Vegetarian Food for 150 people</li>
-                      <li>Professional Decoration</li>
-                      <li>Professional Photography, videography,Light & sound</li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div id="about" className="row package-wrap">
-              <div className="col-md-6 package-card"><img className="rotated-image" src={imagePath('group-28.png')} alt="" />
-                <div className="package-name">Gold Wedding
-                            <b>PACKAGE</b></div>
-                <div className="package-logo">
-                {/* <img src={imagePath('logo.svg')} alt="" /> */}
-                  <div className="package-brand">Seven Vows</div>
-                </div>
-                <div className="center-content">
-                  <div className="original-price">Original Price ₹23.9 Lakhs</div>
-                  <div className="offer-price">Offer Price ₹21.5 Lakhs</div>
-                </div>
-                <div className="package-ring"><img src={imagePath('ring-white.png')} alt="" /></div>
-                <div className="package-save">You Save ₹2.4 Lakhs</div>
-                <div className="card-shadow"></div>
-              </div>
-              <div className="col-md-6 package-desc">
-                <h4>Seven Vows Gold package includes:</h4>
-                <div className="row">
-                  <div className="col">
-                    <ul>
-                      <li>Food and Catering</li>
-                      <li>Flower decoration</li>
-                      <li>Pasupudanchudu at home</li>
-                      <li>Wedding card distribution</li>
-                      <li>Sangeeth</li>
-                      <li>Venue &amp; Event</li>
-                      <li>Pendlekuthuru Event</li>
-                    </ul>
-                  </div>
-                  <div className="col">
-                    <ul>
-                      <li>Wedding venue</li>
-                      <li>
-                        Wedding decoration</li>
-                      <li>
-                        Satyanarayana vratham at home</li>
-                      <li>
-                        Reception and Venues with Food</li>
-                      <li>
-                        Decor, Light, and Sound</li>
-                      <li>
-                        Photography</li>
-                      <li>
-                        Sare</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col text-center"><button className="get-package-btn">Get Quote</button></div>
-                </div>
-              </div>
-            </div>
-            <div id="gallery" className="container ah-gallery">
-              <div className="row ">
-                <h4 className="text-center">Seven Vows Gallery </h4>
-              </div>
-              <div className="row">
-                <div className="col-sm-6">
-                  <img className="img-fluid" src={imagePath('photography-1.jpg')} alt="photography" />
-                </div>
-                <div className="col-sm-6">
-                    <img className="img-fluid" src={imagePath('mehandi-1.jpg')} alt="mehandi" />
-                  </div>
-                  {/* <div><img src={imagePath('photography-1.jpg')} alt="photography" /></div> */}
-                  {/* <div><img src={imagePath('mehandi-1.jpg')} alt="mehandi" /></div> */}
-                {/* </div> */}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <h4>Here is why people are picking Seven Vows</h4>
-              </div>
-            </div>
-            <div className="row benefit-wrap">
-              <div className="ahwanam-benefit-1">VENUE CHOICE
-                        <p>
-                  We have the highest number of venues on a single platform in Telangana
-                        </p>
-              </div>
-              <div className=" ahwanam-benefit-2">EXPERTISE
-                        <p>
-                  We have over 15 years of wedding planning experience
-                        </p>
-              </div>
-              <div className=" ahwanam-benefit-3">CUSTOMIZATION
-                        <p>
-                  We plan your wedding according to your personal taste</p>
-
-              </div>
-            </div>
-            <div id="contactus" className="row ah-contactus">
-              <div className="col-md-6">
-                <div className="col-md-12 image-wrapper">
-                  <div className="contact-corner"></div>
-                  <div className="address-section"><img className="contact-office" src={imagePath('office.png')} alt="" />
-                    <div className="office-address">
-                      <div className="address-heading">Seven Vows</div>
-                      <p>H.No. 8-2-120/112/B/5&amp;6, 3rd floor, BBR Forum, Road # 2, Banjara Hills,
-                          Hyderabad
-                                        500034</p>
-
-                    </div>
-                  </div>
-                  <img className="google-map" src={imagePath('map.png')} alt="" />
-
-                </div>
-                <div className="row">
-                  <div className="col-md-6 contact-details"><img src={imagePath('location.png')} alt="" />
-                    <h6>Seven Vows</h6>
-                    <p>H.No. 8-2-120/112/B/5&amp;6, 3rd floor, BBR Forum, Road # 2, Banjara Hills,
-                        Hyderabad
-                                    500034</p>
-
-                  </div>
-                  <div className="col-md-6 contact-details"><img src={imagePath('phone.png')} alt="" />
-                    <h6>Contact numbers</h6>
-                    <p>+91 9987 520 069</p>
-
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 contact-details"><img src={imagePath('email.png')} alt="" />
-                    <h6>Email us @</h6>
-                    <p>sales@Sevenvows.co.in</p>
-
-                  </div>
-                  <div className="col-md-6 contact-details"><img src={imagePath('visit-us.png')} alt="" />
-                    <h6>Visit us @</h6>
-                    www.sevenvows.co.in
-                    </div>
-                </div>
-              </div>
-              <div className="col-md-6 contact-wrap">
-                <div className="contact-form">
-                  <h5>Contact Us</h5>
-                  <form action="">
-                    <input  maxLength="75" type="text" name="name" id="name" placeholder="Name" />
-                    <input  maxLength="75" type="email" name="email" id="email" placeholder="Email" />
-                    <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" id="phone" placeholder="Phone" />
-                    <input  type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
-                    <input  maxLength="50" type="text" name="city" id="city" placeholder="City" />
-                    <textarea maxLength="200" name="comments" id="comments" rows="5" placeholder="Additional comments about the wedding"></textarea>
-                  </form>
-                    <input type="submit" value="Get Quote" className="get-package" onClick={() => this.sendDetailsToWeddingPlanner()}/>
-
-                </div>
-                <div className="bottom-corner-contact"></div>
-              </div>
-            </div>
-            <div className="row footer-ahwanam">
-              <div className="social-icon-wp">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/AhwanamEvents"><img src={imagePath('fb.png')} alt="facebook-icon" /></a><a
-                  target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/ahwanamevents/"><img src={imagePath('instagram.png')}
-                    alt="instagram-icon" /></a>
-              </div>
-              <h5>Thank you</h5>
-              <div className="text-center">&copy;2019 Seven Vows
-                        <a target="_blank" rel="noopener noreferrer" href="/terms-and-conditions">Terms Of Use</a> | <a target="_blank"
-                  rel="noopener noreferrer" href="/privacy-policy">Privacy Policy</a></div>
-              <div className="back-to-top"></div>
-            </div>
-          </div>
+      <div className={styles.goldPackage}>
+        <div className={styles.goldCover}>
+          <h1>Wedding is so much more than just one day!</h1>
         </div>
+        <div className={styles.bannerTwo}>
+          <h2>SevenVows Gold package includes</h2>
+        </div>
+        <div className={`${styles.goldContainer} container`}>
+          <Row>
+            {
+              packageItems.slice(0, 4).map((item, index) => {
+                return (
+                  <Col xs='12' sm='6' md='3' key={index} className={styles.packageItem}>
+                    <div className={styles.packageItemImgBg}>
+                      <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
+                    </div>
+                    <div className={styles.packageItemContent}>
+
+                      <div className={styles.packageItemName}>
+                        {item.itemName}
+                      </div>
+                      <ul>
+                        {
+                          item.itemList.length > 0 &&
+                          item.itemList.map((listItem, index) => {
+                            return (
+                              <li key={index}>
+                                {listItem}
+                              </li>
+                            );
+                          })
+                        }
+                      </ul>
+                    </div>
+                  </Col>
+                );
+              })
+            }
+          </Row>
+          <Row>
+            {
+              packageItems.slice(4, 6).map((item, index) => {
+                return (
+                  <Col xs='12' sm='6' key={index} className={`${styles.packageItem} ${styles.large}`}>
+                    <div className={`${styles.packageItemImgBg} ${styles.large}`}>
+                      <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
+                    </div>
+                    <div className={styles.packageItemContent}>
+                      <div className={styles.packageItemName}>
+                        {item.itemName}
+                      </div>
+                      <ul>
+                        {
+                          item.itemList.length > 0 &&
+                          item.itemList.map((listItem, index) => {
+                            return (
+                              <li key={index}>
+                                {listItem}
+                              </li>
+                            );
+                          })
+                        }
+                      </ul>
+                    </div>
+                  </Col>
+                );
+              })
+            }
+          </Row>
+          <Row>
+            {
+              packageItems.slice(6, 7).map((item, index) => {
+                return (
+                  <Col key={index} className={styles.packageItem}>
+                    <div className={styles.packageItemImgBg}>
+                      <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
+                    </div>
+                    <div className={styles.packageItemContent}>
+                      <div className={styles.packageItemName}>
+                        {item.itemName}
+                      </div>
+                      <ul>
+                        {
+                          item.itemList.length > 0 &&
+                          item.itemList.map((listItem, index) => {
+                            return (
+                              <li key={index}>
+                                {listItem}
+                              </li>
+                            );
+                          })
+                        }
+                      </ul>
+                    </div>
+                  </Col>
+                );
+              })
+            }
+            <Col className='flex justify-center'>
+              <div className={`${styles.offerPrice} `}>
+                <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
+                <div className={styles.offer}>Offer Price</div>
+                <div className={styles.originalStrike}>Original Price  ₹2,390,000</div>
+                <div className={styles.original}>₹2,150,000</div>
+                <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
+              </div>
+            </Col>
+            {
+              packageItems.slice(7, 8).map((item, index) => {
+                return (
+                  <Col key={index} className={`${styles.packageItem} ${styles.lastPack}`}>
+                    <div className={styles.packageItemImgBg}>
+                      <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
+                    </div>
+                    <div className={styles.packageItemContent}>
+                      <div className={styles.packageItemName}>
+                        {item.itemName}
+                      </div>
+                      <ul>
+                        {
+                          item.itemList.length > 0 &&
+                          item.itemList.map((listItem, index) => {
+                            return (
+                              <li key={index}>
+                                {listItem}
+                              </li>
+                            );
+                          })
+                        }
+                      </ul>
+                    </div>
+                  </Col>
+                );
+              })
+            }
+          </Row>
+          <Row>
+            <Col>
+              <h3><span className={styles.headerWithIcon}>To customise SevenVows Gold package talk to our event planner</span></h3>
+            </Col>
+          </Row>
+        </div>
+        <div className={`${styles.mediumPinkBg} container-fluid`}>
+          <Container className={`${styles.goldContainer} ${styles.contactWrap}`}>
+            <Row>
+              <Col md='1'></Col>
+              <Col md='5'>
+                <img className={styles.contactImg} src={imagePath('contact-box.png')} alt="contact" />
+              </Col>
+              <Col md='5' >
+                <div>
+                  <h3>Get Your Gold <span className="tab-only"><br /></span> Wedding Package Now!</h3>
+                  <form>
+                    <Row>
+                      <Col xs='12'>
+                        <input maxLength="75" type="text" name="name" id="name" placeholder="Name" />
+                      </Col>
+                      <Col xs='12'>
+                        <input maxLength="75" type="email" name="email" id="email" placeholder="Email" />
+                      </Col>
+                      <Col xs='12'>
+                        <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" id="phone" placeholder="Phone" />
+                      </Col>
+                      <Col xs='6'>
+                        <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
+                      </Col>
+                      <Col xs='6'>
+                        <input maxLength="50" type="text" name="city" id="city" placeholder="City" />
+                      </Col>
+                      <Col xs='12'>
+                        <textarea maxLength="200" name="comments" id="comments" rows="3" placeholder="Comments"></textarea>
+                      </Col>
+                    </Row>
+                  </form>
+                  <input type="submit" value="Send message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className={`${styles.goldContainer} container`}>
+          <h2>Check out our other packages</h2>
+          <Row>
+            <Col>
+              <div className={styles.packageBox}>
+                <img src={imagePath('ruby-box.png')} alt="img" />
+                <div className={`${styles.packageDetail} `}>
+                  <h3>Royal Ruby</h3>
+                  <p>Add shine to your wedding celebration. Here’s a package that’s packed with wedding goodness.</p>
+                  <a className="primary-button home-btn" href='/packages/wedding-emerald-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
+                </div>
+
+              </div>
+            </Col>
+            <Col>
+              <div className={styles.packageBox}>
+                <img src={imagePath('box-three.png')} alt="img" />
+                <div className={`${styles.packageDetail} `}>
+                  <h3>Genie</h3>
+                  <p>Your wish is our command. Choose what you need and make your dream team of wedding vendors.</p>
+                  <a className="primary-button home-btn" href='/wishlist' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
+                </div>
+              </div>
+            </Col>
+          </Row>
+
+        </div>
+
+        <Container className={styles.ceremonyContainer}>
+          <Row className="mt-5" id="ceremonies">
+            <Col className={`${styles.ceremony} text-center`}>
+              <h2>You may also be interested in...</h2>
+              {this.props.ceremonies &&
+                <Col xs="12" className={` no-padding mb-5`}>
+                  <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony" />
+                </Col>
+              }
+            </Col>
+          </Row>
+        </Container>
+
       </div>
     );
   }
@@ -344,8 +331,10 @@ class GoldPackage extends Component {
 GoldPackage.propTypes = {
   user: PropTypes.object,
   dispatch: PropTypes.func,
+  ceremonies: PropTypes.array
 };
 
 export default connect(
+  mapStateToProps,
   mapDispatchToProps
 )(GoldPackage);
