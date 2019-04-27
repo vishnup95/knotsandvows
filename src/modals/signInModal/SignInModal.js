@@ -210,8 +210,8 @@ class SignInModal extends Component {
                 <Form className="position-relative">
                     <InputField maxLength="50" placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)}/>
                     <InputField maxLength="50" placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignUpFormChange(e)} />
-                    <InputField maxLength="50" placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleSignUpFormChange(e)}/>
                     <InputField maxLength="50" placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)}/>
+                    <InputField maxLength="50" placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleSignUpFormChange(e)}/>
                 </Form>
                 {this.props.apiStatus == false && this.props.error &&
                     <div className={styles.apiError}>{this.props.error}</div>

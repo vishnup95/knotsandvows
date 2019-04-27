@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import styles from './CeremonyDetail.scss';
-// import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -12,14 +11,13 @@ import CategorySection from './categorySection';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal'
 import NoResultComponent from '../../components/noResult/noResult';
-import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 const cities = {
   display_name:"City",
   name:"city",
   values:[
       {name: "Hyderabad", id: 0},
-      {name: "Secunderabad", id: 1},
+      // {name: "Secunderabad", id: 1},
       {name: "Vijayawada", id: 2},
       {name: "Vizag", id: 3}
   ]
@@ -125,7 +123,7 @@ class CeremonyDetail extends Component {
               <div className={styles.coverMask}>
                 <h1 className={styles.title}>{details.ceremony_name}</h1>
                 <p>{details.description}</p>
-                <TalkToWeddingPlanner buttonText={'Let us help you'}/>
+                {/* <TalkToWeddingPlanner buttonText={'Let us help you'}/> */}
               </div>
             </div>
             <Container>

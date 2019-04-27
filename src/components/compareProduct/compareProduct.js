@@ -35,7 +35,6 @@ const mapDispatchToProps = dispatch => ({
     }
     render() {
         var vendor = this.props.data;
-        console.log(vendor);
         return (
             <Col xs="6" sm="4" className={styles.compareComponent}>
                 <div className={styles.closeBtnSmall}>
