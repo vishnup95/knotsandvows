@@ -90,12 +90,12 @@
     background: 0 0;
     text-align: left;
     color: $black-twelve;
-    font-family: $roboto-regular; 
+    font-family: $roboto-regular;
   }
 
   .input-box-border {
     border: 1px solid $medium-pink;
-    border-radius: 5px; 
+    border-radius: 5px;
   }
 
   .input-placeholder {
@@ -157,7 +157,7 @@
   .input-error {
     display: block;
     position: absolute;
-    margin-top: 0.1em;
+    margin-top: .1em;
     color: #d50000;
     font-size: .8em;
     letter-spacing: .39px;
@@ -382,7 +382,7 @@
 }
 
 .image-gallery-right-nav {
-  background: url(/images/gallery-right-arrow.svg) 50% 50% no-repeat;
+  background: url("/images/gallery-right-arrow.svg") 50% 50% no-repeat;
   background-size: 30px;
   font-size: 0;
   @include mobile {
@@ -391,7 +391,7 @@
 }
 
 .image-gallery-left-nav {
-  background: url(/images/gallery-left-arrow.svg) 50% 50% no-repeat;
+  background: url("/images/gallery-left-arrow.svg") 50% 50% no-repeat;
   background-size: 30px;
   font-size: 0;
   @include mobile {
@@ -456,7 +456,7 @@
   border-radius: 50%;
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
   cursor: pointer;
-  
+
   img {
     @include width(80);
     @include height(80);
@@ -493,9 +493,9 @@ button {
   @include mobile {
     overflow: hidden;
   }
+
   div[class^="container"] {
     max-width: 90%;
-
     @include mobile {
       max-width: 100%;
       padding-left: 2.5rem;
@@ -529,6 +529,12 @@ button {
   flex-direction: row-reverse;
 }
 
+.row-reverse-tab {
+  @include tablet {
+    flex-direction: row-reverse;
+  }
+}
+
 .flex {
   display: flex;
 }
@@ -540,16 +546,26 @@ button {
   width: 5rem;
   position: absolute;
   animation: pulsate 1.5s ease-out;
-  animation-iteration-count: infinite; 
-  opacity: 0.0
+  animation-iteration-count: infinite;
+  opacity: .0;
 }
 @keyframes pulsate {
-  0% {opacity: 0.0;}
-  50% {opacity: 1.0;}
-  100% {transform: scale(1.5, 1.5); opacity: 0.0;}
+  0% {
+    opacity: .0;
+  }
+
+  50% {
+    opacity: 1.0;
+  }
+
+  100% {
+    transform: scale(1.5, 1.5);
+    opacity: .0;
+  }
 }
+
 .navbar-brand {
-  padding:  0 !important;
+  padding: 0 !important;
   @include mobile {
     position: absolute;
     left: 50%;
@@ -570,7 +586,7 @@ input[id="contactDate"].placeholderclass::before {
 }
 
 input[id="contactDate"].placeholderclass:focus::before {
-  width: 0%;
+  width: 0;
   content: "";
   color: $warm-grey-two;
 }

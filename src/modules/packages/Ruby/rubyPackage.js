@@ -114,7 +114,7 @@ class RubyPackage extends Component {
             {
               packageItems.slice(0, 4).map((item, index) => {
                 return (
-                  <Col xs='12' sm='6' md='3' key={index} className={styles.packageItem}>
+                  <Col xs='6' sm='6' md='3' key={index} className={styles.packageItem}>
                     <div className={`${styles.packageItemImgBg} ${styles.ruby}`}>
                       <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                     </div>
@@ -252,7 +252,6 @@ class RubyPackage extends Component {
                 <img className={styles.contactImg} src={imagePath('ruby-box.png')} alt="contact" />
               </Col>
               <Col md='5' >
-                <div>
                   <h3>Get Your Royal Ruby <span className="tab-only"><br /></span> Wedding Package Now!</h3>
                   <form>
                     <Row>
@@ -277,7 +276,6 @@ class RubyPackage extends Component {
                     </Row>
                   </form>
                   <input type="submit" value="Send message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
-                </div>
               </Col>
             </Row>
           </Container>

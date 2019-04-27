@@ -101,6 +101,7 @@ class GoldPackage extends Component {
     }
   }
   render() {
+    console.log(styles);
     return (
       <div className={styles.goldPackage}>
         <div className={styles.goldCover}>
@@ -114,27 +115,29 @@ class GoldPackage extends Component {
             {
               packageItems.slice(0, 4).map((item, index) => {
                 return (
-                  <Col xs='12' sm='6' md='3' key={index} className={styles.packageItem}>
-                    <div className={styles.packageItemImgBg}>
-                      <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
-                    </div>
-                    <div className={styles.packageItemContent}>
-
-                      <div className={styles.packageItemName}>
-                        {item.itemName}
+                  <Col xs='6' sm='6' md='3' key={index}>
+                    <div className={styles.packageItem}>
+                      <div className={styles.packageItemImgBg}>
+                        <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
-                      <ul>
-                        {
-                          item.itemList.length > 0 &&
-                          item.itemList.map((listItem, index) => {
-                            return (
-                              <li key={index}>
-                                {listItem}
-                              </li>
-                            );
-                          })
-                        }
-                      </ul>
+                      <div className={styles.packageItemContent}>
+
+                        <div className={styles.packageItemName}>
+                          {item.itemName}
+                        </div>
+                        <ul>
+                          {
+                            item.itemList.length > 0 &&
+                            item.itemList.map((listItem, index) => {
+                              return (
+                                <li key={index}>
+                                  {listItem}
+                                </li>
+                              );
+                            })
+                          }
+                        </ul>
+                      </div>
                     </div>
                   </Col>
                 );
@@ -145,26 +148,28 @@ class GoldPackage extends Component {
             {
               packageItems.slice(4, 6).map((item, index) => {
                 return (
-                  <Col xs='12' sm='6' key={index} className={`${styles.packageItem} ${styles.large}`}>
-                    <div className={`${styles.packageItemImgBg} ${styles.large}`}>
-                      <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
-                    </div>
-                    <div className={styles.packageItemContent}>
-                      <div className={styles.packageItemName}>
-                        {item.itemName}
+                  <Col xs='12' sm='6' key={index} >
+                    <div className={`${styles.packageItem} ${styles.large} ${index === 0 ? ' row-reverse-tab': ''}`}>
+                      <div className={`${styles.packageItemImgBg} ${styles.large}`}>
+                        <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
-                      <ul>
-                        {
-                          item.itemList.length > 0 &&
-                          item.itemList.map((listItem, index) => {
-                            return (
-                              <li key={index}>
-                                {listItem}
-                              </li>
-                            );
-                          })
-                        }
-                      </ul>
+                      <div className={styles.packageItemContent}>
+                        <div className={styles.packageItemName}>
+                          {item.itemName}
+                        </div>
+                        <ul>
+                          {
+                            item.itemList.length > 0 &&
+                            item.itemList.map((listItem, index) => {
+                              return (
+                                <li key={index}>
+                                  {listItem}
+                                </li>
+                              );
+                            })
+                          }
+                        </ul>
+                      </div>
                     </div>
                   </Col>
                 );
@@ -175,32 +180,34 @@ class GoldPackage extends Component {
             {
               packageItems.slice(6, 7).map((item, index) => {
                 return (
-                  <Col key={index} className={styles.packageItem}>
-                    <div className={styles.packageItemImgBg}>
-                      <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
-                    </div>
-                    <div className={styles.packageItemContent}>
-                      <div className={styles.packageItemName}>
-                        {item.itemName}
+                  <Col xs='6' sm='6' md='3' key={index} >
+                    <div className={`${styles.packageItem} ${styles.lastPack}`}>
+                      <div className={styles.packageItemImgBg}>
+                        <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
-                      <ul>
-                        {
-                          item.itemList.length > 0 &&
-                          item.itemList.map((listItem, index) => {
-                            return (
-                              <li key={index}>
-                                {listItem}
-                              </li>
-                            );
-                          })
-                        }
-                      </ul>
+                      <div className={styles.packageItemContent}>
+                        <div className={styles.packageItemName}>
+                          {item.itemName}
+                        </div>
+                        <ul>
+                          {
+                            item.itemList.length > 0 &&
+                            item.itemList.map((listItem, index) => {
+                              return (
+                                <li key={index}>
+                                  {listItem}
+                                </li>
+                              );
+                            })
+                          }
+                        </ul>
+                      </div>
                     </div>
                   </Col>
                 );
               })
             }
-            <Col className='flex justify-center'>
+            <Col className={`${styles.offerWrap} flex justify-center tab-only`}>
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
                 <div className={styles.offer}>Offer Price</div>
@@ -212,35 +219,49 @@ class GoldPackage extends Component {
             {
               packageItems.slice(7, 8).map((item, index) => {
                 return (
-                  <Col key={index} className={`${styles.packageItem} ${styles.lastPack}`}>
-                    <div className={styles.packageItemImgBg}>
-                      <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
-                    </div>
-                    <div className={styles.packageItemContent}>
-                      <div className={styles.packageItemName}>
-                        {item.itemName}
+                  <Col xs='6' sm='6' md='3' key={index} >
+                    <div className={`${styles.packageItem}`}>
+                      <div className={styles.packageItemImgBg}>
+                        <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
-                      <ul>
-                        {
-                          item.itemList.length > 0 &&
-                          item.itemList.map((listItem, index) => {
-                            return (
-                              <li key={index}>
-                                {listItem}
-                              </li>
-                            );
-                          })
-                        }
-                      </ul>
+                      <div className={styles.packageItemContent}>
+                        <div className={styles.packageItemName}>
+                          {item.itemName}
+                        </div>
+                        <ul>
+                          {
+                            item.itemList.length > 0 &&
+                            item.itemList.map((listItem, index) => {
+                              return (
+                                <li key={index}>
+                                  {listItem}
+                                </li>
+                              );
+                            })
+                          }
+                        </ul>
+                      </div>
                     </div>
                   </Col>
                 );
               })
             }
           </Row>
+          <Row className="mobile-only">
+            <Col className={`${styles.offerWrap} flex justify-center`}>
+              <div className={`${styles.offerPrice} `}>
+                <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
+                <div className={styles.offer}>Offer Price</div>
+                <div className={styles.originalStrike}>Original Price  ₹2,390,000</div>
+                <div className={styles.original}>₹2,150,000</div>
+                <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
+              </div>
+            </Col>
+          </Row>
           <Row>
             <Col>
               <h3><span className={styles.headerWithIcon}>To customise SevenVows Gold package talk to our event planner</span></h3>
+              <div className={styles.hrLine}></div>
             </Col>
           </Row>
         </div>
@@ -252,7 +273,6 @@ class GoldPackage extends Component {
                 <img className={styles.contactImg} src={imagePath('contact-box.png')} alt="contact" />
               </Col>
               <Col md='5' >
-                <div>
                   <h3>Get Your Gold <span className="tab-only"><br /></span> Wedding Package Now!</h3>
                   <form>
                     <Row>
@@ -277,7 +297,6 @@ class GoldPackage extends Component {
                     </Row>
                   </form>
                   <input type="submit" value="Send message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
-                </div>
               </Col>
             </Row>
           </Container>
