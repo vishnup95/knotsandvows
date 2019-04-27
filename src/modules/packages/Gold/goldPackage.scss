@@ -10,6 +10,10 @@
     text-align: center;
 
   }
+
+  h3 {
+    text-align: center;
+  }
 }
 
 .goldCover {
@@ -21,6 +25,11 @@
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 3rem;
+
+  &.rubyCover {
+    background: url('/images/ruby-cover.jpg') center top no-repeat;
+    background-size: cover;
+  }
 
   &:before {
     content: '';
@@ -73,8 +82,9 @@
     &:first-child {
       flex-direction: row-reverse;
     }
+
     .packageItemContent {
-        padding-left: .5rem;
+      padding-left: .5rem;
     }
   }
 
@@ -110,6 +120,11 @@
   background: url('/images/package-img-bg.jpg') center center no-repeat;
   background-size: cover;
   margin-bottom: 1rem;
+
+  &.ruby {
+    background: url('/images/ruby-img-bg.jpg') center center no-repeat;
+    background-size: cover;
+  }
 
   &.large {
     @include width(330);
@@ -179,10 +194,6 @@
   font-size: 2.5rem;
   font-family: $roboto-bold;
   line-height: normal;
-}
-
-h3 {
-  text-align: center;
 }
 
 .headerWithIcon {
@@ -261,33 +272,38 @@ h3 {
 .ceremonyContainer {
   max-width: 78%;
 }
+
 .packageBox {
-    box-shadow: 6px 11px 5px 0 rgba(204, 26, 102, 0.12);
-    border-radius: 6px;
-    border: .5px solid $medium-pink;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 43rem;
-    padding-bottom: 3rem;
-    > img {
-        width: 19.7rem;
-    }
-    h3 {
-        color: $greyish-brown-six;
-        font-family: $roboto-bold;
-        font-size: 2.25rem;
-        margin: 2rem 0 1rem;
-    }
+  box-shadow: 6px 11px 5px 0 rgba(204, 26, 102, 0.12);
+  border-radius: 6px;
+  border: .5px solid $medium-pink;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 43rem;
+  padding-bottom: 3rem;
+
+  > img {
+    width: 19.7rem;
+  }
+
+  h3 {
+    color: $greyish-brown-six;
+    font-family: $roboto-bold;
+    font-size: 2.25rem;
+    margin: 2rem 0 1rem;
+  }
 
 }
+
 .packageDetail {
-    width: 19.7rem;
-    p {
-        font-family: $roboto-light !important;
-        font-size: 1.14rem !important;
-        text-align: center;
-        margin-bottom: 2rem;
-      }
+  width: 19.7rem;
+
+  p {
+    font-family: $roboto-light !important;
+    font-size: 1.14rem !important;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 }
