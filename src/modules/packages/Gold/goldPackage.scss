@@ -25,6 +25,9 @@
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 3rem;
+  @include mobile {
+    padding-bottom: 1rem;
+  }
 
   &.rubyCover {
     background: url('/images/ruby-cover.jpg') center top no-repeat;
@@ -46,10 +49,17 @@
     color: #fff;
     z-index: 1;
     font-size: 3.57rem;
+    @include mobile {
+      max-width: 59%;
+      text-align: center;
+    }
   }
 }
 
 .bannerTwo {
+  @include mobile {
+    margin-bottom: 15.5vw;
+  }
   background: url('/images/mask-one.svg') center top no-repeat;
   background-size: cover;
   display: flex;
@@ -62,25 +72,43 @@
     font-family: $frank-medium;
     font-size: 3.57rem;
     margin-top: 2rem;
+    @include mobile {
+      max-width: 52%;
+    }
   }
 }
 
 .goldContainer {
   max-width: 79rem;
   margin: 0 auto;
+  @include mobile {
+    max-width: 90%;
+
+    div[class^="col"] {
+      padding: 0 5px;
+    }
+  }
 }
 
 .packageItem {
   color: $medium-pink;
   margin-bottom: 3rem;
+  @include mobile {
+    border: 1.5px solid $medium-pink;
+    border-radius: 6px;
+    padding: 0 .75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 20vw;
+  }
 
   &.large {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
-    &:first-child {
-      flex-direction: row-reverse;
+    @include mobile {
+      margin-top: 20vw;
     }
 
     .packageItemContent {
@@ -90,11 +118,24 @@
 
   ul {
     padding: 0 0 0 1.4rem;
-    list-style-image: url('/images/package-list-icon.png');
 
     li {
       font-family: $roboto-light;
       @include fontSize(18.3);
+      color: $greyish-brown;
+      list-style: none;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: -1.5rem;
+        top: .5rem;
+        height: .8rem;
+        width: .8rem;
+        background-image: url('/images/package-list-icon.png');
+        background-size: cover;
+      }
     }
   }
 }
@@ -103,15 +144,24 @@
   display: flex;
   flex-direction: column;
   @include width(220);
+  max-width: 100%;
 }
 
 .packageItemName {
   @include fontSize(27.4);
   text-transform: capitalize;
   margin-bottom: .5rem;
+  @include mobile {
+    text-align: center;
+  }
 }
 
 .packageItemImgBg {
+  @include mobile {
+    width: 80%;
+    height: auto;
+    margin-top: -15.5vw;
+  }
   flex-shrink: 0;
   @include width(270);
   @include height(270);
@@ -129,6 +179,11 @@
   &.large {
     @include width(330);
     @include height(330);
+    @include mobile {
+      width: 80%;
+      height: auto;
+      margin-top: -31vw;
+    }
   }
 
   img {
@@ -137,12 +192,19 @@
   }
 }
 
+.offerWrap {
+  @include mobile {}
+}
+
 .offerPrice {
   position: relative;
   margin-bottom: 4rem;
 }
 
 .offerPriceImg {
+  @include mobile {
+    max-width: 100%;
+  }
   width: 36.6rem;
 }
 
@@ -150,6 +212,10 @@
   align-items: flex-end;
   display: flex;
   flex-direction: column;
+  order: 3;
+  @include mobile {
+    align-items: center;
+  }
 }
 
 .offer {
@@ -161,6 +227,11 @@
   transform: rotate(-8deg);
   top: 4rem;
   left: 9rem;
+  @include mobile {
+    top: 3rem;
+    left: 19%;
+    font-size: 2rem;
+  }
 }
 
 .originalStrike {
@@ -173,6 +244,15 @@
   font-size: 1.8rem;
   color: $secondary-color;
   white-space: nowrap;
+  @include mobile {
+    top: 10rem;
+    left: 13%;
+    font-size: 1.6rem;
+  }
+
+  &.ruby {
+    color: $white;
+  }
 }
 
 .original {
@@ -183,6 +263,15 @@
   font-size: 3.57rem;
   font-family: $roboto-bold;
   color: $secondary-color;
+  @include mobile {
+    top: 13rem;
+    left: 27%;
+    font-size: 2.5rem;
+  }
+
+  &.ruby {
+    color: $white;
+  }
 }
 
 .save {
@@ -194,21 +283,34 @@
   font-size: 2.5rem;
   font-family: $roboto-bold;
   line-height: normal;
+  @include mobile {
+    bottom: 5.5rem;
+    right: 4%;
+    font-size: 1.8rem;
+  }
 }
 
 .headerWithIcon {
   color: $medium-pink;
   font-family: $roboto-regular;
   text-align: center;
+}
+
+.hrLine {
   border-bottom: 1.5px solid $secondary-color;
   padding: 0 2rem 0 4rem;
   position: relative;
+  margin: 0 auto;
+  max-width: 57rem;
 
   &:after {
+    @include mobile {
+      display: none;
+    }
     content: '';
     position: absolute;
-    right: -5rem;
-    bottom: -1.5px;
+    right: -5.2rem;
+    bottom: -1px;
     background: url('/images/love-mark.png') center center no-repeat;
     background-size: cover;
     width: 10rem;
@@ -236,6 +338,10 @@
     color: $white;
     text-align: left;
     font-size: 2.28rem;
+    @include mobile {
+      margin-top: 1rem;
+      text-align: center;
+    }
   }
 
   form {
@@ -283,6 +389,7 @@
   justify-content: flex-end;
   height: 43rem;
   padding-bottom: 3rem;
+  margin-bottom: 2rem;
 
   > img {
     width: 19.7rem;

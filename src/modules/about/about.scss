@@ -9,70 +9,109 @@
   .aboutCover {
     height: 42vw;
     position: relative;
-    background: url('/images/about_cover.jpg');
+    background: url('/images/about-cover.png');
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
     @include mobile {
-      height: 42vw;
+      height: 48vw;
     }
   }
 
-  .h3Class {
-    @include fontSize(48);
+  .h2Class {
+    font-family: $frank-medium;
+    @include fontSize(52);
     line-height: 4rem;
+    color: $medium-pink;
     @include letterSpacing(1.44);
-    width: 95%;
     text-align: center;
-    @include mobile {
-       @include fontSize(35);
-      width: 98%;
-    }
+  }
+
+  .h2ClassPurple {
+    @extend .h2Class;
+    color: $secondary-color;
+  }
+
+  .h2BigMobile {
+    @extend .h2ClassPurple;
+    @include fontSize(52, !important);
   }
 
   .h4Class {
+    font-family: $roboto-bold;
+    color: $secondary-color;
     @include fontSize(30);
-    width: 92%;
-    @include letterSpacing(.54);
+    text-align: center;
     line-height: 2.5rem;
-    margin-bottom: 2rem;
+  }
+
+  .h4ClassGrey {
+    @extend .h4Class;
+    font-family: $roboto-light;
+    color: $greyish-brown;
+
     @include mobile {
-      text-align: center;
-      margin-bottom: 1rem;
+      @include fontSize(18);
+    }
+  }
+
+  .vowsImage {
+    width: max-content;
+    margin: 0 auto;
+
+    img {
+      @include width(340);
+    }
+  }
+
+  .logoImage {
+    text-align: right;
+    margin-top: 3rem;
+    img {
+      @include width(340);
     }
 
-    &.roboto {
-      font-family: $roboto-regular;
+    @include mobile {
+      text-align: center;
+
+      img {
+        margin-bottom: 2rem;
+      }
     }
   }
 
   .pClass {
-    @include fontSize(18);
+    @include fontSize(34);
     @include letterSpacing(.31);
-    color: #484848;
-    line-height: 1.8rem;
-    width: 80%;
+    color: #ffffff;
+    line-height: 2.25rem;
+    font-family: $roboto-regular;
+
     @include mobile {
-      width: 100%;
-      text-align: center;
+      @include fontSize(25);
     }
   }
 
   .pSmallClass {
-    @include fontSize(14);
+    @include fontSize(22);
     @include letterSpacing(.31);
     color: #ffffff;
     line-height: 1.6rem;
+    font-family: $roboto-medium;
 
-    height: calc(68% - 10px);
-    overflow: hidden;
+    @include mobile {
+      @include fontSize(12);
+    }
+  }
+
+  .pSmallLight {
+    @extend .pSmallClass;
+    @include fontSize(20);
+    font-family: $roboto-light;
   }
 }
 
 .aboutSubContainer {
-  @media only screen and (min-width: 992px) {
-    max-width: 750px;
-  }
   @include hd {
     max-width: 80%;
   }
@@ -81,88 +120,67 @@
   }
 }
 
+//members container styles 
+
+.noPadding {
+  padding: 0;
+}
+
 .memberContainer {
-  text-align: center;
-  position: relative;
-  background-color: #f4f4f4;
-  @include borderRadius(10);
-  @include margin(0, 5);
-
-  .memeberInfo {
-    @include padding(20,10);
-    @include borderRadius(10);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    height: 100%;
-
-    .memberName {
-      font-family: $roboto-medium;
-      @include fontSize(22);
-      color: $black;
-    }
-
-    .memberPosition {
-      font-family: $roboto-regular;
-      @include fontSize(18);
-      color: #959595;
-    }
-
-  }
-
-  .imageCover {
-    @include borderRadius(10);
+  .member {
+    margin: 0.5rem;
+    position: relative;
     cursor: pointer;
-    width: 100%;
-    background-size: cover;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-
-    &:before {
-      content: "";
-      display: block;
-      padding-top: 110%;
+    img {
+      width: 100%;
     }
 
-    .hoverContainer {
-      @include borderRadius(10);
-      @include padding(10, 20);
-      transition: .8s cubic-bezier(0.4, 0, 1, 1);
-      background-color: rgba(92, 55, 99, 0.9);
-      opacity: 0;
+    .memberHover {
+      height: 90%;
+      width: 87%;
       position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 0;
-      width: 100%;
-      color: white;
+      top: 0;
+      margin: 1rem;
+      background-color: rgba(109, 33, 88, 0.7);
+      opacity: 0;
+      transition: .8s cubic-bezier(0.4, 0, 1, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0.5rem;
+      text-align: center;
+
+      @include mobile {
+        margin: 0.5rem;
+      }
     }
 
     &:hover {
-      .hoverContainer {
-        height: 85%;
+      .memberHover {
         opacity: 1;
       }
     }
   }
+
+  @include mobile {
+    @include padding(20);
+  }
 }
 
-.iconContainer {
-  a {
-    img {
-      height: 1.52rem;
-      width: 1.52rem;
-      margin-left: 1rem;
-      display: inline-block;
-    }
+.pinkContainer {
+  background-color: $medium-pink;
+  height: 100%;
+  @include padding(80,40, 0);
 
-    &:first-child {
-      img {
-        margin-left: 0;
-      }
-    }
-  }
-  margin-bottom: 2rem;
   @include mobile {
-    margin-top: 2rem;
+    @include padding(30, 15, 0);
+  }
+}
+
+.alignMiddle {
+  @include mobile {
+    margin: 0 auto;
+    width: max-content;
   }
 }
