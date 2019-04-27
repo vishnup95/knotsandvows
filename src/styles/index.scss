@@ -474,6 +474,10 @@
   font-family: $roboto-medium;
   opacity: .95;
   text-decoration: underline;
+
+  @include mobile {
+    @include fontSize(20, !important);
+  }
 }
 
 .slick-disabled {
