@@ -94,9 +94,9 @@ class RubyPackage extends Component {
       params['name'] = name;
       params['email'] = email;
       params['phone'] = phone;
-      params['date'] = date;
+      params['event_date'] = date;
       params['city'] = city;
-      params['comments'] = comments;
+      params['description'] = comments;
       this.props.dispatch(actions.postContactDetails(params));
     }
   }
