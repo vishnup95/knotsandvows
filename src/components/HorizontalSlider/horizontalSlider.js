@@ -5,7 +5,6 @@ import { hyphonatedString } from '../../utils/utilities';
 import styles from './horizontalSlider.scss';
 import PropTypes from 'prop-types';
 import CategoryCard from '../../components/Card/cardCategory';
-import MemberComponent from '../../modules/about/memberComponent';
 import { Col } from 'reactstrap';
 
 const SampleNextArrow = (propvalues) => {
@@ -194,8 +193,8 @@ export default class HorizontalSlider extends Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: this.props.type === 'about' ? 3 : 4,
-            slidesToScroll: this.props.type === 'about' ? 3 : 4,
+            slidesToShow: 4,
+            slidesToScroll: 4,
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />,
             initialSlide: 0,
@@ -229,8 +228,8 @@ export default class HorizontalSlider extends Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: this.props.type === 'about' ? 3 : 4,
-            slidesToScroll: this.props.type === 'about' ? 3 : 4,
+            slidesToShow: 4,
+            slidesToScroll: 4,
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />,
             initialSlide: 0,
@@ -303,24 +302,7 @@ export default class HorizontalSlider extends Component {
                     </Slider>
                 </div>
             );
-        } else if (this.props.type === 'about') {
-            return (
-                <div>
-                    <Slider {...settings}>
-                        {
-                            this.props.data.map((item, index) => {
-                                return (
-                                    <Col key={index}>
-                                        <MemberComponent />
-                                    </Col>
-                                );
-                            })
-                        }
-                    </Slider>
-                </div>
-            );
-        }
-        else if (this.props.type === 'ceremony') {
+        } else if (this.props.type === 'ceremony') {
             return (
                 <div>
                     {
