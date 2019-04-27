@@ -414,16 +414,16 @@ class Home extends Component {
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
-                      <a className="primary-button home-btn white" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
+                      <a className="primary-button home-btn white" href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
                     <img src={imagePath('box-two.png')} alt="img" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Emerald</h3>
+                      <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
-                      <a className="primary-button home-btn white" href='/packages/wedding-ruby-package' target="_blank" rel="noopener noreferrer" alt="">Exquisitely Emerald</a>
+                      <a className="primary-button home-btn white" href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
 
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>

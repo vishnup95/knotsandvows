@@ -309,7 +309,7 @@ class RubyPackage extends Component {
                 <div className={`${styles.packageDetail} `}>
                   <h3>Gold</h3>
                   <p>Add shine to your wedding celebration. Here’s a package that’s packed with wedding goodness.</p>
-                  <a className="primary-button home-btn" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
+                  <a className="primary-button home-btn" href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
                 </div>
 
               </div>
@@ -320,7 +320,7 @@ class RubyPackage extends Component {
                 <div className={`${styles.packageDetail} `}>
                   <h3>Genie</h3>
                   <p>Your wish is our command. Choose what you need and make your dream team of wedding vendors.</p>
-                  <a className="primary-button home-btn" href='/wishlist' target="_blank" rel="noopener noreferrer" alt="">Your wish</a>
+                  <a className="primary-button home-btn" href='/wishlist' rel="noopener noreferrer" alt="">Your wish</a>
                 </div>
               </div>
             </Col>
