@@ -101,7 +101,6 @@ class GoldPackage extends Component {
     }
   }
   render() {
-    console.log(styles);
     return (
       <div className={styles.goldPackage}>
         <div className={styles.goldCover}>
