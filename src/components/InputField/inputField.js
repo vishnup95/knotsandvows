@@ -151,9 +151,8 @@ class InputField extends Component {
                 }
               <span className='input-bar'></span>
               <span className='input-error'>{this.state.errorMessage}</span>
-              {/* {this.props.type === 'show-mask-password' && <span className='input-password-mask' aria-hidden onClick={() => this.togglePasswordMask(event.target)}></span>} */}
-              {this.props.type === 'password' && this.props.disabled == false && <div><span className='input-password-mask'></span>
-              <UncontrolledTooltip placement="right" target={this.props.id}>
+              {this.props.type === 'password' && this.props.disabled == false && <div><span className='input-password-mask' id='reveal'></span>
+              <UncontrolledTooltip placement="right" autohide={true} target='reveal'>
                 {title}
               </UncontrolledTooltip></div>}
             </div>

@@ -36,7 +36,6 @@ const VendorDetailReducer = (state = initialState, action) => {
       case types.LOAD_GALLERY:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_GALLERY_SUCCESS:
@@ -44,7 +43,6 @@ const VendorDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         gallery: result.data.data.gallery,
-        loading: false
       };
 
     case types.LOAD_GALLERY_FAILURE:
@@ -52,7 +50,6 @@ const VendorDetailReducer = (state = initialState, action) => {
         ...state,
         gallery: [],
         error: action.error.message,
-        loading: false
       };
 
       case types.LOAD_NOTES:
@@ -78,7 +75,6 @@ const VendorDetailReducer = (state = initialState, action) => {
     case types.LOAD_REVIEWS:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_REVIEWS_SUCCESS:
@@ -86,20 +82,17 @@ const VendorDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         reviewsData: result.data.data,
-        loading: false
       };
 
     case types.LOAD_REVIEWS_FAILURE:
       return {
         ...state,
         error: action.error.message,
-        loading: false
       };
 
       case types.LOAD_SIMILAR_VENDORS:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_SIMILAR_VENDORS_SUCCESS:
@@ -107,7 +100,6 @@ const VendorDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         similarVendors: result.data.data.results,
-        loading: false
       };
 
     case types.LOAD_SIMILAR_VENDORS_FAILURE:
@@ -115,7 +107,6 @@ const VendorDetailReducer = (state = initialState, action) => {
         ...state,
         similarVendors:[],
         error: action.error.message,
-        loading: false
       };
 
     default:

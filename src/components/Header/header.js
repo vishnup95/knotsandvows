@@ -77,11 +77,10 @@ class Header extends Component {
         } else {
             sendGAEvent("Header", "Show Login");
             this.props.dispatch(actions.showLogin());
-            if (detectMobile()) {
-                this.toggle();
-            }
         }
-        
+        if (detectMobile()) {
+            this.setState({ isOpen: false});
+        }  
     }
 
     componentWillMount() {
@@ -226,6 +225,16 @@ class Header extends Component {
     renderLoginItem = () => {
 
         if (this.props.user !== null) {
+
+            if (detectMobile()){
+                return(
+                <div className="mt-3 mb-2" onClick={() => this.navigateTo("/profile")} aria-hidden>
+                    <span className={styles.userInfo}>
+                         {shortName(this.props.user.name)}
+                    </span>  
+                </div>
+                );
+            }
             return (
                 <div>
                     <UncontrolledDropdown nav inNavbar>
@@ -331,12 +340,13 @@ class Header extends Component {
                 </div>
                 <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={styles.mobileMenuModal}>
                     <ul>
+                         {this.renderLoginItem()}
                         <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
                         <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
                         <li onClick={() => this.navigateTo('/#ceremonies')} aria-hidden>Ceremonies</li>
                         <li onClick={() => this.navigateTo('/wishlist')} aria-hidden>Wishlist</li>
                         <li onClick={() => this.navigateTo('/about')} aria-hidden>About</li>
-                        {this.renderLoginItem()}
+                        {this.props.user &&  <li onClick={() => this.logout()} aria-hidden>Logout</li>}
                     </ul>
                 </Modal>
             </div>
