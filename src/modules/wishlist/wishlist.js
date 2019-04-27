@@ -386,7 +386,7 @@ class CategoryListing extends Component {
                 </div>
                 <hr className="mb-5 d-none d-sm-block"/>
                 <Row>
-                  <Col xs="2" sm="2" md="11" className={styles.labelColumn}>
+                  <Col xs="2" sm="2" md="1" className={styles.labelColumn}>
                     <div className={styles.label}>
                       Price
                     </div>

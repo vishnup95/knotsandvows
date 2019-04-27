@@ -30,52 +30,6 @@
         display: none;
     }
   }
-  @include mobile {
-    .footerContact {
-      order: 3;
-      min-width: 100%;
-      .footerContactContainer {
-        @include flex();
-        @include justify-space-between;
-      }
-      .footerPhoneEmail {
-        text-align: right;
-      }
-    }
-    .footerNavLinks {
-      order: 1;
-      min-width: calc(50% - 15px);
-      border-bottom: 1px solid $primary-color;
-      padding-left: 0;
-      margin-left: 15px;
-      text-align: left;
-    }
-    .footerEventLinks {
-      min-width: calc(50% - 15px);
-      border-bottom: 1px solid $primary-color;
-      padding-right: 0;
-      margin-right: 15px;
-      order: 2;
-      text-align: right;
-      ul li {
-        @include justify-right();
-      }
-      .footerImages {
-        display: inline-block;
-      }
-    }
-    .footerBottomLinks {
-      order: 4;
-      .footerImages {
-        display: none;
-      }
-      .footer-right {
-        flex-direction: row;
-        flex-wrap: wrap;
-        @include justify-center();
-      }
-    }
-  }
 }
 
 p {
@@ -88,6 +42,11 @@ p {
     &:hover {
       color: inherit;
     }
+  }
+
+  @include mobile {
+    text-align: left;
+    @include padding(0,35);
   }
 
 }
@@ -118,6 +77,14 @@ p {
         @include padding(8,0);
       }
     }
+
+    @include mobile {
+      @include padding(5,35);
+
+      li a {
+        @include fontSize(20);
+      }
+    }
   }
 }
 
@@ -136,11 +103,25 @@ p {
       }
     }
   }
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
 }
 
 .footer-right {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.collapseControl {
+  display: none;
+  @include padding(15,35);
+  @include borderRadius(10);
+  background-color: rgb(134, 71, 116);
+  text-align: left;
+  @include fontSize(30, !important);
+  font-family: $frank-regular;
+
+  @include mobile {
+    display: block;
+  }
 }
