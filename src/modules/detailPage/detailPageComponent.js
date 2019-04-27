@@ -368,7 +368,7 @@ class DetailPageComponent extends Component {
 
                             </Row>
                             <Row className={`${style.detailNav} mobile-only`}>
-                                <Col>
+                                <Col className="no-padding">
                                     <HorizontalSlider data={detailNavItems} type='basic' buttonAction={this.handleNavClick} />
                                 </Col>
                             </Row>

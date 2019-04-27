@@ -57,7 +57,7 @@ const SampleNextArrowSmall = (propvalues) => {
                 backgroundSize: 'contain',
                 top: '50%',
                 right: '-16px',
-                width: '20px',
+                width: '12px',
                 height: '20px',
                 opacity: '.7'
             }}
@@ -78,9 +78,9 @@ const SamplePrevArrowSmall = (propvalues) => {
                 transform: 'rotate(-180deg)',
                 backgroundSize: 'contain',
                 zIndex: '10',
-                top: '30%',
+                top: '29%',
                 left: '-16px',
-                width: '20px',
+                width: '12px',
                 height: '20px',
                 opacity: '.7'
             }}
@@ -102,7 +102,7 @@ const SampleNextArrowBasic = (propvalues) => {
                 // right: '-16px',
                 width: '20px',
                 height: '20px',
-                opacity: '.7'
+                backgroundColor:'#f2f2f2'
             }}
             onClick={onClick}
         >Next</button>
@@ -125,7 +125,7 @@ const SamplePrevArrowBasic = (propvalues) => {
                 // left: '-16px',
                 width: '20px',
                 height: '20px',
-                opacity: '.7'
+                backgroundColor:'#f2f2f2'
             }}
             onClick={onClick}
         >Prev</button>
