@@ -271,7 +271,7 @@ class GoldPackage extends Component {
               <Col md='5'>
                 <img className={styles.contactImg} src={imagePath('contact-box.png')} alt="contact" />
               </Col>
-              <Col md='5' >
+              <Col md='5' className='contact-form'>
                   <h3>Get Your Gold <span className="tab-only"><br /></span> Wedding Package Now!</h3>
                   <form>
                     <Row>

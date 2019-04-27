@@ -271,7 +271,7 @@ class RubyPackage extends Component {
               <Col md='5'>
                 <img className={styles.contactImg} src={imagePath('ruby-box.png')} alt="contact" />
               </Col>
-              <Col md='5' >
+              <Col md='5' className='contact-form'>
                 <h3>Get Your Royal Ruby <span className="tab-only"><br /></span> Wedding Package Now!</h3>
                 <form>
                   <Row>

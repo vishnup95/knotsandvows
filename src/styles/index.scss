@@ -590,3 +590,12 @@ input[id="contactDate"].placeholderclass:focus::before {
   content: "";
   color: $warm-grey-two;
 }
+.contact-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  @include tablet {
+    align-items: flex-start;
+  }
+}
