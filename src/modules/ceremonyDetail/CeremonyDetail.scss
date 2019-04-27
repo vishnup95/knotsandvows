@@ -29,6 +29,9 @@
 .ceremony-cover {
   height: 50rem;
   position: relative;
+  @include mobile {
+    height: 55vw;
+  }
 
   h1 {
     @include fontSize(58);
@@ -64,7 +67,7 @@
   > h1 {
     font-family: $frank-medium;
     letter-spacing: 1px;
-    font-size: 25px;
+    font-size: 25px !important;
     @include tablet {
       font-size: 4.285rem;
     }
@@ -73,6 +76,10 @@
   > p {
     font-size: 25px;
     text-align: center;
+    @include mobile {
+      font-size: 20px;
+      line-height: normal;
+    }
   }
 }
 
