@@ -29,9 +29,6 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showHeader: true
-    }
     this.initializeReactGA();
   }
 
@@ -60,10 +57,6 @@ class App extends Component {
   }
 
   render() {
-    var showHeader = true;
-    if (this.props.history.location.pathname === '/packages/wedding-emerald-package') {
-      showHeader = false;
-    }
     return (<div className="app">
       <FullStory org={REACT_APP_FS_ORG_ID} />
       <Helmet
@@ -73,7 +66,7 @@ class App extends Component {
         script={metadata.script}
         noscript={metadata.noscript}
       />
-      {showHeader && <Header history={this.props.history} />}
+      <Header history={this.props.history} />
       <div className="main">
         {routes}
       </div>
@@ -112,7 +105,7 @@ class App extends Component {
       </div>
     </Modal>
 
-      {showHeader && <FooterComponent />}
+    <FooterComponent />
     </div>);
   }
 }

@@ -173,6 +173,9 @@
   font-size: 1.8rem;
   color: $secondary-color;
   white-space: nowrap;
+  &.ruby {
+    color: $white;
+  }
 }
 
 .original {
@@ -183,6 +186,9 @@
   font-size: 3.57rem;
   font-family: $roboto-bold;
   color: $secondary-color;
+  &.ruby {
+    color: $white;
+  }
 }
 
 .save {

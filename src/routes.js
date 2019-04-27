@@ -131,8 +131,8 @@ const LoadableGoldPackage = Loadable({
   }
 });
 
-const LoadableEmeraldPackage = Loadable({
-  loader: () => import(/* webpackChunkName: 'goldPackage' */ './modules/packages/Emerald/emeraldPackage'),
+const LoadableRubyPackage = Loadable({
+  loader: () => import(/* webpackChunkName: 'goldPackage' */ './modules/packages/Ruby/rubyPackage'),
   loading() {
     return <div>Loading...</div>;
   }
@@ -181,7 +181,7 @@ const routes = (
     <Route exact path="/terms-and-conditions" component={LoadableTermsAndConditions} />
     <Route exact path="/privacy-policy" component={LoadablePrivacyAndPolicy} />
     <Route path="/packages/wedding-gold-package/" component={LoadableGoldPackage} />
-    <Route path="/packages/wedding-emerald-package/" component={LoadableEmeraldPackage} />
+    <Route path="/packages/wedding-ruby-package/" component={LoadableRubyPackage} />
 
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <SecretRoute path="/profile" component={LoadableMyProfile} />
