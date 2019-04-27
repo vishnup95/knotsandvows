@@ -135,7 +135,7 @@ class InputField extends Component {
                         onChange={() => this.props.onChange(event)}
                         disabled={this.props.disabled}
                         value={this.state.value}
-                        title={title}
+                        title={''}
                         min={this.minDate}
                         max={this.maxDate}
                         maxLength={this.props.maxLength}
