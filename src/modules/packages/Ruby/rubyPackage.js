@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './goldPackage.scss';
+import styles from '../Gold/goldPackage.scss';
 // import { Link } from 'react-router-dom';
 import { imagePath } from '../../../utils/assetUtils';
 import * as actions from '../../../components/TalkToWeddingPlanner/actions';
@@ -75,7 +75,7 @@ const packageItems = [
 // const packageItemsFirst = packageItems.slice(0, 4);
 // const packageItemsSecond = packageItems.slice(4, 6);
 
-class GoldPackage extends Component {
+class RubyPackage extends Component {
   constructor(props) {
     super(props);
   }
@@ -90,7 +90,7 @@ class GoldPackage extends Component {
 
     if (name || email || phone || date || city || comments) {
       const params = {};
-      params['origin'] = 'GOLD_PACKAGE';
+      params['origin'] = 'RUBY_PACKAGE';
       params['name'] = name;
       params['email'] = email;
       params['phone'] = phone;
@@ -103,20 +103,20 @@ class GoldPackage extends Component {
   render() {
     return (
       <div className={styles.goldPackage}>
-        <div className={styles.goldCover}>
+        <div className={`${styles.goldCover} ${styles.rubyCover}`}>
           <h1>Wedding is so much more than just one day!</h1>
         </div>
         <div className={styles.bannerTwo}>
-          <h2>SevenVows Gold package includes</h2>
+          <h2>SevenVows Royal Ruby package includes</h2>
         </div>
         <div className={`${styles.goldContainer} container`}>
           <Row>
             {
               packageItems.slice(0, 4).map((item, index) => {
                 return (
-                  <Col xs='6' sm='6' md='3' key={index}>
+                  <Col xs='6' sm='6' md='3' key={index} >
                     <div className={styles.packageItem}>
-                      <div className={styles.packageItemImgBg}>
+                      <div className={`${styles.packageItemImgBg} ${styles.ruby}`}>
                         <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
                       <div className={styles.packageItemContent}>
@@ -147,9 +147,9 @@ class GoldPackage extends Component {
             {
               packageItems.slice(4, 6).map((item, index) => {
                 return (
-                  <Col xs='12' sm='6' key={index} >
-                    <div className={`${styles.packageItem} ${styles.large} ${index === 0 ? ' row-reverse-tab': ''}`}>
-                      <div className={`${styles.packageItemImgBg} ${styles.large}`}>
+                  <Col xs='12' sm='6' key={index}>
+                    <div className={`${styles.packageItem} ${styles.large} ${index === 0 ? ' row-reverse-tab' : ''}`}>
+                      <div className={`${`${styles.packageItemImgBg} ${styles.ruby}`} ${styles.large} ${styles.ruby}`}>
                         <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
                       <div className={styles.packageItemContent}>
@@ -179,9 +179,9 @@ class GoldPackage extends Component {
             {
               packageItems.slice(6, 7).map((item, index) => {
                 return (
-                  <Col xs='6' sm='6' md='3' key={index} >
+                  <Col xs='6' sm='6' md='3' key={index}>
                     <div className={`${styles.packageItem} ${styles.lastPack}`}>
-                      <div className={styles.packageItemImgBg}>
+                      <div className={`${styles.packageItemImgBg} ${styles.ruby}`}>
                         <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
                       <div className={styles.packageItemContent}>
@@ -208,19 +208,19 @@ class GoldPackage extends Component {
             }
             <Col className={`${styles.offerWrap} flex justify-center tab-only`}>
               <div className={`${styles.offerPrice} `}>
-                <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
+                <img className={styles.offerPriceImg} src={imagePath('offer-bg-ruby.png')} alt="offer" />
                 <div className={styles.offer}>Offer Price</div>
-                <div className={styles.originalStrike}>Original Price  ₹2,390,000</div>
-                <div className={styles.original}>₹2,150,000</div>
+                <div className={`${styles.originalStrike} ${styles.ruby}`}>Original Price  ₹2,390,000</div>
+                <div className={`${styles.original} ${styles.ruby}`}>₹2,150,000</div>
                 <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
               </div>
             </Col>
             {
               packageItems.slice(7, 8).map((item, index) => {
                 return (
-                  <Col xs='6' sm='6' md='3' key={index} >
-                    <div className={`${styles.packageItem}`}>
-                      <div className={styles.packageItemImgBg}>
+                  <Col xs='6' sm='6' md='3' key={index}>
+                    <div className={`${styles.packageItem} ${styles.lastPack}`}>
+                      <div className={`${styles.packageItemImgBg} ${styles.ruby}`}>
                         <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
                       <div className={styles.packageItemContent}>
@@ -249,17 +249,17 @@ class GoldPackage extends Component {
           <Row className="mobile-only">
             <Col className={`${styles.offerWrap} flex justify-center`}>
               <div className={`${styles.offerPrice} `}>
-                <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
+                <img className={styles.offerPriceImg} src={imagePath('offer-bg-ruby.png')} alt="offer" />
                 <div className={styles.offer}>Offer Price</div>
-                <div className={styles.originalStrike}>Original Price  ₹2,390,000</div>
-                <div className={styles.original}>₹2,150,000</div>
+                <div className={`${styles.originalStrike} ${styles.ruby}`}>Original Price  ₹2,390,000</div>
+                <div className={`${styles.original} ${styles.ruby}`}>₹2,150,000</div>
                 <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
               </div>
             </Col>
           </Row>
           <Row>
             <Col>
-              <h3><span className={styles.headerWithIcon}>To customise SevenVows Gold package talk to our event planner</span></h3>
+              <h3><span className={styles.headerWithIcon}>To customise SevenVows Royal Ruby package talk to our event planner</span></h3>
               <div className={styles.hrLine}></div>
             </Col>
           </Row>
@@ -269,33 +269,33 @@ class GoldPackage extends Component {
             <Row>
               <Col md='1'></Col>
               <Col md='5'>
-                <img className={styles.contactImg} src={imagePath('contact-box.png')} alt="contact" />
+                <img className={styles.contactImg} src={imagePath('ruby-box.png')} alt="contact" />
               </Col>
               <Col md='5' className='contact-form'>
-                  <h3>Get Your Gold <span className="tab-only"><br /></span> Wedding Package Now!</h3>
-                  <form>
-                    <Row>
-                      <Col xs='12'>
-                        <input maxLength="75" type="text" name="name" id="name" placeholder="Name" />
-                      </Col>
-                      <Col xs='12'>
-                        <input maxLength="75" type="email" name="email" id="email" placeholder="Email" />
-                      </Col>
-                      <Col xs='12'>
-                        <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" id="phone" placeholder="Phone" />
-                      </Col>
-                      <Col xs='6'>
-                        <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
-                      </Col>
-                      <Col xs='6'>
-                        <input maxLength="50" type="text" name="city" id="city" placeholder="City" />
-                      </Col>
-                      <Col xs='12'>
-                        <textarea maxLength="200" name="comments" id="comments" rows="3" placeholder="Comments"></textarea>
-                      </Col>
-                    </Row>
-                  </form>
-                  <input type="submit" value="Send message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
+                <h3>Get Your Royal Ruby <span className="tab-only"><br /></span> Wedding Package Now!</h3>
+                <form>
+                  <Row>
+                    <Col xs='12'>
+                      <input maxLength="75" type="text" name="name" id="name" placeholder="Name" />
+                    </Col>
+                    <Col xs='12'>
+                      <input maxLength="75" type="email" name="email" id="email" placeholder="Email" />
+                    </Col>
+                    <Col xs='12'>
+                      <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" id="phone" placeholder="Phone" />
+                    </Col>
+                    <Col xs='6'>
+                      <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
+                    </Col>
+                    <Col xs='6'>
+                      <input maxLength="50" type="text" name="city" id="city" placeholder="City" />
+                    </Col>
+                    <Col xs='12'>
+                      <textarea maxLength="200" name="comments" id="comments" rows="3" placeholder="Comments"></textarea>
+                    </Col>
+                  </Row>
+                </form>
+                <input type="submit" value="Send message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
               </Col>
             </Row>
           </Container>
@@ -305,11 +305,11 @@ class GoldPackage extends Component {
           <Row>
             <Col>
               <div className={styles.packageBox}>
-                <img src={imagePath('ruby-box.png')} alt="img" />
+                <img src={imagePath('contact-box.png')} alt="img" />
                 <div className={`${styles.packageDetail} `}>
-                  <h3>Royal Ruby</h3>
+                  <h3>Gold</h3>
                   <p>Add shine to your wedding celebration. Here’s a package that’s packed with wedding goodness.</p>
-                  <a className="primary-button home-btn" href='/packages/wedding-ruby-package' target="_blank" rel="noopener noreferrer" alt="">Royal Ruby</a>
+                  <a className="primary-button home-btn" href='/packages/wedding-gold-package' target="_blank" rel="noopener noreferrer" alt="">Go for Gold</a>
                 </div>
 
               </div>
@@ -346,7 +346,7 @@ class GoldPackage extends Component {
   }
 }
 
-GoldPackage.propTypes = {
+RubyPackage.propTypes = {
   user: PropTypes.object,
   dispatch: PropTypes.func,
   ceremonies: PropTypes.array
@@ -355,4 +355,4 @@ GoldPackage.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GoldPackage);
+)(RubyPackage);
