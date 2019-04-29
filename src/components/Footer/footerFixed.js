@@ -127,7 +127,7 @@ class FooterFixedComponent extends Component {
                     <Col xs="12" md="3" className={`${styles.footerBottomLinks}`}>
                         <div className={`${styles.footerRight}`}>
                             <span className={`${styles.footerImages} d-none d-sm-block`}>
-                                <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
+                                <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
                                 </a>
                                 <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
@@ -145,7 +145,7 @@ class FooterFixedComponent extends Component {
                                 </p>
                             </Collapse>
                             <span className={`${styles.footerImages} d-block d-sm-none`}>
-                                <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
+                                <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
                                 </a>
                                 <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">

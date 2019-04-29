@@ -263,7 +263,7 @@ class Header extends Component {
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
                         {/* <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only" /> */}
-                        Login
+                        Login/Sign up
                 </NavLink>
                 </NavItem>
             );
