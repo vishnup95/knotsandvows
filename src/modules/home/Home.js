@@ -31,8 +31,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const headerString = ['Customised Wedding Packages', 'to help you celebrate...'];
-const headerStringTwo = ['Your day. Your way.'];
+const headerString = ['Our team of happiness partners', 'helps you celebrate'];
+const headerStringTwo = ['Your Big Day...Your Way!'];
 
 class Home extends Component {
   constructor(props) {
@@ -344,7 +344,7 @@ class Home extends Component {
                       <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
                       <div className={styles.cardDetail}>
                         <h3>Personalized services</h3>
-                        <p>All our actions adhere to our credo - ‘Your day. Your way’. We help as much as you want us to. You can choose us to plan your entire wedding or you can pick which of your ceremonies you need our help with.</p>
+                        <p>It’s you who decides. Choose from a wide range of wedding services or select a personalized package to organize a stress-free dream wedding.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
@@ -357,7 +357,7 @@ class Home extends Component {
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <div className={styles.cardDetail}>
                         <h3>No pocket pinch</h3>
-                        <p>It feels nice to spend the world on your wedding. However, savings can go a long way. We help you get attractive discounts on quality services. </p>
+                        <p>It feels nice to spend the world on your wedding. However, savings can go a long way. Our value-for-money services come with added discounts to make you happy and your pocket happier.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
