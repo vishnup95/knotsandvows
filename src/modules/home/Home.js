@@ -287,7 +287,7 @@ class Home extends Component {
               {/* <hr className="tab-only"></hr> */}
               <Row>
                 <Col>
-                  <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
+                  <h2>70% of couples to wish they had hired <br /><span>wedding planners</span></h2>
                   <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<span className="tab-only"><br /></span>services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>

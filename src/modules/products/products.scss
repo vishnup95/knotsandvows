@@ -5,7 +5,6 @@
 
 .category-cover {
   @include height(450);
-  @include margin(97,0,0);
 
   &:before {
     content: '';
