@@ -324,7 +324,7 @@ class Home extends Component {
                     {/* <div className={styles.detailDesc}>We are in</div> */}
                     <div className={styles.detailCount}>
                       <span>3</span>
-                      <div>cities</div>
+                      <div>cities & counting</div>
                     </div>
                   </Col>
                 </Row>
