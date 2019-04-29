@@ -318,7 +318,7 @@ class Header extends Component {
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/about')}>Who We Are</NavLink>
+                                <NavLink onClick={() => this.navigateTo('/who-we-are')}>Who We Are</NavLink>
                             </NavItem>
                             {this.renderLoginItem()}
 
@@ -345,7 +345,7 @@ class Header extends Component {
                         <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
                         <li onClick={() => this.navigateTo('/#ceremonies')} aria-hidden>Ceremonies</li>
                         <li onClick={() => this.navigateTo('/wishlist')} aria-hidden>Wishlist</li>
-                        <li onClick={() => this.navigateTo('/about')} aria-hidden>Who We Are</li>
+                        <li onClick={() => this.navigateTo('/who-we-are')} aria-hidden>Who We Are</li>
                         {this.props.user &&  <li onClick={() => this.logout()} aria-hidden>Logout</li>}
                     </ul>
                 </Modal>

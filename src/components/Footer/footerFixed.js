@@ -92,7 +92,7 @@ class FooterFixedComponent extends Component {
                                 </li>
 
                                 <li>
-                                    <Link to={'/about'}>Who We Are</Link>
+                                    <Link to={'/who-we-are'}>Who We Are</Link>
                                 </li>
                                 <li>
                                     <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} origin={'footer'}/>
