@@ -138,6 +138,9 @@
   display: flex;
   // @include height(817);
   height: 57rem;
+  @include mobile {
+    height: auto;
+  }
 }
 
 .login-form {
