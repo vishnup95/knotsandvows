@@ -210,9 +210,9 @@ class RubyPackage extends Component {
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg-ruby.png')} alt="offer" />
                 <div className={styles.offer}>Offer Price</div>
-                <div className={`${styles.originalStrike} ${styles.ruby}`}>Original Price  ₹2,390,000</div>
-                <div className={`${styles.original} ${styles.ruby}`}>₹2,150,000</div>
-                <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
+                <div className={`${styles.originalStrike} ${styles.ruby}`}>Original Price  ₹58,00,000</div>
+                <div className={`${styles.original} ${styles.ruby}`}>₹51,00,000</div>
+                <div className={styles.save}>You Save<br />₹7Lakhs</div>
               </div>
             </Col>
             {
