@@ -209,7 +209,7 @@ class GoldPackage extends Component {
             <Col className={`${styles.offerWrap} flex justify-center tab-only`}>
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
-                <div className={styles.offer}>Offer Price</div>
+                <div className={styles.offer}>Price starting at</div>
                 <div className={styles.originalStrike}>Original Price  ₹2,390,000</div>
                 <div className={styles.original}>₹2,150,000</div>
                 <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
@@ -250,7 +250,7 @@ class GoldPackage extends Component {
             <Col className={`${styles.offerWrap} flex justify-center`}>
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
-                <div className={styles.offer}>Offer Price</div>
+                <div className={styles.offer}>Price starting at</div>
                 <div className={styles.originalStrike}>Original Price  ₹2,390,000</div>
                 <div className={styles.original}>₹2,150,000</div>
                 <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
