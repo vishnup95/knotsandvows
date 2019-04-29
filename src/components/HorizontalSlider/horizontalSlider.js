@@ -99,7 +99,7 @@ const SampleNextArrowBasic = (propvalues) => {
                 background: 'url("/images/arrow-small.png") no-repeat',
                 backgroundSize: 'contain',
                 top: '50%',
-                // right: '-16px',
+                right: '-15px',
                 width: '20px',
                 height: '20px',
                 backgroundColor:'#f2f2f2'
@@ -122,7 +122,7 @@ const SamplePrevArrowBasic = (propvalues) => {
                 backgroundSize: 'contain',
                 zIndex: '10',
                 top: '15%',
-                // left: '-16px',
+                left: '-15px',
                 width: '20px',
                 height: '20px',
                 backgroundColor:'#f2f2f2'
