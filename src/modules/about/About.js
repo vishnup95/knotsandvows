@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col, Container, Button } from 'reactstrap';
+import { Row, Col, Container } from 'reactstrap';
 import MemberContainerComponent from './memberComponent';
 import styles from './about.scss';
 import { imagePath } from '../../utils/assetUtils';
+import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 class AboutComponent extends Component {
   componentDidMount() {
@@ -41,7 +42,7 @@ class AboutComponent extends Component {
             Our Promise
           </h2>
           <h2 className={styles.h2ClassPurple}>
-          “We vow to deliver magical memories of every <br/> 
+          “We vow to deliver magical memories of every
             celebration and wedding we touch.”
           </h2>
 
@@ -65,9 +66,9 @@ class AboutComponent extends Component {
                 individuals with a passion 
               </h4>
 
-              <Button className="primary-button mt-4 ml-0">
-                LET US HELP YOU
-              </Button>
+              <div className="mt-4 ml-0" style={{width: 'max-content'}}>
+                <TalkToWeddingPlanner buttonText={'LET US HELP YOU'}/>
+              </div>
             </div>
               
             </Col>

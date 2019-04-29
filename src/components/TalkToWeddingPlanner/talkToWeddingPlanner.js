@@ -40,7 +40,6 @@ class TalkToWeddingPlanner extends Component {
             comments: '',
             city: '',
             modal: false,
-            cityDropdown: false,
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -55,15 +54,7 @@ class TalkToWeddingPlanner extends Component {
         }));
         this.props.dispatch(actions.clearTalkToErrors());
     }
-
-    toggleDropdown(index) {
-        this.setState({cityDropdown: !this.state.cityDropdown});
-        if(index !== undefined) {
-            this.setState({city: index})
-        }
-    }
     
-
     handleFormChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
         this.props.dispatch(actions.clearTalkToErrors());
