@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const jumbotronData = { title: 'Similar Ceremonies' };
+const jumbotronData = { title: 'Other Ceremonies' };
 class CeremonyDetail extends Component {
   
   state = {
@@ -61,6 +61,7 @@ class CeremonyDetail extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    window.scrollTo(0,0);
     if (nextProps.ceremonyDetails !== null) {
       let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
         return item.vendors !== null && item.vendors.length > 0

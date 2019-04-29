@@ -67,7 +67,7 @@ class AboutComponent extends Component {
               </h4>
 
               <div className="mt-4 ml-0" style={{width: 'max-content'}}>
-                <TalkToWeddingPlanner buttonText={'LET US HELP YOU'}/>
+                <TalkToWeddingPlanner buttonText={'Let Us Help You'}/>
               </div>
             </div>
               
