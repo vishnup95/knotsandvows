@@ -42,7 +42,7 @@ class AboutComponent extends Component {
             Our Promise
           </h2>
           <h2 className={styles.h2ClassPurple}>
-          “We vow to deliver magical memories of every <br/> 
+          “We vow to deliver magical memories of every
             celebration and wedding we touch.”
           </h2>
 
