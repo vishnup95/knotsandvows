@@ -288,7 +288,7 @@ class Home extends Component {
               <Row>
                 <Col>
                   <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<br />services,help you plan the biggest day of your life in the best possible way.</p>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<span className="tab-only"><br /></span>services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -309,8 +309,8 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We know</div> */}
                     <div className={styles.detailCount}>
-                      <span>300 +</span>
-                      <div>venues</div>
+                      <span>200 +</span>
+                      <div>vendors</div>
                     </div>
                   </Col>
                   <Col className={styles.row}>
@@ -323,7 +323,7 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We are in</div> */}
                     <div className={styles.detailCount}>
-                      <span>10 +</span>
+                      <span>3</span>
                       <div>cities</div>
                     </div>
                   </Col>
