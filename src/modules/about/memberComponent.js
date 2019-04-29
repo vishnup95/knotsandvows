@@ -138,15 +138,15 @@ const members = [
 
 const aboutWordings = [
     {
-        heading: 'Fueling aspirations',
-        description: 'We fuel our customers aspirations.'
+        heading: 'Fuel Dreams',
+        description: 'We fuel our customers dreams and transform them to a reality.'
     },
     {
-        heading: 'Understanding values',
-        description: 'For every wedding we touch we first understand and internalize our customers values  ( do you want a green wedding, do you want celebrations steeped in tradition, are you a minimalist..)'
+        heading: 'Understand The Customer',
+        description: 'We cannot create a perfect event without understanding who we are creating it for.'
     },
     {
-        heading: 'Science of memories',
-        description: 'We apply research proven methods in planning to maximize long term memory creation'
+        heading: 'Apply the science of memories',
+        description: 'We apply scientifically proven methods of long lasting memory creation when planning every event.'
     }
 ];

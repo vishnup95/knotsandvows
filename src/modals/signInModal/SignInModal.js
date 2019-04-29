@@ -194,7 +194,7 @@ class SignInModal extends Component {
                 <div className="text-center w-100 mt-5">
                     <p className={styles.pWith}>Login with</p>
                     <SocialAuthComponent onSuccess={data => this.handleSocialAuthResponse(data)}></SocialAuthComponent>
-                    <button className={`${styles.detailLink} mt-5 pt-3 w-100`} onClick={this.showSignUp}>Create your Seven Vows account</button>
+                    <button className={`${styles.detailLink} mt-5 pt-3 w-100`} onClick={this.showSignUp}>Create your SevenVows account</button>
                 </div>
             </div>) : null;
     }
@@ -204,7 +204,7 @@ class SignInModal extends Component {
         return this.state.mode == DisplayMode.signUp ?
             (<div>
                 <div className={`${styles.footerText} ${styles.maxWidth} mb-3`}>
-                    If you have a Seven Vows account please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Login</Link></span>
+                    If you have a SevenVows account please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Login</Link></span>
                 </div>
                
                 <Form className="position-relative">

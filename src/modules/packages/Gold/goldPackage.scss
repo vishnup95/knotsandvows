@@ -220,17 +220,17 @@
 
 .offer {
   font-family: $roboto-bold;
-  font-size: 2.7rem;
+  font-size: 2.2rem;
   text-transform: uppercase;
   position: absolute;
   color: $white;
   transform: rotate(-8deg);
   top: 4rem;
-  left: 9rem;
+  left: 6rem;
   @include mobile {
     top: 3rem;
-    left: 19%;
-    font-size: 2rem;
+    left: 16%;
+    font-size: 1.7rem;
   }
 }
 

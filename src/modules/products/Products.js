@@ -152,11 +152,12 @@ class Products extends Component {
           ((this.props.productListData == null || this.props.productListData.results == null|| this.props.productListData.results.length === 0) ? <NoResultComponent /> :
 
             <Container className={`${styles.listContainer} mt-4 pb-5`}>
+              {/* this section is temporarily hidden
               <Row className="mb-3">
                 <Col sm="12">
                   <h1 className={styles.imageHeading}>{header ? header.header_text : ''}</h1>
                 </Col>
-              </Row>
+              </Row> */}
 
               {filters && filters.length > 0 && detectMobile() &&
                 <div>
