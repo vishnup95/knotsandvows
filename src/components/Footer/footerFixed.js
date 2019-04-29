@@ -73,7 +73,7 @@ class FooterFixedComponent extends Component {
 
                     <Col xs="12" md="3" className={` ${styles.block} ${styles.footerNavLinks}`}>
                         <p onClick={() => this.toggleCollapse(1)} aria-hidden className={styles.collapseControl}>
-                            SevenVOWS
+                            Seven Vows
                         </p>
                         <Collapse isOpen={this.state.collapse[1]}>
                             <p><Link to={'/'}>Home</Link></p>
@@ -130,11 +130,8 @@ class FooterFixedComponent extends Component {
                                 <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
                                 </a>
-                                <a href='https://www.instagram.com/ahwanamevents/' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
-                                </a>
-                                <a href='https://www.pinterest.com' target="_blank" rel="noopener noreferrer" alt="instagram">
-                                    <img src={imagePath('pinterest.svg')} alt="Pinterest" />
                                 </a>
                             </span>
                             <p onClick={() => this.toggleCollapse(3)} aria-hidden className={styles.collapseControl}>
@@ -151,12 +148,9 @@ class FooterFixedComponent extends Component {
                                 <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
                                 </a>
-                                <a href='https://www.instagram.com/ahwanamevents/' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
-                                </a>
-                                <a href='https://www.pinterest.com' target="_blank" rel="noopener noreferrer" alt="instagram">
-                                    <img src={imagePath('pinterest.svg')} alt="Pinterest" />
-                                </a>
+                                </a>                                
                                 <p className="text-center">© 2019  All Rights Reserved&nbsp;</p>
                             </span>
                         </div>
