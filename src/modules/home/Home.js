@@ -309,8 +309,8 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We know</div> */}
                     <div className={styles.detailCount}>
-                      <span>300 +</span>
-                      <div>venues</div>
+                      <span>200 +</span>
+                      <div>vendors</div>
                     </div>
                   </Col>
                   <Col className={styles.row}>
@@ -323,7 +323,7 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We are in</div> */}
                     <div className={styles.detailCount}>
-                      <span>10 +</span>
+                      <span>3 +</span>
                       <div>cities</div>
                     </div>
                   </Col>
