@@ -104,9 +104,9 @@ class FooterFixedComponent extends Component {
 
                     <Col xs="12" md="3" className={` ${styles.block} ${styles.footerEventLinks}`}>
                         <p onClick={() => this.toggleCollapse(2)} aria-hidden className={styles.collapseControl}>
-                            Plan your events
+                            Ceremonies
                         </p>
-                        <p className="d-none d-sm-block">Plan your events</p>
+                        <p className="d-none d-sm-block">Ceremonies</p>
                         <Collapse isOpen={this.state.collapse[2]}>
                             {this.props.ceremonies &&
                                 <ul>
