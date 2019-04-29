@@ -172,7 +172,7 @@ const routes = (
     {/* <Route exact path="/packages" component={LoadableExclusiveDeals} /> */}
     {/* <Route exact path="/plan-your-party" component={LoadablePlanningTool} /> */}
     <SecretRoute exact path="/wishlist" component={LoadableWishlist} />
-    <Route path="/about" component={LoadableAbout} />
+    <Route path="/who-we-are" component={LoadableAbout} />
     <Route path="/services" component={LoadableServices} />
     <SecretRoute path="/bookings" component={LoadableBookings} />
     <Route path="/sample" component={LoadableSample} />

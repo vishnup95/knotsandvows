@@ -331,7 +331,7 @@ class GoldPackage extends Component {
         <Container className={styles.ceremonyContainer}>
           <Row className="mt-5" id="ceremonies">
             <Col className={`${styles.ceremony} text-center`}>
-              <h2>You may also be interested in...</h2>
+              <h2>Pick a Ceremony...</h2>
               {this.props.ceremonies &&
                 <Col xs="12" className={` no-padding mb-5`}>
                   <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony" />

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { imagePath } from '../../utils/assetUtils';
 import styles from './compareProduct.scss';
 import PropTypes from 'prop-types';
-import { Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import StarRating from '../../components/StarRating/starRating';
 import { connect } from 'react-redux';
 import * as actions from '../../modules/detailPage/actions';
@@ -27,12 +27,20 @@ const mapDispatchToProps = dispatch => ({
     }
 
     renderGallery = (gallery) => {
-
+        // const images = gallery.map((image, index) => {
+        //     return <img src={image.image} key={index} className={styles.galleryImage} alt="gallery" /> 
+        // });
+        // return images;
         const images = gallery.map((image, index) => {
-            return <img src={image.image} key={index} className={styles.galleryImage} alt="gallery" /> 
+            return(
+                <Col md="6" className="p-1" key={index}>
+                    <img src={image.image} className={styles.galleryImage} alt="gallery" /> 
+                </Col>
+            );           
         });
-         return images;
+        return <Row className="m-0">{images}</Row>;
     }
+
     render() {
         var vendor = this.props.data;
         return (
