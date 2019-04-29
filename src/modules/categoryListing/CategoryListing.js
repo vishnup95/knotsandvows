@@ -14,6 +14,7 @@ import CategorySection from '../ceremonyDetail/categorySection';
 const mapStateToProps = state => ({
   allVendorDetails: state.ceremonyDetails.allVendorDetails,
   isLoading: state.ceremonyDetails.loading,
+  user: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -38,9 +39,14 @@ class CategoryListing extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.allVendorDetails || this.props.allVendorDetails.categories.length == 0){
-      this.props.dispatch(actions.fetchAllVendors());
-    } 
+    this.props.dispatch(actions.fetchAllVendors());
+  }
+
+  updateData(props){
+    let filteredCategories = props.allVendorDetails.categories.filter(item => {
+      return item.vendors !== null && item.vendors.length > 0
+    })
+    this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
   }
 
   componentDidMount() {
@@ -49,10 +55,12 @@ class CategoryListing extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.allVendorDetails !== null && nextProps.allVendorDetails.categories !== null) {
-      let filteredCategories = nextProps.allVendorDetails.categories.filter(item => {
-        return item.vendors !== null && item.vendors.length > 0
-      })
-      this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
+      this.updateData(nextProps);
+    }else{
+      this.setState({categories: [], fixedCategories: []});
+    }
+    if(this.props.user != nextProps.user && nextProps.user) {
+      this.props.dispatch(actions.fetchAllVendors());
     }
   }
 
@@ -72,17 +80,15 @@ class CategoryListing extends Component {
     
     return (
       <div className="full-height">
-          <div className={styles.ceremonyDetail}>
-            <Container>
+            <Container className={styles.browseAllContainer}>
               <Row>
                 <Col className="mb-4">
-                  <h2 className="text-center">Browse all vendors</h2>
-                  <p className={styles.subTitle}>Guaranteed best prices from all our vendors</p>
+                  <h2 className="text-center">Browse all VowVendors</h2>
                 </Col>
               </Row>
               {this.props.isLoading && <LoaderComponent />}
               {this.state.fixedCategories.length > 0 && <Row className={`mb-3 ${styles.fullWidthListing}`}>
-                <Col className="no-padding">
+                <Col>
                   <HorizontalSlider data={this.state.fixedCategories} type='small' buttonAction={this.handleCategoryChange}/>
                 </Col>
               </Row>}
@@ -94,7 +100,6 @@ class CategoryListing extends Component {
                 })
               }
             </Container>
-          </div>
 
         <JumbotronComponent  data={jumbotronData} bgcolor="#f8f8f8" isTalkToAhwanam={true} containerStyle="otherWrap"/>
       </div>

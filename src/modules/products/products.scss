@@ -71,16 +71,29 @@
     z-index: 1;
     border-radius: 5px;
     @include height(60);
+    position: relative;
 
     @include mobile {
       @include padding(30);
       background-color: white;
-      width: 80%;
+      width: 65%;
       margin-top: 12vh;
       border-radius: 10px;
       flex-direction: column;
       height: auto;
-      padding: 1.875rem 4rem;
+      padding: 1.875rem 3.5rem;
+    }
+
+    .closeBtn {
+      display: none;
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
+      cursor: pointer;
+
+      @include mobile {
+        display: block;
+      }
     }
   }
 
@@ -134,7 +147,7 @@
   }
 
   @include mobile {
-    height: 100vh;
+    height: 110vh;
     background-color: rgba(0, 0, 0, 0.59);
     position: fixed;
     z-index: 100;

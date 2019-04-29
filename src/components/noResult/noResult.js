@@ -7,8 +7,8 @@ class NoResultComponent extends Component {
         return (
             <div className={styles.noResultContainer}>
                 <img src={imagePath('no-result.svg')} alt="no result found" />
-                <p>No matching results found for your request</p>
-                <p>Please try with another term.</p>
+                <p>It’s not a match made in heaven.</p>
+                <p>Talk to our wedding planner to solve your problem. Call +91 770 205 3510</p>
             </div>
         );
     }

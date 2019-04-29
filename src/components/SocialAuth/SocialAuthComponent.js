@@ -56,8 +56,7 @@ class SocialAuthComponent extends Component {
             <div>
                <div className={`${styles.socialBtnWrap} text-center w-100`}>
                         <FacebookLogin
-                            appId="2249060602088158"
-                            autoLoad={true}
+                            appId="2286883458036161"
                             fields="name,email,picture"
                             callback={responseFacebook}
                             render={renderProps => (
@@ -68,7 +67,7 @@ class SocialAuthComponent extends Component {
                             )}
                         />
                         <GoogleLogin
-                            clientId="1085846553127-ano2e37t3a3jrtm9k19a588v63grvrfp.apps.googleusercontent.com"
+                            clientId="639855180755-lr4qck5n508erker0op5hjnl7tvdgkqf.apps.googleusercontent.com"
                             render={renderProps => (
                                 <Button  name="google" onClick={renderProps.onClick} className={`${styles.authButton} ${styles.googleButton} mt-3` }>
                                     <span className={styles.gmimage}></span>

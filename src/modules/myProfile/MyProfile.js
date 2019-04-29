@@ -61,8 +61,9 @@ class MyProfile extends Component {
         }
         if ((this.props.apiStatus != prevProps.apiStatus) && this.props.apiStatus == true){
             let modalContent = {
-                heading: 'My profile',
-                message: "Profile updated successfuly"
+                heading: '',
+                message: "Update successful!",
+                type: 'success'
               };
             this.props.dispatch(modalActions.showModal(modalContent));
         }

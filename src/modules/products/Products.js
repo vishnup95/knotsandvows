@@ -50,7 +50,8 @@ class Products extends Component {
     sortBy: 0,
     page: 1,
     dropdownOpen: false,
-    modal: true
+    modal: true,
+    search: ''
   }
 
   static fetchData(store) {
@@ -96,16 +97,20 @@ class Products extends Component {
       this.props.dispatch(actions.fetchProducts(category));
       this.props.dispatch(actions.fetchFilters(category));
       this.props.dispatch(actions.fetchOtherCategories(category));
-      this.setState({ category: category, page: 1, sortBy: 0 });
+      this.setState({ category: category, page: 1, sortBy: 0, search:''});
     }
 
     if (this.state.productListData !== this.props.productListData) {
       this.setState({ productListData: this.props.productListData });
       window.scrollTo(0, 0);
     }
+
+    if(this.props.user != prevProps.user && this.props.user) {
+      this.props.dispatch(actions.fetchProducts(this.state.category, this.state.page, this.state.sortBy, this.state.search));
+    }
   }
   pageChangeHandler(data) {
-    this.props.dispatch(actions.fetchProducts(this.state.category, data.selected + 1, this.state.sortBy));
+    this.props.dispatch(actions.fetchProducts(this.state.category, data.selected + 1, this.state.sortBy, this.state.search));
     this.setState({ page: data.selected + 1 });
   }
 
@@ -115,34 +120,16 @@ class Products extends Component {
 
   filterSearch = (params, category) => {
     this.navigateTo(`/categories/${category}`);
-    this.setState({ category : category, page : 1 , modal: true});
     let searchParams = queryString.stringify(params);
+    this.setState({ category : category, page : 1 , modal: true, search : searchParams});
     this.props.dispatch(actions.fetchProducts(category, 1, this.state.sortBy, searchParams, false));
   }
 
   changeSortOption = (sortOption) => {
     // let sortOption = this.props.filterData.sort_options[event.target.selectedIndex].id;
-    this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption));
+    this.props.dispatch(actions.fetchProducts(this.state.category, 1, sortOption, this.state.search));
     this.setState({ page: 1, sortBy: sortOption });
     this.toggle();
-  }
-
-  isInWishList = (category_id, vendor_id) => {
-     if (this.props.user == null){
-       return false
-     }else if (this.props.myWishListData == null && this.props.sharedWishlistData == null){
-      return false
-     }else{
-
-         let wishlist = this.props.myWishListData.wishlistitems;
-         let index = wishlist.findIndex( category => { return typeof category.category_id == category_id} );
-         if (index == null || index < 0){
-           return false
-         }
-         let category = wishlist[index];
-         let result = category.vendors.some( vendor => { return typeof vendor.vendor_id == vendor_id} );
-         return result;
-     }
   }
 
   render() {
@@ -174,7 +161,7 @@ class Products extends Component {
               {filters && filters.length > 0 && detectMobile() &&
                 <div>
                   <InputGroup onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
-                    <Input />
+                    <Input placeholder='Search your vendors'/>
                     <InputGroupAddon addonType="append">
                       <Button color="danger"></Button>
                     </InputGroupAddon>
@@ -221,7 +208,7 @@ class Products extends Component {
                   this.props.productListData.results.map((vendor, index) => {
                     return (
                       <Col xs="6" sm="4" key={index}>
-                        <CategoryCard data={vendor} category={this.state.category} id={index} isInWishList={this.isInWishList(1, vendor.vendor_id)}/>
+                        <CategoryCard data={vendor} category={this.state.category} id={index}/>
                       </Col>
                     );
                   })

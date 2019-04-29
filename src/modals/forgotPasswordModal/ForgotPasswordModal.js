@@ -47,9 +47,11 @@ class ForgotPassword extends Component {
         if (this.props.apiStatus == true) {
             let heading = 'Reset Password';
             if (this.props.hash != null){
-                this.props.dispatch(modalActions.showModal({message: 'Password changed successfully', heading}));
+                let message = 'Password changed successfully';
+                this.props.dispatch(modalActions.showModal({message, heading, type: 'success'}));
             }else{
-                this.props.dispatch(modalActions.showModal({message: `A link to reset your password has been sent to given email address`, heading}));
+                let message = 'A link to reset your password has been sent to given email address.';
+                this.props.dispatch(modalActions.showModal({message, heading, type: 'success'}));
             }
         }
     }
@@ -93,7 +95,7 @@ class ForgotPassword extends Component {
         return this.props.hash == null ?
         (<div className={styles.forgotPassword}>
             <div className={styles.header}>Forgot Password</div>
-            <Form className="position-relative">
+            <Form className="position-relative mt-3">
                 <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleFormChange(e)} />
             </Form>
             <div className="text-center mt-4">

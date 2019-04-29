@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
-import {
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-} from 'reactstrap';
+// import {
+//   Card,
+//   CardImg,
+//   CardBody,
+//   CardTitle,
+// } from 'reactstrap';
 import PropTypes from 'prop-types';
 import styles from './card.scss';
 import { imagePath } from '../../utils/assetUtils';
@@ -21,8 +21,12 @@ class PlainCard extends Component {
 
   navigateTo(route) {
     this.props.dispatch(push(route));
-    window.scrollTo(0, 0);
   }
+
+  handleCardClick = (e, name, id) => {
+    this.navigateTo(`/${this.props.type}/${hyphonatedString(name,id)}`);
+    e.preventDefault();
+}
   
   render() {
     let name = "";
@@ -38,20 +42,17 @@ class PlainCard extends Component {
       id = this.props.data.category_id;
     }
     return (
-      <div>
-        <Card className="mb-5" style={{backgroundColor: '#ffffff'}} onClick={() => this.navigateTo(`/${this.props.type}/${hyphonatedString(name,id)}`)}>
-          <CardImg
-            top
-            width="100%"
-            src={imageUrl}
+      <div>< a href={`/${this.props.type}/${hyphonatedString(name,id)}`} onClick={(event) => this.handleCardClick(event, name, id)}>
+        <div className={`${styles.ceremonyCard} mb-5`}>
+          <img src={imageUrl}
             alt="Categories"
             onError={(e)=>{e.target.onerror = null; e.target.src=imagePath('card_2_1.jpg')}}
-            className={styles.plainCardImage}
+            className={styles.ceremonyIg}
+            
           />
-          <CardBody className={styles.plainCardBody}>
-            <CardTitle className={styles.cardTitleSimple}>{name}</CardTitle>
-          </CardBody>
-        </Card>
+            <h3>{name}</h3>
+        </div>
+        </a>
       </div>
     );
   }

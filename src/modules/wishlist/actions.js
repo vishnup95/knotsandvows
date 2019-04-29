@@ -129,3 +129,31 @@ export function removeCollaborator(collaborator) {
     promise: client => client.post(`/api/removecollaborator?collaborator_id=${collaborator}`)
   };
 }
+
+export function getSharedWishlist(wishlist_id) {
+  return {
+    types: [
+      types.LOAD_SHARED_WISHLIST,
+      types.LOAD_SHARED_WISHLIST_SUCCESS,
+      types.LOAD_SHARED_WISHLIST_FAILURE
+    ],
+    promise: client => client.get(`/api/wishlist/getsharedwishlist?wishlist_id=${wishlist_id}`)
+  };
+}
+
+// export function toggleShared(value) {
+//   return {
+//     types: [types.TOGGLE_SHARED_WISHLIST],
+//     payload: value
+//   }
+// }
+
+export function toggleShared(value, wishlist_id) {
+  return {
+    type: types.TOGGLE_SHARED_WISHLIST,
+    payload: {
+      shared: value,
+      wishlist_id: wishlist_id
+    }
+  };
+}

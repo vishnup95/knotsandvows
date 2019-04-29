@@ -26,3 +26,7 @@ export const LOAD_AVAILABLE_AREAS_FAILURE = 'my-project/details/LOAD_AVAILABLE_A
 export const LOAD_GALLERY = 'my-project/details/LOAD_GALLERY';
 export const LOAD_GALLERY_SUCCESS = 'my-project/details/LOAD_GALLERY_SUCCESS';
 export const LOAD_GALLERY_FAILURE = 'my-project/details/LOAD_GALLERY_FAILURE';
+
+export const LOAD_NOTES = 'my-project/details/LOAD_NOTES';
+export const LOAD_NOTES_SUCCESS = 'my-project/details/LOAD_NOTES_SUCCESS';
+export const LOAD_NOTES_FAILURE = 'my-project/details/LOAD_NOTES_FAILURE';

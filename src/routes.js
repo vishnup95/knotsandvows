@@ -131,8 +131,8 @@ const LoadableGoldPackage = Loadable({
   }
 });
 
-const LoadableEmeraldPackage = Loadable({
-  loader: () => import(/* webpackChunkName: 'goldPackage' */ './modules/packages/Emerald/emeraldPackage'),
+const LoadableRubyPackage = Loadable({
+  loader: () => import(/* webpackChunkName: 'goldPackage' */ './modules/packages/Ruby/rubyPackage'),
   loading() {
     return <div>Loading...</div>;
   }
@@ -143,18 +143,14 @@ const PrivatePage = () => <div> private Page </div>;
 const SecretRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-        
-       isLoggedIn() ?
-       (
-        <Component {...props} />
-      ) : (
-        <Redirect to={`/?login=true&redirect=${props.location.pathname}`} />
-        // <Redirect to={{
-        //   pathname: '/login',
-        //   state: { from: props.location }
-        // }} />
-      )
+    render={props => {
+      if (isLoggedIn()) {
+        return <Component {...props} />;
+      } else {
+        const redirectValue = Buffer.from(`${props.location.pathname}${props.location.search}`).toString('base64');
+        return <Redirect to={`/?login=true&redirect=${redirectValue}`} />
+      }
+    }
     }
   />
 );
@@ -185,11 +181,11 @@ const routes = (
     <Route exact path="/terms-and-conditions" component={LoadableTermsAndConditions} />
     <Route exact path="/privacy-policy" component={LoadablePrivacyAndPolicy} />
     <Route path="/packages/wedding-gold-package/" component={LoadableGoldPackage} />
-    <Route path="/packages/wedding-emerald-package/" component={LoadableEmeraldPackage} />
+    <Route path="/packages/wedding-ruby-package/" component={LoadableRubyPackage} />
 
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <SecretRoute path="/profile" component={LoadableMyProfile} />
-    
+    {/* <SecretRoute path="/addcollabrator" component={LoadableWishlist}/> */}
     <Route component={LoadableNotFound} />
   </Switch>
   // </Suspense>

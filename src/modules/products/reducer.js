@@ -117,12 +117,13 @@ function addStaticFilter(response) {
         name:"city",
         values:[
             {name: "Hyderabad", id: 0},
-            {name: "Secunderabad", id: 1},
+            // {name: "Secunderabad", id: 1},
             {name: "Vijayawada", id: 2},
             {name: "Vizag", id: 3}
         ]
       }
       response.filters.splice(0,0,cityFilter);
+      response.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
    }
    return response;
 }

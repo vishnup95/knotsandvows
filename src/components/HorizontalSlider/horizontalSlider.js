@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import { imagePath } from '../../utils/assetUtils';
+import { hyphonatedString } from '../../utils/utilities';
 import styles from './horizontalSlider.scss';
 import PropTypes from 'prop-types';
 import CategoryCard from '../../components/Card/cardCategory';
-import MemberComponent from '../../modules/about/memberComponent';
 import { Col } from 'reactstrap';
 
 const SampleNextArrow = (propvalues) => {
@@ -57,7 +57,7 @@ const SampleNextArrowSmall = (propvalues) => {
                 backgroundSize: 'contain',
                 top: '50%',
                 right: '-16px',
-                width: '20px',
+                width: '12px',
                 height: '20px',
                 opacity: '.7'
             }}
@@ -78,9 +78,9 @@ const SamplePrevArrowSmall = (propvalues) => {
                 transform: 'rotate(-180deg)',
                 backgroundSize: 'contain',
                 zIndex: '10',
-                top: '30%',
+                top: '29%',
                 left: '-16px',
-                width: '20px',
+                width: '12px',
                 height: '20px',
                 opacity: '.7'
             }}
@@ -102,7 +102,7 @@ const SampleNextArrowBasic = (propvalues) => {
                 // right: '-16px',
                 width: '20px',
                 height: '20px',
-                opacity: '.7'
+                backgroundColor:'#f2f2f2'
             }}
             onClick={onClick}
         >Next</button>
@@ -125,7 +125,7 @@ const SamplePrevArrowBasic = (propvalues) => {
                 // left: '-16px',
                 width: '20px',
                 height: '20px',
-                opacity: '.7'
+                backgroundColor:'#f2f2f2'
             }}
             onClick={onClick}
         >Prev</button>
@@ -193,8 +193,8 @@ export default class HorizontalSlider extends Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: this.props.type === 'about' ? 3 : 4,
-            slidesToScroll: this.props.type === 'about' ? 3 : 4,
+            slidesToShow: 4,
+            slidesToScroll: 4,
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />,
             initialSlide: 0,
@@ -220,6 +220,43 @@ export default class HorizontalSlider extends Component {
                         prevArrow: null,
                         slidesToShow: 2.5,
                         slidesToScroll: 2
+                    }
+                }
+            ]
+        };
+        var ceremonySettings = {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+            initialSlide: 0,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 6,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        nextArrow: null,
+                        prevArrow: null,
+                        slidesToShow: 1.5,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 470,
+                    settings: {
+                        nextArrow: null,
+                        prevArrow: null,
+                        slidesToShow: 1.5,
+                        slidesToScroll: 1
                     }
                 }
             ]
@@ -254,7 +291,7 @@ export default class HorizontalSlider extends Component {
                         {
                             this.props.data.map((item, index) => {
                                 return (
-                                    <div key={index} className={styles.sliderItemBasic}>
+                                    <div key={index} className={styles.sliderItemBasic} onClick={() => this.props.buttonAction(item, index)} aria-hidden> 
                                         <div className={styles.sliderWrap}>
                                             {item.display_name}
                                         </div>
@@ -265,36 +302,20 @@ export default class HorizontalSlider extends Component {
                     </Slider>
                 </div>
             );
-        } else if (this.props.type === 'about') {
-            return (
-                <div>
-                    <Slider {...settings}>
-                        {
-                            this.props.data.map((item, index) => {
-                                return (
-                                    <Col key={index}>
-                                        <MemberComponent />
-                                    </Col>
-                                );
-                            })
-                        }
-                    </Slider>
-                </div>
-            );
-        }
-        else if (this.props.type === 'ceremony') {
+        } else if (this.props.type === 'ceremony') {
             return (
                 <div>
                     {
                         styles &&
-                    <Slider {...settings}>
+                    <Slider {...ceremonySettings}>
                         {
                             this.props.data.map((item, index) => {
                                 return (
                                     <Col key={index}>
                                     {
-                                        styles.ceremonyCard && 
-                                        <div className={styles.ceremonyCard} aria-hidden onClick={() => this.props.onSelect(item)}>
+                                        styles.ceremonyCard &&
+                                        <a href={`/ceremonies/${hyphonatedString(item.ceremony_name, item.ceremony_id)}`} onClick={(event) => this.props.onSelect(item, event)}>
+                                        <div className={styles.ceremonyCard}>
                                         {
                                             styles.ceremonyIg && 
                                             <img className={styles.ceremonyIg} style={{ backgroundImage: `url(${item.thumb_image}) ` }} alt=""
@@ -304,6 +325,7 @@ export default class HorizontalSlider extends Component {
                                             <h3>{item.ceremony_name}</h3>
                                             
                                         </div>
+                                        </a>
                                     }
 
                                     </Col>
@@ -382,8 +404,8 @@ export default class HorizontalSlider extends Component {
                                 );
                             })
                         }
-                        <Col>
-                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> Vendors</span></div>
+                        <Col className="text-center">
+                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> {this.props.categoryName}</span></div>
                         </Col>
                     </Slider>
                 </div>
@@ -396,9 +418,11 @@ HorizontalSlider.propTypes = {
     data: PropTypes.array,
     type: PropTypes.string,
     category: PropTypes.string,
+    categoryName: PropTypes.string,
     buttonAction: PropTypes.func,
 
     checkIfSelectedForComparison: PropTypes.func,
     addToCompare: PropTypes.func,
-    isCompare: PropTypes.bool
+    isCompare: PropTypes.bool,
+    onSelect: PropTypes.func
 };

@@ -18,7 +18,7 @@ class ImageFade extends Component {
         let i = 1;
         this.imageUpdater = setInterval(() => {
             i++;
-            if (i > 15) {
+            if (i > 4) {
                 i = 1;
             }
             this.setState({ imageSrc: imagebaseName + i + '.jpg', imageSrcTwo: imagebaseName + i + 1 + '.jpg',scale: 1});
@@ -36,7 +36,7 @@ class ImageFade extends Component {
             <div className={styles.imageWrap}>
             {
                 styles.homeImage &&
-                <div className={styles.homeImage} style={{ backgroundImage: "url(" + imagePath(this.state.imageSrc) + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'  }}></div>
+                <div className={styles.homeImage} style={{ backgroundImage: "url(" + imagePath(this.state.imageSrc) + ")", backgroundPosition: 'center top', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'  }}></div>
             }
             
                 </div>

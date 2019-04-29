@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './detailPageComponent.scss'
 import { Row, Col, Modal, Form, Button } from 'reactstrap';
-import MapComponent from '../../components/Map/map';
+// import MapComponent from '../../components/Map/map';
 import * as actions from './actions';
 import * as loginActions from '../../reducers/session/actions';
 import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
@@ -13,19 +13,21 @@ import ReviewItem from '../../components/Reviews/reviews';
 import ReactPaginate from 'react-paginate';
 import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
-import { imagePath, formatMoney } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
-import { isLoggedIn, getDataFromResponse } from '../../utils/utilities';
+import { isLoggedIn, getDataFromResponse, getId, formatDate, formatMoney } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import InputField from '../../components/InputField/inputField';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import * as modalActions from '../../reducers/modal/actions';
+import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
 
 const mapStateToProps = state => ({
     user: state.session.user,
     details: state.details.details,
+    notes: state.details.notes,
     gallery: state.details.gallery,
     detailsLoading: state.details.loading,
     reviewsData: state.details.reviewsData,
@@ -54,7 +56,8 @@ class DetailPageComponent extends Component {
             email: '',
             phone: '',
             date: '',
-            isInWishList: false
+            isInWishList: false,
+            selectedNavItem: 0
         };
     }
     toggleGallery = () => {
@@ -73,10 +76,21 @@ class DetailPageComponent extends Component {
             window.scrollTo(0, 0);
             return
         }
+
+        if (this.props.details != prevProps.details && this.props.details != null) {
+            this.setState({ isInWishList: this.props.details.is_in_wishlist });
+        }
+
+        if(this.props.user != prevProps.user && this.props.user) {
+            this.props.dispatch(actions.fetchVendorDetails(this.state.vendor));
+            this.props.dispatch(actions.fetchSimilarVendors(this.state.vendor));
+        }
     }
 
     componentWillMount() {
         this.updateUIData();
+        this.props.dispatch(talkToPlannerActions.clearTalkToErrors());
+
     }
 
     updateUIData = () => {
@@ -88,6 +102,14 @@ class DetailPageComponent extends Component {
         this.props.dispatch(actions.fetchVendorGallery(vendor));
         this.props.dispatch(actions.fetchReviews(vendor, 1));
         this.props.dispatch(actions.fetchSimilarVendors(vendor));
+
+        if (isLoggedIn() && this.props.wishlistId != 0) {
+            let details = {
+                vendor_id: getId(vendor),
+                wishlist_id: this.props.wishlistId
+            }
+            this.props.dispatch(actions.fetchAllNotes(details));
+        }
 
 
     }
@@ -111,7 +133,8 @@ class DetailPageComponent extends Component {
                     } else {
                         let modalContent = {
                             heading: '',
-                            message: error
+                            message: error,
+                            type: 'failure'
                         };
                         this.props.dispatch(modalActions.showModal(modalContent));
                     }
@@ -135,7 +158,8 @@ class DetailPageComponent extends Component {
                 } else {
                     let modalContent = {
                         heading: '',
-                        message: error
+                        message: error,
+                        type: 'failure'
                     };
                     this.props.dispatch(modalActions.showModal(modalContent));
                 }
@@ -178,15 +202,42 @@ class DetailPageComponent extends Component {
     renderPackages = (packages) => {
 
         const packagesToRender = packages.map((item, index) => {
-
             return (
                 <div className={style.pricesContainer} key={index}>
-                    <div className={style.item}>{item.name}<br /><span className={style.grey}>({item.charge_type})</span></div>
-                    <div className={style.itemPrice}>{formatMoney(item.price)} <br /><span className={style.grey}>GST extra</span></div>
+                    <div className={style.item}>{item.name}<br />
+                    { item.charge_type &&
+                    <span className={style.grey}>({item.charge_type})</span>
+                    }</div>
+                    <div className={style.itemPrice}>{formatMoney(item.format_price)} <br />{item.format_price && <span className={style.grey}>(GST not included)</span>}</div>
                 </div>
             )
         });
         return packagesToRender;
+    }
+
+    renderNotes = (notes) => {
+
+        const notesToRender = notes.map((note, index) => {
+
+            return (
+                <div className={style.noteWrap} key={index}>
+                    <div>
+                        <span className={style.noteTitle}>{note.author_name}</span>
+                        <span className={style.noteDate}>{formatDate(note.added_datetime)}</span>
+                    </div>
+                    <div className={style.noteText}>
+                        <div>
+                            <span className="edit-icon"></span>
+                            <span className="delete-icon"></span>
+                        </div>
+                        <div>
+                            {note.note}
+                        </div>
+                    </div>
+                </div>
+            )
+        });
+        return notesToRender;
     }
 
     jumbotronData = (category) => {
@@ -208,7 +259,7 @@ class DetailPageComponent extends Component {
 
         if (email && date) {
             const params = {};
-
+            params['origin'] = 'DETAIL_PAGE_FORM';
             if (/^\d{10}$/.test(email)) {
                 params['phone'] = this.state.email;
 
@@ -226,11 +277,18 @@ class DetailPageComponent extends Component {
         this.setState({ [e.target.id]: e.target.value });
     }
 
-    handleNavClick(item) {
+    handleNavClick = (item, index) => {
+        this.setState({ selectedNavItem: index });
 
         switch (item.id) {
-            case 'gallery': this.toggleGallery();
+            case 'gallery': this.toggleGallery(); break;
+            default: this.scrollToDetailSection(item.id); break;
         }
+    }
+
+    scrollToDetailSection(id) {
+        var sectionId = document.getElementById(id);
+        sectionId.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
     }
 
     render() {
@@ -250,17 +308,17 @@ class DetailPageComponent extends Component {
             if (details.policies && details.policies.length > 0) {
                 detailNavItems.push({ display_name: "Policies", id: "policies" });
             }
-            if (details.location && details.location.latitude && details.location.longitude) {
-                detailNavItems.push({ display_name: "Direction", id: "direction" });
-            }
+            // if (details.location && details.location.latitude && details.location.longitude) {
+            //     detailNavItems.push({ display_name: "Direction", id: "direction" });
+            // }
             if (reviewsData && reviewsData.results && reviewsData.results.length > 0) {
                 detailNavItems.push({ display_name: "Reviews", id: "reviews" });
             }
             if (this.props.gallery && this.props.gallery.length > 0) {
-                detailNavItems.push({ display_name: `Gallery (${this.props.gallery.length} Photos)`, id: "gallery" });
+                detailNavItems.push({ display_name: `Gallery (${this.props.gallery.length})`, id: "gallery" });
             }
         }
-
+        const heartIcon = this.state.isInWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg';
         return (
             <div className={style.detailContainer}>
                 {this.props.detailsLoading && <LoaderComponent />}
@@ -270,10 +328,16 @@ class DetailPageComponent extends Component {
                         </div>
                         <div className={style.detailSection}>
                             <Row className={style.infoBox}>
-                                <div>
-                                    <h3 >{details.name} <img src={imagePath('wishlist_unselected.svg')} className={style.heartImg} alt="Unselected heart" />
+                                <div className={style.infoText}>
+                                    <h3 >{details.name} <img src={imagePath(heartIcon)} className={style.heartImg} alt="heart" />
                                     </h3>
-                                    <p >{details.city} (<a href="/">View on Map</a>)</p>
+                                    <p >
+                                        {details.city}
+                                        {/* {
+                                            this.props.details.location && this.props.details.location.latitude && this.props.details.location.longitude &&
+                                            <span onClick={() => this.scrollToDetailSection('direction')} aria-hidden>(View on Map)</span>
+                                        } */}
+                                    </p>
                                     <p >{details.address}</p>
                                 </div>
                                 <div className={style.infoSub}>
@@ -284,7 +348,7 @@ class DetailPageComponent extends Component {
                                         <div className={style.review}> {details.reviews_count} Reviews</div>
                                     </div>
                                     <div className={style.viewBtnWrap}>
-                                        <ProgressButton className="primary-button" onClick={(e) => this.addToWishList(e)} title="Add to wishlist" isLoading={this.props.wishListApiLoading}></ProgressButton>
+                                        <ProgressButton isDisabled={this.state.isInWishList} onClick={(e) => this.addToWishList(e)} title="Add to wishlist" isLoading={this.props.wishListApiLoading}></ProgressButton>
                                         {this.state.isInWishList && <button className={style.removeBtn} onClick={(e) => this.removeFromWishList(e)}>Remove from wishlist</button>}
                                     </div>
                                 </div>
@@ -294,7 +358,7 @@ class DetailPageComponent extends Component {
                                 <ul>
                                     {
                                         detailNavItems.map((item, index) => {
-                                            return <li key={index} aria-hidden onClick={() => this.handleNavClick(item)}>{item.display_name}</li>
+                                            return <li key={index} className={this.state.selectedNavItem === index ? style.selectedItem : ''} aria-hidden onClick={() => this.handleNavClick(item, index)}>{item.display_name}</li>
                                         })
                                     }
                                 </ul>
@@ -304,14 +368,14 @@ class DetailPageComponent extends Component {
 
                             </Row>
                             <Row className={`${style.detailNav} mobile-only`}>
-                                <Col>
-                                    <HorizontalSlider data={detailNavItems} type='basic' buttonAction={this.handleCategoryChange} />
+                                <Col className="no-padding">
+                                    <HorizontalSlider data={detailNavItems} type='basic' buttonAction={this.handleNavClick} />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col md="7">
                                     {details.description &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="about">
                                             <h3>About {details.name}</h3>
                                             <ShowMoreText
                                                 lines={10}
@@ -322,7 +386,7 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
                                     {details.availableareas && details.availableareas.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="available_area">
                                             <h3>Available Areas ({details.availableareas.length})</h3>
                                             <ul className={style.selectableList}>
                                                 {this.renderAvailableArea(details.availableareas)}
@@ -332,7 +396,7 @@ class DetailPageComponent extends Component {
                                     }
 
                                     {details.amenities && details.amenities.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="amenities">
                                             <h3>Amenities</h3>
                                             <ul className={style.listWithIcon}>
                                                 {this.renderAminities(details.amenities)}
@@ -341,7 +405,7 @@ class DetailPageComponent extends Component {
                                         </Col>
                                     }
                                     {details.policies && details.policies.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="policies">
                                             <h3>Policies</h3>
                                             <ul className={style.selectableList}>
                                                 {this.renderPolicies(details.policies)}
@@ -349,17 +413,17 @@ class DetailPageComponent extends Component {
 
                                         </Col>
                                     }
-                                    {details.location && details.location.latitude && details.location.longitude &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                    {/* {details.location && details.location.latitude && details.location.longitude &&
+                                        <Col md="12" className={style.detailSubSection} id="direction">
                                             <h3>Direction</h3>
                                             <MapComponent lat={Number(details.location.latitude)} lng={Number(details.location.longitude)}></MapComponent>
                                         </Col>
-                                    }
+                                    } */}
                                     {reviewsData && reviewsData.results && reviewsData.results.length > 0 &&
-                                        <Col md="12" className={style.detailSubSection}>
+                                        <Col md="12" className={style.detailSubSection} id="reviews">
                                             <div className={style.reviewHeader}>Reviews <span>({reviewsData.total_review_count})</span></div>
                                             <div className={style.starWrap}>
-                                                <StarRating rating={details.rating} size={'large'} />
+                                                <StarRating rating={String(details.rating)} size={'large'} />
                                             </div>
                                             {
                                                 reviewsData.results.map((review, index) => {
@@ -409,40 +473,11 @@ class DetailPageComponent extends Component {
                                             </div>
                                         </Col>
                                     </Col>
-                                    {true &&
+                                    {details && this.props.notes && this.props.notes.length > 0 &&
                                         <Col className={`${style.detailSubSection} ${style.noteSection}`}>
                                             <Col md="12" className={`${style.rightSubSection} text-left`}>
                                                 <h4 className={style.noteHeader}>Notes</h4>
-                                                <div className={style.noteWrap}>
-                                                    <div>
-                                                        <span className={style.noteTitle}>Binu</span>
-                                                        <span className={style.noteDate}>07 Mar 2019</span>
-                                                    </div>
-                                                    <div className={style.noteText}>
-                                                        <div>
-                                                            <span className="edit-icon"></span>
-                                                            <span className="delete-icon"></span>
-                                                        </div>
-                                                        <div>
-                                                            Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at elementum eu facilisis sed.
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div className={style.noteWrap}>
-                                                    <div>
-                                                        <span className={style.noteTitle}>Binu</span>
-                                                        <span className={style.noteDate}>07 Mar 2019</span>
-                                                    </div>
-                                                    <div className={style.noteText}>
-                                                        <div>
-                                                            <span className="edit-icon"></span>
-                                                            <span className="delete-icon"></span>
-                                                        </div>
-                                                        <div>
-                                                            Viverra accumsan in nisl nisi scelerisque. Sit amet justo donec enim. Commodo elit at imperdiet dui accumsan sit amet. Eget aliquet nibh praesent tristique magna. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec. Morbi leo urna molestie at elementum eu facilisis sed.
-                                                    </div>
-                                                    </div>
-                                                </div>
+                                                <div>{this.renderNotes(this.props.notes)}</div>
                                             </Col>
                                         </Col>
                                     }
@@ -461,7 +496,11 @@ class DetailPageComponent extends Component {
                     </Modal>
                 }
                 {details && this.props.similarVendors && this.props.similarVendors.length > 0 &&
-                    <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" />
+                    <JumbotronComponent data={this.jumbotronData(details.category_name)} items={this.props.similarVendors} cardType="category" bgcolor="#f8f8f8" category={this.state.category} containerStyle="otherWrap" >
+                        <Col xs="12" className={`${style.mobileCarousal} no-padding d-block d-sm-none`}>
+                            <HorizontalScrollingCarousel data={this.props.similarVendors} type="similar_vendors" category={this.state.category} />
+                        </Col>
+                    </JumbotronComponent>
                 }
             </div>
         );
@@ -481,6 +520,7 @@ DetailPageComponent.propTypes = {
     wishListApiLoading: PropTypes.bool,
     wishlistId: PropTypes.number,
     gallery: PropTypes.array,
+    notes: PropTypes.array,
 };
 
 export default connect(

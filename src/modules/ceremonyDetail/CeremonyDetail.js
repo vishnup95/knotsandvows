@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import styles from './CeremonyDetail.scss';
-import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -18,7 +17,7 @@ const cities = {
   name:"city",
   values:[
       {name: "Hyderabad", id: 0},
-      {name: "Secunderabad", id: 1},
+      // {name: "Secunderabad", id: 1},
       {name: "Vijayawada", id: 2},
       {name: "Vizag", id: 3}
   ]
@@ -81,6 +80,11 @@ class CeremonyDetail extends Component {
       this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
       this.setState({ ceremony: ceremony, filter: { name: "", id: null } });
     }
+
+    if(this.props.user != prevProps.user && this.props.user) {
+      this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
+      this.props.dispatch(actions.fetchSimilarCeremonies(this.state.ceremony));
+  }
   }
 
   handleViewAllClick = (category) => {
@@ -119,6 +123,7 @@ class CeremonyDetail extends Component {
               <div className={styles.coverMask}>
                 <h1 className={styles.title}>{details.ceremony_name}</h1>
                 <p>{details.description}</p>
+                {/* <TalkToWeddingPlanner buttonText={'Let us help you'}/> */}
               </div>
             </div>
             <Container>
@@ -128,15 +133,17 @@ class CeremonyDetail extends Component {
             </h3> */}
                 </Col>
                 {/* <Col>Select City</Col> */}
-                  <Col className={styles.selectCity}>
+                <Col>
+                  <div className={styles.selectCity}>
                     <Select
                       value={this.state.selectedOption}
                       onChange={this.handleDropDownChange}
                       options={this.option}
-                      placeholder="City"
+                      placeholder="select city"
                       isClearable={false}
                       className={styles.selectDrop}
                     />
+                    </div>
                   </Col>
               </Row>
               {this.state.fixedCategories.length == 0 && 
@@ -150,6 +157,8 @@ class CeremonyDetail extends Component {
                   <CategorySection category={this.state.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
               }
 
+              {/* 
+              this section removed temporerly
               <Row>
                 <Col>
                   <h2 className="text-center">You may also be interested in</h2>
@@ -159,7 +168,7 @@ class CeremonyDetail extends Component {
                 <Col className="no-padding">
                   <HorizontalSlider data={this.state.fixedCategories.slice(1)} type='small' buttonAction={this.handleCategoryChange} />
                 </Col>
-              </Row>
+              </Row> */}
               {
                 this.state.categories.slice(1).map((category, index) => {
                   return (

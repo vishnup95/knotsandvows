@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { imagePath, formatMoney } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import styles from './compareProduct.scss';
 import PropTypes from 'prop-types';
 import { Col } from 'reactstrap';
 import StarRating from '../../components/StarRating/starRating';
 import { connect } from 'react-redux';
 import * as actions from '../../modules/detailPage/actions';
-import { getDataFromResponse } from "../../utils/utilities";
+import { getDataFromResponse, formatMoney } from "../../utils/utilities";
 
 const mapDispatchToProps = dispatch => ({
     dispatch
@@ -35,20 +35,19 @@ const mapDispatchToProps = dispatch => ({
     }
     render() {
         var vendor = this.props.data;
-        console.log(vendor);
         return (
-            <Col sm="4" className={styles.compareComponent}>
+            <Col xs="6" sm="4" className={styles.compareComponent}>
                 <div className={styles.closeBtnSmall}>
                     <img src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.props.removeAction(vendor)}/>
                 </div>
                 <img src={this.props.data.pic_url || imagePath('card_1_1.jpg')} className={styles.vendorImage} alt="Outline"
                  onError={(e) => { e.target.onerror = null; e.target.src = `${imagePath('card_1_1.jpg')}` }} />
-                <div className={styles.vendrInfo}>
+                <div className={styles.vendorInfo}>
                     <h5>{vendor.name}</h5>
                     <p>{vendor.city}</p>
                 </div>
                 <div className={styles.price}>
-                    {formatMoney(vendor.price.minimum_price)} <span>{vendor.charge_type}</span>
+                    {formatMoney(vendor.price.format_price)} <span>{vendor.charge_type}</span>
                 </div>
                 <div className={styles.rating}>
                     <StarRating rating={String(vendor.rating)} size={'small'} />
@@ -61,7 +60,7 @@ const mapDispatchToProps = dispatch => ({
                 }
                 <div className={styles.removeBtn} onClick={() => this.props.removeAction(vendor)} aria-hidden>
                     Remove from wishlist
-            </div>
+                </div>
             </Col>
         );
     }

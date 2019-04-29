@@ -34,7 +34,6 @@ body {
   font-family: $roboto-regular;
   font-size: 16px;
   padding: 0 !important;
-  overflow: auto !important;
   margin: 0;
   color: $black-five;
 }
@@ -64,10 +63,9 @@ h2 {
 
 .main {
   min-height: calc(100vh - 40rem);
-  // margin-top: 10.33125rem;
-  margin-top: calc(50px + 4.9rem);
+  margin-top: calc(48px + 8.1rem);
   @include mobile {
-    margin-top: 4.9375rem;
+    margin-top: 73px;
   }
 }
 
@@ -77,13 +75,14 @@ h2 {
   font-family: $roboto-medium;
   @include letterSpacing(.5);
   @include padding(12,22);
-  @include borderRadius(8);
+  border-radius: 3.9px;
   min-width: 8rem;
   color: $white;
   outline: none;
   border: none;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.08), 0 4px 7px 0 rgba(50, 50, 93, 0.11);
   @include margin(0,8);
   @include tablet {
      @include fontSize(16);
@@ -112,11 +111,27 @@ h2 {
     font-family: $roboto-bold;
 
   }
+
+  &.home-btn {
+    min-width: 15rem;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .secondary-button {
   @extend .primary-button;
-  background-color: grey;
+  background-color: $secondary-color;
+  &:hover {
+    color: $white;
+    text-decoration: none;
+    background-color: $secondary-color;
+  }
+}
+
+.primary-button-disabled {
+  @extend .primary-button;
+  opacity: 0.5;
 }
 
 .text-btn {
@@ -153,24 +168,56 @@ h2 {
     display: none !important;
   }
 }
+
 .p-relative {
   position: relative;
 }
+
 .no-padding-mobile {
   @include mobile {
     padding: 0;
   }
 }
+
 .mobile-column {
   @include mobile {
     flex-direction: column !important;
   }
 }
+
 .align-center {
   align-items: center !important;
 }
+
 .mobile-col-reverse {
   @include mobile {
     flex-direction: column-reverse;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.align-flex-top {
+  @include mobile {
+    align-items: center !important;
+  }
+  align-items: flex-start !important;
+}
+
+.input-box {
+  border-radius: 0;
+}
+
+.slick-slider {
+  @include mobile {
+    .slick-next {
+      right: 0;
+    }
+
+    .slick-prev {
+      left: 0;
+    }
   }
 }

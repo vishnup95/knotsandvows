@@ -14,6 +14,7 @@ import { Button, Modal } from 'reactstrap';
 import ReactGA from 'react-ga';
 import FullStory from 'react-fullstory';
 import styles from './modals/forgotPasswordModal/forgotPasswordModal.scss';
+import { imagePath } from './utils/assetUtils';
 
 const mapStateToProps = state => ({
   showModal: state.modal.show,
@@ -28,9 +29,6 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showHeader: true
-    }
     this.initializeReactGA();
   }
 
@@ -59,10 +57,6 @@ class App extends Component {
   }
 
   render() {
-    var showHeader = true;
-    if (this.props.history.location.pathname === '/packages/wedding-gold-package' || this.props.history.location.pathname === '/packages/wedding-emerald-package') {
-      showHeader = false;
-    }
     return (<div className="app">
       <FullStory org={REACT_APP_FS_ORG_ID} />
       <Helmet
@@ -72,14 +66,28 @@ class App extends Component {
         script={metadata.script}
         noscript={metadata.noscript}
       />
-      {showHeader && <Header history={this.props.history} />}
+      <Header history={this.props.history} />
       <div className="main">
         {routes}
       </div>
 
       <Modal isOpen={this.props.showModal} toggle={() => this.toggle()} className={`${styles.forgotContainer} modal-dialog-centered`}>
-        <div className={styles.forgotPassword}>
-          <div className={styles.header}>{this.props.modalContent.heading}</div>
+        <div className={styles.genericPopup}>
+          <div className={styles.logoContainer}>
+            <img src={imagePath('logo.svg')} alt="seven vows"/>
+            <hr/>
+          </div>
+          
+          <div className={styles.iconContainer}>
+            {
+              !this.props.modalContent.type ?
+              <img src={imagePath('confirmation_generic.svg')} alt="generic icon"/> :
+              <img src={imagePath(this.props.modalContent.type === 'success' ?'success_generic.svg' : 'failure_generic.svg')} 
+                  alt="generic icon"/>  
+            }
+          </div>
+          <div className={styles.genericHeader}>{this.props.modalContent.heading}</div>
+          
           {
             this.props.modalContent.message !== 'mobile_contact' ? <div className={styles.message}>{this.props.modalContent.message}</div> :
               <div className={styles.message}>
@@ -87,9 +95,9 @@ class App extends Component {
               </div>
           }
 
-          <div className="text-center mt-5">
+          <div className="text-center mt-3">
             {
-              this.props.modalContent.proceedAction && 
+              this.props.modalContent.showCancel && 
               <Button color="secondary" className="secondary-button" onClick={() => this.toggle()}>Cancel</Button>
             }
             <Button color="primary" className="primary-button" onClick={() => this.handleClick()}>OK</Button>{' '}   
@@ -97,7 +105,7 @@ class App extends Component {
       </div>
     </Modal>
 
-      {showHeader && <FooterComponent />}
+    <FooterComponent />
     </div>);
   }
 }

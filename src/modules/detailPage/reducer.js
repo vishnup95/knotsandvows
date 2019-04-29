@@ -4,7 +4,8 @@ const initialState = {
   gallery : [],
   reviewsData: null,
   similarVendors:[],
-  loading: false
+  loading: false,
+  notes:[]
 };
 
 const VendorDetailReducer = (state = initialState, action) => {
@@ -35,7 +36,6 @@ const VendorDetailReducer = (state = initialState, action) => {
       case types.LOAD_GALLERY:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_GALLERY_SUCCESS:
@@ -43,7 +43,6 @@ const VendorDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         gallery: result.data.data.gallery,
-        loading: false
       };
 
     case types.LOAD_GALLERY_FAILURE:
@@ -51,35 +50,31 @@ const VendorDetailReducer = (state = initialState, action) => {
         ...state,
         gallery: [],
         error: action.error.message,
-        loading: false
       };
 
-    //   case types.LOAD_POLICIES:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
+      case types.LOAD_NOTES:
+      return {
+        ...state,
+        notes:[]
+      };
 
-    // case types.LOAD_POLICIES_SUCCESS:
-    //   result = action.result || [];
-    //   return {
-    //     ...state,
-    //     policies: result.data.data,
-    //     loading: false
-    //   };
+    case types.LOAD_NOTES_SUCCESS:
+      return {
+        ...state,
+        notes:  action.result.data.data.results,
+        error: null
+      };
 
-    // case types.LOAD_POLICIES_FAILURE:
-    //   return {
-    //     ...state,
-    //     policies:[],
-    //     error: action.error.message,
-    //     loading: false
-    //   };
+    case types.LOAD_NOTES_FAILURE:
+      return {
+        ...state,
+        error: action.error.message,
+        notes:[]
+      };
 
     case types.LOAD_REVIEWS:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_REVIEWS_SUCCESS:
@@ -87,28 +82,24 @@ const VendorDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         reviewsData: result.data.data,
-        loading: false
       };
 
     case types.LOAD_REVIEWS_FAILURE:
       return {
         ...state,
         error: action.error.message,
-        loading: false
       };
 
       case types.LOAD_SIMILAR_VENDORS:
       return {
         ...state,
-        loading: true
       };
 
     case types.LOAD_SIMILAR_VENDORS_SUCCESS:
       result = action.result || [];
       return {
         ...state,
-        similarVendors: result.data.results,
-        loading: false
+        similarVendors: result.data.data.results,
       };
 
     case types.LOAD_SIMILAR_VENDORS_FAILURE:
@@ -116,7 +107,6 @@ const VendorDetailReducer = (state = initialState, action) => {
         ...state,
         similarVendors:[],
         error: action.error.message,
-        loading: false
       };
 
     default:

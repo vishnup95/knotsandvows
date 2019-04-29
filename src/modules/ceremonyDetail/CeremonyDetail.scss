@@ -4,17 +4,15 @@
 
 .ceremony-detail {
   overflow: hidden;
-
   @include mobile {
     margin-top: 7rem;
   }
 
   div[class^="container"] {
     max-width: 85%;
-
     @include mobile {
       max-width: 92%;
-      padding-right: 0; 
+      padding-right: 0;
     }
   }
 
@@ -29,8 +27,11 @@
 }
 
 .ceremony-cover {
-  @include height(700);
+  height: 50rem;
   position: relative;
+  @include mobile {
+    height: 55vw;
+  }
 
   h1 {
     @include fontSize(58);
@@ -61,9 +62,24 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  @include padding(0,0,24);
-  h1 {
+  padding: 0 calc(7.5% + 15px) 2rem;
+
+  > h1 {
+    font-family: $frank-medium;
     letter-spacing: 1px;
+    font-size: 25px !important;
+    @include tablet {
+      font-size: 4.285rem;
+    }
+  }
+
+  > p {
+    font-size: 25px;
+    text-align: center;
+    @include mobile {
+      font-size: 20px;
+      line-height: normal;
+    }
   }
 }
 
@@ -72,20 +88,25 @@
 }
 
 .view-all {
-  color: $primary-color;
+  color: $secondary-color;
   @include fontSize(18);
   font-family: $roboto-medium;
   width: max-content;
   cursor: pointer;
-
   @include mobile {
     margin: 0 auto;
   }
 }
 
 // Browse category specific styles
+.browseAllContainer {
+  padding-top: 4rem;
+  @include hdPlus {
+    max-width: 1350px;
+  }
+}
 
-.subTitle {
+.subTitleTwo {
   font-family: $roboto-regular;
   @include fontSize(18);
   color: $black;
@@ -96,15 +117,21 @@
 .fullWidthListing {
   @include mobile {
     border: 1px solid rgba(0, 0, 0, 0.16);
-    margin-left: -30px;
+    // margin-left: -30px;
     padding: 0 10px;
   }
 }
+
 .selectCity {
   width: 200px;
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 3;
 }
+
 .selectDrop {
   width: 200px;
   margin-top: 2rem;

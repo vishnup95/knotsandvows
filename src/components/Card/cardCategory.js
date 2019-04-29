@@ -11,10 +11,10 @@ import {
     Button
 } from 'reactstrap';
 import styles from './card.scss';
-import { formatMoney, imagePath } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse , getId} from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse, getId, formatMoney } from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
@@ -23,7 +23,7 @@ import * as modalActions from '../../reducers/modal/actions';
 const mapStateToProps = state => ({
     wishlistId: state.wishlist.current.wishlist_id,
     noteloading: state.wishlist.noteloading,
-});  
+});
 
 const mapDispatchToProps = dispatch => ({
     dispatch
@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 
 class CategoryCard extends Component {
     state = {
-        isInWishlist: false,
+        isInWishlist: this.props.isWishlist == true ? true :this.props.data.is_in_wishlist,
         showNotes: false,
         showAddNote: false,
         addNoteMode: 'add',
@@ -42,14 +42,23 @@ class CategoryCard extends Component {
     componentDidMount() {
         document.addEventListener('click', this.handleClickOutside, true);
     }
-    
+
     componentWillUnmount() {
         document.removeEventListener('click', this.handleClickOutside, true);
     }
 
+    componentWillReceiveProps(nextProps){
+        if(!nextProps){
+            return;
+        }
+        if (nextProps.data.is_in_wishlist != this.state.isInWishlist){
+            this.setState({ isInWishlist: this.props.isWishlist == true ? true :this.nextProps.data.is_in_wishlist });
+        }
+    }
+
     handleClickOutside = event => {
-        if(!document.getElementById(`card${this.props.id}`).contains(event.target)) {
-            this.setState({showNotes: false});
+        if (!document.getElementById(`card${this.props.id}`).contains(event.target)) {
+            this.setState({ showNotes: false });
         }
     }
 
@@ -59,6 +68,7 @@ class CategoryCard extends Component {
     }
 
     addToWishList = (e) => {
+        
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());
         } else if (!this.state.isInWishlist) {
@@ -69,33 +79,42 @@ class CategoryCard extends Component {
 
             this.props.dispatch(wishlistActions.addToWishlist(params)).then((response) => {
                 var error = getDataFromResponse(response);
-                if (error == null){
-                    this.setState({isInWishlist: true});     
-                }else{
+                if (error == null) {
+                    this.setState({ isInWishlist: true });
+                } else {
                     let modalContent = {
                         heading: '',
-                        message: error
-                      };
+                        message: error,
+                        type: 'failure'
+                    };
                     this.props.dispatch(modalActions.showModal(modalContent));
                 }
-            });           
+            });
         }
         e.stopPropagation();
+        e.preventDefault();
     }
-    
+
+    stopClicks(event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
     removeVendor = (event) => {
         event.stopPropagation();
+        event.preventDefault();
         let params = {
             vendor_id: this.props.data.vendor_id,
             wishlist_id: this.props.wishlistId,
             category_id: getId(this.props.category),
         };
-        
+
         this.props.dispatch(wishlistActions.removeFromWishlist(params));
     }
 
     toggleNotes(e) {
         e.stopPropagation();
+        e.preventDefault();
         if (!this.state.showNotes) {
             let details = {
                 category_id: getId(this.props.category),
@@ -104,18 +123,18 @@ class CategoryCard extends Component {
             }
             this.props.dispatch(wishlistActions.fetchAllNotes(details));
         }
-        this.setState({showNotes: !this.state.showNotes});
+        this.setState({ showNotes: !this.state.showNotes });
     }
 
     handleNoteChange(e) {
-        this.setState({note: e.target.value});
+        this.setState({ note: e.target.value });
     }
 
     toggleAddNote(save) {
-        this.setState({showNotes: this.state.showAddNote});
-        this.setState({showAddNote: !this.state.showAddNote});
+        this.setState({ showNotes: this.state.showAddNote });
+        this.setState({ showAddNote: !this.state.showAddNote });
 
-        if(save && this.state.addNoteMode === 'add') {
+        if (save && this.state.addNoteMode === 'add') {
             let params = {
                 wishlist_id: this.props.wishlistId,
                 category_id: getId(this.props.category),
@@ -124,7 +143,7 @@ class CategoryCard extends Component {
             }
             if (params.note) {
                 this.props.dispatch(wishlistActions.addNote(params, this.props.dispatch));
-                this.setState({note: ''})
+                this.setState({ note: '' })
             }
         } else if (save && this.state.addNoteMode === 'edit') {
             let params = {
@@ -135,15 +154,15 @@ class CategoryCard extends Component {
                 note_id: this.state.selectedId
             }
 
-            if(this.state.note) {
+            if (this.state.note) {
                 this.props.dispatch(wishlistActions.editNote(params, this.props.dispatch));
-                this.setState({note: '', selectedId: ''})
+                this.setState({ note: '', selectedId: '' })
             }
         }
     }
 
     editNote(id, note) {
-        this.setState({addNoteMode: 'edit', note: note, selectedId: id});
+        this.setState({ addNoteMode: 'edit', note: note, selectedId: id });
         this.toggleAddNote(false, id);
     }
 
@@ -176,7 +195,7 @@ class CategoryCard extends Component {
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
                     <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
                     <p className={`${styles.charges}`}>
-                        <span>{formatMoney(this.props.data.price.minimum_price)}</span> {this.props.data.charge_type}
+                        <span>{formatMoney(this.props.data.price.format_price)}</span> {this.props.data.charge_type}
                     </p>
                 </div>
 
@@ -184,7 +203,7 @@ class CategoryCard extends Component {
                     <p className={`mb-2`}>
                         <img src={imagePath(this.state.isInWishlist ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
                             alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`} />
-                        {!this.props.isInWishList &&
+                        {!this.props.isWishlist &&
                             <UncontrolledTooltip placement="top" target={`WishListTooltip${this.props.id}`}>
                                 {this.state.isInWishlist ? 'Added to Wishlist' : 'Add to Wishlist'}
                             </UncontrolledTooltip>
@@ -215,25 +234,28 @@ class CategoryCard extends Component {
         );
     }
 
-    handleCardClick = () => {
-        this.navigateTo(`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name,this.props.data.vendor_id)}`);
+    handleCardClick = (e) => {
+        this.navigateTo(`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`);
+        e.preventDefault();
     }
 
     selectCard = (e) => {
-        this.props.selectedToCompare(this.props.data , this.props.isChecked);
+        this.props.selectedToCompare(this.props.data, this.props.isChecked);
         e.stopPropagation();
+        e.preventDefault();
     }
 
     render() {
         return (
-            <div>
-                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`} 
-                    onClick={this.handleCardClick}  id={`card${this.props.id}`}>
+            <div><a href={`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`} onClick={(event) => this.handleCardClick(event)}>
+                <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`}
+                    id={`card${this.props.id}`}>
+
                     {
                         this.props.isWishlist &&
                         <div>
                             <div className={`${styles.addIcon} ${styles.cardIcon}`} onClick={(event) => this.toggleNotes(event)} aria-hidden></div>
-                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`} onClick={ (event) => this.removeVendor(event)} aria-hidden></div>
+                            <div className={`${styles.deleteIcon} ${styles.cardIcon}`} onClick={(event) => this.removeVendor(event)} aria-hidden></div>
                             {/* <div className={`${styles.viewIcon} ${styles.cardIcon}`}>2</div> */}
                         </div>
                     }
@@ -246,7 +268,7 @@ class CategoryCard extends Component {
                         alt="Card image cap"
                         onError={(e) => { e.target.onerror = null; e.target.src = `${imagePath('card_1_1.jpg')}` }}
                     />
-                    
+
                     <CardBody className={styles.categoryBody} style={{ backgroundColor: '#f7f7f7' }}>
                         {this.renderCardBody()}
                     </CardBody>
@@ -258,13 +280,13 @@ class CategoryCard extends Component {
                     }
                     {
                         this.state.showAddNote &&
-                        <div className={styles.addNote} onClick={(event) => { event.stopPropagation()}} aria-hidden>
+                        <div className={styles.addNote} onClick={event => this.stopClicks(event)} aria-hidden>
                             <div className={styles.noteHeader}>
-                                <span>Add Note</span> 
-                                <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={() => this.toggleAddNote()} aria-hidden/>
+                                <span>Add Note</span>
+                                <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={() => this.toggleAddNote()} aria-hidden />
                             </div>
-                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters" 
-                            value={this.state.note} onChange={(event) => this.handleNoteChange(event)}></textarea>
+                            <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters"
+                                value={this.state.note} onChange={(event) => this.handleNoteChange(event)}></textarea>
                             <div className="text-right">
                                 <Button className="text-btn" onClick={() => this.toggleAddNote()}>Cancel</Button>
                                 <Button className="primary-button" onClick={() => this.toggleAddNote(true)}>Save</Button>
@@ -272,49 +294,48 @@ class CategoryCard extends Component {
                         </div>
                     }
                     {
-                       this.state.showNotes && <Col className={styles.noteContainer} onClick={event => event.stopPropagation()}>
+                        this.state.showNotes && <Col className={styles.noteContainer} onClick={event => this.stopClicks(event)}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
-                                    <div className="text-right mb-3">
-                                        <Button color="primary" className="primary-button" onClick={() => this.toggleAddNote()}>
-                                            <span className="mr-2">+</span>
-                                            <span>Add a note</span>
-                                        </Button>
+                                    <div className={styles.addHeader} onClick={() => this.toggleAddNote()} aria-hidden>
+                                        <img src={imagePath('plusbtn.svg')} alt="" />
+                                        Add note
                                     </div>
-                                    
+
                                     {this.props.noteloading &&
-                                    <div className="row">
-                                        <div className="col-12">
-                                        <LoaderComponent />
-                                        </div>
-                                    </div>}
-                                    {   
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <LoaderComponent />
+                                            </div>
+                                        </div>}
+                                    {
                                         this.props.data.notes.length > 0 ?
-                                        this.props.data.notes.map((note, index) => {
-                                            return(
-                                            <div className={styles.noteWrap} key={index}>
-                                                <div>            
-                                                    <span className={styles.noteTitle}>Binu</span>
-                                                    <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
-                                                </div>
-                                                <div className={styles.noteText}>
-                                                    <div>
-                                                        <span className="edit-icon" onClick={() => this.editNote(note.notes_id, note.note)} aria-hidden></span>
-                                                        <span className="delete-icon" onClick={() => this.removeNote(note.notes_id)} aria-hidden></span>
-                                                    </div>
-                                                    <div>
-                                                        {note.note}
-                                                    </div>
-                                                </div>
-                                            </div>)
-                                        }) :  !this.props.noteloading && <h4 className="font-italic text-secondary">No notes to show</h4>
+                                            this.props.data.notes.map((note, index) => {
+                                                return (
+                                                    <div className={styles.noteWrap} key={index}>
+                                                        <div>
+                                                            <span className={styles.noteTitle}>{note.author_name || 'Author'}</span>
+                                                            <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
+                                                        </div>
+                                                        <div className={styles.noteText}>
+                                                            <div>
+                                                                <span className="edit-icon" onClick={() => this.editNote(note.notes_id, note.note)} aria-hidden></span>
+                                                                <span className="delete-icon" onClick={() => this.removeNote(note.notes_id)} aria-hidden></span>
+                                                            </div>
+                                                            <div>
+                                                                {note.note}
+                                                            </div>
+                                                        </div>
+                                                    </div>)
+                                            }) : !this.props.noteloading && <h4 className="font-italic text-secondary">No notes to show</h4>
                                     }
-                                    
+
                                 </Col>
                             </Col>
                         </Col>
                     }
                 </Card>
+            </a>
             </div>
         );
     }
@@ -329,7 +350,6 @@ CategoryCard.propTypes = {
     isCompare: PropTypes.bool,
     id: PropTypes.number,
     isWishlist: PropTypes.bool,
-    isInWishList: PropTypes.bool,
     wishlistId: PropTypes.number,
     noteloading: PropTypes.bool,
     isChecked: PropTypes.bool,

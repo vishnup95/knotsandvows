@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 import { shortName } from '../../utils/utilities';
 import * as actions from '../../reducers/session/actions';
 import * as homeActions from '../../modules/home/actions'
@@ -78,9 +78,17 @@ class Header extends Component {
             sendGAEvent("Header", "Show Login");
             this.props.dispatch(actions.showLogin());
         }
+        if (detectMobile()) {
+            this.setState({ isOpen: false});
+        }  
     }
 
     componentWillMount() {
+        if (isLoggedIn()) {
+            let user = JSON.parse(localStorage.getItem('user'));
+            this.props.dispatch(actions.loadUserData(user));
+            this.props.dispatch(actions.fetchMyProfile());
+        }
         if (this.props.categories.length === 0) {
             this.props.dispatch(homeActions.fetchCategories());
         }
@@ -89,12 +97,6 @@ class Header extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.user && nextProps.user != this.props.user) {
             this.props.dispatch(wishlistActions.fetchMyWishlist());
-        }
-    }
-
-    componentDidMount() {
-        if (isLoggedIn()) {
-            this.props.dispatch(actions.fetchMyProfile());
         }
     }
 
@@ -159,7 +161,8 @@ class Header extends Component {
                         } else {
                             let modalContent = {
                                 heading: 'Reset Password',
-                                message: error
+                                message: error,
+                                type: 'failure'
                             };
                             this.props.dispatch(modalActions.showModal(modalContent));
                         }
@@ -167,7 +170,8 @@ class Header extends Component {
                         error => {
                             let modalContent = {
                                 heading: 'Reset Password',
-                                message: error.message
+                                message: error.message,
+                                type: 'failure'
                             };
                             this.props.dispatch(modalActions.showModal(modalContent));
                         });
@@ -188,7 +192,7 @@ class Header extends Component {
                 } else {
                     var redirect = queryString.parse(this.props.location.search).redirect;
                     if (redirect) {
-                        this.props.dispatch(replace(`${redirect}`));
+                        this.props.dispatch(replace(`${Buffer.from(redirect, 'base64').toString()}`));
                     } else {
                         this.props.dispatch(replace("/"));
                     }
@@ -201,7 +205,8 @@ class Header extends Component {
                 let modalContent = {
                     heading: '',
                     message: 'Email has been successfully verified. Please login to continue.',
-                    proceedAction: this.toggleModal
+                    proceedAction: this.toggleModal,
+                    type: 'success'
                 };
                 this.props.dispatch(modalActions.showModal(modalContent));
                 this.props.dispatch(replace("/"));
@@ -209,8 +214,8 @@ class Header extends Component {
                 this.props.dispatch(replace("/"));
                 let modalContent = {
                     heading: '',
-                    message: this.props.error
-
+                    message: this.props.error,
+                    type: 'failure'
                 };
                 this.props.dispatch(modalActions.showModal(modalContent));
             }
@@ -220,6 +225,16 @@ class Header extends Component {
     renderLoginItem = () => {
 
         if (this.props.user !== null) {
+
+            if (detectMobile()){
+                return(
+                <div className="mt-3 mb-2" onClick={() => this.navigateTo("/profile")} aria-hidden>
+                    <span className={styles.userInfo}>
+                         {shortName(this.props.user.name)}
+                    </span>  
+                </div>
+                );
+            }
             return (
                 <div>
                     <UncontrolledDropdown nav inNavbar>
@@ -233,9 +248,9 @@ class Header extends Component {
                             <DropdownItem className="text-center" onClick={() => this.navigateTo("/profile")}>
                                 Profile
                         </DropdownItem>
-                            <DropdownItem className="text-center" onClick={() => this.navigateTo("/bookings")}>
+                            {/* <DropdownItem className="text-center" onClick={() => this.navigateTo("/bookings")}>
                                 My bookings
-                        </DropdownItem>
+                        </DropdownItem> */}
                             <DropdownItem className="text-center" onClick={() => this.logout()}>
                                 Logout
                         </DropdownItem>
@@ -247,8 +262,8 @@ class Header extends Component {
             return (
                 <NavItem>
                     <NavLink className={styles.iconLink} style={{ cursor: "pointer" }} onClick={this.toggleModal}>
-                        <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only" />
-                        Login / Sign Up
+                        {/* <img src={imagePath('avatar.svg')} alt="avatar" className="tab-only" /> */}
+                        Login
                 </NavLink>
                 </NavItem>
             );
@@ -257,33 +272,30 @@ class Header extends Component {
 
     navigateTo(route) {
         this.props.dispatch(push(route));
+        if (detectMobile()) {
+            this.toggle();
+        }
     }
 
     render() {
 
         return (
             <div className={styles.ahHeader}>
-                <div className={styles.navSmall}>
 
-                    <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
-                    </NavbarBrand>
-                    <Nav className={`${styles.iconNav}`} navbar>
-                        {/* <NavItem>
-                            <NavLink href="" className={styles.iconLink}>
-                                <img src={imagePath('vendor.svg')} alt="vendor" />
-                                For Vendors
-                                </NavLink>
-                        </NavItem> */}
-                        {this.renderLoginItem()}
-                    </Nav>
+                <div className={styles.navSmall}>
+                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our wedding planner'} />
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
-                    <NavbarToggler className={this.state.isOpen ? 'close-nav' : ''} onClick={this.toggle} />
-                    <Collapse navbar className={`${styles.ahCollapse} ${this.state.isOpen ? 'show' : ''}`} >
+                    <NavbarToggler onClick={this.toggle} />
+                    <NavbarBrand href="/">
+                        <img className={styles.logoTest} src={imagePath('logo.png')} alt="logo" />
+                    </NavbarBrand>
+                    <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
                             <NavItem className={styles.vendors}>
-                                <NavLink onClick={() => this.navigateTo('/categories')}>Vendors</NavLink>
+                                <NavLink onClick={() => this.navigateTo('/categories')}>VowVendors</NavLink>
+                                {/* 
+                                this section is temporarily removed
                                 <div className={styles.categoriesList}>
                                     <ul>{this.renderCategoryLists(this.props.categories).splice(0, 6)}</ul>
                                     {this.renderCategoryLists(this.props.categories).length > 6 &&
@@ -294,7 +306,7 @@ class Header extends Component {
 
                                         <ul>{this.renderCategoryLists(this.props.categories).splice(12, 6)}</ul>
                                     }
-                                </div>
+                                </div> */}
                             </NavItem>
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
@@ -308,13 +320,12 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/about')}>About</NavLink>
                             </NavItem>
-                            <span className="mobile-only">
-                                {this.renderLoginItem()}
-                            </span>
+                            {this.renderLoginItem()}
 
                         </Nav>
                     </Collapse>
                 </Navbar>
+
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>
@@ -327,6 +338,17 @@ class Header extends Component {
                 <div className={styles.talkBtn}>
                     <TalkToWeddingPlanner type={'call'} />
                 </div>
+                <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={styles.mobileMenuModal}>
+                    <ul>
+                         {this.renderLoginItem()}
+                        <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
+                        <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
+                        <li onClick={() => this.navigateTo('/#ceremonies')} aria-hidden>Ceremonies</li>
+                        <li onClick={() => this.navigateTo('/wishlist')} aria-hidden>Wishlist</li>
+                        <li onClick={() => this.navigateTo('/about')} aria-hidden>About</li>
+                        {this.props.user &&  <li onClick={() => this.logout()} aria-hidden>Logout</li>}
+                    </ul>
+                </Modal>
             </div>
         );
     }

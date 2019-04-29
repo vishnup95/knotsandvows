@@ -9,6 +9,7 @@ import {
 
 import styles from './products.scss';
 import { getId, hyphonatedString } from '../../utils/utilities';
+import { imagePath } from '../../utils/assetUtils';
 
 let selectedFilters = {};
 
@@ -45,7 +46,7 @@ export class DropdownComponent extends Component {
             this.props.onCategoryChange(value);
             selectedFilters = {};
         } else {
-            if (value) {
+            if (value !== '') {
                 selectedFilters[this.props.name] = value;
             } else {
                 delete selectedFilters[this.props.name];
@@ -96,17 +97,14 @@ class FormComponent extends Component {
     constructor(props) {
         super(props);
         this.state = { category: this.props.selectedCategory};
-        this.props.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
     } 
 
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.filters !== this.props.filters) {
-            nextProps.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
-        }
+    componentDidMount(){
+        selectedFilters = {};
     }
 
     changeCategory = (category) => {
-        this.setState({category});
+        this.setState({category: category});
     }
 
     toggleForm = () => {
@@ -114,22 +112,29 @@ class FormComponent extends Component {
             this.props.toggle();
         }
     }
+
     render() {
         let indexOfSelectedCategory = this.props.categories.findIndex(category => 
             category.category_id == getId(this.props.selectedCategory));
+            if(!this.props.filters){
+                return <div></div>
+            }
+            
         return(
             
-            <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.toggleForm} aria-hidden>
+            <div className={`${styles.formContainer} pt-4 pb-4`} onClick={() => this.toggleForm()} aria-hidden>
                 <div className={styles.dropContainer} onClick={(event) => event.stopPropagation()} aria-hidden> 
+                    <img className={styles.closeBtn} src={imagePath('close-blank.svg')} alt="close button" aria-hidden onClick={() => this.toggleForm()}/>
                     <h5 className="d-block d-sm-none">Search your vendors</h5>
                     <DropdownComponent key="categories" placeholder="i am looking for" name="category" dispatch={this.props.dispatch}
                         options={this.props.categories} selectedItem={this.props.categories[indexOfSelectedCategory]}
                         onCategoryChange={this.changeCategory}/> 
                     {
                         this.props.filters.map((filter) => { 
+                            let selectedItem = filter.values[0];
                             return(
                                 <DropdownComponent key={filter.name} placeholder={filter.display_name} name={filter.name}
-                                dispatch={this.props.dispatch} options={filter.values} selectedItem={filter.values[0]}/>
+                                dispatch={this.props.dispatch} options={filter.values} selectedItem={selectedItem}/>
                             );
                         })
                     }  

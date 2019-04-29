@@ -1,81 +1,79 @@
 import React, { Component } from 'react';
-import { Row,Col, Container} from 'reactstrap';
-import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
-import JumbotronComponent from '../../components/Jumbotron/jumbotron';
+import { Row, Col, Container, Button } from 'reactstrap';
+import MemberContainerComponent from './memberComponent';
 import styles from './about.scss';
-
-const needHelpData = {
-  title: 'Need Help?',
-  buttonText: 'Talk to our wedding planner!',
-  subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by clicking the Chat button below and they’ll help you get your party started.'
-};
+import { imagePath } from '../../utils/assetUtils';
 
 class AboutComponent extends Component {
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+   
   render() {
     return (
       <div className={styles.aboutContainer}>
         <div className={styles.aboutCover}></div>
         <Container className={`${styles.aboutSubContainer} mb-5 pb-5`}>
-          <h3 className={`${styles.h3Class} mt-5`}>
-            Lorem Ipsum is simply dummy text of the printing industry has survived 
-            not only five centuries, but also the leap into electronic typesettingunchanged.
-          </h3>
-          <h4 className={`${styles.h4Class} font-italic text-center mt-2`}>
-            Stallman
+          <h2 className={`${styles.h2Class} mt-5`}>
+            Our Essence
+          </h2>
+          <h4 className={styles.h4Class}>
+            Seven Vows operates on creativity, resourcefulness and transparency. <br/>
+            We bring these values to all every one of our actions and interactions 
           </h4>
 
-          <Row className="my-5 py-4">
-            <Col sm="4">
-              <h4 className={styles.h4Class}>
-                Who we are 
-              </h4>
-              <p className={styles.pClass}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Praesent eget risus vitae massa semper aliquam quis mattis quam. 
-                Morbi vitae tortor tempus, placerat leo et, suscipit lectus. 
-                Phasellus ut euismod massa, eu eleifend ipsum. Nulla eu neque commodo, 
-                dapibus dolor eget, dictum arcu.  Phasellus ut euismod massa, eu 
-                eleifend ipsum. Nulla eu neque commodo, dapibus.
-              </p>
+          <div className={`my-5 ${styles.vowsImage}`}>
+            <img src={imagePath('about-vows.png')} alt="vows icon"/>  
+          </div>
+
+          <h2 className={styles.h2Class}>
+            what’s different when we plan your wedding’
+          </h2>
+          <h4 className={`mb-5 ${styles.h4ClassGrey}`}>
+            Our Vows team is made up of individuals with a passion <br/> 
+            for celebrations. Celebrations Make us happy
+          </h4>
+
+          <MemberContainerComponent/>
+          <hr className="my-5"/>
+
+          <h2 className={`${styles.h2Class} my-5`}>
+            Our Promise
+          </h2>
+          <h2 className={styles.h2ClassPurple}>
+          “We vow to deliver magical memories of every <br/> 
+            celebration and wedding we touch.”
+          </h2>
+
+          <div className={`my-5 ${styles.vowsImage}`}>
+            <img src={imagePath('about-vows.png')} alt="vows icon"/>  
+          </div>
+
+          <Row style={{margin: '0 auto'}}>
+            <Col className={styles.logoImage}>
+              <img src={imagePath('logo.svg')} alt="seven vows"/>
             </Col>
 
-            <Col sm="4">
-              <h4 className={styles.h4Class}>
-                What we do
-              </h4>
-              <p className={styles.pClass}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Praesent eget risus vitae massa semper aliquam quis mattis quam. 
-                Morbi vitae tortor tempus, placerat leo et, suscipit lectus. 
-                Phasellus ut euismod massa, eu eleifend ipsum. Nulla eu neque commodo, 
-                dapibus dolor eget, dictum arcu.  Phasellus ut euismod massa, eu 
-                eleifend ipsum. Nulla eu neque commodo, dapibus.
-              </p>
-            </Col>
+            <Col className="text-left">
+            <div className={styles.alignMiddle}>
+              <h2 className={`${styles.h2BigMobile} text-left`}>
+                MEET US <br/> IN PERSON
+              </h2>
 
-            <Col sm="4">
-              <h4 className={styles.h4Class}>
-                Why we do it 
+              <h4 className={`${styles.h4Class} text-left text-dark`}>
+                xo oxo team is made up of <br/>
+                individuals with a passion 
               </h4>
-              <p className={styles.pClass}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Praesent eget risus vitae massa semper aliquam quis mattis quam. 
-                Morbi vitae tortor tempus, placerat leo et, suscipit lectus. 
-                Phasellus ut euismod massa, eu eleifend ipsum. Nulla eu neque commodo, 
-                dapibus dolor eget, dictum arcu.  Phasellus ut euismod massa, eu 
-                eleifend ipsum. Nulla eu neque commodo, dapibus.
-              </p>
+
+              <Button className="primary-button mt-4 ml-0">
+                LET US HELP YOU
+              </Button>
+            </div>
+              
             </Col>
           </Row>
 
-          <h4 className={styles.h4Class}>Meet the team memebers</h4>
-          <Row className="mt-4">
-            <Col className="no-padding">
-                <HorizontalSlider data={Array(4).fill(3)} type="about"/>
-            </Col>
-          </Row>
         </Container>
-        <JumbotronComponent data={needHelpData} bgcolor="#f8f8f8" containerStyle="otherWrap" isTalkToAhwanam ={true} />
       </div>
     );
   }

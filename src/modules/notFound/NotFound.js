@@ -11,7 +11,7 @@ export default class NotFound extends Component {
       <div className={styles.notFoundContainer}>
         <img className={styles.image} src={imagePath('404.png')} alt="404" />
         <h2>We can’t seem to find the page you’re looking for.</h2>
-        <Link to='/' className="primary-button">Back to home page</Link>
+        <Link to='/' className="primary-button">Back to Home Page</Link>
       </div>
     );
   }
