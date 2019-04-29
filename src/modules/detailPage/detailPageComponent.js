@@ -421,7 +421,7 @@ class DetailPageComponent extends Component {
                                     } */}
                                     {reviewsData && reviewsData.results && reviewsData.results.length > 0 &&
                                         <Col md="12" className={style.detailSubSection} id="reviews">
-                                            <div className={style.reviewHeader}>Reviews <span>({reviewsData.total_review_count})</span></div>
+                                            <div className={style.reviewHeader}>Reviews & Ratings <span>({reviewsData.total_review_count})</span></div>
                                             <div className={style.starWrap}>
                                                 <StarRating rating={String(details.rating)} size={'large'} />
                                             </div>
@@ -469,7 +469,7 @@ class DetailPageComponent extends Component {
                                                 <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
                                             </Form>
                                             <div className="text-center mt-2">
-                                                <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our wedding planner!</Button>
+                                                <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our experts!</Button>
                                             </div>
                                         </Col>
                                     </Col>

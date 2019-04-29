@@ -24,8 +24,8 @@ const mapDispatchToProps = dispatch => ({
 
 const jumbotronData = {
   title: 'Need Help?',
-  buttonText: 'Talk to our wedding planner!',
-  subtitle: 'Let our expert party planners help with fantastic ideas to make your event great. Talk to one of our expert planners by clicking the Chat button below and they’ll help you get your party started.'
+  buttonText: 'Talk to our experts!',
+  subtitle: 'We have you covered. Our expert planners will work with you to make your event fantastic and make sure your needs are met.'
 };
   
 class CategoryListing extends Component {

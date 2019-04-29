@@ -70,69 +70,69 @@ export default MemberContainerComponent;
 
 const members = [
     {
-        name: 'Full Name',
+        name: 'Varsha',
         displayPic: 'members/1.png',
-        title: 'Job Title'
+        title: 'Wedding Trends'
     },
     {
-        name: 'Full Name',
+        name: 'Deep',
         displayPic: 'members/2.png',
-        title: 'Job Title'
+        title: 'CEO'
     },
     {
-        name: 'Full Name',
+        name: 'Sneha',
         displayPic: 'members/3.png',
-        title: 'Job Title'
+        title: 'Customer Experience'
     },
     {
-        name: 'Full Name',
+        name: 'Amit',
         displayPic: 'members/4.png',
-        title: 'Job Title'
+        title: 'Vendor Management'
     },
     {
-        name: 'Full Name',
+        name: 'Indu',
         displayPic: 'members/5.png',
-        title: 'Job Title'
+        title: 'Wedding Design'
     },
     {
-        name: 'Full Name',
+        name: 'Varsha',
         displayPic: 'members/6.png',
-        title: 'Job Title'
+        title: 'UX'
     },
     {
-        name: 'Full Name',
+        name: 'Abhijeet',
         displayPic: 'members/7.png',
-        title: 'Job Title'
+        title: 'Customer Experience'
     },
     {
-        name: 'Full Name',
+        name: 'Nivita',
         displayPic: 'members/8.png',
-        title: 'Job Title'
+        title: 'Wedding Planner'
     },
     {
-        name: 'Full Name',
+        name: 'Swathi',
         displayPic: 'members/9.png',
-        title: 'Job Title'
+        title: 'Customer Service'
     },
     {
-        name: 'Full Name',
+        name: 'Keerthi',
         displayPic: 'members/10.png',
-        title: 'Job Title'
+        title: 'Vendor management'
     },
     {
-        name: 'Full Name',
+        name: 'Srinivas',
         displayPic: 'members/11.png',
-        title: 'Job Title'
+        title: 'Logistics'
     },
     {
-        name: 'Full Name',
+        name: 'Seema',
         displayPic: 'members/12.png',
-        title: 'Job Title'
+        title: 'HR'
     },
     {
-        name: 'Full Name',
+        name: 'Prabodh',
         displayPic: 'members/13.png',
-        title: 'Job Title'
+        title: 'Technology'
     },
 ];
 
