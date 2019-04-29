@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-let addToVendorsClicked = false;
+// let addToVendorsClicked = false;
 
 class CategoryListing extends Component {
   constructor(props) {
@@ -83,9 +83,9 @@ class CategoryListing extends Component {
   }
 
   componentWillUnmount() {
-    if (!addToVendorsClicked) {
-      this.props.dispatch(actions.toggleShared(false, this.props.myWishListData.wishlist_id));
-    }
+    // if (!addToVendorsClicked) {
+    //   this.props.dispatch(actions.toggleShared(false, this.props.myWishListData.wishlist_id));
+    // }
   }
 
   toggle(event) {
@@ -124,7 +124,7 @@ class CategoryListing extends Component {
   }
 
   navigateTo(route) {
-    addToVendorsClicked =  true;
+    // addToVendorsClicked =  true;
     this.props.dispatch(push(route));
   }
 
@@ -349,6 +349,8 @@ class CategoryListing extends Component {
                     </Col>
                   </Row>
 
+                  {/* 
+                  this section is temporarily removed
                   <Row className={styles.contribution}>
                     <Col xs='12' className={styles.subText}>
                       View Collaborators Contribution
@@ -373,7 +375,7 @@ class CategoryListing extends Component {
 
                       </div>
                     </Col>
-                  </Row>
+                  </Row> */}
                 </Col>
               </Row>
 

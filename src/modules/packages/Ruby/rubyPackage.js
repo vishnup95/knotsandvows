@@ -209,10 +209,10 @@ class RubyPackage extends Component {
             <Col className={`${styles.offerWrap} flex justify-center tab-only`}>
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg-ruby.png')} alt="offer" />
-                <div className={styles.offer}>Offer Price</div>
-                <div className={`${styles.originalStrike} ${styles.ruby}`}>Original Price  ₹2,390,000</div>
-                <div className={`${styles.original} ${styles.ruby}`}>₹2,150,000</div>
-                <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
+                <div className={styles.offer}>Price starting at</div>
+                <div className={`${styles.originalStrike} ${styles.ruby}`}>Original Price  ₹58,00,000</div>
+                <div className={`${styles.original} ${styles.ruby}`}>₹51,00,000</div>
+                <div className={styles.save}>You Save<br />₹7 Lakhs</div>
               </div>
             </Col>
             {
@@ -250,7 +250,7 @@ class RubyPackage extends Component {
             <Col className={`${styles.offerWrap} flex justify-center`}>
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg-ruby.png')} alt="offer" />
-                <div className={styles.offer}>Offer Price</div>
+                <div className={styles.offer}>Price starting at</div>
                 <div className={`${styles.originalStrike} ${styles.ruby}`}>Original Price  ₹2,390,000</div>
                 <div className={`${styles.original} ${styles.ruby}`}>₹2,150,000</div>
                 <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
@@ -295,7 +295,7 @@ class RubyPackage extends Component {
                     </Col>
                   </Row>
                 </form>
-                <input type="submit" value="Send message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
+                <input type="submit" value="Send Message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
               </Col>
             </Row>
           </Container>
@@ -331,7 +331,7 @@ class RubyPackage extends Component {
         <Container className={styles.ceremonyContainer}>
           <Row className="mt-5" id="ceremonies">
             <Col className={`${styles.ceremony} text-center`}>
-              <h2>You may also be interested in...</h2>
+              <h2>Pick a Ceremony...</h2>
               {this.props.ceremonies &&
                 <Col xs="12" className={` no-padding mb-5`}>
                   <HorizontalSlider data={this.props.ceremonies} onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} type="ceremony" />

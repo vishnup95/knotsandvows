@@ -1,4 +1,4 @@
-export const title = 'Seven Vows';
+export const title = 'SevenVows';
 
 export const meta = [
   {

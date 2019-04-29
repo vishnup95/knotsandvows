@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col, Container, Button } from 'reactstrap';
+import { Row, Col, Container } from 'reactstrap';
 import MemberContainerComponent from './memberComponent';
 import styles from './about.scss';
 import { imagePath } from '../../utils/assetUtils';
+import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 class AboutComponent extends Component {
   componentDidMount() {
@@ -17,17 +18,17 @@ class AboutComponent extends Component {
           <h2 className={`${styles.h2Class} mt-5`}>
             Our Essence
           </h2>
-          <h4 className={styles.h4Class}>
-            Seven Vows operates on creativity, resourcefulness and transparency. <br/>
+          <h2 className={styles.h2ClassPurple}>
+            SevenVows operates on creativity, resourcefulness and transparency.
             We bring these values to all every one of our actions and interactions 
-          </h4>
+          </h2>
 
           <div className={`my-5 ${styles.vowsImage}`}>
             <img src={imagePath('about-vows.png')} alt="vows icon"/>  
           </div>
 
           <h2 className={styles.h2Class}>
-            what’s different when we plan your wedding’
+          Our approach to wedding planning
           </h2>
           <h4 className={`mb-5 ${styles.h4ClassGrey}`}>
             Our Vows team is made up of individuals with a passion <br/> 
@@ -41,7 +42,7 @@ class AboutComponent extends Component {
             Our Promise
           </h2>
           <h2 className={styles.h2ClassPurple}>
-          “We vow to deliver magical memories of every <br/> 
+          “We vow to deliver magical memories of every
             celebration and wedding we touch.”
           </h2>
 
@@ -51,7 +52,7 @@ class AboutComponent extends Component {
 
           <Row style={{margin: '0 auto'}}>
             <Col className={styles.logoImage}>
-              <img src={imagePath('logo.svg')} alt="seven vows"/>
+              <img src={imagePath('logo.svg')} alt="SevenVows"/>
             </Col>
 
             <Col className="text-left">
@@ -60,14 +61,15 @@ class AboutComponent extends Component {
                 MEET US <br/> IN PERSON
               </h2>
 
+              {/* removed
               <h4 className={`${styles.h4Class} text-left text-dark`}>
                 xo oxo team is made up of <br/>
                 individuals with a passion 
-              </h4>
+              </h4> */}
 
-              <Button className="primary-button mt-4 ml-0">
-                LET US HELP YOU
-              </Button>
+              <div className="mt-4 ml-0" style={{width: 'max-content'}}>
+                <TalkToWeddingPlanner buttonText={'Let Us Help You'}/>
+              </div>
             </div>
               
             </Col>

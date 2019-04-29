@@ -40,7 +40,6 @@ class TalkToWeddingPlanner extends Component {
             comments: '',
             city: '',
             modal: false,
-            cityDropdown: false,
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -55,15 +54,7 @@ class TalkToWeddingPlanner extends Component {
         }));
         this.props.dispatch(actions.clearTalkToErrors());
     }
-
-    toggleDropdown(index) {
-        this.setState({cityDropdown: !this.state.cityDropdown});
-        if(index !== undefined) {
-            this.setState({city: index})
-        }
-    }
     
-
     handleFormChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
         this.props.dispatch(actions.clearTalkToErrors());
@@ -116,9 +107,9 @@ class TalkToWeddingPlanner extends Component {
                     <div className={styles.loginForm}>
                         <img src={imagePath('planner.png')} alt="planner"/>
                         <div className={styles.logoWrap}>
-                            <div className={styles.heading}>Hi, my name is Nivita.</div>
-                            <div className={styles.mainHeading}>Congratulations!</div>
-                            <div className={styles.heading}>We have been expecting you, tell us <br/> a bit more so I can call you</div>
+                            <div className={styles.heading}>Hi, My name is Nivita.</div>
+                            {/* <div className={styles.mainHeading}>Congratulations!</div> */}
+                            <div className={styles.heading}>Thank you for making us a part of your big day. Tell us a little bit more about the event.</div>
                         </div>
                         <Row className="position-relative">
                             <Col md="12">
@@ -133,11 +124,11 @@ class TalkToWeddingPlanner extends Component {
                                 <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} withBorder={true}/>
                             </Col>
 
-                            <Col md="6">
+                            <Col md="6" xs="6">
                                 <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
                             </Col>
 
-                            <Col md="6">
+                            <Col md="6" xs="6">
                                 <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                           
                             </Col>
 
@@ -150,8 +141,8 @@ class TalkToWeddingPlanner extends Component {
                             <div className={styles.apiError}>{this.props.message}</div>
                         }
                         <div className="text-center">
-                            <ProgressButton title="SEND MESSAGE" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
-                            <p className={styles.phone}>Call Seven Vows <a href="tel:+917702053510">+91 770 205 3510</a></p>
+                            <ProgressButton title="Send Message" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
+                            <p className={styles.phone}>Call SevenVows<span className="mobile-only"><br/></span> <a href="tel:+917702053510">+91 770 205 3510</a></p>
 
                         </div>
                     </div>

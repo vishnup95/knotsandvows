@@ -31,8 +31,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const headerString = ['Customised Wedding Packages', 'to help you celebrate...'];
-const headerStringTwo = ['Your day. Your way.'];
+const headerString = ['As your happiness partners', 'we help you celebrate'];
+const headerStringTwo = ['Your Day...Your Way!'];
 
 class Home extends Component {
   constructor(props) {
@@ -287,8 +287,8 @@ class Home extends Component {
               {/* <hr className="tab-only"></hr> */}
               <Row>
                 <Col>
-                  <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<br />services,help you plan the biggest day of your life in the best possible way.</p>
+                  <h2>70% of couples to wish they had hired <br /><span>wedding planners</span></h2>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<span className="tab-only"><br /></span>services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -298,7 +298,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col className="text-center flex justify-center mt-5" id="numbersection">
-                  <TalkToWeddingPlanner buttonText={'Let us help you'} />
+                  <TalkToWeddingPlanner buttonText={'Let Us Help You'} />
                 </Col>
               </Row>
 
@@ -309,8 +309,8 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We know</div> */}
                     <div className={styles.detailCount}>
-                      <span>300 +</span>
-                      <div>venues</div>
+                      <span>200 +</span>
+                      <div>vendors</div>
                     </div>
                   </Col>
                   <Col className={styles.row}>
@@ -323,8 +323,8 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We are in</div> */}
                     <div className={styles.detailCount}>
-                      <span>10 +</span>
-                      <div>cities</div>
+                      <span>3</span>
+                      <div>cities & counting</div>
                     </div>
                   </Col>
                 </Row>
@@ -344,7 +344,7 @@ class Home extends Component {
                       <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
                       <div className={styles.cardDetail}>
                         <h3>Personalized services</h3>
-                        <p>All our actions adhere to our credo - ‘Your day. Your way’. We help as much as you want us to. You can choose us to plan your entire wedding or you can pick which of your ceremonies you need our help with.</p>
+                        <p>It’s you who decides. Choose from a wide range of wedding services or select a personalized package to organize a stress-free dream wedding.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
@@ -357,7 +357,7 @@ class Home extends Component {
                       <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
                       <div className={styles.cardDetail}>
                         <h3>No pocket pinch</h3>
-                        <p>It feels nice to spend the world on your wedding. However, savings can go a long way. We help you get attractive discounts on quality services. </p>
+                        <p>It feels nice to spend the world on your wedding. However, savings can go a long way. Our value-for-money services come with added discounts to make you happy and your pocket happier.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
@@ -444,7 +444,7 @@ class Home extends Component {
             <Container className={styles.homeContainer}>
               <Row className="mt-5" id="ceremonies">
                 <Col className={`${styles.ceremony} text-center`}>
-                  <h2>You may also be interested in...</h2>
+                  <h2>Pick a Ceremony...</h2>
                   {this.props.ceremonies &&
                     <Col xs="12" className={` no-padding mb-5`}>
                       <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)}/>

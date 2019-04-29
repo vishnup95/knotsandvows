@@ -52,13 +52,16 @@ class FooterFixedComponent extends Component {
                         <Collapse isOpen={this.state.collapse[0]}>
                             <div className={`${styles.footerContactContainer} text-left`}>
                                 <div className={` ${styles.block}`}>
-                                    <p>Seven Vows</p>
+                                    <p>SevenVows</p>
                                     <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum, Road # 2, Banjara Hills, Hyderabad 500034 </p>
                                 </div>
                                 <div className={`${styles.footerPhoneEmail}`}>
                                     <div className={` ${styles.block}`}>
                                         <p>Contact Numbers</p>
-                                        <p className="mb-0">+91 770 205  3510</p>
+                                        <p className="mb-0 d-none d-sm-block">+91 770 205  3510</p>
+                                        <p className="d-block d-sm-none">
+                                            <a href="tel: +91 7702053510">+91 770 205  3510</a>
+                                        </p>
                                     </div>
                                     <div className={` ${styles.block}`}>
                                         <p className="mb-0">Email us @ &nbsp; <span>info@sevenvows.co.in</span></p>
@@ -70,7 +73,7 @@ class FooterFixedComponent extends Component {
 
                     <Col xs="12" md="3" className={` ${styles.block} ${styles.footerNavLinks}`}>
                         <p onClick={() => this.toggleCollapse(1)} aria-hidden className={styles.collapseControl}>
-                            SevenVOWS
+                            SevenVows
                         </p>
                         <Collapse isOpen={this.state.collapse[1]}>
                             <p><Link to={'/'}>Home</Link></p>
@@ -89,7 +92,7 @@ class FooterFixedComponent extends Component {
                                 </li>
 
                                 <li>
-                                    <Link to={'/about'}>About</Link>
+                                    <Link to={'/who-we-are'}>Who We Are</Link>
                                 </li>
                                 <li>
                                     <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} origin={'footer'}/>
@@ -101,9 +104,9 @@ class FooterFixedComponent extends Component {
 
                     <Col xs="12" md="3" className={` ${styles.block} ${styles.footerEventLinks}`}>
                         <p onClick={() => this.toggleCollapse(2)} aria-hidden className={styles.collapseControl}>
-                            Plan your events
+                            Ceremonies
                         </p>
-                        <p className="d-none d-sm-block">Plan your events</p>
+                        <p className="d-none d-sm-block">Ceremonies</p>
                         <Collapse isOpen={this.state.collapse[2]}>
                             {this.props.ceremonies &&
                                 <ul>
@@ -119,31 +122,16 @@ class FooterFixedComponent extends Component {
                                 </ul>
                             }
                         </Collapse>
-                        
-                        <span className={styles.footerImages}>
-                            <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
-                                <img src={imagePath('footer_fb.png')} alt="Facebook" />
-                            </a>
-                            <a href='https://www.instagram.com/ahwanamevents/' target="_blank" rel="noopener noreferrer" alt="instagram">
-                                <img src={imagePath('footer_insta.png')} alt="Instagram" />
-                            </a>
-                            <a href='https://www.pinterest.com' target="_blank" rel="noopener noreferrer" alt="instagram">
-                                <img src={imagePath('pinterest.svg')} alt="Pinterest" />
-                            </a>
-                        </span>
                     </Col>
 
                     <Col xs="12" md="3" className={`${styles.footerBottomLinks}`}>
                         <div className={`${styles.footerRight}`}>
-                            <span className={styles.footerImages}>
-                                <a href='https://www.facebook.com/AhwanamEvents' target="_blank" rel="noopener noreferrer" alt="facebook">
+                            <span className={`${styles.footerImages} d-none d-sm-block`}>
+                                <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
                                 </a>
-                                <a href='https://www.instagram.com/ahwanamevents/' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
-                                </a>
-                                <a href='https://www.pinterest.com' target="_blank" rel="noopener noreferrer" alt="instagram">
-                                    <img src={imagePath('pinterest.svg')} alt="Pinterest" />
                                 </a>
                             </span>
                             <p onClick={() => this.toggleCollapse(3)} aria-hidden className={styles.collapseControl}>
@@ -151,11 +139,20 @@ class FooterFixedComponent extends Component {
                             </p>
                             <Collapse isOpen={this.state.collapse[3]}>
                                 <p className="">© 2019  All Rights Reserved&nbsp;</p>
-                                <p className="">Seven Vows</p>
+                                <p className="">SevenVows</p>
                                 <p className="w-100">
                                     <Link to={'/terms-and-conditions'} target="_blank" >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link>
                                 </p>
                             </Collapse>
+                            <span className={`${styles.footerImages} d-block d-sm-none`}>
+                                <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
+                                    <img src={imagePath('footer_fb.png')} alt="Facebook" />
+                                </a>
+                                <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                    <img src={imagePath('footer_insta.png')} alt="Instagram" />
+                                </a>                                
+                                <p className="text-center">© 2019  All Rights Reserved&nbsp;</p>
+                            </span>
                         </div>
                     </Col>
                 </Row>

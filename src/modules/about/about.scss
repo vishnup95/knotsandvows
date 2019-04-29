@@ -25,15 +25,27 @@
     color: $medium-pink;
     @include letterSpacing(1.44);
     text-align: center;
+
+    @include mobile {
+      @include fontSize(42, !important);
+      line-height: 3rem;
+    }
   }
 
   .h2ClassPurple {
     @extend .h2Class;
     color: $secondary-color;
+    width: 80%;
+    margin: 0 auto;
+
+    @include mobile {
+      @include fontSize(28, !important);
+    }
   }
 
   .h2BigMobile {
-    @extend .h2ClassPurple;
+    @extend .h2Class;
+    color: $secondary-color;
     @include fontSize(52, !important);
   }
 
@@ -51,7 +63,7 @@
     color: $greyish-brown;
 
     @include mobile {
-      @include fontSize(18);
+      @include fontSize(20);
     }
   }
 
@@ -87,6 +99,10 @@
     line-height: 2.25rem;
     font-family: $roboto-regular;
 
+    @include tabletOnly {
+      @include fontSize(25);
+    }
+
     @include mobile {
       @include fontSize(25);
     }
@@ -99,6 +115,10 @@
     line-height: 1.6rem;
     font-family: $roboto-medium;
 
+    @include tabletOnly {
+      @include fontSize(15);
+    }
+
     @include mobile {
       @include fontSize(12);
     }
@@ -108,6 +128,13 @@
     @extend .pSmallClass;
     @include fontSize(20);
     font-family: $roboto-light;
+  }
+
+  p {
+    @include mobile {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
   }
 }
 
@@ -141,9 +168,9 @@
       position: absolute;
       top: 0;
       margin: 1rem;
-      background-color: rgba(109, 33, 88, 0.7);
+      background-color: rgba(109, 33, 88, 0.4);
       opacity: 0;
-      transition: .8s cubic-bezier(0.4, 0, 1, 1);
+      transition: .5s cubic-bezier(0.4, 0, 1, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -173,6 +200,10 @@
   height: 100%;
   @include padding(80,40, 0);
 
+  @include tabletOnly {
+    @include padding(30,15, 0);
+  }
+
   @include mobile {
     @include padding(30, 15, 0);
   }
@@ -184,3 +215,4 @@
     width: max-content;
   }
 }
+

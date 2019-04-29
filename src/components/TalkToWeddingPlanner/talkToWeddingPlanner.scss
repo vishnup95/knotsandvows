@@ -13,6 +13,9 @@
   background: url('/images/planner-bg.png') no-repeat;
   background-size: contain;
   border: 2px solid $medium-pink;
+  @include mobile {
+    padding: 2rem;
+  }
 
   img {
     @include width(100);
@@ -27,6 +30,9 @@
   flex-direction: column;
   align-items: center;
   @include margin(25,0,30);
+  @include mobile {
+    margin: 1rem 0 0;
+  }
 }
 
 .image {
@@ -39,7 +45,10 @@
   @include fontSize(48);
   font-family: $roboto-light;
   text-align: center;
-  color:  $medium-pink;
+  color: $medium-pink;
+  @include mobile {
+    font-size: 2rem;
+  }
 }
 
 .heading {
@@ -48,6 +57,9 @@
   color: $black-nine;
   margin: 0 auto;
   text-align: center;
+  @include mobile {
+    font-size: 1.3rem;
+  }
 }
 
 .apiError {
@@ -65,21 +77,27 @@
   font-family: $roboto-regular !important;
   text-decoration: none !important;
 }
+
 .phone {
   margin-top: 2rem;
+
   a {
     font-family: $roboto-medium;
+  }
+  @include mobile {
+    margin-top: 1rem;
+    margin-bottom: 0;
   }
 }
 
 .cityContainer {
-  margin-top: 0.9rem;
+  margin-top: .9rem;
   cursor: pointer;
 }
 
 .cityDropdown {
   border: 1px solid $medium-pink;
-  padding: 0.6em 0.6em;
+  padding: .6em;
   border-radius: 5px;
   background: url('/images/filter-dropdown.png') 92% 50% no-repeat;
   @include fontSize(18);
