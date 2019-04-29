@@ -323,7 +323,7 @@ class Home extends Component {
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We are in</div> */}
                     <div className={styles.detailCount}>
-                      <span>3 +</span>
+                      <span>3</span>
                       <div>cities</div>
                     </div>
                   </Col>
