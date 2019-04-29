@@ -283,7 +283,7 @@ class Header extends Component {
             <div className={styles.ahHeader}>
 
                 <div className={styles.navSmall}>
-                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our wedding planner'} />
+                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our experts'} />
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
                     <NavbarToggler onClick={this.toggle} />
