@@ -19,7 +19,7 @@ class AboutComponent extends Component {
             Our Essence
           </h2>
           <h4 className={styles.h4Class}>
-            Seven Vows operates on creativity, resourcefulness and transparency. <br/>
+            SevenVows operates on creativity, resourcefulness and transparency. <br/>
             We bring these values to all every one of our actions and interactions 
           </h4>
 
@@ -52,7 +52,7 @@ class AboutComponent extends Component {
 
           <Row style={{margin: '0 auto'}}>
             <Col className={styles.logoImage}>
-              <img src={imagePath('logo.svg')} alt="seven vows"/>
+              <img src={imagePath('logo.svg')} alt="SevenVows"/>
             </Col>
 
             <Col className="text-left">
