@@ -349,6 +349,8 @@ class CategoryListing extends Component {
                     </Col>
                   </Row>
 
+                  {/* 
+                  this section is temporarily removed
                   <Row className={styles.contribution}>
                     <Col xs='12' className={styles.subText}>
                       View Collaborators Contribution
@@ -373,7 +375,7 @@ class CategoryListing extends Component {
 
                       </div>
                     </Col>
-                  </Row>
+                  </Row> */}
                 </Col>
               </Row>
 
