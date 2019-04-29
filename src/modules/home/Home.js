@@ -31,8 +31,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const headerString = ['Our team of happiness partners', 'helps you celebrate'];
-const headerStringTwo = ['Your Big Day...Your Way!'];
+const headerString = ['As your happiness partners', 'we help you celebrate'];
+const headerStringTwo = ['Your Day...Your Way!'];
 
 class Home extends Component {
   constructor(props) {
@@ -287,7 +287,7 @@ class Home extends Component {
               {/* <hr className="tab-only"></hr> */}
               <Row>
                 <Col>
-                  <h2>70% of couples regret not hiring <br /><span>wedding planners</span></h2>
+                  <h2>70% of couples to wish they had hired <br /><span>wedding planners</span></h2>
                   <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<span className="tab-only"><br /></span>services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
@@ -298,7 +298,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col className="text-center flex justify-center mt-5" id="numbersection">
-                  <TalkToWeddingPlanner buttonText={'Let us help you'} />
+                  <TalkToWeddingPlanner buttonText={'Let Us Help You'} />
                 </Col>
               </Row>
 
@@ -324,7 +324,7 @@ class Home extends Component {
                     {/* <div className={styles.detailDesc}>We are in</div> */}
                     <div className={styles.detailCount}>
                       <span>3</span>
-                      <div>cities</div>
+                      <div>cities & counting</div>
                     </div>
                   </Col>
                 </Row>

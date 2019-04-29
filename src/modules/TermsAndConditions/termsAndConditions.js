@@ -33,7 +33,7 @@ const listData = [
   }, {
     title: 'Transfer of information',
     listItem: ["We may distribute your submissions to third parties, as permitted pursuant to our Terms of Service.",
-      "We may share your information with third parties to provide you with services that we offer through Seven Vows to conduct quality assurance Services.",
+      "We may share your information with third parties to provide you with services that we offer through SevenVows to conduct quality assurance Services.",
       "We maintain a presence on several social networking and blogging platforms, such as Facebook, Instagram, Twitter, Snapchat, WordPress, Pinterest and Google Plus.",
       "We may make available mobile applications (or “apps”) that you are able to download and use from your mobile device. Depending on the nature and functionality of the app, we may collect Personal Information and non-personally identifiable usage information through the app, including from your contacts, camera, photo gallery and calendar on your mobile device to which you grant us access."]
   }, {
@@ -43,9 +43,9 @@ const listData = [
       "If you do not wish to permit changes in our use of your personal information, you must notify us prior to the effective date of the changes that you wish to deactivate your account with us."]
   }, {
     title: 'Transfer of information',
-    listItem: ["Seven Vows will take have the commission of 15% on the total billing of the event given.",
-      "All payments will be taken by Seven Vows from the clients and would be released on timely basis.",
-      "Seven Vows will pay 50% before the event and rest will be paid after the event gets over.",
+    listItem: ["SevenVows will take have the commission of 15% on the total billing of the event given.",
+      "All payments will be taken by SevenVows from the clients and would be released on timely basis.",
+      "SevenVows will pay 50% before the event and rest will be paid after the event gets over.",
       "All transactions will be done by the payment gateway to your given account number."]
   }
 ];

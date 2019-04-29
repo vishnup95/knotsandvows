@@ -113,7 +113,7 @@ class InputField extends Component {
             <div className='input-field floating-label' style={{padding: this.props.withBorder ? '0.8em 0' : '1.4em 0'}}>
                 {
                     this.props.id === 'comments' ? 
-                    <textarea className={`input-box ${this.props.withBorder && 'input-box-border'}`} rows="4"
+                    <textarea className={`input-box ${this.props.withBorder && 'input-box-border'}`} rows="3"
                         type={this.props.type} id={this.props.id} required={this.props.required}
                         pattern={this.props.pattern || defaultPatterns[this.props.type]}
                         onFocus={() =>  this.handleFocus(event.target)} 

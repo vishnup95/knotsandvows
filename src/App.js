@@ -74,7 +74,7 @@ class App extends Component {
       <Modal isOpen={this.props.showModal} toggle={() => this.toggle()} className={`${styles.forgotContainer} modal-dialog-centered`}>
         <div className={styles.genericPopup}>
           <div className={styles.logoContainer}>
-            <img src={imagePath('logo.svg')} alt="seven vows"/>
+            <img src={imagePath('logo.svg')} alt="SevenVows"/>
             <hr/>
           </div>
           
