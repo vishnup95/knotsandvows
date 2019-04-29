@@ -31,8 +31,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-const headerString = ['Our team of happiness partners', 'helps you celebrate'];
-const headerStringTwo = ['Your Big Day...Your Way!'];
+const headerString = ['As your happiness partners', 'we help you celebrate'];
+const headerStringTwo = ['Your Day...Your Way!'];
 
 class Home extends Component {
   constructor(props) {
@@ -298,7 +298,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col className="text-center flex justify-center mt-5" id="numbersection">
-                  <TalkToWeddingPlanner buttonText={'Let us help you'} />
+                  <TalkToWeddingPlanner buttonText={'Let Us Help You'} />
                 </Col>
               </Row>
 

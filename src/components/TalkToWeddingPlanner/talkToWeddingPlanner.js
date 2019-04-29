@@ -141,7 +141,7 @@ class TalkToWeddingPlanner extends Component {
                             <div className={styles.apiError}>{this.props.message}</div>
                         }
                         <div className="text-center">
-                            <ProgressButton title="SEND MESSAGE" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
+                            <ProgressButton title="Send Message" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
                             <p className={styles.phone}>Call SevenVows<span className="mobile-only"><br/></span> <a href="tel:+917702053510">+91 770 205 3510</a></p>
 
                         </div>

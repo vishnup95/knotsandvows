@@ -18,17 +18,17 @@ class AboutComponent extends Component {
           <h2 className={`${styles.h2Class} mt-5`}>
             Our Essence
           </h2>
-          <h4 className={styles.h4Class}>
-            SevenVows operates on creativity, resourcefulness and transparency. <br/>
+          <h2 className={styles.h2ClassPurple}>
+            SevenVows operates on creativity, resourcefulness and transparency.
             We bring these values to all every one of our actions and interactions 
-          </h4>
+          </h2>
 
           <div className={`my-5 ${styles.vowsImage}`}>
             <img src={imagePath('about-vows.png')} alt="vows icon"/>  
           </div>
 
           <h2 className={styles.h2Class}>
-            what’s different when we plan your wedding’
+          Our approach to wedding planning
           </h2>
           <h4 className={`mb-5 ${styles.h4ClassGrey}`}>
             Our Vows team is made up of individuals with a passion <br/> 
@@ -61,10 +61,11 @@ class AboutComponent extends Component {
                 MEET US <br/> IN PERSON
               </h2>
 
+              {/* removed
               <h4 className={`${styles.h4Class} text-left text-dark`}>
                 xo oxo team is made up of <br/>
                 individuals with a passion 
-              </h4>
+              </h4> */}
 
               <div className="mt-4 ml-0" style={{width: 'max-content'}}>
                 <TalkToWeddingPlanner buttonText={'Let Us Help You'}/>

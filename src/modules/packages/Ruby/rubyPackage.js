@@ -295,7 +295,7 @@ class RubyPackage extends Component {
                     </Col>
                   </Row>
                 </form>
-                <input type="submit" value="Send message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
+                <input type="submit" value="Send Message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
               </Col>
             </Row>
           </Container>
