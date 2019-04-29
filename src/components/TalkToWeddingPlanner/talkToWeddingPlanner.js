@@ -107,7 +107,7 @@ class TalkToWeddingPlanner extends Component {
                     <div className={styles.loginForm}>
                         <img src={imagePath('planner.png')} alt="planner"/>
                         <div className={styles.logoWrap}>
-                            <div className={styles.heading}>Hi, my name is Nivita.</div>
+                            <div className={styles.heading}>Hi, My name is Nivita.</div>
                             <div className={styles.mainHeading}>Congratulations!</div>
                             <div className={styles.heading}>We have been expecting you, tell us <span className="tab-only"><br/></span> a bit more so I can call you</div>
                         </div>
