@@ -9,12 +9,12 @@ class ImageFade extends Component {
     }
 
     state = {
-        imageSrc: 'banner1.jpg',
-        imageSrcTwo: 'banner2.jpg',
+        imageSrc: 'bannert1.jpg',
+        imageSrcTwo: 'bannert2.jpg',
         scale: 1
     }
     componentDidMount() {
-        let imagebaseName = 'banner';
+        let imagebaseName = 'bannert';
         let i = 1;
         this.imageUpdater = setInterval(() => {
             i++;
