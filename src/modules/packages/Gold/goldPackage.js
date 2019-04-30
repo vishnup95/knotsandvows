@@ -316,7 +316,7 @@ class GoldPackage extends Component {
             </Col>
             <Col>
               <div className={styles.packageBox}>
-                <img src={imagePath('box-three.png')} alt="img" />
+                <img src={imagePath('genie.png')} alt="img" />
                 <div className={`${styles.packageDetail} `}>
                   <h3>Genie</h3>
                   <p>Your wish is our command. Choose what you need and make your dream team of wedding vendors.</p>
