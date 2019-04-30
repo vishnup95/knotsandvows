@@ -37,7 +37,6 @@
         color: inherit;
       }
     }
-
     @include mobile {
       text-align: left;
       @include padding(0,35);
@@ -47,7 +46,6 @@
 
   .block {
     margin-bottom: 2rem;
-
     @include mobile {
       margin-bottom: 0;
     }
@@ -61,7 +59,6 @@
         font-family: $roboto-regular;
         @include fontSize(16);
       }
-
       @include mobile {
         margin-bottom: 1rem;
       }
@@ -78,9 +75,8 @@
           @include padding(8,0);
         }
       }
-
       @include mobile {
-        @include padding(5,35);
+         @include padding(5,35);
 
         li a {
           @include fontSize(20);
@@ -120,11 +116,10 @@
     @include borderRadius(10);
     background: url('/images/dropicon_white.svg') 92% 50% no-repeat;
     background-color: rgb(134, 71, 116);
-    background-size: 12px; 
+    background-size: 12px;
     text-align: left;
     @include fontSize(30, !important);
     font-family: $frank-regular;
-
     @include mobile {
       display: block;
     }
@@ -136,4 +131,12 @@
     }
   }
 
+  .footerHeading {
+    font-family: $frank-regular;
+    @include fontSize(20);
+    margin-bottom: .5rem;
+  }
+  .address {
+    padding-top: .5rem;
+  }
 }

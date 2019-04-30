@@ -70,7 +70,7 @@ class JumbotronComponent extends Component {
             <div>
                 <Jumbotron style={{ backgroundColor: this.props.bgcolor }} className="mb-0">
                     <div className={this.props.containerStyle != 'packageWrap' ? (this.props.containerStyle != 'carouselWrap' ? (this.props.containerStyle === 'otherWrap' ? styles.otherWrap : 'container') : styles.carouselWrap) : styles.packageWrap}>
-                        <h1 className="text-center">{this.props.data.title}</h1>
+                        <h2 className="text-center">{this.props.data.title}</h2>
                         {/* <hr className="mt-3 mb-5" /> */}
                         {this.renderSubtitle(this.props.data.subtitle)}
                         {this.props.insideContainer ?  this.props.children : ''}
