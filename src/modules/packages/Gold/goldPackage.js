@@ -104,7 +104,7 @@ class GoldPackage extends Component {
     return (
       <div className={styles.goldPackage}>
         <div className={styles.goldCover}>
-          <h1>Wedding is so much more than just one day!</h1>
+          <h1>Add a golden touch to your big day</h1>
         </div>
         <div className={styles.bannerTwo}>
           <h2>SevenVows Gold package includes</h2>
