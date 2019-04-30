@@ -48,6 +48,10 @@
   .block {
     margin-bottom: 2rem;
 
+    @include mobile {
+      margin-bottom: 0;
+    }
+
     p:first-child {
       font-family: $frank-regular;
       @include fontSize(20);
@@ -56,7 +60,10 @@
       span {
         font-family: $roboto-regular;
         @include fontSize(16);
+      }
 
+      @include mobile {
+        margin-bottom: 1rem;
       }
     }
 
@@ -107,16 +114,25 @@
   }
 
   .collapseControl {
+    margin-bottom: 1rem;
     display: none;
     @include padding(15,35);
     @include borderRadius(10);
+    background: url('/images/dropicon_white.svg') 92% 50% no-repeat;
     background-color: rgb(134, 71, 116);
+    background-size: 12px; 
     text-align: left;
     @include fontSize(30, !important);
     font-family: $frank-regular;
 
     @include mobile {
       display: block;
+    }
+  }
+
+  .mb2mob {
+    @include mobile {
+      margin-bottom: 2rem;
     }
   }
 
