@@ -549,6 +549,7 @@ a.button {
   @include mobile {
     width: 100%;
     bottom: 1.37rem;
+    padding: 0 1rem;
   }
 
   p {

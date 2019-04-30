@@ -269,7 +269,7 @@ class Home extends Component {
                       }
 
                     </div>
-                    <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br />to help you celebrate...<br /><span>Your day. Your way.</span></h1>
+                    <h1 className={`${styles.homeTitle} mobile-only`}>As your happiness partners we help you celebrate<br/> <span>Your Day...Your Way!</span></h1>
                     {/* this section is temporarily removed
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
@@ -287,7 +287,7 @@ class Home extends Component {
               {/* <hr className="tab-only"></hr> */}
               <Row>
                 <Col>
-                  <h2>70% of couples wish they had hired <br /><span>wedding planners</span></h2>
+                  <h2>70% of couples wish they had hired <span className="tab-only"><br /></span><span>wedding planners</span></h2>
                   <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<span className="tab-only"><br /></span>services,help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
