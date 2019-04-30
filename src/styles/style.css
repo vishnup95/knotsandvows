@@ -11,9 +11,6 @@
     outline: none;
 }
 
-.modal-dialog {
-    max-width: 80% !important;
-}
 
 .no-padding {
     padding: 0 !important;

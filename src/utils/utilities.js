@@ -85,3 +85,11 @@ export function formatMoney(amount) {
     return `Price on request`;
   }
 }
+
+export function getChargeType(amount, chargeType) {
+  if (amount && amount != 0){
+    return chargeType;
+  }else{
+    return '';
+  }
+}

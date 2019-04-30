@@ -16,7 +16,7 @@ import StarRating from '../../components/StarRating/starRating';
 import { imagePath } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
-import { isLoggedIn, getDataFromResponse, getId, formatDate, formatMoney } from '../../utils/utilities';
+import { isLoggedIn, getDataFromResponse, getId, formatDate, formatMoney, getChargeType } from '../../utils/utilities';
 import ShowMoreText from 'react-show-more-text';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import InputField from '../../components/InputField/inputField';
@@ -205,7 +205,7 @@ class DetailPageComponent extends Component {
             return (
                 <div className={style.pricesContainer} key={index}>
                     <div className={style.item}>{item.name}<br />
-                    { item.charge_type &&
+                    { getChargeType(item.format_price,item.charge_type) &&
                     <span className={style.grey}>({item.charge_type})</span>
                     }</div>
                     <div className={style.itemPrice}>{formatMoney(item.format_price)} <br />{item.format_price && item.format_price != 0 && <span className={style.grey}>(GST not included)</span>}</div>

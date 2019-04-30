@@ -14,7 +14,7 @@ import styles from './card.scss';
 import { imagePath } from '../../utils/assetUtils';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse, getId, formatMoney } from '../../utils/utilities';
+import { isLoggedIn, hyphonatedString, formatDate, getDataFromResponse, getId, formatMoney, getChargeType } from '../../utils/utilities';
 import * as loginActions from '../../reducers/session/actions';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
@@ -52,7 +52,7 @@ class CategoryCard extends Component {
             return;
         }
         if (nextProps.data.is_in_wishlist != this.state.isInWishlist){
-            this.setState({ isInWishlist: this.props.isWishlist == true ? true :this.nextProps.data.is_in_wishlist });
+            this.setState({ isInWishlist: this.props.isWishlist == true ? true : nextProps.data.is_in_wishlist });
         }
     }
 
@@ -195,7 +195,7 @@ class CategoryCard extends Component {
                     <CardTitle className={`mb-1 ${styles.cardTitleCat}`}>{this.props.data.name || 'Name(Default)'}</CardTitle>
                     <CardSubtitle className={`mb-2 ${styles.cardText}`}>{this.props.data.city || 'City(Default)'}</CardSubtitle>
                     <p className={`${styles.charges}`}>
-                        <span>{formatMoney(this.props.data.price.format_price)}</span> {this.props.data.charge_type}
+                        <span>{formatMoney(this.props.data.price.format_price)}</span> {getChargeType(this.props.data.price.format_price,this.props.data.charge_type)}
                     </p>
                 </div>
 
