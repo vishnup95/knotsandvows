@@ -188,6 +188,8 @@ class Home extends Component {
         left: 0,
         behavior: 'smooth'
       });
+    }else{
+      window.scrollTo(0, 0);
     }
   }
 

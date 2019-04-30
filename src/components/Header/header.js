@@ -341,6 +341,7 @@ class Header extends Component {
                 <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={styles.mobileMenuModal}>
                     <ul>
                          {this.renderLoginItem()}
+                        <li onClick={() => this.navigateTo('/')} aria-hidden>Home</li>
                         <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
                         <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
                         <li onClick={() => this.navigateTo('/#ceremonies')} aria-hidden>Ceremonies</li>

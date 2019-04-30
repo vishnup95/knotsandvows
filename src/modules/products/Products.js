@@ -39,7 +39,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const jumbotronData = { title: 'Pick a Ceremony...' };
+const jumbotronData = { title: 'You may also be interested in..' };
 
 
 class Products extends Component {
@@ -145,7 +145,7 @@ class Products extends Component {
           </div>
         }
 
-        {filters && filters.length > 0 && !detectMobile() &&
+        {filters && !detectMobile() &&
           <FormComponent filters={filters} filterSearch={this.filterSearch} dispatch={this.props.dispatch} selectedCategory={this.state.category} />
         }
         {this.props.productListLoading ? <LoaderComponent /> :
@@ -158,7 +158,7 @@ class Products extends Component {
                 </Col>
               </Row>
 
-              {filters && filters.length > 0 && detectMobile() &&
+              {filters  && detectMobile() &&
                 <div>
                   <InputGroup onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
                     <Input placeholder='Search your vendors'/>

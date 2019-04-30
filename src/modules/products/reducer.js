@@ -9,7 +9,7 @@ const initialState = {
     sort_options: -1,
     total_count: 0   
   },
-  loading: false,
+  loading: true,
   filterData: {
     header: null,
     filters:null,
@@ -30,7 +30,8 @@ const ProductsReducer = (state = initialState, action) => {
       return {
         ...state,
         productListData: initialState.productListData,
-        loading: true
+        loading: true,
+        apiStatus: null
       };
 
     case types.LOAD_PRODUCTS_SUCCESS:
@@ -39,14 +40,16 @@ const ProductsReducer = (state = initialState, action) => {
         return {
           ...state,
           productListData: result.data.data,
-          loading: false
+          loading: false,
+          apiStatus: true
         };
       }else{
         return {
           ...state,
           productListData: result.data.data,
           filterData: {...state.filterData, sort_options: state.tempfilterData.sort_options, header: state.tempfilterData.header},
-          loading: false
+          loading: false,
+          apiStatus: false
         };
       }
 
@@ -112,17 +115,17 @@ const ProductsReducer = (state = initialState, action) => {
 
 function addStaticFilter(response) {
    if (response && response.filters && response.filters.length >= 0){
-      var cityFilter  = {
-        display_name:"City",
-        name:"city",
-        values:[
-            {name: "Hyderabad", id: 0},
-            // {name: "Secunderabad", id: 1},
-            {name: "Vijayawada", id: 2},
-            {name: "Vizag", id: 3}
-        ]
-      }
-      response.filters.splice(0,0,cityFilter);
+      // var cityFilter  = {
+      //   display_name:"City",
+      //   name:"city",
+      //   values:[
+      //       {name: "Hyderabad", id: 0},
+      //       // {name: "Secunderabad", id: 1},
+      //       {name: "Vijayawada", id: 2},
+      //       {name: "Vizag", id: 3}
+      //   ]
+      // }
+      // response.filters.splice(0,0,cityFilter);
       response.filters.map(filter => filter.values.unshift({name: 'All', id: ''}))
    }
    return response;

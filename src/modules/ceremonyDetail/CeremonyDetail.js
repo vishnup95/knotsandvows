@@ -5,23 +5,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as actions from './actions';
-import Select from 'react-select';
 import LoaderComponent from '../../components/Loader/loader';
 import CategorySection from './categorySection';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal'
 import NoResultComponent from '../../components/noResult/noResult';
 
-const cities = {
-  display_name:"City",
-  name:"city",
-  values:[
-      {name: "Hyderabad", id: 0},
-      // {name: "Secunderabad", id: 1},
-      {name: "Vijayawada", id: 2},
-      {name: "Vizag", id: 3}
-  ]
-}
+// const cities = {
+//   display_name:"City",
+//   name:"city",
+//   values:[
+//       {name: "Hyderabad", id: 0},
+//       // {name: "Secunderabad", id: 1},
+//       {name: "Vijayawada", id: 2},
+//       {name: "Vizag", id: 3}
+//   ]
+// }
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -54,10 +53,10 @@ class CeremonyDetail extends Component {
     let ceremony = this.selectedCategory();
     this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
     this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
-    this.option = Array.from(cities.values, (value) => ({
-      label: value.name,
-      value: value.id
-    }));   
+    // this.option = Array.from(cities.values, (value) => ({
+    //   label: value.name,
+    //   value: value.id
+    // }));   
   }
 
   componentWillReceiveProps(nextProps) {
@@ -135,7 +134,7 @@ class CeremonyDetail extends Component {
                 </Col>
                 {/* <Col>Select City</Col> */}
                 <Col>
-                  <div className={styles.selectCity}>
+                  {/* <div className={styles.selectCity}>
                     <Select
                       value={this.state.selectedOption}
                       onChange={this.handleDropDownChange}
@@ -144,7 +143,7 @@ class CeremonyDetail extends Component {
                       isClearable={false}
                       className={styles.selectDrop}
                     />
-                    </div>
+                    </div> */}
                   </Col>
               </Row>
               {this.state.fixedCategories.length == 0 && 
