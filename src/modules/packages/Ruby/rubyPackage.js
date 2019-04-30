@@ -104,7 +104,7 @@ class RubyPackage extends Component {
     return (
       <div className={styles.goldPackage}>
         <div className={`${styles.goldCover} ${styles.rubyCover}`}>
-          <h1>Wedding is so much more than just one day!</h1>
+          <h1>Let your dream wedding be as radiant as ruby</h1>
         </div>
         <div className={styles.bannerTwo}>
           <h2>SevenVows Royal Ruby package includes</h2>
