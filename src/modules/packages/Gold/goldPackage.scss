@@ -368,12 +368,10 @@
     }
 
     input::-webkit-input-placeholder {
-      color: #282828;
       @include fontSize(16);
     }
 
     textarea::-webkit-input-placeholder {
-      color: #282828;
       @include fontSize(16);
     }
   }
