@@ -53,7 +53,7 @@ class FooterFixedComponent extends Component {
                             <div className={`${styles.footerContactContainer} text-left`}>
                                 <div className={` ${styles.block} ${styles.mb2mob}`}>
                                     <p>SevenVows</p>
-                                    <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum, Road # 2, Banjara Hills, Hyderabad 500034 </p>
+                                    <p className={`mb-0 ${styles.address}`}>H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum, Road # 2, Banjara Hills, Hyderabad 500034 </p>
                                 </div>
                                 <div className={`${styles.footerPhoneEmail}`}>
                                     <div className={` ${styles.block} ${styles.mb2mob}`}>
@@ -109,7 +109,7 @@ class FooterFixedComponent extends Component {
                         <p onClick={() => this.toggleCollapse(2)} aria-hidden className={styles.collapseControl}>
                             Ceremonies
                         </p>
-                        <p className="d-none d-sm-block">Ceremonies</p>
+                        <p className={`d-none d-sm-block ${styles.footerHeading}`}>Ceremonies</p>
                         <Collapse isOpen={this.state.collapse[2]}>
                             {this.props.ceremonies &&
                                 <ul>

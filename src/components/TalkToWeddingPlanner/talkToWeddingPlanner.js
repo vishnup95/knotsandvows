@@ -92,8 +92,6 @@ class TalkToWeddingPlanner extends Component {
     }
    
     render() {
-        console.log(styles.footerLink);
-        
         return (
             <div className="flex justify-center">
                 {this.props.type === 'link' && styles.footerLink && <button className={`${this.props.origin === 'footer' ? styles.footerLink : 's'} link-btn`} onClick={() => this.toggle()}>{this.props.buttonText}</button>}
