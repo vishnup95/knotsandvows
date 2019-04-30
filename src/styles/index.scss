@@ -495,7 +495,7 @@ button {
     overflow: hidden;
   }
 
-  div[class^="container"] {
+  .container {
     max-width: 90%;
     @include mobile {
       max-width: 100%;
