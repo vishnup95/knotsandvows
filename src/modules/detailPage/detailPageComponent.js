@@ -208,7 +208,7 @@ class DetailPageComponent extends Component {
                     { item.charge_type &&
                     <span className={style.grey}>({item.charge_type})</span>
                     }</div>
-                    <div className={style.itemPrice}>{formatMoney(item.format_price)} <br />{item.format_price && <span className={style.grey}>(GST not included)</span>}</div>
+                    <div className={style.itemPrice}>{formatMoney(item.format_price)} <br />{item.format_price && item.format_price != 0 && <span className={style.grey}>(GST not included)</span>}</div>
                 </div>
             )
         });
