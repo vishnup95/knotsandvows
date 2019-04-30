@@ -181,7 +181,7 @@
   @include height(50);
   width: auto;
   max-width: 143px;
-  @include margin(0,25.8,0,0);
+  margin: 0 auto;
 }
 
 .form-row {

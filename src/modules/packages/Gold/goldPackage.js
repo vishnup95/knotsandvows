@@ -27,7 +27,7 @@ const packageItems = [
   {
     imgSrc: 'engagement.jpg',
     itemName: 'Engagement',
-    itemList: ['Venue (200 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
+    itemList: ['3 Star venue (200 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
   },
   {
     imgSrc: 'pasupudanchudu.jpg',
@@ -38,37 +38,37 @@ const packageItems = [
   {
     imgSrc: 'sangeeth.jpg',
     itemName: 'sangeeth',
-    itemList: ['Venue (150 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
+    itemList: ['3 Star venue (150 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
 
   },
   {
     imgSrc: 'pellikuturu.jpg',
     itemName: 'pellikuturu',
-    itemList: ['Venue (150 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
+    itemList: ['3 Star venue (150 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
 
   },
   {
     imgSrc: 'wedding.png',
     itemName: 'wedding',
-    itemList: ['Venue (500 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography', 'videography', 'Light & sound']
+    itemList: ['3 Star venue (500 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography', 'videography', 'Light & sound']
 
   },
   {
     imgSrc: 'reception.png',
     itemName: 'reception',
-    itemList: ['Venue (200 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
+    itemList: ['3 Star venue (200 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
 
   },
   {
     imgSrc: 'photoshoot.jpg',
     itemName: 'photoshoot',
-    itemList: ['Photography, videography, Light & sound', 'Venue for couple', 'Food for Couple']
+    itemList: ['Photography, videography, Light & sound', 'Food for Couple']
 
   },
   {
     imgSrc: 'vratam.jpg',
     itemName: 'vratam',
-    itemList: ['Venue (150 people)', 'Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
+    itemList: ['Catering — Vegetarian', 'Venue Decor', 'Photography, videography, Light & sound']
 
   },
 ]
@@ -259,7 +259,7 @@ class GoldPackage extends Component {
           </Row>
           <Row>
             <Col>
-              <h3><span className={styles.headerWithIcon}>To customise SevenVows Gold package talk to our event planner</span></h3>
+              <h3><span className={styles.headerWithIcon}>To customise SevenVows Gold package talk to our experts</span></h3>
               <div className={styles.hrLine}></div>
             </Col>
           </Row>
@@ -282,7 +282,7 @@ class GoldPackage extends Component {
                         <input maxLength="75" type="email" name="email" id="email" placeholder="Email" />
                       </Col>
                       <Col xs='12'>
-                        <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" id="phone" placeholder="Phone" />
+                        <input pattern="[0-9]*" required maxLength="10" type="tel" name="phone" id="phone" placeholder="Phone" />
                       </Col>
                       <Col xs='6'>
                         <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />

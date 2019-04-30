@@ -188,6 +188,8 @@ class Home extends Component {
         left: 0,
         behavior: 'smooth'
       });
+    }else{
+      window.scrollTo(0, 0);
     }
   }
 
@@ -269,7 +271,7 @@ class Home extends Component {
                       }
 
                     </div>
-                    <h1 className={`${styles.homeTitle} mobile-only`}>Customised Wedding Packages<br />to help you celebrate...<br /><span>Your day. Your way.</span></h1>
+                    <h1 className={`${styles.homeTitle} mobile-only`}>As your happiness partners we help you celebrate<br/> <span>Your Day...Your Way!</span></h1>
                     {/* this section is temporarily removed
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
@@ -287,8 +289,8 @@ class Home extends Component {
               {/* <hr className="tab-only"></hr> */}
               <Row>
                 <Col>
-                  <h2>70% of couples wish they had hired <br /><span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with their array of<span className="tab-only"><br /></span>services,help you plan the biggest day of your life in the best possible way.</p>
+                  <h2>70% of couples wish they had hired <span className="tab-only"><br /></span><span>wedding planners</span></h2>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with our array of<span className="tab-only"><br /></span> services, SevenVows can help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -410,7 +412,7 @@ class Home extends Component {
               <Container className={`${styles.homeContainer}`}>
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
-                    <img src={imagePath('box-one-n.png')} alt="img" />
+                    <img src={imagePath('contact-box.png')} alt="Gold" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
@@ -419,7 +421,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
-                    <img src={imagePath('box-two.png')} alt="img" />
+                    <img src={imagePath('ruby-box.png')} alt="Ruby" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
@@ -429,7 +431,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
-                    <img src={imagePath('box-three.png')} alt="img" />
+                    <img src={imagePath('genie.png')} alt="Genie" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>

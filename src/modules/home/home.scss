@@ -549,6 +549,7 @@ a.button {
   @include mobile {
     width: 100%;
     bottom: 1.37rem;
+    padding: 0 1rem;
   }
 
   p {
@@ -782,7 +783,6 @@ a.button {
       font-family: $frank-medium;
       white-space: pre;
       line-height: 1.17;
-      font-size: 25px;
       @include tablet {
         font-size: 4.285rem;
 

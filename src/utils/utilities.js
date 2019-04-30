@@ -79,7 +79,7 @@ export function shortName(userName){
 // }
 
 export function formatMoney(amount) {
-  if (amount){
+  if (amount && amount != 0){
     return `₹`+amount;
   }else{
     return `Price on request`;

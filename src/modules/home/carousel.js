@@ -18,37 +18,37 @@ import {
 // });
 const items = [
     {
-        src: 'testimonial1.png',
+        src: 't1.jpg',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'Though everything was in place, getting the right venue for my wedding was proving to be a huge task. SevenVows helped me find that perfect venue at the right price. I love the fact that I could select only the specific service that I needed and not go for the entire package.',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: '',
+        descAuthor: 'Haritha K',
     }, {
-        src: 'testimonial2.png',
+        src: 't2.jpg',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'I really thought that I can plan my own wedding with help of my friends & family. After talking to SevenVows I realized the amount of work & stress the planning would be. Their services & price made it a no brainer for me to pick them as my wedding planner. ',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'Sanjeev Sharma',
+        descAuthor: 'Rajesh G',
     }, {
-        src: 'testimonial1.png',
+        src: 't3.jpg',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'SevenVows really helped me turn my dreams into reality. From the decor to the food and from the photographer to the mehendi artist, everything was top-notch to say the least.',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'Ajith Menon',
+        descAuthor: 'Akhila V',
     }, {
-        src: 'testimonial2.png',
+        src: 't4.jpg',
         altText: 'Slide 1',
         caption: 'Paneer Pudina Tikka and Mutton Sheesh Kabab?',
         shortDescription: 'I thank my friend for recommending SevenVows. I was planning a simple wedding but with a lot of warmth. With the help of SevenVows, I achieved exactly that. ',
         buttonText: 'Browse caterers',
         pathToRedirect: 'wishlist',
-        descAuthor: 'Meera Cerejo',
+        descAuthor: 'Nishanth B',
     }
 ];
 
