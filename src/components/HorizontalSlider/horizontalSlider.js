@@ -318,7 +318,7 @@ export default class HorizontalSlider extends Component {
                                         <div className={styles.ceremonyCard}>
                                         {
                                             styles.ceremonyIg && 
-                                            <img className={styles.ceremonyIg} style={{ backgroundImage: `url(${item.thumb_image}) ` }} alt=""
+                                            <img className={styles.ceremonyIg} style={{ background: `url(${item.thumb_image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} alt=""
                                                 onError={(e) => { e.target.onerror = null; e.target.src = imagePath('card_2_1.jpg') }}></img>
                                         }
                                             
