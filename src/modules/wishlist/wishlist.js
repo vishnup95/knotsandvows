@@ -44,7 +44,7 @@ class CategoryListing extends Component {
       collapse: [true, false, false],
       vendorSelectedToCompare: [],
       showAddCollaborator : false,
-      wishlists: [{name: "My list"}],
+      wishlists: [{name: "My List"}],
       shared: false
     }
     this.toggle = this.toggle.bind(this);

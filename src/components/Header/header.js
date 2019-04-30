@@ -288,7 +288,7 @@ class Header extends Component {
                 <Navbar color="" expand="md" className={styles.ahNav}>
                     <NavbarToggler onClick={this.toggle} />
                     <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.png')} alt="logo" />
+                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
                     </NavbarBrand>
                     <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
