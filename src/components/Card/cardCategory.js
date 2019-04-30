@@ -52,7 +52,7 @@ class CategoryCard extends Component {
             return;
         }
         if (nextProps.data.is_in_wishlist != this.state.isInWishlist){
-            this.setState({ isInWishlist: this.props.isWishlist == true ? true :this.nextProps.data.is_in_wishlist });
+            this.setState({ isInWishlist: this.props.isWishlist == true ? true : nextProps.data.is_in_wishlist });
         }
     }
 
