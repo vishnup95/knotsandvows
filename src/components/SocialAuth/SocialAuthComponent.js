@@ -59,6 +59,7 @@ class SocialAuthComponent extends Component {
                             appId="2286883458036161"
                             fields="name,email,picture"
                             callback={responseFacebook}
+                            disableMobileRedirect={true}
                             render={renderProps => (
                                 <Button color="primary" name="facebook" className={styles.authButton} onClick={renderProps.onClick}>
                                     <span className={styles.fbimage}></span>
