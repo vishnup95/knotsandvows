@@ -241,7 +241,6 @@ class SignInModal extends Component {
                 <div className={styles.loginForm}>
                     <div className={styles.logoWrap}>
                         <img className={styles.image} src={imagePath('logo.svg')} alt="logo"></img>
-                        <div className={styles.heading}>{this.state.mode === 'signIn' ? 'Login to the Account' : this.state.mode === 'signUp' ? 'Create an Account' : 'Forgot Password'}</div>
                     </div>
                     {this.renderSignIn()}
                     {this.renderSignUp()}
