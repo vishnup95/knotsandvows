@@ -385,7 +385,9 @@ export default class HorizontalSlider extends Component {
                             })
                         }
                         <Col>
-                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> Vendors</span></div>
+                            <div className={styles.addNewMob} onClick={() => this.props.buttonAction()} aria-hidden>
+                                <div className={styles.addIconBox}></div>
+                            </div>
                         </Col>
                     </Slider>
                 </div>
