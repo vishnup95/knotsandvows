@@ -288,7 +288,7 @@ class Header extends Component {
                 <Navbar color="" expand="md" className={styles.ahNav}>
                     <NavbarToggler onClick={this.toggle} />
                     <NavbarBrand href="/">
-                        <img className={styles.logoTest} src={imagePath('logo.png')} alt="logo" />
+                        <img className={styles.logoTest} src={imagePath('logo.svg')} alt="logo" />
                     </NavbarBrand>
                     <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
@@ -341,6 +341,7 @@ class Header extends Component {
                 <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={styles.mobileMenuModal}>
                     <ul>
                          {this.renderLoginItem()}
+                        <li onClick={() => this.navigateTo('/')} aria-hidden>Home</li>
                         <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
                         <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
                         <li onClick={() => this.navigateTo('/#ceremonies')} aria-hidden>Ceremonies</li>

@@ -79,9 +79,17 @@ export function shortName(userName){
 // }
 
 export function formatMoney(amount) {
-  if (amount){
+  if (amount && amount != 0){
     return `₹`+amount;
   }else{
     return `Price on request`;
+  }
+}
+
+export function getChargeType(amount, chargeType) {
+  if (amount && amount != 0){
+    return chargeType;
+  }else{
+    return '';
   }
 }

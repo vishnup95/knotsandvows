@@ -31,7 +31,7 @@ class FooterFixedComponent extends Component {
 
     componentDidMount() {
         if (detectMobile()) {
-            this.setState({collapse: [false, true, false, false]})
+            this.setState({collapse: [false, false, false, false]})
         }
     }
 
@@ -51,20 +51,21 @@ class FooterFixedComponent extends Component {
                         </p>
                         <Collapse isOpen={this.state.collapse[0]}>
                             <div className={`${styles.footerContactContainer} text-left`}>
-                                <div className={` ${styles.block}`}>
+                                <div className={` ${styles.block} ${styles.mb2mob}`}>
                                     <p>SevenVows</p>
-                                    <p className="mb-0">H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum, Road # 2, Banjara Hills, Hyderabad 500034 </p>
+                                    <p className={`mb-0 ${styles.address}`}>H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum, Road # 2, Banjara Hills, Hyderabad 500034 </p>
                                 </div>
                                 <div className={`${styles.footerPhoneEmail}`}>
-                                    <div className={` ${styles.block}`}>
-                                        <p>Contact Numbers</p>
+                                    <div className={` ${styles.block} ${styles.mb2mob}`}>
+                                        <p>Contact Us</p>
                                         <p className="mb-0 d-none d-sm-block">+91 770 205  3510</p>
                                         <p className="d-block d-sm-none">
                                             <a href="tel: +91 7702053510">+91 770 205  3510</a>
                                         </p>
                                     </div>
-                                    <div className={` ${styles.block}`}>
-                                        <p className="mb-0">Email us @ &nbsp; <span>info@sevenvows.co.in</span></p>
+                                    <div className={` ${styles.block} ${styles.mb2mob}`}>
+                                        <p></p>
+                                        <p className="mb-0">Email us @&nbsp;<span><a href="mailto:info@sevenvows.co.in">info@sevenvows.co.in</a></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -76,8 +77,11 @@ class FooterFixedComponent extends Component {
                             SevenVows
                         </p>
                         <Collapse isOpen={this.state.collapse[1]}>
-                            <p><Link to={'/'}>Home</Link></p>
+                            <p className="d-none d-sm-block"><Link to={'/'}>Home</Link></p>
                             <ul>
+                                <li className="d-block d-sm-none text-left">
+                                    <Link to={'/'}>Home</Link>
+                                </li>
                                 <li>
                                     <Link to={'/categories'}>VowVendors</Link>
                                 </li>
@@ -106,7 +110,7 @@ class FooterFixedComponent extends Component {
                         <p onClick={() => this.toggleCollapse(2)} aria-hidden className={styles.collapseControl}>
                             Ceremonies
                         </p>
-                        <p className="d-none d-sm-block">Ceremonies</p>
+                        <p className={`d-none d-sm-block ${styles.footerHeading}`}>Ceremonies</p>
                         <Collapse isOpen={this.state.collapse[2]}>
                             {this.props.ceremonies &&
                                 <ul>
@@ -138,7 +142,7 @@ class FooterFixedComponent extends Component {
                                 Legal
                             </p>
                             <Collapse isOpen={this.state.collapse[3]}>
-                                <p className="">© 2019  All Rights Reserved&nbsp;</p>
+                                <p className="mt-4">© 2019  All Rights Reserved&nbsp;</p>
                                 <p className="">SevenVows</p>
                                 <p className="w-100">
                                     <Link to={'/terms-and-conditions'} target="_blank" >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link>
@@ -151,7 +155,7 @@ class FooterFixedComponent extends Component {
                                 <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
                                 </a>                                
-                                <p className="text-center">© 2019  All Rights Reserved&nbsp;</p>
+                                <p className="text-center mt-2">© 2019  All Rights Reserved&nbsp;</p>
                             </span>
                         </div>
                     </Col>

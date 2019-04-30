@@ -60,10 +60,7 @@
 .modal-dialog {
   @include mobile {
     margin: 0 auto;
-    max-width: 80% !important;
-  }
-  @include desktop {
-    // max-width: 60% !important;
+    max-width: 80%;
   }
 }
 
@@ -474,9 +471,8 @@
   font-family: $roboto-medium;
   opacity: .95;
   text-decoration: underline;
-
   @include mobile {
-    @include fontSize(20, !important);
+     @include fontSize(20, !important);
   }
 }
 
@@ -494,16 +490,14 @@ button {
 }
 
 .wishlist-container {
-  @include mobile {
-    overflow: hidden;
-  }
-
-  div[class^="container"] {
+  .container {
     max-width: 90%;
     @include mobile {
       max-width: 100%;
       padding-left: 2.5rem;
       padding-right: 2.5rem;
+      overflow: hidden;
+
     }
   }
 }
@@ -594,6 +588,7 @@ input[id="contactDate"].placeholderclass:focus::before {
   content: "";
   color: $warm-grey-two;
 }
+
 .contact-form {
   display: flex;
   align-items: center;

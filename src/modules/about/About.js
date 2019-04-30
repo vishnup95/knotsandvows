@@ -15,9 +15,9 @@ class AboutComponent extends Component {
       <div className={styles.aboutContainer}>
         <div className={styles.aboutCover}></div>
         <Container className={`${styles.aboutSubContainer} mb-5 pb-5`}>
-          <h2 className={`${styles.h2Class} mt-5`}>
+          <h1 className={`${styles.h2Class} mt-5`}>
             Our Essence
-          </h2>
+          </h1>
           <h2 className={styles.h2ClassPurple}>
             SevenVows operates on creativity, resourcefulness and transparency.
             We bring these values to all every one of our actions and interactions 

@@ -104,7 +104,7 @@ class RubyPackage extends Component {
     return (
       <div className={styles.goldPackage}>
         <div className={`${styles.goldCover} ${styles.rubyCover}`}>
-          <h1>Wedding is so much more than just one day!</h1>
+          <h1>Let your dream wedding be as radiant as ruby</h1>
         </div>
         <div className={styles.bannerTwo}>
           <h2>SevenVows Royal Ruby package includes</h2>
@@ -282,7 +282,7 @@ class RubyPackage extends Component {
                       <input maxLength="75" type="email" name="email" id="email" placeholder="Email" />
                     </Col>
                     <Col xs='12'>
-                      <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" id="phone" placeholder="Phone" />
+                      <input pattern="[0-9]*" required maxLength="10" type="tel" name="phone" id="phone" placeholder="Phone" />
                     </Col>
                     <Col xs='6'>
                       <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
@@ -316,7 +316,7 @@ class RubyPackage extends Component {
             </Col>
             <Col>
               <div className={styles.packageBox}>
-                <img src={imagePath('box-three.png')} alt="img" />
+                <img src={imagePath('genie.png')} alt="img" />
                 <div className={`${styles.packageDetail} `}>
                   <h3>Genie</h3>
                   <p>Your wish is our command. Choose what you need and make your dream team of wedding vendors.</p>

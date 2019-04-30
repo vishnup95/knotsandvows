@@ -44,7 +44,7 @@ class CategoryListing extends Component {
       collapse: [true, false, false],
       vendorSelectedToCompare: [],
       showAddCollaborator : false,
-      wishlists: [{name: "My list"}],
+      wishlists: [{name: "My List"}],
       shared: false
     }
     this.toggle = this.toggle.bind(this);
@@ -220,9 +220,9 @@ class CategoryListing extends Component {
 
   render() {
     return (
-      <div className="full-height" style={{ marginTop: '14rem' }}>
+      <div className={`full-height ${styles.margin}`}>
         <div className="wishlist-container">
-          <Container>
+          <Container className="mb-5">
             {
               this.props.wishlistLoading &&
               <div className="row">
@@ -235,6 +235,8 @@ class CategoryListing extends Component {
             {/* <div className="d-block d-sm-none">
               {this.renderCollaboratorsSection()}
             </div> */}
+
+            <h3 className={styles.listTitleMobile}>My Wishlist</h3>
         
             {
               this.state.currentCategories.length > 0 &&
@@ -251,7 +253,7 @@ class CategoryListing extends Component {
                                 this.state.currentCategories.map((item, index) => {
                                   return (
                                     <div key={index}>
-                                      <li  className={`${styles.listItem} ${this.state.selectedVendor === index ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
+                                      <li  className={`${styles.listItem} ${this.state.selectedVendor === index && this.state.mobileCategoriesCollapse[index] ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
                                         {item.category_name}
                                         {
                                           !this.state.isCompare && this.state.mobileCategoriesCollapse[index] && item.vendors.length >= 2 &&
@@ -269,17 +271,17 @@ class CategoryListing extends Component {
                                         </span>
                                       </li>
                                       { detectMobile() && 
-                                        <Collapse  isOpen={this.state.mobileCategoriesCollapse[index]}>
+                                        <Collapse  isOpen={this.state.mobileCategoriesCollapse[index]} style={{marginTop: '-2rem'}}>
                                           <Row>
                                             <Col className="no-padding">
                                               <HorizontalSlider data={item.vendors} category={hyphonatedString(item.category_name , item.category_id)}  
                                               type="wishlist" isCompare={this.state.isCompare} checkIfSelectedForComparison={this.checkIfSelectedForComparison}
-                                              addToCompare={this.addToCompare}/>
+                                              addToCompare={this.addToCompare} buttonAction={() => this.navigateTo(`/categories/${hyphonatedString(this.state.currentCategories[this.state.selectedVendor].category_name, this.state.currentCategories[this.state.selectedVendor].category_id)}`)}/>
                                             </Col>
                                           </Row>
-                                          <Col>
+                                          {/* <Col>
                                             <p className={styles.viewAll}>View All</p>
-                                          </Col>
+                                          </Col> */}
                                         </Collapse>   
                                       }
                                     </div>     
@@ -380,9 +382,10 @@ class CategoryListing extends Component {
               </Row>
 
             }
+            {this.state.currentCategories.length > 0 &&
             <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.comparePopup}>
               <div className={styles.compareContainer}>
-                <h3>Compare Vendors</h3>
+                <h3>Compare {this.state.currentCategories[`${this.state.selectedVendor}`].category_name}</h3>
                 <div className={styles.closeBtn}>
                   <img src={imagePath('close-large.svg')} alt="close button" aria-hidden onClick={this.toggle} />
                 </div>
@@ -413,6 +416,7 @@ class CategoryListing extends Component {
                 </Row>
               </div>
             </Modal>
+            }
             <Modal isOpen={this.state.showAddCollaborator} toggle={this.toggleAddCollaboratorModal} className={modalStyles.forgotContainer} centered={true}>
                     <AddCollaboratorModal close={this.toggleAddCollaboratorModal}></AddCollaboratorModal>
                 </Modal>

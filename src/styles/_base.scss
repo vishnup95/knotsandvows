@@ -57,7 +57,7 @@ h2 {
   @include fontSize(58);
   color: $secondary-color;
   @include mobile {
-    font-size: 20px !important;
+    font-size: 20px;
   }
 }
 
@@ -220,4 +220,10 @@ textarea {
       left: 0;
     }
   }
+}
+
+// input disabled styles
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: white !important;
 }
