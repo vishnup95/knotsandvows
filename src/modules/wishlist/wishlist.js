@@ -274,12 +274,12 @@ class CategoryListing extends Component {
                                             <Col className="no-padding">
                                               <HorizontalSlider data={item.vendors} category={hyphonatedString(item.category_name , item.category_id)}  
                                               type="wishlist" isCompare={this.state.isCompare} checkIfSelectedForComparison={this.checkIfSelectedForComparison}
-                                              addToCompare={this.addToCompare}/>
+                                              addToCompare={this.addToCompare} buttonAction={() => this.navigateTo(`/categories/${hyphonatedString(this.state.currentCategories[this.state.selectedVendor].category_name, this.state.currentCategories[this.state.selectedVendor].category_id)}`)}/>
                                             </Col>
                                           </Row>
-                                          <Col>
+                                          {/* <Col>
                                             <p className={styles.viewAll}>View All</p>
-                                          </Col>
+                                          </Col> */}
                                         </Collapse>   
                                       }
                                     </div>     
