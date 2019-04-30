@@ -290,7 +290,7 @@ class Home extends Component {
               <Row>
                 <Col>
                   <h2>70% of couples wish they had hired <span className="tab-only"><br /></span><span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful. SevenVows, with our array of<span className="tab-only"><br /></span> services, SevenVows can help you plan the biggest day of your life in the best possible way.</p>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. With our array of<span className="tab-only"><br /></span> services, SevenVows can help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
