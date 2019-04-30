@@ -107,3 +107,29 @@
 .packageImg {
   height: 300px;
 }
+
+//wishlist mobile
+
+.addNewMob {
+  margin: 1.5rem 0rem 1rem;
+  border: 1px dashed $medium-pink;
+  height: 19.75rem;
+  border-radius: 12px;
+  background-color: #FEF1F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .addIconBox {
+    background: url('/images/plus.svg') center no-repeat;
+    width: 5rem;
+    height: 5rem;
+    border: 1px dashed #ee4d9b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-size: 40%;
+    background-color: #ffffff;
+  }
+}

@@ -282,7 +282,7 @@ class GoldPackage extends Component {
                         <input maxLength="75" type="email" name="email" id="email" placeholder="Email" />
                       </Col>
                       <Col xs='12'>
-                        <input pattern="[0-9]*" required maxLength="10" type="Number" name="phone" id="phone" placeholder="Phone" />
+                        <input pattern="[0-9]*" required maxLength="10" type="tel" name="phone" id="phone" placeholder="Phone" />
                       </Col>
                       <Col xs='6'>
                         <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
