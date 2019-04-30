@@ -380,9 +380,10 @@ class CategoryListing extends Component {
               </Row>
 
             }
+            {this.state.currentCategories.length > 0 &&
             <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.comparePopup}>
               <div className={styles.compareContainer}>
-                <h3>Compare Vendors</h3>
+                <h3>Compare {this.state.currentCategories[`${this.state.selectedVendor}`].category_name}</h3>
                 <div className={styles.closeBtn}>
                   <img src={imagePath('close-large.svg')} alt="close button" aria-hidden onClick={this.toggle} />
                 </div>
@@ -413,6 +414,7 @@ class CategoryListing extends Component {
                 </Row>
               </div>
             </Modal>
+            }
             <Modal isOpen={this.state.showAddCollaborator} toggle={this.toggleAddCollaboratorModal} className={modalStyles.forgotContainer} centered={true}>
                     <AddCollaboratorModal close={this.toggleAddCollaboratorModal}></AddCollaboratorModal>
                 </Modal>
