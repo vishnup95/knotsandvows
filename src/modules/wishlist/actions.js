@@ -73,6 +73,7 @@ export function addNote(params, dispatch) {
     ],
     promise: client => client.post(`/api/wishlist/addnote`, params)
       .then(() => dispatch(this.fetchAllNotes(params)))
+        .catch(error => console.log(error))
   };
 }
 
@@ -85,6 +86,7 @@ export function deleteNote(params, dispatch) {
     ],
     promise: client => client.post(`/api/wishlist/removenote?note_id=${params.note_id}`)
       .then(() => dispatch(this.fetchAllNotes(params)))
+        .catch(error => console.log(error)) 
   };
 }
 
@@ -97,6 +99,7 @@ export function editNote(params, dispatch) {
     ],
     promise: client => client.post(`/api/wishlist/updatenote`, {note_id: params.note_id, note: params.note})
       .then(() => dispatch(this.fetchAllNotes(params)))
+        .catch(error => console.log(error)) 
   };
 }
 
