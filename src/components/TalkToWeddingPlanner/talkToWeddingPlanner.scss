@@ -80,44 +80,42 @@
 }
 
 .phone {
+  width: max-content;
+  margin: 0 auto;
   margin-top: 2rem;
+  border-radius: 20px;
+  padding: 3px;
+  border: 1px solid $secondary-color;
 
   a {
     font-family: $roboto-medium;
+    color:$secondary-color;
+    display: none;
   }
+
+  span {
+    font-family: $roboto-medium;
+    color:$secondary-color;
+    margin-left: 0.5rem;
+    user-select: none;
+  }
+
   @include mobile {
     margin-top: 1rem;
     margin-bottom: 0;
+
+    a {
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+
+    span {
+      display: none;
+    }
   }
-}
 
-.cityContainer {
-  margin-top: .9rem;
-  cursor: pointer;
-}
-
-.cityDropdown {
-  border: 1px solid $medium-pink;
-  padding: .6em;
-  border-radius: 5px;
-  background: url('/images/filter-dropdown.png') 92% 50% no-repeat;
-  @include fontSize(18);
-
-  .menuItems {
-    padding: 0;
-
-    div {
-      @include padding(10, 20);
-      white-space: nowrap;
-      @include fontSize(16);
-
-      &:hover {
-        background-color: #e8e4e4;
-      }
-    }
-
-    .citySelected {
-      background-color: #e8e4e4;
-    }
+  img {
+    @include width(40); 
+    @include height(40);
   }
 }

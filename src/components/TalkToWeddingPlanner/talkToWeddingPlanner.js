@@ -140,7 +140,11 @@ class TalkToWeddingPlanner extends Component {
                         }
                         <div className="text-center">
                             <ProgressButton title="Send Message" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
-                            <p className={styles.phone}>Call SevenVows<span className="mobile-only"><br/></span> <a href="tel:+917032188007">+91 703 218 8007</a></p>
+                            <p className={styles.phone}>
+                                <img src={imagePath('button-call.png')} alt="call-button" />
+                                <a href="tel:+917032188007">+91 703 218 8007</a>
+                                <span>+91 703 218 8007</span>
+                            </p>
                         </div>
                     </div>
 

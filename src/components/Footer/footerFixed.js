@@ -64,7 +64,8 @@ class FooterFixedComponent extends Component {
                                         </p>
                                     </div>
                                     <div className={` ${styles.block} ${styles.mb2mob}`}>
-                                        <p className="mb-0">Email us @ &nbsp; <span>info@sevenvows.co.in</span></p>
+                                        <p></p>
+                                        <p className="mb-0">Email us @&nbsp;<span><a href="mailto:info@sevenvows.co.in">info@sevenvows.co.in</a></span></p>
                                     </div>
                                 </div>
                             </div>

@@ -82,7 +82,7 @@ const members = [
     {
         name: 'Sneha',
         displayPic: 'members/3.png',
-        title: 'Customer Experience'
+        title: 'Product'
     },
     {
         name: 'Amit',
@@ -117,7 +117,7 @@ const members = [
     {
         name: 'Keerthi',
         displayPic: 'members/10.png',
-        title: 'Vendor management'
+        title: 'Marketing'
     },
     {
         name: 'Srinivas',

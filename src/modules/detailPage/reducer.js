@@ -87,6 +87,7 @@ const VendorDetailReducer = (state = initialState, action) => {
     case types.LOAD_REVIEWS_FAILURE:
       return {
         ...state,
+        reviewsData : null,
         error: action.error.message,
       };
 

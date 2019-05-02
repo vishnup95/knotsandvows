@@ -161,7 +161,7 @@ class Products extends Component {
               {filters  && detectMobile() &&
                 <div>
                   <InputGroup onClick={() => this.toggleMobileFilter()} className={styles.searchField}>
-                    <Input placeholder='Search your vendors'/>
+                    <Input placeholder='Search your vendors' disabled/>
                     <InputGroupAddon addonType="append">
                       <Button color="danger"></Button>
                     </InputGroupAddon>
