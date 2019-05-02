@@ -114,8 +114,8 @@ class GoldPackage extends Component {
             {
               packageItems.slice(0, 4).map((item, index) => {
                 return (
-                  <Col xs='6' sm='6' md='3' key={index}>
-                    <div className={styles.packageItem}>
+                  // <Col xs='6' sm='6' md='3' key={index}>
+                    <div className={styles.packageItem} key={index}>
                       <div className={styles.packageItemImgBg}>
                         <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
@@ -138,7 +138,7 @@ class GoldPackage extends Component {
                         </ul>
                       </div>
                     </div>
-                  </Col>
+                  // </Col>
                 );
               })
             }
@@ -147,8 +147,8 @@ class GoldPackage extends Component {
             {
               packageItems.slice(4, 6).map((item, index) => {
                 return (
-                  <Col xs='12' sm='6' key={index} >
-                    <div className={`${styles.packageItem} ${styles.large} ${index === 0 ? ' row-reverse-tab': ''}`}>
+                  // <Col xs='12' sm='6' key={index} >
+                    <div  key={index} className={`${styles.packageItem} ${styles.large} ${index === 0 ? ' row-reverse-tab': ''}`}>
                       <div className={`${styles.packageItemImgBg} ${styles.large}`}>
                         <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
@@ -170,7 +170,7 @@ class GoldPackage extends Component {
                         </ul>
                       </div>
                     </div>
-                  </Col>
+                  // </Col>
                 );
               })
             }
@@ -179,8 +179,8 @@ class GoldPackage extends Component {
             {
               packageItems.slice(6, 7).map((item, index) => {
                 return (
-                  <Col xs='6' sm='6' md='3' key={index} >
-                    <div className={`${styles.packageItem} ${styles.lastPack}`}>
+                  // <Col xs='6' sm='6' md='3' key={index} >
+                    <div  key={index} className={`${styles.packageItem} ${styles.lastPack}`}>
                       <div className={styles.packageItemImgBg}>
                         <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
@@ -202,11 +202,11 @@ class GoldPackage extends Component {
                         </ul>
                       </div>
                     </div>
-                  </Col>
+                  // </Col>
                 );
               })
             }
-            <Col className={`${styles.offerWrap} flex justify-center tab-only`}>
+            <div className={`${styles.offerWrap} flex justify-center tab-only`}>
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
                 <div className={styles.offer}>Price starting at</div>
@@ -214,12 +214,12 @@ class GoldPackage extends Component {
                 <div className={styles.original}>₹24,00,000</div>
                 <div className={styles.save}>You Save<br />₹2 Lakhs</div>
               </div>
-            </Col>
+            </div>
             {
               packageItems.slice(7, 8).map((item, index) => {
                 return (
-                  <Col xs='6' sm='6' md='3' key={index} >
-                    <div className={`${styles.packageItem}`}>
+                  // <Col xs='6' sm='6' md='3' key={index} >
+                    <div  key={index} className={`${styles.packageItem} ${styles.lastPack}`}>
                       <div className={styles.packageItemImgBg}>
                         <img className={styles.packageItemImg} src={imagePath(item.imgSrc)} alt={item.itemName} />
                       </div>
@@ -241,13 +241,13 @@ class GoldPackage extends Component {
                         </ul>
                       </div>
                     </div>
-                  </Col>
+                  // </Col>
                 );
               })
             }
           </Row>
           <Row className="mobile-only">
-            <Col className={`${styles.offerWrap} flex justify-center`}>
+            <div className={`${styles.offerWrap} flex justify-center`}>
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
                 <div className={styles.offer}>Price starting at</div>
@@ -255,7 +255,7 @@ class GoldPackage extends Component {
                 <div className={styles.original}>₹2,150,000</div>
                 <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
               </div>
-            </Col>
+            </div>
           </Row>
           <Row>
             <Col>
@@ -268,7 +268,7 @@ class GoldPackage extends Component {
           <Container className={`${styles.goldContainer} ${styles.contactWrap}`}>
             <Row>
               <Col md='1'></Col>
-              <Col md='5'>
+              <Col md='5' className="text-center">
                 <img className={styles.contactImg} src={imagePath('contact-box.png')} alt="contact" />
               </Col>
               <Col md='5' className='contact-form'>
