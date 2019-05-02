@@ -230,7 +230,7 @@
         top: 2px;
         @include width(25);
         @include height(25);
-        background-image: url('/images/available.svg');
+        background-image: url('#{$image-base-url}/available.svg');
         background-size: contain;
         background-repeat: no-repeat;
 
@@ -238,7 +238,7 @@
 
       &.policy {
         &:before {
-          background-image: url('/images/policy.svg');
+          background-image: url('#{$image-base-url}/policy.svg');
           background-size: contain;
         }
       }
@@ -274,7 +274,7 @@
         top: 0;
         @include width(25);
         @include height(25);
-        background: url('/images/dining.svg');
+        background: url('#{$image-base-url}/dining.svg');
         background-size: contain;
         background-repeat: no-repeat;
       }
