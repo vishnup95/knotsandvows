@@ -170,7 +170,7 @@
 }
 
 .packageItemName {
-  @include fontSize(27.4);
+  @include fontSize(25);
   text-transform: capitalize;
   margin-bottom: .5rem;
   @include mobile {
