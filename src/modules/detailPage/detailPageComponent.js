@@ -328,7 +328,7 @@ class DetailPageComponent extends Component {
                 {this.props.detailsLoading && <LoaderComponent />}
                 {details &&
                     <div>
-                        <div className={style.bgImage} style={{ background: "url(" + details.pic_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+                        <div className={style.bgImage} style={{ backgroundImage: "url(" + details.pic_url + ")" }}>
                         </div>
                         <div className={style.detailSection}>
                             <Row className={style.infoBox}>
