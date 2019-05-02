@@ -247,7 +247,7 @@ class CategoryListing extends Component {
                       return (
                         <div key={index} className="mb-4">
                           <div className={styles.listTitle} onClick={() => this.toggleCollapse(index)} aria-hidden>{!item.name ? `Shared list - ${index}` : item.name}</div>
-                          <Collapse isOpen={this.state.collapse[index]}>
+                          {/* <Collapse isOpen={this.state.collapse[index]}> temporarily removed */}
                             <ul className={styles.vendorList}>
                               {
                                 this.state.currentCategories.map((item, index) => {
@@ -289,7 +289,7 @@ class CategoryListing extends Component {
                                 })
                               }
                             </ul>
-                          </Collapse> 
+                          {/* </Collapse>  */}
                         </div>
                       );
                     })

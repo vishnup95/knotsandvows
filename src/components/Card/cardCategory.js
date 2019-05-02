@@ -161,6 +161,11 @@ class CategoryCard extends Component {
         }
     }
 
+    addNote() {
+        this.setState({ addNoteMode: 'add'});
+        this.toggleAddNote();
+    }
+
     editNote(id, note) {
         this.setState({ addNoteMode: 'edit', note: note, selectedId: id });
         this.toggleAddNote(false, id);
@@ -297,7 +302,7 @@ class CategoryCard extends Component {
                         this.state.showNotes && <Col className={styles.noteContainer} onClick={event => this.stopClicks(event)}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
-                                    <div className={styles.addHeader} onClick={() => this.toggleAddNote()} aria-hidden>
+                                    <div className={styles.addHeader} onClick={() => this.addNote()} aria-hidden>
                                         <img src={imagePath('plusbtn.svg')} alt="" />
                                         Add note
                                     </div>
