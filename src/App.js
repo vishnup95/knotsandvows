@@ -91,7 +91,7 @@ class App extends Component {
           {
             this.props.modalContent.message !== 'mobile_contact' ? <div className={styles.message}>{this.props.modalContent.message}</div> :
               <div className={styles.message}>
-                <a href="tel: +91 7702053510">Click here to contact us now! </a>
+                <a href="tel: +91 7032188007">Click here to contact us now! </a>
               </div>
           }
 
