@@ -58,9 +58,9 @@ class FooterFixedComponent extends Component {
                                 <div className={`${styles.footerPhoneEmail}`}>
                                     <div className={` ${styles.block} ${styles.mb2mob}`}>
                                         <p>Contact Us</p>
-                                        <p className="mb-0 d-none d-sm-block">+91 770 205  3510</p>
+                                        <p className="mb-0 d-none d-sm-block">+91 703 218 8007</p>
                                         <p className="d-block d-sm-none">
-                                            <a href="tel: +91 7702053510">+91 770 205  3510</a>
+                                            <a href="tel: +91 7032188007">+91 703 218 8007</a>
                                         </p>
                                     </div>
                                     <div className={` ${styles.block} ${styles.mb2mob}`}>
