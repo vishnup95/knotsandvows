@@ -438,10 +438,6 @@ a {
 
 .ceremonyIg {
   width: 100%;
-  height: 10VW;
   border-radius: 10px;
   background-size: cover;
-  @include mobile {
-    height: 41vw;
-  }
 }
