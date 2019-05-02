@@ -102,21 +102,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 0 20vw;
-    height: 22.5rem;
+    margin: 0 5px 8rem;
+    width: calc(50% - 10px);
+  }
+  @include tablet {
+    width: calc(25% - 10px);
   }
 
   &.large {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin: 0 5px 3rem;
     @include mobile {
-      margin-top: 20vw;
-      height: 26rem;
+      margin-top: 6rem;
+      margin-bottom: 9rem;
+      // height: 26rem;
+      width: 100%;
+    }
+    @include tablet {
+      width: 45%;
+      margin: 0 2.5% 3rem;
     }
 
     .packageItemContent {
       padding-left: .5rem;
+    }
+
+    &:last-child {
+      @include mobile {
+        margin-bottom: 9rem;
+        margin-top: 5rem;
+      }
     }
   }
 
@@ -149,10 +166,11 @@
   flex-direction: column;
   @include width(220);
   max-width: 100%;
+  margin: 0 auto;
 }
 
 .packageItemName {
-  @include fontSize(27.4);
+  @include fontSize(25);
   text-transform: capitalize;
   margin-bottom: .5rem;
   @include mobile {
@@ -162,9 +180,9 @@
 
 .packageItemImgBg {
   @include mobile {
-    width: 80%;
+    width: 11rem;
     height: auto;
-    margin-top: -15.5vw;
+    margin-top: -5.5rem;
   }
   flex-shrink: 0;
   @include width(270);
@@ -184,9 +202,10 @@
     @include width(330);
     @include height(330);
     @include mobile {
-      width: 80%;
+      width: 22.5rem;
       height: auto;
-      margin-top: -31vw;
+      margin-top: -11.25rem;
+      max-width: 300px;
     }
   }
 
@@ -197,12 +216,20 @@
 }
 
 .offerWrap {
-  @include mobile {}
+  margin: 0 5px;
+  @include mobile {
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+  @include tablet {
+    width: calc(50% - 10px);
+
+  }
 }
 
 .offerPrice {
   position: relative;
-  margin-bottom: 4rem;
+  margin: 0 auto;
 }
 
 .offerPriceImg {
@@ -210,15 +237,21 @@
     max-width: 100%;
   }
   width: 36.6rem;
+  max-width: 100%;
 }
 
 .lastPack {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  order: 3;
+  // align-items: flex-end;
+  // display: flex;
+  // flex-direction: column;
+  // order: 3;
+  margin-bottom: 4rem;
   @include mobile {
-    align-items: center;
+    // align-items: center;
+
+  }
+  @include tablet {
+    width: calc(25% - 10px);
   }
 }
 
