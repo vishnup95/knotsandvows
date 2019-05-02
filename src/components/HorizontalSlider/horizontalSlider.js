@@ -144,7 +144,7 @@ export default class HorizontalSlider extends Component {
     render() {
         var settingsBasic = {
             dots: false,
-            infinite: true,
+            infinite: false,
             centerMode: false,
             variableWidth: true,
             nextArrow: <SampleNextArrowBasic />,

@@ -13,7 +13,7 @@ import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider
 import * as actions from './actions';
 import * as talktoAhwanamActions from '../../components/TalkToWeddingPlanner/actions';
 import CarouselComponent from './carousel';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 import { hyphonatedString } from '../../utils/utilities';
 import ImageFade from '../../components/ImageFade/imageFade';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
@@ -173,9 +173,15 @@ class Home extends Component {
   componentWillReceiveProps(nextProps) {
     this.handleSectionScroll(nextProps);
   }
+
   handleSectionScroll = (props) => {
     if (props.location.hash === '#packages') {
-      let yPos = document.getElementById('packages').offsetTop;
+      let yPos = 0;
+      if (detectMobile()) {
+        yPos = document.getElementById('packagesMobile').offsetTop;
+      } else {
+        yPos = document.getElementById('packages').offsetTop;
+      }
       window.scrollTo({
         top: yPos - 50,
         left: 0,
@@ -383,7 +389,7 @@ class Home extends Component {
                 </Col>
               </Row>
             </div>
-            <div className={`${styles.mediumPinkBg}  container-fluid`}>
+            <div className={`${styles.mediumPinkBg}  container-fluid`} id="packagesMobile">
               <Container className={styles.boxSection}>
                 <Row className={styles.boxMark}>
                   <Col id="boxmark"></Col></Row>

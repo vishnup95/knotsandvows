@@ -19,8 +19,8 @@
   color: $black;
   @include fontSize(24);
   cursor: pointer;
-  background: url('/images/filter-dropdown.png') right no-repeat;
-  padding-right: 2.5rem;
+  // background: url('/images/filter-dropdown.png') right no-repeat; //temporarily removed
+  padding-left: 1rem;
   width: max-content;
 
   @include mobile {

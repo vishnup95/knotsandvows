@@ -13,7 +13,7 @@ import ReviewItem from '../../components/Reviews/reviews';
 import ReactPaginate from 'react-paginate';
 import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
 import { isLoggedIn, getDataFromResponse, getId, formatDate, formatMoney, getChargeType } from '../../utils/utilities';
@@ -287,8 +287,12 @@ class DetailPageComponent extends Component {
     }
 
     scrollToDetailSection(id) {
-        var sectionId = document.getElementById(id);
-        sectionId.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+        let yPos =  document.getElementById(id).offsetTop;
+        window.scrollTo({
+            top: yPos + (detectMobile() ? 550 : 340),
+            left: 0,
+            behavior: 'smooth'
+        });
     }
 
     render() {
