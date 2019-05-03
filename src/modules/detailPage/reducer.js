@@ -14,6 +14,7 @@ const VendorDetailReducer = (state = initialState, action) => {
     case types.LOAD_DETAILS:
       return {
         ...state,
+        details: null,
         loading: true
       };
 

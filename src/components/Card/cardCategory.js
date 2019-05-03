@@ -58,7 +58,7 @@ class CategoryCard extends Component {
 
     handleClickOutside = event => {
         if (!document.getElementById(`card${this.props.id}`).contains(event.target)) {
-            this.setState({ showNotes: false });
+            this.setState({ showNotes: false, showAddNote: false });
         }
     }
 
