@@ -473,6 +473,7 @@
   line-height: 1.43;
   @include padding(8,0,8,12);
   position: relative;
+  word-break: break-all;
 }
 
 .image-gallery {
@@ -526,6 +527,7 @@
 
   .item {
     width: auto;
+    @include fontSize(18);
   }
 
   .itemPrice {
@@ -533,7 +535,7 @@
   }
 
   .grey {
-    @include fontSize(16);
+    @include fontSize(15);
     color: #343434ab;
   }
 }
