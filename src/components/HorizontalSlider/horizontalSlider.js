@@ -242,16 +242,16 @@ export default class HorizontalSlider extends Component {
                     }
                 },
                 {
-                    breakpoint: 768,
+                    breakpoint: 1023,
                     settings: {
                         nextArrow: null,
                         prevArrow: null,
-                        slidesToShow: 1.5,
+                        slidesToShow: 2.5,
                         slidesToScroll: 1,
                     }
                 },
                 {
-                    breakpoint: 470,
+                    breakpoint: 767,
                     settings: {
                         nextArrow: null,
                         prevArrow: null,
