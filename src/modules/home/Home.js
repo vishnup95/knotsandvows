@@ -394,8 +394,8 @@ class Home extends Component {
                 <Row className={styles.boxMark}>
                   <Col id="boxmark"></Col></Row>
                 <Row className="mobile-col-reverse">
-                  <div className="justify-center flex align-flex-top mobile-column">
-                    <img className="mobile-only" src={imagePath('packageall.png')} alt="img" />
+                  <div className="col justify-center flex align-flex-top mobile-column">
+                    <img className={styles.packageStatic} src={imagePath('packageall.png')} alt="img" />
                     <div className="mobile-only">
                       <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'}/>
                     </div>
