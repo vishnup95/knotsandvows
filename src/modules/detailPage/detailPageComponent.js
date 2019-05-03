@@ -227,7 +227,7 @@ class DetailPageComponent extends Component {
                 <div className={style.noteWrap} key={index}>
                     <div>
                         <span className={style.noteTitle}>{note.author_name}</span>
-                        <span className={style.noteDate}>{formatDate(note.added_datetime)}</span>
+                        <span className={style.noteDate}>{formatDate(note.date)}</span>
                     </div>
                     <div className={style.noteText}>
                         <div>
