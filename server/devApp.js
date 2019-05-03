@@ -29,9 +29,9 @@ app.use(helmet.contentSecurityPolicy({
     defaultSrc: ["'self'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.fullstory.com', '*.analytics.js', '*.google.com', '*.google-analytics.com', '*.facebook.com'],
     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.google-analytics.com', '*.googletagmanager.com', '*.facebook.net', 'https://fullstory.com', '*.google.com'],
     styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com'],
-    imgSrc: ["'self'", 'data:', '*.facebook.com', '*.google.com', '*.google.co.in', '*.cloudfront.net', '*.google-analytics.com'],
+    imgSrc: ["'self'", 'data:', '*.facebook.com', '*.google.com', '*.google.co.in', '*.cloudfront.net', '*.google-analytics.com', '*.ahwanam.com'],
     fontSrc: ["'self'",'data:', 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com'],
-    connectSrc: ["'self'", '*.fullstory.com','https://api.ahwanam.com', 'https://prod.ahwanam.com','*.google-analytics.com']
+    connectSrc: ["'self'", '*.fullstory.com','https://api.ahwanam.com', 'https://qa.ahwanam.com', 'https://prod.ahwanam.com','*.google-analytics.com']
   },
   browserSniff: false
 }));
