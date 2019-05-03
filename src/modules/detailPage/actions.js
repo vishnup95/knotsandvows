@@ -89,3 +89,9 @@ export const fetchAllNotes = (details) => {
     promise: client => client.get(`/api/getallnotes?vendor_id=${details.vendor_id}&wishlist_id=${details.wishlist_id}`)
   };
 }
+
+export function clearData() {
+  return {
+    type: types.CLEAR_DATA
+  }
+}

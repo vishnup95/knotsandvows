@@ -117,6 +117,10 @@ class DetailPageComponent extends Component {
         window.scrollTo(0, 0);
     }
 
+    componentWillUnmount(){
+        this.props.dispatch(actions.clearData());
+    }
+
     addToWishList = (e) => {
         if (!isLoggedIn()) {
             this.props.dispatch(loginActions.showLogin());

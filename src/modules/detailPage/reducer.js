@@ -1,11 +1,11 @@
 import * as types from './constants';
 const initialState = {
   details: null,
-  gallery : [],
+  gallery: [],
   reviewsData: null,
-  similarVendors:[],
+  similarVendors: [],
   loading: false,
-  notes:[]
+  notes: []
 };
 
 const VendorDetailReducer = (state = initialState, action) => {
@@ -28,12 +28,12 @@ const VendorDetailReducer = (state = initialState, action) => {
     case types.LOAD_DETAILS_FAILURE:
       return {
         ...state,
-        details:null,
+        details: null,
         error: action.error.message,
         loading: false
       };
 
-      case types.LOAD_GALLERY:
+    case types.LOAD_GALLERY:
       return {
         ...state,
       };
@@ -52,16 +52,16 @@ const VendorDetailReducer = (state = initialState, action) => {
         error: action.error.message,
       };
 
-      case types.LOAD_NOTES:
+    case types.LOAD_NOTES:
       return {
         ...state,
-        notes:[]
+        notes: []
       };
 
     case types.LOAD_NOTES_SUCCESS:
       return {
         ...state,
-        notes:  action.result.data.data.results,
+        notes: action.result.data.data.results,
         error: null
       };
 
@@ -69,7 +69,7 @@ const VendorDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.error.message,
-        notes:[]
+        notes: []
       };
 
     case types.LOAD_REVIEWS:
@@ -87,11 +87,11 @@ const VendorDetailReducer = (state = initialState, action) => {
     case types.LOAD_REVIEWS_FAILURE:
       return {
         ...state,
-        reviewsData : null,
+        reviewsData: null,
         error: action.error.message,
       };
 
-      case types.LOAD_SIMILAR_VENDORS:
+    case types.LOAD_SIMILAR_VENDORS:
       return {
         ...state,
       };
@@ -106,8 +106,19 @@ const VendorDetailReducer = (state = initialState, action) => {
     case types.LOAD_SIMILAR_VENDORS_FAILURE:
       return {
         ...state,
-        similarVendors:[],
+        similarVendors: [],
         error: action.error.message,
+      };
+
+    case types.CLEAR_DATA:
+      return {
+        ...state,
+        details: null,
+        gallery: [],
+        reviewsData: null,
+        similarVendors: [],
+        loading: false,
+        notes: []
       };
 
     default:
