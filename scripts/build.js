@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-process.env.NODE_ENV = 'production';
-process.env.PUBLIC_URL = process.env.PUBLIC_URL || '';
+require('dotenv').config()
 
 process.on('unhandledRejection', err => {
   throw err;

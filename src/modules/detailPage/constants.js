@@ -30,3 +30,5 @@ export const LOAD_GALLERY_FAILURE = 'my-project/details/LOAD_GALLERY_FAILURE';
 export const LOAD_NOTES = 'my-project/details/LOAD_NOTES';
 export const LOAD_NOTES_SUCCESS = 'my-project/details/LOAD_NOTES_SUCCESS';
 export const LOAD_NOTES_FAILURE = 'my-project/details/LOAD_NOTES_FAILURE';
+
+export const CLEAR_DATA = 'my-project/details/CLEAR_DATA';

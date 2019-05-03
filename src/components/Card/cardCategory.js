@@ -58,7 +58,7 @@ class CategoryCard extends Component {
 
     handleClickOutside = event => {
         if (!document.getElementById(`card${this.props.id}`).contains(event.target)) {
-            this.setState({ showNotes: false });
+            this.setState({ showNotes: false, showAddNote: false });
         }
     }
 
@@ -320,7 +320,7 @@ class CategoryCard extends Component {
                                                     <div className={styles.noteWrap} key={index}>
                                                         <div>
                                                             <span className={styles.noteTitle}>{note.author_name || 'Author'}</span>
-                                                            <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
+                                                            <span className={styles.noteDate}>{formatDate(note.date)}</span>
                                                         </div>
                                                         <div className={styles.noteText}>
                                                             <div>
