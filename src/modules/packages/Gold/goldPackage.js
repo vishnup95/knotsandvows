@@ -251,9 +251,9 @@ class GoldPackage extends Component {
               <div className={`${styles.offerPrice} `}>
                 <img className={styles.offerPriceImg} src={imagePath('offer-bg.jpg')} alt="offer" />
                 <div className={styles.offer}>Price starting at</div>
-                <div className={styles.originalStrike}>Original Price  ₹2,390,000</div>
-                <div className={styles.original}>₹2,150,000</div>
-                <div className={styles.save}>You Save<br />₹2.5 Lakhs</div>
+                <div className={styles.originalStrike}>Original Price  ₹26,00,000</div>
+                <div className={styles.original}>₹24,00,000</div>
+                <div className={styles.save}>You Save<br />₹2 Lakhs</div>
               </div>
             </div>
           </Row>

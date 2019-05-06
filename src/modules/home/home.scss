@@ -37,8 +37,11 @@
     margin-bottom: 0;
   }
   @include tablet {
-    max-width: 78%;
+    max-width: 90%;
     padding: 0;
+  }
+  @include desktop {
+    max-width: 78%;
   }
 }
 
@@ -561,7 +564,6 @@ a.button {
   background-color: $medium-pink;
 }
 
-
 .detailDesc {
   color: $secondary-color;
   font-family: $roboto-medium;
@@ -573,6 +575,7 @@ a.button {
   text-align: center;
   padding: 2rem 1rem;
   flex-shrink: 0;
+
   span {
     padding: 0 1rem;
     font-size: 3.2rem;
@@ -628,7 +631,15 @@ a.button {
       width: 23rem;
     }
   }
+  @include tablet {
+    width: 33%;
+
+    img {
+      max-width: 100%;
+    }
+  }
   @include desktop {
+    width: auto;
     &:first-child {
       z-index: 3;
       transform: translate3d(56%,-80.5rem,0px);
@@ -675,6 +686,8 @@ a.button {
     color: $white;
   }
   @include tablet {
+    padding: 2rem 2rem 0;
+
     p {
       max-width: 16rem;
       text-align: left !important;
@@ -726,15 +739,15 @@ a.button {
   @include tablet {
     width: 72rem;
     margin: 0 auto;
-    padding-bottom: 0;
+    padding-bottom: 3rem;
     justify-content: flex-end;
 
     img {
-
       width: 41rem;
-      margin: 0 auto 3rem;
     }
-
+  }
+  @include desktop {
+    padding-bottom: 0;
   }
 }
 
@@ -863,9 +876,7 @@ h1.homeTitle {
 }
 // carousel styles
 .carousel {
-  @include mobile {
-    max-width: 100%;
-  }
+  max-width: 100%;
   margin: 0 auto;
   width: 70rem;
 }
@@ -961,6 +972,7 @@ h1.homeTitle {
       width: 82%;
       margin: 0 auto;
       padding: 0;
+
       &:last-child {
         border-bottom: none;
       }
@@ -970,37 +982,42 @@ h1.homeTitle {
 }
 
 .imageCardWrap {
-  @include mobile {
-    width: 100%;
-  }
+  width: 100%;
   @extend %spacer;
   margin-left: auto;
   margin-right: auto;
-  width: 64rem;
+  @include tablet {
+    width: 80%;
+  }
+  @include desktop {
+    width: 64rem;
+  }
 }
 
 .cardImageContainer {
-  @include mobile {
-    padding: 0;
-    margin-right: 0;
-    margin-left: 0;
-
-    img {
-      margin-right: 0 !important;
-    }
+  padding: 0;
+  margin-right: 0;
+  margin-left: 0;
+  @include tablet {
+    margin-right: -2.8rem;
+    padding: 2.5rem 0;
+    display: flex;
+    align-items: center;
+    position: relative;
   }
-  margin-right: -4.8rem;
-  display: flex;
-  align-items: center;
-  padding: 2.5rem 0;
-  position: relative;
+  @include desktop {
+    margin-right: -4.8rem;
+  }
 
   img {
-    @include mobile {
-      height: auto;
-      width: 100%;
+    height: auto;
+    width: 100%;
+    @include tablet {
+      width: 36rem;
     }
-    @include width(665);
+    @include desktop {
+       @include width(665);
+    }
   }
 
   &.cardImageSlide {
@@ -1064,6 +1081,8 @@ h1.homeTitle {
   width: 62rem;
   margin: 3rem auto 7rem;
   position: relative;
+  max-width: 100%;
+  @include tablet {}
   @include desktop {
     &:nth-child(odd) {
       margin-left: -1.2rem;
@@ -1095,11 +1114,15 @@ h1.homeTitle {
 
   &.imageCardReverse {
     .cardImageContainer {
-      @include mobile {
-        margin-left: 0;
-      }
-      margin-left: -4.8rem;
+      margin-left: 0;
       margin-right: 0;
+      @include tablet {
+        margin-left: -2.8rem;
+
+      }
+      @include desktop {
+        margin-left: -4.8rem;
+      }
     }
     @include tablet {
       flex-direction: row-reverse;
@@ -1114,15 +1137,20 @@ h1.homeTitle {
 }
 
 .imageCardText {
-  @include mobile {
-    flex-direction: row;
-    padding: 1rem 0;
-    align-items: center;
-  }
-  padding: 4.2rem;
+  flex-direction: row;
+  padding: 1rem 0;
+  align-items: center;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  @include tablet {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 3rem;
+  }
+  @include desktop {
+    padding: 4.2rem;
+
+  }
 }
 
 .sectionIdentifier {
@@ -1158,5 +1186,12 @@ h1.homeTitle {
 
   h2 {
     margin-bottom: 3rem;
+  }
+}
+
+.packageStatic {
+  max-width: 100%;
+  @include desktop {
+    display: none;
   }
 }
