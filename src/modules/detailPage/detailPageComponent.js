@@ -462,8 +462,8 @@ class DetailPageComponent extends Component {
                                 <Col md="5">
                                     {details.packages && details.packages.length > 0 &&
                                         <Col md="12" className={`${style.detailSubSection} ${style.rightSection} py-0`}>
-                                            <Col md="12" className={`${style.rightSubSection} py-2`}>
-                                                <div className={style.pricesContainer}> Starting Price</div>
+                                            <Col md="12" className={`${style.rightSubSection}`}>
+                                                <h3> Starting Price</h3>
                                                 {this.renderPackages(details.packages)}
                                             </Col>
                                         </Col>}
