@@ -222,6 +222,12 @@ textarea {
   }
 }
 
+.slick-list {
+  @include mobile {
+    overflow: visible;
+  }
+}
+
 // input disabled styles
 
 .form-control:disabled, .form-control[readonly] {
