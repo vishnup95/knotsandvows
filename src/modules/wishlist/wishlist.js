@@ -169,7 +169,8 @@ class CategoryListing extends Component {
   renderCompareVendors = (vendors) => {
     const compareVendors = vendors.map((vendor, index) => {
 
-      return <CompareProduct data={vendor} key={index} dispatch={this.props.dispatch} removeAction={(vendor) => this.addToCompare(vendor, true)}/>
+      return <CompareProduct data={vendor} key={index} dispatch={this.props.dispatch} removeAction={(vendor) => this.addToCompare(vendor, true)} 
+        categoryId={this.state.currentCategories[this.state.selectedVendor].category_id}/>
 
   });
   return compareVendors;

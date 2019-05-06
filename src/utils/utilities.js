@@ -36,11 +36,14 @@ export function hyphonatedString(name, id){
 }
 
 export function formatDate(date) {
-  let options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
-  let newDate = new Date(date);
-  
-  let formattedDate =  new Intl.DateTimeFormat('en-GB', options).format(newDate);
-  return formattedDate.toUpperCase();
+  if (date) {
+    let options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+    let newDate = new Date(date);
+    
+    let formattedDate =  new Intl.DateTimeFormat('en-GB', options).format(newDate);
+    return formattedDate.toUpperCase();
+  }
+  return '';
 }
 
 export function getDataFromResponse(response) {

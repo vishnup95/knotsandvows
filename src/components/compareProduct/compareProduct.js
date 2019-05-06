@@ -6,7 +6,13 @@ import { Row, Col } from 'reactstrap';
 import StarRating from '../../components/StarRating/starRating';
 import { connect } from 'react-redux';
 import * as actions from '../../modules/detailPage/actions';
+import * as wishlistActions from '../../modules/wishlist/actions';
 import { getDataFromResponse, formatMoney, getChargeType } from "../../utils/utilities";
+
+const mapStateToProps = state => ({
+    wishlistId: state.wishlist.current.wishlist_id,
+});
+
 
 const mapDispatchToProps = dispatch => ({
     dispatch
@@ -27,10 +33,6 @@ const mapDispatchToProps = dispatch => ({
     }
 
     renderGallery = (gallery) => {
-        // const images = gallery.map((image, index) => {
-        //     return <img src={image.image} key={index} className={styles.galleryImage} alt="gallery" /> 
-        // });
-        // return images;
         const images = gallery.map((image, index) => {
             return(
                 <Col md="6" className="p-1" key={index}>
@@ -39,6 +41,17 @@ const mapDispatchToProps = dispatch => ({
             );           
         });
         return <Row className="m-0">{images}</Row>;
+    }
+
+    removeFromWishList(vendor) {
+        let params = {
+            vendor_id: this.props.data.vendor_id,
+            wishlist_id: this.props.wishlistId,
+            category_id: this.props.categoryId,
+        };
+
+        this.props.dispatch(wishlistActions.removeFromWishlist(params));
+        this.props.removeAction(vendor);
     }
 
     render() {
@@ -66,7 +79,7 @@ const mapDispatchToProps = dispatch => ({
                     {this.renderGallery(this.state.gallery)}
                 </div>
                 }
-                <div className={styles.removeBtn} onClick={() => this.props.removeAction(vendor)} aria-hidden>
+                <div className={styles.removeBtn} onClick={() => this.removeFromWishList(vendor)} aria-hidden>
                     Remove from wishlist
                 </div>
             </Col>
@@ -76,9 +89,12 @@ const mapDispatchToProps = dispatch => ({
 CompareProduct.propTypes = {
     data: PropTypes.object,
     removeAction: PropTypes.func,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    wishlistId: PropTypes.number,
+    categoryId: PropTypes.number
 }; 
 
 export default connect(
+    mapStateToProps,
     mapDispatchToProps
 )(CompareProduct);
