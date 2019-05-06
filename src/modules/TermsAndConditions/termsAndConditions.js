@@ -75,7 +75,7 @@ class TermsAndConditions extends Component {
                 <Row key={index}>
                   <Col>
                     <h3 className={styles.subHeading}>{item.title}</h3>
-                    {item.subTitle && <p>{item.subTitle}</p>}
+                    {item.subTitle && <p className={styles.desc}>{item.subTitle}</p>}
                     <ul>
                       {
                         item.listItem.map((item, index) => {
