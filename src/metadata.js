@@ -14,7 +14,7 @@ export const meta = [
   },
   {
     name: 'description',
-    content: 'Party Planning'
+    content: 'Wedding services and planning partners'
   }
 ];
 
