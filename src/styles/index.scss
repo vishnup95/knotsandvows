@@ -172,7 +172,7 @@
   }
 
   .input-password-mask {
-    background: center url('/images/info.svg') no-repeat;
+    background: center url('#{$image-base-url}/info.svg') no-repeat;
     background-size: contain;
     position: absolute;
     right: 0;
@@ -322,7 +322,7 @@
   position: absolute;
   right: 0;
   @include top(-24);
-  background: url('/images/delete.svg') center center no-repeat;
+  background: url('#{$image-base-url}/delete.svg') center center no-repeat;
   background-size: contain;
   cursor: pointer;
 }
@@ -333,7 +333,7 @@
   position: absolute;
   right: 2rem;
   @include top(-24);
-  background: url('/images/edit.svg') center center no-repeat;
+  background: url('#{$image-base-url}/edit.svg') center center no-repeat;
   background-size: contain;
   cursor: pointer;
 }
