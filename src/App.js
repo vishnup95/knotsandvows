@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
-import { REACT_APP_FS_ORG_ID, REACT_APP_GA_TRACKING_ID } from './constants';
 import * as modalActions from './reducers/modal/actions';
 import Helmet from 'react-helmet';
 import routes from './routes';
@@ -34,7 +33,7 @@ class App extends Component {
 
   initializeReactGA = () => {
 
-    ReactGA.initialize(REACT_APP_GA_TRACKING_ID);
+    ReactGA.initialize(process.env.GA_TRACKING_ID);
     this.props.history.listen(location => {
       ReactGA.pageview(location.pathname);
     });
@@ -58,7 +57,7 @@ class App extends Component {
 
   render() {
     return (<div className="app">
-      <FullStory org={REACT_APP_FS_ORG_ID} />
+      <FullStory org={process.env.FULLSTORY_ORG_ID} />
       <Helmet
         title={metadata.title}
         meta={metadata.meta}

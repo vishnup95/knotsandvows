@@ -52,7 +52,7 @@ class MapComponent extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyBlDLoh8zk0WWSITPjDbO4tfV1VducHeio",
+    apiKey: {process.env.GOOGLE_MAP_KEY},
     mapDispatchToProps
 })(MapComponent);
 
