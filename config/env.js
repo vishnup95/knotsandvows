@@ -1,7 +1,8 @@
 const packageJson = require('../package.json');
 process.env.VERSION = packageJson.version;
 
-const BAKED_IN_ENV_VARS = ['NODE_ENV', 'PUBLIC_URL', 'VERSION', 'API_HOST', 'API_PORT', 'REACT_APP_GA_TRACKING_ID','REACT_APP_FS_ORG_ID'];
+const BAKED_IN_ENV_VARS = ['NODE_ENV', 'PUBLIC_URL', 'VERSION', 'API_HOST', 'API_PORT', 'GOOGLE_CLIENT_ID','GOOGLE_SITE_VERIFICATION',
+'GOOGLE_MAP_KEY', 'GA_TRACKING_ID', 'FACEBOOK_APP_ID', 'FULLSTORY_ORG_ID'];
 
 function getAppEnv() {
   const raw = Object.keys({}).reduce(
@@ -15,8 +16,12 @@ function getAppEnv() {
       VERSION: process.env.VERSION,
       API_HOST: process.env.API_HOST,
       API_PORT: process.env.API_PORT,
-      REACT_APP_GA_TRACKING_ID: process.env.REACT_APP_GA_TRACKING_ID,
-      REACT_APP_FS_ORG_ID: process.env.REACT_APP_FS_ORG_ID,
+      GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+      GOOGLE_SITE_VERIFICATION: process.env.GOOGLE_SITE_VERIFICATION,
+      GOOGLE_MAP_KEY: process.env.GOOGLE_MAP_KEY,
+      GA_TRACKING_ID: process.env.GA_TRACKING_ID,
+      FACEBOOK_APP_ID: process.env.FACEBOOK_APP_ID,
+      FULLSTORY_ORG_ID: process.env.FULLSTORY_ORG_ID,
     }
   );
 
