@@ -8,6 +8,8 @@ import * as actions from './actions';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
+
+
 const mapStateToProps = state => ({
     user: state.session.user,
     categories: state.sample.categories,
@@ -56,7 +58,7 @@ class SocialAuthComponent extends Component {
             <div>
                <div className={`${styles.socialBtnWrap} text-center w-100`}>
                         <FacebookLogin
-                            appId="2249060602088158"
+                            appId={process.env.FACEBOOK_APP_ID}
                             fields="name,email,picture"
                             callback={responseFacebook}
                             disableMobileRedirect={true}
@@ -68,7 +70,7 @@ class SocialAuthComponent extends Component {
                             )}
                         />
                         <GoogleLogin
-                            clientId="639855180755-lr4qck5n508erker0op5hjnl7tvdgkqf.apps.googleusercontent.com"
+                            clientId={process.env.GOOGLE_CLIENT_ID}
                             render={renderProps => (
                                 <Button  name="google" onClick={renderProps.onClick} className={`${styles.authButton} ${styles.googleButton} mt-3` }>
                                     <span className={styles.gmimage}></span>
