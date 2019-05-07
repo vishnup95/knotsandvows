@@ -295,10 +295,13 @@ a {
     border-right: 1rem solid $white;
     border-bottom: .7rem solid transparent;
   }
+
   @include mobile {
     position: fixed;
-    width: 40%;
-    left: unset;
+    width: 250px;
+    left: 10%;
+    top: 60px;
+    margin: 0 auto;
   }
 }
 
@@ -367,11 +370,15 @@ a {
     @include padding(8,16);
     border: 1px solid rgba(0, 0, 0, 0.13) !important;
   }
+
   @include mobile {
     position: fixed;
-    right: auto;
-    width: 40%;
-    z-index: 1;
+    width: 260px;
+    right: 15%;
+    left: 0;
+    top: 60px;
+    margin: 0 auto;
+    z-index: 10;
   }
 }
 
