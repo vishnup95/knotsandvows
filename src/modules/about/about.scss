@@ -206,6 +206,7 @@
 
   @include mobile {
     @include padding(30, 15, 0);
+    padding-right: 5px;
   }
 }
 
