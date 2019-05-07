@@ -139,7 +139,7 @@
     border-radius: 5px;
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
     background-size: 10px;
-    background: url("/images/filter-search-icon.png") center center no-repeat $secondary-color;
+    background: url('#{$image-base-url}/filter-search-icon.png') center center no-repeat $secondary-color;
     border: none;
     @include width(70);
     @include height(60);
@@ -406,7 +406,7 @@
     border-radius: 5px;
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
     background-size: 10px;
-    background: url("/images/filter-search-icon.png") center center no-repeat $secondary-color;
+    background: url('#{$image-base-url}/filter-search-icon.png') center center no-repeat $secondary-color;
     border: none;
     @include width(70);
     @include height(55);
