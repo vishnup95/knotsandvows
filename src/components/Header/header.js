@@ -327,6 +327,9 @@ class Header extends Component {
                 </Navbar>
 
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
+                    <div className={styles.closeBtnSmall} onClick={() => this.toggleModal()} aria-hidden>
+                        <img src={imagePath('close-blank.svg')} alt="close button"/>
+                    </div>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>
                 <Modal isOpen={this.props.showForgotPassword} className={modalStyles.forgotContainer} toggle={this.toggleForgotPasswordModal} centered={true}>
