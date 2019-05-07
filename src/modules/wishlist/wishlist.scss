@@ -19,7 +19,7 @@
   color: $black;
   @include fontSize(24);
   cursor: pointer;
-  // background: url('#{$image-base-url}/filter-dropdown.png') right no-repeat; //temporarily removed
+  // background: url('/images/filter-dropdown.png') right no-repeat; //temporarily removed
   padding-left: 1rem;
   width: max-content;
 
@@ -99,7 +99,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: url('#{$image-base-url}/plus.svg') center no-repeat;
+  background: url('/images/plus.svg') center no-repeat;
   background-size: 40%;
   background-color: $white;
 
@@ -192,7 +192,7 @@
   justify-content: center;
   align-items: center;
   margin-left: 2px;
-  background: url('#{$image-base-url}/add-collaborator.svg') center no-repeat;
+  background: url('/images/add-collaborator.svg') center no-repeat;
   background-size: 80%;
   cursor: pointer;
   transition: all .2s ease;

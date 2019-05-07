@@ -154,7 +154,7 @@
 }
 
 .login-bg {
-  background: url('#{$image-base-url}/loginbg.jpg') center center no-repeat;
+  background: url('/images/loginbg.jpg') center center no-repeat;
   background-size: cover;
   @include width(897);
   @include mobile {
