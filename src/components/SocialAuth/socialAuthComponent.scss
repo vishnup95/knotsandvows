@@ -7,7 +7,7 @@
     @include width(150);
     @include padding(0, 30, 0, 45);
     @include fontSize(16);
-    font-family: $roboto-medium;
+    font-weight: 500;
     letter-spacing: 0.4px;
     color: white;
     background-color: #2453b4;

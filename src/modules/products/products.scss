@@ -32,14 +32,14 @@
 
 .sideHeading {
   @include fontSize(20);
-  font-family: $frank-regular;
+  font-family:  $frank; font-weight: 400;
   letter-spacing: .6px;
   color: $black-twelve;
   text-align: left;
 
   span {
     @include fontSize(18);
-    font-family: $roboto-regular;
+    font-weight: 400;
   }
 }
 
@@ -110,7 +110,7 @@
       display: block;
       @include fontSize(10);
       letter-spacing: .3px;
-      font-family: $roboto-regular;
+      font-weight: 400;
       color: #868585;
       text-transform: uppercase;
       @include padding(12,16,0);
@@ -119,7 +119,7 @@
 
     .select {
       border: 0;
-      font-family: $roboto-regular;
+      font-weight: 400;
       @include fontSize(16);
       height: auto;
       padding: 0 2rem 0 1rem;
@@ -173,7 +173,7 @@
 
   span {
     @include fontSize(18);
-    font-family: $roboto-regular;
+    font-weight: 400;
     margin-right: 2.5rem;
   }
 }
@@ -206,7 +206,7 @@
 .sortSelect {
   @extend .catSelect;
   @include fontSize(14);
-  font-family: $roboto-regular;
+  font-weight: 400;
 
   &:focus {
     background-color: $white;
@@ -215,7 +215,7 @@
 }
 
 .catButton {
-  font-family: $roboto-bold;
+  font-weight: 700;
   @include fontSize(16);
   @include padding(12,24);
   border-radius: 3px;
@@ -250,7 +250,7 @@
     display: block;
     @include fontSize(12);
     letter-spacing: .3px;
-    font-family: $roboto-regular;
+    font-weight: 400;
     color: $black-twelve;
     text-transform: uppercase;
     @include padding(0,16,0, 0);
@@ -267,7 +267,7 @@
     @include fontSize(16);
     color: $warm-grey-eight;
     letter-spacing: .48px;
-    font-family: $roboto-regular;
+    font-weight: 400;
     background: url('/images/filter-dropdown.png') right no-repeat;
     padding-right: 2rem;
 
@@ -291,7 +291,7 @@
   transform: translate3d(0, 50px, 0px) !important;
   padding: 0;
   margin: 0;
-  font-family: $roboto-medium;
+  font-weight: 500;
   box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.3);
   border: none;
   max-height: 30rem;
@@ -335,7 +335,7 @@
     @include fontSize(14);
     color: $black-twelve;
     letter-spacing: .48px;
-    font-family: $roboto-regular;
+    font-weight: 400;
     background: url('/images/filter-dropdown.png') right no-repeat;
     padding-right: 2rem;
   }
@@ -391,7 +391,7 @@
       @include fontSize(18);
       color: $black-five;
       letter-spacing: 0.36px;
-      font-family: $roboto-regular;
+      font-weight: 400;
 
       &:focus {
           outline: 0;

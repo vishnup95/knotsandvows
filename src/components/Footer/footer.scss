@@ -21,7 +21,7 @@
       color: $black;
 
       &:first-child {
-        font-family: $roboto-bold;
+        font-weight: 700;
       }
     }
   }
@@ -51,12 +51,12 @@
     }
 
     p:first-child {
-      font-family: $frank-regular;
+      font-family:  $frank; font-weight: 400;
       @include fontSize(20);
       margin-bottom: .5rem;
 
       span {
-        font-family: $roboto-regular;
+        font-weight: 400;
         @include fontSize(16);
       }
       @include mobile {
@@ -70,7 +70,7 @@
 
         a {
           color: $white;
-          font-family: $roboto-regular;
+          font-weight: 400;
           @include fontSize(16);
           @include padding(8,0);
         }
@@ -119,7 +119,7 @@
     background-size: 12px;
     text-align: left;
     @include fontSize(30, !important);
-    font-family: $frank-regular;
+    font-family:  $frank; font-weight: 400;
     @include mobile {
       display: block;
     }
@@ -132,7 +132,7 @@
   }
 
   .footerHeading {
-    font-family: $frank-regular;
+    font-family:  $frank; font-weight: 400;
     @include fontSize(20);
     margin-bottom: .5rem;
   }

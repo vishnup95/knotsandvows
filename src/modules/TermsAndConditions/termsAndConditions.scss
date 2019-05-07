@@ -23,7 +23,7 @@
   @include letterSpacing(.5);
 }
 .sub-heading {
-  font-family: $roboto-regular;
+  font-weight: 400;
   @include fontSize(28);
   color: $black-five;
   line-height: .93;

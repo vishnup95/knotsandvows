@@ -87,7 +87,7 @@
     background: 0 0;
     text-align: left;
     color: $black-twelve;
-    font-family: $roboto-regular;
+    font-weight: 400;
   }
 
   .input-box-border {
@@ -264,7 +264,7 @@
     background-color: $white;
     padding: .25rem 1rem;
     @include fontSize(20);
-    font-family: $roboto-regular;
+    font-weight: 400;
     line-height: 1.5;
 
     a {
@@ -277,7 +277,7 @@
 
   .active {
     background-color: #edbbbb;
-    font-family: $roboto-bold;
+    font-weight: 700;
 
     a {
       color: #2c2c2c;
@@ -286,7 +286,7 @@
 
   .next,
   .previous {
-    font-family: $roboto-bold;
+    font-weight: 700;
 
     a {
       color: #747474;
@@ -473,7 +473,7 @@
   cursor: pointer;
   @include fontSize(20.5);
   outline: none !important;
-  font-family: $roboto-medium;
+  font-weight: 500;
   opacity: .95;
   text-decoration: underline;
   @include mobile {
@@ -512,7 +512,7 @@ button {
 .tooltip-inner {
   background-color: $primary-color;
   @include fontSize(13);
-  font-family: $roboto-regular;
+  font-weight: 400;
   @include padding(8);
 }
 

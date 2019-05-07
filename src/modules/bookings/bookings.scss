@@ -33,9 +33,9 @@
   }
 
   div {
-    font-family: $roboto-medium;
+    font-weight: 500;
     &:first-child {
-      font-family: $roboto-regular;
+      font-weight: 400;
     }
 
     &:nth-child(2){

@@ -10,13 +10,13 @@
 
 .heading {
   @include fontSize(18);
-  font-family: $roboto-medium;
+  font-weight: 500;
   color: $black-nine;
 }
 
 .input {
   font-size: 1.1rem;
-  font-family: $roboto-regular;
+  font-weight: 400;
   color: $black-five;
   margin: .5rem;
   letter-spacing: .035px;
@@ -24,14 +24,14 @@
 
 .detail-bold {
   font-size: 1.1rem;
-  font-family: $roboto-medium;
+  font-weight: 500;
   color: $black-five;
   letter-spacing: .035px;
 }
 
 .detail-link {
   font-size: 1.1rem;
-  font-family: $roboto-regular;
+  font-weight: 400;
   color: $primary-color;
   letter-spacing: .035px;
   cursor: pointer;
@@ -55,7 +55,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1.5rem;
-  font-family: $roboto-regular;
+  font-weight: 400;
   @include fontSize(16);
   color: #535353;
   letter-spacing: .48px;
@@ -71,14 +71,14 @@
 
 .pWith {
   @include fontSize(18);
-  font-family: $roboto-regular;
+  font-weight: 400;
   color: #070707;
   @include letterSpacing(0.54);
 }
 
 .login {
   @include fontSize(16);
-  font-family: $roboto-bold;
+  font-weight: 700;
   color: $primary-color;
   background-color: transparent;
   cursor: pointer;
@@ -96,7 +96,7 @@
   @include fontSize(16);
   border-radius: .15rem;
   background-color: $primary-color;
-  font-family: $roboto-bold;
+  font-weight: 700;
   letter-spacing: .4px;
   text-transform: uppercase;
   color: white;
@@ -110,7 +110,7 @@
 }
 
 .footerText {
-  font-family: $roboto-regular;
+  font-weight: 400;
   @include fontSize(16);
   letter-spacing: .48px;
   color: $black-ten;
@@ -123,7 +123,7 @@
   }
 
   .bold {
-    font-family: $roboto-bold;
+    font-weight: 700;
   }
 }
 
