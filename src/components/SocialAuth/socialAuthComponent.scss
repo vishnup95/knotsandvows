@@ -21,7 +21,7 @@
     .fbimage {
         @include width(20);
         @include height(37);
-        background: url('/images/fb-login_icon.png') no-repeat;
+        background: url('#{$image-base-url}/fb-login_icon.png') no-repeat;
         margin-right: 1rem;
         position: absolute;
         left: 0.8rem;
@@ -35,7 +35,7 @@
     .gmimage {
         width: 20px;
         height: 20px;
-        background: url('/images/google_icon.png');
+        background: url('#{$image-base-url}/google_icon.png');
         background-size: 20px;
         margin-right: 1rem;
         position: absolute;
