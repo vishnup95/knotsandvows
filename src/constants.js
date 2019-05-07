@@ -13,3 +13,5 @@ export const GOOGLE_MAP_KEY = process.env.GOOGLE_MAP_KEY;
 export const GA_TRACKING_ID = process.env.GA_TRACKING_ID;
 export const FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
 export const FULLSTORY_ORG_ID = process.env.FULLSTORY_ORG_ID;
+
+export const IMAGE_BASE_URL = 'https://d2ac09n5vmchb0.cloudfront.net/react-app/images';

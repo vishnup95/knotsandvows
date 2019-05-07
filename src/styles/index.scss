@@ -247,7 +247,7 @@
 
     &.password-unmasked {
       .input-password-mask {
-        background: center url("/images/filter-search-icon.png") no-repeat;
+        background: center url('#{$image-base-url}/filter-search-icon.png') no-repeat;
         background-size: contain;
       }
     }
@@ -384,7 +384,7 @@
 }
 
 .image-gallery-right-nav {
-  background: url("/images/gallery-right-arrow.svg") 50% 50% no-repeat;
+  background: url('#{$image-base-url}/gallery-right-arrow.svg') 50% 50% no-repeat;
   background-size: 30px;
   font-size: 0;
   @include mobile {
@@ -393,7 +393,7 @@
 }
 
 .image-gallery-left-nav {
-  background: url("/images/gallery-left-arrow.svg") 50% 50% no-repeat;
+  background: url('#{$image-base-url}/gallery-left-arrow.svg') 50% 50% no-repeat;
   background-size: 30px;
   font-size: 0;
   @include mobile {
