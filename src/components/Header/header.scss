@@ -3,7 +3,6 @@
 @import '../../variables/utils';
 
 .logo-test {
-
   max-height: 4.8rem;
   @include tablet {
     max-height: 8.1rem;
@@ -23,13 +22,14 @@
   .ahNav {
     background-color: transparent !important;
     margin-bottom: 0;
-    height: 8.1rem;
     justify-content: space-between !important;
-    padding: 0 10%;
-    @include mobile {
-      height: 73px;
-      padding: 0 5%;
-
+    height: 73px;
+    padding: 0 5%;
+    @include tablet {
+      height: 8.1rem;
+    }
+    @include desktop {
+      padding: 0 10%;
     }
 
     ul {
@@ -101,8 +101,7 @@
         position: relative;
         @include fontSize(20.5);
         @include tablet {
-          margin: 0 2rem;
-
+          margin: 0 1rem;
           &:before {
             content: '';
             position: absolute;
@@ -124,6 +123,9 @@
             }
           }
         }
+        @include desktop {
+          margin: 0 2rem;
+          }
       }
 
       a[class*=" active"] {

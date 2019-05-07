@@ -58,7 +58,7 @@ class CategoryCard extends Component {
 
     handleClickOutside = event => {
         if (!document.getElementById(`card${this.props.id}`).contains(event.target)) {
-            this.setState({ showNotes: false });
+            this.setState({ showNotes: false, showAddNote: false });
         }
     }
 
@@ -159,6 +159,11 @@ class CategoryCard extends Component {
                 this.setState({ note: '', selectedId: '' })
             }
         }
+    }
+
+    addNote() {
+        this.setState({ addNoteMode: 'add'});
+        this.toggleAddNote();
     }
 
     editNote(id, note) {
@@ -297,7 +302,7 @@ class CategoryCard extends Component {
                         this.state.showNotes && <Col className={styles.noteContainer} onClick={event => this.stopClicks(event)}>
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
-                                    <div className={styles.addHeader} onClick={() => this.toggleAddNote()} aria-hidden>
+                                    <div className={styles.addHeader} onClick={() => this.addNote()} aria-hidden>
                                         <img src={imagePath('plusbtn.svg')} alt="" />
                                         Add note
                                     </div>

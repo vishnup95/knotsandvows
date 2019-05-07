@@ -13,6 +13,9 @@
 .bg-image {
   width: 100%;
   @include height(450);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .detail-section {
@@ -61,7 +64,6 @@
       font-weight: bold;
     }
   }
-
   @include tablet {
     height: 11rem;
     flex-direction: row;
@@ -69,9 +71,11 @@
     @include margin(-176,0,0);
   }
 }
+
 .info-text {
   max-width: 56%;
 }
+
 .rating {
   @include fontSize(13);
   @extend %uppercase;
@@ -469,6 +473,7 @@
   line-height: 1.43;
   @include padding(8,0,8,12);
   position: relative;
+  word-break: break-all;
 }
 
 .image-gallery {
@@ -489,7 +494,6 @@
         max-width: 100%;
         height: auto;
         max-height: 100%;
-
         @include mobile {
           max-width: none;
           max-height: none;
@@ -503,7 +507,6 @@
         @include top(-60);
         @include right(-50);
         @include width(62);
-
         @include mobile {
           top: -0.75rem;
           right: -1.125rem;
@@ -524,14 +527,16 @@
 
   .item {
     width: auto;
+    @include fontSize(18);
   }
 
   .itemPrice {
     width: 25%;
+    font-size: 1.29rem;
   }
 
   .grey {
-    @include fontSize(16);
+    @include fontSize(15);
     color: #343434ab;
   }
 }

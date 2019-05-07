@@ -169,7 +169,8 @@ class CategoryListing extends Component {
   renderCompareVendors = (vendors) => {
     const compareVendors = vendors.map((vendor, index) => {
 
-      return <CompareProduct data={vendor} key={index} dispatch={this.props.dispatch} removeAction={(vendor) => this.addToCompare(vendor, true)}/>
+      return <CompareProduct data={vendor} key={index} dispatch={this.props.dispatch} removeAction={(vendor) => this.addToCompare(vendor, true)} 
+        categoryId={this.state.currentCategories[this.state.selectedVendor].category_id}/>
 
   });
   return compareVendors;
@@ -247,7 +248,7 @@ class CategoryListing extends Component {
                       return (
                         <div key={index} className="mb-4">
                           <div className={styles.listTitle} onClick={() => this.toggleCollapse(index)} aria-hidden>{!item.name ? `Shared list - ${index}` : item.name}</div>
-                          <Collapse isOpen={this.state.collapse[index]}>
+                          {/* <Collapse isOpen={this.state.collapse[index]}> temporarily removed */}
                             <ul className={styles.vendorList}>
                               {
                                 this.state.currentCategories.map((item, index) => {
@@ -289,7 +290,7 @@ class CategoryListing extends Component {
                                 })
                               }
                             </ul>
-                          </Collapse> 
+                          {/* </Collapse>  */}
                         </div>
                       );
                     })

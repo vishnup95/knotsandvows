@@ -1,7 +1,16 @@
  NODE_ENV=production
  PUBLIC_URL=''
- API_HOST='https://api.ahwanam.com'
+ API_HOST='https://qa.ahwanam.com'
  API_PORT=''
  PORT='4000'
- REACT_APP_API_HOST='https://api.ahwanam.com'
+ REACT_APP_API_HOST='https://qa.ahwanam.com'
  REACT_APP_API_PORT=''
+
+ GOOGLE_CLIENT_ID = '639855180755-lr4qck5n508erker0op5hjnl7tvdgkqf.apps.googleusercontent.com'
+ GOOGLE_SITE_VERIFICATION ='xrR2YnjgYQSLskpRVcptSSslT_wODKhrjf8bWZP-An4'
+
+ GOOGLE_MAP_KEY='AIzaSyBlDLoh8zk0WWSITPjDbO4tfV1VducHeio'
+
+ GA_TRACKING_ID='UA-135937390-1'
+ FACEBOOK_APP_ID='2249060602088158'
+ FULLSTORY_ORG_ID='JWHPP'

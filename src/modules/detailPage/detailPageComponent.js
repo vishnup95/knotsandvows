@@ -13,7 +13,7 @@ import ReviewItem from '../../components/Reviews/reviews';
 import ReactPaginate from 'react-paginate';
 import ProductGallery from '../../modals/productGallery/GalleryModal';
 import StarRating from '../../components/StarRating/starRating';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 import * as wishlistActions from '../../modules/wishlist/actions';
 import LoaderComponent from '../../components/Loader/loader';
 import { isLoggedIn, getDataFromResponse, getId, formatDate, formatMoney, getChargeType } from '../../utils/utilities';
@@ -115,6 +115,10 @@ class DetailPageComponent extends Component {
     }
     componentDidMount() {
         window.scrollTo(0, 0);
+    }
+
+    componentWillUnmount(){
+        this.props.dispatch(actions.clearData());
     }
 
     addToWishList = (e) => {
@@ -287,8 +291,12 @@ class DetailPageComponent extends Component {
     }
 
     scrollToDetailSection(id) {
-        var sectionId = document.getElementById(id);
-        sectionId.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+        let yPos =  document.getElementById(id).offsetTop;
+        window.scrollTo({
+            top: yPos + (detectMobile() ? 550 : 340),
+            left: 0,
+            behavior: 'smooth'
+        });
     }
 
     render() {
@@ -324,7 +332,7 @@ class DetailPageComponent extends Component {
                 {this.props.detailsLoading && <LoaderComponent />}
                 {details &&
                     <div>
-                        <div className={style.bgImage} style={{ background: "url(" + details.pic_url + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+                        <div className={style.bgImage} style={{ backgroundImage: "url(" + details.pic_url + ")" }}>
                         </div>
                         <div className={style.detailSection}>
                             <Row className={style.infoBox}>
@@ -454,8 +462,8 @@ class DetailPageComponent extends Component {
                                 <Col md="5">
                                     {details.packages && details.packages.length > 0 &&
                                         <Col md="12" className={`${style.detailSubSection} ${style.rightSection} py-0`}>
-                                            <Col md="12" className={`${style.rightSubSection} py-2`}>
-                                                <div className={style.pricesContainer}> Starting Price</div>
+                                            <Col md="12" className={`${style.rightSubSection}`}>
+                                                <h3> Starting Price</h3>
                                                 {this.renderPackages(details.packages)}
                                             </Col>
                                         </Col>}
