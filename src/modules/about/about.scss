@@ -9,7 +9,7 @@
   .aboutCover {
     height: 42vw;
     position: relative;
-    background: url('/images/about-cover.png');
+    background: url('#{$image-base-url}/about-cover.png');
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
