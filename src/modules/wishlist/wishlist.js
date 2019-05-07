@@ -68,7 +68,7 @@ class CategoryListing extends Component {
       
       if (detectMobile()) {
         let collapseArray = this.state.currentCategories.length > 0 ? Array(this.state.currentCategories.length).fill(false) : [];
-        collapseArray.length > 0 ? collapseArray[this.state.selectedVendor] = true : [];
+        collapseArray.length > 0 ? collapseArray[0] = true : [];
         this.setState({mobileCategoriesCollapse: collapseArray});
       }
 
