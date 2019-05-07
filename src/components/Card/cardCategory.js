@@ -320,7 +320,7 @@ class CategoryCard extends Component {
                                                     <div className={styles.noteWrap} key={index}>
                                                         <div>
                                                             <span className={styles.noteTitle}>{note.author_name || 'Author'}</span>
-                                                            <span className={styles.noteDate}>{formatDate(note.date)}</span>
+                                                            <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
                                                         </div>
                                                         <div className={styles.noteText}>
                                                             <div>

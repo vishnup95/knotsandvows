@@ -114,7 +114,7 @@
     display: none;
     @include padding(15,35);
     @include borderRadius(10);
-    background: url('#{$image-base-url}/dropicon_white.svg') 92% 50% no-repeat;
+    background: url('/images/dropicon_white.svg') 92% 50% no-repeat;
     background-color: rgb(134, 71, 116);
     background-size: 12px;
     text-align: left;
