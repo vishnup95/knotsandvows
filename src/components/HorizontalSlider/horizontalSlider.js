@@ -15,7 +15,7 @@ const SampleNextArrow = (propvalues) => {
             style={{
                 ...style,
                 display: "block",
-                background: `url(${imagePath('dropicon_home.svg')}) no-repeat`,
+                background: 'url("/images/dropicon_home.svg") no-repeat',
                 backgroundSize: '50px',
                 transform: 'rotate(270deg)',
                 top: '30%',
@@ -34,7 +34,7 @@ const SamplePrevArrow = (propvalues) => {
             style={{
                 ...style,
                 display: "block",
-                background: `url(${imagePath('dropicon_home.svg')}) no-repeat`,
+                background: 'url("/images/dropicon_home.svg") no-repeat',
                 transform: 'rotate(90deg)',
                 backgroundSize: '50px',
                 zIndex: '10',
@@ -53,7 +53,7 @@ const SampleNextArrowSmall = (propvalues) => {
             style={{
                 ...style,
                 display: "block",
-                background: `url(${imagePath('arrow-small.png')}) no-repeat`,
+                background: 'url("/images/arrow-small.png") no-repeat',
                 backgroundSize: 'contain',
                 top: '50%',
                 right: '-16px',
@@ -74,7 +74,7 @@ const SamplePrevArrowSmall = (propvalues) => {
             style={{
                 ...style,
                 display: "block",
-                background: `url(${imagePath('arrow-small.png')}) no-repeat`,
+                background: 'url("/images/arrow-small.png") no-repeat',
                 transform: 'rotate(-180deg)',
                 backgroundSize: 'contain',
                 zIndex: '10',
@@ -96,7 +96,7 @@ const SampleNextArrowBasic = (propvalues) => {
             style={{
                 ...style,
                 display: "block",
-                background: `url(${imagePath('arrow-small.png')}) no-repeat`,
+                background: 'url("/images/arrow-small.png") no-repeat',
                 backgroundSize: 'contain',
                 top: '50%',
                 right: '-15px',
@@ -117,7 +117,7 @@ const SamplePrevArrowBasic = (propvalues) => {
             style={{
                 ...style,
                 display: "block",
-                background: `url(${imagePath('arrow-small.png')}) no-repeat`,
+                background: 'url("/images/arrow-small.png") no-repeat',
                 transform: 'rotate(-180deg)',
                 backgroundSize: 'contain',
                 zIndex: '10',
