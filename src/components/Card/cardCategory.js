@@ -57,7 +57,7 @@ class CategoryCard extends Component {
     }
 
     handleClickOutside = event => {
-        if (!document.getElementById(`card${this.props.data.vendor_id}`).contains(event.target)) {
+        if (!document.getElementById(`card${this.props.id}`).contains(event.target)) {
             this.setState({ showNotes: false, showAddNote: false });
         }
     }
@@ -207,9 +207,9 @@ class CategoryCard extends Component {
                 <div className={styles.ratingContainer}>
                     <p className={`mb-2`}>
                         <img src={imagePath(this.state.isInWishlist ? 'wishlist_selected.svg' : 'wishlist_unselected.svg')} className={styles.heartImg}
-                            alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.data.vendor_id}`} />
+                            alt="Unselected heart" onClick={(e) => this.addToWishList(e)} aria-hidden id={`WishListTooltip${this.props.id}`} />
                         {!this.props.isWishlist &&
-                            <UncontrolledTooltip placement="top" target={`WishListTooltip${this.props.data.vendor_id}`}>
+                            <UncontrolledTooltip placement="top" target={`WishListTooltip${this.props.id}`}>
                                 {this.state.isInWishlist ? 'Added to Wishlist' : 'Add to Wishlist'}
                             </UncontrolledTooltip>
                         }
@@ -252,10 +252,9 @@ class CategoryCard extends Component {
 
     render() {
         return (
-            <div>
-                <a href={`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`} onClick={(event) => this.handleCardClick(event)}>
+            <div><a href={`/vendor-detail/${this.props.category}/${hyphonatedString(this.props.data.name, this.props.data.vendor_id)}`} onClick={(event) => this.handleCardClick(event)}>
                 <Card className={`${styles.categoryCard} ${this.props.type === 'carousel' ? styles.carouselCard : ''}`}
-                    id={`card${this.props.data.vendor_id}`}>
+                    id={`card${this.props.id}`}>
 
                     {
                         this.props.isWishlist &&
