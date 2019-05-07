@@ -299,8 +299,7 @@ a {
   @include mobile {
     position: fixed;
     width: 250px;
-    right: 15%;
-    left: 0;
+    left: 10%;
     top: 60px;
     margin: 0 auto;
   }
