@@ -118,7 +118,7 @@
   justify-content: center;
 
   .addIconBox {
-    background: url('/images/plus.svg') center no-repeat;
+    background: url('#{$image-base-url}/plus.svg') center no-repeat;
     width: 5rem;
     height: 5rem;
     border: 1px dashed #ee4d9b;
