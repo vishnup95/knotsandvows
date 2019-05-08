@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../Gold/goldPackage.scss';
-// import { Link } from 'react-router-dom';
 import { imagePath } from '../../../utils/assetUtils';
 import * as actions from '../../../components/TalkToWeddingPlanner/actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
+import * as metaActions from '../../../reducers/metaTags/actions';
 import { Container, Row, Col } from 'reactstrap';
 import HorizontalSlider from '../../../components/HorizontalSlider/horizontalSlider';
 
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  // categories: state.home.categories,
-  // exclusives: state.home.exclusives,
   ceremonies: state.home.ceremonies
 });
 
@@ -78,6 +75,15 @@ const packageItems = [
 class RubyPackage extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount(){
+    let meta = {
+      title:"Ruby Wedding Package - Caterers, Decorators, Photopghers",
+      description:"All-inclusive, customizable wedding packages at award-winning venues. Revolutionized planning & coordination from ceremony to reception.",
+      keywords:""
+    }
+    this.props.dispatch(metaActions.updateMetaData(meta));
   }
 
   sendDetailsToWeddingPlanner() {

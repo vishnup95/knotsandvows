@@ -4,10 +4,26 @@ import MemberContainerComponent from './memberComponent';
 import styles from './about.scss';
 import { imagePath } from '../../utils/assetUtils';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+import * as metaActions from '../../reducers/metaTags/actions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+const mapDispatchToProps = dispatch => ({
+  dispatch
+});
 
 class AboutComponent extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
+  }
+
+  componentWillMount(){
+    let meta = {
+      title:"Who We Are - Seven Vows",
+      description:"Seven Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.",
+      keywords:""
+    }
+    this.props.dispatch(metaActions.updateMetaData(meta));
   }
    
   render() {
@@ -81,4 +97,10 @@ class AboutComponent extends Component {
   }
 }
 
-export default AboutComponent;
+AboutComponent.propTypes = {
+  dispatch: PropTypes.func,
+};
+
+export default connect(
+  mapDispatchToProps
+)(AboutComponent);
