@@ -27,6 +27,7 @@
   padding: 1rem;
 
   h5 {
+    font-family: $roboto;
     @include fontSize(18);
     font-weight: 500;
   }
