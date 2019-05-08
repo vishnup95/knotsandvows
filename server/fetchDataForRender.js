@@ -2,11 +2,17 @@ import url from 'url';
 import { matchPath } from 'react-router-dom';
 
 import Home from '../src/modules/home/Home';
+import VendorDetail from '../src/modules/detailPage/detailPageComponent';
 
 const ROUTES_THAT_FETCH_DATA = [
   {
     path: '/',
     component: Home,
+    exact: true
+  },
+  {
+    path: '/vendor-detail/:category_name/:vendor_name',
+    component: VendorDetail,
     exact: true
   }
 ];
@@ -20,7 +26,7 @@ export const fetchDataForRender = (req, store) => {
       const promise =
         route.component &&
         route.component.fetchData &&
-        route.component.fetchData(store, match);
+        route.component.fetchData(store, match, req);
       promises.push(promise);
     }
     return match;

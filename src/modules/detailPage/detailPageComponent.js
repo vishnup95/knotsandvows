@@ -23,6 +23,7 @@ import InputField from '../../components/InputField/inputField';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import * as modalActions from '../../reducers/modal/actions';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
+import Helmet from 'react-helmet';
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -60,6 +61,17 @@ class DetailPageComponent extends Component {
             selectedNavItem: 0
         };
     }
+
+    static fetchData(store, match) {
+        // Normally you'd pass action creators to "connect" from react-redux,
+        // but since this is a static method you don't have access to "this.props".
+    
+        // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
+        let promises = [];
+        promises.push(store.dispatch(actions.fetchVendorDetails(match.params.vendor_name)));
+        return Promise.all(promises);
+      }
+
     toggleGallery = () => {
         this.setState({
             showGallery: !this.state.showGallery
@@ -88,9 +100,9 @@ class DetailPageComponent extends Component {
     }
 
     componentWillMount() {
+        this.props.dispatch(actions.clearData());
         this.updateUIData();
         this.props.dispatch(talkToPlannerActions.clearTalkToErrors());
-
     }
 
     updateUIData = () => {
@@ -110,8 +122,6 @@ class DetailPageComponent extends Component {
             }
             this.props.dispatch(actions.fetchAllNotes(details));
         }
-
-
     }
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -329,6 +339,13 @@ class DetailPageComponent extends Component {
         const heartIcon = this.state.isInWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg';
         return (
             <div className={style.detailContainer}>
+                {details && details.metatag &&
+                <Helmet>
+                <title>{details.metatag.title}</title>
+                <meta name="description" content={details.metatag.description} />
+                <meta name="keywords" content={details.metatag.keywords} />
+                </Helmet>
+              }
                 {this.props.detailsLoading && <LoaderComponent />}
                 {details &&
                     <div>
