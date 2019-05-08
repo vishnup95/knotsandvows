@@ -17,7 +17,13 @@ import { imagePath, detectMobile } from '../../utils/assetUtils';
 import { hyphonatedString } from '../../utils/utilities';
 import ImageFade from '../../components/ImageFade/imageFade';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
-import * as metaActions from '../../reducers/metaTags/actions';
+import Helmet from 'react-helmet';
+
+let meta = {
+  title:"SevenVows",
+  description:'Wedding services and planning partners',
+  keywords:""
+}
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -74,13 +80,6 @@ class Home extends Component {
     if (this.props.ceremonies && this.props.ceremonies.length === 0) {
       this.props.dispatch(actions.fetchCeremonies());
     }
-
-    let meta = {
-      title:"SevenVows",
-      description:'Wedding services and planning partners',
-      keywords:""
-    }
-    this.props.dispatch(metaActions.updateMetaData(meta));
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -244,6 +243,10 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.homeOuter}>
+      <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
         {
           styles &&
           <div>

@@ -5,10 +5,9 @@ import { imagePath } from '../../../utils/assetUtils';
 import * as actions from '../../../components/TalkToWeddingPlanner/actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as metaActions from '../../../reducers/metaTags/actions';
 import { Container, Row, Col } from 'reactstrap';
 import HorizontalSlider from '../../../components/HorizontalSlider/horizontalSlider';
-
+import Helmet from 'react-helmet';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -72,18 +71,17 @@ const packageItems = [
 // const packageItemsFirst = packageItems.slice(0, 4);
 // const packageItemsSecond = packageItems.slice(4, 6);
 
+
+
+let meta = {
+  title:"Ruby Wedding Package - Caterers, Decorators, Photopghers",
+  description:"All-inclusive, customizable wedding packages at award-winning venues. Revolutionized planning & coordination from ceremony to reception.",
+  keywords:""
+}
+
 class RubyPackage extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillMount(){
-    let meta = {
-      title:"Ruby Wedding Package - Caterers, Decorators, Photopghers",
-      description:"All-inclusive, customizable wedding packages at award-winning venues. Revolutionized planning & coordination from ceremony to reception.",
-      keywords:""
-    }
-    this.props.dispatch(metaActions.updateMetaData(meta));
   }
 
   sendDetailsToWeddingPlanner() {
@@ -109,6 +107,10 @@ class RubyPackage extends Component {
   render() {
     return (
       <div className={styles.goldPackage}>
+      <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
         <div className={`${styles.goldCover} ${styles.rubyCover}`}>
           <h1>Let your dream wedding be as radiant as ruby</h1>
         </div>

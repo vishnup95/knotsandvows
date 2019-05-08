@@ -17,8 +17,7 @@ import { imagePath } from './utils/assetUtils';
 
 const mapStateToProps = state => ({
   showModal: state.modal.show,
-  modalContent: state.modal.modalContent,
-  metadata : state.metadata.metadata
+  modalContent: state.modal.modalContent
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -56,61 +55,13 @@ class App extends Component {
     }
   }
 
-  getMetaData = () => {
-    let title = defaultMetadata.title;
-    let meta = [
-      {
-        charset: 'UTF-8'
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
-      },
-      {
-        httpEquiv: 'X-UA-Compatible',
-        content: 'IE=edge'
-      }
-    ];
-    
-    if(this.props.metadata){
-      if(this.props.metadata.title){
-        title = this.props.metadata.title;
-      }
-      if(this.props.metadata.description){
-        meta.push({
-         name:'description',
-         content:this.props.metadata.description
-        });
-      }else{
-        meta.push({
-          name:'description',
-          content:'Wedding services and planning partners'
-         });
-      }
-
-      if(this.props.metadata.keywords){
-        meta.push({
-         name:'keywords',
-         content:this.props.metadata.keywords
-        });
-      }
-    }else{
-      meta.push({
-        name:'description',
-        content:'Wedding services and planning partners'
-       });
-    }
-    return {title: title, meta: meta};
-  }
-
   render() {
 
-    let {title, meta} = this.getMetaData();
     return (<div className="app">
       <FullStory org={process.env.FULLSTORY_ORG_ID} />
       <Helmet
-        title={title}
-        meta={meta}
+        title={defaultMetadata.title}
+        meta={defaultMetadata.meta}
         link={defaultMetadata.link}
         script={defaultMetadata.script}
         noscript={defaultMetadata.noscript}
@@ -163,8 +114,7 @@ App.propTypes = {
   history: PropTypes.any,
   showModal: PropTypes.bool,
   modalContent: PropTypes.object,
-  dispatch: PropTypes.func,
-  metadata: PropTypes.object
+  dispatch: PropTypes.func
 };
 
 export default withRouter(connect(
