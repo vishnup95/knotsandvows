@@ -17,11 +17,10 @@ import { imagePath, detectMobile } from '../../utils/assetUtils';
 import { hyphonatedString } from '../../utils/utilities';
 import ImageFade from '../../components/ImageFade/imageFade';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+import * as metaActions from '../../reducers/metaTags/actions';
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  // categories: state.home.categories,
-  // exclusives: state.home.exclusives,
   ceremonies: state.home.ceremonies
 });
 
@@ -75,6 +74,13 @@ class Home extends Component {
     if (this.props.ceremonies && this.props.ceremonies.length === 0) {
       this.props.dispatch(actions.fetchCeremonies());
     }
+
+    let meta = {
+      title:"SevenVows",
+      description:'Wedding services and planning partners',
+      keywords:""
+    }
+    this.props.dispatch(metaActions.updateMetaData(meta));
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
