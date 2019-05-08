@@ -1,63 +1,66 @@
-@font-face {
-    font-family: 'Roboto Regular';
-    src: url('/fonts/Roboto-Regular.ttf');
-}
+// @font-face {
+//     font-family: 'Roboto Regular';
+//     src: url('/fonts/Roboto-Regular.ttf');
+// }
 
-@font-face {
-    font-family: 'Roboto Light';
-    src: url('/fonts/Roboto-Light.ttf');
-}
+// @font-face {
+//     font-family: 'Roboto Light';
+//     src: url('/fonts/Roboto-Light.ttf');
+// }
 
-@font-face {
-    font-family: 'Roboto Bold';
-    src: url('/fonts/Roboto-Bold.ttf');
-}
+// @font-face {
+//     font-family: 'Roboto Bold';
+//     src: url('/fonts/Roboto-Bold.ttf');
+// }
 
-@font-face {
-    font-family: 'Roboto Medium';
-    src: url('/fonts/Roboto-Medium.ttf');
-}
-@font-face {
-    font-family: 'Frank Ruhl Libre Regular';
-    src: url('/fonts/FrankRuhlLibre-Regular.ttf');
-}
-@font-face {
-    font-family: 'Frank Ruhl Libre Bold';
-    src: url('/fonts/FrankRuhlLibre-Bold.ttf');
-}
-@font-face {
-    font-family: 'Frank Ruhl Libre Light';
-    src: url('/fonts/FrankRuhlLibre-Light.ttf');
-}
-@font-face {
-    font-family: 'Frank Ruhl Libre Medium';
-    src: url('/fonts/FrankRuhlLibre-Medium.ttf');
-}
-@font-face {
-    font-family: 'OpenSans-Regular';
-    src: url('/fonts/OpenSans-Regular.ttf');
-}
-@font-face {
-    font-family: 'OpenSans-Light';
-    src: url('/fonts/OpenSans-Light.ttf');
-}
-@font-face {
-    font-family: 'OpenSans-SemiBold';
-    src: url('/fonts/OpenSans-SemiBold.ttf');
-}
-@font-face {
-    font-family: 'OpenSans-Bold';
-    src: url('/fonts/OpenSans-Bold.ttf');
-}
+// @font-face {
+//     font-family: 'Roboto Medium';
+//     src: url('/fonts/Roboto-Medium.ttf');
+// }
+// @font-face {
+//     font-family: 'Frank Ruhl Libre Regular';
+//     src: url('/fonts/FrankRuhlLibre-Regular.ttf');
+// }
+// @font-face {
+//     font-family: 'Frank Ruhl Libre Bold';
+//     src: url('/fonts/FrankRuhlLibre-Bold.ttf');
+// }
+// @font-face {
+//     font-family: 'Frank Ruhl Libre Light';
+//     src: url('/fonts/FrankRuhlLibre-Light.ttf');
+// }
+// @font-face {
+//     font-family: 'Frank Ruhl Libre Medium';
+//     src: url('/fonts/FrankRuhlLibre-Medium.ttf');
+// }
+// @font-face {
+//     font-family: 'OpenSans-Regular';
+//     src: url('/fonts/OpenSans-Regular.ttf');
+// }
+// @font-face {
+//     font-family: 'OpenSans-Light';
+//     src: url('/fonts/OpenSans-Light.ttf');
+// }
+// @font-face {
+//     font-family: 'OpenSans-SemiBold';
+//     src: url('/fonts/OpenSans-SemiBold.ttf');
+// }
+// @font-face {
+//     font-family: 'OpenSans-Bold';
+//     src: url('/fonts/OpenSans-Bold.ttf');
+// }
 
-$roboto-regular: 'Roboto Regular', sans-serif;
-$roboto-light: 'Roboto Light', sans-serif;
-$roboto-bold: 'Roboto Bold', sans-serif;
-$roboto-medium: 'Roboto Medium', sans-serif;
-$frank-regular: 'Frank Ruhl Libre Regular', serif;
-$frank-bold: 'Frank Ruhl Libre Bold', serif;
-$frank-medium: 'Frank Ruhl Libre Medium', serif;
+// $roboto-regular: 'Roboto Regular', sans-serif;
+// $roboto-light: 'Roboto Light', sans-serif;
+// $roboto-bold: 'Roboto Bold', sans-serif;
+// $roboto-medium: 'Roboto Medium', sans-serif;
+// $frank-regular: 'Frank Ruhl Libre Regular', serif;
+// $frank-bold: 'Frank Ruhl Libre Bold', serif;
+// $frank-medium: 'Frank Ruhl Libre Medium', serif;
 // $opensans-regular: 'OpenSans-Regular', sans-serif;
 // $opensans-light: 'OpenSans-Light', sans-serif;
 // $opensans-bold: 'OpenSans-Bold', sans-serif;
 // $opensans-semi-bold: 'OpenSans-SemiBold', sans-serif;
+
+$roboto: 'Roboto', sans-serif;
+$frank: 'Frank Ruhl Libre', serif;

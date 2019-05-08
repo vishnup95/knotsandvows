@@ -57,7 +57,7 @@
     padding-left: 0;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    font-family: $frank-regular;
+    font-family:  $frank; font-weight: 400;
     color: $black;
     background: url('#{$image-base-url}/dropicon.svg') no-repeat 90% 47%;
 
@@ -114,13 +114,13 @@
   @include fontSize(20);
 
   @include mobile {
-    font-family: $frank-regular;
+    font-family:  $frank; font-weight: 400;
   }
 }
 
 .selectedCount {
   @include fontSize(20);
-  font-family: $roboto-medium;
+  font-weight: 500;
 }
 
 .collaboratorList {
@@ -212,7 +212,7 @@
   h5 {
     @include fontSize(16);
     @include padding(0,51);
-    font-family: $roboto-medium;
+    font-weight: 500;
     @include margin(16,0);
 
   }
@@ -228,7 +228,7 @@
   @include padding(0,51);
 
   span {
-    font-family: $roboto-medium;
+    font-weight: 500;
     @include height(26);
     @include borderRadius(30);
     border: 1px solid $warm-grey-two;
@@ -251,7 +251,7 @@
 .comparePopup {
   h3 {
     @include fontSize(30);
-    font-family: $roboto-regular;
+    font-weight: 400;
     margin: 2rem 0;
     text-align: center;
     color: $black;
@@ -268,7 +268,7 @@
 }
 
 .label {
-  font-family: $roboto-medium;
+  font-weight: 500;
   @include fontSize(16);
   color: $black;
 
@@ -322,7 +322,7 @@
 .view-all {
   color: $primary-color;
   @include fontSize(18);
-  font-family: $roboto-medium;
+  font-weight: 500;
   width: max-content;
   cursor: pointer;
   margin: 0 auto;
