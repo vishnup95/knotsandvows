@@ -219,7 +219,7 @@ a {
   @include borderRadius(0,0,18,18);
 
   .checkbox {
-    background: url('/images/unchecked.svg') center no-repeat / contain;
+    background: url('#{$image-base-url}/unchecked.svg') center no-repeat / contain;
     @include width(41.7);
     @include height(41.7);
     position: absolute;
@@ -228,7 +228,7 @@ a {
     transform: translateX(-50%);
 
     &.checked {
-      background: url('/images/checked.svg') center no-repeat / contain;
+      background: url('#{$image-base-url}/checked.svg') center no-repeat / contain;
 
     }
   }
@@ -244,21 +244,21 @@ a {
 }
 
 .addIcon {
-  background: url('/images/add-note.svg') center no-repeat;
+  background: url('#{$image-base-url}/add-note.svg') center no-repeat;
   background-size: 50%;
   @include right(45);
   background-color: $white;
 }
 
 .deleteIcon {
-  background: url('/images/delete.svg') center no-repeat;
+  background: url('#{$image-base-url}/delete.svg') center no-repeat;
   background-size: 50%;
   @include right(11);
   background-color: $white;
 }
 
 .viewIcon {
-  background: url('/images/view-note.svg') center bottom no-repeat;
+  background: url('#{$image-base-url}/view-note.svg') center bottom no-repeat;
   background-size: 75%;
   @include width(30);
   @include height(30);

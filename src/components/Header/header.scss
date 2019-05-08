@@ -329,3 +329,19 @@
     }
   }
 }
+
+.closeBtnSmall {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  cursor: pointer;
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+
+  img {
+    @include width(28.3);
+  }
+}

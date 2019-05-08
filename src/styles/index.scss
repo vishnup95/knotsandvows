@@ -172,7 +172,7 @@
   }
 
   .input-password-mask {
-    background: center url('/images/info.svg') no-repeat;
+    background: center url('#{$image-base-url}/info.svg') no-repeat;
     background-size: contain;
     position: absolute;
     right: 0;
@@ -247,7 +247,7 @@
 
     &.password-unmasked {
       .input-password-mask {
-        background: center url("/images/filter-search-icon.png") no-repeat;
+        background: center url('#{$image-base-url}/filter-search-icon.png') no-repeat;
         background-size: contain;
       }
     }
@@ -322,7 +322,7 @@
   position: absolute;
   right: 0;
   @include top(-24);
-  background: url('/images/delete.svg') center center no-repeat;
+  background: url('#{$image-base-url}/delete.svg') center center no-repeat;
   background-size: contain;
   cursor: pointer;
 }
@@ -333,7 +333,7 @@
   position: absolute;
   right: 2rem;
   @include top(-24);
-  background: url('/images/edit.svg') center center no-repeat;
+  background: url('#{$image-base-url}/edit.svg') center center no-repeat;
   background-size: contain;
   cursor: pointer;
 }
@@ -384,7 +384,7 @@
 }
 
 .image-gallery-right-nav {
-  background: url("/images/gallery-right-arrow.svg") 50% 50% no-repeat;
+  background: url('#{$image-base-url}/gallery-right-arrow.svg') 50% 50% no-repeat;
   background-size: 30px;
   font-size: 0;
   @include mobile {
@@ -393,7 +393,7 @@
 }
 
 .image-gallery-left-nav {
-  background: url("/images/gallery-left-arrow.svg") 50% 50% no-repeat;
+  background: url('#{$image-base-url}/gallery-left-arrow.svg') 50% 50% no-repeat;
   background-size: 30px;
   font-size: 0;
   @include mobile {
@@ -577,6 +577,12 @@ button {
   }
 }
 
+.navbar-toggler {
+  background: url('#{$image-base-url}/nav-icon.svg') center center no-repeat;
+  z-index: 3;
+  top: -3.8rem;
+  right: 1rem
+}
 input[id="contactDate"] {
   width: 100%;
   -webkit-appearance: none;

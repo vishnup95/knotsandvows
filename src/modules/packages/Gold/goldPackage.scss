@@ -19,7 +19,7 @@
 .goldCover {
   height: 37.7vw;
   position: relative;
-  background: url('/images/gold-bg.jpg') center top no-repeat;
+  background: url('#{$image-base-url}/gold-bg.jpg') center top no-repeat;
   background-size: cover;
   display: flex;
   align-items: flex-end;
@@ -30,7 +30,7 @@
   }
 
   &.rubyCover {
-    background: url('/images/ruby-cover.jpg') center top no-repeat;
+    background: url('#{$image-base-url}/ruby-cover.jpg') center top no-repeat;
     background-size: cover;
   }
 
@@ -61,7 +61,7 @@
   @include mobile {
     margin-bottom: 15.5vw;
   }
-  background: url('/images/mask-one.svg') center top no-repeat;
+  background: url('#{$image-base-url}/mask-one.svg') center top no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -154,7 +154,7 @@
         top: .5rem;
         height: .8rem;
         width: .8rem;
-        background-image: url('/images/package-list-icon.png');
+        background-image: url('#{$image-base-url}/package-list-icon.png');
         background-size: cover;
       }
     }
@@ -189,12 +189,12 @@
   @include height(270);
   @include padding(10);
   border-radius: 50%;
-  background: url('/images/package-img-bg.jpg') center center no-repeat;
+  background: url('#{$image-base-url}/package-img-bg.jpg') center center no-repeat;
   background-size: cover;
   margin-bottom: 1rem;
 
   &.ruby {
-    background: url('/images/ruby-img-bg.jpg') center center no-repeat;
+    background: url('#{$image-base-url}/ruby-img-bg.jpg') center center no-repeat;
     background-size: cover;
   }
 
@@ -348,7 +348,7 @@
     position: absolute;
     right: -5.2rem;
     bottom: -1px;
-    background: url('/images/love-mark.png') center center no-repeat;
+    background: url('#{$image-base-url}/love-mark.png') center center no-repeat;
     background-size: cover;
     width: 10rem;
     height: 2rem;

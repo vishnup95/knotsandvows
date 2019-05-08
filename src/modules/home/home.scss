@@ -1048,7 +1048,7 @@ h1.homeTitle {
       bottom: 2.5rem;
       width: 36px;
       height: 36px;
-      background-image: url('/images/fav-icon.png');
+      background-image: url('#{$image-base-url}/fav-icon.png');
     }
 
   }
