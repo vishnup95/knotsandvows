@@ -640,6 +640,7 @@ a.button {
   }
   @include desktop {
     width: auto;
+
     &:first-child {
       z-index: 3;
       transform: translate3d(56%,-80.5rem,0px);
@@ -894,6 +895,19 @@ h1.homeTitle {
 
     &:before {
       display: none;
+    }
+  }
+  @include mobileLandscape {
+    flex-direction: row;
+
+    .carouselImage {
+      width: 28rem;
+      height: 33vw;
+    }
+
+    .carouselContent {
+      padding: 0 2rem 1rem;
+
     }
   }
 
