@@ -28,7 +28,7 @@ class ForgotPassword extends Component {
         this.passwordRef = React.createRef();
         this.confirmPasswordRef = React.createRef();
         this.state = {
-            email: '',
+            forgot_email: '',
             password: '',
             confirmPassword: '',
             error:''
@@ -73,10 +73,10 @@ class ForgotPassword extends Component {
               }
             }
         }else{
-            let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
+            let email = this.emailRef.current.validateFormInput(document.getElementById('forgot_email'));
             if (email) {
                 const data = {
-                    email: this.state.email
+                    email: this.state.forgot_email
                 }
                 this.props.dispatch(actions.forgotPasswordRequest(data));
             }
@@ -96,7 +96,7 @@ class ForgotPassword extends Component {
         (<div className={styles.forgotPassword}>
             <div className={styles.header}>Forgot Password</div>
             <Form className="position-relative mt-3">
-                <InputField placeHolder="Email Address" id="email" type="email" ref={this.emailRef} onChange={e => this.handleFormChange(e)} />
+                <InputField placeHolder="Email Address" id="forgot_email" type="email" ref={this.emailRef} onChange={e => this.handleFormChange(e)} />
             </Form>
             <div className="text-center mt-4">
                 <ProgressButton title="Send" onClick={this.validateForm} isLoading={this.props.isLoading}></ProgressButton>
