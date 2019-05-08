@@ -59,9 +59,9 @@ const jumbotronData =
     subtitle: 'We have you covered. Our expert planners will work with you to make your event fantastic and make sure your needs are met.'
   };
 
-  const meta = {
-    title:"Who We Are - Seven Vows",
-    description:'Seven Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.',
+  let meta = {
+    title:"SevenVows",
+    description:'Wedding services and planning partners',
     keywords:""
   }
 class PrivacyAndPolicy extends Component {
