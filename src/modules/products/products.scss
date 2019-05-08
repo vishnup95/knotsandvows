@@ -132,19 +132,6 @@
     }
   }
 
-  .searchButton {
-    padding: .75rem 2rem;
-    z-index: 1;
-    margin-left: 1.5rem;
-    border-radius: 5px;
-    box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
-    background-size: 10px;
-    background: url('#{$image-base-url}/filter-search-icon.png') center center no-repeat $secondary-color;
-    border: none;
-    @include width(70);
-    @include height(60);
-  }
-
   @include mobile {
     height: 110vh;
     background-color: rgba(0, 0, 0, 0.59);

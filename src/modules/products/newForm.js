@@ -9,7 +9,7 @@ import {
 
 import styles from './products.scss';
 import { getId, hyphonatedString } from '../../utils/utilities';
-import { imagePath } from '../../utils/assetUtils';
+import { imagePath, detectMobile } from '../../utils/assetUtils';
 
 let selectedFilters = {};
 
@@ -40,18 +40,7 @@ export class DropdownComponent extends Component {
     handleSelection(index, value) {
         this.toggle();
         this.setState({selectedItem: this.props.options[index]});
-
-        if (this.props.name === 'category') {
-            this.props.dispatch(actions.fetchFilters(value, false));
-            this.props.onCategoryChange(value);
-            selectedFilters = {};
-        } else {
-            if (value !== '') {
-                selectedFilters[this.props.name] = value;
-            } else {
-                delete selectedFilters[this.props.name];
-            }
-        }
+        this.props.onSelectionChange(value, this.props.name);
     }
   
     render() {
@@ -90,7 +79,7 @@ DropdownComponent.propTypes = {
     selectedItem: PropTypes.any,
     selectedCategory: PropTypes.string,
     dispatch: PropTypes.func,
-    onCategoryChange: PropTypes.func
+    onSelectionChange: PropTypes.func
 }
 
 class FormComponent extends Component { 
@@ -103,8 +92,23 @@ class FormComponent extends Component {
         selectedFilters = {};
     }
 
-    changeCategory = (category) => {
-        this.setState({category: category});
+    onChange = (value, filterName) => {
+        if (filterName === 'category') {
+            this.props.dispatch(actions.fetchFilters(value, detectMobile() ? false : true));
+            this.setState({category: value});
+            selectedFilters = {};
+        } else {
+            if (value !== '') {
+                selectedFilters[filterName] = value;
+            } else {
+                delete selectedFilters[filterName];
+            }
+        }
+
+        if (!detectMobile()) {
+            console.log('this.state ', this.state.category)
+            this.props.filterSearch(selectedFilters, filterName === 'category' ? value : this.state.category);
+        }
     }
 
     toggleForm = () => {
@@ -128,12 +132,12 @@ class FormComponent extends Component {
                     <h5 className="d-block d-sm-none">Search your vendors</h5>
                     <DropdownComponent key="categories" placeholder="i am looking for" name="category" dispatch={this.props.dispatch}
                         options={this.props.categories} selectedItem={this.props.categories[indexOfSelectedCategory]}
-                        onCategoryChange={this.changeCategory}/> 
+                        onSelectionChange={this.onChange}/> 
                     {
                         this.props.filters.map((filter) => { 
                             let selectedItem = filter.values[0];
                             return(
-                                <DropdownComponent key={filter.name} placeholder={filter.display_name} name={filter.name}
+                                <DropdownComponent key={filter.name} placeholder={filter.display_name} name={filter.name} onSelectionChange={this.onChange}
                                 dispatch={this.props.dispatch} options={filter.values} selectedItem={selectedItem}/>
                             );
                         })
@@ -145,7 +149,6 @@ class FormComponent extends Component {
                         </Button>
                     </div>              
                 </div>
-                <Button color="danger" className={`d-none d-sm-block ${styles.searchButton}`} name="search button" onClick={() => this.props.filterSearch(selectedFilters, this.state.category)}></Button>   
             </div>
         );
     }
