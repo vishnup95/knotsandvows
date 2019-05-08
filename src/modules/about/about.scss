@@ -50,6 +50,7 @@
   }
 
   .h4Class {
+    font-family: $roboto;
     font-weight: 700;
     color: $secondary-color;
     @include fontSize(30);
