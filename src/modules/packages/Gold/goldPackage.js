@@ -5,10 +5,15 @@ import { imagePath } from '../../../utils/assetUtils';
 import * as actions from '../../../components/TalkToWeddingPlanner/actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as metaActions from '../../../reducers/metaTags/actions';
 import { Container, Row, Col } from 'reactstrap';
 import HorizontalSlider from '../../../components/HorizontalSlider/horizontalSlider';
+import Helmet from 'react-helmet';
 
+let meta = {
+  title:"Gold Wedding Package - Caterers, Decorators, Photopghers",
+  description:"From venues to photographers, get the exclusive wedding package deals. Add on option to get an expert wedding planner consultation!",
+  keywords:""
+}
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -77,15 +82,6 @@ class GoldPackage extends Component {
     super(props);
   }
 
-  componentWillMount(){
-    let meta = {
-      title:"Gold Wedding Package - Caterers, Decorators, Photopghers",
-      description:"From venues to photographers, get the exclusive wedding package deals. Add on option to get an expert wedding planner consultation!",
-      keywords:""
-    }
-    this.props.dispatch(metaActions.updateMetaData(meta));
-  }
-
   sendDetailsToWeddingPlanner() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
@@ -109,6 +105,10 @@ class GoldPackage extends Component {
   render() {
     return (
       <div className={styles.goldPackage}>
+      <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
         <div className={styles.goldCover}>
           <h1>Add a golden touch to your big day</h1>
         </div>

@@ -10,8 +10,14 @@ import LoaderComponent from '../../components/Loader/loader';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import CategorySection from '../ceremonyDetail/categorySection';
-import * as metaActions from '../../reducers/metaTags/actions';
+import Helmet from 'react-helmet';
 
+
+let meta = {
+  title:"Wedding Vendors - Explore Packages and Book Online",
+  description:'One stop destination for all wedding vendors like photographers, caterers, decorators, makeup artists. Browse categories, compare prices & select as per your requirement & budget.',
+  keywords:""
+}
 
 const mapStateToProps = state => ({
   allVendorDetails: state.ceremonyDetails.allVendorDetails,
@@ -42,12 +48,6 @@ class CategoryListing extends Component {
 
   componentWillMount() {
     this.props.dispatch(actions.fetchAllVendors());
-    let meta = {
-      title:"Wedding Vendors - Explore Packages and Book Online",
-      description:'One stop destination for all wedding vendors like photographers, caterers, decorators, makeup artists. Browse categories, compare prices & select as per your requirement & budget.',
-      keywords:""
-    }
-    this.props.dispatch(metaActions.updateMetaData(meta));
   }
 
   updateData(props){
@@ -88,6 +88,10 @@ class CategoryListing extends Component {
     
     return (
       <div className="full-height">
+      <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
             <Container className={styles.browseAllContainer}>
               <Row>
                 <Col className="mb-4">

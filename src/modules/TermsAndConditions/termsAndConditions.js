@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import styles from './termsAndConditions.scss';
+import Helmet from 'react-helmet';
 
 const listData = [
   {
@@ -56,10 +57,21 @@ const jumbotronData =
     buttonText: 'Talk to our experts!',
     subtitle: 'We have you covered. Our expert planners will work with you to make your event fantastic and make sure your needs are met.'
   };
+
+  const meta = {
+    title:"Who We Are - Seven Vows",
+    description:'Seven Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.',
+    keywords:""
+  }
+
 class TermsAndConditions extends Component {
   render() {
     return (
       <div className={styles.termsContainer}>
+      <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
         <h1 className="text-center">Terms & Conditions</h1>
         <Container  className="mb-5">
           <Row>
