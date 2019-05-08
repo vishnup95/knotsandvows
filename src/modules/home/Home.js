@@ -194,7 +194,7 @@ class Home extends Component {
         left: 0,
         behavior: 'smooth'
       });
-    }else{
+    } else {
       window.scrollTo(0, 0);
     }
   }
@@ -277,7 +277,7 @@ class Home extends Component {
                       }
 
                     </div>
-                    <h1 className={`${styles.homeTitle} mobile-only`}>As your happiness partners we help you celebrate<br/> <span>Your Day...Your Way!</span></h1>
+                    <h1 className={`${styles.homeTitle} mobile-only`}>As your happiness partners we help you celebrate<br /> <span>Your Day...Your Way!</span></h1>
                     {/* this section is temporarily removed
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
@@ -397,7 +397,7 @@ class Home extends Component {
                   <div className="col justify-center align-flex-top mobile-column">
                     <img className={styles.packageStatic} src={imagePath('packageall.png')} alt="img" />
                     <div className="mobile-only">
-                      <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'}/>
+                      <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'} />
                     </div>
                   </div>
                   <div className={styles.dummyClass}>
@@ -418,67 +418,73 @@ class Home extends Component {
               <Container className={`${styles.homeContainer}`}>
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
-                    <img src={imagePath('contact-box.png')} alt="Gold" />
-                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Gold</h3>
-                      <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
-                      <a className="primary-button home-btn white" href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
-                      {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
-                    </div>
+                    {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
+                    <picture>
+                      <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')}/>
+                      <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')}/>
+                      <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')}/>
+                      <img src={imagePath('contact-box-176.png')} alt="gold package"/>
+                    </picture>
+                          <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                            <h3>Gold</h3>
+                            <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
+                            <a className="primary-button home-btn white" href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
+                            {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
+                          </div>
                   </Col>
-                  <Col className={styles.packageBox} id="box-two">
-                    <img src={imagePath('ruby-box.png')} alt="Ruby" />
-                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Royal Ruby</h3>
-                      <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
-                      <a className="primary-button home-btn white" href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
+                        <Col className={styles.packageBox} id="box-two">
+                          <img src={imagePath('ruby-box.png')} alt="Ruby" />
+                          <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                            <h3>Royal Ruby</h3>
+                            <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
+                            <a className="primary-button home-btn white" href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
 
-                      {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
-                    </div>
-                  </Col>
-                  <Col className={styles.packageBox} id="box-three">
-                    <img src={imagePath('genie.png')} alt="Genie" />
-                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                      <h3>Genie</h3>
-                      <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
-                      {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
-                      <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
+                            {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
+                          </div>
+                        </Col>
+                        <Col className={styles.packageBox} id="box-three">
+                          <img src={imagePath('genie.png')} alt="Genie" />
+                          <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                            <h3>Genie</h3>
+                            <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
+                            {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
+                            <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 
-                    </div>
-                  </Col>
+                          </div>
+                        </Col>
                 </Row>
               </Container>
             </div>
-            <Container className={styles.homeContainer}>
-              <Row className="mt-5" id="ceremonies">
-                <Col className={`${styles.ceremony} text-center`}>
-                  <h2>Pick a Ceremony...</h2>
-                  {this.props.ceremonies &&
-                    <Col xs="12" className={` no-padding mb-5`}>
-                      <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)}/>
-                    </Col>
-                  }
-                </Col>
-              </Row>
-            </Container>
+                  <Container className={styles.homeContainer}>
+                    <Row className="mt-5" id="ceremonies">
+                      <Col className={`${styles.ceremony} text-center`}>
+                        <h2>Pick a Ceremony...</h2>
+                        {this.props.ceremonies &&
+                          <Col xs="12" className={` no-padding mb-5`}>
+                            <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
+                          </Col>
+                        }
+                      </Col>
+                    </Row>
+                  </Container>
           </div>
-        }
+                }
       </div>
-    );
-  }
-}
-
+              );
+            }
+          }
+          
 Home.propTypes = {
-  user: PropTypes.object,
-  dispatch: PropTypes.func,
-  categories: PropTypes.array,
-  exclusives: PropTypes.array,
-  ceremonies: PropTypes.array,
-  router: PropTypes.object,
-  location: PropTypes.object
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+                user: PropTypes.object,
+              dispatch: PropTypes.func,
+              categories: PropTypes.array,
+              exclusives: PropTypes.array,
+              ceremonies: PropTypes.array,
+              router: PropTypes.object,
+              location: PropTypes.object
+            };
+            
+            export default connect(
+              mapStateToProps,
+              mapDispatchToProps
 )(Home);
