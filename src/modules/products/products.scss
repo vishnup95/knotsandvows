@@ -123,7 +123,7 @@
       @include fontSize(16);
       height: auto;
       padding: 0 2rem 0 1rem;
-      background: url('/images/filter-dropdown.png') right no-repeat;
+      background: url('#{$image-base-url}/filter-dropdown.png') right no-repeat;
       -webkit-appearance: none;
 
       &:focus {
@@ -139,7 +139,7 @@
     border-radius: 5px;
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
     background-size: 10px;
-    background: url("/images/filter-search-icon.png") center center no-repeat $secondary-color;
+    background: url('#{$image-base-url}/filter-search-icon.png') center center no-repeat $secondary-color;
     border: none;
     @include width(70);
     @include height(60);
@@ -193,7 +193,7 @@
   letter-spacing: .5px;
 
   background-color: inherit;
-  background: url('/images/filter-dropdown.png') right no-repeat;
+  background: url('#{$image-base-url}/filter-dropdown.png') right no-repeat;
   -webkit-appearance: none;
 
   &:focus {
@@ -268,7 +268,7 @@
     color: $warm-grey-eight;
     letter-spacing: .48px;
     font-family: $roboto-regular;
-    background: url('/images/filter-dropdown.png') right no-repeat;
+    background: url('#{$image-base-url}/filter-dropdown.png') right no-repeat;
     padding-right: 2rem;
 
     @include mobile {
@@ -336,7 +336,7 @@
     color: $black-twelve;
     letter-spacing: .48px;
     font-family: $roboto-regular;
-    background: url('/images/filter-dropdown.png') right no-repeat;
+    background: url('#{$image-base-url}/filter-dropdown.png') right no-repeat;
     padding-right: 2rem;
   }
 
@@ -406,7 +406,7 @@
     border-radius: 5px;
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
     background-size: 10px;
-    background: url("/images/filter-search-icon.png") center center no-repeat $secondary-color;
+    background: url('#{$image-base-url}/filter-search-icon.png') center center no-repeat $secondary-color;
     border: none;
     @include width(70);
     @include height(55);

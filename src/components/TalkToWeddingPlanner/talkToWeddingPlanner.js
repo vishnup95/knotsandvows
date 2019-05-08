@@ -102,6 +102,9 @@ class TalkToWeddingPlanner extends Component {
                 {this.props.type === '' && <button onClick={() => this.toggle()} className={`${this.props.buttonColor === 'white' ? 'white' : ''} primary-button home-btn medium-pink`}>{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
+                    <div className={styles.closeBtnSmall} onClick={() => this.toggle()} aria-hidden>
+                        <img src={imagePath('close-blank.svg')} alt="close button"/>
+                    </div>
                     <div className={styles.loginForm}>
                         <img src={imagePath('planner.png')} alt="planner"/>
                         <div className={styles.logoWrap}>

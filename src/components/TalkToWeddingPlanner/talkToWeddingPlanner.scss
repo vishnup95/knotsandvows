@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   @include padding(80,90,30);
-  background: url('/images/planner-bg.png') no-repeat;
+  background: url('#{$image-base-url}/planner-bg.png') no-repeat;
   background-size: contain;
   border: 2px solid $medium-pink;
   @include mobile {
@@ -117,5 +117,21 @@
   img {
     @include width(40); 
     @include height(40);
+  }
+}
+
+.closeBtnSmall {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  cursor: pointer;
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+
+  img {
+    @include width(28.3);
   }
 }

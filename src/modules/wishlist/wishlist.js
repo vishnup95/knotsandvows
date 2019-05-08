@@ -254,7 +254,7 @@ class CategoryListing extends Component {
                                 this.state.currentCategories.map((item, index) => {
                                   return (
                                     <div key={index}>
-                                      <li  className={`${styles.listItem} ${this.state.selectedVendor === index && this.state.mobileCategoriesCollapse[index] ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
+                                      <li  className={`${styles.listItem} ${this.state.selectedVendor === index && (detectMobile() ? this.state.mobileCategoriesCollapse[index] : true) ? styles.active : ''}`} onClick={() => this.handleCategoryChange(index)} aria-hidden>
                                         {item.category_name}
                                         {
                                           !this.state.isCompare && this.state.mobileCategoriesCollapse[index] && item.vendors.length >= 2 &&
