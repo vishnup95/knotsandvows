@@ -11,6 +11,7 @@ import TalkToAhwanamReducer from '../components/TalkToWeddingPlanner/reducer';
 import VendorDetailReducer from '../modules/detailPage/reducer';
 import CeremonyDetailReducer from '../modules/ceremonyDetail/reducer';
 import WishListReducer from '../modules/wishlist/reducer';
+import MetaDataReducer from './metaTags/reducer';
 
 const appReducer = combineReducers({
   session,
@@ -22,7 +23,8 @@ const appReducer = combineReducers({
   talkToAhwanam: TalkToAhwanamReducer,
   details: VendorDetailReducer,
   ceremonyDetails : CeremonyDetailReducer,
-  wishlist : WishListReducer
+  wishlist : WishListReducer,
+  metadata : MetaDataReducer
 });
 
 const rootReducer = (state, action) => {
