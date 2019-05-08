@@ -4,31 +4,26 @@ import MemberContainerComponent from './memberComponent';
 import styles from './about.scss';
 import { imagePath } from '../../utils/assetUtils';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
-import * as metaActions from '../../reducers/metaTags/actions';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 
-const mapDispatchToProps = dispatch => ({
-  dispatch
-});
-
+let meta = {
+  title:"Who We Are - Seven Vows",
+  description:'Seven Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.',
+  keywords:""
+}
 class AboutComponent extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
   }
-
-  componentWillMount(){
-    let meta = {
-      title:"Who We Are - Seven Vows",
-      description:"Seven Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.",
-      keywords:""
-    }
-    this.props.dispatch(metaActions.updateMetaData(meta));
-  }
    
   render() {
+
     return (
       <div className={styles.aboutContainer}>
+        <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description}/>
+        </Helmet>
         <div className={styles.aboutCover}></div>
         <Container className={`${styles.aboutSubContainer} mb-5 pb-5`}>
           <h1 className={`${styles.h2Class} mt-5`}>
@@ -97,10 +92,4 @@ class AboutComponent extends Component {
   }
 }
 
-AboutComponent.propTypes = {
-  dispatch: PropTypes.func,
-};
-
-export default connect(
-  mapDispatchToProps
-)(AboutComponent);
+export default AboutComponent;
