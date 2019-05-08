@@ -45,11 +45,11 @@ class SignInModal extends Component {
         this.state = {
             mode: DisplayMode.signIn,
             signIn: {
-                email: null,
+                sign_in_email: null,
                 password: null
             },
             signUp: {
-                email: null,
+                sign_up_email: null,
                 name: null,
                 password: null,
                 phoneno: null
@@ -66,7 +66,7 @@ class SignInModal extends Component {
         this.setState({
             mode: DisplayMode.signUp,
             signIn: {
-                email: null,
+                sign_in_email: null,
                 password: null
             }
         });
@@ -83,7 +83,7 @@ class SignInModal extends Component {
         this.setState({
             mode: DisplayMode.signIn,
             signUp: {
-                email: null,
+                sign_up_email: null,
                 name: null,
                 password: null,
                 phoneno: null
@@ -115,12 +115,12 @@ class SignInModal extends Component {
 
     validateSignInForm = () => {
         this.isSocialLogin = false;
-        let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
+        let email = this.emailRef.current.validateFormInput(document.getElementById('sign_in_email'));
         let password = this.passwordRef.current.validateFormInput(document.getElementById('password'));
 
         if (email && password) {
             const params = {
-                email: this.state.signIn.email,
+                email: this.state.signIn.sign_in_email,
                 password: this.state.signIn.password
             }
 
@@ -130,14 +130,14 @@ class SignInModal extends Component {
 
     validateSignUpForm = () => {
         this.isSocialLogin = false;
-        let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
+        let email = this.emailRef.current.validateFormInput(document.getElementById('sign_up_email'));
         let password = this.passwordRef.current.validateFormInput(document.getElementById('password'));
         let name = this.nameRef.current.validateFormInput(document.getElementById('name'));
         let phoneno = this.phoneRef.current.validateFormInput(document.getElementById('phoneno'));
 
         if (email && password && name && phoneno) {
             const details = {
-                email: this.state.signUp.email,
+                email: this.state.signUp.sign_up_email,
                 password: this.state.signUp.password,
                 name: this.state.signUp.name,
                 phoneno: this.state.signUp.phoneno
@@ -174,7 +174,7 @@ class SignInModal extends Component {
             (<div>
                 
                 <Form className="position-relative mt-1">
-                    <InputField maxLength="50" placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignInFormChange(e)} />
+                    <InputField maxLength="50" placeHolder="Email Address" id="sign_in_email" ref={this.emailRef} type="email" onChange={e => this.handleSignInFormChange(e)} />
                     <InputField maxLength="50" placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignInFormChange(e)}/>
                 </Form>
                 { this.props.apiStatus == false && this.props.error &&
@@ -209,7 +209,7 @@ class SignInModal extends Component {
                
                 <Form className="position-relative">
                     <InputField maxLength="50" placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleSignUpFormChange(e)}/>
-                    <InputField maxLength="50" placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleSignUpFormChange(e)} />
+                    <InputField maxLength="50" placeHolder="Email Address" id="sign_up_email" ref={this.emailRef} type="email" onChange={e => this.handleSignUpFormChange(e)} />
                     <InputField maxLength="50" placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleSignUpFormChange(e)}/>
                     <InputField maxLength="50" placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleSignUpFormChange(e)}/>
                 </Form>
