@@ -19,7 +19,7 @@
   }
 
   .h2Class {
-    font-family: $frank-medium;
+    font-family:  $frank; font-weight: 500;
     @include fontSize(52);
     line-height: 4rem;
     color: $medium-pink;
@@ -50,7 +50,7 @@
   }
 
   .h4Class {
-    font-family: $roboto-bold;
+    font-weight: 700;
     color: $secondary-color;
     @include fontSize(30);
     text-align: center;
@@ -59,7 +59,7 @@
 
   .h4ClassGrey {
     @extend .h4Class;
-    font-family: $roboto-light;
+    font-weight: 300;
     color: $greyish-brown;
 
     @include mobile {
@@ -97,7 +97,7 @@
     @include letterSpacing(.31);
     color: #ffffff;
     line-height: 2.25rem;
-    font-family: $roboto-regular;
+    font-weight: 400;
 
     @include tabletOnly {
       @include fontSize(25);
@@ -113,7 +113,7 @@
     @include letterSpacing(.31);
     color: #ffffff;
     line-height: 1.6rem;
-    font-family: $roboto-medium;
+    font-weight: 500;
 
     @include tabletOnly {
       @include fontSize(15);
@@ -127,7 +127,7 @@
   .pSmallLight {
     @extend .pSmallClass;
     @include fontSize(20);
-    font-family: $roboto-light;
+    font-weight: 300;
   }
 
   p {

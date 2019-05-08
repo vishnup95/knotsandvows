@@ -43,7 +43,7 @@
 
 .mainHeading {
   @include fontSize(48);
-  font-family: $roboto-light;
+  font-weight: 300;
   text-align: center;
   color: $medium-pink;
   @include mobile {
@@ -53,7 +53,7 @@
 
 .heading {
   @include fontSize(25);
-  font-family: $frank-medium;
+  font-family:  $frank; font-weight: 500;
   color: $black-nine;
   margin: 0 auto;
   text-align: center;
@@ -74,7 +74,7 @@
 
 .footer-link {
   font-size: 1rem !important;
-  font-family: $roboto-regular !important;
+  font-weight: 400 !important;
   text-decoration: none !important;
   padding: 0.5rem 0rem !important;
 }
@@ -88,13 +88,13 @@
   border: 1px solid $secondary-color;
 
   a {
-    font-family: $roboto-medium;
+    font-weight: 500;
     color:$secondary-color;
     display: none;
   }
 
   span {
-    font-family: $roboto-medium;
+    font-weight: 500;
     color:$secondary-color;
     margin-left: 0.5rem;
     user-select: none;

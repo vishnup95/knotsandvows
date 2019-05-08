@@ -4,7 +4,7 @@
 
 .goldPackage {
   h2 {
-    font-family: $frank-medium;
+    font-family:  $frank; font-weight: 500;
     font-size: 3.57rem;
     margin-bottom: 3rem;
     text-align: center;
@@ -45,7 +45,7 @@
   }
 
   h1 {
-    font-family: $frank-medium;
+    font-family:  $frank; font-weight: 500;
     color: #fff;
     z-index: 1;
     font-size: 3.57rem;
@@ -70,7 +70,7 @@
 
   h2 {
     color: $medium-pink;
-    font-family: $frank-medium;
+    font-family:  $frank; font-weight: 500;
     font-size: 3.57rem;
     margin-top: 2rem;
     @include mobile {
@@ -141,7 +141,7 @@
     padding: 0 0 0 1.4rem;
 
     li {
-      font-family: $roboto-light;
+      font-weight: 300;
       @include fontSize(18.3);
       color: $greyish-brown;
       list-style: none;
@@ -256,7 +256,7 @@
 }
 
 .offer {
-  font-family: $roboto-bold;
+  font-weight: 700;
   font-size: 2.2rem;
   text-transform: uppercase;
   position: absolute;
@@ -298,7 +298,7 @@
   left: 10.5rem;
   transform: rotate(-5deg);
   font-size: 3.57rem;
-  font-family: $roboto-bold;
+  font-weight: 700;
   color: $secondary-color;
   @include mobile {
     top: 13rem;
@@ -318,7 +318,7 @@
   transform: rotate(-5deg);
   color: $white;
   font-size: 2.5rem;
-  font-family: $roboto-bold;
+  font-weight: 700;
   line-height: normal;
   @include mobile {
     bottom: 5.5rem;
@@ -329,7 +329,7 @@
 
 .headerWithIcon {
   color: $medium-pink;
-  font-family: $roboto-regular;
+  font-weight: 400;
   text-align: center;
 }
 
@@ -371,7 +371,8 @@
   margin-bottom: 4rem;
 
   h3 {
-    font-family: $roboto-bold;
+    font-family: $roboto;
+    font-weight: 700;
     color: $white;
     text-align: left;
     font-size: 2.28rem;
@@ -432,7 +433,8 @@
 
   h3 {
     color: $greyish-brown-six;
-    font-family: $roboto-bold;
+    font-family: $roboto;
+    font-weight: 700;
     font-size: 2.25rem;
     margin: 2rem 0 1rem;
   }
@@ -443,7 +445,7 @@
   width: 19.7rem;
 
   p {
-    font-family: $roboto-light !important;
+    font-weight: 300 !important;
     font-size: 1.14rem !important;
     text-align: center;
     margin-bottom: 2rem;

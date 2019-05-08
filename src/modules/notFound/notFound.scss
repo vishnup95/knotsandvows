@@ -13,13 +13,13 @@
 
   h1 {
     @include fontSize(120);
-    font-family: $roboto-bold;
+    font-weight: 700;
     line-height: .73;
   }
 
   h2 {
     @include fontSize(14);
-    font-family: $roboto-regular;
+    font-weight: 400;
     color: $black;
     margin-bottom: 3rem;
 

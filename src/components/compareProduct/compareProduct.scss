@@ -28,7 +28,7 @@
 
   h5 {
     @include fontSize(18);
-    font-family: $roboto-medium;
+    font-weight: 500;
   }
 
   p {
@@ -46,7 +46,7 @@
 .price {
   @include height(51);
   @include fontSize(14);
-  font-family: $roboto-medium;
+  font-weight: 500;
   padding: 1rem;
 
   span {
@@ -104,7 +104,7 @@
   @include height(90);
   @include margin(42,0,100);
   color: $primary-color;
-  font-family: $roboto-medium;
+  font-weight: 500;
   @include fontSize(16);
   display: flex;
   align-items: center;

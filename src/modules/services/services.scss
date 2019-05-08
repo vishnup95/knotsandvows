@@ -18,13 +18,13 @@
   }
 
   p {
-    font-family: $roboto-regular;
+    font-weight: 400;
     @include letterSpacing(.9);
     @include fontSize(16);
     color: $black;
 
     &:first-child {
-      font-family: $frank-regular;
+      font-family:  $frank; font-weight: 400;
       @include fontSize(22);
       color: $black-five;
     }
