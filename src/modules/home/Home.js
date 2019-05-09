@@ -49,11 +49,12 @@ class Home extends Component {
     errorMessage: '',
     personalizedIcon: '',
     personalizedServices: '',
-    noPocketPinch: 'no-pocket-pinch.jpg',
-    rubyBox: 'ruby-box.png',
-    team: 'team.png',
-    genie: 'genie.png',
-    discountedPrice: 'discounted-prices.png',
+    noPocketPinch: '',
+    rubyBox: '',
+    team: '',
+    genie: '',
+    discountedPrice: '',
+    teamImg: '',
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -91,7 +92,16 @@ class Home extends Component {
     const cityCount = document.getElementById('city-count');
     const cityCountVisible = this.checkVisible(cityCount);
     if (cityCountVisible) {
-      this.setState({ personalizedIcon: 'personalised-services.png', personalizedServices: 'personalized-services.jpg' });
+      this.setState({
+        personalizedIcon: 'personalised-services.png',
+        personalizedServices: 'personalized-services.jpg',
+        noPocketPinch: 'no-pocket-pinch.jpg',
+        rubyBox: 'ruby-box.png',
+        team: 'team.png',
+        genie: 'genie.png',
+        discountedPrice: 'discounted-prices.png',
+        teamImg: 'team-img.png',
+      });
     }
     if (window.innerWidth > 1023) {
       const section1 = document.getElementById('numbersection');
@@ -375,27 +385,27 @@ class Home extends Component {
                   </div>
                   <div className={`${styles.imageCard} ${styles.imageCardReverse}`}>
                     <div className={styles.imageCardText}>
-                      <img className={styles.imageCardIcon} src={imagePath(this.state.discountedPrice)} alt="img" />
+                      {this.state.discountedPrice && <img className={styles.imageCardIcon} src={imagePath(this.state.discountedPrice)} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>No pocket pinch</h3>
                         <p>It feels nice to spend the world on your wedding. However, savings can go a long way. Our value-for-money services come with added discounts to make you happy and your pocket happier.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath(this.state.noPocketPinch)} alt="img" />
+                      {this.state.noPocketPinch && <img className={styles.cardImage} src={imagePath(this.state.noPocketPinch)} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="discountSection"></div>
                   </div>
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
-                      <img className={styles.imageCardIcon} src={imagePath(this.state.team)} alt="img" />
+                      {this.state.team && <img className={styles.imageCardIcon} src={imagePath(this.state.team)} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>Expert team</h3>
                         <p>We are a team of passionate professionals with over 15 years of experience, striving to make the world a happier place, one wedding at a time.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageThree ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />
+                      {this.state.teamImg && <img className={styles.cardImage} src={imagePath(this.state.teamImg)} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="thirdcard"></div>
                   </div>
@@ -440,7 +450,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
-                    <img src={imagePath(this.state.rubyBox)} alt="Ruby" />
+                    {this.state.rubyBox && <img src={imagePath(this.state.rubyBox)} alt="Ruby" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
@@ -450,7 +460,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
-                    <img src={imagePath(this.state.genie)} alt="Genie" />
+                   {this.state.genie && <img src={imagePath(this.state.genie)} alt="Genie" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
