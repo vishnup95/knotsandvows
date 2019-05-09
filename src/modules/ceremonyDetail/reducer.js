@@ -20,7 +20,7 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       result = action.result || [];
       return {
         ...state,
-        details: result.data.data,
+        details: removeUnwantedCategoriesFromAllVendors(result.data.data),
         loading: false
       };
 
@@ -72,9 +72,24 @@ const CeremonyDetailReducer = (state = initialState, action) => {
         error: action.error.message,
       };
 
+      case types.CLEAR_CEREMONY_DETAILS:
+      return {
+        ...state,
+        details: null,
+      };
+
     default:
       return state;
   }
 };
+
+function removeUnwantedCategoriesFromAllVendors(ceremonyDetails){
+  let filteredCategories = ceremonyDetails.categories.filter(item => {
+     return item.vendors !== null && item.vendors.length > 0
+  })
+  ceremonyDetails.categories = filteredCategories;
+  ceremonyDetails.fixedCategories = filteredCategories;
+  return ceremonyDetails;
+}
 
 export default CeremonyDetailReducer;

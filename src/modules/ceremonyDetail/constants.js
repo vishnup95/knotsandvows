@@ -16,3 +16,6 @@ export const LOAD_ALL_VENDORS_SUCCESS =
   'my-project/ceremony/LOAD_ALL_VENDORS_SUCCESS';
 export const LOAD_ALL_VENDORS_FAILURE =
   'my-project/ceremony/LOAD_ALL_VENDORS_FAILURE';
+
+
+  export const CLEAR_CEREMONY_DETAILS = 'my-project/ceremony/CLEAR_CEREMONY_DETAILS';

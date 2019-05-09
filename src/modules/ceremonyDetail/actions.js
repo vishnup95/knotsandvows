@@ -33,3 +33,9 @@ export function fetchAllVendors() {
     promise: client => client.get(`/api/allvendors`)
   };
 }
+
+export function clearCeremonyData() {
+  return {
+    type: types.CLEAR_CEREMONY_DETAILS
+  }
+}

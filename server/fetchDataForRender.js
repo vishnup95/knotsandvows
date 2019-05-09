@@ -3,6 +3,7 @@ import { matchPath } from 'react-router-dom';
 
 import Home from '../src/modules/home/Home';
 import VendorDetail from '../src/modules/detailPage/detailPageComponent';
+import CeremonyDetail from '../src/modules/ceremonyDetail/CeremonyDetail';
 
 const ROUTES_THAT_FETCH_DATA = [
   {
@@ -13,6 +14,11 @@ const ROUTES_THAT_FETCH_DATA = [
   {
     path: '/vendor-detail/:category_name/:vendor_name',
     component: VendorDetail,
+    exact: true
+  },
+  {
+    path: '/ceremonies/:ceremony_name',
+    component: CeremonyDetail,
     exact: true
   }
 ];
