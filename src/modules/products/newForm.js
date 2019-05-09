@@ -46,12 +46,12 @@ export class DropdownComponent extends Component {
     render() {
       return (
         <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()} className={styles.multiDropdown}>
-            <span className={styles.placeholder}>{this.props.placeholder}</span>
           <DropdownToggle className={styles.dropHeading}
             tag="span"
             onClick={() => this.toggle()}
             data-toggle="dropdown"
             aria-expanded={this.state.dropdownOpen}>
+            <span className={styles.placeholder}>{this.props.placeholder}</span>
             {this.state.selectedItem.name} 
             </DropdownToggle>
           <DropdownMenu className={styles.dropMenu}>
@@ -95,6 +95,7 @@ class FormComponent extends Component {
     onChange = (value, filterName) => {
         if (filterName === 'category') {
             this.props.dispatch(actions.fetchFilters(value, detectMobile() ? false : true));
+            this.props.dispatch(actions.fetchOtherCategories(value));
             this.setState({category: value});
             selectedFilters = {};
         } else {

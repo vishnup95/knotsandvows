@@ -228,20 +228,21 @@
 .multiDropdown {
   background-color: transparent;
   cursor: pointer;
-  padding: .5rem 2.5rem;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-left: none;
   border-bottom: none;
+  display: flex;
 
   .placeholder {
     display: block;
     @include fontSize(12);
     letter-spacing: .3px;
+    color: $warm-grey-eight;
     font-weight: 400;
-    color: $black-twelve;
     text-transform: uppercase;
     @include padding(0,16,0, 0);
-    margin-bottom: -0.1rem;
+    margin-bottom: 0.1rem;
 
     @include mobile {
       color: $warm-grey-eight;
@@ -252,10 +253,10 @@
 
   .dropHeading {
     @include fontSize(16);
-    color: $warm-grey-eight;
+    color: $black-twelve;
     letter-spacing: .48px;
     font-weight: 400;
-    background: url('#{$image-base-url}/filter-dropdown.png') right no-repeat;
+    background: url('#{$image-base-url}/filter-dropdown.png') 95% 75% no-repeat;
     padding-right: 2rem;
 
     @include mobile {
