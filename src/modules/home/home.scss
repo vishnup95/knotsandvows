@@ -18,7 +18,7 @@
   h2 {
     text-align: center;
     margin-bottom: 1rem;
-    font-family: $frank-medium;
+    font-family:  $frank; font-weight: 500;
 
     span {
       color: $medium-pink;
@@ -26,7 +26,7 @@
   }
 
   p {
-    font-family: $roboto-light;
+    font-weight: 300;
     text-align: center;
     @include fontSize(25.2);
     color: $greyish-brown-six;
@@ -86,7 +86,7 @@ hr {
 .button {
   @include borderRadius(3);
   @include padding(12,24);
-  font-family: $roboto-medium;
+  font-weight: 500;
   border-radius: .15rem;
   background-color: $primary-color;
   border: none;
@@ -171,7 +171,7 @@ a.button {
       background-color: $primary-color;
       @include fontSize(14);
       @include letterSpacing(0.4);
-      font-family: $roboto-regular;
+      font-weight: 400;
     }
   }
 
@@ -192,12 +192,12 @@ a.button {
 
 .priceNow {
   color: $tertiary-color;
-  font-family: $roboto-medium;
+  font-weight: 500;
 }
 
 .priceBefore {
   color: $black-two;
-  font-family: $roboto-regular;
+  font-weight: 400;
 }
 
 // multicarousel styles - horizontal
@@ -228,7 +228,7 @@ a.button {
   }
 
   h3 {
-    font-family: $frank-regular;
+    font-family:  $frank; font-weight: 400;
     @include fontSize(30);
     @include letterSpacing(1.2);
     line-height: 1.3;
@@ -339,7 +339,7 @@ a.button {
   }
 
   h4 {
-    font-family: $frank-medium;
+    font-family:  $frank; font-weight: 500;
     position: absolute;
     bottom: 18%;
     width: 100%;
@@ -396,7 +396,7 @@ a.button {
     }
 
     .pmore {
-      font-family: $roboto-medium;
+      font-weight: 500;
       position: absolute;
       bottom: 0;
       right: 2.5rem;
@@ -413,7 +413,7 @@ a.button {
     }
 
     h3 {
-      font-family: $frank-medium;
+      font-family:  $frank; font-weight: 500;
       @include fontSize(30);
       color: $white;
       white-space: nowrap;
@@ -461,7 +461,7 @@ a.button {
 }
 
 .carousel-header {
-  font-family: $frank-regular;
+  font-family:  $frank; font-weight: 400;
   @include fontSize(58);
   line-height: 1.24;
   color: white;
@@ -472,7 +472,7 @@ a.button {
 }
 
 .carousel-text {
-  font-family: $roboto-medium !important;
+  font-weight: 500 !important;
   line-height: 1.21;
   margin-bottom: 1.5rem;
   @include fontSize(18.3, important=true);
@@ -490,7 +490,7 @@ a.button {
 }
 
 .author {
-  font-family: $roboto-medium !important;
+  font-weight: 500 !important;
   @include fontSize(18.3, important=true);
   position: relative;
   padding-left: 45px;
@@ -566,7 +566,7 @@ a.button {
 
 .detailDesc {
   color: $secondary-color;
-  font-family: $roboto-medium;
+  font-weight: 500;
   font-size: 3.22rem;
 }
 
@@ -579,14 +579,14 @@ a.button {
   span {
     padding: 0 1rem;
     font-size: 3.2rem;
-    font-family: $roboto-medium;
+    font-weight: 500;
     border-bottom: 2px solid $white;
   }
 
   div {
     &:last-child {
       font-size: 2rem;
-      font-family: $roboto-light;
+      font-weight: 300;
     }
   }
 }
@@ -681,7 +681,7 @@ a.button {
   transition: all .3s ease;
 
   p {
-    font-family: $roboto-light !important;
+    font-weight: 300 !important;
     font-size: 16px !important;
     color: $white;
   }
@@ -705,8 +705,9 @@ a.button {
   }
 
   h3 {
+    font-family: $roboto;
     font-size: 2.5rem;
-    font-family: $roboto-medium !important;
+    font-weight: 500 !important;
   }
 
   &.showDetail {
@@ -793,7 +794,7 @@ a.button {
       animation-name: textanimation;
       animation-duration: 5s;
       display: inline-block;
-      font-family: $frank-medium;
+      font-family:  $frank; font-weight: 500;
       white-space: pre;
       line-height: 1.17;
       @include tablet {
@@ -810,7 +811,7 @@ a.button {
 
 h1.homeTitle {
   font-size: 21px !important;
-  font-family: $frank-medium !important;
+  font-family:  $frank !important; font-weight: 500;
   white-space: initial;
 
   span {
@@ -859,7 +860,7 @@ h1.homeTitle {
     border: none;
     @include fontSize(20.6);
     outline: none;
-    font-family: $roboto-light;
+    font-weight: 300;
     color: $warm-grey-eight-two;
     background: $white;
     flex-grow: 1;
@@ -1100,7 +1101,7 @@ h1.homeTitle {
 
     p {
 
-      font-family: $roboto-light !important;
+      font-weight: 300 !important;
       text-align: left !important;
       font-size: 1.2rem !important;
 
@@ -1108,7 +1109,8 @@ h1.homeTitle {
 
     h3 {
       font-size: 2.25rem;
-      font-family: $roboto-regular;
+      font-family: $roboto;
+      font-weight: 400;
     }
   }
 
@@ -1166,12 +1168,12 @@ h1.homeTitle {
   }
   color: $white;
   @include fontSize(93.5);
-  font-family: $frank-bold;
+  font-family:  $frank; font-weight: 700;
 }
 
 .whiteDesc {
   color: $white;
-  font-family: $roboto-medium;
+  font-weight: 500;
   @include fontSize(26);
   margin-top: 1rem;
   width: 28rem;

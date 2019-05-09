@@ -32,7 +32,7 @@
 }
 
 .category-name {
-  font-family: $roboto-medium;
+  font-weight: 500;
   @include fontSize(20);
   color: $black;
   opacity: .7;
@@ -78,7 +78,8 @@
   margin-bottom: .5rem;
 
   h3 {
-    font-family: $roboto-medium;
+    font-family: $roboto;
+    font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

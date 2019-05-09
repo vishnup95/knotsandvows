@@ -39,14 +39,15 @@
   margin: -60px 0 16px;
 
   h3 {
-    font-family: $roboto-bold;
+    font-family: $roboto;
+    font-weight: 700;
     @include fontSize(30);
     letter-spacing: .5px;
     text-transform: uppercase;
   }
 
   p {
-    font-family: $roboto-regular;
+    font-weight: 400;
     @include fontSize(18);
     letter-spacing: .9px;
 
@@ -83,7 +84,7 @@
 
 .review {
   @include fontSize(14);
-  font-family: $roboto-medium;
+  font-weight: 500;
   color: $black-ten;
 }
 
@@ -119,7 +120,7 @@
     li {
       @include fontSize(18);
       color: $black-five;
-      font-family: $roboto-regular;
+      font-weight: 400;
       @include padding(0,16);
       @include letterSpacing(.4);
       position: relative;
@@ -168,7 +169,7 @@
   @include width(150);
   @include height(42);
   background: transparent;
-  font-family: $roboto-medium;
+  font-weight: 500;
   color: $black-seven;
   @include letterSpacing(.4);
   @extend %pointer;
@@ -183,12 +184,13 @@
   a {
     color: $primary-color;
     @include fontSize(18);
-    font-family: $roboto-medium;
+    font-weight: 500;
   }
 
   h3 {
+    font-family: $roboto;
     font-size: 18px;
-    font-family: $roboto-medium;
+    font-weight: 500;
     @include tablet {
        @include fontSize(30);
     }
@@ -196,7 +198,7 @@
 
   h5 {
     @include fontSize(20);
-    font-family: $roboto-medium;
+    font-weight: 500;
     margin-bottom: 1rem;
   }
 
@@ -219,11 +221,11 @@
       @include padding(0,0,0,45);
       @include margin(8,0);
       position: relative;
-      font-family: $roboto-medium;
+      font-weight: 500;
 
       span {
         @include fontSize(16);
-        font-family: $roboto-regular;
+        font-weight: 400;
 
       }
 
@@ -333,7 +335,7 @@
   @include fontSize(14);
   background-color: $white;
   color: $primary-color;
-  font-family: $roboto-medium;
+  font-weight: 500;
   margin-bottom: .2rem;
   @extend %pointer;
 }
@@ -355,7 +357,7 @@
   @include margin(0,4);
 
   span {
-    font-family: $roboto-bold;
+    font-weight: 700;
     @include fontSize(20);
   }
 }
@@ -370,12 +372,12 @@
   @extend %pointer;
   color: $white;
   @include fontSize(28);
-  font-family: $roboto-bold;
+  font-weight: 700;
   @include letterSpacing(.8);
 }
 
 .review-header {
-  font-family: $roboto-medium;
+  font-weight: 500;
   color: $black-five;
   @include fontSize(28);
 
@@ -441,7 +443,8 @@
 }
 
 .note-header {
-  font-family: $roboto-bold;
+  font-family: $roboto;
+  font-weight: 700;
   @include fontSize(20);
   letter-spacing: .6px;
 }
@@ -457,7 +460,7 @@
 }
 
 .note-title {
-  font-family: $roboto-bold;
+  font-weight: 700;
   color: $black-fifteen;
   @include fontSize(14);
   margin-right: .5rem;

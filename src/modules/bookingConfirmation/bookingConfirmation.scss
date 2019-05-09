@@ -14,13 +14,13 @@
 
 .heading{
     font-size: 1.6rem;
-    font-family: $roboto-medium;
+    font-weight: 500;
     color: $black-five;
 }
 
 .detail{
     font-size: 1.1rem;
-    font-family: $roboto-regular;
+    font-weight: 400;
     color: $black-five;
     margin: 0.5rem;
     letter-spacing: 0.035;
@@ -28,14 +28,14 @@
 
 .detail-bold{
     font-size: 1.1rem;
-    font-family: $roboto-medium;
+    font-weight: 500;
     color: $black-five;
     letter-spacing: 0.035;
 }
 
 .detail-link{
     font-size: 1.1rem;
-    font-family: $roboto-medium;
+    font-weight: 500;
     color: $corn-flower;
     letter-spacing: 0.035;
     margin-bottom: rem;
@@ -45,7 +45,7 @@
     border-radius: 0.15rem;
     background-color: $primary-color;
     font-size: 0.8rem;
-    font-family: $roboto-bold;
+    font-weight: 700;
     letter-spacing: 0.4px;
     padding: 0.8rem 1.6rem;
     text-transform: uppercase;

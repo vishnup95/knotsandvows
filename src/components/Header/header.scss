@@ -15,7 +15,7 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  font-family: $roboto-regular;
+  font-weight: 400;
   transition: 300ms all ease;
   background: $white;
 
@@ -92,10 +92,10 @@
           line-height: 2.36;
           font-size: 18px;
           color: $greyish-brown-six !important;
-          font-family: $roboto-regular;
+          font-weight: 400;
 
         }
-        font-family: $roboto-medium;
+        font-weight: 500;
         color: $greyish-brown-six !important;
         opacity: .95;
         position: relative;
@@ -213,7 +213,7 @@
 
       a {
         color: $black-fourteen !important;
-        font-family: $roboto-regular;
+        font-weight: 400;
 
         &:before {
           content: '';
@@ -268,7 +268,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: $roboto-bold;
+  font-weight: 700;
   @include fontSize(18);
   color: $white;
   letter-spacing: .5px;
@@ -297,7 +297,7 @@
   button {
     cursor: pointer;
     padding: .7rem;
-    font-family: $roboto-light;
+    font-weight: 300;
 
     &:active,
     &:focus,

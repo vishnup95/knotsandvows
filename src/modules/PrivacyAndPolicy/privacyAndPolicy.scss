@@ -11,14 +11,14 @@
       list-style-type: decimal;
       padding-left: 1rem;
       margin-bottom: 1rem;
-      font-family: $roboto-medium;
+      font-weight: 500;
       span {
-        font-family: $roboto-regular;
+        font-weight: 400;
       }
 
       ol {
         li {
-          font-family: $roboto-medium;
+          font-weight: 500;
           list-style-type: lower-roman;
         }
       }
@@ -33,15 +33,15 @@
   @include fontSize(16);
   line-height: 1.88;
   @include letterSpacing(.5);
-  font-family: $roboto-regular;
+  font-weight: 400;
 }
 
 .boldList {
   @extend .desc;
-  font-family: $roboto-medium;
+  font-weight: 500;
 }
 .sub-heading {
-  font-family: $roboto-regular;
+  font-weight: 400;
   @include fontSize(28);
   color: $black-five;
   line-height: .93;

@@ -14,7 +14,7 @@
         @include margin(30,0);
     }
     p {
-        font-family: $roboto-light;
+        font-weight: 300;
         @include fontSize(30);
         @include letterSpacing(.7);
         line-height: 2;
