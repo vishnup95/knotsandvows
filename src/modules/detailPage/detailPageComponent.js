@@ -51,8 +51,8 @@ class DetailPageComponent extends Component {
 
         this.state = {
             showGallery: false,
-            vendor: '',
-            category: '',
+            vendor: this.props.match.params.vendor_name,
+            category: this.props.match.params.category_name,
             reviewPage: 1,
             email: '',
             phone: '',
@@ -68,7 +68,11 @@ class DetailPageComponent extends Component {
     
         // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
         let promises = [];
-        promises.push(store.dispatch(actions.fetchVendorDetails(match.params.vendor_name)));
+        let vendor = match.params.vendor_name;
+        promises.push(store.dispatch(actions.fetchVendorDetails(vendor)));
+        promises.push(store.dispatch(actions.fetchVendorGallery(vendor)));
+        promises.push(store.dispatch(actions.fetchReviews(vendor, 1)));
+        promises.push(store.dispatch(actions.fetchSimilarVendors(vendor)));
         return Promise.all(promises);
       }
 
@@ -97,11 +101,20 @@ class DetailPageComponent extends Component {
             this.props.dispatch(actions.fetchVendorDetails(this.state.vendor));
             this.props.dispatch(actions.fetchSimilarVendors(this.state.vendor));
         }
+
+        if(this.props.wishlistId != prevProps.wishlistId && this.props.wishlistId != 0){
+            let details = {
+                vendor_id: getId(this.state.vendor),
+                wishlist_id: this.props.wishlistId
+            }
+            this.props.dispatch(actions.fetchAllNotes(details));
+        }
     }
 
     componentWillMount() {
-        this.props.dispatch(actions.clearData());
-        this.updateUIData();
+        if (this.props.details == null || getId(this.state.vendor) != this.props.details.vendor_id){
+            this.updateUIData();
+        }
         this.props.dispatch(talkToPlannerActions.clearTalkToErrors());
     }
 
@@ -347,7 +360,7 @@ class DetailPageComponent extends Component {
                 </Helmet>
               }
                 {this.props.detailsLoading && <LoaderComponent />}
-                {details &&
+                {details && this.props.detailsLoading == false &&
                     <div>
                         <div className={style.bgImage} style={{ backgroundImage: "url(" + details.pic_url + ")" }}>
                         </div>
