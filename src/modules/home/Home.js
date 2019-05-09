@@ -46,7 +46,14 @@ class Home extends Component {
     animateImageTwo: false,
     animateImageThree: false,
     showDesc: false,
-    errorMessage: ''
+    errorMessage: '',
+    personalizedIcon: '',
+    personalizedServices: '',
+    noPocketPinch: 'no-pocket-pinch.jpg',
+    rubyBox: 'ruby-box.png',
+    team: 'team.png',
+    genie: 'genie.png',
+    discountedPrice: 'discounted-prices.png',
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -80,6 +87,12 @@ class Home extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
   handleScroll = () => {
+
+    const cityCount = document.getElementById('city-count');
+    const cityCountVisible = this.checkVisible(cityCount);
+    if (cityCountVisible) {
+      this.setState({ personalizedIcon: 'personalised-services.png', personalizedServices: 'personalized-services.jpg' });
+    }
     if (window.innerWidth > 1023) {
       const section1 = document.getElementById('numbersection');
       const section1Visible = this.checkVisible(section1);
@@ -194,7 +207,7 @@ class Home extends Component {
         left: 0,
         behavior: 'smooth'
       });
-    }else{
+    } else {
       window.scrollTo(0, 0);
     }
   }
@@ -277,7 +290,7 @@ class Home extends Component {
                       }
 
                     </div>
-                    <h1 className={`${styles.homeTitle} mobile-only`}>As your happiness partners we help you celebrate<br/> <span>Your Day...Your Way!</span></h1>
+                    <h1 className={`${styles.homeTitle} mobile-only`}>As your happiness partners we help you celebrate<br /> <span>Your Day...Your Way!</span></h1>
                     {/* this section is temporarily removed
                     <div className={styles.contactInput}>
                       <input type="text" placeholder="Email/Phone" id="freeConsult" onFocus={() => this.setState({ errorMessage: '' })} />
@@ -313,7 +326,7 @@ class Home extends Component {
             </div>
             <div className={`${styles.mediumPinkBg} ${styles.bRadius} ${styles.venueCount} container-fluid`}>
               <div className={`${styles.homeContainer} container`}>
-                <Row className='justify-center mobile-column'>
+                <Row className='justify-center mobile-column' id="city-count">
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We know</div> */}
                     <div className={styles.detailCount}>
@@ -349,33 +362,33 @@ class Home extends Component {
                 <Col>
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
-                      <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
+                      {this.state.personalizedIcon && <img className={styles.imageCardIcon} src={imagePath(this.state.personalizedIcon)} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>Personalized services</h3>
                         <p>It’s you who decides. Choose from a wide range of wedding services or select a personalized package to organize a stress-free dream wedding.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('personalized-services.jpg')} alt="img" />
+                      {this.state.personalizedServices && <img className={styles.cardImage} src={imagePath(this.state.personalizedServices)} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="personalisedSection"></div>
                   </div>
                   <div className={`${styles.imageCard} ${styles.imageCardReverse}`}>
                     <div className={styles.imageCardText}>
-                      <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
+                      <img className={styles.imageCardIcon} src={imagePath(this.state.discountedPrice)} alt="img" />
                       <div className={styles.cardDetail}>
                         <h3>No pocket pinch</h3>
                         <p>It feels nice to spend the world on your wedding. However, savings can go a long way. Our value-for-money services come with added discounts to make you happy and your pocket happier.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('no-pocket-pinch.jpg')} alt="img" />
+                      <img className={styles.cardImage} src={imagePath(this.state.noPocketPinch)} alt="img" />
                     </div>
                     <div className={styles.sectionIdentifier} id="discountSection"></div>
                   </div>
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
-                      <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />
+                      <img className={styles.imageCardIcon} src={imagePath(this.state.team)} alt="img" />
                       <div className={styles.cardDetail}>
                         <h3>Expert team</h3>
                         <p>We are a team of passionate professionals with over 15 years of experience, striving to make the world a happier place, one wedding at a time.</p>
@@ -397,7 +410,7 @@ class Home extends Component {
                   <div className="col justify-center align-flex-top mobile-column">
                     <img className={styles.packageStatic} src={imagePath('packageall.png')} alt="img" />
                     <div className="mobile-only">
-                      <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'}/>
+                      <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'} />
                     </div>
                   </div>
                   <div className={styles.dummyClass}>
@@ -427,7 +440,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
-                    <img src={imagePath('ruby-box.png')} alt="Ruby" />
+                    <img src={imagePath(this.state.rubyBox)} alt="Ruby" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
@@ -437,7 +450,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
-                    <img src={imagePath('genie.png')} alt="Genie" />
+                    <img src={imagePath(this.state.genie)} alt="Genie" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
@@ -455,7 +468,7 @@ class Home extends Component {
                   <h2>Pick a Ceremony...</h2>
                   {this.props.ceremonies &&
                     <Col xs="12" className={` no-padding mb-5`}>
-                      <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)}/>
+                      <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
                     </Col>
                   }
                 </Col>
