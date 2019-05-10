@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as modalActions from './reducers/modal/actions';
 import Helmet from 'react-helmet';
 import routes from './routes';
-import * as metadata from './metadata';
+import * as defaultMetadata from './metadata';
 import FooterComponent from './components/Footer/footer';
 import Header from './components/Header/header';
 import PropTypes from 'prop-types';
@@ -56,14 +56,15 @@ class App extends Component {
   }
 
   render() {
+
     return (<div className="app">
       <FullStory org={process.env.FULLSTORY_ORG_ID} />
       <Helmet
-        title={metadata.title}
-        meta={metadata.meta}
-        link={metadata.link}
-        script={metadata.script}
-        noscript={metadata.noscript}
+        title={defaultMetadata.title}
+        meta={defaultMetadata.meta}
+        link={defaultMetadata.link}
+        script={defaultMetadata.script}
+        noscript={defaultMetadata.noscript}
       />
       <Header history={this.props.history} />
       <div className="main">

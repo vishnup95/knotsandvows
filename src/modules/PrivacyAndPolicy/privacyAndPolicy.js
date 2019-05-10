@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import styles from './privacyAndPolicy.scss';
+import Helmet from 'react-helmet';
 
 const listData1 = [
   {
@@ -58,12 +59,20 @@ const jumbotronData =
     subtitle: 'We have you covered. Our expert planners will work with you to make your event fantastic and make sure your needs are met.'
   };
 
-
+  let meta = {
+    title:"SevenVows",
+    description:'Wedding services and planning partners',
+    keywords:""
+  }
 class PrivacyAndPolicy extends Component {
 
   render() {
     return (
       <div className={styles.privacyContainer}>
+      <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
         <h1 className="text-center">Privacy Policy</h1>
         <Container  className="mb-5">
           <Row className="my-4">

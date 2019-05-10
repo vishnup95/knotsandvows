@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './goldPackage.scss';
-// import { Link } from 'react-router-dom';
 import { imagePath } from '../../../utils/assetUtils';
 import * as actions from '../../../components/TalkToWeddingPlanner/actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
 import { Container, Row, Col } from 'reactstrap';
 import HorizontalSlider from '../../../components/HorizontalSlider/horizontalSlider';
+import Helmet from 'react-helmet';
 
+let meta = {
+  title:"Gold Wedding Package - Caterers, Decorators, Photopghers",
+  description:"From venues to photographers, get the exclusive wedding package deals. Add on option to get an expert wedding planner consultation!",
+  keywords:""
+}
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  // categories: state.home.categories,
-  // exclusives: state.home.exclusives,
   ceremonies: state.home.ceremonies
 });
 
@@ -103,6 +105,10 @@ class GoldPackage extends Component {
   render() {
     return (
       <div className={styles.goldPackage}>
+      <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
         <div className={styles.goldCover}>
           <h1>Add a golden touch to your big day</h1>
         </div>
