@@ -10,4 +10,4 @@ export const LOAD_OTHER_CATEGORIES = 'my-project/products/LOAD_OTHER_CATEGORIES'
 export const LOAD_OTHER_CATEGORIES_SUCCESS = 'my-project/products/LOAD_OTHER_CATEGORIES_SUCCESS';
 export const LOAD_OTHER_CATEGORIES_FAILURE = 'my-project/products/LOAD_OTHER_CATEGORIES_FAILURE';
   
-
+export const CLEAR_VENDOR_LIST_DATA = 'my-project/products/CLEAR_VENDOR_LIST_DATA';

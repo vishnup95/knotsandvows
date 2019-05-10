@@ -22,7 +22,7 @@ import FormComponent from './newForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
-
+import Helmet from 'react-helmet';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -45,7 +45,7 @@ const jumbotronData = { title: 'You may also be interested in..' };
 class Products extends Component {
 
   state = {
-    category: this.selectedCategory(),
+    category: this.props.match.params.category_name,
     productListData: null,
     sortBy: 0,
     page: 1,
@@ -54,12 +54,17 @@ class Products extends Component {
     search: ''
   }
 
-  static fetchData(store) {
+  static fetchData(store, match) {
     // Normally you'd pass action creators to "connect" from react-redux,
     // but since this is a static method you don't have access to "this.props".
 
     // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
-    return store.dispatch(actions.fetchProducts(this.selectedCategory()));
+    let promises = [];
+    let category = match.params.category_name;
+    promises.push(store.dispatch(actions.fetchProducts(category)));
+    promises.push(store.dispatch(actions.fetchFilters(category)));
+    promises.push(store.dispatch(actions.fetchOtherCategories(category)));
+    return Promise.all(promises);
   }
 
   componentDidMount() {
@@ -82,8 +87,8 @@ class Products extends Component {
   componentWillMount() {
     let category = this.selectedCategory();
     this.props.dispatch(actions.fetchProducts(category));
-    this.props.dispatch(actions.fetchFilters(category));
-    this.props.dispatch(actions.fetchOtherCategories(category));
+    // this.props.dispatch(actions.fetchFilters(category));
+    // this.props.dispatch(actions.fetchOtherCategories(category));
     this.setState({ category: category });
   }
 
@@ -132,14 +137,25 @@ class Products extends Component {
     this.toggle();
   }
 
+  componentWillUnmount(){
+    this.props.dispatch(actions.clearVendorListData());
+  }
+
   render() {
-    const { header, sort_options, filters } = this.props.filterData;
+    const { header, sort_options, filters, metatag } = this.props.filterData;
     var category = "";
     if (header && header.category_name){
       category = `All ${header.category_name}`
     }
     return (
       <div>
+        {metatag &&
+                <Helmet>
+                <title>{metatag.title}</title>
+                <meta name="description" content={metatag.description} />
+                <meta name="keywords" content={metatag.keywords} />
+                </Helmet>
+        }
         {header &&
           <div className={` ${styles.categoryCover} position-relative text-center d-none d-sm-block`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
           </div>

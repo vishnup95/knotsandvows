@@ -63,7 +63,7 @@ export class DropdownComponent extends Component {
             onClick={() => this.toggle()}
             data-toggle="dropdown"
             aria-expanded={this.state.dropdownOpen}>
-            {this.state.selectedItem.name} 
+            {this.state.selectedItem ? this.state.selectedItem.name : ""} 
             </DropdownToggle>
           <DropdownMenu className={styles.dropMenu}>
 
