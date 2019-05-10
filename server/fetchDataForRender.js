@@ -5,6 +5,7 @@ import Home from '../src/modules/home/Home';
 import VendorDetail from '../src/modules/detailPage/detailPageComponent';
 import CeremonyDetail from '../src/modules/ceremonyDetail/CeremonyDetail';
 import VendorListing from '../src/modules/products/Products';
+import AllVendors from '../src/modules/categoryListing/CategoryListing';
 
 const ROUTES_THAT_FETCH_DATA = [
   {
@@ -26,7 +27,13 @@ const ROUTES_THAT_FETCH_DATA = [
     path: '/categories/:category_name',
     component: VendorListing,
     exact: true
+  },
+  {
+    path: '/categories',
+    component: AllVendors,
+    exact: true
   }
+  
 ];
 
 export const fetchDataForRender = (req, store) => {

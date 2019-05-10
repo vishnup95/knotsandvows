@@ -18,4 +18,6 @@ export const LOAD_ALL_VENDORS_FAILURE =
   'my-project/ceremony/LOAD_ALL_VENDORS_FAILURE';
 
 
-  export const CLEAR_CEREMONY_DETAILS = 'my-project/ceremony/CLEAR_CEREMONY_DETAILS';
+export const CLEAR_CEREMONY_DETAILS = 'my-project/ceremony/CLEAR_CEREMONY_DETAILS';
+
+export const UPDATE_CATEGORY_ORDER = 'my-project/ceremony/UPDATE_CATEGORY_ORDER';

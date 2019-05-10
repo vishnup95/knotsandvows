@@ -3,7 +3,10 @@ const initialState = {
   details: null, //used for all vendors as well.
   similar_ceremonenies:[],
   loading: null,
-  allVendorDetails:null
+  allVendorDetails:{
+      categories:[],
+      fixedCategories:[]
+  }
 };
 
 const CeremonyDetailReducer = (state = initialState, action) => {
@@ -20,7 +23,7 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       result = action.result || [];
       return {
         ...state,
-        details: removeUnwantedCategoriesFromAllVendors(result.data.data),
+        details: removeUnwantedCategoriesFromCeremonies(result.data.data),
         loading: false
       };
 
@@ -35,7 +38,6 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       case types.LOAD_ALL_VENDORS:
       return {
         ...state,
-        allVendorDetails:null,
         loading: true
       };
 
@@ -43,7 +45,7 @@ const CeremonyDetailReducer = (state = initialState, action) => {
       result = action.result || [];
       return {
         ...state,
-        allVendorDetails: result.data.data,
+        allVendorDetails: removeUnwantedCategoriesFromAllVendors(result.data.data),
         loading: false
       };
 
@@ -71,11 +73,16 @@ const CeremonyDetailReducer = (state = initialState, action) => {
         ...state,
         error: action.error.message,
       };
-
+    case types.UPDATE_CATEGORY_ORDER:
+      return {
+        ...state,
+       allVendorDetails:{...state.allVendorDetails, categories: updateCategoriesOrder(state.allVendorDetails.categories, action.payload)}
+     };
       case types.CLEAR_CEREMONY_DETAILS:
       return {
         ...state,
         details: null,
+        allVendorDetails:initialState.allVendorDetails
       };
 
     default:
@@ -83,13 +90,28 @@ const CeremonyDetailReducer = (state = initialState, action) => {
   }
 };
 
-function removeUnwantedCategoriesFromAllVendors(ceremonyDetails){
+function removeUnwantedCategoriesFromCeremonies(ceremonyDetails){
   let filteredCategories = ceremonyDetails.categories.filter(item => {
      return item.vendors !== null && item.vendors.length > 0
   })
   ceremonyDetails.categories = filteredCategories;
   ceremonyDetails.fixedCategories = filteredCategories;
   return ceremonyDetails;
+}
+
+function removeUnwantedCategoriesFromAllVendors(allVendorDetails){
+ let filteredCategories = allVendorDetails.categories.filter(item => {
+    return item.vendors !== null && item.vendors.length > 0
+  })
+  return {categories:filteredCategories, fixedCategories: filteredCategories}
+}
+ 
+function updateCategoriesOrder(categories,index){
+  let updatedCategories = categories.slice();
+  let temp = updatedCategories[0];
+  updatedCategories[0] = updatedCategories[index];
+  updatedCategories[index] = temp;
+  return updatedCategories;
 }
 
 export default CeremonyDetailReducer;

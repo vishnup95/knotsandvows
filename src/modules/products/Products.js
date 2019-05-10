@@ -62,7 +62,7 @@ class Products extends Component {
     let promises = [];
     let category = match.params.category_name;
     promises.push(store.dispatch(actions.fetchProducts(category)));
-    promises.push(store.dispatch(actions.fetchFilters(category)));
+    //promises.push(store.dispatch(actions.fetchFilters(category)));
     promises.push(store.dispatch(actions.fetchOtherCategories(category)));
     return Promise.all(promises);
   }
@@ -87,8 +87,8 @@ class Products extends Component {
   componentWillMount() {
     let category = this.selectedCategory();
     this.props.dispatch(actions.fetchProducts(category));
-    // this.props.dispatch(actions.fetchFilters(category));
-    // this.props.dispatch(actions.fetchOtherCategories(category));
+    this.props.dispatch(actions.fetchFilters(category));
+    this.props.dispatch(actions.fetchOtherCategories(category));
     this.setState({ category: category });
   }
 

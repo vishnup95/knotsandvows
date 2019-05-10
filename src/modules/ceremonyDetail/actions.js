@@ -39,3 +39,10 @@ export function clearCeremonyData() {
     type: types.CLEAR_CEREMONY_DETAILS
   }
 }
+
+export function updateCategoryOrder(index) {
+ return {
+     type : types.UPDATE_CATEGORY_ORDER,
+     payload: index
+      };
+ }
