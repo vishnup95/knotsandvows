@@ -2,8 +2,10 @@ import * as types from './constants';
 import { getId } from '../../utils/utilities';
 
 export function fetchProducts(category, page = 1, sortby = 0, searchParams = '', isFirstLoading = true) {
-  let getUrl = `api/getall?category_id=${getId(category)}&offset=12&page=${page}&sortby=${sortby}`;
+  sortby = null;//Temporary code
+  let getUrl = `api/getall?category_id=${getId(category)}&offset=12&page=${page}`;
   getUrl = searchParams ? `${getUrl}&${searchParams}` : getUrl;
+  getUrl = sortby ? `${getUrl}&sortby=${sortby}`: getUrl;
   return {
     types: [
       types.LOAD_PRODUCTS,

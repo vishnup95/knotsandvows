@@ -9,8 +9,7 @@ import ReactPaginate from 'react-paginate';
 import {
   Container,
   Row,
-  Col,
-  Dropdown, DropdownMenu, DropdownToggle,
+  Col
 } from 'reactstrap';
 import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
@@ -133,7 +132,7 @@ class Products extends Component {
   }
 
   render() {
-    const { header, sort_options, filters } = this.props.filterData;
+    const { header, filters } = this.props.filterData;
     var category = "";
     if (header && header.category_name){
       category = `All ${header.category_name}`
@@ -179,7 +178,7 @@ class Products extends Component {
                   {category}
                   {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
                 </Col>
-                <Col sm="6" className={styles.sort}>
+                {/* <Col sm="6" className={styles.sort}>
                   Sort By: &nbsp;
 
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()} className={styles.sortDropdown}>
@@ -200,7 +199,7 @@ class Products extends Component {
                     </DropdownMenu>
                   </Dropdown>
 
-                </Col>
+                </Col> */}
               </Row>
 
               <Row>
