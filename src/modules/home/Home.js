@@ -55,6 +55,7 @@ class Home extends Component {
     genie: '',
     discountedPrice: '',
     teamImg: '',
+    goldBox: '',
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -101,6 +102,7 @@ class Home extends Component {
         genie: 'genie.png',
         discountedPrice: 'discounted-prices.png',
         teamImg: 'team-img.png',
+        goldBox: 'contact-box.png',
       });
     }
     if (window.innerWidth > 1023) {
@@ -441,7 +443,7 @@ class Home extends Component {
               <Container className={`${styles.homeContainer}`}>
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
-                    <img src={imagePath('contact-box.png')} alt="Gold" />
+                    {this.state.goldBox && <img src={imagePath(this.state.goldBox)} alt="Gold" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
@@ -476,7 +478,7 @@ class Home extends Component {
               <Row className="mt-5" id="ceremonies">
                 <Col className={`${styles.ceremony} text-center`}>
                   <h2>Pick a Ceremony...</h2>
-                  {this.props.ceremonies &&
+                  {this.props.ceremonies && this.state.genie &&
                     <Col xs="12" className={` no-padding mb-5`}>
                       <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
                     </Col>
