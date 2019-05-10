@@ -10,7 +10,8 @@ import { imagePath } from '../../utils/assetUtils';
 import * as modalActions from '../../reducers/modal/actions';
 import { Modal } from 'reactstrap';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
-
+import DatePicker from "react-datepicker";
+ 
 const mapStateToProps = state => ({
     message: state.talkToAhwanam.message,
     status: state.talkToAhwanam.status,
@@ -42,15 +43,24 @@ class TalkToWeddingPlanner extends Component {
             modal: false,
         }
         this.toggle = this.toggle.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
+          
     }
 
+    handleDateChange(date) {
+        this.setState({
+            contactDate: date
+        });
+      }
+      
     componentWillUnmount() {
         this.setState({city: ''})
     }
 
     toggle() {
         this.setState(prevState => ({
-            modal: !prevState.modal
+            modal: !prevState.modal,
+            contactDate:''
         }));
         this.props.dispatch(actions.clearTalkToErrors());
     }
@@ -63,7 +73,8 @@ class TalkToWeddingPlanner extends Component {
         let name = this.nameRef.current.validateFormInput(document.getElementById('contactName'));
         let email = this.emailRef.current.validateFormInput(document.getElementById('contactEmail'));
         let phone = this.phoneRef.current.validateFormInput(document.getElementById('contactPhone'));
-        let date = this.dateRef.current.validateFormInput(document.getElementById('contactDate'));
+        //let date = this.dateRef.current.validateFormInput(document.getElementById('contactDate'));
+        let date = this.state.contactDate;
         let city = this.cityRef.current.validateFormInput(document.getElementById('city'));
         let comments = this.commentsRef.current.validateFormInput(document.getElementById('comments'));
 
@@ -90,7 +101,7 @@ class TalkToWeddingPlanner extends Component {
             this.setState({modal: false});
          }
     }
-   
+    
     render() {
         return (
             <div className="flex justify-center">
@@ -126,11 +137,20 @@ class TalkToWeddingPlanner extends Component {
                             </Col>
 
                             <Col md="6" xs="6">
-                                <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
+                             
+                                {/* <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/> */}
+                                <DatePicker 
+                                selected={this.state.contactDate} 
+                                onChange={e => this.handleDateChange(e)}
+                                placeholderText="mm/dd/yyyy"
+                                id = "contactDate"
+                                ref={this.dateRef}
+                                withBorder={true}
+                             />
                             </Col>
 
                             <Col md="6" xs="6">
-                                <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                           
+                                <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                          
                             </Col>
 
                             <Col md="12">
