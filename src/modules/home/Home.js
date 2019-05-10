@@ -92,7 +92,7 @@ class Home extends Component {
 
     const cityCount = document.getElementById('city-count');
     const cityCountVisible = this.checkVisible(cityCount);
-    if (cityCountVisible) {
+    if (cityCountVisible || (document.getElementById('city-count').getBoundingClientRect().top <=0)) {
       this.setState({
         personalizedIcon: 'personalised-services.png',
         personalizedServices: 'personalized-services.jpg',
