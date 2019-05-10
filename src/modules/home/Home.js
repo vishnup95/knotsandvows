@@ -60,6 +60,7 @@ class Home extends Component {
     genie: '',
     discountedPrice: '',
     teamImg: '',
+    goldBox: '',
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -106,6 +107,7 @@ class Home extends Component {
         genie: 'genie.png',
         discountedPrice: 'discounted-prices.png',
         teamImg: 'team-img.png',
+        goldBox: 'contact-box.png',
       });
     }
     if (window.innerWidth > 1023) {
@@ -451,12 +453,15 @@ class Home extends Component {
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
                     {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
-                    <picture>
-                      <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')} />
-                      <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')} />
-                      <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')} />
-                      <img src={imagePath('contact-box-176.png')} alt="gold package" />
-                    </picture>
+
+                    {this.state.goldBox &&
+                      <picture>
+                        <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')} />
+                        <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')} />
+                        <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')} />
+                        <img src={imagePath('contact-box-176.png')} alt="gold package" />
+                      </picture>
+                    }
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
@@ -475,7 +480,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
-                   {this.state.genie && <img src={imagePath(this.state.genie)} alt="Genie" />}
+                    {this.state.genie && <img src={imagePath(this.state.genie)} alt="Genie" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
@@ -491,7 +496,7 @@ class Home extends Component {
               <Row className="mt-5" id="ceremonies">
                 <Col className={`${styles.ceremony} text-center`}>
                   <h2>Pick a Ceremony...</h2>
-                  {this.props.ceremonies &&
+                  {this.props.ceremonies && this.state.genie &&
                     <Col xs="12" className={` no-padding mb-5`}>
                       <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
                     </Col>
