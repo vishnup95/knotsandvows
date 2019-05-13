@@ -18,7 +18,7 @@ class InputField extends Component {
     componentDidMount() {
         if (this.props.value) {
             this.setState({value: this.props.value})
-            this.handleFocus(document.getElementById(this.props.id));
+            this.handleFocus(document.getElementById(this.props.id), false);
         } 
 
         if (this.props.type == "date"){
@@ -39,9 +39,13 @@ class InputField extends Component {
         this.props.id === 'contactDate' ? document.getElementById(this.props.id).classList.add('placeholderclass') : '';
     }
 
-    handleFocus(inputBox) {
+    handleFocus(inputBox, isManual = true) {
         inputBox.parentNode.classList.add('is-focussed');
         inputBox.parentNode.classList.remove('error');
+        if(this.props.onFocus && !isManual){
+            this.props.onFocus();
+        }
+        console.log("handleFocus");
     }
 
     validateFormInput(inputBox) {
@@ -171,7 +175,8 @@ InputField.propTypes = {
     value: PropTypes.string,
     phoneCheck: PropTypes.bool,
     maxLength: PropTypes.string,
-    withBorder: PropTypes.bool
+    withBorder: PropTypes.bool,
+    onFocus: PropTypes.func,
 };
 
 InputField.defaultProps = {

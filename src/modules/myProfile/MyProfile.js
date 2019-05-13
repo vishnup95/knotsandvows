@@ -16,6 +16,8 @@ const jumbotronData = {
     subtitle: 'We have you covered. Our expert planners will work with you to make your event fantastic and make sure your needs are met.'
 };
 
+var dummyPassword = "Pister735@bnhnk";
+
 const mapStateToProps = state => ({
     user: state.session.user,
     isLoading : state.session.loading,
@@ -40,6 +42,7 @@ class MyProfile extends Component {
         this.state = {
             name: this.nameRef.value,
             phoneno: this.phoneRef.value,
+            password: this.passwordRef.value
         };
     }
 
@@ -53,6 +56,10 @@ class MyProfile extends Component {
         this.setState({
             [e.target.id]: e.target.value
         });
+    }
+
+    handleFocus= () => {
+        console.log("handleFocus");
     }
 
     componentDidUpdate(prevProps){
@@ -73,10 +80,14 @@ class MyProfile extends Component {
        
         let name = this.nameRef.current.validateFormInput(document.getElementById('name'));
         let phoneno = this.phoneRef.current.validateFormInput(document.getElementById('phoneno'));
-        if (name && phoneno) {
+        let password = this.passwordRef.current.validateFormInput(document.getElementById('password'));
+        if (name && phoneno && password) {
             const params = {
                 name: this.state.name,
                 phoneno: this.state.phoneno
+            }
+            if(this.state.password != dummyPassword){
+                params.password = this.state.password;
             }
             this.props.dispatch(actions.updateProfile(params));
         }
@@ -93,7 +104,7 @@ class MyProfile extends Component {
                         <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} value={this.props.user.name}/>
                         <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} value={this.props.user.email} disabled={true}/>
                         <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} value={this.props.user.phoneno}/>
-                        <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onChange={e => this.handleFormChange(e)} value="samplepassword" disabled={true}/>
+                        <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onFocus={this.handleFocus} onChange={e => this.handleFormChange(e)} value={dummyPassword}/>
                     </Form>
                     <div className="text-center mt-4">
                         <ProgressButton className="primary-button" onClick={() => this.validateMyProfileForm()} title="Update Changes" isLoading={this.props.isLoading}></ProgressButton>
