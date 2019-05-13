@@ -23,6 +23,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch
 });
 
+const minDate = new Date(Date.now());
+var date = new Date();
+//Max date is set to 4 years from today date.
+const maxDate = date.setDate(date.getDate() +1456);
+
 class TalkToWeddingPlanner extends Component {
 
     constructor(props) {
@@ -44,15 +49,25 @@ class TalkToWeddingPlanner extends Component {
         }
         this.toggle = this.toggle.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
+        this.clearDatePickerData = this.clearDatePickerData.bind(this);
           
     }
 
     handleDateChange(date) {
+        document.getElementById('clearDatePicker').style.display = 'block';
+        document.getElementById('contactDate').focus();
         this.setState({
             contactDate: date
         });
       }
-      
+    
+    clearDatePickerData(){
+        document.getElementById('contactDate').value = '';
+        document.getElementById('clearDatePicker').style.display = 'none';
+        document.getElementById('contactDate').focus();
+        this.setState({ contactDate:'' });
+        return false;
+    }
     componentWillUnmount() {
         this.setState({city: ''})
     }
@@ -125,36 +140,44 @@ class TalkToWeddingPlanner extends Component {
                         </div>
                         <Row className="position-relative">
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} withBorder={true} required={false}/>
+                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" tabindex="-6" onChange={e => this.handleFormChange(e)} withBorder={true} required={false}/>
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" tabIndex="-5" onChange={e => this.handleFormChange(e)} withBorder={true}/>
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" tabIndex="-4" onChange={e => this.handleFormChange(e)} withBorder={true}/>
                             </Col>
 
                             <Col md="6" xs="6">
-                             
+                             <div style={{display:"flex"}}>
                                 {/* <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/> */}
-                                <DatePicker 
+                                <div style={{width:"80%"}}><DatePicker 
                                 selected={this.state.contactDate} 
                                 onChange={e => this.handleDateChange(e)}
-                                placeholderText="mm/dd/yyyy"
+                                dateFormat="dd/MM/yyyy"
+                                placeholderText="dd/mm/yyyy"
                                 id = "contactDate"
                                 ref={this.dateRef}
+                                minDate={minDate}
+                                maxDate={maxDate}
                                 withBorder={true}
-                             />
+                                tabindex="-3"
+                             /></div>
+                             <div>
+                             <button id="clearDatePicker"  onClick={() => this.clearDatePickerData()} 
+                             style={{'font-size':'10px','display':'none','marginTop':'15px','border-radius': '100%'}} title="Clear Date" > x</button>
+                             </div></div>
                             </Col>
 
                             <Col md="6" xs="6">
-                                <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                          
+                                <InputField maxLength="50" placeHolder="City" id="city" tabIndex="-2" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                          
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="200" placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
+                                <InputField maxLength="200" placeHolder="Comments" id="comments" tabIndex="-1" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
                             </Col>
                         </Row>
 
@@ -197,4 +220,4 @@ TalkToWeddingPlanner.defaultProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(TalkToWeddingPlanner);
+)(TalkToWeddingPlanner);	
