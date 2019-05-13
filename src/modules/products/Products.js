@@ -21,7 +21,7 @@ import FormComponent from './newForm';
 import NoResultComponent from '../../components/noResult/noResult';
 import LoaderComponent from '../../components/Loader/loader';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
-
+import Helmet from 'react-helmet';
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -30,7 +30,9 @@ const mapStateToProps = state => ({
   filterData: state.products.filterData,
   other_categories: state.products.other_categories,
   myWishListData: state.wishlist.myWishListData,
-  sharedWishlistData: state.wishlist.sharedWishListData
+  sharedWishlistData: state.wishlist.sharedWishListData,
+  location: state.router.location
+  
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -44,7 +46,7 @@ const jumbotronData = { title: 'You may also be interested in..' };
 class Products extends Component {
 
   state = {
-    category: this.selectedCategory(),
+    category: this.props.match.params.category_name,
     productListData: null,
     sortBy: 0,
     page: 1,
@@ -53,12 +55,21 @@ class Products extends Component {
     search: ''
   }
 
-  static fetchData(store) {
+  static fetchData(store, match, req) {
     // Normally you'd pass action creators to "connect" from react-redux,
     // but since this is a static method you don't have access to "this.props".
 
     // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
-    return store.dispatch(actions.fetchProducts(this.selectedCategory()));
+    let page = req.query.page;
+    if (!page){
+      page = 1;
+    }
+    let promises = [];
+    let category = match.params.category_name;
+    promises.push(store.dispatch(actions.fetchProducts(category, page)));
+    promises.push(store.dispatch(actions.fetchFilters(category)));
+    promises.push(store.dispatch(actions.fetchOtherCategories(category)));
+    return Promise.all(promises);
   }
 
   componentDidMount() {
@@ -70,6 +81,14 @@ class Products extends Component {
     return this.props.match.params.category_name;
   }
 
+  getPage(){
+    var page = queryString.parse(this.props.location.search).page;
+    if (!page){
+      page = 1;
+    }
+    return page;
+ }
+
   toggle() {
     this.setState({ dropdownOpen: !this.state.dropdownOpen });
   }
@@ -80,10 +99,11 @@ class Products extends Component {
 
   componentWillMount() {
     let category = this.selectedCategory();
-    this.props.dispatch(actions.fetchProducts(category));
+    var page = this.getPage();
+    this.props.dispatch(actions.fetchProducts(category, page));
     this.props.dispatch(actions.fetchFilters(category));
     this.props.dispatch(actions.fetchOtherCategories(category));
-    this.setState({ category: category });
+    this.setState({ category: category, page: page });
   }
 
   componentDidUpdate(prevProps) {
@@ -93,10 +113,15 @@ class Products extends Component {
 
     if (this.state.category !== this.props.match.params.category_name) {
       let category = this.selectedCategory();
-      this.props.dispatch(actions.fetchProducts(category));
+      var page = this.getPage();
+      this.props.dispatch(actions.fetchProducts(category, page));
       this.props.dispatch(actions.fetchFilters(category));
       this.props.dispatch(actions.fetchOtherCategories(category));
-      this.setState({ category: category, page: 1, sortBy: 0, search:''});
+      this.setState({ category: category, page: page, sortBy: 0, search:''});
+    }else if(this.state.page != this.getPage()){
+      let page = this.getPage();
+      this.setState({page: page}); //Pagination handler
+      this.props.dispatch(actions.fetchProducts(this.state.category,page,this.state.sortBy,this.state.search));
     }
 
     if (this.state.productListData !== this.props.productListData) {
@@ -108,9 +133,8 @@ class Products extends Component {
       this.props.dispatch(actions.fetchProducts(this.state.category, this.state.page, this.state.sortBy, this.state.search));
     }
   }
-  pageChangeHandler(data) {
-    this.props.dispatch(actions.fetchProducts(this.state.category, data.selected + 1, this.state.sortBy, this.state.search));
-    this.setState({ page: data.selected + 1 });
+  pageChangeHandler(page) {
+    this.navigateTo(`/categories/${this.state.category}?page=${page.selected+1}`);
   }
 
   navigateTo(route) {
@@ -131,14 +155,25 @@ class Products extends Component {
     this.toggle();
   }
 
+  componentWillUnmount(){
+    this.props.dispatch(actions.clearVendorListData());
+  }
+
   render() {
-    const { header, filters } = this.props.filterData;
+    const { header, filters, metatag } = this.props.filterData;
     var category = "";
     if (header && header.category_name){
       category = `All ${header.category_name}`
     }
     return (
       <div>
+        {metatag &&
+                <Helmet>
+                <title>{metatag.title}</title>
+                <meta name="description" content={metatag.description} />
+                <meta name="keywords" content={metatag.keywords} />
+                </Helmet>
+        }
         {header &&
           <div className={` ${styles.categoryCover} position-relative text-center d-none d-sm-block`} style={{ background: "url(" + header.image + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
           </div>
@@ -227,7 +262,8 @@ class Products extends Component {
                   onPageChange={(data) => this.pageChangeHandler(data)}
                   containerClassName={'pagination'}
                   subContainerClassName={'pages pagination'}
-                  activeClassName={'active'} />
+                  activeClassName={'active'} 
+                  hrefBuilder={(page) => `/categories/${this.state.category}?page=${page}`}/>
               }
 
             </Container>)
@@ -255,7 +291,8 @@ Products.propTypes = {
   match: PropTypes.object,
   productListLoading: PropTypes.bool,
   myWishListData: PropTypes.object,
-  sharedWishlistData: PropTypes.object
+  sharedWishlistData: PropTypes.object,
+  location: PropTypes.object
 };
 
 export default connect(

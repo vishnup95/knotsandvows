@@ -437,7 +437,6 @@ class Home extends Component {
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
                     {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
-
                     {this.state.loadImages &&
                       <picture>
                         <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')} />

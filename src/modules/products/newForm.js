@@ -52,7 +52,7 @@ export class DropdownComponent extends Component {
             data-toggle="dropdown"
             aria-expanded={this.state.dropdownOpen}>
             <span className={styles.placeholder}>{this.props.placeholder}</span>
-            {this.state.selectedItem.name} 
+            {this.state.selectedItem ? this.state.selectedItem.name : ""} 
             </DropdownToggle>
           <DropdownMenu className={styles.dropMenu}>
 
