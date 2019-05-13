@@ -37,24 +37,20 @@ const jumbotronData = {
 };
   
 class CategoryListing extends Component {
-  state = {
-    categories: [],
-    fixedCategories: []
-  }
+  
 
   static fetchData(store) {
     return store.dispatch(actions.fetchAllVendors());
   }
 
   componentWillMount() {
-    this.props.dispatch(actions.fetchAllVendors());
+    if(!this.props.allVendorDetails  || !this.props.allVendorDetails.categories || this.props.allVendorDetails.categories == 0) {
+      this.props.dispatch(actions.fetchAllVendors());
+    }
   }
-
-  updateData(props){
-    let filteredCategories = props.allVendorDetails.categories.filter(item => {
-      return item.vendors !== null && item.vendors.length > 0
-    })
-    this.setState({categories: filteredCategories, fixedCategories: filteredCategories});
+  
+  componentWillUnmount(){
+    this.props.dispatch(actions.clearCeremonyData());
   }
 
   componentDidMount() {
@@ -62,11 +58,6 @@ class CategoryListing extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.allVendorDetails !== null && nextProps.allVendorDetails.categories !== null) {
-      this.updateData(nextProps);
-    }else{
-      this.setState({categories: [], fixedCategories: []});
-    }
     if(this.props.user != nextProps.user && nextProps.user) {
       this.props.dispatch(actions.fetchAllVendors());
     }
@@ -77,11 +68,7 @@ class CategoryListing extends Component {
   }
 
   handleCategoryChange = (index) => {
-    let updatedCategories = this.state.fixedCategories.slice();
-    let temp = updatedCategories[0];
-    updatedCategories[0] = updatedCategories[index];
-    updatedCategories[index] = temp;
-    this.setState({categories: updatedCategories});
+    this.props.dispatch(actions.updateCategoryOrder(index));
   }
 
   render() {
@@ -99,13 +86,13 @@ class CategoryListing extends Component {
                 </Col>
               </Row>
               {this.props.isLoading && <LoaderComponent />}
-              {this.state.fixedCategories.length > 0 && <Row className={`mb-3 ${styles.fullWidthListing}`}>
+              {this.props.allVendorDetails.fixedCategories.length > 0 && <Row className={`mb-3 ${styles.fullWidthListing}`}>
                 <Col>
-                  <HorizontalSlider data={this.state.fixedCategories} type='small' buttonAction={this.handleCategoryChange}/>
+                  <HorizontalSlider data={this.props.allVendorDetails.fixedCategories} type='small' buttonAction={this.handleCategoryChange}/>
                 </Col>
               </Row>}
               {
-                this.state.categories.map((category, index) => {
+                this.props.allVendorDetails.categories.map((category, index) => {
                   return (
                     <CategorySection category={category} key={index} dispatch={this.props.dispatch}/>
                   );
