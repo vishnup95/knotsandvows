@@ -38,7 +38,7 @@ export default (options = { logger: true }) => {
     promiseMiddleware(),
     clientMiddleware(client)
   ];
-  if (options.logger) {
+  if (options.logger && process.env.API_HOST !== 'https://prod.ahwanam.com') {
     const { createLogger } = require('redux-logger');
     const logger = createLogger({ collapsed: true });
     middleware.push(logger);

@@ -17,11 +17,16 @@ import { imagePath, detectMobile } from '../../utils/assetUtils';
 import { hyphonatedString } from '../../utils/utilities';
 import ImageFade from '../../components/ImageFade/imageFade';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+import Helmet from 'react-helmet';
+
+let meta = {
+  title:"SevenVows",
+  description:'Wedding services and planning partners',
+  keywords:""
+}
 
 const mapStateToProps = state => ({
   user: state.session.user,
-  // categories: state.home.categories,
-  // exclusives: state.home.exclusives,
   ceremonies: state.home.ceremonies
 });
 
@@ -263,6 +268,10 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.homeOuter}>
+      <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
         {
           styles &&
           <div>

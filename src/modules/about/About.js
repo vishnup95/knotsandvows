@@ -4,15 +4,26 @@ import MemberContainerComponent from './memberComponent';
 import styles from './about.scss';
 import { imagePath } from '../../utils/assetUtils';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+import Helmet from 'react-helmet';
 
+let meta = {
+  title:"Who We Are - Seven Vows",
+  description:'Seven Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.',
+  keywords:""
+}
 class AboutComponent extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
   }
    
   render() {
+
     return (
       <div className={styles.aboutContainer}>
+        <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description}/>
+        </Helmet>
         <div className={styles.aboutCover}></div>
         <Container className={`${styles.aboutSubContainer} mb-5 pb-5`}>
           <h1 className={`${styles.h2Class} mt-5`}>
