@@ -91,7 +91,7 @@ const generator = SitemapGenerator(process.env.APP_URL, {
 });
 
 // start the crawler
-generator.start();
+//generator.start();
  
 // register event listeners
 generator.on('done', () => {
@@ -105,9 +105,9 @@ generator.on('error', (error) => {
 });
 
 // start the crawler
-// if (process.env.NODE_ENV === 'production') {
-//   generator.start();
-// }
+if (process.env.NODE_ENV === 'production') {
+  generator.start();
+}
 
 generator.on('add', (url) => {
   
