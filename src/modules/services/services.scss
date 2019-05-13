@@ -3,30 +3,79 @@
 @import '../../variables/fonts';
 @import '../../variables/breakpoints';
 
+.servicesContainer {
+  color: $black;
 
-.serviceCard {
-  @include margin(15);
-  @include padding(25,25,15);
-  @include borderRadius(10);
-  background-color: $white;
-  box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.15);
-
-  img {
-    @include height(35);
-    @include width(35);
-    margin-right: 1rem;
+  .servicesCover {
+    height: 42vw;
+    position: relative;
+    background: url('#{$image-base-url}/services-banner.png');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include mobile {
+      height: 48vw;
+    }
   }
 
-  p {
-    font-weight: 400;
-    @include letterSpacing(.9);
-    @include fontSize(16);
-    color: $black;
+  .containerClass {
+    @include hdPlus {
+      max-width: 1400px;
+    }
+  }
 
-    &:first-child {
-      font-family:  $frank; font-weight: 400;
-      @include fontSize(22);
-      color: $black-five;
+  .detailBox {
+    .leftSection {
+      @include padding(40);
+      border-right: 2px solid $medium-pink;
+      text-align: right;
+
+      h3 {
+        font-size: 3.3rem;
+        color: $greyish-brown-six;
+        @include letterSpacing(0.2);
+
+      }
+    
+      hr {
+        width: 60%;
+        margin-bottom: 0;
+      }
+    
+      ul {
+        list-style: none;
+    
+        li {
+          @include padding(10,0);
+          font-size: 1.67rem;
+        }
+      }
+    }
+
+    .rightSection {
+      @include padding(40);
+      color: white;
+
+      img {
+        width: 100%;
+      }
+
+      .description {
+        background-color: $medium-pink;
+        padding: 0;
+      }
+
+      ul {
+        list-style: none;
+        @include padding(10,20);
+    
+        li {
+          @include padding(10, 0, 10, 40);
+          font-size: 1.5rem;
+          background: url('#{$image-base-url}/detail-icon.png') left 0.5rem no-repeat;
+          background-size: 30px; 
+        }
+      }
     }
   }
 }
