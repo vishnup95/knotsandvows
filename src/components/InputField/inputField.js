@@ -40,11 +40,21 @@ class InputField extends Component {
     }
 
     handleFocus(inputBox, isManual = true) {
+        
+        console.log(this.props.id);
+        
         inputBox.parentNode.classList.add('is-focussed');
         inputBox.parentNode.classList.remove('error');
-        if(this.props.onFocus && !isManual){
+         if(this.props.onFocus && !isManual){
             this.props.onFocus();
+        
         }
+        if(this.props.id=='password'){
+            this.setState({
+                value:''
+            })
+        }
+        //e.preventDefault();
         console.log("handleFocus");
     }
 
@@ -105,6 +115,14 @@ class InputField extends Component {
             }
         }
     }
+    // onClick=()=>{
+    //     console.log(this.props.id);
+    //     if(this.props.id=='password'){
+    //         this.setState({
+    //             value:''
+    //         })
+    //     }
+    // }
 
     render() {
 
@@ -157,7 +175,7 @@ class InputField extends Component {
               <span className='input-error'>{this.state.errorMessage}</span>
               {this.props.type === 'password' && this.props.disabled == false && <div><span className='input-password-mask' id='reveal'></span>
               <UncontrolledTooltip placement="right" autohide={true} target='reveal'>
-                {title}
+                {title} 
               </UncontrolledTooltip></div>}
             </div>
         );

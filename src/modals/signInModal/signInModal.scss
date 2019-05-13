@@ -140,7 +140,8 @@
   height: 57rem;
   @include mobile {
     height: auto;
-  }
+  };
+  
 }
 
 .login-form {

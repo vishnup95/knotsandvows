@@ -34,14 +34,30 @@ body {
   font-family: $roboto;
   font-weight: 400;
   font-size: 16px;
-  padding: 0 !important;
+  //padding: 0 !important;
   margin: 0;
+  width: 100%;
   color: $black-five;
+  overflow: auto !important;
+  height: 100vh;
+  //position:static;
 }
+body.modal-open {
+  overflow: auto !important;
+  position:fixed;
+  width: 100%;
+
+}
+// html.noscroll {
+//   position: fixed; 
+//   overflow-y: scroll !important;
+//   width: 100%;
+// }
 
 #root {
   min-height: 100%;
-  position: relative;
+  position: relative; 
+ 
 }
 
 h1,
@@ -67,7 +83,8 @@ h2 {
   margin-top: calc(48px + 8.1rem);
   @include mobile {
     margin-top: 73px;
-  }
+  };
+  
 }
 
 .primary-button {

@@ -10,8 +10,12 @@
 }
 
 .ah-header {
-  position: fixed;
-  top: 0;
+  //added by ankita
+  //position: fixed;
+  position: relative;
+  height: 0px;
+  //till here
+  top: 0px;
   left: 0;
   width: 100%;
   z-index: 100;
@@ -39,6 +43,7 @@
     }
   }
 }
+
 
 .nav-small {
   @include mobile {
@@ -258,6 +263,7 @@
 
 .login-modal {
   @include width(1385);
+  
 }
 
 .user-info {
