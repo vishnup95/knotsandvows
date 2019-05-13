@@ -8,8 +8,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { purgeCacheOnChange } from './purgeCacheOnChange';
 import config from '../config/webpack.config.dev';
-
 import bodyParser from 'body-parser';
+import SitemapGenerator from 'sitemap-generator';
+
 
 const { PUBLIC_URL = '' } = process.env;
 const compiler = webpack(config);
@@ -74,6 +75,54 @@ app.use(
   })
 );
 purgeCacheOnChange(path.join(__dirname, '../'));
+
+// create generator
+const generator = SitemapGenerator(process.env.APP_URL, {
+  stripQuerystring: false,
+  filepath: path.join(process.cwd(), 'sitemap.xml'),
+  changeFreq: "always",
+  lastMod: true,
+  timeout:500000,
+  listenerTTL: 30000,
+  ignore: url => {
+    // Prevent URLs from being added that contain `<pattern>`.
+    return (url.indexOf('undefined') !== -1 || url.indexOf('login') !== -1)
+  }
+});
+
+// start the crawler
+generator.start();
+ 
+// register event listeners
+generator.on('done', () => {
+  // sitemaps created
+  console.log("sitemaps created");
+
+});
+
+generator.on('error', (error) => {
+  //console.log('error',error);
+});
+
+// start the crawler
+// if (process.env.NODE_ENV === 'production') {
+//   generator.start();
+// }
+
+generator.on('add', (url) => {
+  
+});
+
+app.get('/sitemap.xml', function(req, res, next) {
+  res.setHeader('Content-Type', 'text/xml');
+  res.setHeader('Cache-Control', "max-age=0");
+  res.sendFile(path.join(process.cwd(), 'sitemap.xml'))
+});
+
+app.get('/update-sitemap-xml', function(req, res, next) {
+  generator.start();
+  res.sendStatus(200);
+});
 
 app.post('/report-violation', function (req, res) {
   if (req.body) {
