@@ -52,15 +52,7 @@ class Home extends Component {
     animateImageThree: false,
     showDesc: false,
     errorMessage: '',
-    personalizedIcon: '',
-    personalizedServices: '',
-    noPocketPinch: '',
-    rubyBox: '',
-    team: '',
-    genie: '',
-    discountedPrice: '',
-    teamImg: '',
-    goldBox: '',
+    loadImages: false,
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -99,15 +91,7 @@ class Home extends Component {
     const cityCountVisible = this.checkVisible(cityCount);
     if (cityCountVisible || (document.getElementById('city-count').getBoundingClientRect().top <=0)) {
       this.setState({
-        personalizedIcon: 'personalised-services.png',
-        personalizedServices: 'personalized-services.jpg',
-        noPocketPinch: 'no-pocket-pinch.jpg',
-        rubyBox: 'ruby-box.png',
-        team: 'team.png',
-        genie: 'genie.png',
-        discountedPrice: 'discounted-prices.png',
-        teamImg: 'team-img.png',
-        goldBox: 'contact-box.png',
+        loadImages: true,
       });
     }
     if (window.innerWidth > 1023) {
@@ -213,14 +197,14 @@ class Home extends Component {
         yPos = document.getElementById('packages').offsetTop;
       }
       window.scrollTo({
-        top: yPos - 50,
+        top: yPos,
         left: 0,
         behavior: 'smooth'
       });
     } else if (props.location.hash === '#ceremonies') {
       let yPos = document.getElementById('ceremonies').offsetTop;
       window.scrollTo({
-        top: yPos - 50,
+        top: yPos,
         left: 0,
         behavior: 'smooth'
       });
@@ -383,40 +367,40 @@ class Home extends Component {
                 <Col>
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
-                      {this.state.personalizedIcon && <img className={styles.imageCardIcon} src={imagePath(this.state.personalizedIcon)} alt="img" />}
+                      {this.state.loadImages && <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>Personalized services</h3>
                         <p>It’s you who decides. Choose from a wide range of wedding services or select a personalized package to organize a stress-free dream wedding.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
-                      {this.state.personalizedServices && <img className={styles.cardImage} src={imagePath(this.state.personalizedServices)} alt="img" />}
+                      {this.state.loadImages && <img className={styles.cardImage} src={imagePath('personalized-services.jpg')} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="personalisedSection"></div>
                   </div>
                   <div className={`${styles.imageCard} ${styles.imageCardReverse}`}>
                     <div className={styles.imageCardText}>
-                      {this.state.discountedPrice && <img className={styles.imageCardIcon} src={imagePath(this.state.discountedPrice)} alt="img" />}
+                      {this.state.loadImages && <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>No pocket pinch</h3>
                         <p>It feels nice to spend the world on your wedding. However, savings can go a long way. Our value-for-money services come with added discounts to make you happy and your pocket happier.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
-                      {this.state.noPocketPinch && <img className={styles.cardImage} src={imagePath(this.state.noPocketPinch)} alt="img" />}
+                      {this.state.loadImages && <img className={styles.cardImage} src={imagePath('no-pocket-pinch.jpg')} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="discountSection"></div>
                   </div>
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
-                      {this.state.team && <img className={styles.imageCardIcon} src={imagePath(this.state.team)} alt="img" />}
+                      {this.state.loadImages && <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>Expert team</h3>
                         <p>We are a team of passionate professionals with over 15 years of experience, striving to make the world a happier place, one wedding at a time.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageThree ? styles.cardImageSlide : ''}`}>
-                      {this.state.teamImg && <img className={styles.cardImage} src={imagePath(this.state.teamImg)} alt="img" />}
+                      {this.state.loadImages && <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="thirdcard"></div>
                   </div>
@@ -452,7 +436,7 @@ class Home extends Component {
               <Container className={`${styles.homeContainer}`}>
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
-                    {this.state.goldBox && <img src={imagePath(this.state.goldBox)} alt="Gold" />}
+                    {this.state.loadImages && <img src={imagePath('contact-box.png')} alt="Gold" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
@@ -461,7 +445,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
-                    {this.state.rubyBox && <img src={imagePath(this.state.rubyBox)} alt="Ruby" />}
+                    {this.state.loadImages && <img src={imagePath('ruby-box.png')} alt="Ruby" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
@@ -471,7 +455,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
-                   {this.state.genie && <img src={imagePath(this.state.genie)} alt="Genie" />}
+                   {this.state.loadImages && <img src={imagePath('genie.png')} alt="Genie" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
@@ -487,7 +471,7 @@ class Home extends Component {
               <Row className="mt-5" id="ceremonies">
                 <Col className={`${styles.ceremony} text-center`}>
                   <h2>Pick a Ceremony...</h2>
-                  {this.props.ceremonies && this.state.genie &&
+                  {this.props.ceremonies && this.state.loadImages &&
                     <Col xs="12" className={` no-padding mb-5`}>
                       <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
                     </Col>
