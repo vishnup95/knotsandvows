@@ -18,7 +18,8 @@
   h2 {
     text-align: center;
     margin-bottom: 1rem;
-    font-family:  $frank; font-weight: 500;
+    font-family: $frank;
+    font-weight: 500;
 
     span {
       color: $medium-pink;
@@ -228,7 +229,8 @@ a.button {
   }
 
   h3 {
-    font-family:  $frank; font-weight: 400;
+    font-family: $frank;
+    font-weight: 400;
     @include fontSize(30);
     @include letterSpacing(1.2);
     line-height: 1.3;
@@ -339,7 +341,8 @@ a.button {
   }
 
   h4 {
-    font-family:  $frank; font-weight: 500;
+    font-family: $frank;
+    font-weight: 500;
     position: absolute;
     bottom: 18%;
     width: 100%;
@@ -413,7 +416,8 @@ a.button {
     }
 
     h3 {
-      font-family:  $frank; font-weight: 500;
+      font-family: $frank;
+      font-weight: 500;
       @include fontSize(30);
       color: $white;
       white-space: nowrap;
@@ -461,7 +465,8 @@ a.button {
 }
 
 .carousel-header {
-  font-family:  $frank; font-weight: 400;
+  font-family: $frank;
+  font-weight: 400;
   @include fontSize(58);
   line-height: 1.24;
   color: white;
@@ -613,7 +618,7 @@ a.button {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-
+  min-height: 40.9rem;
   &:first-child {
     > img {
       width: 16rem;
@@ -633,6 +638,7 @@ a.button {
   }
   @include tablet {
     width: 33%;
+    min-height: 46rem;
 
     img {
       max-width: 100%;
@@ -640,7 +646,7 @@ a.button {
   }
   @include desktop {
     width: auto;
-
+    min-height: 49.6rem;
     &:first-child {
       z-index: 3;
       transform: translate3d(56%,-80.5rem,0px);
@@ -795,7 +801,8 @@ a.button {
       animation-name: textanimation;
       animation-duration: 5s;
       display: inline-block;
-      font-family:  $frank; font-weight: 500;
+      font-family: $frank;
+      font-weight: 500;
       white-space: pre;
       line-height: 1.17;
       @include tablet {
@@ -812,7 +819,8 @@ a.button {
 
 h1.homeTitle {
   font-size: 21px !important;
-  font-family:  $frank !important; font-weight: 500;
+  font-family: $frank !important;
+  font-weight: 500;
   white-space: initial;
 
   span {
@@ -1084,6 +1092,7 @@ h1.homeTitle {
     padding: 1.5rem;
     background-color: #fff;
     width: 100%;
+    min-height: 34.55rem;
 
     &:last-child {
       margin: 3rem auto 0;
@@ -1097,8 +1106,12 @@ h1.homeTitle {
   margin: 3rem auto 7rem;
   position: relative;
   max-width: 100%;
-  @include tablet {}
+  @include tablet {
+    min-height: 29.27rem;
+  }
   @include desktop {
+    min-height: 32.93rem;
+
     &:nth-child(odd) {
       margin-left: -1.2rem;
     }
@@ -1114,7 +1127,6 @@ h1.homeTitle {
     }
 
     p {
-
       font-weight: 300 !important;
       text-align: left !important;
       font-size: 1.2rem !important;
@@ -1182,7 +1194,8 @@ h1.homeTitle {
   }
   color: $white;
   @include fontSize(93.5);
-  font-family:  $frank; font-weight: 700;
+  font-family: $frank;
+  font-weight: 700;
 }
 
 .whiteDesc {
