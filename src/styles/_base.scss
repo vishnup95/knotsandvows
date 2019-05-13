@@ -34,25 +34,12 @@ body {
   font-family: $roboto;
   font-weight: 400;
   font-size: 16px;
-  //padding: 0 !important;
+  padding: 0 !important;
   margin: 0;
   width: 100%;
   color: $black-five;
-  overflow: auto !important;
-  height: 100vh;
-  //position:static;
+  
 }
-body.modal-open {
-  overflow: auto !important;
-  position:fixed;
-  width: 100%;
-
-}
-// html.noscroll {
-//   position: fixed; 
-//   overflow-y: scroll !important;
-//   width: 100%;
-// }
 
 #root {
   min-height: 100%;
