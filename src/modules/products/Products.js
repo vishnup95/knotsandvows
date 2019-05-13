@@ -232,11 +232,15 @@ class Products extends Component {
 
             </Container>)
         }
-        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap">
+        {
+          !this.props.productListLoading && 
+          <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap">
           <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
             <HorizontalScrollingCarousel data={this.props.other_categories} type="other_categories" />
           </Col>
         </JumbotronComponent>
+        }
+        
       </div>
     );
   }

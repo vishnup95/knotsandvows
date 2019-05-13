@@ -182,7 +182,7 @@ class CeremonyDetail extends Component {
             </Container>
           </div>
         }
-        {this.props.similar_ceremonenies &&
+        {this.props.similar_ceremonenies && !this.props.ceremonyLoading &&
           <JumbotronComponent data={jumbotronData} items={this.props.similar_ceremonenies.slice(0,3)} cardType="ceremonies" bgcolor="#f8f8f8" containerStyle="otherWrap">
             <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
               <HorizontalScrollingCarousel data={this.props.similar_ceremonenies} type="similar_ceremonies" />
