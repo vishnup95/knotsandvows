@@ -9,8 +9,7 @@ import ReactPaginate from 'react-paginate';
 import {
   Container,
   Row,
-  Col,
-  Dropdown, DropdownMenu, DropdownToggle,
+  Col
 } from 'reactstrap';
 import { InputGroup, Button, InputGroupAddon, Input } from 'reactstrap';
 import { imagePath, detectMobile } from '../../utils/assetUtils';
@@ -161,7 +160,7 @@ class Products extends Component {
   }
 
   render() {
-    const { header, sort_options, filters, metatag } = this.props.filterData;
+    const { header, filters, metatag } = this.props.filterData;
     var category = "";
     if (header && header.category_name){
       category = `All ${header.category_name}`
@@ -214,7 +213,7 @@ class Products extends Component {
                   {category}
                   {/* <span>&nbsp;({this.props.productListData.total_count} results)</span> */}
                 </Col>
-                <Col sm="6" className={styles.sort}>
+                {/* <Col sm="6" className={styles.sort}>
                   Sort By: &nbsp;
 
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()} className={styles.sortDropdown}>
@@ -235,7 +234,7 @@ class Products extends Component {
                     </DropdownMenu>
                   </Dropdown>
 
-                </Col>
+                </Col> */}
               </Row>
 
               <Row>
@@ -269,11 +268,15 @@ class Products extends Component {
 
             </Container>)
         }
-        <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap">
+        {
+          !this.props.productListLoading && 
+          <JumbotronComponent data={jumbotronData} items={this.props.other_categories} cardType="plain" bgcolor="#f8f8f8" containerStyle="otherWrap">
           <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
             <HorizontalScrollingCarousel data={this.props.other_categories} type="other_categories" />
           </Col>
         </JumbotronComponent>
+        }
+        
       </div>
     );
   }

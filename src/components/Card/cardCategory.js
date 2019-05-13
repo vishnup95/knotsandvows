@@ -229,9 +229,10 @@ class CategoryCard extends Component {
 
                         </p>
 
+                        {this.props.data.reviews_count && this.props.data.reviews_count !=0 &&
                         <p className={styles.rating}>
                             {this.props.data.reviews_count}&nbsp;<span>Reviews</span>
-                        </p>
+                        </p>}
                     </div>
 
                 </div>

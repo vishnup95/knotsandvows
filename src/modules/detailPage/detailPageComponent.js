@@ -380,10 +380,12 @@ class DetailPageComponent extends Component {
                                 </div>
                                 <div className={style.infoSub}>
                                     <div className={style.ratingWrap}>
-                                        {details.rating && <div>
+                                        <div>
                                             <StarRating rating={String(details.rating)} size={'large'} />
-                                        </div>}
+                                        </div>
+                                        {details.reviews_count && details.reviews_count != 0 &&
                                         <div className={style.review}> {details.reviews_count} Reviews</div>
+                                        }
                                     </div>
                                     <div className={style.viewBtnWrap}>
                                         <ProgressButton isDisabled={this.state.isInWishList} onClick={(e) => this.addToWishList(e)} title="Add to wishlist" isLoading={this.props.wishListApiLoading}></ProgressButton>

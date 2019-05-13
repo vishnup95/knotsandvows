@@ -20,9 +20,9 @@ import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWe
 import Helmet from 'react-helmet';
 
 let meta = {
-  title:"SevenVows",
-  description:'Wedding services and planning partners',
-  keywords:""
+  title: "SevenVows",
+  description: 'Wedding services and planning partners',
+  keywords: ""
 }
 
 const mapStateToProps = state => ({
@@ -51,7 +51,8 @@ class Home extends Component {
     animateImageTwo: false,
     animateImageThree: false,
     showDesc: false,
-    errorMessage: ''
+    errorMessage: '',
+    loadImages: false,
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -85,6 +86,14 @@ class Home extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
   handleScroll = () => {
+
+    const cityCount = document.getElementById('city-count');
+    const cityCountVisible = this.checkVisible(cityCount);
+    if (cityCountVisible || (document.getElementById('city-count').getBoundingClientRect().top <=0)) {
+      this.setState({
+        loadImages: true,
+      });
+    }
     if (window.innerWidth > 1023) {
       const section1 = document.getElementById('numbersection');
       const section1Visible = this.checkVisible(section1);
@@ -188,14 +197,14 @@ class Home extends Component {
         yPos = document.getElementById('packages').offsetTop;
       }
       window.scrollTo({
-        top: yPos - 50,
+        top: yPos,
         left: 0,
         behavior: 'smooth'
       });
     } else if (props.location.hash === '#ceremonies') {
       let yPos = document.getElementById('ceremonies').offsetTop;
       window.scrollTo({
-        top: yPos - 50,
+        top: yPos,
         left: 0,
         behavior: 'smooth'
       });
@@ -243,10 +252,10 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.homeOuter}>
-      <Helmet>
+        <Helmet>
           <title>{meta.title}</title>
           <meta name="description" content={meta.description} />
-       </Helmet>
+        </Helmet>
         {
           styles &&
           <div>
@@ -322,7 +331,7 @@ class Home extends Component {
             </div>
             <div className={`${styles.mediumPinkBg} ${styles.bRadius} ${styles.venueCount} container-fluid`}>
               <div className={`${styles.homeContainer} container`}>
-                <Row className='justify-center mobile-column'>
+                <Row className='justify-center mobile-column' id="city-count">
                   <Col className={styles.row}>
                     {/* <div className={styles.detailDesc}>We know</div> */}
                     <div className={styles.detailCount}>
@@ -358,40 +367,40 @@ class Home extends Component {
                 <Col>
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
-                      <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />
+                      {this.state.loadImages && <img className={styles.imageCardIcon} src={imagePath('personalised-services.png')} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>Personalized services</h3>
                         <p>It’s you who decides. Choose from a wide range of wedding services or select a personalized package to organize a stress-free dream wedding.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageOne ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('personalized-services.jpg')} alt="img" />
+                      {this.state.loadImages && <img className={styles.cardImage} src={imagePath('personalized-services.jpg')} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="personalisedSection"></div>
                   </div>
                   <div className={`${styles.imageCard} ${styles.imageCardReverse}`}>
                     <div className={styles.imageCardText}>
-                      <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />
+                      {this.state.loadImages && <img className={styles.imageCardIcon} src={imagePath('discounted-prices.png')} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>No pocket pinch</h3>
                         <p>It feels nice to spend the world on your wedding. However, savings can go a long way. Our value-for-money services come with added discounts to make you happy and your pocket happier.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageTwo ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('no-pocket-pinch.jpg')} alt="img" />
+                      {this.state.loadImages && <img className={styles.cardImage} src={imagePath('no-pocket-pinch.jpg')} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="discountSection"></div>
                   </div>
                   <div className={styles.imageCard}>
                     <div className={styles.imageCardText}>
-                      <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />
+                      {this.state.loadImages && <img className={styles.imageCardIcon} src={imagePath('team.png')} alt="img" />}
                       <div className={styles.cardDetail}>
                         <h3>Expert team</h3>
                         <p>We are a team of passionate professionals with over 15 years of experience, striving to make the world a happier place, one wedding at a time.</p>
                       </div>
                     </div>
                     <div className={`${styles.cardImageContainer} ${this.state.animateImageThree ? styles.cardImageSlide : ''}`}>
-                      <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />
+                      {this.state.loadImages && <img className={styles.cardImage} src={imagePath('team-img.png')} alt="img" />}
                     </div>
                     <div className={styles.sectionIdentifier} id="thirdcard"></div>
                   </div>
@@ -428,72 +437,74 @@ class Home extends Component {
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
                     {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
-                    <picture>
-                      <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')}/>
-                      <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')}/>
-                      <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')}/>
-                      <img src={imagePath('contact-box-176.png')} alt="gold package"/>
-                    </picture>
-                          <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                            <h3>Gold</h3>
-                            <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
-                            <a className="primary-button home-btn white" href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
-                            {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
-                          </div>
+                    {this.state.loadImages &&
+                      <picture>
+                        <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')} />
+                        <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')} />
+                        <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')} />
+                        <img src={imagePath('contact-box-176.png')} alt="gold package" />
+                      </picture>
+                    }
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Gold</h3>
+                      <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
+                      <a className="primary-button home-btn white" href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
+                      {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
+                    </div>
                   </Col>
-                        <Col className={styles.packageBox} id="box-two">
-                          <img src={imagePath('ruby-box.png')} alt="Ruby" />
-                          <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                            <h3>Royal Ruby</h3>
-                            <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
-                            <a className="primary-button home-btn white" href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
+                  <Col className={styles.packageBox} id="box-two">
+                    {this.state.loadImages && <img src={imagePath('ruby-box.png')} alt="Ruby" />}
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Royal Ruby</h3>
+                      <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
+                      <a className="primary-button home-btn white" href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
 
-                            {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
-                          </div>
-                        </Col>
-                        <Col className={styles.packageBox} id="box-three">
-                          <img src={imagePath('genie.png')} alt="Genie" />
-                          <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
-                            <h3>Genie</h3>
-                            <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
-                            {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
-                            <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
+                      {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
+                    </div>
+                  </Col>
+                  <Col className={styles.packageBox} id="box-three">
+                   {this.state.loadImages && <img src={imagePath('genie.png')} alt="Genie" />}
+                    <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
+                      <h3>Genie</h3>
+                      <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
+                      {/* <Button className="primary-button home-btn medium-pink">WISHLIST</Button> */}
+                      <a className="primary-button home-btn white" href='/wishlist' rel="noopener noreferrer" alt="">Your Wish</a>
 
-                          </div>
-                        </Col>
+                    </div>
+                  </Col>
                 </Row>
               </Container>
             </div>
-                  <Container className={styles.homeContainer}>
-                    <Row className="mt-5" id="ceremonies">
-                      <Col className={`${styles.ceremony} text-center`}>
-                        <h2>Pick a Ceremony...</h2>
-                        {this.props.ceremonies &&
-                          <Col xs="12" className={` no-padding mb-5`}>
-                            <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
-                          </Col>
-                        }
-                      </Col>
-                    </Row>
-                  </Container>
+            <Container className={styles.homeContainer}>
+              <Row className="mt-5" id="ceremonies">
+                <Col className={`${styles.ceremony} text-center`}>
+                  <h2>Pick a Ceremony...</h2>
+                  {this.props.ceremonies && this.state.loadImages &&
+                    <Col xs="12" className={` no-padding mb-5`}>
+                      <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
+                    </Col>
+                  }
+                </Col>
+              </Row>
+            </Container>
           </div>
-                }
+        }
       </div>
-              );
-            }
-          }
-          
+    );
+  }
+}
+
 Home.propTypes = {
-                user: PropTypes.object,
-              dispatch: PropTypes.func,
-              categories: PropTypes.array,
-              exclusives: PropTypes.array,
-              ceremonies: PropTypes.array,
-              router: PropTypes.object,
-              location: PropTypes.object
-            };
-            
-            export default connect(
-              mapStateToProps,
-              mapDispatchToProps
+  user: PropTypes.object,
+  dispatch: PropTypes.func,
+  categories: PropTypes.array,
+  exclusives: PropTypes.array,
+  ceremonies: PropTypes.array,
+  router: PropTypes.object,
+  location: PropTypes.object
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(Home);
