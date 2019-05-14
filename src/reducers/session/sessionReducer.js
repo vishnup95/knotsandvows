@@ -221,6 +221,7 @@ const session = (state = initialState, action) => {
       };
 
     case types.LOAD_PROFILE_SUCCESS:
+    
       localStorage.setItem("user", JSON.stringify(action.result.data.data.user));
       return {
         ...state,
@@ -245,6 +246,7 @@ const session = (state = initialState, action) => {
       };
 
     case types.LOAD_UPDATE_PROFILE_SUCCESS:
+      
       return {
         ...state,
         user: action.result.data.data.user,

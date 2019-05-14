@@ -73,8 +73,7 @@ class Header extends Component {
 
     toggleModal() {
         if (this.props.showLogin) {
-            this.props.dispatch(actions.hideLogin());
-            
+            this.props.dispatch(actions.hideLogin());    
         } else {
             sendGAEvent("Header", "Show Login");
             this.props.dispatch(actions.showLogin());

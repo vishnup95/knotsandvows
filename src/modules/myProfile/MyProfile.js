@@ -48,8 +48,9 @@ class MyProfile extends Component {
     }
 
     componentWillMount() {
+        console.log(this.props.user.password)
         if (this.props.user){
-            this.setState({name: this.props.user.name , phoneno: this.props.user.phoneno});
+            this.setState({name: this.props.user.name , phoneno: this.props.user.phoneno,password:this.props.user.password});
         }
     }
 
@@ -65,7 +66,7 @@ class MyProfile extends Component {
 
     componentDidUpdate(prevProps){
         if (this.props.user != prevProps.user){
-            this.setState({name: this.props.user.name , phoneno: this.props.user.phoneno});
+            this.setState({name: this.props.user.name , phoneno: this.props.user.phoneno,password:this.props.user.password});
         }
         if ((this.props.apiStatus != prevProps.apiStatus) && this.props.apiStatus == true){
             let modalContent = {
@@ -85,7 +86,7 @@ class MyProfile extends Component {
         if (name && phoneno && password) {
             const params = {
                 name: this.state.name,
-                phoneno: this.state.phoneno
+                phoneno: this.state.phoneno    
             }
             if(this.state.password != dummyPassword){
                 params.password = this.state.password;

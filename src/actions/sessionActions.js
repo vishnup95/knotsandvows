@@ -1,5 +1,6 @@
 // Here we're mimicing an async action creator
 export const createSession = user => dispatch => {
+  
   return new Promise(resolve => {
     setTimeout(() => {
       dispatch({

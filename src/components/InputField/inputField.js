@@ -16,7 +16,6 @@ class InputField extends Component {
     state = {errorMessage: '', value: ''};  
     
     componentDidMount() {
-        
         if (this.props.value) {
             this.setState({value: this.props.value})
             this.handleFocus(document.getElementById(this.props.id), false);
@@ -41,15 +40,12 @@ class InputField extends Component {
     }
 
     handleFocus(inputBox,isManual=true) {
-        console.log(this.props.id);
         inputBox.parentNode.classList.add('is-focussed');
         inputBox.parentNode.classList.remove('error');
          if(this.props.onFocus && !isManual){
             this.props.onFocus();
         
         }
-        
-        //e.preventDefault();
         console.log("handleFocus");
     }
 
@@ -190,7 +186,7 @@ InputField.propTypes = {
     phoneCheck: PropTypes.bool,
     maxLength: PropTypes.string,
     withBorder: PropTypes.bool,
-    onFocus: PropTypes.func,
+    
 };
 
 InputField.defaultProps = {
