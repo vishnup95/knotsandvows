@@ -1042,24 +1042,31 @@ h1.homeTitle {
        @include width(665);
     }
   }
+  &:before {
+    content: '';
+    transition: all 2s ease;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    bottom: -.5rem;
+    width: 100%;
+    height: 99px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+  }
 
   &.cardImageSlide {
     .cardImage {
       @include desktop {
+        transition: all 2s ease;
         opacity: 1;
-        margin-top: 0;
+        transform: translateY(0);
       }
     }
 
     &:before {
       content: '';
-      z-index: 1;
-      position: absolute;
-      left: 0;
       bottom: 2.5rem;
-      width: 100%;
-      height: 99px;
-      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+      transition: all 2s ease;
     }
 
     &:after {
@@ -1079,9 +1086,8 @@ h1.homeTitle {
 
 .cardImage {
   position: relative;
-  transition: all 2s ease;
   @include desktop {
-    margin-top: 3rem;
+    transform: translateY(3rem);
     opacity: 0;
   }
 }
