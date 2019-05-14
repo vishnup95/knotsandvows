@@ -9,7 +9,7 @@ const initialState = {
     sort_options: -1,
     total_count: 0   
   },
-  loading: true,
+  loading: false,
   filterData: {
     header: null,
     filters:null,
@@ -106,6 +106,15 @@ const ProductsReducer = (state = initialState, action) => {
         ...state,
         other_categories: [],
         error: action.error.message,
+      };
+      case types.CLEAR_VENDOR_LIST_DATA:
+      return {
+        ...state,
+        other_categories: [],
+        error: null,
+        productListData: initialState.productListData,
+        filterData: initialState.filterData,
+        tempfilterData: initialState.tempfilterData
       };
 
     default:

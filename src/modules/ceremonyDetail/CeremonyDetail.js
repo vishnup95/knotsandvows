@@ -10,7 +10,8 @@ import CategorySection from './categorySection';
 import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal'
 import NoResultComponent from '../../components/noResult/noResult';
-
+import { getId } from '../../utils/utilities';
+import Helmet from 'react-helmet';
 // const cities = {
 //   display_name:"City",
 //   name:"city",
@@ -38,35 +39,40 @@ const jumbotronData = { title: 'Other Ceremonies' };
 class CeremonyDetail extends Component {
   
   state = {
-    ceremony: this.selectedCategory(),
+    ceremony: this.props.match.params.ceremony_name,
     selectedOption: null,
-    categories: [],
-    fixedCategories: []
   }
   options = [];
+
+  static fetchData(store, match) {
+    // Normally you'd pass action creators to "connect" from react-redux,
+    // but since this is a static method you don't have access to "this.props".
+
+    // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
+    let promises = [];
+    let ceremony = match.params.ceremony_name;
+    promises.push(store.dispatch(actions.fetchCeremonyDetails(ceremony)));
+    promises.push(store.dispatch(actions.fetchSimilarCeremonies(ceremony)));
+    return Promise.all(promises);
+  }
 
   selectedCategory() {
     return this.props.match.params.ceremony_name;
   }
 
-  componentWillMount() {
-    let ceremony = this.selectedCategory();
-    this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
-    this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
-    // this.option = Array.from(cities.values, (value) => ({
-    //   label: value.name,
-    //   value: value.id
-    // }));   
+  componentWillMount() { 
+    if (this.props.ceremonyDetails == null || getId(this.state.ceremony) != this.props.ceremonyDetails.ceremony_id){
+      this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
+      this.props.dispatch(actions.fetchSimilarCeremonies(this.state.ceremony));
+    } 
   }
 
-  componentWillReceiveProps(nextProps) {
-    window.scrollTo(0,0);
-    if (nextProps.ceremonyDetails !== null) {
-      let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
-        return item.vendors !== null && item.vendors.length > 0
-      })
-      this.setState({ categories: filteredCategories, fixedCategories: filteredCategories });
-    }
+  componentDidMount(){
+    window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount(){
+    this.props.dispatch(actions.clearCeremonyData());
   }
 
   componentDidUpdate(prevProps) {
@@ -79,42 +85,51 @@ class CeremonyDetail extends Component {
       this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
       this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
       this.setState({ ceremony: ceremony, filter: { name: "", id: null } });
+      window.scrollTo(0, 0);
     }
 
     if(this.props.user != prevProps.user && this.props.user) {
       this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
-      this.props.dispatch(actions.fetchSimilarCeremonies(this.state.ceremony));
-  }
+      window.scrollTo(0, 0);
+    }
   }
 
   handleViewAllClick = (category) => {
     this.navigateTo(`/categories/${category}`)
+    window.scrollTo(0, 0);
   }
 
-  handleCategoryChange = (index) => {
-    let updatedCategories = this.state.fixedCategories.slice();
-    let temp = updatedCategories[1];
-    updatedCategories[1] = updatedCategories[index + 1];
-    updatedCategories[index + 1] = temp;
-    this.setState({ categories: updatedCategories });
-  }
+  // handleCategoryChange = (index) => {
+  //   let updatedCategories = this.state.fixedCategories.slice();
+  //   let temp = updatedCategories[1];
+  //   updatedCategories[1] = updatedCategories[index + 1];
+  //   updatedCategories[index + 1] = temp;
+  //   this.setState({ categories: updatedCategories });
+  // }
 
-  handleDropDownChange = (option) => {
-    if (option) {
-      this.setState({ selectedOption: option });
-      this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony, option.value));
-    }
-    // else{
-    //   this.setState({ selectedOption : null });
-    //   this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
-    // }
-  }
+  // handleDropDownChange = (option) => {
+  //   if (option) {
+  //     this.setState({ selectedOption: option });
+  //     this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony, option.value));
+  //   }
+  //   // else{
+  //   //   this.setState({ selectedOption : null });
+  //   //   this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
+  //   // }
+  // }
 
   render() {
     let details = this.props.ceremonyDetails;
    
     return (
       <div className="full-height">
+      {details && details.metatag &&
+                <Helmet>
+                <title>{details.metatag.title}</title>
+                <meta name="description" content={details.metatag.description} />
+                <meta name="keywords" content={details.metatag.keywords} />
+                </Helmet>
+        }
         {this.props.ceremonyLoading && <LoaderComponent />}
         {details &&
 
@@ -146,15 +161,15 @@ class CeremonyDetail extends Component {
                     </div> */}
                   </Col>
               </Row>
-              {this.state.fixedCategories.length == 0 && 
+              {this.props.ceremonyDetails.fixedCategories.length == 0 && 
                   <NoResultComponent></NoResultComponent>
               }
 
-              {this.state.fixedCategories && this.state.fixedCategories.length > 0  && 
+              {this.props.ceremonyDetails.fixedCategories && this.props.ceremonyDetails.fixedCategories.length > 0  && 
               <div>
               {
-                this.state.fixedCategories.length > 0 ?
-                  <CategorySection category={this.state.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
+                this.props.ceremonyDetails.fixedCategories.length > 0 ?
+                  <CategorySection category={this.props.ceremonyDetails.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
               }
 
               {/* 
@@ -170,7 +185,7 @@ class CeremonyDetail extends Component {
                 </Col>
               </Row> */}
               {
-                this.state.categories.slice(1).map((category, index) => {
+                this.props.ceremonyDetails.categories.slice(1).map((category, index) => {
                   return (
                     <CategorySection category={category} key={index} dispatch={this.props.dispatch} />
                   );

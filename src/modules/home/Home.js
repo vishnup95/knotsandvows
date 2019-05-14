@@ -20,9 +20,9 @@ import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWe
 import Helmet from 'react-helmet';
 
 let meta = {
-  title:"SevenVows",
-  description:'Wedding services and planning partners',
-  keywords:""
+  title: "SevenVows",
+  description: 'Wedding services and planning partners',
+  keywords: ""
 }
 
 const mapStateToProps = state => ({
@@ -252,10 +252,10 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.homeOuter}>
-      <Helmet>
+        <Helmet>
           <title>{meta.title}</title>
           <meta name="description" content={meta.description} />
-       </Helmet>
+        </Helmet>
         {
           styles &&
           <div>
@@ -437,12 +437,14 @@ class Home extends Component {
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
                     {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
-                    <picture>
-                      <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')}/>
-                      <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')}/>
-                      <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')}/>
-                      <img src={imagePath('contact-box-176.png')} alt="gold package"/>
-                    </picture>
+                    {this.state.loadImages &&
+                      <picture>
+                        <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')} />
+                        <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')} />
+                        <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')} />
+                        <img src={imagePath('contact-box-176.png')} alt="gold package" />
+                      </picture>
+                    }
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
@@ -486,23 +488,23 @@ class Home extends Component {
               </Row>
             </Container>
           </div>
-                }
+        }
       </div>
-              );
-            }
-          }
-          
+    );
+  }
+}
+
 Home.propTypes = {
-                user: PropTypes.object,
-              dispatch: PropTypes.func,
-              categories: PropTypes.array,
-              exclusives: PropTypes.array,
-              ceremonies: PropTypes.array,
-              router: PropTypes.object,
-              location: PropTypes.object
-            };
-            
-            export default connect(
-              mapStateToProps,
-              mapDispatchToProps
+  user: PropTypes.object,
+  dispatch: PropTypes.func,
+  categories: PropTypes.array,
+  exclusives: PropTypes.array,
+  ceremonies: PropTypes.array,
+  router: PropTypes.object,
+  location: PropTypes.object
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(Home);
