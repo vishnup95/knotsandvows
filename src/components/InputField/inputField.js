@@ -16,6 +16,7 @@ class InputField extends Component {
     state = {errorMessage: '', value: ''};  
     
     componentDidMount() {
+        
         if (this.props.value) {
             this.setState({value: this.props.value})
             this.handleFocus(document.getElementById(this.props.id), false);
@@ -39,21 +40,15 @@ class InputField extends Component {
         this.props.id === 'contactDate' ? document.getElementById(this.props.id).classList.add('placeholderclass') : '';
     }
 
-    handleFocus(inputBox, isManual = true) {
-        
+    handleFocus(inputBox,isManual=true) {
         console.log(this.props.id);
-        
         inputBox.parentNode.classList.add('is-focussed');
         inputBox.parentNode.classList.remove('error');
          if(this.props.onFocus && !isManual){
             this.props.onFocus();
         
         }
-        if(this.props.id=='password'){
-            this.setState({
-                value:''
-            })
-        }
+        
         //e.preventDefault();
         console.log("handleFocus");
     }
@@ -115,14 +110,14 @@ class InputField extends Component {
             }
         }
     }
-    // onClick=()=>{
-    //     console.log(this.props.id);
-    //     if(this.props.id=='password'){
-    //         this.setState({
-    //             value:''
-    //         })
-    //     }
-    // }
+    handleClick=()=>{
+        console.log(this.props.id);
+        if(this.props.id=='password'){
+            this.setState({
+                value:''
+            })
+        }
+    }
 
     render() {
 
@@ -158,6 +153,7 @@ class InputField extends Component {
                         disabled={this.props.disabled}
                         value={this.state.value}
                         title={''}
+                        onClick={this.handleClick}
                         min={this.minDate}
                         max={this.maxDate}
                         maxLength={this.props.maxLength}

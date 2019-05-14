@@ -106,7 +106,7 @@ class MyProfile extends Component {
                         <InputField placeHolder="Name" id="name" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} value={this.props.user.name}/>
                         <InputField placeHolder="Email Address" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} value={this.props.user.email} disabled={true}/>
                         <InputField placeHolder="Contact Number" id="phoneno" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} value={this.props.user.phoneno}/>
-                        <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password" onClick={this.handleClick} onFocus={this.handleFocus} onChange={e => this.handleFormChange(e)} value={dummyPassword}/>
+                        <InputField placeHolder="Password" id="password" ref={this.passwordRef} type="password"  onFocus={this.handleFocus} onChange={e => this.handleFormChange(e)} value={dummyPassword}/>
                     </Form>
                     <div className="text-center mt-4">
                         <ProgressButton className="primary-button" onClick={() => this.validateMyProfileForm()} title="Update Changes" isLoading={this.props.isLoading}></ProgressButton>
