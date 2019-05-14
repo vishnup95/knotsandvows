@@ -110,7 +110,7 @@ class FooterFixedComponent extends Component {
                         <p onClick={() => this.toggleCollapse(2)} aria-hidden className={styles.collapseControl}>
                             Ceremonies
                         </p>
-                        <p className={`d-none d-sm-block ${styles.footerHeading}`}>Ceremonies</p>
+                        <p className={`tab-only ${styles.footerHeading}`}>Ceremonies</p>
                         <Collapse isOpen={this.state.collapse[2]}>
                             {this.props.ceremonies &&
                                 <ul>
@@ -130,7 +130,7 @@ class FooterFixedComponent extends Component {
 
                     <Col xs="12" md="3" className={`${styles.footerBottomLinks}`}>
                         <div className={`${styles.footerRight}`}>
-                            <span className={`${styles.footerImages} d-none d-sm-block`}>
+                            <span className={`${styles.footerImages} tab-only`}>
                                 {/* temporarily removed
                                 <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
