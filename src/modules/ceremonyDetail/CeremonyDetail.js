@@ -7,11 +7,12 @@ import PropTypes from 'prop-types';
 import * as actions from './actions';
 import LoaderComponent from '../../components/Loader/loader';
 import CategorySection from './categorySection';
-import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal'
 import NoResultComponent from '../../components/noResult/noResult';
-import { getId } from '../../utils/utilities';
+import { getId, hyphonatedString } from '../../utils/utilities';
 import Helmet from 'react-helmet';
+import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
+import { push } from 'connected-react-router';
+
 // const cities = {
 //   display_name:"City",
 //   name:"city",
@@ -27,7 +28,7 @@ const mapStateToProps = state => ({
   user: state.session.user,
   ceremonyDetails: state.ceremonyDetails.details,
   ceremonyLoading: state.ceremonyDetails.loading,
-  similar_ceremonenies: state.ceremonyDetails.similar_ceremonenies
+  all_ceremonies : state.home.ceremonies,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -35,7 +36,6 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const jumbotronData = { title: 'Other Ceremonies' };
 class CeremonyDetail extends Component {
   
   state = {
@@ -52,7 +52,6 @@ class CeremonyDetail extends Component {
     let promises = [];
     let ceremony = match.params.ceremony_name;
     promises.push(store.dispatch(actions.fetchCeremonyDetails(ceremony)));
-    promises.push(store.dispatch(actions.fetchSimilarCeremonies(ceremony)));
     return Promise.all(promises);
   }
 
@@ -63,7 +62,6 @@ class CeremonyDetail extends Component {
   componentWillMount() { 
     if (this.props.ceremonyDetails == null || getId(this.state.ceremony) != this.props.ceremonyDetails.ceremony_id){
       this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
-      this.props.dispatch(actions.fetchSimilarCeremonies(this.state.ceremony));
     } 
   }
 
@@ -83,7 +81,6 @@ class CeremonyDetail extends Component {
     if (this.state.ceremony !== this.props.match.params.ceremony_name) {
       let ceremony = this.props.match.params.ceremony_name;
       this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
-      this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
       this.setState({ ceremony: ceremony, filter: { name: "", id: null } });
       window.scrollTo(0, 0);
     }
@@ -94,9 +91,18 @@ class CeremonyDetail extends Component {
     }
   }
 
+  navigateTo(route) {
+    this.props.dispatch(push(route));
+  }
+
   handleViewAllClick = (category) => {
     this.navigateTo(`/categories/${category}`)
     window.scrollTo(0, 0);
+  }
+
+  handleCeremonyClick = (ceremony, event) => {
+    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
+    event.preventDefault();
   }
 
   // handleCategoryChange = (index) => {
@@ -120,7 +126,10 @@ class CeremonyDetail extends Component {
 
   render() {
     let details = this.props.ceremonyDetails;
-   
+    let similar_ceremonies = [];
+    if (details && this.props.all_ceremonies){
+      similar_ceremonies = this.props.all_ceremonies.filter((ceremony) => ceremony.ceremony_id != details.ceremony_id);
+    }
     return (
       <div className="full-height">
       {details && details.metatag &&
@@ -161,15 +170,15 @@ class CeremonyDetail extends Component {
                     </div> */}
                   </Col>
               </Row>
-              {this.props.ceremonyDetails.fixedCategories.length == 0 && 
+              {details.fixedCategories.length == 0 && 
                   <NoResultComponent></NoResultComponent>
               }
 
-              {this.props.ceremonyDetails.fixedCategories && this.props.ceremonyDetails.fixedCategories.length > 0  && 
+              {details.fixedCategories && details.fixedCategories.length > 0  && 
               <div>
               {
-                this.props.ceremonyDetails.fixedCategories.length > 0 ?
-                  <CategorySection category={this.props.ceremonyDetails.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
+                details.fixedCategories.length > 0 ?
+                  <CategorySection category={details.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
               }
 
               {/* 
@@ -185,7 +194,7 @@ class CeremonyDetail extends Component {
                 </Col>
               </Row> */}
               {
-                this.props.ceremonyDetails.categories.slice(1).map((category, index) => {
+                details.categories.slice(1).map((category, index) => {
                   return (
                     <CategorySection category={category} key={index} dispatch={this.props.dispatch} />
                   );
@@ -197,13 +206,18 @@ class CeremonyDetail extends Component {
             </Container>
           </div>
         }
-        {this.props.similar_ceremonenies && !this.props.ceremonyLoading &&
-          <JumbotronComponent data={jumbotronData} items={this.props.similar_ceremonenies.slice(0,3)} cardType="ceremonies" bgcolor="#f8f8f8" containerStyle="otherWrap">
-            <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
-              <HorizontalScrollingCarousel data={this.props.similar_ceremonenies} type="similar_ceremonies" />
-            </Col>
-          </JumbotronComponent>
-        }
+        
+        {similar_ceremonies && !this.props.ceremonyLoading &&
+        <Container className={styles.homeContainer}>
+        <Row className="mt-5" id="ceremonies">
+          <Col className={`${styles.ceremony} text-center`}>
+            <h2>Other Ceremonies</h2>
+              <Col xs="12" className={` no-padding mb-5 mt-5`}>
+                <HorizontalSlider data={similar_ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
+              </Col>
+          </Col>
+        </Row>
+      </Container>}
       </div>
     );
   }
@@ -213,7 +227,7 @@ CeremonyDetail.propTypes = {
   user: PropTypes.object,
   dispatch: PropTypes.func,
   ceremonyDetails: PropTypes.object,
-  similar_ceremonenies: PropTypes.array,
+  all_ceremonies: PropTypes.array,
   match: PropTypes.object,
   ceremonyLoading: PropTypes.bool
 };
