@@ -21,7 +21,7 @@ class DetailComponent extends Component {
           <ul>
             {
               this.props.data.options.map((item, index) => {
-                return <li key={index} onClick={() => this.changeSelection(index)} style={{ color: index === this.state.selectedIndex ? '#f03690' : '#000000'}} aria-hidden>{item}</li>
+                return <li key={index} onClick={() => this.changeSelection(index)} style={{ color: index === this.state.selectedIndex ? '#f03690' : '#4a4a4a'}} aria-hidden>{item}</li>
               })
             }
           </ul>

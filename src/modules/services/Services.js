@@ -39,7 +39,7 @@ class ServicesComponent extends Component {
         <Container className={styles.containerClass}>
           <Row className={`mt-5 ${styles.detailBox}`}>
             <Col md="4" className={styles.leftSection}></Col>
-            <Col md="8" className={`pt-0 ${styles.rightSection}`}>
+            <Col md="8" className={`pt-0 pb-0 ${styles.rightSection}`}>
               <img className={styles.vowIcon} src={imagePath('vow-icon.png')} alt="vow icon"/>
               <h2 className={styles.pink}>Choose one or choose all</h2>
               <h4>We understand that each wedding is unique and may have different planning needs. 
