@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styles from './services.scss';
-// import JumbotronComponent from '../../components/Jumbotron/jumbotron';
 import { Container } from 'reactstrap';
 import DetailComponent from './detailComponent';
 // import { imagePath } from '../../utils/assetUtils';
+import data from './servicesData';
 
 class ServicesComponent extends Component {
   render() {
@@ -12,8 +12,8 @@ class ServicesComponent extends Component {
         <div className={styles.servicesCover}></div>
         <Container className={styles.containerClass}>
           {
-            Array(4).fill(1).map((item, index) => {
-              return <DetailComponent key={index}/>
+            data.map((item, index) => {
+              return <DetailComponent key={index} data={item}/>
             })
           }
         </Container>
