@@ -288,7 +288,7 @@ class CategoryCard extends Component {
                         this.state.showAddNote &&
                         <div className={styles.addNote} onClick={event => this.stopClicks(event)} aria-hidden>
                             <div className={styles.noteHeader}>
-                                <span>Add Note</span>
+                                <span>{this.state.addNoteMode == 'add' ? "Add Note" : "Edit Note"}</span>
                                 <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={() => this.toggleAddNote()} aria-hidden />
                             </div>
                             <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters"
