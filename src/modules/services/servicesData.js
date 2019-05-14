@@ -2,6 +2,7 @@ import React from 'react';
 
 let data = [
     {
+        icon: 'define-icon.png',
         heading: <span> Define your<br></br> Wedding style </span>,
         options: ['Design & Decor', 'Photoshoot', 'Digital Services', 'Little Extras'],
         optionDetail: [
@@ -45,6 +46,7 @@ let data = [
     },
 
     {
+        icon: 'shortlist-icon.png',
         heading: <span> Shortlist your<br></br> vendors </span>,
         options: ['Vendor Selection', 'Vendor Coordination', 'Health & beauty'],
         optionDetail: [
@@ -85,6 +87,7 @@ let data = [
     },
      
     {
+        icon: 'detail-icon.png',
         heading: <span> Finalize the<br></br> details</span>,
         options: ['Vendor Bookings', 'Day of Ceremony'],
         optionDetail: [
@@ -108,6 +111,7 @@ let data = [
     },
     
     {
+        icon: 'd-day-icon.png',
         heading: <span> D-day<br></br> arrangements</span>,
         options: [' Day of ceremony', 'Schedule management', 'Vendor Management', 'Little Extras'],
         optionDetail: [

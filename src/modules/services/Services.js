@@ -1,23 +1,61 @@
 import React, { Component } from 'react';
 import styles from './services.scss';
-import { Container } from 'reactstrap';
+import { Row, Col, Container } from 'reactstrap';
 import DetailComponent from './detailComponent';
-// import { imagePath } from '../../utils/assetUtils';
+import { imagePath } from '../../utils/assetUtils';
 import data from './servicesData';
+import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 class ServicesComponent extends Component {
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+
   render() {
     return (
       <div className={styles.servicesContainer}>
-        <div className={styles.servicesCover}></div>
+        <div className={styles.servicesCover}>
+          <div className={styles.coverDetail}>
+            <h1>The beginning of a beautiful journey</h1>
+            <h4>Our services are here to help, at every step of your planning journey</h4>
+            <div className={styles.iconContainer}>
+              <img src={imagePath('define-icon.png')} alt=""/>
+              <img src={imagePath('shortlist-icon.png')} alt=""/>
+              <img src={imagePath('detail-icon.png')} alt=""/>
+              <img src={imagePath('d-day-icon.png')} alt=""/>
+            </div>
+          </div>
+        </div>
+
         <Container className={styles.containerClass}>
+          <Row className={`mt-5 ${styles.detailBox}`}>
+            <Col md="4" className={styles.leftSection}></Col>
+            <Col md="8" className={`pt-0 ${styles.rightSection}`}>
+              <img className={styles.vowIcon} src={imagePath('vow-icon.png')} alt="vow icon"/>
+              <h2 className={styles.pink}>Choose one or Choose All</h2>
+              <h4>We understand that each wedding is unique and may have different planning needs. 
+                Our services have been crafted in a way that make it easy for 
+                you to add them to a package or book them separately</h4>
+            </Col>
+          </Row>
+
           {
             data.map((item, index) => {
               return <DetailComponent key={index} data={item}/>
             })
           }
-        </Container>
 
+          <Row className={`mb-5 ${styles.detailBox}`}>
+            <Col md="4" className={styles.leftSection}></Col>
+            <Col md="8" className={styles.rightSection}>
+              <h2>Speak with us today!</h2>
+              <div className="mt-4 ml-0" style={{width: 'max-content'}}>
+                <TalkToWeddingPlanner buttonText={'Let Us Help You'}/>
+              </div>
+            </Col>
+          </Row>
+
+        </Container>
       </div>
     );
   }

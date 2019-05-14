@@ -318,6 +318,9 @@ class Header extends Component {
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
                             </NavItem>
                             <NavItem>
+                                <NavLink onClick={() => this.navigateTo('/services')}>Services</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/who-we-are')}>Who We Are</NavLink>
                             </NavItem>
                             {this.renderLoginItem()}

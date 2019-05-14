@@ -15,13 +15,13 @@ class DetailComponent extends Component {
     return (
       <Row className={styles.detailBox}>
         <Col md="4" className={styles.leftSection}>
-          <img src={imagePath('define-icon.png')} alt="create it"/>
+          <img src={imagePath(this.props.data.icon)} alt="create it"/>
           <h3>{this.props.data.heading}</h3>
           <hr align="right"/>
           <ul>
             {
               this.props.data.options.map((item, index) => {
-                return <li key={index} onClick={() => this.changeSelection(index)} aria-hidden>{item}</li>
+                return <li key={index} onClick={() => this.changeSelection(index)} style={{ color: index === this.state.selectedIndex ? '#f03690' : '#000000'}} aria-hidden>{item}</li>
               })
             }
           </ul>

@@ -6,6 +6,20 @@
 .servicesContainer {
   color: $black;
 
+  h1 {
+    font-size: 5rem;
+    color: $white;
+    margin-top: 15rem;
+  }
+
+  h4 {
+    color: white;
+    font-family: $roboto;
+    font-weight: 300;
+    font-size: 1.83rem;
+    line-height: 1.36;
+  }
+
   .servicesCover {
     height: 42vw;
     position: relative;
@@ -13,8 +27,25 @@
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
+    text-align: center;
     @include mobile {
       height: 48vw;
+    }
+
+    .coverDetail {
+      display: flex;
+      flex-direction: column;
+      width: 35%;
+      height: 70%;
+      align-items: center;
+      justify-content: space-around;
+      margin-left: 5%;
+    }
+
+    .iconContainer {
+      display: flex;
+    width: 100%;
+      justify-content: space-around;
     }
   }
 
@@ -61,6 +92,13 @@
         width: 100%;
       }
 
+      .vowIcon {
+        width: 4.5rem;
+        position: absolute;
+        left: -2.25rem;
+        top: -1rem;
+      }
+
       .description {
         background-color: $medium-pink;
         padding: 0;
@@ -69,6 +107,10 @@
       ul {
         list-style: none;
         @include padding(10,20);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
     
         li {
           @include padding(10, 0, 10, 40);
@@ -77,6 +119,20 @@
           background-size: 30px; 
         }
       }
+      
+      h2 {
+        color: $greyish-brown-six;
+      }
+
+      .pink {
+        color: $medium-pink;
+      }
+
+      h4 {
+        color: $greyish-brown-six;
+        width: 90%;
+      }
+
     }
   }
 }
