@@ -73,7 +73,7 @@ class Header extends Component {
 
     toggleModal() {
         if (this.props.showLogin) {
-            this.props.dispatch(actions.hideLogin());    
+            this.props.dispatch(actions.hideLogin());
         } else {
             sendGAEvent("Header", "Show Login");
             this.props.dispatch(actions.showLogin());
@@ -327,7 +327,7 @@ class Header extends Component {
                 </Navbar>
 
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
-                    <div className={styles.closeBtnSmall} onClick={(e) =>{e.preventDefault(); this.toggleModal()}} aria-hidden>
+                    <div className={styles.closeBtnSmall} onClick={() => this.toggleModal()} aria-hidden>
                         <img src={imagePath('close-blank.svg')} alt="close button"/>
                     </div>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>

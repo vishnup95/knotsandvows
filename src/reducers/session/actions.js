@@ -90,7 +90,6 @@ export function hideResetPassword() {
 }
 
 export function forgotPasswordRequest(data) {
-  
   return {
     types: [
       types.REQUEST_FORGOT,
@@ -147,7 +146,6 @@ export function fetchMyProfile() {
 }
 
 export function updateProfile(param) {
-  
   return {
     types: [
       types.LOAD_UPDATE_PROFILE,

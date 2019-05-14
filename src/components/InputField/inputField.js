@@ -12,13 +12,15 @@ const defaultPatterns = {
     tel: '[0-9]{10}'
 }
 
+var dummyPassword = "Pister735@bnhnk";
+
 class InputField extends Component { 
     state = {errorMessage: '', value: ''};  
     
     componentDidMount() {
         if (this.props.value) {
             this.setState({value: this.props.value})
-            this.handleFocus(document.getElementById(this.props.id), false);
+            this.handleFocus(document.getElementById(this.props.id));
         } 
 
         if (this.props.type == "date"){
@@ -39,14 +41,9 @@ class InputField extends Component {
         this.props.id === 'contactDate' ? document.getElementById(this.props.id).classList.add('placeholderclass') : '';
     }
 
-    handleFocus(inputBox,isManual=true) {
+    handleFocus(inputBox) {
         inputBox.parentNode.classList.add('is-focussed');
         inputBox.parentNode.classList.remove('error');
-         if(this.props.onFocus && !isManual){
-            this.props.onFocus();
-        
-        }
-        console.log("handleFocus");
     }
 
     validateFormInput(inputBox) {
@@ -59,6 +56,14 @@ class InputField extends Component {
             this.props.id === 'contactDate' ? inputBox.classList.add('placeholderclass') : '';
         } else {
             this.props.id === 'contactDate' ? inputBox.classList.remove('placeholderclass') : '';
+        }
+
+        if(this.props.isChangePassword && this.state.value == ''){
+            this.setState({
+                value: dummyPassword
+             })
+             inputBox.parentNode.classList.add('is-focussed');
+             return
         }
         
        return this.validateInput(inputBox);
@@ -106,12 +111,11 @@ class InputField extends Component {
             }
         }
     }
-    handleClick=()=>{
-        console.log(this.props.id);
-        if(this.props.id=='password'){
+    handleClick = () =>{
+        if(this.props.isChangePassword){
             this.setState({
                 value:''
-            })
+             })
         }
     }
 
@@ -149,7 +153,7 @@ class InputField extends Component {
                         disabled={this.props.disabled}
                         value={this.state.value}
                         title={''}
-                        onClick={this.handleClick}
+                        onClick={() => this.handleClick()}
                         min={this.minDate}
                         max={this.maxDate}
                         maxLength={this.props.maxLength}
@@ -167,7 +171,7 @@ class InputField extends Component {
               <span className='input-error'>{this.state.errorMessage}</span>
               {this.props.type === 'password' && this.props.disabled == false && <div><span className='input-password-mask' id='reveal'></span>
               <UncontrolledTooltip placement="right" autohide={true} target='reveal'>
-                {title} 
+                {title}
               </UncontrolledTooltip></div>}
             </div>
         );
@@ -186,7 +190,7 @@ InputField.propTypes = {
     phoneCheck: PropTypes.bool,
     maxLength: PropTypes.string,
     withBorder: PropTypes.bool,
-    onFocus: PropTypes.func,
+    isChangePassword: PropTypes.bool
 };
 
 InputField.defaultProps = {
@@ -194,7 +198,8 @@ InputField.defaultProps = {
     disabled: false,
     value:'',
     phoneCheck: false,
-    withBorder: false
+    withBorder: false,
+    isChangePassword: false
 }
 
 export default InputField;

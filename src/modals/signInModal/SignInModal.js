@@ -234,7 +234,7 @@ class SignInModal extends Component {
                 </div>
             </div>) : null;
     }
-    
+
     render() {
         return (
             <div className={styles.loginContainer}>

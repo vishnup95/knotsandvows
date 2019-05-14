@@ -452,7 +452,6 @@
 // talk to poppup fix
 
 .call-btn {
-  
   background-color: $white;
   @include padding(19);
   border-radius: 50%;
@@ -540,7 +539,6 @@ button {
 
 .flex {
   display: flex;
-  position: relative;
 }
 
 .pulsateRing {
@@ -548,7 +546,7 @@ button {
   border-radius: 50%;
   height: 5rem;
   width: 5rem;
-  position: fixed;
+  position: absolute;
   animation: pulsate 1.5s ease-out;
   animation-iteration-count: infinite;
   opacity: .0;
