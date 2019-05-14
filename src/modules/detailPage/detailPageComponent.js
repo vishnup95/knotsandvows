@@ -502,7 +502,7 @@ class DetailPageComponent extends Component {
 
                                     <Col className={style.detailSubSection}>
                                         <Col md="12" className={`#{style.rightSubSection} text-center`}>
-                                            <p className={style.needHelp}>Need some guidance on selecting VowVendors?</p>
+                                            <p className={style.needHelp}>Need some guidance on selecting {details.category_name}?</p>
                                             {/* <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button> */}
                                             <Form className="position-relative">
                                                 <InputField placeHolder="Email address/Phone number" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} phoneCheck={true} />
