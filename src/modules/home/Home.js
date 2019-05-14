@@ -89,7 +89,7 @@ class Home extends Component {
 
     const cityCount = document.getElementById('city-count');
     const cityCountVisible = this.checkVisible(cityCount);
-    if (cityCountVisible || (document.getElementById('city-count').getBoundingClientRect().top <=0)) {
+    if (cityCountVisible || (document.getElementById('city-count').getBoundingClientRect().top <= 0)) {
       this.setState({
         loadImages: true,
       });
@@ -453,7 +453,8 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
-                    {this.state.loadImages && <img src={imagePath('ruby-box.png')} alt="Ruby" />}
+                    {this.state.loadImages &&
+                      <img src={imagePath('ruby-box.png')} alt="Ruby" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
@@ -463,7 +464,8 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
-                   {this.state.loadImages && <img src={imagePath('genie.png')} alt="Genie" />}
+                    {this.state.loadImages &&
+                      <img src={imagePath('genie.png')} alt="Genie" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
