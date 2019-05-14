@@ -48,7 +48,6 @@ class MyProfile extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props.user.password)
         if (this.props.user){
             this.setState({name: this.props.user.name , phoneno: this.props.user.phoneno,password:this.props.user.password});
         }

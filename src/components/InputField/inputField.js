@@ -186,7 +186,7 @@ InputField.propTypes = {
     phoneCheck: PropTypes.bool,
     maxLength: PropTypes.string,
     withBorder: PropTypes.bool,
-    
+    onFocus: PropTypes.func,
 };
 
 InputField.defaultProps = {
