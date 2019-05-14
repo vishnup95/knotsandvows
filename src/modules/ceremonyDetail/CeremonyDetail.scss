@@ -133,3 +133,19 @@
   width: 200px;
   margin-top: 2rem;
 }
+
+.homeContainer {
+  padding: 0 5%;
+  max-width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+  @include tablet {
+    max-width: 90%;
+    padding: 0;
+  }
+  @include desktop {
+    max-width: 78%;
+  }
+}
