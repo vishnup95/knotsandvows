@@ -135,3 +135,10 @@
     @include width(28.3);
   }
 }
+.callBtnImg {
+  height: 5rem;
+  width: 5rem;
+  background: url('#{$image-base-url}/button-call.png') center no-repeat;
+  background-size: cover;
+
+}

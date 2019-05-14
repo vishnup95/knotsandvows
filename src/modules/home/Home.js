@@ -436,7 +436,13 @@ class Home extends Component {
               <Container className={`${styles.homeContainer}`}>
                 <Row className="mb-5" id="packages">
                   <Col className={styles.packageBox} id="box-one">
-                    {this.state.loadImages && <img src={imagePath('contact-box.png')} alt="Gold" />}
+                    {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
+                    <picture>
+                      <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')}/>
+                      <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')}/>
+                      <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')}/>
+                      <img src={imagePath('contact-box-176.png')} alt="gold package"/>
+                    </picture>
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
@@ -445,7 +451,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
-                    {this.state.loadImages && <img src={imagePath('ruby-box.png')} alt="Ruby" />}
+                    <img src={imagePath('ruby-box.png')} alt="Ruby" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
@@ -455,7 +461,7 @@ class Home extends Component {
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
-                   {this.state.loadImages && <img src={imagePath('genie.png')} alt="Genie" />}
+                    <img src={imagePath('genie.png')} alt="Genie" />
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>
@@ -480,23 +486,23 @@ class Home extends Component {
               </Row>
             </Container>
           </div>
-        }
+                }
       </div>
-    );
-  }
-}
-
+              );
+            }
+          }
+          
 Home.propTypes = {
-  user: PropTypes.object,
-  dispatch: PropTypes.func,
-  categories: PropTypes.array,
-  exclusives: PropTypes.array,
-  ceremonies: PropTypes.array,
-  router: PropTypes.object,
-  location: PropTypes.object
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+                user: PropTypes.object,
+              dispatch: PropTypes.func,
+              categories: PropTypes.array,
+              exclusives: PropTypes.array,
+              ceremonies: PropTypes.array,
+              router: PropTypes.object,
+              location: PropTypes.object
+            };
+            
+            export default connect(
+              mapStateToProps,
+              mapDispatchToProps
 )(Home);
