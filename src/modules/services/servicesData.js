@@ -119,32 +119,32 @@ let data = [
                 coverImage: 'd-day-img.png',
                 listItems: [
                     'Floor arrangements',
-                    'Bride & Groom',
-                    'shadowing'
+                    'Bride & Groom shadowing',
+                    'Vendor coordination'
                 ]
             },
             {
                 coverImage: 'define-img.png',
                 listItems: [
                     'Floor arrangements',
-                    'Bride & Groom',
-                    'shadowing'
+                    'Bride & Groom shadowing',
+                    'Vendor coordination'
                 ]
             },
             {
                 coverImage: 'define-img.png',
                 listItems: [
                     'Floor arrangements',
-                    'Bride & Groom',
-                    'shadowing'
+                    'Bride & Groom shadowing',
+                    'Vendor coordination'
                 ]
             },
             {
                 coverImage: 'define-img.png',
                 listItems: [
                     'Floor arrangements',
-                    'Bride & Groom',
-                    'shadowing'
+                    'Bride & Groom shadowing',
+                    'Vendor coordination'
                 ]
             },
         ]
