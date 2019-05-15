@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 // import * as talkToPlannerActions from '../../components/TalkToWeddingPlanner/actions';
 import { Container, Row, Col } from 'reactstrap';
 import HorizontalSlider from '../../../components/HorizontalSlider/horizontalSlider';
+import DatePicker from "react-datepicker";
 
 
 const mapStateToProps = state => ({
@@ -74,17 +75,25 @@ const packageItems = [
 ]
 // const packageItemsFirst = packageItems.slice(0, 4);
 // const packageItemsSecond = packageItems.slice(4, 6);
+const minDate = new Date(Date.now());
+var date = new Date();
+//Max date is set to 4 years from today date.
+const maxDate = date.setDate(date.getDate() +1456);
 
 class RubyPackage extends Component {
   constructor(props) {
     super(props);
+    this.state = {date : '' }
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.clearDatePickerData = this.clearDatePickerData.bind(this);
   }
 
   sendDetailsToWeddingPlanner() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
-    let date = document.getElementById('date').value;
+    //let date = document.getElementById('date').value;
+    let date = this.state.date;
     let city = document.getElementById('city').value;
     let comments = document.getElementById('comments').value;
 
@@ -97,9 +106,26 @@ class RubyPackage extends Component {
       params['event_date'] = date;
       params['city'] = city;
       params['description'] = comments;
-      this.props.dispatch(actions.postContactDetails(params));
+      //this.props.dispatch(actions.postContactDetails(params));
     }
   }
+
+  handleDateChange(dt) {
+    document.getElementById('clearDatePicker').style.display = 'block';
+    document.getElementById('date').focus();
+    this.setState({
+      date: dt
+    });
+  }
+  
+  clearDatePickerData(){
+    document.getElementById('date').value = '';
+    document.getElementById('clearDatePicker').style.display = 'none';
+    document.getElementById('date').focus();
+    this.setState({ date:'' });
+    return false;
+  }
+
   render() {
     return (
       <div className={styles.goldPackage}>
@@ -285,7 +311,22 @@ class RubyPackage extends Component {
                       <input pattern="[0-9]*" required maxLength="10" type="tel" name="phone" id="phone" placeholder="Phone" />
                     </Col>
                     <Col xs='6'>
-                      <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
+                      {/* <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" /> */}
+                      <div style={{display:"flex"}}>
+                                <div style={{width:"80%"}}><DatePicker 
+                                selected={this.state.date} 
+                                onChange={e => this.handleDateChange(e)}
+                                dateFormat="dd/MM/yyyy"
+                                placeholderText="dd/mm/yyyy"
+                                id = "date"
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                withBorder={true}
+                             /></div>
+                             <div>
+                             <button id="clearDatePicker"  onClick={() => this.clearDatePickerData()} 
+                             style={{'font-size':'10px','display':'none','marginTop':'12px','border-radius': '100%'}} title="Clear Date" > x</button>
+                             </div></div>2Need some guidance on selecting VowVendors?
                     </Col>
                     <Col xs='6'>
                       <input maxLength="50" type="text" name="city" id="city" placeholder="City" />

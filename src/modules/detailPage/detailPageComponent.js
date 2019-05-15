@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DatePicker from "react-datepicker";
 import style from './detailPageComponent.scss'
 import { Row, Col, Modal, Form, Button } from 'reactstrap';
 // import MapComponent from '../../components/Map/map';
@@ -23,6 +24,7 @@ import InputField from '../../components/InputField/inputField';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import * as modalActions from '../../reducers/modal/actions';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
+//import { blockStatement } from '@babel/types';
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -40,6 +42,11 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators({ ...actions }),
     dispatch
 });
+
+const minDate = new Date(Date.now());
+var date = new Date();
+//Max date is set to 4 years from today date.
+const maxDate = date.setDate(date.getDate() +1456);
 
 class DetailPageComponent extends Component {
     constructor(props) {
@@ -59,6 +66,9 @@ class DetailPageComponent extends Component {
             isInWishList: false,
             selectedNavItem: 0
         };
+
+        this.handleDateChange = this.handleDateChange.bind(this);
+        this.clearDatePickerData = this.clearDatePickerData.bind(this);
     }
     toggleGallery = () => {
         this.setState({
@@ -259,7 +269,8 @@ class DetailPageComponent extends Component {
 
     sendDetailsToWeddingPlanner() {
         let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
-        let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
+        //let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
+        let date = this.state.date;
 
         if (email && date) {
             const params = {};
@@ -297,6 +308,22 @@ class DetailPageComponent extends Component {
             left: 0,
             behavior: 'smooth'
         });
+    }
+
+    handleDateChange(date) {
+        document.getElementById('clearDatePicker').style.display = 'block';
+        document.getElementById('date').focus();
+        this.setState({
+            date: date
+        });
+      }
+    
+    clearDatePickerData(e){
+        document.getElementById('date').value = '';
+        document.getElementById('clearDatePicker').style.display = 'none';
+        document.getElementById('date').focus();
+        this.setState({ date:'' });
+        e.preventDefault();
     }
 
     render() {
@@ -474,7 +501,27 @@ class DetailPageComponent extends Component {
                                             {/* <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button> */}
                                             <Form className="position-relative">
                                                 <InputField placeHolder="Email address/Phone number" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} phoneCheck={true} />
-                                                <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
+                                                {/* <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} /> */}
+                                                <div style={{display:"flex",width:'100%'}}>
+                                
+                                                <div style={{width:'100%'}}>
+                                                <DatePicker 
+                                                selected={this.state.date} 
+                                                onChange={e => this.handleDateChange(e)}
+                                                dateFormat="dd/MM/yyyy"
+                                                placeholderText="Event date (dd/mm/yyyy)"
+                                                id = "date"
+                                                ref={this.dateRef}
+                                                minDate={minDate}
+                                                maxDate={maxDate}
+                                                autoComplete = "off"
+                                                />
+                                                </div>
+                                                <div style={{position:'absolute',right:'0'}}>
+                                                <button id="clearDatePicker"  onClick={(e) => this.clearDatePickerData(e)} 
+                                                style={{'font-size':'10px','display':'none','marginTop':'15px','border-radius': '100%'}} title="Clear Date" > x</button>
+                                                </div>
+                                                </div>
                                             </Form>
                                             <div className="text-center mt-2">
                                                 <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our experts!</Button>

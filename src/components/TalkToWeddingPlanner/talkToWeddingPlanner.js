@@ -169,7 +169,8 @@ class TalkToWeddingPlanner extends Component {
                              <div>
                              <button id="clearDatePicker"  onClick={() => this.clearDatePickerData()} 
                              style={{'font-size':'10px','display':'none','marginTop':'15px','border-radius': '100%'}} title="Clear Date" > x</button>
-                             </div></div>
+                             </div>
+                             <hr/></div>
                             </Col>
 
                             <Col md="6" xs="6">

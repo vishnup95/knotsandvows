@@ -608,6 +608,36 @@ input[id="contactDate"].placeholderclass:focus::before {
   color: $warm-grey-two;
 }
 
+input[id="date"] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 33px;
+  margin-top: 10px;
+  //border: 1px solid $medium-pink;
+  border: 0px;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
+  padding: .5em;
+  @include fontSize(18);
+	font-weight: 400;
+ }
+
+ input[id="date"]:focus{
+   box-shadow: none;
+   outline: none;
+ }
+input[id="date"].placeholderclass::before {
+  width: 100%;
+  content: attr(placeholder);
+  color: $warm-grey-two;
+}
+
+input[id="date"].placeholderclass:focus::before {
+  width: 0;
+  content: "";
+  color: $warm-grey-two;
+}
+
 .contact-form {
   display: flex;
   align-items: center;
@@ -616,4 +646,8 @@ input[id="contactDate"].placeholderclass:focus::before {
   @include tablet {
     align-items: flex-start;
   }
+}
+
+.react-datepicker-wrapper, .react-datepicker__input-container{
+  width: 100% !important;
 }
