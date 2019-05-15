@@ -55,12 +55,15 @@
         animation-duration: 1s;
         animation-fill-mode: forwards;
         animation-delay: .5s;
+
         &:nth-child(2) {
           animation-delay: 1s;
         }
+
         &:nth-child(3) {
           animation-delay: 1.5s;
         }
+
         &:nth-child(4) {
           animation-delay: 2s;
         }
@@ -86,15 +89,15 @@
         @include letterSpacing(0.2);
         line-height: 5rem;
       }
-    
+
       hr {
         width: 60%;
         margin-bottom: 0;
       }
-    
+
       ul {
         list-style: none;
-    
+
         li {
           @include padding(10,0);
           font-size: 1.43rem;
@@ -132,15 +135,25 @@
         flex-direction: column;
         height: 100%;
         justify-content: center;
-    
+
         li {
           @include padding(10, 0, 10, 40);
           font-size: 1.43rem;
-          background: url('#{$image-base-url}/detail-icon.png') left 0.5rem no-repeat;
-          background-size: 30px; 
+          position: relative;
+
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: .7rem;
+            width: 2rem;
+            height: 2rem;
+            background: url('#{$image-base-url}/detail-icon.png') no-repeat top left;
+            background-size: contain;
+          }
         }
       }
-      
+
       h2 {
         color: $greyish-brown-six;
         font-weight: 500;
@@ -157,15 +170,22 @@
       }
 
     }
+
     &:last-child {
-    .rightSection, .leftSection {
-      padding-bottom: 0;
-    }
+      .leftSection,
+      .rightSection {
+        padding-bottom: 0;
+      }
 
     }
   }
 }
 @keyframes iconAnimation {
-  from {opacity: 0; }
-  to {opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
