@@ -10,7 +10,8 @@ import { imagePath } from '../../utils/assetUtils';
 import * as modalActions from '../../reducers/modal/actions';
 import { Modal } from 'reactstrap';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
-
+import DatePicker from "react-datepicker";
+ 
 const mapStateToProps = state => ({
     message: state.talkToAhwanam.message,
     status: state.talkToAhwanam.status,
@@ -21,6 +22,11 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators({ ...actions }),
     dispatch
 });
+
+const minDate = new Date(Date.now());
+var date = new Date();
+//Max date is set to 4 years from today date.
+const maxDate = date.setDate(date.getDate() +1456);
 
 class TalkToWeddingPlanner extends Component {
 
@@ -42,7 +48,29 @@ class TalkToWeddingPlanner extends Component {
             modal: false,
         }
         this.toggle = this.toggle.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
     }
+
+     handleDateChange = (date) => {
+       
+        if (date != null)
+        {
+            var calendarDate = new Date(date.toString().split(' ')[2] + '/' + date.toString().split(' ')[1] + '/' + date.toString().split(' ')[3]);
+            var todayDate = new Date( minDate.toString().split(' ')[2]  + "/" + minDate.toString().split(' ')[1] + "/" + minDate .toString().split(' ')[3]);
+            var afterFourYearDate = new Date( maxDate.toString().split(' ')[2]  + "/" + maxDate.toString().split(' ')[1] + "/" + maxDate .toString().split(' ')[3]);
+  
+            if(calendarDate  < todayDate || afterFourYearDate > calendarDate){
+                document.getElementById('contactDate').value = '';
+                this.setState({ date:'' });
+                return false;
+            }
+        }
+
+        document.getElementById('contactDate').focus();
+        this.setState({
+            contactDate: date
+        });
+      }
 
     componentWillUnmount() {
         this.setState({city: ''})
@@ -50,7 +78,8 @@ class TalkToWeddingPlanner extends Component {
 
     toggle() {
         this.setState(prevState => ({
-            modal: !prevState.modal
+            modal: !prevState.modal,
+            contactDate:''
         }));
         this.props.dispatch(actions.clearTalkToErrors());
     }
@@ -63,7 +92,8 @@ class TalkToWeddingPlanner extends Component {
         let name = this.nameRef.current.validateFormInput(document.getElementById('contactName'));
         let email = this.emailRef.current.validateFormInput(document.getElementById('contactEmail'));
         let phone = this.phoneRef.current.validateFormInput(document.getElementById('contactPhone'));
-        let date = this.dateRef.current.validateFormInput(document.getElementById('contactDate'));
+        //let date = this.dateRef.current.validateFormInput(document.getElementById('contactDate'));
+        let date = this.state.contactDate;
         let city = this.cityRef.current.validateFormInput(document.getElementById('city'));
         let comments = this.commentsRef.current.validateFormInput(document.getElementById('comments'));
 
@@ -90,7 +120,7 @@ class TalkToWeddingPlanner extends Component {
             this.setState({modal: false});
          }
     }
-   
+    
     render() {
         return (
             <div className="flex justify-center">
@@ -115,27 +145,41 @@ class TalkToWeddingPlanner extends Component {
                         </div>
                         <Row className="position-relative">
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} withBorder={true} required={false}/>
+                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" tabindex="-6" onChange={e => this.handleFormChange(e)} withBorder={true} required={false}/>
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" tabIndex="-5" onChange={e => this.handleFormChange(e)} withBorder={true}/>
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" tabIndex="-4" onChange={e => this.handleFormChange(e)} withBorder={true}/>
                             </Col>
 
                             <Col md="6" xs="6">
-                                <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
+                                {/* <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/> */}
+                           
+                                    <DatePicker 
+                                    selected={this.state.contactDate} 
+                                    onChange={e=>this.handleDateChange(e)}
+                                    dateFormat="dd/MM/yyyy"
+                                    placeholderText="Event date"
+                                    id = "contactDate"
+                                    ref={this.dateRef}
+                                    minDate={minDate}
+                                    maxDate={maxDate}
+                                    isClearable ={true}
+                                    tabindex="-3"
+                                    />
+                             
                             </Col>
 
                             <Col md="6" xs="6">
-                                <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                           
+                                <InputField maxLength="50" placeHolder="City" id="city" tabIndex="-2" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                          
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="200" placeHolder="Comments" id="comments" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
+                                <InputField maxLength="200" placeHolder="Comments" id="comments" tabIndex="-1" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
                             </Col>
                         </Row>
 
@@ -178,4 +222,4 @@ TalkToWeddingPlanner.defaultProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(TalkToWeddingPlanner);
+)(TalkToWeddingPlanner);	
