@@ -79,8 +79,8 @@ class Header extends Component {
             this.props.dispatch(actions.showLogin());
         }
         if (detectMobile()) {
-            this.setState({ isOpen: false});
-        }  
+            this.setState({ isOpen: false });
+        }
     }
 
     componentWillMount() {
@@ -226,13 +226,13 @@ class Header extends Component {
 
         if (this.props.user !== null) {
 
-            if (detectMobile()){
-                return(
-                <div className="mt-3 mb-2" onClick={() => this.navigateTo("/profile")} aria-hidden>
-                    <span className={styles.userInfo}>
-                         {shortName(this.props.user.name)}
-                    </span>  
-                </div>
+            if (detectMobile()) {
+                return (
+                    <div className="mt-3 mb-2" onClick={() => this.navigateTo("/profile")} aria-hidden>
+                        <span className={styles.userInfo}>
+                            {shortName(this.props.user.name)}
+                        </span>
+                    </div>
                 );
             }
             return (
@@ -292,6 +292,16 @@ class Header extends Component {
                     </NavbarBrand>
                     <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
+                            <NavItem>
+                                <NavLink onClick={() => this.navigateTo('/')}>Home</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink onClick={() => this.navigateTo('/services')}>What We Do</NavLink>
+                            </NavItem>
+
+                            <NavItem>
+                                <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
+                            </NavItem>
                             <NavItem className={styles.vendors}>
                                 <NavLink onClick={() => this.navigateTo('/categories')}>VowVendors</NavLink>
                                 {/* 
@@ -309,12 +319,6 @@ class Header extends Component {
                                 </div> */}
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/#ceremonies')}>Ceremonies</NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
                             </NavItem>
                             <NavItem>
@@ -328,7 +332,7 @@ class Header extends Component {
 
                 <Modal isOpen={this.props.showLogin} toggle={this.toggleModal} centered={true} className={styles.loginModal}>
                     <div className={styles.closeBtnSmall} onClick={() => this.toggleModal()} aria-hidden>
-                        <img src={imagePath('close-blank.svg')} alt="close button"/>
+                        <img src={imagePath('close-blank.svg')} alt="close button" />
                     </div>
                     <SignInModal close={this.toggleModal} showForgotPassword={this.toggleForgotPasswordModal}></SignInModal>
                 </Modal>
@@ -343,14 +347,14 @@ class Header extends Component {
                 </div>
                 <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={styles.mobileMenuModal}>
                     <ul>
-                         {this.renderLoginItem()}
+                        {this.renderLoginItem()}
                         <li onClick={() => this.navigateTo('/')} aria-hidden>Home</li>
-                        <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
+                        <li onClick={() => this.navigateTo('/services')} aria-hidden>What We Do</li>
                         <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
-                        <li onClick={() => this.navigateTo('/#ceremonies')} aria-hidden>Ceremonies</li>
+                        <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
                         <li onClick={() => this.navigateTo('/wishlist')} aria-hidden>Wishlist</li>
                         <li onClick={() => this.navigateTo('/who-we-are')} aria-hidden>Who We Are</li>
-                        {this.props.user &&  <li onClick={() => this.logout()} aria-hidden>Logout</li>}
+                        {this.props.user && <li onClick={() => this.logout()} aria-hidden>Logout</li>}
                     </ul>
                 </Modal>
             </div>
