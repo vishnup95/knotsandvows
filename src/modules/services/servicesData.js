@@ -3,43 +3,42 @@ import React from 'react';
 let data = [
     {
         icon: 'define-icon.png',
-        heading: <span> Define your<br></br> Wedding style </span>,
+        heading: <span> Define your<br></br> wedding style</span>,
         options: ['Design & Decor', 'Photoshoot', 'Digital Services', 'Little Extras'],
         optionDetail: [
             {
-                coverImage: 'define-img.png',
+                coverImage: 'design-decor.jpg',
                 listItems: [
                     'Decor ideas and designs',
-                    'Color combinations, linen & flower selection, props and accessories',
+                    'Color combinations, flower selection, props and accessories',
                     'Floorplans and table arrangements',
                     'Bride/Groom entrance ideas'
                 ]
             },
             {
-                coverImage: 'define-img.png',
+                coverImage: 'services-photoshoot.jpg',
                 listItems: [
-                    'Decor ideas and designs',
-                    'Color combinations, linen & flower selection, props and accessories',
-                    'Floorplans and table arrangements',
-                    'Bride/Groom entrance ideas'
+                    'Photoshoot themes',
+                    'Photoshoot locations'
                 ]
             },
             {
-                coverImage: 'define-img.png',
+                coverImage: 'digital-services.jpg',
                 listItems: [
-                    'Decor ideas and designs',
-                    'Color combinations, linen & flower selection, props and accessories',
-                    'Floorplans and table arrangements',
-                    'Bride/Groom entrance ideas'
+                    'Social media posts',
+                    'E-vites',
+                    'Wedding website',
+                    'Snapchats'
                 ]
             },
             {
-                coverImage: 'define-img.png',
+                coverImage: 'little-extras.jpg',
                 listItems: [
-                    'Decor ideas and designs',
-                    'Color combinations, linen & flower selection, props and accessories',
-                    'Floorplans and table arrangements',
-                    'Bride/Groom entrance ideas'
+                    'Mehendi designs',
+                    'Makeup styles',
+                    'Wedding Accessories',
+                    'Return gifts',
+                    'Wedding invitations designs'
                 ]
             }
         ]
@@ -47,14 +46,14 @@ let data = [
 
     {
         icon: 'shortlist-icon.png',
-        heading: <span> Shortlist your<br></br> vendors </span>,
-        options: ['Vendor Selection', 'Vendor Coordination', 'Health & beauty'],
+        heading: <span> Select your<br></br> dream vendors</span>,
+        options: ['Vendor Selection', 'Vendor Coordination', 'Health & Beauty'],
         optionDetail: [
             {
-                coverImage: 'shortlist-img.png',
+                coverImage: 'vendor-selection.jpg',
                 listItems: [
-                    'Venues, Site visits',
-                    'Caterers, Food tasting',
+                    'Venues, site visits',
+                    'Caterers, food tasting',
                     'Decorators',
                     'Makeup & Mehendi',
                     'DJ, Choreographer, MC',
@@ -62,25 +61,18 @@ let data = [
                 ]
             },
             {
-                coverImage: 'define-img.png',
+                coverImage: 'vendor-coordination.jpg',
                 listItems: [
-                    'Venues, Site visits',
-                    'Caterers, Food tasting',
-                    'Decorators',
-                    'Makeup & Mehendi',
-                    'DJ, Choreographer, MC',
-                    'Band & Baraat'
+                    'Makeup Trials',
+                    'Sangeet Practice Sessions',
+                    'Collaboration on decor/menu ideas'
                 ]
             },
             {
-                coverImage: 'define-img.png',
+                coverImage: 'health-beauty.jpg',
                 listItems: [
-                    'Venues, Site visits',
-                    'Caterers, Food tasting',
-                    'Decorators',
-                    'Makeup & Mehendi',
-                    'DJ, Choreographer, MC',
-                    'Band & Baraat'
+                    'Spa services',
+                    'Fitness programs'
                 ]
             },
         ]
@@ -88,23 +80,23 @@ let data = [
      
     {
         icon: 'detail-icon.png',
-        heading: <span> Finalize the<br></br> details</span>,
-        options: ['Vendor Bookings', 'Day of Ceremony'],
+        heading: <span>Finalize the<br></br> details</span>,
+        options: ['Vendor Management', 'Ceremony Details'],
         optionDetail: [
             {
-                coverImage: 'finalize-img.png',
+                coverImage: 'vendor-management.jpg',
                 listItems: [
-                    'Menu selection',
-                    'Design & Decor',
-                    'Day of ceremony schedule',
+                    'Negotiation',
+                    'Vendor bookings',
                 ]
             },
             {
-                coverImage: 'define-img.png',
+                coverImage: 'ceremony-details.jpg',
                 listItems: [
                     'Menu selection',
-                    'Design & Decor',
-                    'Day of ceremony schedule',
+                    'Design & decor',
+                    'Day of ceremony schedules',
+                    'Arrangements logistics'
                 ]
             },
         ]
@@ -112,41 +104,25 @@ let data = [
     
     {
         icon: 'd-day-icon.png',
-        heading: <span> D-day<br></br> arrangements</span>,
-        options: [' Day of ceremony', 'Schedule management', 'Vendor Management', 'Little Extras'],
+        heading: <span>Big day<br></br> arrangements</span>,
+        options: ['Day of ceremony', 'Take no stress'],
         optionDetail: [
             {
-                coverImage: 'd-day-img.png',
+                coverImage: 'day-of-ceremony.jpg',
                 listItems: [
+                    'Vendor coordination',
                     'Floor arrangements',
                     'Bride & Groom shadowing',
-                    'Vendor coordination'
+                    'Schedule management'
                 ]
             },
             {
-                coverImage: 'define-img.png',
+                coverImage: 'take-no-stress.jpg',
                 listItems: [
-                    'Floor arrangements',
-                    'Bride & Groom shadowing',
-                    'Vendor coordination'
+                    'Vendor payment distribution',
+                    'Cancellation resolution and vendor replacements'
                 ]
-            },
-            {
-                coverImage: 'define-img.png',
-                listItems: [
-                    'Floor arrangements',
-                    'Bride & Groom shadowing',
-                    'Vendor coordination'
-                ]
-            },
-            {
-                coverImage: 'define-img.png',
-                listItems: [
-                    'Floor arrangements',
-                    'Bride & Groom shadowing',
-                    'Vendor coordination'
-                ]
-            },
+            }
         ]
     },
 ];
