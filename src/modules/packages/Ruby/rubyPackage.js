@@ -85,7 +85,6 @@ class RubyPackage extends Component {
     super(props);
     this.state = {date : '' }
     this.handleDateChange = this.handleDateChange.bind(this);
-    this.clearDatePickerData = this.clearDatePickerData.bind(this);
   }
 
   sendDetailsToWeddingPlanner() {
@@ -106,25 +105,31 @@ class RubyPackage extends Component {
       params['event_date'] = date;
       params['city'] = city;
       params['description'] = comments;
-      //this.props.dispatch(actions.postContactDetails(params));
+      this.props.dispatch(actions.postContactDetails(params));
     }
   }
 
-  handleDateChange(dt) {
-    document.getElementById('clearDatePicker').style.display = 'block';
+  handleDateChange = (dt) => {
+
+    if (dt != null)
+    {
+        var calendarDate = new Date(dt.toString().split(' ')[2] + '/' + dt.toString().split(' ')[1] + '/' + dt.toString().split(' ')[3]);
+        var todayDate = new Date( minDate.toString().split(' ')[2]  + "/" + minDate.toString().split(' ')[1] + "/" + minDate .toString().split(' ')[3]);
+        var afterFourYearDate = new Date( maxDate.toString().split(' ')[2]  + "/" + maxDate.toString().split(' ')[1] + "/" + maxDate .toString().split(' ')[3]);
+
+        if(calendarDate  < todayDate || afterFourYearDate > calendarDate){
+            document.getElementById('date').value = '';
+            this.setState({ date:'' });
+            return false;
+        }
+    }
+    
     document.getElementById('date').focus();
     this.setState({
       date: dt
     });
   }
   
-  clearDatePickerData(){
-    document.getElementById('date').value = '';
-    document.getElementById('clearDatePicker').style.display = 'none';
-    document.getElementById('date').focus();
-    this.setState({ date:'' });
-    return false;
-  }
 
   render() {
     return (
@@ -312,21 +317,20 @@ class RubyPackage extends Component {
                     </Col>
                     <Col xs='6'>
                       {/* <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" /> */}
-                      <div style={{display:"flex"}}>
-                                <div style={{width:"80%"}}><DatePicker 
-                                selected={this.state.date} 
-                                onChange={e => this.handleDateChange(e)}
-                                dateFormat="dd/MM/yyyy"
-                                placeholderText="dd/mm/yyyy"
-                                id = "date"
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                withBorder={true}
-                             /></div>
-                             <div>
-                             <button id="clearDatePicker"  onClick={() => this.clearDatePickerData()} 
-                             style={{'font-size':'10px','display':'none','marginTop':'12px','border-radius': '100%'}} title="Clear Date" > x</button>
-                             </div></div>2Need some guidance on selecting VowVendors?
+                                <div>
+                                  <DatePicker 
+                                  selected={this.state.date} 
+                                  onChange={e => this.handleDateChange(e)}
+                                  dateFormat="dd/MM/yyyy"
+                                  placeholderText="dd/mm/yyyy"
+                                  id = "date"
+                                  minDate={minDate}
+                                  maxDate={maxDate}
+                                  autoComplete = "off"
+                                  isClearable={true}
+                                  />
+                             </div>
+
                     </Col>
                     <Col xs='6'>
                       <input maxLength="50" type="text" name="city" id="city" placeholder="City" />

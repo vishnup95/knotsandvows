@@ -49,25 +49,29 @@ class TalkToWeddingPlanner extends Component {
         }
         this.toggle = this.toggle.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
-        this.clearDatePickerData = this.clearDatePickerData.bind(this);
-          
     }
 
-    handleDateChange(date) {
-        document.getElementById('clearDatePicker').style.display = 'block';
+     handleDateChange = (date) => {
+       
+        if (date != null)
+        {
+            var calendarDate = new Date(date.toString().split(' ')[2] + '/' + date.toString().split(' ')[1] + '/' + date.toString().split(' ')[3]);
+            var todayDate = new Date( minDate.toString().split(' ')[2]  + "/" + minDate.toString().split(' ')[1] + "/" + minDate .toString().split(' ')[3]);
+            var afterFourYearDate = new Date( maxDate.toString().split(' ')[2]  + "/" + maxDate.toString().split(' ')[1] + "/" + maxDate .toString().split(' ')[3]);
+  
+            if(calendarDate  < todayDate || afterFourYearDate > calendarDate){
+                document.getElementById('contactDate').value = '';
+                this.setState({ date:'' });
+                return false;
+            }
+        }
+
         document.getElementById('contactDate').focus();
         this.setState({
             contactDate: date
         });
       }
-    
-    clearDatePickerData(){
-        document.getElementById('contactDate').value = '';
-        document.getElementById('clearDatePicker').style.display = 'none';
-        document.getElementById('contactDate').focus();
-        this.setState({ contactDate:'' });
-        return false;
-    }
+
     componentWillUnmount() {
         this.setState({city: ''})
     }
@@ -152,25 +156,21 @@ class TalkToWeddingPlanner extends Component {
                             </Col>
 
                             <Col md="6" xs="6">
-                             <div style={{display:"flex"}}>
                                 {/* <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/> */}
-                                <div style={{width:"80%"}}><DatePicker 
-                                selected={this.state.contactDate} 
-                                onChange={e => this.handleDateChange(e)}
-                                dateFormat="dd/MM/yyyy"
-                                placeholderText="dd/mm/yyyy"
-                                id = "contactDate"
-                                ref={this.dateRef}
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                withBorder={true}
-                                tabindex="-3"
-                             /></div>
-                             <div>
-                             <button id="clearDatePicker"  onClick={() => this.clearDatePickerData()} 
-                             style={{'font-size':'10px','display':'none','marginTop':'15px','border-radius': '100%'}} title="Clear Date" > x</button>
-                             </div>
-                             <hr/></div>
+                           
+                                    <DatePicker 
+                                    selected={this.state.contactDate} 
+                                    onChange={e=>this.handleDateChange(e)}
+                                    dateFormat="dd/MM/yyyy"
+                                    placeholderText="Event date"
+                                    id = "contactDate"
+                                    ref={this.dateRef}
+                                    minDate={minDate}
+                                    maxDate={maxDate}
+                                    isClearable ={true}
+                                    tabindex="-3"
+                                    />
+                             
                             </Col>
 
                             <Col md="6" xs="6">

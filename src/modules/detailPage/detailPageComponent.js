@@ -24,7 +24,6 @@ import InputField from '../../components/InputField/inputField';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import * as modalActions from '../../reducers/modal/actions';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
-//import { blockStatement } from '@babel/types';
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -68,7 +67,6 @@ class DetailPageComponent extends Component {
         };
 
         this.handleDateChange = this.handleDateChange.bind(this);
-        this.clearDatePickerData = this.clearDatePickerData.bind(this);
     }
     toggleGallery = () => {
         this.setState({
@@ -310,21 +308,26 @@ class DetailPageComponent extends Component {
         });
     }
 
-    handleDateChange(date) {
-        document.getElementById('clearDatePicker').style.display = 'block';
+    handleDateChange = (date) => {
+
+        if (date != null)
+        {
+            var calendarDate = new Date(date.toString().split(' ')[2] + '/' + date.toString().split(' ')[1] + '/' + date.toString().split(' ')[3]);
+            var todayDate = new Date( minDate.toString().split(' ')[2]  + "/" + minDate.toString().split(' ')[1] + "/" + minDate .toString().split(' ')[3]);
+            var afterFourYearDate = new Date( maxDate.toString().split(' ')[2]  + "/" + maxDate.toString().split(' ')[1] + "/" + maxDate .toString().split(' ')[3]);
+  
+            if(calendarDate  < todayDate || afterFourYearDate > calendarDate){
+                document.getElementById('date').value = '';
+                this.setState({ date:'' });
+                return false;
+            }
+        }
+
         document.getElementById('date').focus();
         this.setState({
             date: date
         });
       }
-    
-    clearDatePickerData(e){
-        document.getElementById('date').value = '';
-        document.getElementById('clearDatePicker').style.display = 'none';
-        document.getElementById('date').focus();
-        this.setState({ date:'' });
-        e.preventDefault();
-    }
 
     render() {
         let details = this.props.details;
@@ -502,26 +505,19 @@ class DetailPageComponent extends Component {
                                             <Form className="position-relative">
                                                 <InputField placeHolder="Email address/Phone number" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} phoneCheck={true} />
                                                 {/* <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} /> */}
-                                                <div style={{display:"flex",width:'100%'}}>
-                                
-                                                <div style={{width:'100%'}}>
                                                 <DatePicker 
                                                 selected={this.state.date} 
                                                 onChange={e => this.handleDateChange(e)}
                                                 dateFormat="dd/MM/yyyy"
-                                                placeholderText="Event date (dd/mm/yyyy)"
+                                                placeholderText="Event date"
                                                 id = "date"
                                                 ref={this.dateRef}
                                                 minDate={minDate}
                                                 maxDate={maxDate}
                                                 autoComplete = "off"
+                                                isClearable ={true}
                                                 />
-                                                </div>
-                                                <div style={{position:'absolute',right:'0'}}>
-                                                <button id="clearDatePicker"  onClick={(e) => this.clearDatePickerData(e)} 
-                                                style={{'font-size':'10px','display':'none','marginTop':'15px','border-radius': '100%'}} title="Clear Date" > x</button>
-                                                </div>
-                                                </div>
+                                         
                                             </Form>
                                             <div className="text-center mt-2">
                                                 <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our experts!</Button>
