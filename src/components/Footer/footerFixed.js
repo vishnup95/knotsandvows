@@ -31,13 +31,13 @@ class FooterFixedComponent extends Component {
 
     componentDidMount() {
         if (detectMobile()) {
-            this.setState({collapse: [false, false, false, false]})
+            this.setState({ collapse: [false, false, false, false] })
         }
     }
 
     toggleCollapse(toggleIndex) {
         this.setState({
-            collapse: this.state.collapse.map( (item, index) => index === toggleIndex ? !item : false)
+            collapse: this.state.collapse.map((item, index) => index === toggleIndex ? !item : false)
         });
     }
 
@@ -83,13 +83,13 @@ class FooterFixedComponent extends Component {
                                     <Link to={'/'}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/categories'}>VowVendors</Link>
+                                    <Link to={'/services'}>What We Do</Link>
                                 </li>
                                 <li>
                                     <Link to={'/#packages'}>Packages</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/#ceremonies'}>Ceremonies</Link>
+                                    <Link to={'/categories'}>VowVendors</Link>
                                 </li>
                                 <li>
                                     <Link to={'/wishlist'}>Wishlist</Link>
@@ -99,11 +99,11 @@ class FooterFixedComponent extends Component {
                                     <Link to={'/who-we-are'}>Who We Are</Link>
                                 </li>
                                 <li>
-                                    <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} origin={'footer'}/>
+                                    <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} origin={'footer'} />
                                 </li>
                             </ul>
                         </Collapse>
-                        
+
                     </Col>
 
                     <Col xs="12" md="3" className={` ${styles.block} ${styles.footerEventLinks}`}>
@@ -118,7 +118,7 @@ class FooterFixedComponent extends Component {
                                         this.props.ceremonies.map((ceremony, index) => {
                                             return (
                                                 <li key={index}>
-                                                    <Link to={`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id) }`}>{ceremony.ceremony_name}</Link>
+                                                    <Link to={`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`}>{ceremony.ceremony_name}</Link>
                                                 </li>
                                             );
                                         })
@@ -156,7 +156,7 @@ class FooterFixedComponent extends Component {
                                 </a> */}
                                 <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
-                                </a>                                
+                                </a>
                                 <p className="text-center mt-2">© 2019  All Rights Reserved&nbsp;</p>
                             </span>
                         </div>
