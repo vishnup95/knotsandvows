@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col} from 'reactstrap';
+import { Row, Col, Label} from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import styles from './talkToWeddingPlanner.scss';
 import * as actions from './actions';
@@ -40,6 +40,14 @@ class TalkToWeddingPlanner extends Component {
             comments: '',
             city: '',
             modal: false,
+            servicesModal: false,
+            checkboxes: [
+                {label: 'Define your wedding style', checked: false},
+                {label: 'Shortlist your vendor', checked: false},
+                {label: 'Finalise the detail', checked: false},
+                {label: 'D-Day arrangements', checked: false},
+                {label: 'All services', checked: false},
+            ]
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -59,15 +67,15 @@ class TalkToWeddingPlanner extends Component {
         this.setState({ [e.target.id]: e.target.value });
         this.props.dispatch(actions.clearTalkToErrors());
     }
+
     validateForm = () => {
         let name = this.nameRef.current.validateFormInput(document.getElementById('contactName'));
         let email = this.emailRef.current.validateFormInput(document.getElementById('contactEmail'));
         let phone = this.phoneRef.current.validateFormInput(document.getElementById('contactPhone'));
         let date = this.dateRef.current.validateFormInput(document.getElementById('contactDate'));
         let city = this.cityRef.current.validateFormInput(document.getElementById('city'));
-        let comments = this.commentsRef.current.validateFormInput(document.getElementById('comments'));
 
-        if (name && email && phone && date && comments && city) {
+        if (name && email && phone && date && city) {
             const details = {
                 origin:'CALL_BUTTON_FORM',
                 name: this.state.contactName,
@@ -75,11 +83,25 @@ class TalkToWeddingPlanner extends Component {
                 email: this.state.contactEmail,
                 event_date: this.state.contactDate,
                 city: this.state.city,
-                description: this.state.comments
             }
+
+            if (this.props.type !== 'services') {
+                details['description'] = this.state.comments
+            }
+
             this.props.dispatch(actions.postContactDetails(details));
         }
     }
+
+    // handling services modal 
+
+    toggleServicesModal() {
+        this.setState(prevState => ({
+            servicesModal: !prevState.servicesModal
+        }));
+        this.props.dispatch(actions.clearTalkToErrors());
+    }
+
 
     componentDidUpdate(prevProps) {
         if (prevProps == undefined) {
@@ -101,6 +123,7 @@ class TalkToWeddingPlanner extends Component {
                     {/* <img src={imagePath('button-call.png')} alt="call-button" /> */}
                 </div>}
                 {this.props.type === '' && <button onClick={() => this.toggle()} className={`${this.props.buttonColor === 'white' ? 'white' : ''} primary-button home-btn medium-pink`}>{this.props.buttonText}</button>}
+                {this.props.type === 'services' && <button onClick={() => this.toggleServicesModal()} className={`${this.props.buttonColor === 'white' ? 'white' : ''} primary-button home-btn medium-pink`}>{this.props.buttonText}</button>}
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
                     <div className={styles.closeBtnSmall} onClick={() => this.toggle()} aria-hidden>
@@ -151,8 +174,76 @@ class TalkToWeddingPlanner extends Component {
                             </p>
                         </div>
                     </div>
-
                 </Modal>
+
+                {/* services modal */}
+
+                <Modal isOpen={this.state.servicesModal} toggle={() => this.toggleServicesModal()} centered={true} className={styles.talkPopup}>
+                    <div className={styles.closeBtnSmall} onClick={() => this.toggleServicesModal()} aria-hidden>
+                        <img src={imagePath('close-blank.svg')} alt="close button"/>
+                    </div>
+                    <div className={styles.servicesForm}>
+                        <img src={imagePath('planner.png')} alt="planner"/>
+                        <div className={styles.logoWrap}>
+                            <div className={styles.heading}>Hi, My name is Nivita.</div>
+                            {/* <div className={styles.heading}>Thank you for making us a part of your big day. Tell us a little bit more about the event.</div> */}
+                        </div>
+
+
+                        <div className={`${styles.heading} mb-4`}>Select the services you are interested in</div>
+                        <Row className="position-relative">
+                            <Col md="12" className={styles.subHeading}>Personal Information</Col>
+                            <Col md="12">
+                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} withBorder={true} required={false}/>
+                            </Col>
+
+                            <Col md="12">
+                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                            </Col>
+
+                            <Col md="12">
+                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                            </Col>
+
+                            <Col md="6" xs="6">
+                                <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
+                            </Col>
+
+                            <Col md="6" xs="6">
+                                <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                           
+                            </Col>
+                        </Row>
+                        <Row className="my-3"><Col md="12" className={styles.subHeading}>Choose one or choose all</Col></Row>
+                        <Row className={styles.checkboxContainer}>
+                            {
+                                this.state.checkboxes.map((item, index) => {
+                                    return(
+                                        <Col md="12" key={index}>
+                                            <div className="md-checkbox">
+                                                <input id={`check${index+1}`} type="checkbox"/>
+                                                <Label for={`check${index+1}`}>{item.label}</Label>
+                                            </div>
+                                        </Col>
+                                    );
+                                })
+                            }
+                        </Row>
+
+                        {this.props.status == false && this.props.message &&
+                            <div className={styles.apiError}>{this.props.message}</div>
+                        }
+                        <div className="text-center">
+                            <ProgressButton title="Send Message" onClick={() => this.validateForm()} isLoading={this.props.isLoading}></ProgressButton>
+                            {/* <p className={styles.phone}>
+                                <img src={imagePath('button-call.png')} alt="call-button" />
+                                <a href="tel:+917032188007">+91 703 218 8007</a>
+                                <span>+91 703 218 8007</span>
+                            </p> */}
+                        </div>
+                    </div>
+                </Modal>
+
+
 
             </div>
 
