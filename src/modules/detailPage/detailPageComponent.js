@@ -23,6 +23,7 @@ import InputField from '../../components/InputField/inputField';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import * as modalActions from '../../reducers/modal/actions';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
+import Helmet from 'react-helmet';
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -50,8 +51,8 @@ class DetailPageComponent extends Component {
 
         this.state = {
             showGallery: false,
-            vendor: '',
-            category: '',
+            vendor: this.props.match.params.vendor_name,
+            category: this.props.match.params.category_name,
             reviewPage: 1,
             email: '',
             phone: '',
@@ -60,6 +61,21 @@ class DetailPageComponent extends Component {
             selectedNavItem: 0
         };
     }
+
+    static fetchData(store, match) {
+        // Normally you'd pass action creators to "connect" from react-redux,
+        // but since this is a static method you don't have access to "this.props".
+    
+        // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
+        let promises = [];
+        let vendor = match.params.vendor_name;
+        promises.push(store.dispatch(actions.fetchVendorDetails(vendor)));
+        promises.push(store.dispatch(actions.fetchVendorGallery(vendor)));
+        promises.push(store.dispatch(actions.fetchReviews(vendor, 1)));
+        promises.push(store.dispatch(actions.fetchSimilarVendors(vendor)));
+        return Promise.all(promises);
+      }
+
     toggleGallery = () => {
         this.setState({
             showGallery: !this.state.showGallery
@@ -85,12 +101,21 @@ class DetailPageComponent extends Component {
             this.props.dispatch(actions.fetchVendorDetails(this.state.vendor));
             this.props.dispatch(actions.fetchSimilarVendors(this.state.vendor));
         }
+
+        if(this.props.wishlistId != prevProps.wishlistId && this.props.wishlistId != 0){
+            let details = {
+                vendor_id: getId(this.state.vendor),
+                wishlist_id: this.props.wishlistId
+            }
+            this.props.dispatch(actions.fetchAllNotes(details));
+        }
     }
 
     componentWillMount() {
-        this.updateUIData();
+        if (this.props.details == null || getId(this.state.vendor) != this.props.details.vendor_id){
+            this.updateUIData();
+        }
         this.props.dispatch(talkToPlannerActions.clearTalkToErrors());
-
     }
 
     updateUIData = () => {
@@ -110,8 +135,6 @@ class DetailPageComponent extends Component {
             }
             this.props.dispatch(actions.fetchAllNotes(details));
         }
-
-
     }
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -227,7 +250,7 @@ class DetailPageComponent extends Component {
                 <div className={style.noteWrap} key={index}>
                     <div>
                         <span className={style.noteTitle}>{note.author_name}</span>
-                        <span className={style.noteDate}>{formatDate(note.added_datetime)}</span>
+                        <span className={style.noteDate}>{formatDate(note.date)}</span>
                     </div>
                     <div className={style.noteText}>
                         <div>
@@ -329,8 +352,15 @@ class DetailPageComponent extends Component {
         const heartIcon = this.state.isInWishList ? 'wishlist_selected.svg' : 'wishlist_unselected.svg';
         return (
             <div className={style.detailContainer}>
+                {details && details.metatag &&
+                <Helmet>
+                <title>{details.metatag.title}</title>
+                <meta name="description" content={details.metatag.description} />
+                <meta name="keywords" content={details.metatag.keywords} />
+                </Helmet>
+              }
                 {this.props.detailsLoading && <LoaderComponent />}
-                {details &&
+                {details && this.props.detailsLoading == false &&
                     <div>
                         <div className={style.bgImage} style={{ backgroundImage: "url(" + details.pic_url + ")" }}>
                         </div>

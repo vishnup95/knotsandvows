@@ -37,6 +37,8 @@ body {
   padding: 0 !important;
   margin: 0;
   color: $black-five;
+  overflow:auto !important;
+  height:100vh
 }
 
 #root {

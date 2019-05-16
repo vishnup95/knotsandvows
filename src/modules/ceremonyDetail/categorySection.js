@@ -32,6 +32,7 @@ class CategorySection extends Component {
 
                 <Row>
                     <Col>
+                        <a href= {`/categories/${hyphonatedString(this.props.category.name , this.props.category.category_id)}`} hidden>View All</a>
                         <p className={styles.viewAll} onClick={() => this.handleViewAllClick(hyphonatedString(this.props.category.name , this.props.category.category_id))} aria-hidden >View All</p>
                     </Col>
                 </Row>

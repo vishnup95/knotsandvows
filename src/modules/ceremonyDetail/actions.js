@@ -33,3 +33,16 @@ export function fetchAllVendors() {
     promise: client => client.get(`/api/allvendors`)
   };
 }
+
+export function clearCeremonyData() {
+  return {
+    type: types.CLEAR_CEREMONY_DETAILS
+  }
+}
+
+export function updateCategoryOrder(index) {
+ return {
+     type : types.UPDATE_CATEGORY_ORDER,
+     payload: index
+      };
+ }
