@@ -56,7 +56,7 @@ class ServicesComponent extends Component {
             <Col md="4" className={styles.leftSection}></Col>
             <Col md="8" className={styles.rightSection}>
               <h2>We are just a step away!</h2>
-              <div className="mt-4 ml-0" style={{ width: 'max-content' }}>
+              <div className={`${styles.talkButton} mt-4 ml-0`}>
                 <TalkToWeddingPlanner buttonText={'Let Us Help You'} type="services"/>
               </div>
             </Col>
