@@ -115,7 +115,7 @@ class RubyPackage extends Component {
           <h1>Let your dream wedding be as radiant as ruby</h1>
         </div>
         <div className={styles.bannerTwo}>
-          <h2>SevenVows Royal Ruby package includes</h2>
+          <h2>Knots&Vows Royal Ruby package includes</h2>
         </div>
         <div className={`${styles.goldContainer} container`}>
           <Row>
@@ -267,7 +267,7 @@ class RubyPackage extends Component {
           </Row>
           <Row>
             <Col>
-              <h3><span className={styles.headerWithIcon}>To customise SevenVows Royal Ruby package talk to our event planner</span></h3>
+              <h3><span className={styles.headerWithIcon}>To customise Knots&Vows Royal Ruby package talk to our event planner</span></h3>
               <div className={styles.hrLine}></div>
             </Col>
           </Row>

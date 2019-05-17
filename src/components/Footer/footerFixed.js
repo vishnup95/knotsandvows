@@ -52,7 +52,7 @@ class FooterFixedComponent extends Component {
                         <Collapse isOpen={this.state.collapse[0]}>
                             <div className={`${styles.footerContactContainer} text-left`}>
                                 <div className={` ${styles.block} ${styles.mb2mob}`}>
-                                    <p>SevenVows</p>
+                                    <p>Knots&Vows</p>
                                     <p className={`mb-0 ${styles.address}`}>H.No. 8-2-120/112/B/5&6, 3rd ﬂoor, BBR Forum, Road # 2, Banjara Hills, Hyderabad 500034 </p>
                                 </div>
                                 <div className={`${styles.footerPhoneEmail}`}>
@@ -63,9 +63,9 @@ class FooterFixedComponent extends Component {
                                             <a href="tel: +91 7032188007">+91 703 218 8007</a>
                                         </p>
                                     </div>
-                                    <div className={` ${styles.block} ${styles.mb2mob}`}>
+                                    <div className={` ${styles.block} ${styles.mb2mob}`}>           
                                         <p></p>
-                                        <p className="mb-0">Email us @&nbsp;<span><a href="mailto:info@sevenvows.co.in">info@sevenvows.co.in</a></span></p>
+                                        <p className="mb-0">Email us @&nbsp;<span><a href="mailto:info@knots&vows.co.in">info@knots&vows.co.in</a></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@ class FooterFixedComponent extends Component {
 
                     <Col xs="12" md="3" className={` ${styles.block} ${styles.footerNavLinks}`}>
                         <p onClick={() => this.toggleCollapse(1)} aria-hidden className={styles.collapseControl}>
-                            SevenVows
+                        Knots&Vows
                         </p>
                         <Collapse isOpen={this.state.collapse[1]}>
                             <p className="d-none d-sm-block"><Link to={'/'}>Home</Link></p>
@@ -144,7 +144,7 @@ class FooterFixedComponent extends Component {
                             </p>
                             <Collapse isOpen={this.state.collapse[3]}>
                                 <p className="mt-4">© 2019  All Rights Reserved&nbsp;</p>
-                                <p className="">SevenVows</p>
+                                <p className="">Knots&Vows</p>
                                 <p className="w-100">
                                     <Link to={'/terms-and-conditions'} target="_blank" >Terms & Conditions</Link>   |  <Link to={'/privacy-policy'} target="_blank">Privacy Policy</Link>
                                 </p>
