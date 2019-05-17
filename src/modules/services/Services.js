@@ -26,7 +26,7 @@ class ServicesComponent extends Component {
         <div className={styles.servicesCover}>
           <div className={styles.coverDetail}>
             <h1>A big step <span className='tab-only'><br /></span>towards a beautiful life</h1>
-            <h4>We are there with you, in every step of your planning journey.</h4>
+            <h4>We are there with you,<span className='tab-only'><br /></span> in every step of your planning journey.</h4>
             <div className={styles.iconContainer}>
               <img src={imagePath('define-icon.png')} alt="" onClick={() => this.handleSectionScroll('section1')} aria-hidden />
               <img src={imagePath('shortlist-icon.png')} alt="" onClick={() => this.handleSectionScroll('section2')} aria-hidden />
@@ -38,7 +38,7 @@ class ServicesComponent extends Component {
 
         <Container className={styles.containerClass}>
           <Row className={`mt-5 ${styles.detailBox}`}>
-            <Col md="4" className={styles.leftSection}></Col>
+            <Col md="3" className={styles.leftSection}></Col>
             <Col md="8" className={`pt-0 pb-0 ${styles.rightSection}`}>
               <img className={styles.vowIcon} src={imagePath('vow-icon.png')} alt="vow icon" />
               <h2 className={styles.pink}>Pick one or choose all</h2>
@@ -53,10 +53,10 @@ class ServicesComponent extends Component {
           }
 
           <Row className={`mb-5 ${styles.detailBox}`}>
-            <Col md="4" className={styles.leftSection}></Col>
+            <Col md="3" className={styles.leftSection}></Col>
             <Col md="8" className={styles.rightSection}>
               <h2>We are just a step away!</h2>
-              <div className="mt-4 ml-0" style={{ width: 'max-content' }}>
+              <div className={`${styles.talkButton} mt-4 ml-0`}>
                 <TalkToWeddingPlanner buttonText={'Let Us Help You'} type="services"/>
               </div>
             </Col>

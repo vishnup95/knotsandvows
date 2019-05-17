@@ -25,7 +25,7 @@ let data = [
             {
                 coverImage: 'digital-services.jpg',
                 listItems: [
-                    'Social media posts',
+                    'Social media posts & hashtags',
                     'E-vites',
                     'Wedding website',
                     'Snapchats'
@@ -37,8 +37,10 @@ let data = [
                     'Mehendi designs',
                     'Makeup styles',
                     'Wedding Accessories',
-                    'Return gifts',
-                    'Wedding invitations designs'
+                    'Return gifts/Goodie hampers',
+                    'Wedding invitations designs',
+                    'Spa services',
+                    'Fitness programs'
                 ]
             }
         ]
@@ -47,7 +49,7 @@ let data = [
     {
         icon: 'shortlist-icon.png',
         heading: <span> Select your<br></br> dream vendors</span>,
-        options: ['Vendor Selection', 'Vendor Coordination', 'Health & Beauty'],
+        options: ['Vendor Selection', 'Vendor Coordination'],
         optionDetail: [
             {
                 coverImage: 'vendor-selection.jpg',
@@ -67,14 +69,7 @@ let data = [
                     'Sangeet Practice Sessions',
                     'Collaboration on decor/menu ideas'
                 ]
-            },
-            {
-                coverImage: 'health-beauty.jpg',
-                listItems: [
-                    'Spa services',
-                    'Fitness programs'
-                ]
-            },
+            }
         ]
     },
      

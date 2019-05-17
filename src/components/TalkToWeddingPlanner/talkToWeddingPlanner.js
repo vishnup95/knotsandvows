@@ -52,8 +52,8 @@ class TalkToWeddingPlanner extends Component {
                 {label: 'Shortlist your vendor', checked: false},
                 {label: 'Finalise the detail', checked: false},
                 {label: 'D-Day arrangements', checked: false},
-                {label: 'I’m not sure', checked: false},
                 {label: 'All services', checked: false},
+                {label: 'I’m not sure', checked: false},
             ]
         }
         this.toggle = this.toggle.bind(this);
@@ -235,7 +235,7 @@ class TalkToWeddingPlanner extends Component {
                         </div>
 
 
-                        <div className={`${styles.heading} mb-4`}>Select the services you are interested in</div>
+                        <div className={`${styles.heading} mb-4`}>Select the services you are interested in and tell us a bit more so I can call you</div>
                         <Row className="position-relative">
                             <Col md="12" className={styles.subHeading}>Personal Information</Col>
                             <Col md="12">
