@@ -7,21 +7,21 @@
   color: $black;
 
   h1 {
-    font-size: 4.286rem;
+    font-size: 4.5rem;
     color: $white;
-    text-align: left;
+    text-align: center;
   }
 
   h4 {
     color: white;
     font-family: $roboto;
     font-weight: 300;
-    font-size: 1.57rem;
+    font-size: 1.8rem;
     line-height: 1.36;
   }
 
   .servicesCover {
-    height: 47vw;
+    height: 38vw;
     position: relative;
     background: url('#{$image-base-url}/services-banner.png');
     background-position: top;
@@ -30,16 +30,21 @@
     text-align: center;
     padding-left: 10%;
     @include mobile {
-      height: 48vw;
+      height: 90vw;
+      background-position: right;
     }
 
     .coverDetail {
       display: flex;
       flex-direction: column;
-      width: 46rem;
+      width: 49rem;
       height: 100%;
       align-items: center;
       justify-content: center;
+
+      @include mobile {
+        width: 90%;
+      }
     }
 
     .iconContainer {
@@ -54,18 +59,18 @@
         animation-name: iconAnimation;
         animation-duration: 1s;
         animation-fill-mode: forwards;
-        animation-delay: .5s;
+        animation-delay: 1.5s;
 
         &:nth-child(2) {
-          animation-delay: 1s;
+          animation-delay: 2s;
         }
 
         &:nth-child(3) {
-          animation-delay: 1.5s;
+          animation-delay: 2.5s;
         }
 
         &:nth-child(4) {
-          animation-delay: 2s;
+          animation-delay: 3s;
         }
       }
     }
@@ -83,6 +88,12 @@
       border-right: 2px solid $medium-pink;
       text-align: right;
 
+      @include mobile {
+        text-align: center;
+        padding-bottom: 0;
+        border: none;
+      }
+
       h3 {
         font-size: 2.857rem;
         color: $greyish-brown-six;
@@ -93,6 +104,10 @@
       hr {
         width: 60%;
         margin-bottom: 0;
+
+        @include mobile {
+          margin: 0 auto;
+        }
       }
 
       ul {
@@ -105,12 +120,42 @@
           font-weight: 500;
           color: $greyish-brown;
         }
+
+        .activeLi {
+          color: $medium-pink;
+        }
+
+        @include mobile {
+          padding-left: 0;
+
+          li {
+            width: max-content;
+            margin: 0 auto;
+            @include padding(8, 14);
+            font-size: 1.73rem;
+
+            &:first-child {
+              margin-top: 1rem;
+            }
+          }
+
+          .activeLi {
+            color: white;
+            background-color: $medium-pink;
+            border-radius: 1.75rem; 
+          }
+        }
       }
+
     }
 
     .rightSection {
       @include padding(60, 40);
       color: white;
+
+      @include mobile {
+        padding: 0;
+      }
 
       img {
         width: 100%;
@@ -121,6 +166,10 @@
         position: absolute;
         left: -1.95rem;
         top: 0;
+
+        @include mobile {
+          display: none;
+        }
       }
 
       .description {
@@ -158,6 +207,9 @@
         color: $greyish-brown-six;
         font-weight: 500;
         font-size: 3.57rem;
+        @include mobile {
+          text-align: center;
+        }
       }
 
       .pink {
@@ -167,6 +219,18 @@
       h4 {
         color: $greyish-brown-six;
         width: 90%;
+
+        @include mobile {
+          margin: 0 auto;
+          text-align: center;
+        }
+      }
+
+      .talkButton {
+        width: max-content;
+        @include mobile {
+          width: auto;
+        }
       }
 
     }
@@ -180,6 +244,7 @@
     }
   }
 }
+
 @keyframes iconAnimation {
   from {
     opacity: 0;
