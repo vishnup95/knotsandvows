@@ -144,7 +144,7 @@ class GoldPackage extends Component {
           <h1>Add a golden touch to your big day</h1>
         </div>
         <div className={styles.bannerTwo}>
-          <h2>SevenVows Gold package includes</h2>
+          <h2>Knots&Vows Gold package includes</h2>
         </div>
         <div className={`${styles.goldContainer} container`}>
           <Row>
@@ -296,7 +296,7 @@ class GoldPackage extends Component {
           </Row>
           <Row>
             <Col>
-              <h3><span className={styles.headerWithIcon}>To customise SevenVows Gold package talk to our experts</span></h3>
+              <h3><span className={styles.headerWithIcon}>To customise Knots&Vows Gold package talk to our experts</span></h3>
               <div className={styles.hrLine}></div>
             </Col>
           </Row>
