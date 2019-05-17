@@ -260,7 +260,7 @@
 .pagination {
   margin: 0 auto;
   width: max-content;
-
+  justify-content: center;
   li {
     background-color: $white;
     padding: .25rem 1rem;
@@ -424,6 +424,7 @@
 // pagination fixes
 
 .pagination {
+  justify-content: center;
   li {
     a {
       img {
