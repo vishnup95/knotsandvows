@@ -7,21 +7,21 @@
   color: $black;
 
   h1 {
-    font-size: 4.286rem;
+    font-size: 4.5rem;
     color: $white;
-    text-align: left;
+    text-align: center;
   }
 
   h4 {
     color: white;
     font-family: $roboto;
     font-weight: 300;
-    font-size: 1.57rem;
+    font-size: 1.8rem;
     line-height: 1.36;
   }
 
   .servicesCover {
-    height: 47vw;
+    height: 38vw;
     position: relative;
     background: url('#{$image-base-url}/services-banner.png');
     background-position: top;
@@ -37,7 +37,7 @@
     .coverDetail {
       display: flex;
       flex-direction: column;
-      width: 46rem;
+      width: 49rem;
       height: 100%;
       align-items: center;
       justify-content: center;
@@ -59,18 +59,18 @@
         animation-name: iconAnimation;
         animation-duration: 1s;
         animation-fill-mode: forwards;
-        animation-delay: .5s;
+        animation-delay: 1.5s;
 
         &:nth-child(2) {
-          animation-delay: 1s;
+          animation-delay: 2s;
         }
 
         &:nth-child(3) {
-          animation-delay: 1.5s;
+          animation-delay: 2.5s;
         }
 
         &:nth-child(4) {
-          animation-delay: 2s;
+          animation-delay: 3s;
         }
       }
     }

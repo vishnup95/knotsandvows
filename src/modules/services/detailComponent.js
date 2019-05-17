@@ -14,7 +14,7 @@ class DetailComponent extends Component {
   render() {
     return (
       <Row className={styles.detailBox} id={this.props.id}>
-        <Col md="4" className={styles.leftSection}>
+        <Col md="3" className={styles.leftSection}>
           <img src={imagePath(this.props.data.icon)} alt="create it"/>
           <h3>{this.props.data.heading}</h3>
           <hr align="right"/>
