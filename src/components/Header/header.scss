@@ -29,6 +29,9 @@
       height: 8.1rem;
     }
     @include desktop {
+      padding: 0 5%;
+    }
+    @include hd {
       padding: 0 10%;
     }
 
@@ -102,6 +105,7 @@
         @include fontSize(20.5);
         @include tablet {
           margin: 0 1rem;
+
           &:before {
             content: '';
             position: absolute;
@@ -124,8 +128,11 @@
           }
         }
         @include desktop {
+          margin: 0 1.5rem;
+        }
+        @include hd {
           margin: 0 2rem;
-          }
+        }
       }
 
       a[class*=" active"] {
@@ -336,7 +343,6 @@
   right: 5px;
   cursor: pointer;
   display: none;
-
   @include mobile {
     display: block;
   }

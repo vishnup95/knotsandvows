@@ -200,7 +200,7 @@ export default class HorizontalSlider extends Component {
             initialSlide: 0,
             responsive: [
                 {
-                    breakpoint: 1200,
+                    breakpoint: 1280,
                     settings: {
                         slidesToShow: 3.5,
                         slidesToScroll: 3.5,
