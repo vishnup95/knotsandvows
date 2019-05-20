@@ -288,7 +288,7 @@ class CategoryCard extends Component {
                         this.state.showAddNote &&
                         <div className={styles.addNote} onClick={event => this.stopClicks(event)} aria-hidden>
                             <div className={styles.noteHeader}>
-                                <span>Add Note</span>
+                                <span>{this.state.addNoteMode == 'add' ? "Add Note" : "Edit Note"}</span>
                                 <img className={styles.closeNote} src={imagePath('close-blank-white.svg')} alt="close button" onClick={() => this.toggleAddNote()} aria-hidden />
                             </div>
                             <textarea id="note" rows="6" maxLength="1000" placeholder="Maximum 1000 Characters"
@@ -321,7 +321,7 @@ class CategoryCard extends Component {
                                                     <div className={styles.noteWrap} key={index}>
                                                         <div>
                                                             <span className={styles.noteTitle}>{note.author_name || 'Author'}</span>
-                                                            <span className={styles.noteDate}>{formatDate(note.added_datetime)}</span>
+                                                            <span className={styles.noteDate}>{formatDate(note.date)}</span>
                                                         </div>
                                                         <div className={styles.noteText}>
                                                             <div>

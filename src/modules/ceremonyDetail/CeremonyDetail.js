@@ -7,9 +7,11 @@ import PropTypes from 'prop-types';
 import * as actions from './actions';
 import LoaderComponent from '../../components/Loader/loader';
 import CategorySection from './categorySection';
-import JumbotronComponent from '../../components/Jumbotron/jumbotron';
-import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal'
 import NoResultComponent from '../../components/noResult/noResult';
+import { getId, hyphonatedString } from '../../utils/utilities';
+import Helmet from 'react-helmet';
+import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
+import { push } from 'connected-react-router';
 
 // const cities = {
 //   display_name:"City",
@@ -26,7 +28,7 @@ const mapStateToProps = state => ({
   user: state.session.user,
   ceremonyDetails: state.ceremonyDetails.details,
   ceremonyLoading: state.ceremonyDetails.loading,
-  similar_ceremonenies: state.ceremonyDetails.similar_ceremonenies
+  all_ceremonies : state.home.ceremonies,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -34,39 +36,41 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const jumbotronData = { title: 'Other Ceremonies' };
 class CeremonyDetail extends Component {
   
   state = {
-    ceremony: this.selectedCategory(),
+    ceremony: this.props.match.params.ceremony_name,
     selectedOption: null,
-    categories: [],
-    fixedCategories: []
   }
   options = [];
+
+  static fetchData(store, match) {
+    // Normally you'd pass action creators to "connect" from react-redux,
+    // but since this is a static method you don't have access to "this.props".
+
+    // Dispatching actions from "static fetchData()" will look like this (make sure to return a Promise):
+    let promises = [];
+    let ceremony = match.params.ceremony_name;
+    promises.push(store.dispatch(actions.fetchCeremonyDetails(ceremony)));
+    return Promise.all(promises);
+  }
 
   selectedCategory() {
     return this.props.match.params.ceremony_name;
   }
 
-  componentWillMount() {
-    let ceremony = this.selectedCategory();
-    this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
-    this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
-    // this.option = Array.from(cities.values, (value) => ({
-    //   label: value.name,
-    //   value: value.id
-    // }));   
+  componentWillMount() { 
+    if (this.props.ceremonyDetails == null || getId(this.state.ceremony) != this.props.ceremonyDetails.ceremony_id){
+      this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
+    } 
   }
 
-  componentWillReceiveProps(nextProps) {
-    window.scrollTo(0,0);
-    if (nextProps.ceremonyDetails !== null) {
-      let filteredCategories = nextProps.ceremonyDetails.categories.filter(item => {
-        return item.vendors !== null && item.vendors.length > 0
-      })
-      this.setState({ categories: filteredCategories, fixedCategories: filteredCategories });
-    }
+  componentDidMount(){
+    window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount(){
+    this.props.dispatch(actions.clearCeremonyData());
   }
 
   componentDidUpdate(prevProps) {
@@ -77,44 +81,64 @@ class CeremonyDetail extends Component {
     if (this.state.ceremony !== this.props.match.params.ceremony_name) {
       let ceremony = this.props.match.params.ceremony_name;
       this.props.dispatch(actions.fetchCeremonyDetails(ceremony));
-      this.props.dispatch(actions.fetchSimilarCeremonies(ceremony));
       this.setState({ ceremony: ceremony, filter: { name: "", id: null } });
+      window.scrollTo(0, 0);
     }
 
     if(this.props.user != prevProps.user && this.props.user) {
       this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
-      this.props.dispatch(actions.fetchSimilarCeremonies(this.state.ceremony));
+      window.scrollTo(0, 0);
+    }
   }
+
+  navigateTo(route) {
+    this.props.dispatch(push(route));
   }
 
   handleViewAllClick = (category) => {
     this.navigateTo(`/categories/${category}`)
+    window.scrollTo(0, 0);
   }
 
-  handleCategoryChange = (index) => {
-    let updatedCategories = this.state.fixedCategories.slice();
-    let temp = updatedCategories[1];
-    updatedCategories[1] = updatedCategories[index + 1];
-    updatedCategories[index + 1] = temp;
-    this.setState({ categories: updatedCategories });
+  handleCeremonyClick = (ceremony, event) => {
+    this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
+    event.preventDefault();
   }
 
-  handleDropDownChange = (option) => {
-    if (option) {
-      this.setState({ selectedOption: option });
-      this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony, option.value));
-    }
-    // else{
-    //   this.setState({ selectedOption : null });
-    //   this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
-    // }
-  }
+  // handleCategoryChange = (index) => {
+  //   let updatedCategories = this.state.fixedCategories.slice();
+  //   let temp = updatedCategories[1];
+  //   updatedCategories[1] = updatedCategories[index + 1];
+  //   updatedCategories[index + 1] = temp;
+  //   this.setState({ categories: updatedCategories });
+  // }
+
+  // handleDropDownChange = (option) => {
+  //   if (option) {
+  //     this.setState({ selectedOption: option });
+  //     this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony, option.value));
+  //   }
+  //   // else{
+  //   //   this.setState({ selectedOption : null });
+  //   //   this.props.dispatch(actions.fetchCeremonyDetails(this.state.ceremony));
+  //   // }
+  // }
 
   render() {
     let details = this.props.ceremonyDetails;
-   
+    let similar_ceremonies = [];
+    if (details && this.props.all_ceremonies){
+      similar_ceremonies = this.props.all_ceremonies.filter((ceremony) => ceremony.ceremony_id != details.ceremony_id);
+    }
     return (
       <div className="full-height">
+      {details && details.metatag &&
+                <Helmet>
+                <title>{details.metatag.title}</title>
+                <meta name="description" content={details.metatag.description} />
+                <meta name="keywords" content={details.metatag.keywords} />
+                </Helmet>
+        }
         {this.props.ceremonyLoading && <LoaderComponent />}
         {details &&
 
@@ -146,15 +170,15 @@ class CeremonyDetail extends Component {
                     </div> */}
                   </Col>
               </Row>
-              {this.state.fixedCategories.length == 0 && 
+              {details.fixedCategories.length == 0 && 
                   <NoResultComponent></NoResultComponent>
               }
 
-              {this.state.fixedCategories && this.state.fixedCategories.length > 0  && 
+              {details.fixedCategories && details.fixedCategories.length > 0  && 
               <div>
               {
-                this.state.fixedCategories.length > 0 ?
-                  <CategorySection category={this.state.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
+                details.fixedCategories.length > 0 ?
+                  <CategorySection category={details.fixedCategories[0]} dispatch={this.props.dispatch} /> : ''
               }
 
               {/* 
@@ -170,7 +194,7 @@ class CeremonyDetail extends Component {
                 </Col>
               </Row> */}
               {
-                this.state.categories.slice(1).map((category, index) => {
+                details.categories.slice(1).map((category, index) => {
                   return (
                     <CategorySection category={category} key={index} dispatch={this.props.dispatch} />
                   );
@@ -182,13 +206,18 @@ class CeremonyDetail extends Component {
             </Container>
           </div>
         }
-        {this.props.similar_ceremonenies &&
-          <JumbotronComponent data={jumbotronData} items={this.props.similar_ceremonenies.slice(0,3)} cardType="ceremonies" bgcolor="#f8f8f8" containerStyle="otherWrap">
-            <Col xs="12" className={`${styles.mobileCarousal} no-padding d-block d-sm-none`}>
-              <HorizontalScrollingCarousel data={this.props.similar_ceremonenies} type="similar_ceremonies" />
-            </Col>
-          </JumbotronComponent>
-        }
+        
+        {similar_ceremonies && !this.props.ceremonyLoading &&
+        <Container className={styles.homeContainer}>
+        <Row className="mt-5" id="ceremonies">
+          <Col className={`${styles.ceremony} text-center`}>
+            <h2>Other Ceremonies</h2>
+              <Col xs="12" className={` no-padding mb-5 mt-5`}>
+                <HorizontalSlider data={similar_ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
+              </Col>
+          </Col>
+        </Row>
+      </Container>}
       </div>
     );
   }
@@ -198,7 +227,7 @@ CeremonyDetail.propTypes = {
   user: PropTypes.object,
   dispatch: PropTypes.func,
   ceremonyDetails: PropTypes.object,
-  similar_ceremonenies: PropTypes.array,
+  all_ceremonies: PropTypes.array,
   match: PropTypes.object,
   ceremonyLoading: PropTypes.bool
 };

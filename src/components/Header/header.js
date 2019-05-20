@@ -127,7 +127,7 @@ class Header extends Component {
         const listItems = list.map((item, index) => {
             return (
                 <li key={index}>
-                    <Link to={`/categories/${hyphonatedString(item.page_name, item.category_id)}`}>{item.name}</Link>
+                    <Link to={`/categories/${hyphonatedString(item.name, item.category_id)}`}>{item.name}</Link>
                 </li>
             );
         });

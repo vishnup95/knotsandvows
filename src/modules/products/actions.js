@@ -39,3 +39,9 @@ export function fetchOtherCategories(category) {
     promise: client => client.get(`api/category/relatedcategories?category_id=${getId(category)}`)
   };
 }
+
+export function clearVendorListData() {
+  return {
+    type: types.CLEAR_VENDOR_LIST_DATA
+  }
+}
