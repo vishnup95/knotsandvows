@@ -85,7 +85,7 @@
 
   .heading {
     @include mobile {
-      width: max-content;
+      width: auto;
     }
   }
 }

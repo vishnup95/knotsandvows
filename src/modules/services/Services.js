@@ -37,7 +37,7 @@ class ServicesComponent extends Component {
         </div>
 
         <Container className={styles.containerClass}>
-          <Row className={`mt-5 ${styles.detailBox}`}>
+          <Row className={`${styles.detailBox}`}>
             <Col md="3" className={styles.leftSection}></Col>
             <Col md="8" className={`pt-0 pb-0 ${styles.rightSection}`}>
               <img className={styles.vowIcon} src={imagePath('vow-icon.png')} alt="vow icon" />
