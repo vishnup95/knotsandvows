@@ -1,4 +1,4 @@
-export const title = 'SevenVows';
+export const title = 'Knots&Vows';
 
 export const meta = [
   {

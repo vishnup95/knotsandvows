@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 
 const listData = [
   {
-    title: 'The website is owned and operated by sevenvows.co.in',
+    title: 'The website is owned and operated by Knots&Vows.co.in',
     subTitle: "You acknowledge that the Website serves as a venue for the online distribution and publication of user submitted information between Service Professionals and Service Users, and, by using, visiting, registering for, and/or otherwise participating in this Website, including the Services presented, promoted, and displayed on the Website, and by clicking on “I have read and agree to the terms of use,",
     listItem: ["You are either a Service Professional or a prospective Service User.",
       "You have the authority to enter into these Terms of Use.",
@@ -34,7 +34,7 @@ const listData = [
   }, {
     title: 'Transfer of information',
     listItem: ["We may distribute your submissions to third parties, as permitted pursuant to our Terms of Service.",
-      "We may share your information with third parties to provide you with services that we offer through SevenVows to conduct quality assurance Services.",
+      "We may share your information with third parties to provide you with services that we offer through Knots&Vows to conduct quality assurance Services.",
       "We maintain a presence on several social networking and blogging platforms, such as Facebook, Instagram, Twitter, Snapchat, WordPress, Pinterest and Google Plus.",
       "We may make available mobile applications (or “apps”) that you are able to download and use from your mobile device. Depending on the nature and functionality of the app, we may collect Personal Information and non-personally identifiable usage information through the app, including from your contacts, camera, photo gallery and calendar on your mobile device to which you grant us access."]
   }, {
@@ -44,9 +44,9 @@ const listData = [
       "If you do not wish to permit changes in our use of your personal information, you must notify us prior to the effective date of the changes that you wish to deactivate your account with us."]
   }, {
     title: 'Transfer of information',
-    listItem: ["SevenVows will take have the commission of 15% on the total billing of the event given.",
-      "All payments will be taken by SevenVows from the clients and would be released on timely basis.",
-      "SevenVows will pay 50% before the event and rest will be paid after the event gets over.",
+    listItem: ["Knots&Vows will take have the commission of 15% on the total billing of the event given.",
+      "All payments will be taken by Knots&Vows from the clients and would be released on timely basis.",
+      "Knots&Vows will pay 50% before the event and rest will be paid after the event gets over.",
       "All transactions will be done by the payment gateway to your given account number."]
   }
 ];
@@ -59,7 +59,7 @@ const jumbotronData =
   };
 
   let meta = {
-    title:"SevenVows",
+    title:"Knots&Vows",
     description:'Wedding services and planning partners',
     keywords:""
   }
@@ -77,7 +77,7 @@ class TermsAndConditions extends Component {
           <Row>
             <Col>
               <p className={styles.desc}>
-                These Terms of Use (“Agreement”) sets forth legally binding terms and conditions and the nature of services offered by www.sevenvows.co.in. The website is owned and operated by M/S Shree Impex, a proprietorship firm incorporated under the provisions of the Companies Act, 1956 and has its registered office at H.No. 8-2-120/112/B/5&6, 3rd floor, BBR Forum, Road # 2, Banjara Hills (hereinafter referred to as “Company”). The use of this Website (and any other feature, content or application offered from time to time by the Website) is subject at all times to these Terms of Use (and may be modified by us from time to time) and all applicable laws, rules and regulations. We recommend that before accessing and using sevenvows.co.in, you must read and agree to these Terms of Use.
+                These Terms of Use (“Agreement”) sets forth legally binding terms and conditions and the nature of services offered by www.knots&v  ows.co.in. The website is owned and operated by M/S Shree Impex, a proprietorship firm incorporated under the provisions of the Companies Act, 1956 and has its registered office at H.No. 8-2-120/112/B/5&6, 3rd floor, BBR Forum, Road # 2, Banjara Hills (hereinafter referred to as “Company”). The use of this Website (and any other feature, content or application offered from time to time by the Website) is subject at all times to these Terms of Use (and may be modified by us from time to time) and all applicable laws, rules and regulations. We recommend that before accessing and using knots&vows.co.in, you must read and agree to these Terms of Use.
           </p>
             </Col>
           </Row>
