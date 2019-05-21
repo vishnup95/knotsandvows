@@ -118,6 +118,10 @@ class TalkToWeddingPlanner extends Component {
 
             if (this.props.type !== 'services') {
                 details['description'] = this.state.comments
+            } else {
+                let services = [];
+                this.state.checkboxes.map((item, index) => {if (index !== 4 && item.checked) services.push(item.label)});
+                details['services'] = services;
             }
 
             this.props.dispatch(actions.postContactDetails(details));
@@ -133,15 +137,25 @@ class TalkToWeddingPlanner extends Component {
         this.props.dispatch(actions.clearTalkToErrors());
     }
 
+    handleCheckbox(event, checkIndex) {
+        // index = 4 => 'All', index = 5 => 'None'
+        if (checkIndex === 4) {
+            this.setState({checkboxes: this.state.checkboxes.map((item,index) => index <= checkIndex ? {...item, checked: event.target.checked} : {...item, checked: false} )});
+        } else if (checkIndex === 5) {
+            this.setState({checkboxes: this.state.checkboxes.map((item,index) => index < checkIndex ? {...item, checked: false} : {...item, checked: event.target.checked} )});
+        } else {
+            this.setState({checkboxes: this.state.checkboxes.map((item,index) => index === checkIndex ? {...item, checked: event.target.checked} : ((index === 5 || index === 4) ? {...item, checked: false} : item) )});
+        }
+    }
 
     componentDidUpdate(prevProps) {
         if (prevProps == undefined) {
             return false;
         }
-       if (this.props.status != prevProps.status && this.props.status === true) {
+        if (this.props.status != prevProps.status && this.props.status === true) {
             this.props.dispatch(modalActions.showModal({ message: 'Our wedding consultant will get in touch with you within 24 hours.', heading: 'We are on it!', type: 'success' }));   
             this.setState({modal: false});
-         }
+        }
     }
     
     render() {
@@ -265,7 +279,8 @@ class TalkToWeddingPlanner extends Component {
                                     return(
                                         <Col md="12" key={index}>
                                             <div className="md-checkbox">
-                                                <input id={`check${index+1}`} type="checkbox"/>
+                                                <input id={`check${index+1}`} type="checkbox" checked={item.checked}
+                                                 onChange={(event) => this.handleCheckbox(event, index)}/>
                                                 <Label for={`check${index+1}`}>{item.label}</Label>
                                             </div>
                                         </Col>
