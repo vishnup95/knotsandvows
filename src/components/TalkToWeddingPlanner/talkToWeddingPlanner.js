@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Label} from 'reactstrap';
+import { Row, Col, Label } from 'reactstrap';
 import InputField from '../../components/InputField/inputField';
 import styles from './talkToWeddingPlanner.scss';
 import * as actions from './actions';
@@ -11,7 +11,7 @@ import * as modalActions from '../../reducers/modal/actions';
 import { Modal } from 'reactstrap';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import DatePicker from "react-datepicker";
- 
+
 const mapStateToProps = state => ({
     message: state.talkToAhwanam.message,
     status: state.talkToAhwanam.status,
@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
 const minDate = new Date(Date.now());
 var date = new Date();
 //Max date is set to 4 years from today date.
-const maxDate = date.setDate(date.getDate() +1456);
+const maxDate = date.setDate(date.getDate() + 1456);
 
 class TalkToWeddingPlanner extends Component {
 
@@ -48,29 +48,28 @@ class TalkToWeddingPlanner extends Component {
             modal: false,
             servicesModal: false,
             checkboxes: [
-                {label: 'Define your wedding style', checked: false},
-                {label: 'Shortlist your vendor', checked: false},
-                {label: 'Finalise the detail', checked: false},
-                {label: 'D-Day arrangements', checked: false},
-                {label: 'All services', checked: false},
-                {label: 'I’m not sure', checked: false},
+                { label: 'Define your wedding style', checked: false },
+                { label: 'Shortlist your vendor', checked: false },
+                { label: 'Finalise the detail', checked: false },
+                { label: 'D-Day arrangements', checked: false },
+                { label: 'All services', checked: false },
+                { label: 'I’m not sure', checked: false },
             ]
         }
         this.toggle = this.toggle.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
     }
 
-     handleDateChange = (date) => {
-       
-        if (date != null)
-        {
+    handleDateChange = (date) => {
+
+        if (date != null) {
             var calendarDate = new Date(date.toString().split(' ')[2] + '/' + date.toString().split(' ')[1] + '/' + date.toString().split(' ')[3]);
-            var todayDate = new Date( minDate.toString().split(' ')[2]  + "/" + minDate.toString().split(' ')[1] + "/" + minDate .toString().split(' ')[3]);
-            var afterFourYearDate = new Date( maxDate.toString().split(' ')[2]  + "/" + maxDate.toString().split(' ')[1] + "/" + maxDate .toString().split(' ')[3]);
-  
-            if(calendarDate  < todayDate || afterFourYearDate > calendarDate){
+            var todayDate = new Date(minDate.toString().split(' ')[2] + "/" + minDate.toString().split(' ')[1] + "/" + minDate.toString().split(' ')[3]);
+            var afterFourYearDate = new Date(maxDate.toString().split(' ')[2] + "/" + maxDate.toString().split(' ')[1] + "/" + maxDate.toString().split(' ')[3]);
+
+            if (calendarDate < todayDate || afterFourYearDate > calendarDate) {
                 document.getElementById('contactDate').value = '';
-                this.setState({ date:'' });
+                this.setState({ date: '' });
                 return false;
             }
         }
@@ -79,20 +78,20 @@ class TalkToWeddingPlanner extends Component {
         this.setState({
             contactDate: date
         });
-      }
+    }
 
     componentWillUnmount() {
-        this.setState({city: ''})
+        this.setState({ city: '' })
     }
 
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal,
-            contactDate:''
+            contactDate: ''
         }));
         this.props.dispatch(actions.clearTalkToErrors());
     }
-    
+
     handleFormChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
         this.props.dispatch(actions.clearTalkToErrors());
@@ -108,7 +107,7 @@ class TalkToWeddingPlanner extends Component {
 
         if (name && email && phone && date && city) {
             const details = {
-                origin:'CALL_BUTTON_FORM',
+                origin: 'CALL_BUTTON_FORM',
                 name: this.state.contactName,
                 phone: this.state.contactPhone,
                 email: this.state.contactEmail,
@@ -120,7 +119,7 @@ class TalkToWeddingPlanner extends Component {
                 details['description'] = this.state.comments
             } else {
                 let services = [];
-                this.state.checkboxes.map((item, index) => {if (index !== 4 && item.checked) services.push(item.label)});
+                this.state.checkboxes.map((item, index) => { if (index !== 4 && item.checked) services.push(item.label) });
                 details['services'] = services;
             }
 
@@ -140,11 +139,11 @@ class TalkToWeddingPlanner extends Component {
     handleCheckbox(event, checkIndex) {
         // index = 4 => 'All', index = 5 => 'None'
         if (checkIndex === 4) {
-            this.setState({checkboxes: this.state.checkboxes.map((item,index) => index <= checkIndex ? {...item, checked: event.target.checked} : {...item, checked: false} )});
+            this.setState({ checkboxes: this.state.checkboxes.map((item, index) => index <= checkIndex ? { ...item, checked: event.target.checked } : { ...item, checked: false }) });
         } else if (checkIndex === 5) {
-            this.setState({checkboxes: this.state.checkboxes.map((item,index) => index < checkIndex ? {...item, checked: false} : {...item, checked: event.target.checked} )});
+            this.setState({ checkboxes: this.state.checkboxes.map((item, index) => index < checkIndex ? { ...item, checked: false } : { ...item, checked: event.target.checked }) });
         } else {
-            this.setState({checkboxes: this.state.checkboxes.map((item,index) => index === checkIndex ? {...item, checked: event.target.checked} : ((index === 5 || index === 4) ? {...item, checked: false} : item) )});
+            this.setState({ checkboxes: this.state.checkboxes.map((item, index) => index === checkIndex ? { ...item, checked: event.target.checked } : ((index === 5 || index === 4) ? { ...item, checked: false } : item)) });
         }
     }
 
@@ -153,11 +152,11 @@ class TalkToWeddingPlanner extends Component {
             return false;
         }
         if (this.props.status != prevProps.status && this.props.status === true) {
-            this.props.dispatch(modalActions.showModal({ message: 'Our wedding consultant will get in touch with you within 24 hours.', heading: 'We are on it!', type: 'success' }));   
-            this.setState({modal: false});
+            this.props.dispatch(modalActions.showModal({ message: 'Our wedding consultant will get in touch with you within 24 hours.', heading: 'We are on it!', type: 'success' }));
+            this.setState({ modal: false });
         }
     }
-    
+
     render() {
         return (
             <div className="flex justify-center">
@@ -172,10 +171,10 @@ class TalkToWeddingPlanner extends Component {
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={styles.talkPopup}>
                     <div className={styles.closeBtnSmall} onClick={() => this.toggle()} aria-hidden>
-                        <img src={imagePath('close-blank.svg')} alt="close button"/>
+                        <img src={imagePath('close-blank.svg')} alt="close button" />
                     </div>
                     <div className={styles.loginForm}>
-                        <img src={imagePath('planner.png')} alt="planner"/>
+                        <img src={imagePath('planner.png')} alt="planner" />
                         <div className={styles.logoWrap}>
                             <div className={styles.heading}>Hi, My name is Nivita.</div>
                             {/* <div className={styles.mainHeading}>Congratulations!</div> */}
@@ -183,41 +182,41 @@ class TalkToWeddingPlanner extends Component {
                         </div>
                         <Row className="position-relative">
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" tabindex="-6" onChange={e => this.handleFormChange(e)} withBorder={true} required={false}/>
+                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" tabindex="-6" onChange={e => this.handleFormChange(e)} withBorder={true} required={false} />
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" tabIndex="-5" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" tabIndex="-5" onChange={e => this.handleFormChange(e)} withBorder={true} />
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" tabIndex="-4" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" tabIndex="-4" onChange={e => this.handleFormChange(e)} withBorder={true} />
                             </Col>
 
                             <Col md="6" xs="6">
                                 {/* <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/> */}
-                           
-                                    <DatePicker 
-                                    selected={this.state.contactDate} 
-                                    onChange={e=>this.handleDateChange(e)}
+
+                                <DatePicker
+                                    selected={this.state.contactDate}
+                                    onChange={e => this.handleDateChange(e)}
                                     dateFormat="dd/MM/yyyy"
                                     placeholderText="Event date"
-                                    id = "contactDate"
+                                    id="contactDate"
                                     ref={this.dateRef}
                                     minDate={minDate}
                                     maxDate={maxDate}
-                                    isClearable ={true}
+                                    isClearable={true}
                                     tabindex="-3"
-                                    />
-                             
+                                />
+
                             </Col>
 
                             <Col md="6" xs="6">
-                                <InputField maxLength="50" placeHolder="City" id="city" tabIndex="-2" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                          
+                                <InputField maxLength="50" placeHolder="City" id="city" tabIndex="-2" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true} />
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="200" placeHolder="Comments" id="comments" tabIndex="-1" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
+                                <InputField maxLength="200" placeHolder="Comments" id="comments" tabIndex="-1" ref={this.commentsRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true} />
                             </Col>
                         </Row>
 
@@ -239,10 +238,10 @@ class TalkToWeddingPlanner extends Component {
 
                 <Modal isOpen={this.state.servicesModal} toggle={() => this.toggleServicesModal()} centered={true} className={styles.talkPopup}>
                     <div className={styles.closeBtnSmall} onClick={() => this.toggleServicesModal()} aria-hidden>
-                        <img src={imagePath('close-blank.svg')} alt="close button"/>
+                        <img src={imagePath('close-blank.svg')} alt="close button" />
                     </div>
                     <div className={styles.servicesForm}>
-                        <img src={imagePath('planner.png')} alt="planner"/>
+                        <img src={imagePath('planner.png')} alt="planner" />
                         <div className={styles.logoWrap}>
                             <div className={styles.heading}>Hi, My name is Nivita.</div>
                             {/* <div className={styles.heading}>Thank you for making us a part of your big day. Tell us a little bit more about the event.</div> */}
@@ -253,35 +252,46 @@ class TalkToWeddingPlanner extends Component {
                         <Row className="position-relative">
                             <Col md="12" className={styles.subHeading}>Personal Information</Col>
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} withBorder={true} required={false}/>
+                                <InputField maxLength="50" placeHolder="Full Name" id="contactName" ref={this.nameRef} type="text" onChange={e => this.handleFormChange(e)} withBorder={true} required={false} />
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Email" id="contactEmail" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} withBorder={true} />
                             </Col>
 
                             <Col md="12">
-                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} withBorder={true}/>
+                                <InputField maxLength="50" placeHolder="Phone" id="contactPhone" ref={this.phoneRef} type="tel" onChange={e => this.handleFormChange(e)} withBorder={true} />
                             </Col>
 
                             <Col md="6" xs="6">
-                                <InputField maxLength="50" placeHolder="Event date" id="contactDate" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>
+                                <DatePicker
+                                    selected={this.state.contactDate}
+                                    onChange={e => this.handleDateChange(e)}
+                                    dateFormat="dd/MM/yyyy"
+                                    placeholderText="Event date"
+                                    id="contactDate"
+                                    ref={this.dateRef}
+                                    minDate={minDate}
+                                    maxDate={maxDate}
+                                    isClearable={true}
+                                    tabindex="-3"
+                                />
                             </Col>
 
                             <Col md="6" xs="6">
-                                <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true}/>                           
+                                <InputField maxLength="50" placeHolder="City" id="city" ref={this.cityRef} type="text" onChange={e => this.handleFormChange(e)} required={false} withBorder={true} />
                             </Col>
                         </Row>
                         <Row className="my-3"><Col md="12" className={styles.subHeading}>Choose one or choose all</Col></Row>
                         <Row className={styles.checkboxContainer}>
                             {
                                 this.state.checkboxes.map((item, index) => {
-                                    return(
+                                    return (
                                         <Col md="12" key={index}>
                                             <div className="md-checkbox">
-                                                <input id={`check${index+1}`} type="checkbox" checked={item.checked}
-                                                 onChange={(event) => this.handleCheckbox(event, index)}/>
-                                                <Label for={`check${index+1}`}>{item.label}</Label>
+                                                <input id={`check${index + 1}`} type="checkbox" checked={item.checked}
+                                                    onChange={(event) => this.handleCheckbox(event, index)} />
+                                                <Label for={`check${index + 1}`}>{item.label}</Label>
                                             </div>
                                         </Col>
                                     );
