@@ -90,7 +90,7 @@ class TalkToWeddingPlanner extends Component {
                 details['description'] = this.state.comments
             } else {
                 let services = [];
-                this.state.checkboxes.map((item, index) => {if (index < 4 && item.checked) services.push(item.label)});
+                this.state.checkboxes.map((item, index) => {if (index !== 4 && item.checked) services.push(item.label)});
                 details['services'] = services;
             }
 
