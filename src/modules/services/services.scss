@@ -34,7 +34,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
-    padding-left: 10%;
+    padding-left: 1%;
     margin-bottom: 5rem;
     @include mobile {
       height: 90vw;
@@ -49,7 +49,6 @@
       height: 100%;
       align-items: center;
       justify-content: center;
-
       @include mobile {
         width: 90%;
         justify-content: flex-end;
@@ -62,6 +61,7 @@
       width: 100%;
       justify-content: space-around;
       margin-top: 3rem;
+      align-items: center;
       @include mobile {
         margin-top: 0;
       }
@@ -73,9 +73,16 @@
         animation-duration: 1s;
         animation-fill-mode: forwards;
         animation-delay: 1.5s;
+        width: 4rem;
         @include mobile {
           width: 3rem;
           height: 3rem;
+        }
+        @include tablet {
+          width: 4.5rem;
+        }
+        @include threeK {
+          width: auto;
         }
 
         &:nth-child(2) {
@@ -94,12 +101,19 @@
   }
 
   .containerClass {
-    @include hdPlus {
-      max-width: 1400px;
+    padding: 0;
+    @include desktop {
+      padding: 0 5%;
+    }
+    @include hd {
+      padding: 0 10%;
     }
   }
 
   .detailBox {
+    margin-left: 0;
+    margin-right: 0;
+
     .leftSection {
       @include padding(60, 40);
       border-right: 2px solid $medium-pink;
@@ -110,18 +124,41 @@
         border: none;
         margin-top: 0;
       }
+      @include tablet {
+         @include padding(60, 28);
+      }
+      @include desktop {
+         @include padding(60, 40);
+      }
+
+      > img {
+        @include mobile {
+          width: 3rem;
+        }
+        @include tablet {
+          width: 4.5rem;
+        }
+        @include threeK {
+          width: auto;
+        }
+      }
 
       h3 {
         font-size: 2.857rem;
         color: $greyish-brown-six;
         @include letterSpacing(0.2);
-        line-height: 5rem;
+        @include tablet {
+          font-size: 2.5rem;
+        }
+        @include desktop {
+          font-size: 2.857rem;
+
+        }
       }
 
       hr {
         width: 60%;
         margin-bottom: 0;
-
         @include mobile {
           margin: 0 auto;
         }
@@ -150,7 +187,6 @@
         .activeLi {
           color: $medium-pink;
         }
-
         @include mobile {
           padding-left: 0;
 
@@ -171,7 +207,7 @@
           .activeLi {
             color: white;
             background-color: $medium-pink;
-            border-radius: 1.75rem; 
+            border-radius: 1.75rem;
           }
         }
       }
@@ -179,15 +215,19 @@
     }
 
     .rightSection {
-      @include padding(60, 40);
       color: white;
-
       @include mobile {
         padding: 0;
       }
+      @include tablet {
+         @include padding(60, 0, 60, 28);
+      }
+      @include desktop {
+         @include padding(60, 40);
+      }
 
       img {
-        width: 100%;
+        // width: 100%;
       }
 
       .vowIcon {
@@ -195,7 +235,6 @@
         position: absolute;
         left: -1.95rem;
         top: 0;
-
         @include mobile {
           display: none;
         }
@@ -204,20 +243,30 @@
       .description {
         background-color: $medium-pink;
         padding: 0;
+        width: 100%;
+        @include tablet {
+          width: 21rem;
+        }
       }
 
       ul {
         list-style: none;
-        @include padding(10,20);
         display: flex;
         flex-direction: column;
         height: 100%;
         justify-content: center;
+        padding: 0 1rem;
+        @include desktop {
+           @include padding(0,20);
+        }
 
         li {
           @include padding(10, 0, 10, 40);
-          font-size: 1.43rem;
+          font-size: 1.3rem;
           position: relative;
+          @include desktop {
+            font-size: 1.43rem;
+          }
 
           &::before {
             content: '';
@@ -248,7 +297,6 @@
       h4 {
         color: $greyish-brown-six;
         width: 90%;
-
         @include mobile {
           margin: 0 auto;
           text-align: center;
@@ -273,7 +321,6 @@
     }
   }
 }
-
 @keyframes iconAnimation {
   from {
     opacity: 0;
@@ -282,4 +329,26 @@
   to {
     opacity: 1;
   }
+}
+
+.detailImage {
+  width: 100%;
+  @include tablet {
+    width: 28rem;
+  }
+  @include desktop {
+    width: 35rem;
+  }
+  @include hd {
+    width: 39rem;
+  }
+}
+
+.detailWrap {
+  display: flex;
+  flex-direction: column;
+  @include tablet {
+    flex-direction: row;
+  }
+
 }
