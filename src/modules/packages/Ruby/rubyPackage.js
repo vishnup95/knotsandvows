@@ -277,7 +277,7 @@ class RubyPackage extends Component {
             <Row>
               <Col md='1'></Col>
               <Col md='5' className="text-center">
-                <img className={styles.contactImg} src={imagePath('ruby-box.png')} alt="contact" />
+                <img className={styles.contactImg} src={imagePath('box-03.png')} alt="contact" />
               </Col>
               <Col md='5' className='contact-form'>
                 <h3>Get Your Royal Ruby <span className="tab-only"><br /></span> Wedding Package Now!</h3>
@@ -313,7 +313,7 @@ class RubyPackage extends Component {
           <Row>
             <Col>
               <div className={styles.packageBox}>
-                <img src={imagePath('contact-box.png')} alt="img" />
+                <img src={imagePath('box-22.png')} alt="img" />
                 <div className={`${styles.packageDetail} `}>
                   <h3>Gold</h3>
                   <p>Add shine to your wedding celebration. Here’s a package that’s packed with wedding goodness.</p>
@@ -324,7 +324,7 @@ class RubyPackage extends Component {
             </Col>
             <Col>
               <div className={styles.packageBox}>
-                <img src={imagePath('genie.png')} alt="img" />
+                <img src={imagePath('box-01.png')} alt="img" />
                 <div className={`${styles.packageDetail} `}>
                   <h3>Genie</h3>
                   <p>Your wish is our command. Choose what you need and make your dream team of wedding vendors.</p>
