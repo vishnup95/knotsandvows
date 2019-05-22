@@ -20,7 +20,7 @@ import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWe
 import Helmet from 'react-helmet';
 
 let meta = {
-  title: "SevenVows",
+  title: "Knots&Vows",
   description: 'Wedding services and planning partners',
   keywords: ""
 }
@@ -314,7 +314,7 @@ class Home extends Component {
               <Row>
                 <Col>
                   <h2>70% of couples wish they had hired <span className="tab-only"><br /></span><span>wedding planners</span></h2>
-                  <p>It doesn’t take much time for your blissful day to turn stressful. With our array of<span className="tab-only"><br /></span> services, SevenVows can help you plan the biggest day of your life in the best possible way.</p>
+                  <p>It doesn’t take much time for your blissful day to turn stressful. With our array of<span className="tab-only"><br /></span> services, Knots&Vows can help you plan the biggest day of your life in the best possible way.</p>
                 </Col>
               </Row>
               <Row>
@@ -413,7 +413,7 @@ class Home extends Component {
                   <Col id="boxmark"></Col></Row>
                 <Row className="mobile-col-reverse">
                   <div className="col justify-center align-flex-top mobile-column">
-                    <img className={styles.packageStatic} src={imagePath('packageall.png')} alt="img" />
+                    <img className={styles.packageStatic} src={imagePath('package-all.png')} alt="img" />
                     <div className="mobile-only">
                       <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'} />
                     </div>
@@ -439,10 +439,10 @@ class Home extends Component {
                     {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
                     {this.state.loadImages &&
                       <picture>
-                        <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')} />
-                        <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')} />
-                        <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')} />
-                        <img src={imagePath('contact-box-176.png')} alt="gold package" />
+                        <source media="(min-width: 1850px)" srcSet={imagePath('box-23.png')} />
+                        <source media="(min-width: 1024px)" srcSet={imagePath('box-22.png')} />
+                        <source media="(min-width: 768px)" srcSet={imagePath('box-21.png')} />
+                        <img src={imagePath('box-21.png')} alt="gold package" />
                       </picture>
                     }
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
@@ -454,7 +454,7 @@ class Home extends Component {
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
                     {this.state.loadImages &&
-                      <img src={imagePath('ruby-box.png')} alt="Ruby" />}
+                      <img src={imagePath('box-03.png')} alt="Ruby" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
@@ -465,7 +465,7 @@ class Home extends Component {
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
                     {this.state.loadImages &&
-                      <img src={imagePath('genie.png')} alt="Genie" />}
+                      <img src={imagePath('box-01.png')} alt="Genie" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>

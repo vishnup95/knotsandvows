@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import HorizontalSlider from '../../../components/HorizontalSlider/horizontalSlider';
 import Helmet from 'react-helmet';
+import DatePicker from "react-datepicker";
 
 let meta = {
   title:"Gold Wedding Package - Caterers, Decorators, Photopghers",
@@ -76,17 +77,24 @@ const packageItems = [
 ]
 // const packageItemsFirst = packageItems.slice(0, 4);
 // const packageItemsSecond = packageItems.slice(4, 6);
+const minDate = new Date(Date.now());
+var date = new Date();
+//Max date is set to 4 years from today date.
+const maxDate = date.setDate(date.getDate() +1456);
 
 class GoldPackage extends Component {
   constructor(props) {
     super(props);
+    this.state = {date : '' }
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   sendDetailsToWeddingPlanner() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
-    let date = document.getElementById('date').value;
+    //let date = document.getElementById('date').value;
+    let date = this.state.date;
     let city = document.getElementById('city').value;
     let comments = document.getElementById('comments').value;
 
@@ -102,6 +110,29 @@ class GoldPackage extends Component {
       this.props.dispatch(actions.postContactDetails(params));
     }
   }
+
+  handleDateChange = (dt) => {
+
+    if (dt != null)
+    {
+        var calendarDate = new Date(dt.toString().split(' ')[2] + '/' + dt.toString().split(' ')[1] + '/' + dt.toString().split(' ')[3]);
+        var todayDate = new Date( minDate.toString().split(' ')[2]  + "/" + minDate.toString().split(' ')[1] + "/" + minDate .toString().split(' ')[3]);
+        var afterFourYearDate = new Date( maxDate.toString().split(' ')[2]  + "/" + maxDate.toString().split(' ')[1] + "/" + maxDate .toString().split(' ')[3]);
+
+        if(calendarDate  < todayDate || afterFourYearDate > calendarDate){
+            document.getElementById('date').value = '';
+            this.setState({ date:'' });
+            return false;
+        }
+    }
+
+    document.getElementById('date').focus();
+    this.setState({
+      date: dt
+    });
+  }
+
+
   render() {
     return (
       <div className={styles.goldPackage}>
@@ -113,7 +144,7 @@ class GoldPackage extends Component {
           <h1>Add a golden touch to your big day</h1>
         </div>
         <div className={styles.bannerTwo}>
-          <h2>SevenVows Gold package includes</h2>
+          <h2>Knots&Vows Gold package includes</h2>
         </div>
         <div className={`${styles.goldContainer} container`}>
           <Row>
@@ -265,7 +296,7 @@ class GoldPackage extends Component {
           </Row>
           <Row>
             <Col>
-              <h3><span className={styles.headerWithIcon}>To customise SevenVows Gold package talk to our experts</span></h3>
+              <h3><span className={styles.headerWithIcon}>To customise Knots&Vows Gold package talk to our experts</span></h3>
               <div className={styles.hrLine}></div>
             </Col>
           </Row>
@@ -275,7 +306,7 @@ class GoldPackage extends Component {
             <Row>
               <Col md='1'></Col>
               <Col md='5' className="text-center">
-                <img className={styles.contactImg} src={imagePath('contact-box.png')} alt="contact" />
+                <img className={styles.contactImg} src={imagePath('box-22.png')} alt="contact" />
               </Col>
               <Col md='5' className='contact-form'>
                   <h3>Get Your Gold <span className="tab-only"><br /></span> Wedding Package Now!</h3>
@@ -291,7 +322,21 @@ class GoldPackage extends Component {
                         <input pattern="[0-9]*" required maxLength="10" type="tel" name="phone" id="phone" placeholder="Phone" />
                       </Col>
                       <Col xs='6'>
-                        <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" />
+                        {/* <input type="date" name="date" id="date" placeholder="Eg: 18-12-2018" /> */}
+                        
+                                <div>
+                                <DatePicker 
+                                  selected={this.state.date} 
+                                  onChange={e => this.handleDateChange(e)}
+                                  dateFormat="dd/MM/yyyy"
+                                  placeholderText="dd/mm/yyyy"
+                                  id = "date"
+                                  minDate={minDate}
+                                  maxDate={maxDate}
+                                  autoComplete = "off"
+                                  isClearable={true}
+                                />
+                             </div>
                       </Col>
                       <Col xs='6'>
                         <input maxLength="50" type="text" name="city" id="city" placeholder="City" />
@@ -311,7 +356,7 @@ class GoldPackage extends Component {
           <Row>
             <Col>
               <div className={styles.packageBox}>
-                <img src={imagePath('ruby-box.png')} alt="img" />
+                <img src={imagePath('box-03.png')} alt="img" />
                 <div className={`${styles.packageDetail} `}>
                   <h3>Royal Ruby</h3>
                   <p>Add shine to your wedding celebration. Here’s a package that’s packed with wedding goodness.</p>
@@ -322,7 +367,7 @@ class GoldPackage extends Component {
             </Col>
             <Col>
               <div className={styles.packageBox}>
-                <img src={imagePath('genie.png')} alt="img" />
+                <img src={imagePath('box-01.png')} alt="img" />
                 <div className={`${styles.packageDetail} `}>
                   <h3>Genie</h3>
                   <p>Your wish is our command. Choose what you need and make your dream team of wedding vendors.</p>

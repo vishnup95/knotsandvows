@@ -7,8 +7,8 @@ import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWe
 import Helmet from 'react-helmet';
 
 let meta = {
-  title:"Who We Are - Seven Vows",
-  description:'Seven Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.',
+  title:"Who We Are - Knots&Vows",
+  description:'Knots&Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.',
   keywords:""
 }
 class AboutComponent extends Component {
@@ -30,7 +30,7 @@ class AboutComponent extends Component {
             Our Essence
           </h1>
           <h2 className={styles.h2ClassPurple}>
-            SevenVows operates on creativity, resourcefulness and transparency.
+            Knots&Vows operates on creativity, resourcefulness and transparency.
             We bring these values to all every one of our actions and interactions 
           </h2>
 
@@ -63,7 +63,7 @@ class AboutComponent extends Component {
 
           <Row style={{margin: '0 auto'}}>
             <Col className={styles.logoImage}>
-              <img src={imagePath('logo.svg')} alt="SevenVows"/>
+              <img src={imagePath('knots-vows.svg')} alt="Knots&Vows"/>
             </Col>
 
             <Col className="text-left">
