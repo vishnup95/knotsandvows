@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DatePicker from "react-datepicker";
 import style from './detailPageComponent.scss'
 import { Row, Col, Modal, Form, Button } from 'reactstrap';
 // import MapComponent from '../../components/Map/map';
@@ -42,6 +43,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch
 });
 
+const minDate = new Date(Date.now());
+var date = new Date();
+//Max date is set to 4 years from today date.
+const maxDate = date.setDate(date.getDate() +1456);
+
 class DetailPageComponent extends Component {
     constructor(props) {
         super(props);
@@ -60,6 +66,8 @@ class DetailPageComponent extends Component {
             isInWishList: false,
             selectedNavItem: 0
         };
+
+        this.handleDateChange = this.handleDateChange.bind(this);
     }
 
     static fetchData(store, match) {
@@ -282,7 +290,8 @@ class DetailPageComponent extends Component {
 
     sendDetailsToWeddingPlanner() {
         let email = this.emailRef.current.validateFormInput(document.getElementById('email'));
-        let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
+        //let date = this.dateRef.current.validateFormInput(document.getElementById('date'));
+        let date = this.state.date;
 
         if (email && date) {
             const params = {};
@@ -321,6 +330,27 @@ class DetailPageComponent extends Component {
             behavior: 'smooth'
         });
     }
+
+    handleDateChange = (date) => {
+
+        if (date != null)
+        {
+            var calendarDate = new Date(date.toString().split(' ')[2] + '/' + date.toString().split(' ')[1] + '/' + date.toString().split(' ')[3]);
+            var todayDate = new Date( minDate.toString().split(' ')[2]  + "/" + minDate.toString().split(' ')[1] + "/" + minDate .toString().split(' ')[3]);
+            var afterFourYearDate = new Date( maxDate.toString().split(' ')[2]  + "/" + maxDate.toString().split(' ')[1] + "/" + maxDate .toString().split(' ')[3]);
+  
+            if(calendarDate  < todayDate || afterFourYearDate > calendarDate){
+                document.getElementById('date').value = '';
+                this.setState({ date:'' });
+                return false;
+            }
+        }
+
+        document.getElementById('date').focus();
+        this.setState({
+            date: date
+        });
+      }
 
     render() {
         let details = this.props.details;
@@ -502,11 +532,24 @@ class DetailPageComponent extends Component {
 
                                     <Col className={style.detailSubSection}>
                                         <Col md="12" className={`#{style.rightSubSection} text-center`}>
-                                            <p className={style.needHelp}>Need some guidance on selecting VowVendors?</p>
+                                            <p className={style.needHelp}>Need some guidance on selecting {details.category_name}?</p>
                                             {/* <button className={style.addToCart} onClick={this.addToWishlist}>Add to Wishlist</button> */}
                                             <Form className="position-relative">
                                                 <InputField placeHolder="Email address/Phone number" id="email" ref={this.emailRef} type="email" onChange={e => this.handleFormChange(e)} phoneCheck={true} />
-                                                <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} />
+                                                {/* <InputField placeHolder="Your event date" id="date" ref={this.dateRef} type="date" onChange={e => this.handleFormChange(e)} required={false} /> */}
+                                                <DatePicker 
+                                                selected={this.state.date} 
+                                                onChange={e => this.handleDateChange(e)}
+                                                dateFormat="dd/MM/yyyy"
+                                                placeholderText="Event date"
+                                                id = "date"
+                                                ref={this.dateRef}
+                                                minDate={minDate}
+                                                maxDate={maxDate}
+                                                autoComplete = "off"
+                                                isClearable ={true}
+                                                />
+                                         
                                             </Form>
                                             <div className="text-center mt-2">
                                                 <Button className="primary-button" onClick={() => this.sendDetailsToWeddingPlanner()}>Talk to our experts!</Button>

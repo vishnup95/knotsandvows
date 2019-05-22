@@ -8,8 +8,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { purgeCacheOnChange } from './purgeCacheOnChange';
 import config from '../config/webpack.config.dev';
-
 import bodyParser from 'body-parser';
+import SitemapGenerator from 'sitemap-generator';
+
 
 const { PUBLIC_URL = '' } = process.env;
 const compiler = webpack(config);
@@ -29,7 +30,11 @@ app.use(helmet.contentSecurityPolicy({
     defaultSrc: ["'self'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.fullstory.com', '*.analytics.js', '*.google.com', '*.google-analytics.com', '*.facebook.com', '*.doubleclick.net'],
     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.google-analytics.com', '*.googletagmanager.com', '*.facebook.net', 'https://fullstory.com', '*.google.com', '*.googleadservices.com', '*.doubleclick.net'],
     styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com', '*.googleapis.com', 'fonts.googleapis.com'],
+<<<<<<< HEAD
     imgSrc: ["'self'", 'data:', '*.facebook.com', '*.google.com', '*.google.co.in', '*.cloudfront.net', '*.google-analytics.com', '*.ahwanam.com', '*.doubleclick.net'],
+=======
+    imgSrc: ["'self'", 'data:', '*.facebook.com', '*.google.com', '*.google.co.in', '*.cloudfront.net', '*.google-analytics.com', '*.ahwanam.com', '*.g.doubleclick.net'],
+>>>>>>> 169180e4bdc30689411a302b14ef1e85f0f2acc3
     fontSrc: ["'self'",'data:', 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com', 'fonts.gstatic.com'],
     connectSrc: ["'self'", '*.fullstory.com','https://api.ahwanam.com', 'https://qa.ahwanam.com', 'https://prod.ahwanam.com','*.google-analytics.com']
   },
@@ -74,6 +79,54 @@ app.use(
   })
 );
 purgeCacheOnChange(path.join(__dirname, '../'));
+
+// create generator
+const generator = SitemapGenerator(process.env.APP_URL, {
+  stripQuerystring: false,
+  filepath: path.join(process.cwd(), 'sitemap.xml'),
+  changeFreq: "always",
+  lastMod: true,
+  timeout:500000,
+  listenerTTL: 30000,
+  ignore: url => {
+    // Prevent URLs from being added that contain `<pattern>`.
+    return (url.indexOf('undefined') !== -1 || url.indexOf('login') !== -1)
+  }
+});
+
+// start the crawler
+//generator.start();
+ 
+// register event listeners
+generator.on('done', () => {
+  // sitemaps created
+  console.log("sitemaps created");
+
+});
+
+generator.on('error', (error) => {
+  //console.log('error',error);
+});
+
+// start the crawler
+if (process.env.NODE_ENV === 'production') {
+  generator.start();
+}
+
+generator.on('add', (url) => {
+  
+});
+
+app.get('/sitemap.xml', function(req, res, next) {
+  res.setHeader('Content-Type', 'text/xml');
+  res.setHeader('Cache-Control', "max-age=0");
+  res.sendFile(path.join(process.cwd(), 'sitemap.xml'))
+});
+
+app.get('/update-sitemap-xml', function(req, res, next) {
+  generator.start();
+  res.sendStatus(200);
+});
 
 app.post('/report-violation', function (req, res) {
   if (req.body) {

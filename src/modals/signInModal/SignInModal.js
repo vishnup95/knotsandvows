@@ -196,7 +196,7 @@ class SignInModal extends Component {
                 <div className="text-center w-100 mt-5">
                     <p className={styles.pWith}>Login with</p>
                     <SocialAuthComponent onSuccess={data => this.handleSocialAuthResponse(data)}></SocialAuthComponent>
-                    <button className={`${styles.detailLink} mt-5 pt-3 w-100`} onClick={this.showSignUp}>Create your SevenVows account</button>
+                    <button className={`${styles.detailLink} mt-5 pt-3 w-100`} onClick={this.showSignUp}>Create your Knots&Vows account</button>
                 </div>
             </div>) : null;
     }
@@ -206,7 +206,7 @@ class SignInModal extends Component {
         return this.state.mode == DisplayMode.signUp ?
             (<div>
                 <div className={`${styles.footerText} ${styles.maxWidth} mb-3`}>
-                    If you have a SevenVows account please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Login</Link></span>
+                    If you have a Knots&Vows account please <span className={styles.bold}><Link to="/" className={styles.login} onClick={this.showSignIn}>Login</Link></span>
                 </div>
                
                 <Form className="position-relative">
@@ -242,7 +242,7 @@ class SignInModal extends Component {
             <div className={styles.loginContainer}>
                 <div className={styles.loginForm}>
                     <div className={styles.logoWrap}>
-                        <img className={styles.image} src={imagePath('logo.svg')} alt="logo"></img>
+                        <img className={styles.image} src={imagePath('knots-vows.svg')} alt="logo"></img>
                     </div>
                     {this.renderSignIn()}
                     {this.renderSignUp()}

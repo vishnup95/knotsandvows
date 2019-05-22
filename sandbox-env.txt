@@ -15,4 +15,9 @@
  FACEBOOK_APP_ID='2249060602088158'
  FULLSTORY_ORG_ID='JWHPP'
  GTM_ID='GTM-KD2HPX6'
+<<<<<<< HEAD
 CONVERSION_ID='AW-745108214'
+=======
+
+APP_URL='https://sandbox.knotsandvows.co.in'
+>>>>>>> 169180e4bdc30689411a302b14ef1e85f0f2acc3
