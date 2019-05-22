@@ -16,4 +16,4 @@
  FULLSTORY_ORG_ID='JWHPP'
  GTM_ID='GTM-KD2HPX6'
 
-APP_URL='https://staging.sevenvows.co.in'
+APP_URL='https://staging.knotsandvows.co.in'
