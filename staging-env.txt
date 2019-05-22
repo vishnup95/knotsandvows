@@ -6,7 +6,7 @@
  REACT_APP_API_HOST='https://qa.ahwanam.com'
  REACT_APP_API_PORT=''
 
- GOOGLE_CLIENT_ID = '639855180755-lr4qck5n508erker0op5hjnl7tvdgkqf.apps.googleusercontent.com'
+ GOOGLE_CLIENT_ID = '864770769024-mhdd0t0sn7v7kp5dlgb1qj60e6f9kj4s.apps.googleusercontent.com'
  GOOGLE_SITE_VERIFICATION ='xrR2YnjgYQSLskpRVcptSSslT_wODKhrjf8bWZP-An4'
 
  GOOGLE_MAP_KEY='AIzaSyBlDLoh8zk0WWSITPjDbO4tfV1VducHeio'
