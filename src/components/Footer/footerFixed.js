@@ -83,21 +83,18 @@ class FooterFixedComponent extends Component {
                                     <Link to={'/'} onClick={()=>{if(window!=null) window.gtag_report_conversion();}}>Home</Link>
                                 </li>
                                 <li>
-<<<<<<< HEAD
-                                    <Link to={'/categories'} onClick={()=>{if(window!=null) window.gtag_report_conversion('/categories');}}>VowVendors</Link>
-=======
+
+                                    {/*</ul>/<Link to={'/categories'} onClick={()=>{if(window!=null) window.gtag_report_conversion('/categories');}}>VowVendors</Link>*/}
+
                                     <Link to={'/services'}>What We Do</Link>
->>>>>>> 169180e4bdc30689411a302b14ef1e85f0f2acc3
+
                                 </li>
                                 <li>
                                     <Link to={'/#packages'} onClick={()=>{if(window!=null) window.gtag_report_conversion('/#packages');}}>Packages</Link>
                                 </li>
                                 <li>
-<<<<<<< HEAD
-                                    <Link to={'/#ceremonies'} onClick={()=>{if(window!=null) window.gtag_report_conversion('/#ceremonies');}}>Ceremonies</Link>
-=======
-                                    <Link to={'/categories'}>VowVendors</Link>
->>>>>>> 169180e4bdc30689411a302b14ef1e85f0f2acc3
+                                    <Link to={'/categories'} onClick={()=>{if(window!=null) window.gtag_report_conversion('/categories');}}>VowVendors</Link>
+
                                 </li>
                                 <li>
                                     <Link to={'/wishlist'}>Wishlist</Link>
@@ -126,11 +123,7 @@ class FooterFixedComponent extends Component {
                                         this.props.ceremonies.map((ceremony, index) => {
                                             return (
                                                 <li key={index}>
-<<<<<<< HEAD
                                                     <Link to={`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id) }`} onClick={()=>{if(window!=null) window.gtag_report_conversion(`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id) }`);}}>{ceremony.ceremony_name}</Link>
-=======
-                                                    <Link to={`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`}>{ceremony.ceremony_name}</Link>
->>>>>>> 169180e4bdc30689411a302b14ef1e85f0f2acc3
                                                 </li>
                                             );
                                         })

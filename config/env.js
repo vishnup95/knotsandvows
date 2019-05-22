@@ -27,7 +27,6 @@ function getAppEnv() {
       GTM_ID: process.env.GTM_ID,
       CONVERSION_ID: process.env.CONVERSION_ID,
       APP_URL: process.env.APP_URL,
-
     }
   );
 

@@ -79,14 +79,9 @@ class Header extends Component {
             this.props.dispatch(actions.showLogin());
         }
         if (detectMobile()) {
-<<<<<<< HEAD
             this.setState({ isOpen: false});
         }  
         
-=======
-            this.setState({ isOpen: false });
-        }
->>>>>>> 169180e4bdc30689411a302b14ef1e85f0f2acc3
     }
 
     componentWillMount() {
@@ -326,15 +321,6 @@ class Header extends Component {
                                 </div> */}
                             </NavItem>
                             <NavItem>
-<<<<<<< HEAD
-                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/#packages');this.navigateTo('/#packages')}}>Packages</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/#ceremonies');this.navigateTo('/#ceremonies')}}>Ceremonies</NavLink>
-                            </NavItem>
-                            <NavItem>
-=======
->>>>>>> 169180e4bdc30689411a302b14ef1e85f0f2acc3
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
                             </NavItem>
                             <NavItem>

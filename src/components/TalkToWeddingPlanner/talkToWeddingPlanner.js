@@ -161,15 +161,11 @@ class TalkToWeddingPlanner extends Component {
             this.setState({ modal: false });
         }
     }
-<<<<<<< HEAD
     handlePulsateRing()
    {
     if(window!=null)    
         window.gtag_report_conversion()
    }
-=======
-
->>>>>>> 169180e4bdc30689411a302b14ef1e85f0f2acc3
     render() {
         return (
             <div className="flex justify-center">
