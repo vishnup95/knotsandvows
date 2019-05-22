@@ -56,6 +56,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
   const htmlAttrs = helmet.htmlAttributes.toString();
   const bodyAttrs = helmet.bodyAttributes.toString();
   const gtmId = process.env.GTM_ID;
+  const conversionId=process.env.CONVERSION_ID;
   
 
   return `
@@ -71,6 +72,23 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         <link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700" rel="stylesheet">
+        <!-- Global site tag (gtag.js) - Google Ads: 745108214 --> 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=${conversionId}"></script> 
+        <script> 
+        window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);} 
+         gtag('js', new Date()); gtag('config', '${conversionId}'); 
+         </script>
+         <!-- Event snippet for Sevenvows Lead conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> 
+         <script> 
+         function gtag_report_conversion(url) { 
+           var callback = function () { 
+             if (typeof(url) != 'undefined') { 
+               window.location = url; } }; 
+               gtag('event', 'conversion', 
+               { 'send_to': '${conversionId}/6tImCInt650BEPblpeMC', 'event_callback': callback }); 
+               return false; }    
+        </script>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

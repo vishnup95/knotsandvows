@@ -49,10 +49,13 @@ class TalkToWeddingPlanner extends Component {
     }
 
     toggle() {
+        
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
         this.props.dispatch(actions.clearTalkToErrors());
+        if(window!=null)    
+            window.gtag_report_conversion('https://knotsandvows.co.in/')   
     }
     
     handleFormChange = (e) => {
@@ -79,6 +82,8 @@ class TalkToWeddingPlanner extends Component {
             }
             this.props.dispatch(actions.postContactDetails(details));
         }
+        if(window!=null)    
+            window.gtag_report_conversion('https://knotsandvows.co.in/')
     }
 
     componentDidUpdate(prevProps) {
@@ -90,14 +95,18 @@ class TalkToWeddingPlanner extends Component {
             this.setState({modal: false});
          }
     }
-   
+    handlePulsateRing()
+   {
+    if(window!=null)    
+        window.gtag_report_conversion('https://knotsandvows.co.in/')
+   }
     render() {
         return (
             <div className="flex justify-center">
                 {this.props.type === 'link' && styles.footerLink && <button className={`${this.props.origin === 'footer' ? styles.footerLink : 's'} link-btn`} onClick={() => this.toggle()}>{this.props.buttonText}</button>}
                 {this.props.type === 'call' && <div className="call-btn" onClick={() => this.toggle()} aria-hidden >
                     <div className="pulsateRing"></div>
-                    <div className={styles.callBtnImg}></div>
+                    <div className={styles.callBtnImg} role="button" tabIndex="0" onClick={()=>this.handlePulsateRing} onKeyDown={()=>this.handlePulsateRing}></div>
                     {/* <img src={imagePath('button-call.png')} alt="call-button" /> */}
                 </div>}
                 {this.props.type === '' && <button onClick={() => this.toggle()} className={`${this.props.buttonColor === 'white' ? 'white' : ''} primary-button home-btn medium-pink`}>{this.props.buttonText}</button>}
