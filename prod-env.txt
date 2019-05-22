@@ -16,4 +16,4 @@
  FULLSTORY_ORG_ID='J1FQ8'
  GTM_ID='GTM-PLSQ8NL'
 
- APP_URL='https://sevenvows.co.in'
+ APP_URL='https://knotsandvows.co.in'
