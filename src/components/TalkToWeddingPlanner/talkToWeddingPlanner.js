@@ -49,9 +49,9 @@ class TalkToWeddingPlanner extends Component {
             servicesModal: false,
             checkboxes: [
                 { label: 'Define your wedding style', checked: false },
-                { label: 'Shortlist your vendor', checked: false },
-                { label: 'Finalise the detail', checked: false },
-                { label: 'D-Day arrangements', checked: false },
+                { label: 'Select your dream vendors', checked: false },
+                { label: 'Finalize the details', checked: false },
+                { label: 'Big Day arrangements', checked: false },
                 { label: 'All services', checked: false },
                 { label: 'I’m not sure', checked: false },
             ]
