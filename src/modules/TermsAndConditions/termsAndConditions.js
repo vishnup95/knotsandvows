@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 
 const listData = [
   {
-    title: 'The website is owned and operated by Knots&Vows.co.in',
+    title: 'The website is owned and operated by knotsandvows.co.in',
     subTitle: "You acknowledge that the Website serves as a venue for the online distribution and publication of user submitted information between Service Professionals and Service Users, and, by using, visiting, registering for, and/or otherwise participating in this Website, including the Services presented, promoted, and displayed on the Website, and by clicking on “I have read and agree to the terms of use,",
     listItem: ["You are either a Service Professional or a prospective Service User.",
       "You have the authority to enter into these Terms of Use.",
@@ -77,7 +77,7 @@ class TermsAndConditions extends Component {
           <Row>
             <Col>
               <p className={styles.desc}>
-                These Terms of Use (“Agreement”) sets forth legally binding terms and conditions and the nature of services offered by www.knots&v  ows.co.in. The website is owned and operated by M/S Shree Impex, a proprietorship firm incorporated under the provisions of the Companies Act, 1956 and has its registered office at H.No. 8-2-120/112/B/5&6, 3rd floor, BBR Forum, Road # 2, Banjara Hills (hereinafter referred to as “Company”). The use of this Website (and any other feature, content or application offered from time to time by the Website) is subject at all times to these Terms of Use (and may be modified by us from time to time) and all applicable laws, rules and regulations. We recommend that before accessing and using knots&vows.co.in, you must read and agree to these Terms of Use.
+                These Terms of Use (“Agreement”) sets forth legally binding terms and conditions and the nature of services offered by www.knotsandvows.co.in. The website is owned and operated by M/S Shree Impex, a proprietorship firm incorporated under the provisions of the Companies Act, 1956 and has its registered office at H.No. 8-2-120/112/B/5&6, 3rd floor, BBR Forum, Road # 2, Banjara Hills (hereinafter referred to as “Company”). The use of this Website (and any other feature, content or application offered from time to time by the Website) is subject at all times to these Terms of Use (and may be modified by us from time to time) and all applicable laws, rules and regulations. We recommend that before accessing and using knotsandvows.co.in, you must read and agree to these Terms of Use.
           </p>
             </Col>
           </Row>

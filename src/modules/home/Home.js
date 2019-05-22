@@ -439,10 +439,10 @@ class Home extends Component {
                     {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
                     {this.state.loadImages &&
                       <picture>
-                        <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')} />
-                        <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')} />
-                        <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')} />
-                        <img src={imagePath('contact-box-176.png')} alt="gold package" />
+                        <source media="(min-width: 1850px)" srcSet={imagePath('box-23.png')} />
+                        <source media="(min-width: 1024px)" srcSet={imagePath('box-22.png')} />
+                        <source media="(min-width: 768px)" srcSet={imagePath('box-21.png')} />
+                        <img src={imagePath('box-21.png')} alt="gold package" />
                       </picture>
                     }
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
@@ -454,7 +454,7 @@ class Home extends Component {
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
                     {this.state.loadImages &&
-                      <img src={imagePath('ruby-box.png')} alt="Ruby" />}
+                      <img src={imagePath('box-03.png')} alt="Ruby" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
@@ -465,7 +465,7 @@ class Home extends Component {
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
                     {this.state.loadImages &&
-                      <img src={imagePath('genie.png')} alt="Genie" />}
+                      <img src={imagePath('box-01.png')} alt="Genie" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>

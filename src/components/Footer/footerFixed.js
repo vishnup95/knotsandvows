@@ -65,7 +65,7 @@ class FooterFixedComponent extends Component {
                                     </div>
                                     <div className={` ${styles.block} ${styles.mb2mob}`}>           
                                         <p></p>
-                                        <p className="mb-0">Email us @&nbsp;<span><a href="mailto:info@knots&vows.co.in">info@knots&vows.co.in</a></span></p>
+                                        <p className="mb-0">Email us @&nbsp;<span><a href="mailto:info@knotsandvows.co.in">info@knotsandvows.co.in</a></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@ class FooterFixedComponent extends Component {
                                 <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
                                 </a> */}
-                                <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                <a href='https://www.instagram.com/knotsandvows_ind' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
                                 </a>
                             </span>
@@ -154,7 +154,7 @@ class FooterFixedComponent extends Component {
                                 <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
                                 </a> */}
-                                <a href='https://www.instagram.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="instagram">
+                                <a href='https://www.instagram.com/knotsandvows_ind' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
                                 </a>
                                 <p className="text-center mt-2">© 2019  All Rights Reserved&nbsp;</p>
