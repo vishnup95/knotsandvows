@@ -71,7 +71,7 @@ class SignInModal extends Component {
             }
         });
         if(window!=null)
-            window.gtag_report_conversion('/');
+            window.gtag_report_conversion();
     }
 
     showForgotPassword = () => {
@@ -128,8 +128,6 @@ class SignInModal extends Component {
 
             this.props.dispatch(actions.signInWithCredentail(params));
         }
-        if(window!=null)
-            window.gtag_report_conversion('/');
     }
 
     validateSignUpForm = () => {

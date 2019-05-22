@@ -284,7 +284,8 @@ class Header extends Component {
             <div className={styles.ahHeader}>
 
                 <div className={styles.navSmall}>
-                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our experts'} onClick={()=>{if(window!=null) window.gtag_report_conversion('/');}}/>
+                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our experts'}
+                    onClick={()=>{if(window!=null) window.gtag_report_conversion();}}/>
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
                     <NavbarToggler onClick={this.toggle} />
