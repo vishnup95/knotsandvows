@@ -89,15 +89,14 @@ class TalkToWeddingPlanner extends Component {
         this.props.dispatch(actions.clearTalkToErrors());
     }
     validateForm = () => {
-        let name = this.nameRef.current.validateFormInput(document.getElementById('contactName'));
+        //let name = this.nameRef.current.validateFormInput(document.getElementById('contactName'));
         let email = this.emailRef.current.validateFormInput(document.getElementById('contactEmail'));
         let phone = this.phoneRef.current.validateFormInput(document.getElementById('contactPhone'));
         //let date = this.dateRef.current.validateFormInput(document.getElementById('contactDate'));
-        let date = this.state.contactDate;
-        let city = this.cityRef.current.validateFormInput(document.getElementById('city'));
-        let comments = this.commentsRef.current.validateFormInput(document.getElementById('comments'));
+        //let city = this.cityRef.current.validateFormInput(document.getElementById('city'));
+        //let comments = this.commentsRef.current.validateFormInput(document.getElementById('comments'));
 
-        if (name && email && phone && date && comments && city) {
+        if (email && phone) {
             const details = {
                 origin:'CALL_BUTTON_FORM',
                 name: this.state.contactName,
@@ -167,7 +166,6 @@ class TalkToWeddingPlanner extends Component {
                                     ref={this.dateRef}
                                     minDate={minDate}
                                     maxDate={maxDate}
-                                    isClearable ={true}
                                     tabindex="-3"
                                     />
                              
