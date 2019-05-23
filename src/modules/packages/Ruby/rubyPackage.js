@@ -336,7 +336,6 @@ class RubyPackage extends Component {
                                   minDate={minDate}
                                   maxDate={maxDate}
                                   autoComplete = "off"
-                                  isClearable={true}
                                   />
                              </div>
 

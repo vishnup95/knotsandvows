@@ -127,7 +127,7 @@ class InputField extends Component {
         }
         
         return (
-            <div className='input-field floating-label' style={{padding: this.props.withBorder ? '0.8em 0' : '1.4em 0'}}>
+            <div className='input-field floating-label' style={{padding: this.props.withBorder ? '0.8rem 0' : '1.4em 0'}}>
                 {
                     this.props.id === 'comments' ? 
                     <textarea className={`input-box ${this.props.withBorder && 'input-box-border'}`} rows="3"
