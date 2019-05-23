@@ -205,7 +205,6 @@ class TalkToWeddingPlanner extends Component {
                                     ref={this.dateRef}
                                     minDate={minDate}
                                     maxDate={maxDate}
-                                    isClearable={true}
                                     tabindex="-3"
                                 />
 
@@ -273,7 +272,6 @@ class TalkToWeddingPlanner extends Component {
                                     ref={this.dateRef}
                                     minDate={minDate}
                                     maxDate={maxDate}
-                                    isClearable={true}
                                     tabindex="-3"
                                 />
                             </Col>
