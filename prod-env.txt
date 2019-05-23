@@ -6,14 +6,15 @@
  REACT_APP_API_HOST='https://prod.ahwanam.com'
  REACT_APP_API_PORT=''
 
- GOOGLE_CLIENT_ID = '246596173779-sk7nclc94ee4hvekee1uisdbr5jl1lv9.apps.googleusercontent.com'
+ GOOGLE_CLIENT_ID = '196752799052-sljginqj6284uejn9vak6c7vgaf8ohtj.apps.googleusercontent.com'
  GOOGLE_SITE_VERIFICATION ='daNLtRkMMTN53enxPgilG_NgoqmSsc6Pls81gt0ZMSk'
 
  GOOGLE_MAP_KEY='AIzaSyBlDLoh8zk0WWSITPjDbO4tfV1VducHeio'
 
- GA_TRACKING_ID='UA-139140156-1'
+ GA_TRACKING_ID='UA-139140156-2'
  FACEBOOK_APP_ID='2378974755713176'
  FULLSTORY_ORG_ID='J1FQ8'
- GTM_ID='GTM-PLSQ8NL'
-
- APP_URL='https://sevenvows.co.in'
+ GTM_ID='GTM-T5KRC2G'
+ CONVERSION_ID='AW-745108214'
+ 
+ APP_URL='https://knotsandvows.co.in'

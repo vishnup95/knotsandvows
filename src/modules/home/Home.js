@@ -226,6 +226,8 @@ class Home extends Component {
   }
 
   handleCeremonyClick = (ceremony, event) => {
+    if(window!=null)
+       window.gtag_report_conversion(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
     this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
     event.preventDefault();
   }
@@ -413,7 +415,7 @@ class Home extends Component {
                   <Col id="boxmark"></Col></Row>
                 <Row className="mobile-col-reverse">
                   <div className="col justify-center align-flex-top mobile-column">
-                    <img className={styles.packageStatic} src={imagePath('packageall.png')} alt="img" />
+                    <img className={styles.packageStatic} src={imagePath('package-all.png')} alt="img" />
                     <div className="mobile-only">
                       <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'} />
                     </div>
@@ -439,33 +441,33 @@ class Home extends Component {
                     {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
                     {this.state.loadImages &&
                       <picture>
-                        <source media="(min-width: 1850px)" srcSet={imagePath('contact-box-224.png')} />
-                        <source media="(min-width: 1024px)" srcSet={imagePath('contact-box-192.png')} />
-                        <source media="(min-width: 768px)" srcSet={imagePath('contact-box-176.png')} />
-                        <img src={imagePath('contact-box-176.png')} alt="gold package" />
+                        <source media="(min-width: 1850px)" srcSet={imagePath('box-23.png')} />
+                        <source media="(min-width: 1024px)" srcSet={imagePath('box-22.png')} />
+                        <source media="(min-width: 768px)" srcSet={imagePath('box-21.png')} />
+                        <img src={imagePath('box-21.png')} alt="gold package" />
                       </picture>
                     }
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
-                      <a className="primary-button home-btn white" href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
+                      <a className="primary-button home-btn white" onClick={()=>{if(window!=null) window.gtag_report_conversion('/packages/wedding-gold-package');}} href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-two">
                     {this.state.loadImages &&
-                      <img src={imagePath('ruby-box.png')} alt="Ruby" />}
+                      <img src={imagePath('box-03.png')} alt="Ruby" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
-                      <a className="primary-button home-btn white" href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
+                      <a className="primary-button home-btn white" onClick={()=>{if(window!=null) window.gtag_report_conversion('/packages/wedding-ruby-package');}} href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
 
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
                   </Col>
                   <Col className={styles.packageBox} id="box-three">
                     {this.state.loadImages &&
-                      <img src={imagePath('genie.png')} alt="Genie" />}
+                      <img src={imagePath('box-01.png')} alt="Genie" />}
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Genie</h3>
                       <p>Your wish is our command. <span className="tab-only"><br /></span>Choose what you need and make your dream team of wedding vendors.</p>

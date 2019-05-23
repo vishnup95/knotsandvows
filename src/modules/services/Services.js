@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './services.scss';
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import DetailComponent from './detailComponent';
 import { imagePath } from '../../utils/assetUtils';
 import data from './servicesData';
@@ -36,7 +36,7 @@ class ServicesComponent extends Component {
           </div>
         </div>
 
-        <Container className={styles.containerClass}>
+        <div className={styles.containerClass}>
           <Row className={`${styles.detailBox}`}>
             <Col md="3" className={styles.leftSection}></Col>
             <Col md="8" className={`pt-0 pb-0 ${styles.rightSection}`}>
@@ -62,7 +62,7 @@ class ServicesComponent extends Component {
             </Col>
           </Row>
 
-        </Container>
+        </div>
       </div>
     );
   }

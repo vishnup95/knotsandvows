@@ -79,8 +79,9 @@ class Header extends Component {
             this.props.dispatch(actions.showLogin());
         }
         if (detectMobile()) {
-            this.setState({ isOpen: false });
-        }
+            this.setState({ isOpen: false});
+        }  
+        
     }
 
     componentWillMount() {
@@ -283,7 +284,8 @@ class Header extends Component {
             <div className={styles.ahHeader}>
 
                 <div className={styles.navSmall}>
-                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our experts'} />
+                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our experts'}
+                    onClick={()=>{if(window!=null) window.gtag_report_conversion();}}/>
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
                     <NavbarToggler onClick={this.toggle} />
@@ -303,7 +305,7 @@ class Header extends Component {
                                 <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
                             </NavItem>
                             <NavItem className={styles.vendors}>
-                                <NavLink onClick={() => this.navigateTo('/categories')}>VowVendors</NavLink>
+                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/categories'); this.navigateTo('/categories')}}>VowVendors</NavLink>
                                 {/* 
                                 this section is temporarily removed
                                 <div className={styles.categoriesList}>
@@ -322,7 +324,7 @@ class Header extends Component {
                                 <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/who-we-are')}>Who We Are</NavLink>
+                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/who-we-are');this.navigateTo('/who-we-are')}}>Who We Are</NavLink>
                             </NavItem>
                             {this.renderLoginItem()}
 

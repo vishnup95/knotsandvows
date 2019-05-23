@@ -26,12 +26,12 @@ class DetailComponent extends Component {
             }
           </ul>
         </Col>
-        <Col md="8" className={styles.rightSection}>
-          <Row className="m-0">
-            <Col md="8" className="p-0">
-              <img src={imagePath(this.props.data.optionDetail[this.state.selectedIndex].coverImage)} alt=""/>
-            </Col>
-            <Col md="4" className={styles.description}>
+        <Col className={styles.rightSection}>
+          <div className={`${styles.detailWrap} m-0`}>
+            <div className="p-0">
+              <img className={styles.detailImage} src={imagePath(this.props.data.optionDetail[this.state.selectedIndex].coverImage)} alt=""/>
+            </div>
+            <div className={styles.description}>
               <ul>
                 {
                   this.props.data.optionDetail[this.state.selectedIndex].listItems.map((item, index) => {
@@ -39,8 +39,8 @@ class DetailComponent extends Component {
                   })
                 }
               </ul>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Col>
       </Row>
     );

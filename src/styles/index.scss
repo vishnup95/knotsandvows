@@ -587,8 +587,8 @@ button {
 input[id="contactDate"] {
   width: 100%;
   -webkit-appearance: none;
-  height: 33px;
-  margin-top: 10px;
+  // height: 33px;
+  // margin-top: 10px;
   border: 1px solid $medium-pink;
   border-radius: 5px;
   padding: .5em;
@@ -736,5 +736,12 @@ $md-checkbox-label-padding: .75em;
         border-right-style: none;
       } 
     }
+  }
+}
+
+.react-datepicker__input-container {
+  padding: 0.8em 0px;
+  @include threeK{
+    padding: 1em 0;
   }
 }
