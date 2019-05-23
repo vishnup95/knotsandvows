@@ -547,7 +547,6 @@ class DetailPageComponent extends Component {
                                                 minDate={minDate}
                                                 maxDate={maxDate}
                                                 autoComplete = "off"
-                                                isClearable ={true}
                                                 />
                                          
                                             </Form>
