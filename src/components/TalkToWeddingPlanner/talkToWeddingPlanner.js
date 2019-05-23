@@ -137,7 +137,6 @@ class TalkToWeddingPlanner extends Component {
                     <div className="pulsateRing"></div>
                     <div className={styles.callBtnImg} role="button" tabIndex="0" onClick={()=>this.handlePulsateRing} onKeyDown={()=>this.handlePulsateRing}></div>
                     {/* <img src={imagePath('button-call.png')} alt="call-button" /> */}
-                    <img src={imagePath('button-call.png')} alt="call-button" />
                 </div>}
                 {this.props.type === '' && <button onClick={() => this.toggle()} className={`${this.props.buttonColor === 'white' ? 'white' : ''} primary-button home-btn medium-pink`}>{this.props.buttonText}</button>}
 
