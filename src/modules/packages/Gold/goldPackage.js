@@ -334,7 +334,6 @@ class GoldPackage extends Component {
                                   minDate={minDate}
                                   maxDate={maxDate}
                                   autoComplete = "off"
-                                  isClearable={true}
                                 />
                              </div>
                       </Col>
