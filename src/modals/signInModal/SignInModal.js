@@ -70,6 +70,8 @@ class SignInModal extends Component {
                 password: null
             }
         });
+        if(window!=null)
+            window.gtag_report_conversion();
     }
 
     showForgotPassword = () => {
