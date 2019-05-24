@@ -96,6 +96,18 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','${gtmId}');</script>
         <!-- End Google Tag Manager -->
+        <!-- Pure Chat -->
+        <script type='text/javascript' data-cfasync='false'>
+        window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; 
+        (function () { var done = false; var script = document.createElement('script'); 
+        script.async = true; script.type = 'text/javascript'; 
+        script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; 
+        document.getElementsByTagName('HEAD').item(0).appendChild(script); 
+        script.onreadystatechange = script.onload = function (e) 
+        { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) 
+        { var w = new PCWidget({c: '93716f8f-05de-4275-a033-aa244d31b6d8', f: true }); 
+        done = true; } }; })();</script>
+        <!-- End Pure Chat -->
         ${cssLinks()}
         ${helmet.style.toString()}
         ${helmet.script.toString()}
