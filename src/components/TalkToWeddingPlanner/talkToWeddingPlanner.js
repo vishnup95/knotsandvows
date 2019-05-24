@@ -101,22 +101,25 @@ class TalkToWeddingPlanner extends Component {
     }
 
     validateForm = () => {
-        let name = this.nameRef.current.validateFormInput(document.getElementById('contactName'));
+        // let name = this.nameRef.current.validateFormInput(document.getElementById('contactName'));
         let email = this.emailRef.current.validateFormInput(document.getElementById('contactEmail'));
         let phone = this.phoneRef.current.validateFormInput(document.getElementById('contactPhone'));
         //let date = this.dateRef.current.validateFormInput(document.getElementById('contactDate'));
-        let date = this.state.contactDate;
-        let city = this.cityRef.current.validateFormInput(document.getElementById('city'));
+        // let date = this.state.contactDate;
+        // let city = this.cityRef.current.validateFormInput(document.getElementById('city'));
 
-        if (name && email && phone && date && city) {
+        if (email && phone) {
             const details = {
                 origin: 'CALL_BUTTON_FORM',
                 name: this.state.contactName,
                 phone: this.state.contactPhone,
                 email: this.state.contactEmail,
-                event_date: this.state.contactDate,
                 city: this.state.city,
             }
+            if (this.state.contactDate != '') {
+                details.event_date = this.state.contactDate
+            }
+
 
             if (this.props.type !== 'services') {
                 details['description'] = this.state.comments
