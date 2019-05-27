@@ -226,9 +226,10 @@ class Home extends Component {
   }
 
   handleCeremonyClick = (ceremony, event) => {
-    if(window!=null)
-       window.gtag_report_conversion(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
+    
     this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
+    if(window!=null)
+       return window.gtag_report_conversion(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
     event.preventDefault();
   }
 
@@ -460,7 +461,7 @@ class Home extends Component {
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
-                      <a className="primary-button home-btn white" onClick={()=>{if(window!=null) window.gtag_report_conversion('/packages/wedding-ruby-package');}} href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
+                      <a className="primary-button home-btn white" onClick={()=>{if(window!=null) return window.gtag_report_conversion('/packages/wedding-ruby-package');}} href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
 
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>

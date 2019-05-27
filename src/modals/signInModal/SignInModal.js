@@ -71,7 +71,7 @@ class SignInModal extends Component {
             }
         });
         if(window!=null)
-            window.gtag_report_conversion();
+            return window.gtag_report_conversion();
     }
 
     showForgotPassword = () => {
