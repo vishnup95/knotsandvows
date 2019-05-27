@@ -336,7 +336,6 @@ class RubyPackage extends Component {
                                   minDate={minDate}
                                   maxDate={maxDate}
                                   autoComplete = "off"
-                                  isClearable={true}
                                   />
                              </div>
 
@@ -359,7 +358,7 @@ class RubyPackage extends Component {
           <Row>
             <Col>
               <div className={styles.packageBox}>
-                <img src={imagePath('box-22.png')} alt="img" />
+                <img src={imagePath('gold-276.png')} alt="img" />
                 <div className={`${styles.packageDetail} `}>
                   <h3>Gold</h3>
                   <p>Add shine to your wedding celebration. Here’s a package that’s packed with wedding goodness.</p>

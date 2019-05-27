@@ -306,7 +306,7 @@ class GoldPackage extends Component {
             <Row>
               <Col md='1'></Col>
               <Col md='5' className="text-center">
-                <img className={styles.contactImg} src={imagePath('box-22.png')} alt="contact" />
+                <img className={styles.contactImg} src={imagePath('gold-372.png')} alt="contact" />
               </Col>
               <Col md='5' className='contact-form'>
                   <h3>Get Your Gold <span className="tab-only"><br /></span> Wedding Package Now!</h3>
@@ -334,7 +334,6 @@ class GoldPackage extends Component {
                                   minDate={minDate}
                                   maxDate={maxDate}
                                   autoComplete = "off"
-                                  isClearable={true}
                                 />
                              </div>
                       </Col>

@@ -740,8 +740,8 @@ $md-checkbox-label-padding: .75em;
 }
 
 .react-datepicker__input-container {
-  padding: 0.8em 0px;
-  @include threeK{
-    padding: 1em 0;
+  padding: 0.8rem 0px;
+  input {
+    margin: 0 !important;
   }
 }
