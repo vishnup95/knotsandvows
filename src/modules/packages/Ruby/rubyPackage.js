@@ -303,7 +303,7 @@ class RubyPackage extends Component {
                     </Col>
                   </Row>
                 </form>
-                <input type="submit" value="Send Message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
+                <input type="submit" value="Send Message" className="ml-0 secondary-button home-btn" onClick={() => {this.sendDetailsToWeddingPlanner();if(window!=null) return window.gtag_report_conversion();}} />
               </Col>
             </Row>
           </Container>

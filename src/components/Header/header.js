@@ -285,7 +285,7 @@ class Header extends Component {
 
                 <div className={styles.navSmall}>
                     <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our experts'}
-                    onClick={()=>{if(window!=null) window.gtag_report_conversion();}}/>
+                    onClick={()=>{if(window!=null) return window.gtag_report_conversion();}}/>
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
                     <NavbarToggler onClick={this.toggle} />
@@ -295,7 +295,7 @@ class Header extends Component {
                     <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
                             <NavItem className={styles.vendors}>
-                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/categories'); this.navigateTo('/categories')}}>VowVendors</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/categories'); if(window!=null) return window.gtag_report_conversion('/categories'); }}>VowVendors</NavLink>
                                 {/* 
                                 this section is temporarily removed
                                 <div className={styles.categoriesList}>
@@ -311,16 +311,16 @@ class Header extends Component {
                                 </div> */}
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/#packages');this.navigateTo('/#packages')}}>Packages</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/#packages');if(window!=null) return window.gtag_report_conversion('/#packages');}}>Packages</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/#ceremonies');this.navigateTo('/#ceremonies')}}>Ceremonies</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/#ceremonies');if(window!=null) return window.gtag_report_conversion('/#ceremonies');}}>Ceremonies</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/wishlist');if(window!=null) return window.gtag_report_conversion();}}>Wishlist</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/who-we-are');this.navigateTo('/who-we-are')}}>Who We Are</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/who-we-are');if(window!=null) return window.gtag_report_conversion('/who-we-are');}}>Who We Are</NavLink>
                             </NavItem>
                             {this.renderLoginItem()}
 
