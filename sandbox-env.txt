@@ -17,4 +17,4 @@
  GTM_ID='GTM-KD2HPX6'
  CONVERSION_ID='AW-745108214'
  
- APP_URL='https://sandbox.knotsandvows.co.in'
+ APP_URL='https://sandbox.knotsandvows.co.in

@@ -53,7 +53,7 @@ class TalkToWeddingPlanner extends Component {
                 { label: 'Finalize the details', checked: false },
                 { label: 'Big Day arrangements', checked: false },
                 { label: 'All services', checked: false },
-                { label: 'I’m not sure', checked: false },
+                { label: 'Iâ€™m not sure', checked: false },
             ]
         }
         this.toggle = this.toggle.bind(this);
