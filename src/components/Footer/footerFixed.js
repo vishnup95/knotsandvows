@@ -83,7 +83,7 @@ class FooterFixedComponent extends Component {
                                     <Link to={'/'}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/services'}>What We Do</Link>
+                                    <Link to={'/services'}>Services</Link>
                                 </li>
                                 <li>
                                     <Link to={'/#packages'}>Packages</Link>
