@@ -56,6 +56,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
   const htmlAttrs = helmet.htmlAttributes.toString();
   const bodyAttrs = helmet.bodyAttributes.toString();
   const gtmId = process.env.GTM_ID;
+  const conversionId=process.env.CONVERSION_ID;
   
 
   return `
@@ -71,13 +72,60 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         <link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700" rel="stylesheet">
-        <!-- Google Tag Manager -->
+        
+        
+        <!-- Global site tag (gtag.js) - Google Ads: 745108214 -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-745108214"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-745108214');
+        </script>
+
+        <!-- Event snippet for Knots&amp;Vows Lead conversion page
+        In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+        <script>
+        function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-745108214/6tImCInt650BEPblpeMC',
+            'event_callback': callback
+        });
+        return false;
+        }
+        </script>
+
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','${gtmId}');</script>
         <!-- End Google Tag Manager -->
+        <!-- Facebook Pixel Code -->
+          <script>
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '2199773313469762');
+          fbq('track', 'PageView');
+          </script>
+          <noscript><img height="1" width="1" style="display:none"
+          src="https://www.facebook.com/tr?id=2199773313469762&ev=PageView&noscript=1
+          https://www.facebook.com/tr?id=2199773313469762&ev=PageView&noscript=1
+          "
+          /></noscript>
+          <!-- End Facebook Pixel Code -->
         ${cssLinks()}
         ${helmet.style.toString()}
         ${helmet.script.toString()}
