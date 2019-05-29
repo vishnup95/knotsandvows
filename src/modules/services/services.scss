@@ -56,48 +56,6 @@
       }
     }
 
-    .iconContainer {
-      display: flex;
-      width: 100%;
-      justify-content: space-around;
-      margin-top: 3rem;
-      align-items: center;
-      @include mobile {
-        margin-top: 0;
-      }
-
-      img {
-        cursor: pointer;
-        opacity: 0;
-        animation-name: iconAnimation;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-delay: 1.5s;
-        width: 4rem;
-        @include mobile {
-          width: 3rem;
-          height: 3rem;
-        }
-        @include tablet {
-          width: 4.5rem;
-        }
-        @include threeK {
-          width: auto;
-        }
-
-        &:nth-child(2) {
-          animation-delay: 2s;
-        }
-
-        &:nth-child(3) {
-          animation-delay: 2.5s;
-        }
-
-        &:nth-child(4) {
-          animation-delay: 3s;
-        }
-      }
-    }
   }
 
   .containerClass {
@@ -106,7 +64,7 @@
       padding: 0 5%;
     }
     @include hd {
-      padding: 0 10%;
+      padding: 0 12.5%;
     }
   }
 
@@ -114,235 +72,42 @@
     margin-left: 0;
     margin-right: 0;
 
-    .leftSection {
-      @include padding(60, 40);
-      border-right: 2px solid $medium-pink;
-      text-align: right;
-      @include mobile {
-        text-align: center;
-        padding-bottom: 0;
-        border: none;
-        margin-top: 0;
-      }
-      @include tablet {
-         @include padding(60, 28);
-      }
-      @include desktop {
-         @include padding(60, 40);
-      }
-
-      > img {
-        @include mobile {
-          width: 3rem;
-        }
-        @include tablet {
-          width: 4.5rem;
-        }
-        @include threeK {
-          width: auto;
-        }
-      }
-
-      h3 {
-        font-size: 2.857rem;
-        color: $greyish-brown-six;
-        @include letterSpacing(0.2);
-        @include tablet {
-          font-size: 2.5rem;
-        }
-        @include desktop {
-          font-size: 2.857rem;
-
-        }
-      }
-
-      hr {
-        width: 60%;
-        margin-bottom: 0;
-        @include mobile {
-          margin: 0 auto;
-        }
-      }
-
-      ul {
-        list-style: none;
-        @include mobile {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-evenly;
-          margin-top: 1rem;
-        }
-
-        li {
-          @include padding(10,0);
-          font-size: 1.43rem;
-          cursor: pointer;
-          font-weight: 500;
-          color: $greyish-brown;
-          @include mobile {
-            display: inline-block;
-          }
-        }
-
-        .activeLi {
-          color: $medium-pink;
-        }
-        @include mobile {
-          padding-left: 0;
-
-          li {
-            width: max-content;
-            margin: 0 auto;
-            @include padding(8, 14);
-            font-size: 1.73rem;
-
-            &:first-child {
-              margin-top: 1rem;
-              @include mobile {
-                margin-top: 0;
-              }
-            }
-          }
-
-          .activeLi {
-            color: white;
-            background-color: $medium-pink;
-            border-radius: 1.75rem;
-          }
-        }
-      }
-
+    h2 {
+      font-size: 2.857rem;
+      color: $medium-pink;
+      font-weight: 500;
+      text-align: center;
     }
 
-    .rightSection {
-      color: white;
-      @include mobile {
-        padding: 0;
-      }
-      @include tablet {
-         @include padding(60, 0, 60, 28);
-      }
-      @include desktop {
-         @include padding(60, 40);
-      }
+    p {
+      color: $greyish-brown;
+      font-size: 1.2857rem;
+      text-align: center;
+    }
 
-      img {
-        // width: 100%;
-      }
-
-      .vowIcon {
-        width: 3.857rem;
-        position: absolute;
-        left: -1.95rem;
-        top: 0;
-        @include mobile {
-          display: none;
-        }
-      }
-
-      .description {
+    &:nth-child(3) {
+      .sectionWrap {
         background-color: $medium-pink;
-        padding: 0;
-        width: 100%;
-        @include tablet {
-          width: 21rem;
-        }
-      }
-
-      ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        justify-content: center;
-        padding: 0 1rem;
-        @include desktop {
-           @include padding(0,20);
-        }
-
-        li {
-          @include padding(10, 0, 10, 40);
-          font-size: 1.3rem;
-          position: relative;
-          @include desktop {
-            font-size: 1.43rem;
-          }
-
-          &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: .7rem;
-            width: 2rem;
-            height: 2rem;
-            background: url('#{$image-base-url}/detail-icon.png') no-repeat top left;
-            background-size: contain;
-          }
+        flex-direction: row-reverse;
+        .imageCarouselWrap {
+          margin-left: 1.2rem;
+          margin-right: 0;
         }
       }
 
       h2 {
-        color: $greyish-brown-six;
-        font-weight: 500;
-        font-size: 3.57rem;
-        @include mobile {
-          text-align: center;
-        }
+        color: $white;
+        width: 100%;
+        background-color: $medium-pink;
+        margin: 0;
+        padding-top: 1rem;
+        font-size: 2.143rem;
+        font-weight: 700;
       }
-
-      .pink {
-        color: $medium-pink;
-      }
-
-      h4 {
-        color: $greyish-brown-six;
-        width: 90%;
-        @include mobile {
-          margin: 0 auto;
-          text-align: center;
-        }
-      }
-
-      .talkButton {
-        width: max-content;
-        @include mobile {
-          width: auto;
-        }
-      }
-
-    }
-
-    &:last-child {
-      .leftSection,
-      .rightSection {
-        padding-bottom: 0;
-      }
-
     }
   }
 }
-@keyframes iconAnimation {
-  from {
-    opacity: 0;
-  }
 
-  to {
-    opacity: 1;
-  }
-}
-
-.detailImage {
-  width: 100%;
-  @include tablet {
-    width: 28rem;
-  }
-  @include desktop {
-    width: 35rem;
-  }
-  @include hd {
-    width: 39rem;
-  }
-}
 
 .detailWrap {
   display: flex;
@@ -351,4 +116,77 @@
     flex-direction: row;
   }
 
+}
+
+.sectionWrap {
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.imageCarouselWrap {
+  margin-right: 1.2rem;
+  position: relative;
+}
+
+.contentPart {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  box-shadow: 1px 1px 0 0 rgba(242, 46, 144, 0.8);
+  background-color: #f5f5f5;
+  padding: 1.8rem;
+
+  h3 {
+    font-size: 2.143rem;
+    font-weight: 700;
+    color: $medium-pink;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding: 0;
+    flex-wrap: wrap;
+    @include desktop {
+    }
+
+    li {
+      @include padding(4, 0, 4, 40);
+      font-size: 1.143rem;
+      position: relative;
+      color: $greyish-brown-two;
+      @include desktop {
+        font-size: 1.143rem;
+        width: 50%;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: .7rem;
+        width: 1rem;
+        height: 1rem;
+        background: url('#{$image-base-url}/fav-icon.png') no-repeat top left;
+        background-size: contain;
+      }
+    }
+  }
+}
+
+.vowIconLine {
+  height: 3.85rem;
+  margin: 2rem 0;
+}
+.imgIcon {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 2;
+  width: 4.285rem;
+  height: 4.285rem;
+  transform: translateX(-50%);
 }
