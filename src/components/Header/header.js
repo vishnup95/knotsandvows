@@ -298,7 +298,7 @@ class Header extends Component {
                                 <NavLink onClick={() => this.navigateTo('/')}>Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/services')}>What We Do</NavLink>
+                                <NavLink onClick={() => this.navigateTo('/services')}>Services</NavLink>
                             </NavItem>
 
                             <NavItem>
@@ -351,7 +351,7 @@ class Header extends Component {
                     <ul>
                         {this.renderLoginItem()}
                         <li onClick={() => {this.navigateTo('/');if(window!=null) return window.gtag_report_conversion(); }} aria-hidden>Home</li>
-                        <li onClick={() => {this.navigateTo('/services');if(window!=null) return window.gtag_report_conversion('/services');}} aria-hidden>What We Do</li>
+                        <li onClick={() => {this.navigateTo('/services');if(window!=null) return window.gtag_report_conversion('/services');}} aria-hidden>Services</li>
                         <li onClick={() => {this.navigateTo('/#packages');if(window!=null) return window.gtag_report_conversion('/#packages');}} aria-hidden>Packages</li>
                         <li onClick={() => {this.navigateTo('/categories');if(window!=null) return window.gtag_report_conversion('/categories');}} aria-hidden>VowVendors</li>
                         <li onClick={() => {this.navigateTo('/wishlist');if(window!=null) return window.gtag_report_conversion();}} aria-hidden>Wishlist</li>
