@@ -35,11 +35,22 @@
     background-repeat: no-repeat;
     text-align: center;
     padding-left: 1%;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     @include mobile {
       height: 90vw;
       background-position: right;
       margin-bottom: 0;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 200px;
+        width: 100%;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
+
+      }
     }
 
     .coverDetail {
@@ -51,20 +62,26 @@
       justify-content: center;
       @include mobile {
         width: 90%;
+        margin: 0 auto;
         justify-content: flex-end;
         padding-bottom: 2rem;
+
+        h1,
+        h4 {
+          z-index: 2;
+        }
       }
     }
 
   }
 
   .containerClass {
-    padding: 0;
+    padding: 5% 5% 0;
     @include desktop {
       padding: 0 5%;
     }
     @include hd {
-      padding: 0 12.5%;
+      padding: 0 10%;
     }
   }
 
@@ -88,11 +105,39 @@
     &:nth-child(3) {
       .sectionWrap {
         background-color: $medium-pink;
-        flex-direction: row-reverse;
-        .imageCarouselWrap {
-          margin-left: 1.2rem;
-          margin-right: 0;
+        @include tablet {
+          flex-direction: row-reverse;
+
+          .imageCarouselWrap {
+            margin-left: 1.2rem;
+            margin-right: 0;
+          }
         }
+
+        h3 {
+          &.mobile {
+            color: $white;
+
+          }
+        }
+
+        .contentPart {
+          ul {
+            li {
+              @include mobile {
+                color: $white;
+
+                &::before {
+                  content: '';
+                  background: url('#{$image-base-url}/fav-icon-white.png') no-repeat top left;
+
+                }
+              }
+            }
+          }
+
+        }
+
       }
 
       h2 {
@@ -108,7 +153,6 @@
   }
 }
 
-
 .detailWrap {
   display: flex;
   flex-direction: column;
@@ -120,47 +164,70 @@
 
 .sectionWrap {
   display: flex;
-  padding: 1rem;
+  padding: 2rem;
   margin-bottom: 1rem;
+  border: 1px solid $medium-pink;
+  @include tablet {
+    border: none;
+    padding: 1rem;
+
+  }
+
+  h3 {
+    font-size: 2.143rem;
+    font-weight: 700;
+    color: $medium-pink;
+
+    &.mobile {
+      color: $greyish-brown;
+      font-size: 40px;
+    }
+  }
 }
 
 .imageCarouselWrap {
   margin-right: 1.2rem;
   position: relative;
+  @include tablet {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .contentPart {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  box-shadow: 1px 1px 0 0 rgba(242, 46, 144, 0.8);
-  background-color: #f5f5f5;
-  padding: 1.8rem;
+  @include tablet {
+    background-color: #f5f5f5;
+    padding: 1.8rem;
+    box-shadow: 1px 1px 0 0 rgba(242, 46, 144, 0.8);
 
-  h3 {
-    font-size: 2.143rem;
-    font-weight: 700;
-    color: $medium-pink;
   }
 
   ul {
     list-style: none;
     display: flex;
     height: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0;
     flex-wrap: wrap;
-    @include desktop {
+    @include tablet {
+      justify-content: center;
     }
 
     li {
-      @include padding(4, 0, 4, 40);
-      font-size: 1.143rem;
+      @include padding(4, 0, 4, 20);
+      font-size: 15px;
       position: relative;
       color: $greyish-brown-two;
-      @include desktop {
+      @include tablet {
+         @include padding(4, 0, 4, 40);
         font-size: 1.143rem;
         width: 50%;
+      }
+      @include desktop {
+        font-size: 1.143rem;
       }
 
       &::before {
@@ -168,10 +235,15 @@
         position: absolute;
         left: 0;
         top: .7rem;
-        width: 1rem;
-        height: 1rem;
+        width: 12px;
+        height: 14px;
         background: url('#{$image-base-url}/fav-icon.png') no-repeat top left;
         background-size: contain;
+        @include tablet {
+          top: .7rem;
+          width: 1rem;
+          height: 1rem;
+        }
       }
     }
   }
@@ -179,14 +251,17 @@
 
 .vowIconLine {
   height: 3.85rem;
-  margin: 2rem 0;
+  margin: 2rem 0 4rem;
 }
+
 .imgIcon {
-  position: absolute;
-  left: 50%;
-  bottom: 1rem;
   z-index: 2;
   width: 4.285rem;
   height: 4.285rem;
-  transform: translateX(-50%);
+  @include tablet {
+    position: absolute;
+    left: 50%;
+    bottom: 2.5rem;
+    transform: translateX(-50%);
+  }
 }

@@ -3,8 +3,14 @@
 @import '../../variables/utils';
 
 .carouselImage {
-    width: 23.143rem;
-    height: 18.714rem;
+  width: 42vw;
+  height: 42vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  @include tablet {
+    width: 30rem;
+    height: 24.3rem;
     background-size: cover;
-    background-repeat: no-repeat;
+  }
 }
