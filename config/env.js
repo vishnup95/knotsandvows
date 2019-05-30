@@ -25,8 +25,8 @@ function getAppEnv() {
       FACEBOOK_APP_ID: process.env.FACEBOOK_APP_ID,
       FULLSTORY_ORG_ID: process.env.FULLSTORY_ORG_ID,
       GTM_ID: process.env.GTM_ID,
-      CONVERSION_ID: process.env.CONVERSION_ID,
       APP_URL: process.env.APP_URL,
+      CONVERSION_ID:process.env.CONVERSION_ID
     }
   );
 
