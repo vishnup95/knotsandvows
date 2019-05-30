@@ -56,8 +56,9 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
   const htmlAttrs = helmet.htmlAttributes.toString();
   const bodyAttrs = helmet.bodyAttributes.toString();
   const gtmId = process.env.GTM_ID;
-  const conversionId=process.env.CONVERSION_ID;
-  
+  // const conversionId = process.env.CONVERSION_ID;
+  const gaTag = process.env.GA_TRACKING_ID;
+
 
   return `
     <!doctype html>
@@ -126,6 +127,15 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
           "
           /></noscript>
           <!-- End Facebook Pixel Code -->
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=${gaTag}"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '${gaTag}');
+        </script>
         ${cssLinks()}
         ${helmet.style.toString()}
         ${helmet.script.toString()}
