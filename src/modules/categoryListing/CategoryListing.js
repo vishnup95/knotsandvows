@@ -94,7 +94,7 @@ class CategoryListing extends Component {
               {
                 this.props.allVendorDetails.categories.map((category, index) => {
                   return (
-                    <CategorySection category={category} key={index} dispatch={this.props.dispatch}/>
+                    <CategorySection category={category} key={index} dispatch={this.props.dispatch} onClick={()=>{if(window!=null) return window.gtag_report_conversion('/categories');}}/>
                   );
                 })
               }

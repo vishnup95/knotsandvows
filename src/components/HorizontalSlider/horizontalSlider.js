@@ -414,7 +414,7 @@ export default class HorizontalSlider extends Component {
                             })
                         }
                         <Col className="text-center">
-                            <div aria-hidden className={styles.addNew} onClick={() => this.props.buttonAction(this.props.category)}><span>View All <br /> {this.props.categoryName}</span></div>
+                            <div aria-hidden className={styles.addNew} onClick={() =>{ this.props.buttonAction(this.props.category); if(window!=null) return window.gtag_report_conversion();}}><span>View All <br /> {this.props.categoryName}</span></div>
                         </Col>
                     </Slider>
                 </div>

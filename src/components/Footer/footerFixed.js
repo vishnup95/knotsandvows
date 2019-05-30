@@ -80,23 +80,24 @@ class FooterFixedComponent extends Component {
                             <p className="d-none d-sm-block"><Link to={'/'}>Home</Link></p>
                             <ul>
                                 <li className="d-block d-sm-none text-left">
-                                    <Link to={'/'}>Home</Link>
+                                    <Link to={'/'} onClick={()=>{if(window!=null) return window.gtag_report_conversion();}}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/services'}>Services</Link>
+                                    <Link to={'/services'} onClick={()=>{if(window!=null) return window.gtag_report_conversion('/services');}}>Services</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/#packages'}>Packages</Link>
+                                    <Link to={'/#packages'} onClick={()=>{if(window!=null) return window.gtag_report_conversion('/#packages');}}>Packages</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/categories'}>VowVendors</Link>
+                                    <Link to={'/categories'} onClick={()=>{if(window!=null) return window.gtag_report_conversion('/categories');}}>VowVendors</Link>
+                                    
                                 </li>
                                 <li>
-                                    <Link to={'/wishlist'}>Wishlist</Link>
+                                    <Link to={'/wishlist'} onClick={()=>{if(window!=null) return window.gtag_report_conversion();}}>Wishlist</Link>
                                 </li>
 
                                 <li>
-                                    <Link to={'/who-we-are'}>Who We Are</Link>
+                                    <Link to={'/who-we-are'} onClick={()=>{if(window!=null) window.gtag_report_conversion('/who-we-are');}}>Who We Are</Link>
                                 </li>
                                 <li>
                                     <TalkToWeddingPlanner buttonText={'Contact us'} type={'link'} origin={'footer'} />
@@ -118,7 +119,7 @@ class FooterFixedComponent extends Component {
                                         this.props.ceremonies.map((ceremony, index) => {
                                             return (
                                                 <li key={index}>
-                                                    <Link to={`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`}>{ceremony.ceremony_name}</Link>
+                                                    <Link to={`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id) }`} onClick={()=>{if(window!=null)  return window.gtag_report_conversion(`/ceremonies/${hyphonatedString(ceremony.ceremony_name,ceremony.ceremony_id) }`);}}>{ceremony.ceremony_name}</Link>
                                                 </li>
                                             );
                                         })
