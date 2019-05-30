@@ -16,3 +16,9 @@ export function postContactDetails(details) {
       type: types.CLEAR_TALKTO_ERRORS
     }
   }
+
+  export function showPlanner() {
+    return {
+      type: types.SHOW_PLANNER
+    }
+  }

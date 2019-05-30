@@ -2,7 +2,8 @@ import * as types from './constants';
 const initialState = {
     message: '',
     status: false,
-    loading: false
+    loading: false,
+    showPlanner: false
 };
 
 const TalkToAhwanamReducer = (state = initialState, action) => {
@@ -38,6 +39,12 @@ const TalkToAhwanamReducer = (state = initialState, action) => {
                 error: null,
                 message: '',
                 status: null
+            };
+        
+        case types.SHOW_PLANNER:
+            return {
+                ...state,
+                showPlanner: true
             };
 
         default:

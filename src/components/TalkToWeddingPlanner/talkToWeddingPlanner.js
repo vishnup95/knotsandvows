@@ -15,7 +15,8 @@ import DatePicker from "react-datepicker";
 const mapStateToProps = state => ({
     message: state.talkToAhwanam.message,
     status: state.talkToAhwanam.status,
-    isLoading: state.talkToAhwanam.loading
+    isLoading: state.talkToAhwanam.loading,
+    showPlanner: state.talkToAhwanam.showPlanner
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -82,6 +83,12 @@ class TalkToWeddingPlanner extends Component {
 
     componentWillUnmount() {
         this.setState({ city: '' })
+    }
+
+    componentWillReceiveProps() {
+        if (this.props.showPlanner === true) {
+            this.setState({modal: true})
+        }
     }
 
     toggle() {
@@ -341,7 +348,8 @@ TalkToWeddingPlanner.propTypes = {
     type: PropTypes.string,
     isLoading: PropTypes.bool,
     origin: PropTypes.string,
-    buttonColor: PropTypes.string
+    buttonColor: PropTypes.string,
+    showPlanner: PropTypes.bool
 
 };
 TalkToWeddingPlanner.defaultProps = {
