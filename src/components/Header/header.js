@@ -296,7 +296,7 @@ class Header extends Component {
                                 <NavLink onClick={() => this.navigateTo('/')}>Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/services')}>What We Do</NavLink>
+                                <NavLink onClick={() => this.navigateTo('/services')}>Services</NavLink>
                             </NavItem>
 
                             <NavItem>
@@ -349,7 +349,7 @@ class Header extends Component {
                     <ul>
                         {this.renderLoginItem()}
                         <li onClick={() => this.navigateTo('/')} aria-hidden>Home</li>
-                        <li onClick={() => this.navigateTo('/services')} aria-hidden>What We Do</li>
+                        <li onClick={() => this.navigateTo('/services')} aria-hidden>Services</li>
                         <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
                         <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
                         <li onClick={() => this.navigateTo('/wishlist')} aria-hidden>Wishlist</li>
