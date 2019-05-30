@@ -3,6 +3,7 @@
 let data = [
     {
         icon: 'inspire-icon.svg',
+        mobileIcon: 'inspire-icon.svg',
         title: 'Let us inspire you',
         heading: '',
         images: ['design-decor.jpg', 'services-photoshoot.jpg', 'digital-services.jpg', 'little-extras.jpg'],
@@ -22,6 +23,7 @@ let data = [
     },
     {
         icon: 'shortlist-icon.png',
+        mobileIcon: 'search-icon-white.png',
         title: 'Vendor services',
         heading: '60% of customers want this bundle!',
         images: ['vendor-selection.jpg', 'vendor-coordination.jpg', 'vendor-management.jpg', 'ceremony-details.jpg'],
@@ -41,6 +43,7 @@ let data = [
     },
     {
         icon: 'wedding-day-service-icon.svg',
+        mobileIcon: 'wedding-day-service-icon.svg',
         title: 'Wedding day services',
         heading: '',
         images: ['day-of-ceremony.jpg', 'take-no-stress.jpg'],

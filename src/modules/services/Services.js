@@ -30,7 +30,7 @@ class ServicesComponent extends Component {
 
         <div className={styles.containerClass}>
           <Row className={`${styles.detailBox}`}>
-            <Col md="12" className={`pt-0 pb-0 `}>
+            <Col md="12" className={`pt-0 pb-0 mb-4`}>
               <h2 className={styles.pink}>Choose one or choose all</h2>
               <p>Every wedding has its unique essence and comes with its own set of planning needs. Our services have been <span className="tab-only"><br/></span> crafted in such a way that you can book them separately or can simply add them to a package.</p>
             </Col>
