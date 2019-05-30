@@ -83,8 +83,7 @@ class FooterFixedComponent extends Component {
                                     <Link to={'/'} onClick={() => { if (window != null) return window.gtag_report_conversion(); }}>Home</Link>
                                 </li>
                                 <li>
-                                    {/*</ul>/<Link to={'/categories'} onClick={()=>{if(window!=null) window.gtag_report_conversion('/categories');}}>VowVendors</Link>*/}
-                                    <Link to={'/services'}>Services</Link>
+                                    <Link to={'/services'} onClick={()=>{if(window!=null) return window.gtag_report_conversion('/services');}}>Services</Link>
                                 </li>
                                 <li>
                                     <Link to={'/#packages'} onClick={() => { if (window != null) return window.gtag_report_conversion('/#packages'); }}>Packages</Link>

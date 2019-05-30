@@ -79,9 +79,8 @@ class Header extends Component {
             this.props.dispatch(actions.showLogin());
         }
         if (detectMobile()) {
-            this.setState({ isOpen: false});
-        }  
-        
+            this.setState({ isOpen: false });
+        }
     }
 
     componentWillMount() {
@@ -295,14 +294,14 @@ class Header extends Component {
                     <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/')}>Home</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/');if(window!=null) return window.gtag_report_conversion();}}>Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/services')}>Services</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/services');if(window!=null) return window.gtag_report_conversion('/services');}}>Services</NavLink>
                             </NavItem>
 
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/#packages');if(window!=null) return window.gtag_report_conversion('/#packages');}}>Packages</NavLink>
                             </NavItem>
                             <NavItem className={styles.vendors}>
                                 <NavLink onClick={() => {this.navigateTo('/categories'); if(window!=null) return window.gtag_report_conversion('/categories'); }}>VowVendors</NavLink>
@@ -321,7 +320,7 @@ class Header extends Component {
                                 </div> */}
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/wishlist');if(window!=null) return window.gtag_report_conversion();}}>Wishlist</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink onClick={() => {this.navigateTo('/who-we-are');if(window!=null) return window.gtag_report_conversion('/who-we-are');}}>Who We Are</NavLink>
