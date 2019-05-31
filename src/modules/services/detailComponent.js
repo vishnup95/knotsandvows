@@ -34,10 +34,10 @@ class DetailComponent extends Component {
                 })
               }
             </ul>
+            <TalkToWeddingPlanner buttonText={'Get Inspired'} type="services" />
           </div>
         </Col>
         <Col md="12" className="text-center">
-          <TalkToWeddingPlanner buttonText={'Let Us Help You'} type="services" />
           <img className={styles.vowIconLine} src={imagePath('about-vows.png')} alt="vow icon" />
         </Col>
       </Row>
