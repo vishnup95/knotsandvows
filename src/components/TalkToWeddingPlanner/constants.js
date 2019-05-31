@@ -5,4 +5,5 @@ export const POST_FORMDATA_FAILURE = 'my-project/talkToAhwanam/POST_FORMDATA_FAI
 export const CLEAR_TALKTO_ERRORS = 'my-project/talkToAhwanam/CLEAR_TALKTO_ERRORS';
 
 export const SHOW_PLANNER = 'my-project/talkToAhwanam/SHOW_PLANNER';
+export const HIDE_PLANNER = 'my-project/talkToAhwanam/SHOW_PLANNER';
 

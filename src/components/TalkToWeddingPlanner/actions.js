@@ -22,3 +22,9 @@ export function postContactDetails(details) {
       type: types.SHOW_PLANNER
     }
   }
+
+  export function hidePlanner() {
+    return {
+      type: types.HIDE_PLANNER
+    }
+  }

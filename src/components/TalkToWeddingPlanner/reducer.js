@@ -46,6 +46,12 @@ const TalkToAhwanamReducer = (state = initialState, action) => {
                 ...state,
                 showPlanner: true
             };
+        
+        case types.HIDE_PLANNER:
+            return {
+                ...state,
+                showPlanner: false
+            };
 
         default:
             return state;

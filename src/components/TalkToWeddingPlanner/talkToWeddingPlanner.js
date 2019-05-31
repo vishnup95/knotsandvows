@@ -86,17 +86,21 @@ class TalkToWeddingPlanner extends Component {
     }
 
     componentWillReceiveProps() {
-        if (this.props.showPlanner === true) {
+        if ( this.props.showPlanner) {
             this.setState({modal: true})
         }
     }
 
     toggle() {
+        if (this.state.modal) {
+            this.props.dispatch(actions.hidePlanner());
+        }
         
         this.setState(prevState => ({
             modal: !prevState.modal,
             contactDate: ''
         }));
+
         this.props.dispatch(actions.clearTalkToErrors());
         if(window!=null)    
             return window.gtag_report_conversion() 
