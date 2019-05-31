@@ -43,8 +43,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
-
   }
+
   state = {
     zoomCard: false,
     animateImageOne: false,
@@ -67,6 +67,10 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    if (this.props.location.pathname === '/contact-us') {
+      this.props.dispatch(talktoAhwanamActions.showPlanner());
+    }
+
     window.scrollTo(0, 0);
     window.addEventListener('scroll', this.handleScroll);
     this.handleSectionScroll(this.props);
@@ -327,7 +331,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col className="text-center flex justify-center mt-5" id="numbersection">
-                  <TalkToWeddingPlanner buttonText={'Let Us Help You'} />
+                  <TalkToWeddingPlanner buttonText={'Let Us Help You'}/>
                 </Col>
               </Row>
 
