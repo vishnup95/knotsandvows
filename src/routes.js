@@ -165,6 +165,7 @@ const routes = (
   <Switch>
     <Route exact path="/login" component={LoadableLogin} />
     <Route exact path="/" component={LoadableHome} />
+    <Route exact path="/contact-us" component={LoadableHome} />
     <Route exact path="/verify" component={LoadableHome} />
     <Route exact path="/resetpassword" component={LoadableHome} />
     <Route exact path="/categories/:category_name" component={LoadableProducts} />
