@@ -35,7 +35,11 @@ const jumbotronData = {
   buttonText: 'Talk to our experts!',
   subtitle: 'We have you covered. Our expert planners will work with you to make your event fantastic and make sure your needs are met.'
 };
-  
+
+const onPopState = handler =>{
+  window.onpopstate = handler;
+}
+
 class CategoryListing extends Component {
   
 
@@ -55,8 +59,9 @@ class CategoryListing extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
+    onPopState;
   }
-
+ 
   componentWillReceiveProps(nextProps) {
     if(this.props.user != nextProps.user && nextProps.user) {
       this.props.dispatch(actions.fetchAllVendors());
