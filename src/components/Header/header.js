@@ -304,7 +304,7 @@ class Header extends Component {
                                 <NavLink onClick={() => {this.navigateTo('/#packages');if(window!=null) return window.gtag_report_conversion('/#packages');}}>Packages</NavLink>
                             </NavItem>
                             <NavItem className={styles.vendors}>
-                                <NavLink onClick={() => {this.navigateTo('/categories'); if(window!=null) return window.gtag_report_conversion('/categories'); }}>VowVendors</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/categories'); return window.gtag_report_conversion('/categories'); }}>VowVendors</NavLink>
                                 {/* 
                                 this section is temporarily removed
                                 <div className={styles.categoriesList}>
