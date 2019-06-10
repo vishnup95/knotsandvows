@@ -34,7 +34,7 @@ class DetailComponent extends Component {
                 })
               }
             </ul>
-            <TalkToWeddingPlanner buttonText={'Get Inspired'} type="services" />
+            <TalkToWeddingPlanner buttonText={this.props.data.ctaText} type="services" />
           </div>
         </Col>
         <Col md="12" className="text-center">
