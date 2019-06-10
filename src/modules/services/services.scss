@@ -7,12 +7,12 @@
   color: $black;
 
   h1 {
-    font-size: 4.5rem;
+    font-size: 33px;
     color: $white;
     text-align: center;
-    @include mobile {
-      font-size: 33px;
-      font-weight: bold;
+    font-weight: bold;
+    @include tablet {
+      font-size: 4.286rem;
     }
   }
 
@@ -20,7 +20,7 @@
     color: white;
     font-family: $roboto;
     font-weight: 300;
-    font-size: 1.8rem;
+    font-size: 1.43rem;
     line-height: 1.36;
     @include mobile {
       font-size: 1.5rem;
@@ -59,8 +59,14 @@
       flex-direction: column;
       width: 49rem;
       height: 100%;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
+      margin-left: 5%;
+
+      h1,
+      h4 {
+        text-align: left;
+      }
       @include mobile {
         width: 90%;
         margin: 0 auto;
@@ -70,6 +76,7 @@
         h1,
         h4 {
           z-index: 2;
+          text-align: center;
         }
       }
     }
@@ -78,11 +85,13 @@
 
   .containerClass {
     padding: 5% 5% 0;
-    @include desktop {
-      padding: 0 5%;
+    @include tablet {
+      padding: 5% 1% 0;
     }
-    @include hd {
-      padding: 0 10%;
+    @include desktop {
+      padding: 0;
+      width: 90rem;
+      margin: 0 auto;
     }
   }
 
@@ -91,16 +100,23 @@
     margin-right: 0;
 
     h2 {
-      font-size: 2.857rem;
+      font-size: 2.143rem;
       color: $medium-pink;
       font-weight: 500;
       text-align: center;
+      padding: 0 1rem;
+      width: 100%;
+      margin-bottom: 0;
     }
 
     p {
-      color: $greyish-brown;
+      color: $greyish-brown-six;
       font-size: 1.2857rem;
       text-align: center;
+
+      &.detailSubHeading {
+        font-size: 1.3rem;
+      }
     }
 
     &:nth-child(3) {
@@ -118,6 +134,9 @@
         }
 
         .contentPart {
+          margin-right: 1.5rem;
+          margin-left: 0;
+
           ul {
             li {
               @include mobile {
@@ -168,15 +187,19 @@
   @include tablet {
     flex-direction: row;
     border: none;
-    padding: 1rem;
+    padding: 1.5rem;
 
+  }
+
+  h2 {
+    text-align: center;
+    width: 100%;
   }
 
   h3 {
     font-size: 2.143rem;
     font-weight: 700;
     color: $medium-pink;
-    text-align: center;
     margin: 0;
 
     &.mobile {
@@ -200,9 +223,8 @@
   flex-grow: 1;
   @include tablet {
     background-color: #f5f5f5;
-    padding: 1.8rem 8%;
-    box-shadow: 1px 1px 0 0 rgba(242, 46, 144, 0.8);
-
+    padding: 1.8rem 5%;
+    margin-left: 1.5rem;
   }
 
   ul {
@@ -212,7 +234,7 @@
     justify-content: flex-start;
     padding: 0;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: .5rem 0;
     @include tablet {
       justify-content: center;
     }
@@ -227,7 +249,6 @@
       @include tablet {
          @include padding(0,0,0,40);
         font-size: 1.286rem;
-        width: 50%;
       }
       @include desktop {}
 
@@ -252,7 +273,7 @@
 
 .vowIconLine {
   height: 3.85rem;
-  margin: 2rem 0 4rem;
+  margin: 0 0 4rem;
 }
 
 .imgIcon {
@@ -263,4 +284,71 @@
   left: 50%;
   bottom: 2.5rem;
   transform: translateX(-50%);
+}
+
+.iconContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin-top: 3rem;
+  align-items: center;
+  @include mobile {
+    margin-top: 0;
+    justify-content: space-around;
+  }
+
+  img {
+    cursor: pointer;
+    opacity: 0;
+    animation-name: iconAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 1.5s;
+    width: 4rem;
+    @include mobile {
+      width: 3rem;
+      height: 3rem;
+    }
+    @include tablet {
+      width: 4.5rem;
+      margin-right: 7rem;
+    }
+    @include threeK {
+      width: auto;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 2.5s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 3s;
+    }
+  }
+}
+@keyframes iconAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.detailImage {
+  width: 100%;
+  @include tablet {
+    width: 28rem;
+  }
+  @include desktop {
+    width: 35rem;
+  }
+  @include hd {
+    width: 39rem;
+  }
 }

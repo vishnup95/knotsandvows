@@ -7,57 +7,58 @@ let data = [
         title: 'Let us inspire you',
         heading: '',
         images: ['design-decor.jpg', 'services-photoshoot.jpg', 'digital-services.jpg', 'little-extras.jpg'],
+        ctaText: 'Get Inspired',
         listItems: [
             'Decor ideas and designs.',
-            'Color combinations, linen & flower. ',
             'Floorplans and table arrangements.',
+            'Photobooth ideas, props and accessories themes.',
             'Bride/Groom entrance ideas.',
-            'Floorplans and table arrangements.',
-            'Decor ideas and designs.',
-            'Color combinations, linen & flower. ',
-            'Floorplans and table arrangements.',
-            'Bride/Groom entrance ideas.',
-            'Floorplans and table arrangements.'
+            'Welcome/Return gift designs.',
+            'Wedding Accessories designs.',
+            'Social media posts.',
+            'Wedding website.',
+            'Wedding invitation/e-vites designs.',
+            'Makeup Styles.'
 
         ]
     },
     {
         icon: 'shortlist-icon.png',
         mobileIcon: 'search-icon-white.png',
-        title: 'Vendor services',
-        heading: '60% of customers want this bundle!',
+        title: 'Vendor Services',
+        heading: '66% of customers select this service',
         images: ['vendor-selection.jpg', 'vendor-coordination.jpg', 'vendor-management.jpg', 'ceremony-details.jpg'],
+        ctaText: 'Vendor Services',
         listItems: [
-            'Decor ideas and designs.',
-            'Color combinations, linen & flower. ',
-            'Floorplans and table arrangements.',
-            'Bride/Groom entrance ideas.',
-            'Floorplans and table arrangements.',
-            'Decor ideas and designs.',
-            'Color combinations, linen & flower. ',
-            'Floorplans and table arrangements.',
-            'Bride/Groom entrance ideas.',
-            'Floorplans and table arrangements.'
+            'Venue(s) selection, site visits.',
+            'Caterer(s) selection, food tasting, menu finalization.',
+            'Decorator selection.',
+            'Photographer selection.',
+            'Makeup & Mehendi selection, trial coordination.',
+            'DJ, Choreographer, MC selection.',
+            'Dance practice coordination.',
+            'Band & Baraat selection.',
+            'All vendor bookings,coordination.',
+            'Payment distribution.'
 
         ]
     },
     {
         icon: 'wedding-day-service-icon.svg',
         mobileIcon: 'wedding-day-service-icon.svg',
-        title: 'Wedding day services',
+        title: 'Ceremony Day services',
         heading: '',
         images: ['day-of-ceremony.jpg', 'take-no-stress.jpg'],
+        ctaText: 'Big Day Services',
         listItems: [
-            'Decor ideas and designs.',
-            'Color combinations, linen & flower. ',
-            'Floorplans and table arrangements.',
-            'Bride/Groom entrance ideas.',
-            'Floorplans and table arrangements.',
-            'Decor ideas and designs.',
-            'Color combinations, linen & flower. ',
-            'Floorplans and table arrangements.',
-            'Bride/Groom entrance ideas.',
-            'Floorplans and table arrangements.'
+            'Day of ceremony schedule management.',
+            'Logistics & Transportation.',
+            'Vendor coordination.',
+            'Floor arrangements.',
+            'Bride & Groom shadowing.',
+            'Gifts distribution.',
+            'Cancellation resolution.',
+            'Vendor replacements.'
 
         ]
     }

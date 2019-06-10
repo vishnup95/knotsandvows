@@ -63,7 +63,9 @@ class SimpleCarousel extends Component {
             <Carousel
                 activeIndex={activeIndex}
                 next={this.next}
-                previous={this.previous}>
+                previous={this.previous}
+                ride={'carousel'}
+                interval={1500}>
                 {this.props.isIndicator && <CarouselIndicators items={this.props.data} activeIndex={activeIndex} onClickHandler={this.goToIndex} /> }
                 {slides}
 

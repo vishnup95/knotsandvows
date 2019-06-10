@@ -181,7 +181,7 @@ class TalkToWeddingPlanner extends Component {
     }
     render() {
         return (
-            <div className="flex justify-center">
+            <div className={`${this.props.type != 'services' ? 'justify-center' : ''} flex`}>
                 {this.props.type === 'link' && styles.footerLink && <button className={`${this.props.origin === 'footer' ? styles.footerLink : 's'} link-btn`} onClick={() => this.toggle()}>{this.props.buttonText}</button>}
                 {this.props.type === 'call' && <div className="call-btn" onClick={() => this.toggle()} aria-hidden >
                     <div className="pulsateRing"></div>
