@@ -48,12 +48,11 @@ class TalkToWeddingPlanner extends Component {
             modal: false,
             servicesModal: false,
             checkboxes: [
-                { label: 'Define your wedding style', checked: false },
-                { label: 'Select your dream vendors', checked: false },
-                { label: 'Finalize the details', checked: false },
-                { label: 'Big Day arrangements', checked: false },
+                { label: 'Get inspired', checked: false },
+                { label: 'Vendor services', checked: false },
+                { label: 'Ceremony Day services', checked: false },
                 { label: 'All services', checked: false },
-                { label: 'I’m not sure', checked: false },
+                { label: `I'm not sure`, checked: false },
             ]
         }
         this.toggle = this.toggle.bind(this);
@@ -137,13 +136,13 @@ class TalkToWeddingPlanner extends Component {
     }
 
     handleCheckbox(event, checkIndex) {
-        // index = 4 => 'All', index = 5 => 'None'
-        if (checkIndex === 4) {
+        // index = 3 => 'All', index = 4 => 'None'
+        if (checkIndex === 3) {
             this.setState({ checkboxes: this.state.checkboxes.map((item, index) => index <= checkIndex ? { ...item, checked: event.target.checked } : { ...item, checked: false }) });
-        } else if (checkIndex === 5) {
+        } else if (checkIndex === 4) {
             this.setState({ checkboxes: this.state.checkboxes.map((item, index) => index < checkIndex ? { ...item, checked: false } : { ...item, checked: event.target.checked }) });
         } else {
-            this.setState({ checkboxes: this.state.checkboxes.map((item, index) => index === checkIndex ? { ...item, checked: event.target.checked } : ((index === 5 || index === 4) ? { ...item, checked: false } : item)) });
+            this.setState({ checkboxes: this.state.checkboxes.map((item, index) => index === checkIndex ? { ...item, checked: event.target.checked } : ((index === 4 || index === 3) ? { ...item, checked: false } : item)) });
         }
     }
 
