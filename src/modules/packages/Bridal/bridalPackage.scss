@@ -1,0 +1,271 @@
+@import '../../../variables/colors';
+@import '../../../variables/utils';
+@import '../../../variables/fonts';
+@import '../../../variables/breakpoints';
+
+.servicesContainer {
+  color: $black;
+
+  h1 {
+    font-size: 33px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    @include tablet {
+      font-size: 2.35rem;
+      color: $medium-pink;
+
+    }
+  }
+
+  h4 {
+    color: #000;
+    font-family: $frank;
+    font-weight: normal;
+    font-size: 2.35rem;
+    line-height: 1.36;
+    @include mobile {
+      font-size: 1.5rem;
+      color: #fff;
+      text-align: center;
+    }
+  }
+
+  .bridalImg {
+    width: 100%;
+    background-image: url('#{$image-base-url}/bridal.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include tablet {
+      width: 50vw;
+
+    }
+  }
+
+  .servicesCover {
+    display: flex;
+    height: 31vw;
+    position: relative;
+    text-align: center;
+    margin-bottom: 3rem;
+    background-color: #f5f5f5;
+    @include mobile {
+      height: 90vw;
+      background-position: right;
+      margin-bottom: 0;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 200px;
+        width: 100%;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
+
+      }
+    }
+
+    .coverDetail {
+      display: flex;
+      flex-direction: column;
+      width: 50vw;
+      height: 100%;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 5%;
+
+      h1,
+      h4 {
+        text-align: left;
+      }
+      @include mobile {
+        width: 90%;
+        margin: 0 auto;
+        justify-content: flex-end;
+        padding-bottom: 2rem;
+        position: absolute;
+        align-items: center;
+        padding: 0 1rem 2rem;
+        h1,
+        h4 {
+          z-index: 2;
+          text-align: center;
+        }
+      }
+    }
+
+  }
+
+  .containerClass {
+    padding: 5% 5% 0;
+    @include tablet {
+      padding: 5% 1% 0;
+    }
+    @include desktop {
+      padding: 0;
+      width: 75rem;
+      margin: 0 auto;
+    }
+  }
+
+  .detailBox {
+    margin-left: 0;
+    margin-right: 0;
+
+    h2 {
+      text-align: center;
+      width: 100%;
+      font-size: 1.78rem;
+      color: #6d2158;
+      font-weight: 700;
+    }
+
+    p {
+      color: $greyish-brown-six;
+      font-size: 1.2857rem;
+      text-align: center;
+
+      &.detailSubHeading {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+.detailWrap {
+  display: flex;
+  flex-direction: column;
+  @include tablet {
+    flex-direction: row;
+  }
+
+}
+
+.sectionWrap {
+  display: flex;
+  padding: 0;
+  margin-bottom: 4rem;
+  flex-direction: column;
+  box-shadow: 6px 11px 5px 0 rgba(204, 26, 102, 0.12);
+  border: 1.5px solid #ffc8df;
+  border-radius: 6px;
+  @include tablet {
+    flex-direction: row;
+
+  }
+
+  h3 {
+    font-size: 1.86rem;
+    font-weight: normal;
+    color: $medium-pink;
+    margin: 0;
+    @include mobile {
+      color: $medium-pink;
+      font-size: 30px;
+      padding: 1rem 0;
+    }
+  }
+}
+
+.contentPart {
+  display: flex;
+  flex-direction: column;
+  @include tablet {
+    padding: 1.8rem 5%;
+    width: 25.5rem;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    padding: 0;
+    margin: .5rem 0;
+    @include tablet {}
+
+    li {
+      padding: .2rem 0 .2rem 1.25rem;
+      font-size: 14px;
+      position: relative;
+      color: $greyish-brown-two;
+      line-height: 1.72;
+      width: 100%;
+      @include tablet {
+         @include padding(0,0,0,40);
+        font-size: 1.1rem;
+      }
+      @include desktop {}
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: .7rem;
+        width: 12px;
+        height: 14px;
+        background: url('#{$image-base-url}/fav-icon.png') no-repeat top left;
+        background-size: contain;
+        @include tablet {
+          top: .7rem;
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.vowIconLine {
+  height: 3.85rem;
+  margin: 0 0 4rem;
+}
+
+.imgIcon {
+  z-index: 2;
+  width: 4.285rem;
+  height: 4.285rem;
+  position: absolute;
+  left: 50%;
+  bottom: 2.5rem;
+  transform: translateX(-50%);
+}
+
+.detailImage {
+  width: 100%;
+  @include tablet {
+    width: 28rem;
+  }
+  @include desktop {
+    width: 35rem;
+  }
+  @include hd {
+    width: 39rem;
+  }
+}
+
+.imageCarouselWrap {
+  padding: 0;
+  @include tablet {
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+  }
+
+  > img {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    margin-left: -.5px;
+
+    @include tablet {
+
+      width: 48rem;
+      height: 23.6rem;
+      border-radius: 6px 0 0 6px;
+    }
+
+  }
+}
