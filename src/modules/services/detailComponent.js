@@ -16,7 +16,7 @@ class DetailComponent extends Component {
   render() {
     return (
       <Row className={styles.detailBox} id={this.props.id}>
-        {this.props.data.heading && <h2>{this.props.data.heading}</h2>}
+        {this.props.data.heading && <h2 dangerouslySetInnerHTML={{__html: this.props.data.heading}}></h2>}
         <Col md="12" className={styles.sectionWrap}>
           <div className={styles.imageCarouselWrap}>
             <img className={`${styles.imgIcon} tab-only`} src={imagePath(this.props.data.icon)} alt="vow icon" />

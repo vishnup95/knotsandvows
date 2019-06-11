@@ -4,7 +4,7 @@ let data = [
     {
         icon: 'inspire-icon.svg',
         mobileIcon: 'inspire-icon.svg',
-        title: `Let us <span class="mobile-only"><br/></span> inspire you`,
+        title: 'Let us <span class="mobile-only"><br/></span> inspire you',
         heading: '',
         images: ['design-decor.jpg', 'services-photoshoot.jpg', 'digital-services.jpg', 'little-extras.jpg'],
         ctaText: 'Get Inspired',
@@ -26,7 +26,7 @@ let data = [
         icon: 'shortlist-icon.png',
         mobileIcon: 'search-icon-white.png',
         title: 'Vendor Services',
-        heading: '66% of customers select this service',
+        heading: '65% of customers <span class="mobile-only"><br/></span> choose this service !',
         images: ['vendor-selection.jpg', 'vendor-coordination.jpg', 'vendor-management.jpg', 'ceremony-details.jpg'],
         ctaText: 'Vendor Services',
         listItems: [
