@@ -136,6 +136,12 @@
         .contentPart {
           margin-right: 1.5rem;
           margin-left: 0;
+          @include mobile {
+            button {
+              background-color: $white;
+              color: $medium-pink;
+            }
+          }
 
           ul {
             li {
