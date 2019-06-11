@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import styles from './services.scss';
 import { Row, Col } from 'reactstrap';
 import DetailComponent from './detailComponent';
-import { imagePath } from '../../utils/assetUtils';
 import data from './servicesData';
-import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+import { imagePath } from '../../utils/assetUtils';
 
 class ServicesComponent extends Component {
   componentDidMount() {
@@ -28,21 +27,19 @@ class ServicesComponent extends Component {
             <h1>A big step <span className='tab-only'><br /></span>towards a beautiful life</h1>
             <h4>We are there with you,<span className='tab-only'><br /></span> in every step of your planning journey.</h4>
             <div className={styles.iconContainer}>
-              <img src={imagePath('define-icon.png')} alt="" onClick={() => this.handleSectionScroll('section1')} aria-hidden />
+              <img src={imagePath('inspire-icon.svg')} alt="" onClick={() => this.handleSectionScroll('section1')} aria-hidden />
               <img src={imagePath('shortlist-icon.png')} alt="" onClick={() => this.handleSectionScroll('section2')} aria-hidden />
-              <img src={imagePath('detail-icon.png')} alt="" onClick={() => this.handleSectionScroll('section3')} aria-hidden />
-              <img src={imagePath('d-day-icon.png')} alt="" onClick={() => this.handleSectionScroll('section4')} aria-hidden />
+              <img src={imagePath('wedding-day-service-icon.svg')} alt="" onClick={() => this.handleSectionScroll('section3')} aria-hidden />
+              {/* <img src={imagePath('d-day-icon.png')} alt="" onClick={() => this.handleSectionScroll('section4')} aria-hidden /> */}
             </div>
           </div>
         </div>
 
         <div className={styles.containerClass}>
           <Row className={`${styles.detailBox}`}>
-            <Col md="3" className={styles.leftSection}></Col>
-            <Col md="8" className={`pt-0 pb-0 ${styles.rightSection}`}>
-              <img className={styles.vowIcon} src={imagePath('vow-icon.png')} alt="vow icon" />
-              <h2 className={styles.pink}>Pick one or choose all</h2>
-              <h4>Every wedding has its unique essence and comes with its own set of planning needs. Our services have been crafted in such a way that you can book them separately or can simply add them to a package.</h4>
+            <Col md="12" className={`pt-0 pb-0 mb-4`}>
+              <h2 className={styles.pink}>Choose one or choose all</h2>
+              <p className={styles.detailSubHeading}>Every wedding has its unique essence and comes with its own set of planning needs. Our services have been <span className="tab-only"><br/></span> crafted in such a way that you can book them separately or can simply add them to a package.</p>
             </Col>
           </Row>
 
@@ -51,16 +48,6 @@ class ServicesComponent extends Component {
               return <DetailComponent key={index} data={item} id={`section${index + 1}`} />
             })
           }
-
-          <Row className={`mb-5 ${styles.detailBox}`}>
-            <Col md="3" className={styles.leftSection}></Col>
-            <Col md="8" className={styles.rightSection}>
-              <h2>We are just a step away!</h2>
-              <div className={`${styles.talkButton} mt-4 ml-0`}>
-                <TalkToWeddingPlanner buttonText={'Let Us Help You'} type="services"/>
-              </div>
-            </Col>
-          </Row>
 
         </div>
       </div>
