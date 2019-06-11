@@ -4,7 +4,7 @@ let data = [
     {
         icon: 'inspire-icon.svg',
         mobileIcon: 'inspire-icon.svg',
-        title: 'Let us inspire you',
+        title: `Let us <span class="mobile-only"><br/></span> inspire you`,
         heading: '',
         images: ['design-decor.jpg', 'services-photoshoot.jpg', 'digital-services.jpg', 'little-extras.jpg'],
         ctaText: 'Get Inspired',

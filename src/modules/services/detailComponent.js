@@ -21,12 +21,12 @@ class DetailComponent extends Component {
           <div className={styles.imageCarouselWrap}>
             <img className={`${styles.imgIcon} tab-only`} src={imagePath(this.props.data.icon)} alt="vow icon" />
             <img className={`${styles.imgIcon} mobile-only`} src={imagePath(this.props.data.mobileIcon)} alt="vow icon" />
-            <h3 className={`${styles.mobile} mobile-only`}>{this.props.data.title}</h3>
+            <h3 className={`${styles.mobile} mobile-only`} dangerouslySetInnerHTML={{__html: this.props.data.title}}></h3>
             <SimpleCarousel data={this.props.data.images} />
 
           </div>
           <div className={styles.contentPart}>
-            <h3 className="tab-only">{this.props.data.title}</h3>
+            <h3 className="tab-only" dangerouslySetInnerHTML={{__html: this.props.data.title}}></h3>
             <ul>
               {
                 this.props.data.listItems.map((item, index) => {
