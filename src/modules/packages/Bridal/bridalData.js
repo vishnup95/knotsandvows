@@ -2,10 +2,10 @@
 
 let data = [
     {
-        icon: 'bridal-package-img.png',
+        detailImage: 'bridal-package-img.png',
         mobileIcon: 'inspire-icon.svg',
         title: 'Ceremony design & decor',
-        ctaText: 'Get Inspired',
+        offerText: '',
         listItems: [
             'Wedding, Sangeet/Mehendi decor design.',
             'Decorator Selection.',
@@ -14,10 +14,10 @@ let data = [
         ]
     },
     {
-        icon: 'bridal-package-img.png',
+        detailImage: 'bridal-package-img.png',
         mobileIcon: 'search-icon-white.png',
         title: 'Makeup & Mehendi',
-        ctaText: 'Vendor Services',
+        offerText: '<span>Free<br/>makeup<br/>trial!</span>',
         listItems: [
             'Wedding, Sangeet/Mehendi decor design.',
             'Decorator Selection.',
@@ -26,10 +26,10 @@ let data = [
         ]
     },
     {
-        icon: 'bridal-package-img.png',
+        detailImage: 'bridal-package-img.png',
         mobileIcon: 'wedding-day-service-icon.svg',
         title: 'Special Touches',
-        ctaText: 'Big Day Services',
+        offerText: '',
         listItems: [
             'Wedding, Sangeet/Mehendi decor design.',
             'Decorator Selection.',
@@ -38,10 +38,10 @@ let data = [
         ]
     },
     {
-        icon: 'bridal-package-img.png',
+        detailImage: 'bridal-package-img.png',
         mobileIcon: 'wedding-day-service-icon.svg',
         title: 'Moments & Memories',
-        ctaText: 'Big Day Services',
+        offerText: '',
         listItems: [
             'Wedding, Sangeet/Mehendi decor design.',
             'Decorator Selection.',

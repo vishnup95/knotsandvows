@@ -88,6 +88,7 @@
         position: absolute;
         align-items: center;
         padding: 0 1rem 2rem;
+
         h1,
         h4 {
           z-index: 2;
@@ -101,11 +102,9 @@
   .containerClass {
     padding: 5% 5% 0;
     @include tablet {
-      padding: 5% 1% 0;
-    }
-    @include desktop {
       padding: 0;
       width: 75rem;
+      max-width: 95%;
       margin: 0 auto;
     }
   }
@@ -113,7 +112,7 @@
   .detailBox {
     margin-left: 0;
     margin-right: 0;
-
+    position: relative;
     h2 {
       text-align: center;
       width: 100%;
@@ -144,14 +143,13 @@
 }
 
 .sectionWrap {
-  display: flex;
-  padding: 0;
+  padding: 1rem;
   margin-bottom: 4rem;
-  flex-direction: column;
   box-shadow: 6px 11px 5px 0 rgba(204, 26, 102, 0.12);
   border: 1.5px solid #ffc8df;
   border-radius: 6px;
   @include tablet {
+    display: flex;
     flex-direction: row;
 
   }
@@ -169,12 +167,42 @@
   }
 }
 
+.imageCarouselWrap {
+  padding: 0;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 23.6rem;
+  border-radius: 4px 4px 0 0;
+  @include tablet {
+    display: flex;
+    align-items: center;
+    border-radius: 4px 0 0 4px;
+    flex: 1.8;
+    height: 23.6rem;
+  }
+
+  > img {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    margin-left: -.5px;
+    @include tablet {
+
+      width: 48rem;
+      height: 23.6rem;
+      border-radius: 6px 0 0 6px;
+    }
+
+  }
+}
+
 .contentPart {
   display: flex;
   flex-direction: column;
+  position: relative;
   @include tablet {
-    padding: 1.8rem 5%;
-    width: 25.5rem;
+    padding: 3rem 5%;
+    flex: 1;
   }
 
   ul {
@@ -196,7 +224,7 @@
       width: 100%;
       @include tablet {
          @include padding(0,0,0,40);
-        font-size: 1.1rem;
+        font-size: 1.27rem;
       }
       @include desktop {}
 
@@ -247,25 +275,63 @@
   }
 }
 
-.imageCarouselWrap {
-  padding: 0;
-  @include tablet {
-    display: flex;
-    align-items: center;
-    flex-grow: 0;
-  }
+.cornerContent {
+  position: absolute;
+  top: calc(-1rem + 1px);
+  right: calc(-1rem + 1px);
+  height: 10.3636rem;
+  width: 10.3636rem;
+  font-size: 1.3636rem;
+  font-family: $frank;
+  font-weight: 700;
+  color: $white;
+  background-image: linear-gradient(46deg, #fe9614, #f0b941);
+  text-align: right;
+  padding: 1rem;
+  z-index: 1;
+  border-top-right-radius: 4px;
+  display: none;
+}
+.freeText {
+  font-family: $frank;
+  font-weight: 700;
+  color: $darkish-purple;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.priceWrap {
+  position: relative;
+  width: max-content;
+}
+.priceBg {
+  width: 24.54rem;
+  height: auto;
+}
+.price {
+  font-family: $frank;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $white;
+  transform: rotate(-7deg);
+  position: absolute;
+  right: 6rem;
+  top: 3rem;
+}
+.priceAt {
+  @extend .price;
+  right: 18rem;
+  top: 8rem;
 
-  > img {
-    width: 100%;
-    border-radius: 6px 6px 0 0;
-    margin-left: -.5px;
-
-    @include tablet {
-
-      width: 48rem;
-      height: 23.6rem;
-      border-radius: 6px 0 0 6px;
-    }
-
-  }
+}
+.priceValue {
+  color: #000;
+  font-family: $roboto;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  transform: rotate(-7deg);
+  position: absolute;
+  top: 8.5rem;
+  right: 5rem;
 }

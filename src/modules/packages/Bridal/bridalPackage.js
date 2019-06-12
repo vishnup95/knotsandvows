@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap';
 import BridalDetailComponent from './bridalDetailComponent';
 import data from './bridalData';
 import { imagePath } from '../../../utils/assetUtils';
+import TalkToWeddingPlanner from '../../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 
 class BridalPackage extends Component {
   componentDidMount() {
@@ -26,12 +27,6 @@ class BridalPackage extends Component {
           <div className={styles.coverDetail}>
             <h4>Planning your</h4>
             <h1>perfect day begins here</h1>
-            {/* <div className={styles.iconContainer}>
-              <img src={imagePath('inspire-icon.svg')} alt="" onClick={() => this.handleSectionScroll('section1')} aria-hidden />
-              <img src={imagePath('shortlist-icon.png')} alt="" onClick={() => this.handleSectionScroll('section2')} aria-hidden />
-              <img src={imagePath('wedding-day-service-icon.svg')} alt="" onClick={() => this.handleSectionScroll('section3')} aria-hidden />
-              <img src={imagePath('d-day-icon.png')} alt="" onClick={() => this.handleSectionScroll('section4')} aria-hidden /> 
-            </div> */}
           </div>
           <div className={styles.bridalImg}></div>
         </div>
@@ -48,11 +43,27 @@ class BridalPackage extends Component {
               return <BridalDetailComponent key={index} data={item} id={`section${index + 1}`} />
             })
           }
+          <Row>
+            <Col md="12" className="text-center">
+              <img className={styles.vowIconLine} src={imagePath('about-vows.png')} alt="vow icon" />
+            </Col>
+          </Row>
+          <Row className={`${styles.detailBox}`}>
+            <Col md="6" className="text-right flex justify-center">
+              <div className={styles.priceWrap}>
+                <img className={styles.priceBg} src={imagePath('bridal-offer-bg.svg')} alt="" />
+                <div className={styles.price}>Price starting</div>
+                <div className={styles.priceAt}>at</div>
+                <div className={styles.priceValue}>6 Lakhs</div>
+                <h5 className={styles.freeText}>Get free makeup trial!</h5>
+              </div>
+            </Col>
+            <Col md="6" >
+              <h2 className={styles.pink}>Lorem ipsum dolor sit amet.</h2>
+              <TalkToWeddingPlanner buttonText={'Let us help you!'} />
 
-          <Col md="12" className="text-center">
-            <img className={styles.vowIconLine} src={imagePath('about-vows.png')} alt="vow icon" />
-          </Col>
-
+            </Col>
+          </Row>
         </div>
       </div>
     );
