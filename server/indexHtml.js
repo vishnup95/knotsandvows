@@ -119,6 +119,20 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) 
         { var w = new PCWidget({c: '93716f8f-05de-4275-a033-aa244d31b6d8', f: true }); 
         done = true; } }; })();</script>
+        <script>
+        window.onload = function() {
+          setTimeout(function(){ 
+          if(document.getElementsByClassName("purechat-collapsed-image")[0].attributeStyleMap.size == 6)
+          {
+            document.getElementById("btnCallMe").style.display = "none";   
+          }
+          else
+          {
+            document.getElementById("btnCallMe").style.display = "block";   
+          }
+          }, 2000);
+        };
+      </script>
         <!-- End Pure Chat -->
         <!-- Facebook Pixel Code -->
           <script>

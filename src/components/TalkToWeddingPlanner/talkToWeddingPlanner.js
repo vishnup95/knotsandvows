@@ -182,7 +182,7 @@ class TalkToWeddingPlanner extends Component {
         return (
             <div className={`${this.props.type != 'services' ? 'justify-center' : ''} flex`}>
                 {this.props.type === 'link' && styles.footerLink && <button className={`${this.props.origin === 'footer' ? styles.footerLink : 's'} link-btn`} onClick={() => this.toggle()}>{this.props.buttonText}</button>}
-                {this.props.type === 'call' && <div className="call-btn" onClick={() => this.toggle()} aria-hidden >
+                {this.props.type === 'call' && <div id="btnCallMe" className="call-btn" style={{display:'none'}} onClick={() => this.toggle()} aria-hidden >
                     <div className="pulsateRing"></div>
                     <div className={styles.callBtnImg} role="button" tabIndex="0" onClick={() => this.handlePulsateRing} onKeyDown={() => this.handlePulsateRing}></div>
                     {/* <img src={imagePath('button-call.png')} alt="call-button" /> */}
