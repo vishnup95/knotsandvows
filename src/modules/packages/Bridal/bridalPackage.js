@@ -26,16 +26,16 @@ class BridalPackage extends Component {
         <div className={styles.servicesCover}>
           <div className={styles.bridalImg}>
             <div className={styles.coverDetail}>
-              <h4>Planning your</h4>
-              <h1>perfect day begins here</h1>
+              {/* <h4>Planning your</h4> */}
+              <h1>Because in your dreams, every detail matters</h1>
             </div>
           </div>
         </div>
 
         <div className={styles.containerClass}>
           <Row className={`${styles.detailBox}`}>
-            <Col md="12" className={`pt-0 pb-0 mb-4`}>
-              <h2 className={styles.pink}>Our Bridal packages includes.</h2>
+            <Col md="12">
+              <h2 className={styles.pink}>It&#39;s your wedding and Knot&Vows wants your day to be as perfect as you are.</h2>
             </Col>
           </Row>
 

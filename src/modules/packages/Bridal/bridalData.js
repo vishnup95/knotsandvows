@@ -7,9 +7,9 @@ let data = [
         title: 'Ceremony design & decor',
         offerText: '',
         listItems: [
-            'Wedding, Sangeet/Mehendi decor design.',
-            'Decorator Selection.',
-            'Day of ceremony arrangements & coordination.'
+            'Wedding, Sangeet/Mehendi decor design',
+            'Decorator Selection',
+            'Day of ceremony arrangements & coordination'
 
         ]
     },
@@ -19,9 +19,9 @@ let data = [
         title: 'Makeup & Mehendi',
         offerText: '<span>Free<br/>makeup<br/>trial!</span>',
         listItems: [
-            'Wedding, Sangeet/Mehendi decor design.',
-            'Decorator Selection.',
-            'Day of ceremony arrangements & coordination.'
+            'Vendor selection',
+            'Trial coordination',
+            'Makeup style recommendations'
 
         ]
     },
@@ -31,9 +31,9 @@ let data = [
         title: 'Special Touches',
         offerText: '',
         listItems: [
-            'Wedding, Sangeet/Mehendi decor design.',
-            'Decorator Selection.',
-            'Day of ceremony arrangements & coordination.'
+            'Welcome/Return gifts',
+            'Poola jada',
+            'Decorated coconut, ungrala bindi, addu tera etc'
 
         ]
     },
@@ -43,9 +43,9 @@ let data = [
         title: 'Moments & Memories',
         offerText: '',
         listItems: [
-            'Wedding, Sangeet/Mehendi decor design.',
-            'Decorator Selection.',
-            'Day of ceremony arrangements & coordination.'
+            'Photographer selection & booking',
+            'Photoshoot coordination',
+            'Ceremony photography & videography coordination'
 
         ]
     }
