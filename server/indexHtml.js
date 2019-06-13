@@ -74,6 +74,13 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         <link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900" rel="stylesheet">
         
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${gtmId}');</script>
+        <!-- End Google Tag Manager -->
         
         <!-- Global site tag (gtag.js) - Google Ads: 745108214 -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-745108214"></script>
@@ -102,12 +109,6 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         }
         </script>
 
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','${gtmId}');</script>
-        <!-- End Google Tag Manager -->
         <!-- Pure Chat -->
         <script type='text/javascript' data-cfasync='false'>
         window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; 
