@@ -13,7 +13,6 @@
     color: #fff;
     @include tablet {
       font-size: 4.285rem;
-      color: $medium-pink;
 
     }
   }
@@ -106,7 +105,7 @@
     padding: 5% 5% 0;
     @include tablet {
       padding: 0;
-      width: 75rem;
+      width: 90rem;
       max-width: 95%;
       margin: 0 auto;
     }
@@ -123,6 +122,7 @@
       font-size: 1.78rem;
       color: #6d2158;
       font-weight: 700;
+      margin: 1rem 0 3rem;
     }
 
     p {
@@ -160,10 +160,10 @@
   }
 
   h3 {
-    font-size: 1.86rem;
+    font-size: 2.232rem;
     font-weight: normal;
     color: $medium-pink;
-    margin: 0;
+    margin: 0 0 .5rem;
     @include mobile {
       color: $medium-pink;
       font-size: 30px;
@@ -178,14 +178,14 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 23.6rem;
+  height: 28.5rem;
   border-radius: 4px 4px 0 0;
   @include tablet {
     display: flex;
     align-items: center;
-    border-radius: 4px 0 0 4px;
+    border-radius: 0;
     flex: 1.8;
-    height: 23.6rem;
+    height: 28.5rem;
   }
 
   > img {
@@ -229,8 +229,8 @@
       line-height: 1.72;
       width: 100%;
       @include tablet {
-         @include padding(0,0,0,40);
-        font-size: 1.27rem;
+         @include padding(7,0,7,40);
+        font-size: 1.524rem;
       }
       @include desktop {}
 
@@ -244,7 +244,7 @@
         background: url('#{$image-base-url}/fav-icon.png') no-repeat top left;
         background-size: contain;
         @include tablet {
-          top: .7rem;
+          top: 1.2rem;
           width: 1rem;
           height: 1rem;
         }
