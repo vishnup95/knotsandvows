@@ -38,9 +38,23 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+    }
     @include tablet {
       height: 47vw;
 
+      &:before {
+        content: '';
+        @include height(500);
+      }
     }
   }
 
@@ -54,17 +68,6 @@
       height: 90vw;
       background-position: right;
       margin-bottom: 0;
-
-      &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 200px;
-        width: 100%;
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
-
-      }
     }
 
     .coverDetail {
