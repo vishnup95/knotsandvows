@@ -12,18 +12,18 @@
     font-weight: bold;
     color: #fff;
     @include tablet {
-      font-size: 2.35rem;
+      font-size: 4.285rem;
       color: $medium-pink;
 
     }
   }
 
   h4 {
-    color: #000;
+    color: $white;
     font-family: $frank;
-    font-weight: normal;
-    font-size: 2.35rem;
+    font-weight: 700;
     line-height: 1.36;
+    font-size: 4.285rem;
     @include mobile {
       font-size: 1.5rem;
       color: #fff;
@@ -33,19 +33,19 @@
 
   .bridalImg {
     width: 100%;
+    height: 90vw;
     background-image: url('#{$image-base-url}/bridal.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     @include tablet {
-      width: 50vw;
+      height: 47vw;
 
     }
   }
 
   .servicesCover {
     display: flex;
-    height: 31vw;
     position: relative;
     text-align: center;
     margin-bottom: 3rem;
@@ -70,24 +70,24 @@
     .coverDetail {
       display: flex;
       flex-direction: column;
-      width: 50vw;
-      height: 100%;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
-      padding-left: 5%;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 4.37rem;
+      z-index: 2;
 
       h1,
       h4 {
         text-align: left;
       }
       @include mobile {
-        width: 90%;
-        margin: 0 auto;
         justify-content: flex-end;
         padding-bottom: 2rem;
-        position: absolute;
         align-items: center;
         padding: 0 1rem 2rem;
+        bottom: 1.37rem;
 
         h1,
         h4 {
@@ -113,6 +113,7 @@
     margin-left: 0;
     margin-right: 0;
     position: relative;
+
     h2 {
       text-align: center;
       width: 100%;
@@ -144,11 +145,12 @@
 
 .sectionWrap {
   padding: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 7rem;
   box-shadow: 6px 11px 5px 0 rgba(204, 26, 102, 0.12);
   border: 1.5px solid #ffc8df;
   border-radius: 6px;
   @include tablet {
+    padding: 4.2rem;
     display: flex;
     flex-direction: row;
 
@@ -172,6 +174,7 @@
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   height: 23.6rem;
   border-radius: 4px 4px 0 0;
   @include tablet {
@@ -277,37 +280,38 @@
 
 .cornerContent {
   position: absolute;
-  top: calc(-1rem + 1px);
-  right: calc(-1rem + 1px);
+  top: 0;
+  right: 0;
   height: 10.3636rem;
   width: 10.3636rem;
   font-size: 1.3636rem;
   font-family: $frank;
   font-weight: 700;
   color: $white;
-  background-image: linear-gradient(46deg, #fe9614, #f0b941);
+  background-image: url('#{$image-base-url}/corner-content-bg.svg');
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
   text-align: right;
-  padding: 1rem;
+  padding: .5rem;
   z-index: 1;
   border-top-right-radius: 4px;
-  display: none;
+  @include mobile {
+    display: none;
+  }
 }
-.freeText {
-  font-family: $frank;
-  font-weight: 700;
-  color: $darkish-purple;
-  font-size: 1.5rem;
-  text-align: center;
-  margin-bottom: 4rem;
-}
+
 .priceWrap {
   position: relative;
   width: max-content;
+  margin-bottom: 4rem;
 }
+
 .priceBg {
   width: 24.54rem;
   height: auto;
 }
+
 .price {
   font-family: $frank;
   font-size: 2.5rem;
@@ -318,12 +322,14 @@
   right: 6rem;
   top: 3rem;
 }
+
 .priceAt {
   @extend .price;
   right: 18rem;
   top: 8rem;
 
 }
+
 .priceValue {
   color: #000;
   font-family: $roboto;

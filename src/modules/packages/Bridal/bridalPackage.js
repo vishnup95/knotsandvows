@@ -24,11 +24,12 @@ class BridalPackage extends Component {
     return (
       <div className={styles.servicesContainer}>
         <div className={styles.servicesCover}>
-          <div className={styles.coverDetail}>
-            <h4>Planning your</h4>
-            <h1>perfect day begins here</h1>
+          <div className={styles.bridalImg}>
+            <div className={styles.coverDetail}>
+              <h4>Planning your</h4>
+              <h1>perfect day begins here</h1>
+            </div>
           </div>
-          <div className={styles.bridalImg}></div>
         </div>
 
         <div className={styles.containerClass}>
@@ -55,10 +56,9 @@ class BridalPackage extends Component {
                 <div className={styles.price}>Price starting</div>
                 <div className={styles.priceAt}>at</div>
                 <div className={styles.priceValue}>6 Lakhs</div>
-                <h5 className={styles.freeText}>Get free makeup trial!</h5>
               </div>
             </Col>
-            <Col md="6" >
+            <Col md="6" className="flex flex-column justify-center mb-5">
               <h2 className={styles.pink}>Lorem ipsum dolor sit amet.</h2>
               <TalkToWeddingPlanner buttonText={'Let us help you!'} />
 
