@@ -79,23 +79,12 @@
       width: 100%;
       bottom: 4.37rem;
       z-index: 2;
-
-      h1,
-      h4 {
-        text-align: left;
-      }
       @include mobile {
         justify-content: flex-end;
         padding-bottom: 2rem;
         align-items: center;
         padding: 0 1rem 2rem;
         bottom: 1.37rem;
-
-        h1,
-        h4 {
-          z-index: 2;
-          text-align: center;
-        }
       }
     }
 
