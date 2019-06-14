@@ -44,11 +44,6 @@ class BridalPackage extends Component {
               return <BridalDetailComponent key={index} data={item} id={`section${index + 1}`} />
             })
           }
-          <Row>
-            <Col md="12" className="text-center">
-              <img className={styles.vowIconLine} src={imagePath('about-vows.png')} alt="vow icon" />
-            </Col>
-          </Row>
           <Row className={`${styles.detailBox}`}>
             <Col md="6" className="text-right flex justify-center">
               <div className={styles.priceWrap}>
@@ -59,9 +54,15 @@ class BridalPackage extends Component {
               </div>
             </Col>
             <Col md="6" className="flex flex-column justify-center mb-5">
-              <h2 className={styles.pink}>Lorem ipsum dolor sit amet.</h2>
+              <h2 className={styles.buttonCaption}>Lorem ipsum dolor sit amet.</h2>
               <TalkToWeddingPlanner buttonText={'Let us help you!'} />
 
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="12" className="text-center">
+              <img className={styles.vowIconLine} src={imagePath('about-vows.png')} alt="vow icon" />
             </Col>
           </Row>
         </div>
