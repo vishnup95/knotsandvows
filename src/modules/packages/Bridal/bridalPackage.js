@@ -54,9 +54,7 @@ class BridalPackage extends Component {
               </div>
             </Col>
             <Col md="6" className="flex flex-column justify-center mb-5">
-              <h2 className={styles.buttonCaption}>Lorem ipsum dolor sit amet.</h2>
               <TalkToWeddingPlanner buttonText={'Let us help you!'} />
-
             </Col>
           </Row>
 
