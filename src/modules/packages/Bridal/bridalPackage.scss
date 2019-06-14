@@ -164,10 +164,10 @@
 .imageCarouselWrap {
   padding: 0;
   width: 100%;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 28.5rem;
+  height: 14.5rem;
   border-radius: 4px 4px 0 0;
   @include tablet {
     display: flex;
@@ -175,6 +175,7 @@
     border-radius: 0;
     flex: 1.8;
     height: 28.5rem;
+    background-size: cover;
   }
 
   > img {
@@ -332,6 +333,7 @@
   top: 10.2rem;
   right: 6rem;
 }
+
 .buttonCaption {
   margin: -4rem 0 1rem !important;
 }
