@@ -2,7 +2,7 @@
 
 let data = [
     {
-        detailImage: 'bridal-package-img.png',
+        detailImage: 'designanddecor.png',
         mobileIcon: 'inspire-icon.svg',
         title: 'Ceremony design & decor',
         offerText: '',
@@ -14,7 +14,7 @@ let data = [
         ]
     },
     {
-        detailImage: 'bridal-package-img.png',
+        detailImage: 'mehendi.png',
         mobileIcon: 'search-icon-white.png',
         title: 'Makeup & Mehendi',
         offerText: '<span>Free<br/>makeup<br/>trial!</span>',
@@ -26,7 +26,7 @@ let data = [
         ]
     },
     {
-        detailImage: 'bridal-package-img.png',
+        detailImage: 'special-touches.png',
         mobileIcon: 'wedding-day-service-icon.svg',
         title: 'Special Touches',
         offerText: '',
@@ -38,7 +38,7 @@ let data = [
         ]
     },
     {
-        detailImage: 'bridal-package-img.png',
+        detailImage: 'moments.png',
         mobileIcon: 'wedding-day-service-icon.svg',
         title: 'Moments & Memories',
         offerText: '',

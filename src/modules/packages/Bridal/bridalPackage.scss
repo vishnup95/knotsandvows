@@ -295,40 +295,43 @@
 .priceWrap {
   position: relative;
   width: max-content;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .priceBg {
-  width: 24.54rem;
+  width: 30rem;
   height: auto;
 }
 
 .price {
   font-family: $frank;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: $white;
   transform: rotate(-7deg);
   position: absolute;
-  right: 6rem;
-  top: 3rem;
+  right: 7rem;
+  top: 3.6rem;
 }
 
 .priceAt {
   @extend .price;
-  right: 18rem;
-  top: 8rem;
+  right: 21.5rem;
+  top: 9.6rem;
 
 }
 
 .priceValue {
   color: #000;
   font-family: $roboto;
-  font-size: 2rem;
+  font-size: 2.4rem;
   text-transform: uppercase;
   font-weight: 900;
   transform: rotate(-7deg);
   position: absolute;
-  top: 8.5rem;
-  right: 5rem;
+  top: 10.2rem;
+  right: 6rem;
+}
+.buttonCaption {
+  margin: -4rem 0 1rem !important;
 }
