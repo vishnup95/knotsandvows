@@ -15,11 +15,13 @@ class BridalDetailComponent extends Component {
     return (
       <Row className={styles.detailBox} id={this.props.id}>
         <Col md="12" className={styles.sectionWrap}>
-          <Col className={styles.imageCarouselWrap} style={{backgroundImage: "url(" + imagePath(this.props.data.detailImage) + ")"}}>
+          <Col className={styles.imageCarouselWrap} style={{ backgroundImage: "url(" + imagePath(this.props.data.detailImage) + ")" }}>
+            {this.props.data.offerText && <div className={`${styles.cornerContent} mobile-only`} dangerouslySetInnerHTML={{ __html: this.props.data.offerText }}></div>}
+
           </Col>
           <Col className={styles.contentPart}>
-          {this.props.data.offerText && <div className={styles.cornerContent} dangerouslySetInnerHTML={{__html: this.props.data.offerText }}></div>}
-            <h3  dangerouslySetInnerHTML={{__html: this.props.data.title}}></h3>
+            {this.props.data.offerText && <div className={`${styles.cornerContent} tab-only`} dangerouslySetInnerHTML={{ __html: this.props.data.offerText }}></div>}
+            <h3 dangerouslySetInnerHTML={{ __html: this.props.data.title }}></h3>
             <ul>
               {
                 this.props.data.listItems.map((item, index) => {
