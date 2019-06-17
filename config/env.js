@@ -4,6 +4,7 @@ process.env.VERSION = packageJson.version;
 const BAKED_IN_ENV_VARS = ['NODE_ENV', 'PUBLIC_URL', 'VERSION', 'API_HOST', 'API_PORT', 'GOOGLE_CLIENT_ID','GOOGLE_SITE_VERIFICATION',
 'GOOGLE_MAP_KEY', 'GA_TRACKING_ID', 'FACEBOOK_APP_ID', 'FULLSTORY_ORG_ID', 'GTM_ID', 'APP_URL','CONVERSION_ID'];
 
+
 function getAppEnv() {
   const raw = Object.keys({}).reduce(
     (env, key) => {

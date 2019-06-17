@@ -27,12 +27,12 @@ app.use(bodyParser.json({
 app.use(helmet.contentSecurityPolicy({
   directives: {
     baseUri: ["'self'"],
-    defaultSrc: ["'self'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.fullstory.com', '*.analytics.js', '*.google.com', '*.google-analytics.com', '*.facebook.com', '*.doubleclick.net'],
-    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.google-analytics.com', '*.googletagmanager.com', '*.facebook.net', 'https://fullstory.com', '*.google.com', '*.googleadservices.com', '*.doubleclick.net'],
-    styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com', '*.googleapis.com', 'fonts.googleapis.com'],
-    imgSrc: ["'self'", 'data:', '*.facebook.com', '*.google.com', '*.google.co.in', '*.cloudfront.net', '*.google-analytics.com', '*.ahwanam.com', '*.g.doubleclick.net'],
-    fontSrc: ["'self'",'data:', 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com', 'fonts.gstatic.com'],
-    connectSrc: ["'self'", '*.fullstory.com','https://api.ahwanam.com', 'https://qa.ahwanam.com', 'https://prod.ahwanam.com','*.google-analytics.com']
+    defaultSrc: ["'self'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.fullstory.com', '*.analytics.js', '*.google.com', '*.google-analytics.com', '*.facebook.com', '*.doubleclick.net','*.purechat.com','*.secure.gravatar.com'],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.google-analytics.com', '*.googletagmanager.com', '*.facebook.net', 'https://fullstory.com', '*.google.com', '*.googleadservices.com', '*.doubleclick.net','*.purechat.com','*.secure.gravatar.com'],
+    styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com', '*.googleapis.com', 'fonts.googleapis.com','*.purechat.com','*.secure.gravatar.com'],
+    imgSrc: ["'self'", 'data:', '*.facebook.com', '*.google.com', '*.google.co.in', '*.cloudfront.net', '*.google-analytics.com', '*.ahwanam.com', '*.doubleclick.net','*.purechat.com','*.secure.gravatar.com'],
+    fontSrc: ["'self'",'data:', 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com', 'fonts.gstatic.com','*.purechat.com','*.secure.gravatar.com'],
+    connectSrc: ["'self'", '*.fullstory.com','https://api.ahwanam.com', 'https://qa.ahwanam.com', 'https://prod.ahwanam.com','*.google-analytics.com','*.purechat.com','*.secure.gravatar.com']
   },
   browserSniff: false
 }));

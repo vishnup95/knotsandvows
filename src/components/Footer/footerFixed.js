@@ -90,7 +90,6 @@ class FooterFixedComponent extends Component {
                                 </li>
                                 <li>
                                     <Link to={'/categories'} onClick={()=>{if(window!=null) return window.gtag_report_conversion('/categories');}}>VowVendors</Link>
-                                    
                                 </li>
                                 <li>
                                     <Link to={'/wishlist'} onClick={()=>{if(window!=null) return window.gtag_report_conversion();}}>Wishlist</Link>
