@@ -606,7 +606,6 @@ a.button {
 
 .packageWrap {
   background-color: $medium-pink;
-  @extend %spacer;
   box-shadow: 6px 11px 32px 0 rgba(41, 26, 204, 0.12);
   @include desktop {
     padding-top: 57rem;
@@ -619,6 +618,7 @@ a.button {
   justify-content: flex-end;
   align-items: center;
   min-height: 40.9rem;
+
   &:first-child {
     > img {
       width: 16rem;
@@ -647,6 +647,7 @@ a.button {
   @include desktop {
     width: auto;
     min-height: 49.6rem;
+
     &:first-child {
       z-index: 3;
       transform: translate3d(56%,-80.5rem,0px);
@@ -1042,6 +1043,7 @@ h1.homeTitle {
        @include width(665);
     }
   }
+
   &:before {
     content: '';
     transition: all 2s ease;
@@ -1229,4 +1231,78 @@ h1.homeTitle {
   @include desktop {
     display: none;
   }
+}
+
+.brideBanner {
+  background-image: url('/images/bride-banner-home.png');
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  // height: 31.9vw;
+  @include height(572);
+  padding: 0;
+  @extend %spacer;
+}
+
+.brideBannerContent {
+  height: 100%;
+  // width: 48%;
+  // background-color: $secondary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  background-image: url('/images/angle.svg');
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  a {
+    margin: 0;
+  }
+  @include tablet {
+    padding-left: 5%;
+  }
+  @include desktop {
+    padding-left: 11%;
+  }
+
+  .reactangleOne {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 6vw;
+
+    &:before {
+      // content: '';
+      position: absolute;
+      right: -5vw;
+      top: 0;
+      height: 0;
+      width: 0;
+      border-left: 5vw solid #6d2158;
+      border-top: 26vw solid transparent;
+      border-bottom: 5.9vw solid transparent;
+    }
+  }
+}
+
+.brideBannerHeading {
+  font-family: $frank;
+  font-weight: 700;
+  color: $white;
+  @include fontSize(40);
+  line-height: normal;
+  margin-bottom: 2rem;
+
+}
+
+.brideBannerCopy {
+  font-family: $roboto;
+  color: $white;
+  @include fontSize(18);
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
