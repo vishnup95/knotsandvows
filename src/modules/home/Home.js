@@ -486,7 +486,7 @@ class Home extends Component {
             </div>
 
             <div className={`${styles.brideBanner} container-fluid`}>
-              <div className={styles.brideBannerContent}>
+              <div className={`${styles.brideBannerContent} tab-only`}>
                 {/* <div className={styles.reactangleOne}></div> */}
                 <div className={styles.brideBannerHeading}>
                   Because in your dreams,<br />every detail matters
@@ -496,6 +496,16 @@ class Home extends Component {
                 </div>
                 <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Be a Bride</a>
               </div>
+            </div>
+            <div className={`${styles.brideBannerContent} mobile-only`}>
+              {/* <div className={styles.reactangleOne}></div> */}
+              <div className={styles.brideBannerHeading}>
+                Because in your dreams,<br />every detail matters
+                </div>
+              <div className={styles.brideBannerCopy}>
+                Our bride package covers all the essentials and <span className="tab-only"><br /></span>helps you enhance your day, your way.
+                </div>
+              <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Be a Bride</a>
             </div>
             <Container className={styles.homeContainer}>
               <Row className="mt-5" id="ceremonies">
