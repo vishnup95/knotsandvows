@@ -189,7 +189,7 @@ const routes = (
     <Route exact path="/privacy-policy" component={LoadablePrivacyAndPolicy} />
     <Route path="/packages/wedding-gold-package/" component={LoadableGoldPackage} />
     <Route path="/packages/wedding-ruby-package/" component={LoadableRubyPackage} />
-    <Route path="/packages/bridal-package/" component={LoadableBridalPackage} />
+    <Route path="/packages/bride-package/" component={LoadableBridalPackage} />
     <SecretRoute path="/dashboard" component={PrivatePage} />
     <SecretRoute path="/profile" component={LoadableMyProfile} />
     {/* <SecretRoute path="/addcollabrator" component={LoadableWishlist}/> */}

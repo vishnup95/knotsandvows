@@ -131,7 +131,7 @@ class BridalPackage extends Component {
               </div>
             </Col>
               <Col md='5' className='contact-form'>
-                <h3>Get Your Bridal <span className="tab-only"><br /></span> Package Now!</h3>
+                <h3>Get Your Bride <span className="tab-only"><br /></span> Package Now!</h3>
                 <form>
                   <Row>
                     <Col xs='12'>
