@@ -1234,59 +1234,52 @@ h1.homeTitle {
 }
 
 .brideBanner {
-  background-image: url('/images/bride-banner-home.png');
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-  // height: 31.9vw;
   @include height(572);
   padding: 0;
-  @extend %spacer;
+  @include mobile {
+    background-image: url('/images/bridal-banner.png');
+  }
+  @include tablet {
+    background-image: url('/images/bride-banner-home.png');
+    margin-bottom: 7rem;
+    background-size: cover;
+
+  }
 }
 
 .brideBannerContent {
   height: 100%;
-  // width: 48%;
-  // background-color: $secondary-color;
+  background-color: $secondary-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
-  background-image: url('/images/angle.svg');
-  background-position: left;
+  background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  padding: 3rem;
 
   a {
     margin: 0;
   }
   @include tablet {
-    padding-left: 5%;
+    align-items: flex-start;
+    padding: 0 0 0 5%;
+    background-image: url('/images/angle.svg');
+    background-size: contain;
+    background-position: left;
+    background-size: contain;
+    background-color: transparent;
   }
   @include desktop {
-    padding-left: 11%;
+    padding: 0 0 0 11%;
+
   }
 
-  .reactangleOne {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 6vw;
-
-    &:before {
-      // content: '';
-      position: absolute;
-      right: -5vw;
-      top: 0;
-      height: 0;
-      width: 0;
-      border-left: 5vw solid #6d2158;
-      border-top: 26vw solid transparent;
-      border-bottom: 5.9vw solid transparent;
-    }
-  }
 }
 
 .brideBannerHeading {
@@ -1296,6 +1289,10 @@ h1.homeTitle {
   @include fontSize(40);
   line-height: normal;
   margin-bottom: 2rem;
+  text-align: center;
+  @include tablet {
+    text-align: left;
+  }
 
 }
 
