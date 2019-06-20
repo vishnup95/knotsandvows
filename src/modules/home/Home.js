@@ -492,9 +492,10 @@ class Home extends Component {
                   Because in your dreams,<br />every detail matters
                 </div>
                 <div className={styles.brideBannerCopy}>
-                  Our bride package covers all the essentials and <span className="tab-only"><br /></span>helps you enhance your day, your way.
+                  {/* Our bride package covers all the essentials and <span className="tab-only"><br /></span>helps you enhance your day, your way. */}
+                  Knots&Vows makes sure that your big day gets that perfect touch.
                 </div>
-                <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Be a Bride</a>
+                <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Clck to blush</a>
               </div>
             </div>
             <div className={`${styles.brideBannerContent} mobile-only`}>
@@ -503,9 +504,10 @@ class Home extends Component {
                 Because in your dreams,<br />every detail matters
                 </div>
               <div className={styles.brideBannerCopy}>
-                Our bride package covers all the essentials and <span className="tab-only"><br /></span>helps you enhance your day, your way.
+                {/* Our bride package covers all the essentials and <span className="tab-only"><br /></span>helps you enhance your day, your way. */}
+                Knots&Vows makes sure that your big day gets that perfect touch.
                 </div>
-              <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Be a Bride</a>
+              <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Click to blush</a>
             </div>
             <Container className={styles.homeContainer}>
               <Row className="mt-5" id="ceremonies">
