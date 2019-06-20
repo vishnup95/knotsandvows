@@ -108,7 +108,7 @@ class BridalPackage extends Component {
         <div className={styles.containerClass}>
           <Row className={`${styles.detailBox}`}>
             <Col md="12">
-              <h2 className={styles.pink}>It&#39;s your wedding and Knots&Vows wants your day to be as perfect as you are.</h2>
+              <h2 className={styles.pink}>Knots&Vows makes sure that your big day gets that perfect touch.</h2>
             </Col>
           </Row>
 
