@@ -495,7 +495,7 @@ class Home extends Component {
                   {/* Our bride package covers all the essentials and <span className="tab-only"><br /></span>helps you enhance your day, your way. */}
                   Knots&Vows makes sure that your big day gets that perfect touch.
                 </div>
-                <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Clck to blush</a>
+                <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Click to blush</a>
               </div>
             </div>
             <div className={`${styles.brideBannerContent} mobile-only`}>
