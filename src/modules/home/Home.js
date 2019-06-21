@@ -230,10 +230,10 @@ class Home extends Component {
   }
 
   handleCeremonyClick = (ceremony, event) => {
-    
+
     this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
-    if(window!=null)
-       return window.gtag_report_conversion(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
+    if (window != null)
+      return window.gtag_report_conversion(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
     event.preventDefault();
   }
 
@@ -331,7 +331,7 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col className="text-center flex justify-center mt-5" id="numbersection">
-                  <TalkToWeddingPlanner buttonText={'Let Us Help You'}/>
+                  <TalkToWeddingPlanner buttonText={'Let Us Help You'} />
                 </Col>
               </Row>
 
@@ -441,7 +441,7 @@ class Home extends Component {
             </div>
             <div className={styles.packageWrap}>
               <Container className={`${styles.homeContainer}`}>
-                <Row className="mb-5" id="packages">
+                <Row id="packages">
                   <Col className={styles.packageBox} id="box-one">
                     {/* <img src={imagePath('contact-box.png')} alt="Gold" /> */}
                     {this.state.loadImages &&
@@ -455,7 +455,7 @@ class Home extends Component {
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
-                      <a className="primary-button home-btn white" onClick={()=>{if(window!=null) window.gtag_report_conversion('/packages/wedding-gold-package');}} href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
+                      <a className="primary-button home-btn white" onClick={() => { if (window != null) window.gtag_report_conversion('/packages/wedding-gold-package'); }} href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
                   </Col>
@@ -465,7 +465,7 @@ class Home extends Component {
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
-                      <a className="primary-button home-btn white" onClick={()=>{if(window!=null) return window.gtag_report_conversion('/packages/wedding-ruby-package');}} href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
+                      <a className="primary-button home-btn white" onClick={() => { if (window != null) return window.gtag_report_conversion('/packages/wedding-ruby-package'); }} href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
 
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
@@ -483,6 +483,31 @@ class Home extends Component {
                   </Col>
                 </Row>
               </Container>
+            </div>
+
+            <div className={`${styles.brideBanner} container-fluid`}>
+              <div className={`${styles.brideBannerContent} tab-only`}>
+                {/* <div className={styles.reactangleOne}></div> */}
+                <div className={styles.brideBannerHeading}>
+                  Because in your dreams,<br />every detail matters
+                </div>
+                <div className={styles.brideBannerCopy}>
+                  {/* Our bride package covers all the essentials and <span className="tab-only"><br /></span>helps you enhance your day, your way. */}
+                  Knots&Vows makes sure that your big day gets that perfect touch.
+                </div>
+                <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Click to blush</a>
+              </div>
+            </div>
+            <div className={`${styles.brideBannerContent} mobile-only`}>
+              {/* <div className={styles.reactangleOne}></div> */}
+              <div className={styles.brideBannerHeading}>
+                Because in your dreams,<br />every detail matters
+                </div>
+              <div className={styles.brideBannerCopy}>
+                {/* Our bride package covers all the essentials and <span className="tab-only"><br /></span>helps you enhance your day, your way. */}
+                Knots&Vows makes sure that your big day gets that perfect touch.
+                </div>
+              <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Click to blush</a>
             </div>
             <Container className={styles.homeContainer}>
               <Row className="mt-5" id="ceremonies">
