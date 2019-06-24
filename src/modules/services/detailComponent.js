@@ -3,11 +3,12 @@ import styles from './services.scss';
 import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { imagePath } from '../../utils/assetUtils';
-import SimpleCarousel from '../../components/simpleCarousel/simpleCarousel';
+// import SimpleCarousel from '../../components/simpleCarousel/simpleCarousel';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
+import ImageFade from '../../components/ImageFade/imageFade';
 
 class DetailComponent extends Component {
-  state = { selectedIndex: 0 };
+  state = { selectedIndex: 0 , fromServices: true};
 
   changeSelection(index) {
     this.setState({ selectedIndex: index });
@@ -22,8 +23,7 @@ class DetailComponent extends Component {
             <img className={`${styles.imgIcon} tab-only`} src={imagePath(this.props.data.icon)} alt="vow icon" />
             <img className={`${styles.imgIcon} mobile-only`} src={imagePath(this.props.data.mobileIcon)} alt="vow icon" />
             <h3 className={`${styles.mobile} mobile-only`} dangerouslySetInnerHTML={{__html: this.props.data.title}}></h3>
-            <SimpleCarousel data={this.props.data.images} />
-
+            <ImageFade data={this.props.data.images}  fromServices={this.state.fromServices}/>
           </div>
           <div className={styles.contentPart}>
             <h3 className="tab-only" dangerouslySetInnerHTML={{__html: this.props.data.title}}></h3>
