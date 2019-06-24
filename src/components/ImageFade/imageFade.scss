@@ -8,11 +8,8 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  
 
   .homeImage {
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
     transition: all 1.8s ease;
     width: 100%;
     height: 90vw;
@@ -32,12 +29,33 @@
     }
   }
 }
-@keyframes examle {
-  0% {
-    transform: scale(1.2);
-  }
 
-  100% {
-    transform: scale(1);
+.image-at-services {
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  .homeImage {
+    transition: all 1.8s ease;
+    width: 100%;
+    height: 90vw;
+    @include tablet {
+      height: 47vw;
+      width: 54.1248rem;
+      height: 35.7142rem;
+      background-size: cover;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      @include height(500);
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+    }
   }
 }
