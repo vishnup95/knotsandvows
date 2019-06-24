@@ -179,12 +179,6 @@ class TalkToWeddingPlanner extends Component {
         if (window != null)
             return window.gtag_report_conversion()
     }
- 
-    handlePulsateRing()
-    {
-        if(window!=null)    
-            return window.gtag_report_conversion()
-    }
     render() {
         return (
             <div className={`${this.props.type != 'services' ? 'justify-center' : ''} flex`}>
