@@ -123,7 +123,8 @@ class TalkToWeddingPlanner extends Component {
                 origin: 'CALL_BUTTON_FORM',
                 name: this.state.contactName,
                 phone: this.state.contactPhone,
-                email: this.state.contactEmail,
+                email: this.state.contactEmail, 
+                event_date: this.state.contactDate,
                 city: this.state.city,
             }
             if (this.state.contactDate != '') {
@@ -176,6 +177,12 @@ class TalkToWeddingPlanner extends Component {
     }
     handlePulsateRing() {
         if (window != null)
+            return window.gtag_report_conversion()
+    }
+ 
+    handlePulsateRing()
+    {
+        if(window!=null)    
             return window.gtag_report_conversion()
     }
     render() {
