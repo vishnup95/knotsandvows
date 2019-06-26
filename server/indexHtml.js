@@ -170,20 +170,6 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         </script>
         <!-- Pure Chat -->
         <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '3f83888a-3ba2-428c-ad79-8081687d11ad', f: true }); done = true; } }; })();</script>
-        <script>
-        window.onload = function() {
-          setTimeout(function(){ 
-          if(document.getElementsByClassName("purechat-collapsed-image")[0].attributeStyleMap.size == 6)
-          {
-            document.getElementById("btnCallMe").style.display = "none";   
-          }
-          else
-          {
-            document.getElementById("btnCallMe").style.display = "block";   
-          }
-          }, 2000);
-        };
-      </script>
         <!-- End Pure Chat -->
 
         ${cssLinks()}
