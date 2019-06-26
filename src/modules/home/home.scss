@@ -1285,6 +1285,7 @@ h1.homeTitle {
 .brideBannerHeading {
   font-family: $frank;
   font-weight: 700;
+  white-space: nowrap;
   color: $white;
   @include fontSize(40);
   line-height: normal;
@@ -1299,6 +1300,7 @@ h1.homeTitle {
 .brideBannerCopy {
   font-family: $roboto;
   color: $white;
+  text-align: center;
   @include fontSize(18);
   line-height: 1.6;
   margin-bottom: 2rem;
