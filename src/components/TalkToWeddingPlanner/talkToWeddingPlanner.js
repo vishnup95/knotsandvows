@@ -111,8 +111,8 @@ class TalkToWeddingPlanner extends Component {
         this.setState({ [e.target.id]: e.target.value });
         this.props.dispatch(actions.clearTalkToErrors());
     }
-    validateForm = () => {
-
+    validateForm = (e) => {
+        e.preventDefault();
         // let name = this.nameRef.current.validateFormInput(document.getElementById('contactName'));
         let email = this.emailRef.current.validateFormInput(document.getElementById('contactEmail'));
         let phone = this.phoneRef.current.validateFormInput(document.getElementById('contactPhone'));
@@ -145,6 +145,7 @@ class TalkToWeddingPlanner extends Component {
             }
 
             this.props.dispatch(actions.postContactDetails(details));
+            return window.gtag_submit_button_clicked();
         }
         if(window!=null)    
             return window.gtag_report_conversion()
@@ -244,7 +245,7 @@ class TalkToWeddingPlanner extends Component {
                             <div className={styles.apiError}>{this.props.message}</div>
                         }
                         <div className="text-center">
-                            <ProgressButton title="Send Message" onClick={() => {this.validateForm();if(window!=null) return window.gtag_report_conversion();}} isLoading={this.props.isLoading}></ProgressButton>
+                            <ProgressButton title="Send Message" onClick={(e) => {this.validateForm(e)}} isLoading={this.props.isLoading}></ProgressButton>
                             <p className={styles.phone}>
                                 <img src={imagePath('button-call.png')} alt="call-button" />
                                 <a href="tel:+917032188007">+91 703 218 8007</a>
