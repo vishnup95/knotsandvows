@@ -105,11 +105,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
             'send_to': 'AW-745108214/6tImCInt650BEPblpeMC',
             'event_callback': callback
         });
-
-        gtag('event', 'generate_lead', {
-          'send_to': 'AW-745108214/6tImCInt650BEPblpeMC',
-          'event_callback': callback
-        });
+        
         return false;
         }
         </script>
