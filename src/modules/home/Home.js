@@ -53,6 +53,8 @@ class Home extends Component {
     showDesc: false,
     errorMessage: '',
     loadImages: false,
+    imagesData: ['bannert1.jpg', 'bannert2.jpg', 'bannert3.jpg' , 'bannert4.jpg' ]
+
   }
   static fetchData(store) {
     // Normally you'd pass action creators to "connect" from react-redux,
@@ -310,8 +312,7 @@ class Home extends Component {
                     </div> */}
                     <p className={styles.error}>{this.state.errorMessage}</p>
                   </div>
-
-                  <ImageFade />
+                  <ImageFade data={this.state.imagesData} />
                 </Col>
               </Row>
             </div>
