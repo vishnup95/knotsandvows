@@ -10,8 +10,17 @@ import * as actions from '../../../components/TalkToWeddingPlanner/actions';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
+
 
 import goldStyles from '../Gold/goldPackage.scss';
+
+let meta = {
+  title:"Bridal Wedding Package - Caterers, Decorators, Photopghers",
+  description:"All-inclusive, customizable wedding packages for brides at award-winning venues. Revolutionized planning & coordination from ceremony to reception",
+  keywords:""
+}
+
 
 const mapStateToProps = state => ({
   user: state.session.user,
@@ -96,7 +105,11 @@ class BridalPackage extends Component {
   render() {
     return (
       <div className={styles.servicesContainer}>
-        <div className={styles.servicesCover}>
+        <Helmet>
+           <title>{meta.title}</title>
+           <meta name="description" content={meta.description} />
+        </Helmet>
+       <div className={styles.servicesCover}>
           <div className={styles.bridalImg}>
             <div className={styles.coverDetail}>
               {/* <h4>Planning your</h4> */}
