@@ -80,8 +80,8 @@ const maxDate = date.setDate(date.getDate() +1456);
 
 
 let meta = {
-  title:"Ruby Wedding Package - Caterers, Decorators, Photopghers",
-  description:"All-inclusive, customizable wedding packages at award-winning venues. Revolutionized planning & coordination from ceremony to reception.",
+  title:"Value-for-money Wedding Package that Covers All Ceremonies from Engagement to Vratam.",
+  description:"An all-inclusive customized wedding package that offers premium services at an attractive value-for-money price point. You can also customise Knots&Vows Royal Ruby package as per you wish. Talk to our wedding planner to know how.",
   keywords:""
 }
 
