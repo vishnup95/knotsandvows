@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { imagePath } from '../../utils/assetUtils';
 import * as modalActions from '../../reducers/modal/actions';
 import { Modal } from 'reactstrap';
+import ReactGA from 'react-ga';
 import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import DatePicker from "react-datepicker";
  
@@ -82,6 +83,10 @@ class TalkToWeddingPlanner extends Component {
         });
       }
 
+    componentDidMount(){
+        ReactGA.initialize(process.env.GA_TRACKING_ID);
+    }
+
     componentWillUnmount() {
         this.setState({city: ''})
     }
@@ -143,9 +148,11 @@ class TalkToWeddingPlanner extends Component {
                 this.state.checkboxes.map((item, index) => { if (index !== 4 && item.checked) services.push(item.label) });
                 details['services'] = services;
             }
-
+            ReactGA.event({
+                category: 'Form Submission',
+                action: 'Lead Generated'
+            });
             this.props.dispatch(actions.postContactDetails(details));
-            return window.gtag_submit_button_clicked();
         }
         if(window!=null)    
             return window.gtag_report_conversion()
