@@ -14,8 +14,8 @@ import Helmet from 'react-helmet';
 
 
 let meta = {
-  title:"Wedding Vendors - Explore Packages and Book Online",
-  description:'One stop destination for all wedding vendors like photographers, caterers, decorators, makeup artists. Browse categories, compare prices & select as per your requirement & budget.',
+  title:"Explore all our Vow Vendors. From Venues & Caterers to DJ's & Choreographers",
+  description:'We are one stop destination for all wedding vendors like photographers, caterers, decorators, makeup artists. Browse categories, compare prices & select as per your requirement & budget.',
   keywords:""
 }
 

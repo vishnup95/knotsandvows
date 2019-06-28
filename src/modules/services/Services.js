@@ -4,6 +4,13 @@ import { Row, Col } from 'reactstrap';
 import DetailComponent from './detailComponent';
 import data from './servicesData';
 import { imagePath } from '../../utils/assetUtils';
+import Helmet from 'react-helmet';
+
+let meta = {
+  title:"A la carte & Full Service Wedding Planning - we do both.",
+  description:"Choose the services you want, the way you want it. All we do is put a knot of our   expertise around it.",
+  keywords:""
+}
 
 class ServicesComponent extends Component {
   componentDidMount() {
@@ -22,6 +29,10 @@ class ServicesComponent extends Component {
   render() {
     return (
       <div className={styles.servicesContainer}>
+        <Helmet>
+          <title>{meta.title}</title>
+          <meta name="description" content={meta.description} />
+       </Helmet>
         <div className={styles.servicesCover}>
           <div className={styles.coverDetail}>
             <h1>A big step <span className='tab-only'><br /></span>towards a beautiful life</h1>
