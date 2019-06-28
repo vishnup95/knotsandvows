@@ -85,10 +85,6 @@ class TalkToWeddingPlanner extends Component {
         ReactGA.initialize(process.env.GA_TRACKING_ID);
     }
 
-    componentDidMount(){
-        ReactGA.initialize(process.env.GA_TRACKING_ID);
-    }
-
     componentWillUnmount() {
         this.setState({ city: '' })
     }
