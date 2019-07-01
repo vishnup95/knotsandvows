@@ -1,0 +1,18 @@
+@import '../../variables/colors';
+@import '../../variables/fonts';
+@import '../../variables/utils';
+.carouselItem {
+  width: 100%;
+}
+.carouselImage {
+  width: 100%;
+  height: 60vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  @include tablet {
+    width: 52.1428rem;
+    height: 35.7142rem;
+    background-size: cover;
+  }
+}

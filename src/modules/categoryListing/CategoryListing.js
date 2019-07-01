@@ -14,8 +14,8 @@ import Helmet from 'react-helmet';
 
 
 let meta = {
-  title:"Wedding Vendors - Explore Packages and Book Online",
-  description:'One stop destination for all wedding vendors like photographers, caterers, decorators, makeup artists. Browse categories, compare prices & select as per your requirement & budget.',
+  title:"Explore all our Vow Vendors. From Venues & Caterers to DJ's & Choreographers",
+  description:'We are one stop destination for all wedding vendors like photographers, caterers, decorators, makeup artists. Browse categories, compare prices & select as per your requirement & budget.',
   keywords:""
 }
 
@@ -35,7 +35,7 @@ const jumbotronData = {
   buttonText: 'Talk to our experts!',
   subtitle: 'We have you covered. Our expert planners will work with you to make your event fantastic and make sure your needs are met.'
 };
-  
+
 class CategoryListing extends Component {
   
 
@@ -56,7 +56,7 @@ class CategoryListing extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
-
+ 
   componentWillReceiveProps(nextProps) {
     if(this.props.user != nextProps.user && nextProps.user) {
       this.props.dispatch(actions.fetchAllVendors());
@@ -94,7 +94,7 @@ class CategoryListing extends Component {
               {
                 this.props.allVendorDetails.categories.map((category, index) => {
                   return (
-                    <CategorySection category={category} key={index} dispatch={this.props.dispatch} onClick={()=>{if(window!=null) window.gtag_report_conversion('/categories');}}/>
+                    <CategorySection category={category} key={index} dispatch={this.props.dispatch} onClick={()=>{if(window!=null) return window.gtag_report_conversion('/categories');}}/>
                   );
                 })
               }

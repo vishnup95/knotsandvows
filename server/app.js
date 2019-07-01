@@ -19,6 +19,7 @@ app.use(bodyParser.json({
 app.use(helmet.contentSecurityPolicy({
   directives: {
     baseUri: ["'self'"],
+
     defaultSrc: ["'self'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.fullstory.com', '*.analytics.js', '*.google.com', '*.google-analytics.com', '*.facebook.com', '*.doubleclick.net','*.purechat.com','*.secure.gravatar.com'],
     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", '*.googleapis.com', 'maxcdn.bootstrapcdn.com', '*.google-analytics.com', '*.googletagmanager.com', '*.facebook.net', 'https://fullstory.com', '*.google.com', '*.googleadservices.com', '*.doubleclick.net','*.purechat.com','*.secure.gravatar.com'],
     styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com', 'cdnjs.cloudflare.com', '*.googleapis.com', 'fonts.googleapis.com','*.purechat.com','*.secure.gravatar.com'],

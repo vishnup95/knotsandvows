@@ -15,7 +15,13 @@ import CompareProduct from '../../components/compareProduct/compareProduct';
 import AddCollaboratorModal from './addCollaborator';
 import HorizontalSlider from '../../components/HorizontalSlider/horizontalSlider';
 import modalStyles from '../../modals/forgotPasswordModal/forgotPasswordModal.scss';
+import Helmet from 'react-helmet';
 
+let meta = {
+  title:"Customise Your Wedding Package with the Genie Package",
+  description:'Get customised wedding packages for you dream wedding ceremony. Book now to avail attractive offers.',
+  keywords:""
+}
 
 const mapStateToProps = state => ({
   wishlistLoading: state.wishlist.loading,
@@ -222,6 +228,10 @@ class CategoryListing extends Component {
   render() {
     return (
       <div className={`full-height ${styles.margin}`}>
+      <Helmet>
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+      </Helmet>
         <div className="wishlist-container">
           <Container className="mb-5">
             {
@@ -239,7 +249,7 @@ class CategoryListing extends Component {
 
             <h3 className={styles.listTitleMobile}>My Wishlist</h3>
         
-            {
+            {            
               this.state.currentCategories.length > 0 &&
               <Row>
                 <Col sm="2">

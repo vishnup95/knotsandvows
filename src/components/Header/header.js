@@ -79,9 +79,8 @@ class Header extends Component {
             this.props.dispatch(actions.showLogin());
         }
         if (detectMobile()) {
-            this.setState({ isOpen: false});
-        }  
-        
+            this.setState({ isOpen: false });
+        }
     }
 
     componentWillMount() {
@@ -284,8 +283,7 @@ class Header extends Component {
             <div className={styles.ahHeader}>
 
                 <div className={styles.navSmall}>
-                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our experts'}
-                    onClick={()=>{if(window!=null) window.gtag_report_conversion();}}/>
+                    <TalkToWeddingPlanner type={'link'} buttonText={'Talk to our experts'}/>
                 </div>
                 <Navbar color="" expand="md" className={styles.ahNav}>
                     <NavbarToggler onClick={this.toggle} />
@@ -295,17 +293,17 @@ class Header extends Component {
                     <Collapse navbar className={styles.ahCollapse} >
                         <Nav className="" navbar>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/')}>Home</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/');if(window!=null) return window.gtag_report_conversion();}}>Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/services')}>What We Do</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/services');if(window!=null) return window.gtag_report_conversion('/services');}}>Services</NavLink>
                             </NavItem>
 
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/#packages')}>Packages</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/#packages');if(window!=null) return window.gtag_report_conversion('/#packages');}}>Packages</NavLink>
                             </NavItem>
                             <NavItem className={styles.vendors}>
-                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/categories'); this.navigateTo('/categories')}}>VowVendors</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/categories'); return window.gtag_report_conversion('/categories'); }}>VowVendors</NavLink>
                                 {/* 
                                 this section is temporarily removed
                                 <div className={styles.categoriesList}>
@@ -321,10 +319,10 @@ class Header extends Component {
                                 </div> */}
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => this.navigateTo('/wishlist')}>Wishlist</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/wishlist');if(window!=null) return window.gtag_report_conversion();}}>Wishlist</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={() => {if(window!=null) window.gtag_report_conversion('/who-we-are');this.navigateTo('/who-we-are')}}>Who We Are</NavLink>
+                                <NavLink onClick={() => {this.navigateTo('/who-we-are');if(window!=null) return window.gtag_report_conversion('/who-we-are');}}>Who We Are</NavLink>
                             </NavItem>
                             {this.renderLoginItem()}
 
@@ -350,13 +348,13 @@ class Header extends Component {
                 <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={styles.mobileMenuModal}>
                     <ul>
                         {this.renderLoginItem()}
-                        <li onClick={() => this.navigateTo('/')} aria-hidden>Home</li>
-                        <li onClick={() => this.navigateTo('/services')} aria-hidden>What We Do</li>
-                        <li onClick={() => this.navigateTo('/#packages')} aria-hidden>Packages</li>
-                        <li onClick={() => this.navigateTo('/categories')} aria-hidden>VowVendors</li>
-                        <li onClick={() => this.navigateTo('/wishlist')} aria-hidden>Wishlist</li>
-                        <li onClick={() => this.navigateTo('/who-we-are')} aria-hidden>Who We Are</li>
-                        {this.props.user && <li onClick={() => this.logout()} aria-hidden>Logout</li>}
+                        <li onClick={() => {this.navigateTo('/');if(window!=null) return window.gtag_report_conversion(); }} aria-hidden>Home</li>
+                        <li onClick={() => {this.navigateTo('/services');if(window!=null) return window.gtag_report_conversion('/services');}} aria-hidden>Services</li>
+                        <li onClick={() => {this.navigateTo('/#packages');if(window!=null) return window.gtag_report_conversion('/#packages');}} aria-hidden>Packages</li>
+                        <li onClick={() => {this.navigateTo('/categories');if(window!=null) return window.gtag_report_conversion('/categories');}} aria-hidden>VowVendors</li>
+                        <li onClick={() => {this.navigateTo('/wishlist');if(window!=null) return window.gtag_report_conversion();}} aria-hidden>Wishlist</li>
+                        <li onClick={() => {this.navigateTo('/who-we-are');if(window!=null) return window.gtag_report_conversion('/who-we-are');}} aria-hidden>Who We Are</li>
+                        {this.props.user && <li onClick={() => {this.logout();if(window!=null) return window.gtag_report_conversion();}} aria-hidden>Logout</li>}
                     </ul>
                 </Modal>
             </div>

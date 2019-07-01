@@ -1,0 +1,357 @@
+@import '../../../variables/colors';
+@import '../../../variables/utils';
+@import '../../../variables/fonts';
+@import '../../../variables/breakpoints';
+
+.servicesContainer {
+  color: $black;
+
+  h1 {
+    font-size: 27.5px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    @include tablet {
+      font-size: 4.285rem;
+
+    }
+  }
+
+  h4 {
+    color: $white;
+    font-family: $frank;
+    font-weight: 700;
+    line-height: 1.36;
+    font-size: 4.285rem;
+    @include mobile {
+      font-size: 1.5rem;
+      color: #fff;
+      text-align: center;
+    }
+  }
+
+  .bridalImg {
+    width: 100%;
+    height: 90vw;
+    background-image: url('#{$image-base-url}/bridal-banner.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), $black);
+    }
+    @include tablet {
+      height: 47vw;
+
+      &:before {
+        content: '';
+        @include height(500);
+      }
+    }
+  }
+
+  .servicesCover {
+    display: flex;
+    position: relative;
+    text-align: center;
+    margin-bottom: 3rem;
+    background-color: #f5f5f5;
+    @include mobile {
+      height: 90vw;
+      background-position: right;
+      margin-bottom: 0;
+    }
+
+    .coverDetail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 4.37rem;
+      z-index: 2;
+      @include mobile {
+        justify-content: flex-end;
+        padding-bottom: 2rem;
+        align-items: center;
+        padding: 0 1rem 2rem;
+        bottom: 1.37rem;
+      }
+    }
+
+  }
+
+  .containerClass {
+    padding: 5% 5% 0;
+    @include tablet {
+      padding: 0;
+      width: 90rem;
+      max-width: 95%;
+      margin: 0 auto;
+    }
+  }
+
+  .detailBox {
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+
+    h2 {
+      text-align: center;
+      width: 100%;
+      font-size: 1.78rem;
+      color: #6d2158;
+      font-weight: 700;
+      margin: 1rem 0 3rem;
+    }
+
+    p {
+      color: $greyish-brown-six;
+      font-size: 1.2857rem;
+      text-align: center;
+
+      &.detailSubHeading {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+.detailWrap {
+  display: flex;
+  flex-direction: column;
+  @include tablet {
+    flex-direction: row;
+  }
+
+}
+
+.sectionWrap {
+  padding: 1rem;
+  margin-bottom: 7rem;
+  box-shadow: 6px 11px 5px 0 rgba(204, 26, 102, 0.12);
+  border: 1.5px solid #ffc8df;
+  border-radius: 6px;
+  @include tablet {
+    padding: 4.2rem;
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  h3 {
+    font-size: 2.232rem;
+    font-weight: normal;
+    color: $medium-pink;
+    margin: 0 0 .5rem;
+    @include mobile {
+      color: $medium-pink;
+      font-size: 30px;
+      padding: 1rem 0;
+    }
+  }
+}
+
+.imageCarouselWrap {
+  padding: 0;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 43.1vw;
+  border-radius: 4px 4px 0 0;
+  @include tablet {
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    flex: 1.8;
+    height: 28.5rem;
+    background-size: cover;
+  }
+
+  > img {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    margin-left: -.5px;
+    @include tablet {
+
+      width: 48rem;
+      height: 23.6rem;
+      border-radius: 6px 0 0 6px;
+    }
+
+  }
+}
+
+.contentPart {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @include tablet {
+    padding: 3rem 5%;
+    flex: 1;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    padding: 0;
+    margin: .5rem 0;
+    @include tablet {}
+
+    li {
+      padding: .2rem 0 .2rem 1.25rem;
+      font-size: 14px;
+      position: relative;
+      color: $greyish-brown-two;
+      line-height: 1.72;
+      width: 100%;
+      @include tablet {
+         @include padding(7,0,7,40);
+        font-size: 1.524rem;
+      }
+      @include desktop {}
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: .7rem;
+        width: 12px;
+        height: 14px;
+        background: url('#{$image-base-url}/fav-icon.png') no-repeat top left;
+        background-size: contain;
+        @include tablet {
+          top: 1.2rem;
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.vowIconLine {
+  height: 3.85rem;
+  margin: 0 0 4rem;
+}
+
+.imgIcon {
+  z-index: 2;
+  width: 4.285rem;
+  height: 4.285rem;
+  position: absolute;
+  left: 50%;
+  bottom: 2.5rem;
+  transform: translateX(-50%);
+}
+
+.detailImage {
+  width: 100%;
+  @include tablet {
+    width: 28rem;
+  }
+  @include desktop {
+    width: 35rem;
+  }
+  @include hd {
+    width: 39rem;
+  }
+}
+
+.cornerContent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 10.3636rem;
+  width: 10.3636rem;
+  font-size: 1.3636rem;
+  font-family: $frank;
+  font-weight: 700;
+  color: $white;
+  background-image: url('#{$image-base-url}/corner-content-bg.svg');
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: right;
+  padding: .5rem;
+  z-index: 1;
+  @include mobile {
+    right: -.8px;
+  }
+}
+
+.priceWrap {
+  position: relative;
+  width: max-content;
+  margin-bottom: 2rem;
+  @include tablet {
+    margin-right: 2rem;
+  }
+}
+
+.priceBg {
+  width: 30rem;
+  height: auto;
+}
+
+.price {
+  font-family: $frank;
+  font-size: 3rem;
+  font-weight: 700;
+  color: $white;
+  transform: rotate(-7deg);
+  position: absolute;
+  right: 7rem;
+  top: 3.6rem;
+}
+
+.priceAt {
+  @extend .price;
+  right: 21.5rem;
+  top: 9.6rem;
+
+}
+
+.priceValue {
+  color: #000;
+  font-family: $roboto;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  transform: rotate(-7deg);
+  position: absolute;
+  top: 10.2rem;
+  right: 6rem;
+}
+
+.buttonCaption {
+  margin: -4rem 0 1rem !important;
+}
+.priceCol {
+  justify-content: center;
+  @include tablet {
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+.talkWrap {
+  > div {
+    @include tablet {
+      justify-content: flex-start;
+
+    }
+  }
+}

@@ -7,8 +7,8 @@ import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWe
 import Helmet from 'react-helmet';
 
 let meta = {
-  title:"Who We Are - Knots&Vows",
-  description:'Knots&Vows is a wedding consultant who brings boundless joy into your lives with our expertise on organizing stress-free weddings! Book a consultation now.',
+  title:"About Us - Knots&Vows",
+  description:'We are a team of passionate professionals with over 15 years of experience, striving to make the world a happier place, one wedding at a time.',
   keywords:""
 }
 class AboutComponent extends Component {

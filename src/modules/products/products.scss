@@ -4,7 +4,7 @@
 @import '../../variables/breakpoints';
 
 .category-cover {
-  @include height(450);
+  height: 36rem;
 
   &:before {
     content: '';
@@ -24,7 +24,6 @@
 
 .imageHeading {
   text-align: center;
-
   @include mobile {
     margin-top: 2rem;
   }
@@ -32,7 +31,8 @@
 
 .sideHeading {
   @include fontSize(20);
-  font-family:  $frank; font-weight: 400;
+  font-family: $frank;
+  font-weight: 400;
   letter-spacing: .6px;
   color: $black-twelve;
   text-align: left;
@@ -59,6 +59,7 @@
   margin: -41px auto 0;
   display: flex;
   justify-content: center;
+
   .dropContainer {
     box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3);
     display: flex;
@@ -71,9 +72,8 @@
     border-radius: 5px;
     @include height(60);
     position: relative;
-
     @include mobile {
-      @include padding(30);
+       @include padding(30);
       background-color: white;
       width: 65%;
       margin-top: 12vh;
@@ -86,10 +86,9 @@
     .closeBtn {
       display: none;
       position: absolute;
-      right: 0.5rem;
-      top: 0.5rem;
+      right: .5rem;
+      top: .5rem;
       cursor: pointer;
-
       @include mobile {
         display: block;
       }
@@ -131,7 +130,6 @@
       }
     }
   }
-
   @include mobile {
     height: 110vh;
     background-color: rgba(0, 0, 0, 0.59);
@@ -228,7 +226,7 @@
 .multiDropdown {
   background-color: transparent;
   cursor: pointer;
-  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  padding: .5rem 1rem .5rem 2.5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-left: none;
   border-bottom: none;
@@ -242,8 +240,7 @@
     font-weight: 400;
     text-transform: uppercase;
     @include padding(0,16,0, 0);
-    margin-bottom: 0.1rem;
-
+    margin-bottom: .1rem;
     @include mobile {
       color: $warm-grey-eight;
       letter-spacing: .5px;
@@ -258,7 +255,6 @@
     font-weight: 400;
     background: url('#{$image-base-url}/filter-dropdown.png') 95% 75% no-repeat;
     padding-right: 2rem;
-
     @include mobile {
       display: block;
       background-size: 8px;
@@ -267,11 +263,9 @@
       color: $black-twelve;
     }
   }
-
   @include mobile {
     border: 0;
-    padding: 0;
-    padding-top: 2rem;
+    padding: 2rem 0 0;
   }
 }
 
@@ -296,7 +290,7 @@
   }
 
   .dropItemSmall {
-    padding: 0.5rem 1rem;
+    padding: .5rem 1rem;
     white-space: nowrap;
     @include fontSize(13);
 
@@ -308,7 +302,6 @@
   .selectedItem {
     background-color: #e8e4e4;
   }
-
   @include mobile {
     top: -10px !important;
     max-height: initial;
@@ -364,27 +357,26 @@
 .searchField {
   @include width(700);
   margin: 0 auto;
-  border: 1px solid  rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.16);
   border-radius: 5px;
   margin-bottom: 4rem;
-
   @include mobile {
-      width: 90%;
+    width: 90%;
   }
 
   input {
-      border: none;
-      @include height(55);
-      @include padding(0, 20);
-      @include fontSize(18);
-      color: $black-five;
-      letter-spacing: 0.36px;
-      font-weight: 400;
+    border: none;
+    @include height(55);
+    @include padding(0, 20);
+    @include fontSize(18);
+    color: $black-five;
+    letter-spacing: .36px;
+    font-weight: 400;
 
-      &:focus {
-          outline: 0;
-          box-shadow: none;
-      }
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+    }
   }
 
   button {

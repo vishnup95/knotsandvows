@@ -11,8 +11,8 @@ import Helmet from 'react-helmet';
 import DatePicker from "react-datepicker";
 
 let meta = {
-  title:"Gold Wedding Package - Caterers, Decorators, Photopghers",
-  description:"From venues to photographers, get the exclusive wedding package deals. Add on option to get an expert wedding planner consultation!",
+  title:"Gold Wedding Package, The Best Package For A Grand Wedding",
+  description:"From venues to photographers, get over 30 exclusive services at an amazing price. For a free consultation session get in touch with your wedding planner.",
   keywords:""
 }
 
@@ -345,7 +345,7 @@ class GoldPackage extends Component {
                       </Col>
                     </Row>
                   </form>
-                  <input type="submit" value="Send Message" className="ml-0 secondary-button home-btn" onClick={() => this.sendDetailsToWeddingPlanner()} />
+                  <input type="submit" value="Send Message" className="ml-0 secondary-button home-btn" onClick={() => {this.sendDetailsToWeddingPlanner();if(window!=null) return window.gtag_report_conversion();}} />
               </Col>
             </Row>
           </Container>

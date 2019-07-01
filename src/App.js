@@ -10,7 +10,7 @@ import FooterComponent from './components/Footer/footer';
 import Header from './components/Header/header';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'reactstrap';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import FullStory from 'react-fullstory';
 import styles from './modals/forgotPasswordModal/forgotPasswordModal.scss';
 import { imagePath } from './utils/assetUtils';
@@ -28,16 +28,16 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
   constructor(props) {
     super(props);
-    this.initializeReactGA();
+    // this.initializeReactGA();
   }
 
-  initializeReactGA = () => {
+  // initializeReactGA = () => {
 
-    ReactGA.initialize(process.env.GA_TRACKING_ID);
-    this.props.history.listen(location => {
-      ReactGA.pageview(location.pathname);
-    });
-  }
+  //   ReactGA.initialize(process.env.GA_TRACKING_ID);
+  //   this.props.history.listen(location => {
+  //     ReactGA.pageview(location.pathname);
+  //   });
+  // }
 
   toggle() {
     if (this.props.showModal) {

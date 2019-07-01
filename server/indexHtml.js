@@ -56,8 +56,9 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
   const htmlAttrs = helmet.htmlAttributes.toString();
   const bodyAttrs = helmet.bodyAttributes.toString();
   const gtmId = process.env.GTM_ID;
-  const conversionId=process.env.CONVERSION_ID;
-  
+  // const conversionId = process.env.CONVERSION_ID;
+  const gaTag = process.env.GA_TRACKING_ID;
+
 
   return `
     <!doctype html>
@@ -114,6 +115,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
       };
     </script>
         <!-- End Pure Chat -->
+
         ${cssLinks()}
         ${helmet.style.toString()}
         ${helmet.script.toString()}
