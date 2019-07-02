@@ -76,11 +76,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
 
         <!-- Pure Chat -->
         <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '93716f8f-05de-4275-a033-aa244d31b6d8', f: true }); done = true; } }; })();</script>
-
-        
-
         <!-- End Pure Chat -->
-
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -121,32 +117,6 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
           });
         }
         </script>
-
-        <!-- Pure Chat -->
-        <script type='text/javascript' data-cfasync='false'>
-        window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; 
-        (function () { var done = false; var script = document.createElement('script'); 
-        script.async = true; script.type = 'text/javascript'; 
-        script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; 
-        document.getElementsByTagName('HEAD').item(0).appendChild(script); 
-        script.onreadystatechange = script.onload = function (e) 
-        { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) 
-        { var w = new PCWidget({c: '93716f8f-05de-4275-a033-aa244d31b6d8', f: true }); 
-        done = true; } }; })();</script>
-        <script>
-        window.onload = function() {
-          setTimeout(function(){ 
-          if(document.getElementsByClassName("purechat-collapsed-image")[0].attributeStyleMap.size == 6)
-          {
-            document.getElementById("btnCallMe").style.display = "none";   
-          }
-          else
-          {
-            document.getElementById("btnCallMe").style.display = "block";   
-          }
-          }, 2000);
-        };
-      </script>
         <!-- End Pure Chat -->
         <!-- Facebook Pixel Code -->
           <script>
@@ -178,19 +148,15 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         </script>
 
         <script defer>
-        
-        var isChatAvailable = setInterval(checkForChat, 3000);
+        var isChatAvailable = setInterval(checkForChat, 500);
         function checkForChat(){
-          console.log(document.getElementsByClassName('purechat-collapsed-image')[0].style.width)
           if(document.getElementsByClassName('purechat-collapsed-image')[0].style.width != 0){
             document.getElementById('btnCallMe').style.display = "none";
           }else{
             document.getElementById('btnCallMe').style.display = "block";
           }
         }
-
-        setTimeout(function(){clearInterval(isChatAvailable) }, 13000);
-
+        setTimeout(function(){clearInterval(isChatAvailable)}, 100000);
         </script>
         
 
