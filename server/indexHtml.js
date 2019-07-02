@@ -150,13 +150,13 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <script defer>
         var isChatAvailable = setInterval(checkForChat, 500);
         function checkForChat(){
-          if(document.getElementsByClassName('purechat-collapsed-image')[0].style.width != 0){
+          if(document.getElementsByClassName('purechat-collapsed-image')[0] && document.getElementsByClassName('purechat-collapsed-image')[0].style.backgroundImage){
             document.getElementById('btnCallMe').style.display = "none";
           }else{
             document.getElementById('btnCallMe').style.display = "block";
           }
         }
-        setTimeout(function(){clearInterval(isChatAvailable)}, 100000);
+        setTimeout(function(){clearInterval(isChatAvailable)}, 10000);
         </script>
         
 
