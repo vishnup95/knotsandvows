@@ -147,16 +147,15 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         gtag('config', '${gaTag}');
         </script>
 
-        <script defer>
-        var isChatAvailable = setInterval(checkForChat, 500);
-        function checkForChat(){
-          if(document.getElementsByClassName('purechat-collapsed-image')[0] && document.getElementsByClassName('purechat-collapsed-image')[0].style.backgroundImage){
-            document.getElementById('btnCallMe').style.display = "none";
-          }else{
-            document.getElementById('btnCallMe').style.display = "block";
-          }
-        }
-        setTimeout(function(){clearInterval(isChatAvailable)}, 10000);
+        <script> 
+          purechatApi.on('chatbox.available:change', function (args) { 
+            // console.log(args.available) // Prints the ID of the chatbox to the console window 
+            if(args.available){
+             document.getElementById('btnCallMe').style.display = 'none';
+            }else{
+             document.getElementById('btnCallMe').style.display = 'block'; 
+            }  
+          }); 
         </script>
         
 
