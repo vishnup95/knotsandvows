@@ -130,7 +130,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
           <noscript><img height="1" width="1" style="display:none"
           src="https://www.facebook.com/tr?id=2199773313469762&ev=PageView&noscript=1
           https://www.facebook.com/tr?id=2199773313469762&ev=PageView&noscript=1
-          "
+          " alt="facebook"
           /></noscript>
           <!-- End Facebook Pixel Code -->
           <!-- Global site tag (gtag.js) - Google Analytics -->

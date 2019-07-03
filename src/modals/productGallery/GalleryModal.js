@@ -43,7 +43,7 @@ class ProductGallery extends Component {
                         })
                     }
                 </div>
-                <img src={imagePath('close-round.svg')} onClick={this.props.close} aria-hidden alt="close button" style={{cursor: 'pointer'}}/>
+                <img src={imagePath('close-round.svg')}  onClick={this.props.close} aria-hidden alt="close button" style={{cursor: 'pointer'}}/>
                 <div className="p-4 d-none d-sm-block">
                     <ImageGallery
                         ref={i => this._imageGallery = i}

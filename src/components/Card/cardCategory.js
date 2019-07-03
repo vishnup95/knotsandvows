@@ -304,7 +304,7 @@ class CategoryCard extends Component {
                             <Col className={`${styles.noteSection}`}>
                                 <Col md="12" className={`${styles.rightSubSection} text-left`}>
                                     <div className={styles.addHeader} onClick={() => this.addNote()} aria-hidden>
-                                        <img src={imagePath('plusbtn.svg')} alt="" />
+                                        <img src={imagePath('plusbtn.svg')} alt="button-plus" />
                                         Add note
                                     </div>
 
