@@ -111,12 +111,6 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         });
         return false;
         }
-        
-        function gtag_submit_button_clicked(){
-          gtag('event', 'generate_lead', {
-            'send_to': 'AW-745108214/6tImCInt650BEPblpeMC'
-          });
-        }
         </script>
         <!-- Facebook Pixel Code -->
           <script>
@@ -148,15 +142,14 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         </script>
 
         <script defer>
-        var isChatAvailable = setInterval(checkForChat, 500);
-        function checkForChat(){
-          if(document.getElementsByClassName('purechat-collapsed-image')[0].style.width != 0){
-            document.getElementById('btnCallMe').style.display = "none";
+        purechatApi.on('chatbox.available:change', function (args) { 
+          // console.log(args.available) // Prints the ID of the chatbox to the console window 
+          if(args.available){
+           document.getElementById('btnCallMe').style.display = 'none';
           }else{
-            document.getElementById('btnCallMe').style.display = "block";
-          }
-        }
-        setTimeout(function(){clearInterval(isChatAvailable) }, 13000);
+           document.getElementById('btnCallMe').style.display = 'block'; 
+          }  
+        }); 
         </script>
         
 
