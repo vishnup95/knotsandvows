@@ -137,7 +137,7 @@ class BridalPackage extends Component {
             <Row>
             <Col md="6" className={`${styles.priceCol} text-right flex`}>
               <div className={styles.priceWrap}>
-                <img className={styles.priceBg} src={imagePath('bridal-offer-bg.svg')} alt="" />
+                <img className={styles.priceBg} src={imagePath('bridal-offer-bg.svg')} alt="price-image" />
                 <div className={styles.price}>Price starting</div>
                 <div className={styles.priceAt}>at</div>
                 <div className={styles.priceValue}>6 Lakhs</div>
