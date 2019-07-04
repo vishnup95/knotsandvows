@@ -34,7 +34,7 @@ const cssLinks = () => {
   return Object.keys(assetManifest)
     .filter(file => file.match(/\.css$/))
     .map(cssFile => assetManifest[cssFile])
-    .map(cssFilePath => `<link rel="stylesheet" href="${cssFilePath}">`)
+    .map(cssFilePath => `<link rel="preload" href="${cssFilePath}" as="style" onload="this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${cssFilePath}"></noscript>`)
     .join('');
 };
 
@@ -71,10 +71,12 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         ${helmet.link.toString()}
         <link rel="preload" href="/css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/css/bootstrap.min.css"></noscript>
-        <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-        <link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900" rel="stylesheet">
-        
+        <link rel="preload" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"></noscript>
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"></noscript>
+        <link rel="preload" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900"></noscript>        
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
