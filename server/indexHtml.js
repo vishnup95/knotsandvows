@@ -77,6 +77,9 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"></noscript>
         <link rel="preload" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900" as="style" onload="this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900"></noscript>        
+        <!-- Pure Chat -->
+        <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '93716f8f-05de-4275-a033-aa244d31b6d8', f: true }); done = true; } }; })();</script>
+        <!-- End Pure Chat -->
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -117,6 +120,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
           });
         }
         </script>
+        <!-- End Pure Chat -->
         <!-- Facebook Pixel Code -->
           <script>
           !function(f,b,e,v,n,t,s)
@@ -145,9 +149,18 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
 
         gtag('config', '${gaTag}');
         </script>
-        <!-- Pure Chat -->
-        <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '3f83888a-3ba2-428c-ad79-8081687d11ad', f: true }); done = true; } }; })();</script>
-        <!-- End Pure Chat -->
+
+        <script> 
+          purechatApi.on('chatbox.available:change', function (args) { 
+            // console.log(args.available) // Prints the ID of the chatbox to the console window 
+            if(args.available){
+             document.getElementById('btnCallMe').style.display = 'none';
+            }else{
+             document.getElementById('btnCallMe').style.display = 'block'; 
+            }  
+          }); 
+        </script>
+        
 
         ${cssLinks()}
         ${helmet.style.toString()}
