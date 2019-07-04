@@ -359,7 +359,7 @@ export default class HorizontalSlider extends Component {
                                         <div aria-hidden>
                                         {
                                             styles.packageImg && 
-                                            <img className={styles.packageImg} src={imagePath(item)} alt=""
+                                            <img className={styles.packageImg} src={imagePath(item)} alt="Package-icon"
                                                 onError={(e) => { e.target.onerror = null; e.target.src = imagePath('card_2_1.jpg') }}></img>
                                         }
                                             
