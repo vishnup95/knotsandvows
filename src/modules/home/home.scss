@@ -1240,10 +1240,10 @@ h1.homeTitle {
   @include height(572);
   padding: 0;
   @include mobile {
-    background-image: url('/images/bridal-banner.png');
+    background-image: url('#{$image-base-url}/bridal-banner.png');
   }
   @include tablet {
-    background-image: url('/images/bride-banner-home.png');
+    background-image: url('#{$image-base-url}/bride-banner-home.png');
     margin-bottom: 7rem;
     background-size: cover;
 
