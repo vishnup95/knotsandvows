@@ -69,7 +69,8 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         ${helmet.meta.toString()}
         ${preloadScripts(bundles)}
         ${helmet.link.toString()}
-        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="preload" href="/css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/css/bootstrap.min.css"></noscript>
         <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         <link href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900" rel="stylesheet">
