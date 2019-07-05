@@ -266,7 +266,7 @@ class Home extends Component {
           <title>{meta.title}</title>
           <meta name="description" content={meta.description} />
           <meta property="og:title" content={meta.shortTitle} />
-          <meta property="og:url" content="https://www.knotsandvows.co.in"/>
+          <meta property="og:url" content="https://www.knotsandvows.co.in" />
           <meta property="og:description" content="Trusted wedding planners" />
           <meta property="og:image" content="http://placehold.jp/300x300.png" />
         </Helmet>

@@ -2,8 +2,6 @@
 @import '../../variables/colors';
 @import '../../variables/utils';
 
-.homeOuter {}
-
 .homeTopContainer {
   @extend %spacer;
   @include mobile {

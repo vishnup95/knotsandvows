@@ -110,12 +110,6 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         });
         return false;
         }
-        
-        function gtag_submit_button_clicked(){
-          gtag('event', 'generate_lead', {
-            'send_to': 'AW-745108214/6tImCInt650BEPblpeMC'
-          });
-        }
         </script>
         <!-- Facebook Pixel Code -->
           <script>
