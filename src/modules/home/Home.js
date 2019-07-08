@@ -18,6 +18,7 @@ import { hyphonatedString } from '../../utils/utilities';
 import ImageFade from '../../components/ImageFade/imageFade';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 import Helmet from 'react-helmet';
+import LazyLoad from 'react-lazyload';
 
 let meta = {
   title:"Knots&Vows - Your Trusted Wedding Services and Planning Partner.",
@@ -332,7 +333,9 @@ class Home extends Component {
               </Row>
               <Row>
                 <Col>
-                  <CarouselComponent isZoom={this.state.zoomCard} />
+                  <LazyLoad height = {200} offset = {100}>
+                    <CarouselComponent isZoom={this.state.zoomCard} />
+                  </LazyLoad>
                 </Col>
               </Row>
               <Row>
@@ -426,7 +429,9 @@ class Home extends Component {
                   <Col id="boxmark"></Col></Row>
                 <Row className="mobile-col-reverse">
                   <div className="col justify-center align-flex-top mobile-column">
+                    <LazyLoad height = {200} offset ={100}>
                     <img className={styles.packageStatic} src={imagePath('package-all.png')} alt="img" />
+                    </LazyLoad>
                     <div className="mobile-only">
                       <TalkToWeddingPlanner buttonText={'Let’s do it'} buttonColor={'white'} />
                     </div>
@@ -490,7 +495,7 @@ class Home extends Component {
                 </Row>
               </Container>
             </div>
-
+            <LazyLoad height= {200} offset ={100}>
             <div className={`${styles.brideBanner} container-fluid`}>
               <div className={`${styles.brideBannerContent} tab-only`}>
                 {/* <div className={styles.reactangleOne}></div> */}
@@ -504,6 +509,7 @@ class Home extends Component {
                 <a className="primary-button home-btn white" href='/packages/bride-package' rel="noopener noreferrer" alt="">Click to blush</a>
               </div>
             </div>
+            </LazyLoad>
             <div className={`${styles.brideBannerContent} mobile-only`}>
               {/* <div className={styles.reactangleOne}></div> */}
               <div className={styles.brideBannerHeading}>
