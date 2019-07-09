@@ -134,6 +134,8 @@
     ]
   },
   "devDependencies": {
+    "glob-all": "^3.1.0",
+    "purgecss-webpack-plugin": "^1.5.0",
     "terser-webpack-plugin": "1.2.2",
     "webpack-dev-middleware": "3.4.0",
     "webpack-hot-middleware": "2.24.3"
