@@ -38,9 +38,9 @@ class ServicesComponent extends Component {
             <h1>A big step <span className='tab-only'><br /></span>towards a beautiful life</h1>
             <h4>We are there with you,<span className='tab-only'><br /></span> in every step of your planning journey.</h4>
             <div className={styles.iconContainer}>
-              <img src={imagePath('inspire-icon.svg')} alt="" onClick={() => this.handleSectionScroll('section1')} aria-hidden />
-              <img src={imagePath('shortlist-icon.png')} alt="" onClick={() => this.handleSectionScroll('section2')} aria-hidden />
-              <img src={imagePath('wedding-day-service-icon.svg')} alt="" onClick={() => this.handleSectionScroll('section3')} aria-hidden />
+              <img src={imagePath('inspire-icon.svg')} alt="icon-inspie" onClick={() => this.handleSectionScroll('section1')} aria-hidden />
+              <img src={imagePath('shortlist-icon.png')} alt="icon-shortlist" onClick={() => this.handleSectionScroll('section2')} aria-hidden />
+              <img src={imagePath('wedding-day-service-icon.svg')} alt="icon-wedding" onClick={() => this.handleSectionScroll('section3')} aria-hidden />
               {/* <img src={imagePath('d-day-icon.png')} alt="" onClick={() => this.handleSectionScroll('section4')} aria-hidden /> */}
             </div>
           </div>
