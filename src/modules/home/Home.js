@@ -23,7 +23,8 @@ import LazyLoad from 'react-lazyload';
 let meta = {
   title:"Knots&Vows - Your Trusted Wedding Services and Planning Partner.",
   description:'We are a team of passionate professionals with over 15 years of experience in wedding planning. We provide personalised and customised wedding packages with added discounts to make it even more magical.',
-  keywords:""
+  keywords:"",
+  shortTitle: "Trusted Wedding Planners"
 }
 
 const mapStateToProps = state => ({
@@ -265,6 +266,10 @@ class Home extends Component {
         <Helmet>
           <title>{meta.title}</title>
           <meta name="description" content={meta.description} />
+          <meta property="og:title" content={meta.shortTitle} />
+          <meta property="og:url" content="https://www.knotsandvows.co.in" />
+          <meta property="og:description" content="Trusted wedding planners" />
+          <meta property="og:image" content="http://placehold.jp/300x300.png" />
         </Helmet>
         {
           styles &&
