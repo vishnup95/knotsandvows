@@ -266,10 +266,6 @@ class Home extends Component {
         <Helmet>
           <title>{meta.title}</title>
           <meta name="description" content={meta.description} />
-          <meta property="og:title" content={meta.shortTitle} />
-          <meta property="og:url" content="https://www.knotsandvows.co.in" />
-          <meta property="og:description" content="Trusted wedding planners" />
-          <meta property="og:image" content="https://d2ac09n5vmchb0.cloudfront.net/react-app/images/knots.png" />
         </Helmet>
         {
           styles &&
