@@ -8,14 +8,13 @@ const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const glob = require('glob-all')
 
 const { getAppEnv } = require('./env');
 
 const env = getAppEnv();
 const { PUBLIC_URL = '' } = env.raw;
 const resolvePath = relativePath => path.resolve(__dirname, relativePath);
+
 
 if (env.raw.NODE_ENV !== 'production') {
   throw new Error('Production builds must have NODE_ENV=production.');
@@ -138,9 +137,6 @@ module.exports = {
     new LodashModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:8].css'
-    }),
-    new PurgecssPlugin({
-      paths: [...glob.sync('src/**' , {nodir: true})]
     }),
     new ManifestPlugin({
       fileName: 'asset-manifest.json'
