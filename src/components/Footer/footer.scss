@@ -19,12 +19,14 @@
       @include fontSize(18);
       @include letterSpacing(.5);
       color: $black;
-
+      min-height: 48px;
+      align-items: center;
       &:first-child {
         font-weight: 700;
       }
     }
   }
+
 
   p {
     @include fontSize(17.6);
