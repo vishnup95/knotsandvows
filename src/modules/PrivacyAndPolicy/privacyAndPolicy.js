@@ -60,8 +60,8 @@ const jumbotronData =
   };
 
   let meta = {
-    title:"Knots&Vows",
-    description:'Wedding services and planning partners',
+    title:"Knots&Vows - Privacy Policy",
+    description:'Wedding services and planning partners - Privacy Policy',
     keywords:""
   }
 class PrivacyAndPolicy extends Component {

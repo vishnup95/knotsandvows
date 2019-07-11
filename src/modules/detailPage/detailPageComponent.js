@@ -25,6 +25,8 @@ import ProgressButton from '../../components/ProgressButton/PorgressButton';
 import * as modalActions from '../../reducers/modal/actions';
 import HorizontalScrollingCarousel from '../home/horizontalScrollingCarousal';
 import Helmet from 'react-helmet';
+//import { withRouter } from 'react-router-dom'
+
 
 const mapStateToProps = state => ({
     user: state.session.user,
@@ -120,6 +122,10 @@ class DetailPageComponent extends Component {
     }
 
     componentWillMount() {
+        let category = this.props.match.params.category_name;
+        if(category === "undefined"){
+            this.props.history.push('/notfound')
+        }
         if (this.props.details == null || getId(this.state.vendor) != this.props.details.vendor_id){
             this.updateUIData();
         }
@@ -603,6 +609,7 @@ DetailPageComponent.propTypes = {
     wishlistId: PropTypes.number,
     gallery: PropTypes.array,
     notes: PropTypes.array,
+    history: PropTypes.object
 };
 
 export default connect(

@@ -59,8 +59,8 @@ const jumbotronData =
   };
 
   let meta = {
-    title:"Knots&Vows",
-    description:'Wedding services and planning partners',
+    title:"Knots&Vows - Terms and Conditions",
+    description:'Wedding services and planning partners - Terms and Conditions',
     keywords:""
   }
 
