@@ -79,8 +79,8 @@ class FooterFixedComponent extends Component {
                         <Collapse isOpen={this.state.collapse[1]}>
                             <p className="d-none d-sm-block"><Link to={'/'}>Home</Link></p>
                             <ul>
-                                <li className="d-block d-sm-none text-left">
-                                    <Link to={'/'} onClick={() => { if (window != null) return window.gtag_report_conversion(); }}>Home</Link>
+                                <li className="d-flex d-sm-none text-left">
+                                    <Link to={'/'} onClick={()=>{if(window!=null) return window.gtag_report_conversion();}}>Home</Link>
                                 </li>
                                 <li>
                                     <Link to={'/services'} onClick={()=>{if(window!=null) return window.gtag_report_conversion('/services');}}>Services</Link>
