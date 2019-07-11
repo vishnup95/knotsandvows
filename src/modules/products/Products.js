@@ -170,7 +170,7 @@ class Products extends Component {
         {metatag &&
                 <Helmet>
                 <title>{metatag.title}</title>
-                <meta name="description" content={metatag.description} />
+                <meta name="description" content={metatag.description + ' page - ' + this.state.page}/>
                 <meta name="keywords" content={metatag.keywords} />
                 </Helmet>
         }
