@@ -70,7 +70,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <meta property="og:title" content="Knots&Vows" />
         <meta property="og:url" content="https://www.knotsandvows.co.in" />
         <meta property="og:description" content="Trusted wedding planners" />
-        <meta property="og:image" content="https://d2ac09n5vmchb0.cloudfront.net/react-app/images/knots.png" />
+        <meta property="og:image" content="https://d2ac09n5vmchb0.cloudfront.net/react-app/images/knots_WA.png" />
         <meta property="og:image:width" content="400" />
         <meta property="og:image:height" content="400" />
         ${preloadScripts(bundles)}
