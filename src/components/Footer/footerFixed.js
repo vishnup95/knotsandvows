@@ -131,10 +131,9 @@ class FooterFixedComponent extends Component {
                     <Col xs="12" md="3" className={`${styles.footerBottomLinks}`}>
                         <div className={`${styles.footerRight}`}>
                             <span className={`${styles.footerImages} tab-only`}>
-                                {/* temporarily removed
-                                <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
+                                <a href='https://www.facebook.com/KnotsandVowsIndia/' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
-                                </a> */}
+                                </a>
                                 <a href='https://www.instagram.com/knotsandvows_ind' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
                                 </a>
@@ -150,10 +149,9 @@ class FooterFixedComponent extends Component {
                                 </p>
                             </Collapse>
                             <span className={`${styles.footerImages} d-block d-sm-none`}>
-                                {/* temporarily removed
-                                <a href='https://www.facebook.com/sevenvowsindia' target="_blank" rel="noopener noreferrer" alt="facebook">
+                                <a href='https://www.facebook.com/KnotsandVowsIndia/' target="_blank" rel="noopener noreferrer" alt="facebook">
                                     <img src={imagePath('footer_fb.png')} alt="Facebook" />
-                                </a> */}
+                                </a>
                                 <a href='https://www.instagram.com/knotsandvows_ind' target="_blank" rel="noopener noreferrer" alt="instagram">
                                     <img src={imagePath('footer_insta.png')} alt="Instagram" />
                                 </a>
