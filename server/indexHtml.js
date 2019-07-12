@@ -67,12 +67,14 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
       <meta name="google-site-verification" content=${process.env.GOOGLE_SITE_VERIFICATION} />
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
-        ${preloadScripts(bundles)}
-        ${helmet.link.toString()}
         <meta property="og:title" content="Knots&Vows" />
         <meta property="og:url" content="https://www.knotsandvows.co.in" />
         <meta property="og:description" content="Trusted wedding planners" />
         <meta property="og:image" content="https://d2ac09n5vmchb0.cloudfront.net/react-app/images/knots.png" />
+        <meta property="og:image:width" content="400" />
+        <meta property="og:image:height" content="400" />
+        ${preloadScripts(bundles)}
+        ${helmet.link.toString()}      
         <link rel="preload" href="/css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/css/bootstrap.min.css"></noscript>
         <link rel="preload" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" as="style" onload="this.rel='stylesheet'">
