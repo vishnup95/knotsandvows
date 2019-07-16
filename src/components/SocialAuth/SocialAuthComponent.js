@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import styles from './socialAuthComponent.scss';
 import * as actions from './actions';
 import { GoogleLogin } from 'react-google-login';
-// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 
 
@@ -45,19 +45,17 @@ class SocialAuthComponent extends Component {
                 // console.log(response.error);
             }
         }
-// temporarily removed
-        // const responseFacebook = (response) => {
-        //     if (response && response.accessToken){
-        //         this.signIn(response.accessToken,"facebook");
-        //     }else{
-        //         // console.log(response);
-        //     }
-        // }
+        const responseFacebook = (response) => {
+            if (response && response.accessToken){
+                this.signIn(response.accessToken,"facebook");
+            }else{
+                // console.log(response);
+            }
+        }
 
         return (
             <div>
                <div className={`${styles.socialBtnWrap} text-center w-100`}>
-                        {/* temporarily removed
                         <FacebookLogin
                             appId={process.env.FACEBOOK_APP_ID}
                             fields="name,email,picture"
@@ -69,7 +67,7 @@ class SocialAuthComponent extends Component {
                                     <span>Facebook</span>
                                 </Button>
                             )}
-                        /> */}
+                        />
                         <GoogleLogin
                             clientId={process.env.GOOGLE_CLIENT_ID}
                             render={renderProps => (

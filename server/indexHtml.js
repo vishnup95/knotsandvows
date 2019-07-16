@@ -67,6 +67,12 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
       <meta name="google-site-verification" content=${process.env.GOOGLE_SITE_VERIFICATION} />
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
+        <meta property="og:title" content="Knots&Vows" />
+        <meta property="og:url" content="https://www.knotsandvows.co.in" />
+        <meta property="og:description" content="Trusted wedding planners" />
+        <meta property="og:image" content="https://d2ac09n5vmchb0.cloudfront.net/react-app/images/knots_WA.png" />
+        <meta property="og:image:width" content="400" />
+        <meta property="og:image:height" content="400" />
         ${preloadScripts(bundles)}
         ${helmet.link.toString()}
         <!-- Pure Chat -->
@@ -80,7 +86,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" as="style" onload="this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"></noscript>
         <link rel="preload" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900&display=swap" as="style" onload="this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900&display=swap"></noscript>                  
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900&display=swap"></noscript>               
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -115,6 +121,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         return false;
         }
         </script>
+        <!-- End Pure Chat -->
         <!-- Facebook Pixel Code -->
           <script>
           !function(f,b,e,v,n,t,s)
@@ -144,15 +151,15 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         gtag('config', '${gaTag}');
         </script>
 
-        <script defer>
-        purechatApi.on('chatbox.available:change', function (args) { 
-          // console.log(args.available) // Prints the ID of the chatbox to the console window 
-          if(args.available){
-           document.getElementById('btnCallMe').style.display = 'none';
-          }else{
-           document.getElementById('btnCallMe').style.display = 'block'; 
-          }  
-        }); 
+        <script> 
+          purechatApi.on('chatbox.available:change', function (args) { 
+            // console.log(args.available) // Prints the ID of the chatbox to the console window 
+            if(args.available){
+             document.getElementById('btnCallMe').style.display = 'none';
+            }else{
+             document.getElementById('btnCallMe').style.display = 'block'; 
+            }  
+          }); 
         </script>
         
 
