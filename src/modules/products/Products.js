@@ -76,6 +76,7 @@ class Products extends Component {
     window.scrollTo(0, 0);
   }
 
+
   selectedCategory() {
     // return getId(this.props.match.params.category_name);
     return this.props.match.params.category_name;
@@ -110,7 +111,7 @@ class Products extends Component {
     if (prevProps == undefined) {
       return false;
     }
-
+    
     if (this.state.category !== this.props.match.params.category_name) {
       let category = this.selectedCategory();
       var page = this.getPage();
@@ -133,6 +134,8 @@ class Products extends Component {
       this.props.dispatch(actions.fetchProducts(this.state.category, this.state.page, this.state.sortBy, this.state.search));
     }
   }
+
+
   pageChangeHandler(page) {
     this.navigateTo(`/categories/${this.state.category}?page=${page.selected+1}`);
   }
@@ -169,8 +172,8 @@ class Products extends Component {
       <div>
         {metatag &&
                 <Helmet>
-                <title>{metatag.title + '. Page-' + this.state.page}</title>
-                <meta name="description" content={metatag.description + 'Page-' + this.state.page}/>
+                <title>{metatag.title}</title>
+                <meta name="description" content={metatag.description + "Page-" + (queryString.parse(this.props.location.search).page == undefined ?"1":queryString.parse(this.props.location.search).page) }/>
                 <meta name="keywords" content={metatag.keywords} />
                 </Helmet>
         }
