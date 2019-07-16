@@ -58,7 +58,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
   const gtmId = process.env.GTM_ID;
   // const conversionId = process.env.CONVERSION_ID;
   const gaTag = process.env.GA_TRACKING_ID;
-
+  const pureChatAppID = process.env.PURE_CHAT_APP_ID;
 
   return `
     <!doctype html>
@@ -74,7 +74,11 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <meta property="og:image:width" content="400" />
         <meta property="og:image:height" content="400" />
         ${preloadScripts(bundles)}
-        ${helmet.link.toString()}      
+        ${helmet.link.toString()}
+        <!-- Pure Chat -->
+        <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '${pureChatAppID}', f: true }); done = true; } }; })();</script>
+        <!-- End Pure Chat -->
+
         <link rel="preload" href="/css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/css/bootstrap.min.css"></noscript>
         <link rel="preload" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" as="style" onload="this.rel='stylesheet'">
@@ -83,9 +87,6 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"></noscript>
         <link rel="preload" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900&display=swap" as="style" onload="this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre:400,500,700|Roboto:300,400,500,700,900&display=swap"></noscript>               
-        <!-- Pure Chat -->
-        <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '93716f8f-05de-4275-a033-aa244d31b6d8', f: true }); done = true; } }; })();</script>
-        <!-- End Pure Chat -->
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
