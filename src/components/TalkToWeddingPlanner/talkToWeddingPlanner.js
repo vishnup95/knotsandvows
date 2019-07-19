@@ -106,8 +106,7 @@ class TalkToWeddingPlanner extends Component {
         }));
 
         this.props.dispatch(actions.clearTalkToErrors());
-        if (window != null)
-            return window.gtag_report_conversion()
+        
     }
 
     handleFormChange = (e) => {
@@ -150,8 +149,6 @@ class TalkToWeddingPlanner extends Component {
             });
             this.props.dispatch(actions.postContactDetails(details));
         }
-        if (window != null)
-            return window.gtag_report_conversion()
     }
 
     // handling services modal 
@@ -185,7 +182,7 @@ class TalkToWeddingPlanner extends Component {
     }
     handlePulsateRing() {
         if (window != null)
-            return window.gtag_report_conversion()
+            return true;
     }
     render() {
         return (
