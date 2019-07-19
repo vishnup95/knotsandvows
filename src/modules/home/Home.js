@@ -23,7 +23,8 @@ import LazyLoad from 'react-lazyload';
 let meta = {
   title:"Knots&Vows - Your Trusted Wedding Services and Planning Partner.",
   description:'We are a team of passionate professionals with over 15 years of experience in wedding planning. We provide personalised and customised wedding packages with added discounts to make it even more magical.',
-  keywords:""
+  keywords:"",
+  shortTitle: "Trusted Wedding Planners"
 }
 
 const mapStateToProps = state => ({
