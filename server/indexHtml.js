@@ -106,7 +106,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         function gtag_report_conversion(url) {
         var callback = function () {
           if (typeof(url) != 'undefined') {
-            window.location = url;
+            // window.location = url;
           }
         };
         gtag('event', 'conversion', {
