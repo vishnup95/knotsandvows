@@ -5,6 +5,7 @@
  PORT='4000'
  REACT_APP_API_HOST='https://prod.ahwanam.com'
  REACT_APP_API_PORT=''
+ PURE_CHAT_APP_ID='3f83888a-3ba2-428c-ad79-8081687d11ad'
 
  GOOGLE_CLIENT_ID = '196752799052-sljginqj6284uejn9vak6c7vgaf8ohtj.apps.googleusercontent.com'
  GOOGLE_SITE_VERIFICATION ='daNLtRkMMTN53enxPgilG_NgoqmSsc6Pls81gt0ZMSk'
