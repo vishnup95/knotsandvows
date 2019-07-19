@@ -14,6 +14,7 @@ import { Button, Modal } from 'reactstrap';
 import FullStory from 'react-fullstory';
 import styles from './modals/forgotPasswordModal/forgotPasswordModal.scss';
 import { imagePath } from './utils/assetUtils';
+import ReactGA from "react-ga";
 
 const mapStateToProps = state => ({
   showModal: state.modal.show,
@@ -28,16 +29,15 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.initializeReactGA();
+    this.initializeReactGA();
   }
 
-  // initializeReactGA = () => {
-
-  //   ReactGA.initialize(process.env.GA_TRACKING_ID);
-  //   this.props.history.listen(location => {
-  //     ReactGA.pageview(location.pathname);
-  //   });
-  // }
+  initializeReactGA = () => {
+    ReactGA.initialize(process.env.GA_TRACKING_ID);
+    this.props.history.listen(location => {
+      ReactGA.pageview(location.pathname);
+    });  
+  }
 
   toggle() {
     if (this.props.showModal) {

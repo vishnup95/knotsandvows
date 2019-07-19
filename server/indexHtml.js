@@ -91,14 +91,14 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         <!-- End Google Tag Manager -->
         
         <!-- Global site tag (gtag.js) - Google Ads: 745108214 -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-745108214"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        // <script async src="https://www.googletagmanager.com/gtag/js?id=AW-745108214"></script>
+        // <script>
+        // window.dataLayer = window.dataLayer || [];
+        // function gtag(){dataLayer.push(arguments);}
+        // gtag('js', new Date());
 
-        gtag('config', 'AW-745108214');
-        </script>
+        // gtag('config', 'AW-745108214');
+        // </script>
 
         <!-- Event snippet for Knots&amp;Vows Lead conversion page
         In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
@@ -136,7 +136,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
           " alt="facebook"
           /></noscript>
           <!-- End Facebook Pixel Code -->
-          <!-- Global site tag (gtag.js) - Google Analytics -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=${gaTag}"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
