@@ -93,7 +93,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         })(window,document,'script','dataLayer','${gtmId}');</script>
         <!-- End Google Tag Manager -->
         
-        <--- GA --- AD-ID-->
+        <!--- GA --- AD-ID-->
         <!-- Global site tag (gtag.js) - Google Ads: 745108214 -->
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-745108214"></script>
           <script>
@@ -134,7 +134,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
 
         gtag('config', '${gaTag}');
         </script>
-        
+
         <script> 
           purechatApi.on('chatbox.available:change', function (args) { 
             // console.log(args.available) // Prints the ID of the chatbox to the console window 
