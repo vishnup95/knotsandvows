@@ -79,7 +79,6 @@ class SocialAuthComponent extends Component {
                             buttonText="Login"
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
-                            onClick={()=>{if(window!=null) return window.gtag_report_conversion()}}
                         ></GoogleLogin>
                     </div>
                 </div>
