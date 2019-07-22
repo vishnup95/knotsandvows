@@ -8,8 +8,6 @@ const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Critters = require('critters-webpack-plugin');
 
 const { getAppEnv } = require('./env');
 
@@ -134,7 +132,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin(),
     new webpack.DefinePlugin(env.forWebpackDefinePlugin),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new LodashModuleReplacementPlugin(),
@@ -146,9 +143,6 @@ module.exports = {
     }),
     new ReactLoadablePlugin({
       filename: 'build/react-loadable.json'
-    }),
-    new Critters({
-      // optional configuration (see below)
     })
   ],
   node: {

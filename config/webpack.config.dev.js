@@ -6,8 +6,6 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Critters = require('critters-webpack-plugin');
 
 const { getAppEnv } = require('./env');
 
@@ -123,10 +121,6 @@ module.exports = {
     new ErrorOverlayPlugin(),
     new ReactLoadablePlugin({
       filename: 'build/react-loadable.json'
-    }),
-    new HtmlWebpackPlugin(),
-    new Critters({
-      // optional configuration (see below)
     })
   ],
   node: {
