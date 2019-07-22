@@ -52,7 +52,7 @@ const jsScripts = bundles => {
     .join('');
 };
 
-export const indexHtml = ({ helmet, initialState, markup, bundles, criticalCSS }) => {
+export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
   const htmlAttrs = helmet.htmlAttributes.toString();
   const bodyAttrs = helmet.bodyAttributes.toString();
   const gtmId = process.env.GTM_ID;
@@ -67,7 +67,6 @@ export const indexHtml = ({ helmet, initialState, markup, bundles, criticalCSS }
       <meta name="google-site-verification" content=${process.env.GOOGLE_SITE_VERIFICATION} />
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
-        ${console.log(criticalCSS)}
         <meta property="og:title" content="Knots&Vows" />
         <meta property="og:url" content="https://www.knotsandvows.co.in" />
         <meta property="og:description" content="Trusted wedding planners" />
