@@ -19,3 +19,4 @@
  APP_URL='https://knotsandvows.co.in'
  CONVERSION_ID='AW-745108214'
 
+ APP_URL='https://knotsandvows.co.in'

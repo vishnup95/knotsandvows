@@ -111,6 +111,10 @@ class GoldPackage extends Component {
     }
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   handleDateChange = (dt) => {
 
     if (dt != null)
@@ -345,7 +349,7 @@ class GoldPackage extends Component {
                       </Col>
                     </Row>
                   </form>
-                  <input type="submit" value="Send Message" className="ml-0 secondary-button home-btn" onClick={() => {this.sendDetailsToWeddingPlanner();if(window!=null) return window.gtag_report_conversion();}} />
+                  <input type="submit" value="Send Message" className="ml-0 secondary-button home-btn" onClick={() => {this.sendDetailsToWeddingPlanner()}} />
               </Col>
             </Row>
           </Container>
