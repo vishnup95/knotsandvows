@@ -543,7 +543,7 @@ Home.propTypes = {
   location: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+	withStyles(styles),
+	connect(mapStateToProps, mapDispatchToProps)
 )(Home);
