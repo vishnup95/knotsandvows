@@ -19,6 +19,8 @@ import ImageFade from '../../components/ImageFade/imageFade';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 import Helmet from 'react-helmet';
 import LazyLoad from 'react-lazyload';
+import { withStyles } from 'react-critical-css';
+
 
 let meta = {
   title:"Knots&Vows - Your Trusted Wedding Services and Planning Partner.",
@@ -545,7 +547,8 @@ Home.propTypes = {
   location: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default withStyles(styles)(
+  connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(Home));
