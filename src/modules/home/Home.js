@@ -544,8 +544,12 @@ Home.propTypes = {
   location: PropTypes.object
 };
 
+<<<<<<< HEAD
 export default withStyles(styles)(
   connect(
 		mapStateToProps,
 		mapDispatchToProps
 	)(Home));
+=======
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+>>>>>>> 6d75fa3d6dc9dce81450bfd82728a273b6109307
