@@ -30,7 +30,7 @@ const cssLinks = () => {
   if (NODE_ENV !== 'production') {
     return '';
   }
-
+  console.log(criticalCSS);
   return Object.keys(assetManifest)
     .filter(file => file.match(/\.css$/))
     .map(cssFile => assetManifest[cssFile])
@@ -67,6 +67,7 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
       <meta name="google-site-verification" content=${process.env.GOOGLE_SITE_VERIFICATION} />
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
+        ${console.log(criticalCSS)}
         <meta property="og:title" content="Knots&Vows" />
         <meta property="og:url" content="https://www.knotsandvows.co.in" />
         <meta property="og:description" content="Trusted wedding planners" />

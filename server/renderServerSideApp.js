@@ -11,6 +11,8 @@ import configureStore from '../src/utils/configureStore';
 import { fetchDataForRender } from './fetchDataForRender';
 import { indexHtml } from './indexHtml';
 import stats from '../build/react-loadable.json';
+import {CriticalCSSProvider, StyleRegistry} from 'react-critical-css';
+
 
 export const renderServerSideApp = (req, res) => {
   const { store } = configureStore({ logger: false });
@@ -22,11 +24,14 @@ export const renderServerSideApp = (req, res) => {
 function renderApp(req, res, store) {
   const context = {};
   const modules = [];
+  const styleRegistry = new StyleRegistry();
   const markup = ReactDOMServer.renderToString(
     <Loadable.Capture report={moduleName => modules.push(moduleName)}>
       <Provider store={store}>
         <StaticRouter location={req.url} context={context}>
-          <App />
+          <CriticalCSSProvider registry={styleRegistry}>
+            <App />
+          </CriticalCSSProvider>
         </StaticRouter>
       </Provider>
     </Loadable.Capture>
@@ -35,11 +40,13 @@ function renderApp(req, res, store) {
   if (context.url) {
     res.redirect(context.url);
   } else {
+    const criticalCSS = styleRegistry.getCriticalCSS();
     const fullMarkup = indexHtml({
       helmet: Helmet.renderStatic(),
       initialState: store.getState(),
       bundles: getBundles(stats, modules),
-      markup
+      markup,
+      criticalCSS
     });
     const returnStatus = is404(modules) ? 404 : 200 ;
     res.status(returnStatus).send(fullMarkup);
