@@ -19,7 +19,6 @@ import ImageFade from '../../components/ImageFade/imageFade';
 import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWeddingPlanner';
 import Helmet from 'react-helmet';
 import LazyLoad from 'react-lazyload';
-import { withStyles } from 'react-critical-css';
 import { Link } from 'react-router-dom'
 
 let meta = {
@@ -544,12 +543,4 @@ Home.propTypes = {
   location: PropTypes.object
 };
 
-<<<<<<< HEAD
-export default withStyles(styles)(
-  connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(Home));
-=======
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
->>>>>>> 6d75fa3d6dc9dce81450bfd82728a273b6109307
