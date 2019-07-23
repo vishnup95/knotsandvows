@@ -20,12 +20,13 @@ import TalkToWeddingPlanner from '../../components/TalkToWeddingPlanner/talkToWe
 import Helmet from 'react-helmet';
 import LazyLoad from 'react-lazyload';
 import { withStyles } from 'react-critical-css';
-
+import { Link } from 'react-router-dom'
 
 let meta = {
   title:"Knots&Vows - Your Trusted Wedding Services and Planning Partner.",
   description:'We are a team of passionate professionals with over 15 years of experience in wedding planning. We provide personalised and customised wedding packages with added discounts to make it even more magical.',
-  keywords:""
+  keywords:"",
+  shortTitle: "Trusted Wedding Planners"
 }
 
 const mapStateToProps = state => ({
@@ -234,12 +235,8 @@ class Home extends Component {
     this.props.dispatch(push(route));
   }
 
-  handleCeremonyClick = (ceremony, event) => {
-
+  handleCeremonyClick = (ceremony,) => {
     this.navigateTo(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
-    if (window != null)
-      return window.gtag_report_conversion(`/ceremonies/${hyphonatedString(ceremony.ceremony_name, ceremony.ceremony_id)}`);
-    event.preventDefault();
   }
 
   validateInput() {
@@ -463,7 +460,7 @@ class Home extends Component {
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Gold</h3>
                       <p>Give your dream wedding a golden touch. <span className="tab-only"><br /></span>Here’s a complete wedding solution crafted just for you.</p>
-                      <a className="primary-button home-btn white" onClick={() => { if (window != null) window.gtag_report_conversion('/packages/wedding-gold-package'); }} href='/packages/wedding-gold-package' rel="noopener noreferrer" alt="">Go for Gold</a>
+                      <Link className="primary-button home-btn white"  to='/packages/wedding-gold-package' rel="noopener noreferrer">Go for Gold</Link>
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
                   </Col>
@@ -473,7 +470,7 @@ class Home extends Component {
                     <div className={`${styles.packageDetail} ${this.state.showDesc ? styles.showDetail : ''}`}>
                       <h3>Royal Ruby</h3>
                       <p>Add shine to your wedding celebration. <span className="tab-only"><br /></span>Here’s a package that’s packed with wedding goodness.</p>
-                      <a className="primary-button home-btn white" onClick={() => { if (window != null) return window.gtag_report_conversion('/packages/wedding-ruby-package'); }} href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
+                      <a className="primary-button home-btn white" href='/packages/wedding-ruby-package' rel="noopener noreferrer" alt="">Royal Ruby</a>
 
                       {/* <Button className="primary-button home-btn medium-pink">LEARN MORE</Button> */}
                     </div>
@@ -524,7 +521,7 @@ class Home extends Component {
                   <h2>Pick a Ceremony...</h2>
                   {this.props.ceremonies && this.state.loadImages &&
                     <Col xs="12" className={` no-padding mb-5`}>
-                      <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony, event) => this.handleCeremonyClick(ceremony, event)} />
+                      <HorizontalSlider data={this.props.ceremonies} type="ceremony" onSelect={(ceremony) => this.handleCeremonyClick(ceremony)} />
                     </Col>
                   }
                 </Col>
@@ -547,8 +544,12 @@ Home.propTypes = {
   location: PropTypes.object
 };
 
+<<<<<<< HEAD
 export default withStyles(styles)(
   connect(
 		mapStateToProps,
 		mapDispatchToProps
 	)(Home));
+=======
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+>>>>>>> 6d75fa3d6dc9dce81450bfd82728a273b6109307
