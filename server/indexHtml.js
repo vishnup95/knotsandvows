@@ -59,6 +59,8 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
   // const conversionId = process.env.CONVERSION_ID;
   const gaTag = process.env.GA_TRACKING_ID;
   const pureChatAppID = process.env.PURE_CHAT_APP_ID;
+  const pixelId = process.env.FACEBOOK_PIXEL_ID;
+
 
   return `
     <!doctype html>
@@ -104,7 +106,6 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
           gtag('config', 'AW-745108214');
           </script>
 
-
         <!-- Facebook Pixel Code -->
         <script>
         !function(f,b,e,v,n,t,s)
@@ -113,18 +114,17 @@ export const indexHtml = ({ helmet, initialState, markup, bundles }) => {
         if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
         n.queue=[];t=b.createElement(e);t.async=!0;
         t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '2199773313469762');
+        fbq('init', '${pixelId}'); 
         fbq('track', 'PageView');
         </script>
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=2199773313469762&ev=PageView&noscript=1
-        https://www.facebook.com/tr?id=2199773313469762&ev=PageView&noscript=1
-        " alt="facebook"
-        /></noscript>
+        <noscript>
+         <img height="1" width="1" 
+        src="https://www.facebook.com/tr?id=450420929053700&ev=PageView
+        &noscript=1"/>
+        </noscript>
         <!-- End Facebook Pixel Code -->
-
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=${gaTag}"></script>
         <script>
